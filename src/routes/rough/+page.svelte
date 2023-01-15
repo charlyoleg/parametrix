@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { area } from './geom';
 	let width = 5;
 	let height = 3;
 </script>
@@ -14,7 +15,7 @@
 		<input type="number" bind:value={height} min="1" max="20" step="0.1" />
 		<input type="range" bind:value={height} min="1" max="20" step="0.1" />
 	</label>
-	<p>Surface: {(width * height).toFixed(2)} m2</p>
+	<p>Surface: {area(width, height)} m2</p>
 </section>
 
 <style>
