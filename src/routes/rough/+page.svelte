@@ -1,6 +1,6 @@
 <script lang="ts">
-	let width: number = 5;
-	let height: number = 3;
+	let width = 5;
+	let height = 3;
 </script>
 
 <section>
