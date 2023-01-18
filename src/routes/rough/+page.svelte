@@ -1,5 +1,13 @@
+<script context="module" lang="ts">
+	function area(w: number, h: number) {
+		return (w * h).toFixed(2);
+	}
+
+	export { area };
+</script>
+
 <script lang="ts">
-	import { area } from './geom';
+	//import { area } from './geom';
 	let width = 5;
 	let height = 3;
 </script>
