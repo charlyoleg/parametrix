@@ -11,7 +11,7 @@ const config = {
 
 	kit: {
 		paths: {
-			base: dev ? '' : '/parametrix',
+			base: dev ? '' : '/parametrix'
 		},
 		//appDir: 'app_',
 		adapter: adapter({
