@@ -22,7 +22,7 @@ jobs:
               run: |
                   npm run build
                   npm run check
-				  npm run test:unit
+                  npm run test:unit
                   npm run lint
 
             - name: Deploy Parametrix
