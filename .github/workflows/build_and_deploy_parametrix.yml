@@ -1,0 +1,31 @@
+# build_and_deploy_parametrix.yml
+
+name: Build and Deploy Parametrix
+on: [push]
+#permissions:
+#  contents: write
+jobs:
+    build-and-deploy:
+        concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: '16'
+
+            - run: npm i
+
+            - name: Build and check Parametrix
+              run: |
+                  npm run build
+                  npm run check
+                  npm run unit:test
+                  npm run lint
+
+            - name: Deploy Parametrix
+              uses: JamesIves/github-pages-deploy-action@v4
+              with:
+                  folder: build # The folder the action should deploy.
