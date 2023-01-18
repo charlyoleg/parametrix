@@ -7,7 +7,6 @@
 </script>
 
 <script lang="ts">
-	//import { area } from './geom';
 	let width = 5;
 	let height = 3;
 </script>
