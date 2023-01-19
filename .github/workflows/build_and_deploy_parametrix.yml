@@ -25,7 +25,10 @@ jobs:
                   npm run test:unit
                   npm run lint
 
-            - name: Deploy Parametrix
-              uses: JamesIves/github-pages-deploy-action@v4
+            - name: Deploy Parametrix to GitHub pages
+              uses: crazy-max/ghaction-github-pages@v3
               with:
-                  folder: build # The folder the action should deploy.
+                  target_branch: gh-pages
+                  build_dir: public
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
