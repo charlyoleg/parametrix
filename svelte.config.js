@@ -18,7 +18,6 @@ const config = {
 			strict: true
 		}),
 		//appDir: 'app_',
-		appDir: 'internal',
 		paths: {
 			base: dev ? '' : '/parametrix'
 		}
