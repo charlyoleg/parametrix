@@ -1,0 +1,33 @@
+image: node:18.13.0
+
+cache:
+  paths:
+    - node_modules/
+
+stages:
+  - preparation
+  - build
+  - test
+  - deploy
+
+job_preparation:
+  stage: preparation
+  script:
+    - npm i
+
+job_build:
+  stage: build
+  script:
+    - npm run build
+
+job_test:
+  stage: test
+  script:
+    - npm run check
+    - npm run unit:test
+    - npm run lint
+
+job_deploy:
+  stage: deploy
+  script:
+    - echo "the end"
