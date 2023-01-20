@@ -17,10 +17,6 @@ const config = {
 			precompress: false,
 			strict: true
 		}),
-		prerender: {
-			default: true
-		},
-		trailingSlash: 'always',
 		//appDir: 'app_',
 		appDir: 'internal',
 		paths: {
