@@ -7,7 +7,8 @@ Presentation
 
 A static website to generate few 2D paramteric designs.
 
-This static website is deployed on [github](https://charlyoleg.github.io/parametrix) and [gitlab](https://gitlab.com).
+This static website is deployed on [github-pages](https://charlyoleg.github.io/parametrix) and [gitlab-pages](https://gitlab.com).
+The sources are available on [github](https://github.com/charlyoleg/parametrix) and [gitlab](https://gitlab.com/charlyoleg78/parametrix).
 
 
 Prerequisite
