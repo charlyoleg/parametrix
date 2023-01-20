@@ -10,18 +10,22 @@ const config = {
 	preprocess: vitePreprocess(),
 
 	kit: {
-		paths: {
-			base: dev ? '' : '/parametrix'
-		},
-		//appDir: 'app_',
-		appDir: 'internal',
 		adapter: adapter({
 			pages: 'build',
 			assets: 'build',
 			fallback: null,
 			precompress: false,
 			strict: true
-		})
+		}),
+		prerender: {
+			default: true,
+		},
+		trailingSlash: 'always',
+		//appDir: 'app_',
+		appDir: 'internal',
+		paths: {
+			base: dev ? '' : '/parametrix'
+		}
 	}
 };
 
