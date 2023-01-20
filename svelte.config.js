@@ -10,7 +10,8 @@ const config = {
 	preprocess: vitePreprocess(),
 
 	kit: {
-		adapter: adapter(
+		adapter:
+			adapter(),
 			//{
 			//pages: 'build',
 			//assets: 'build',
@@ -18,7 +19,6 @@ const config = {
 			//precompress: false,
 			//strict: true
 			//}
-		),
 		//appDir: 'app_',
 		appDir: 'internal',
 		paths: {
