@@ -14,6 +14,7 @@ const config = {
 			base: dev ? '' : '/parametrix'
 		},
 		//appDir: 'app_',
+		appDir: 'internal',
 		adapter: adapter({
 			pages: 'build',
 			assets: 'build',
