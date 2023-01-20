@@ -27,3 +27,4 @@ cd parametrix
 npm i
 npm run dev -- --open
 ```
+
