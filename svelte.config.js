@@ -17,7 +17,7 @@ const config = {
 			precompress: false,
 			strict: true
 		}),
-		//appDir: 'app_',
+		appDir: 'app_',
 		paths: {
 			base: dev ? '' : '/parametrix'
 		}
