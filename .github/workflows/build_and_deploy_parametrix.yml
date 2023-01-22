@@ -21,6 +21,7 @@ jobs:
             - name: Build and check Parametrix
               run: |
                   npm run build
+                  npm run github-pages-fix
                   npm run check
                   npm run test:unit
                   npm run lint
