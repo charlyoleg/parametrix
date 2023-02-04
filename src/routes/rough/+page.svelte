@@ -11,6 +11,9 @@
 	let height = 3;
 </script>
 
+<h2>Rough</h2>
+<article>An experimental page</article>
+
 <section>
 	<label>
 		Width:
