@@ -9,6 +9,8 @@
 <nav>
 	<a href="{base}/">Index</a>
 	<a href="{base}/rough">Rough</a>
+	<a href="{base}/circles">Circles</a>
+	<a href="{base}/about">About</a>
 </nav>
 
 <main>
