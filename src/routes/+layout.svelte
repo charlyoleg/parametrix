@@ -23,3 +23,32 @@
 		<li><a href="https://charlyoleg.github.io/parametrix/">Github page</a></li>
 	</ul>
 </footer>
+
+<style>
+	:global(body) {
+		font-family: 'Lucida Console', 'Monaco', 'Verdana';
+	}
+	header {
+		background-color: #666699;
+	}
+	header > h1 {
+		color: red;
+		size: 3em;
+	}
+	header > article {
+		color: green;
+		size: 1em;
+	}
+	nav {
+		background-color: #666699;
+	}
+	nav > a {
+		color: orange;
+	}
+	footer {
+		background-color: #666699;
+	}
+	footer > ul > li > a {
+		color: grey;
+	}
+</style>
