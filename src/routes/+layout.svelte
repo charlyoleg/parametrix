@@ -25,8 +25,8 @@
 </footer>
 
 <style lang="scss">
-	$frame-color: #666699;
-	//$frame-color: #666655;
+	@import '$lib/style/colors.scss';
+
 	:global(body) {
 		font-family: 'Lucida Console', 'Monaco', 'Verdana';
 	}
@@ -34,23 +34,26 @@
 		background-color: $frame-color;
 	}
 	header > h1 {
-		color: red;
+		color: $header-title-color;
 		size: 3em;
 	}
 	header > article {
-		color: green;
+		color: $header-subtile-color;
 		size: 1em;
 	}
 	nav {
 		background-color: $frame-color;
 	}
 	nav > a {
-		color: orange;
+		color: $menu-color;
+	}
+	main {
+		background-color: $main-color;
 	}
 	footer {
 		background-color: $frame-color;
 	}
 	footer > ul > li > a {
-		color: grey;
+		color: $footer-color;
 	}
 </style>
