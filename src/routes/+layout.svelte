@@ -24,12 +24,14 @@
 	</ul>
 </footer>
 
-<style>
+<style lang="scss">
+	$frame-color: #666699;
+	//$frame-color: #666655;
 	:global(body) {
 		font-family: 'Lucida Console', 'Monaco', 'Verdana';
 	}
 	header {
-		background-color: #666699;
+		background-color: $frame-color;
 	}
 	header > h1 {
 		color: red;
@@ -40,13 +42,13 @@
 		size: 1em;
 	}
 	nav {
-		background-color: #666699;
+		background-color: $frame-color;
 	}
 	nav > a {
 		color: orange;
 	}
 	footer {
-		background-color: #666699;
+		background-color: $frame-color;
 	}
 	footer > ul > li > a {
 		color: grey;
