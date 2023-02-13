@@ -25,35 +25,35 @@
 </footer>
 
 <style lang="scss">
-	@import '$lib/style/colors.scss';
+	@use '$lib/style/colors.scss';
 
 	:global(body) {
 		font-family: 'Lucida Console', 'Monaco', 'Verdana';
 	}
 	header {
-		background-color: $frame-color;
+		background-color: colors.$frame;
 	}
 	header > h1 {
-		color: $header-title-color;
+		color: colors.$header-title;
 		size: 3em;
 	}
 	header > article {
-		color: $header-subtile-color;
+		color: colors.$header-subtile;
 		size: 1em;
 	}
 	nav {
-		background-color: $frame-color;
+		background-color: colors.$frame;
 	}
 	nav > a {
-		color: $menu-color;
+		color: colors.$menu;
 	}
 	main {
-		background-color: $main-color;
+		background-color: colors.$main;
 	}
 	footer {
-		background-color: $frame-color;
+		background-color: colors.$frame;
 	}
 	footer > ul > li > a {
-		color: $footer-color;
+		color: colors.$footer;
 	}
 </style>
