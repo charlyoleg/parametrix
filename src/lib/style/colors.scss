@@ -1,14 +1,27 @@
 // colors.scss
 
-$frame: #666699;
-//$frame: #666655;
+$header-bg: #eeeeff;
+//$header-bg: #666699;
+//$header-bg: #666655;
 
-$header-title: grey;
+$header-title: #c0c0c0;
 
-$header-subtile: green;
+//$header-subtitle: #808080;
+//$header-subtitle: #a26565;
+$header-subtitle: grey;
 
-$menu: orange;
+$menu: white;
+$menu-hover: orange;
+$menu-back: grey;
+$menu-border: yellow;
 
-$main: #ccccee;
+//$main: #ccccee;
+//$main: #f0f0ff;
+//$main-bg: #ffffff;
+$main-bg: azure;
 
-$footer: grey;
+//$footer: grey;
+$footer-bg: $header-bg;
+
+//$footer: $header-title;
+$footer: $header-subtitle;

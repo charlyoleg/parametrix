@@ -8,3 +8,9 @@
 	<li><a href="{base}/circles">Circles</a></li>
 	<li><a href="{base}/about">About</a></li>
 </ul>
+
+<style>
+	h2 {
+		margin: 0;
+	}
+</style>

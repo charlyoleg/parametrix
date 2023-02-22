@@ -29,6 +29,9 @@
 </section>
 
 <style>
+	h2 {
+		margin: 0;
+	}
 	label {
 		display: flex;
 	}
