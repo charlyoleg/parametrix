@@ -6,7 +6,7 @@
 <img src="{base}/favicon.svg" alt="Parametrix's logo" />
 <img src="{base}/favicon.svg" alt="Parametrix's logo" />
 
-<style>
+<style lang="scss">
 	img {
 		width: 1rem;
 		height: 1rem;
