@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { base } from '$app/paths';
+	import Garland from '$lib/Garland.svelte';
 </script>
 
 <header>
@@ -25,17 +26,13 @@
 </main>
 
 <footer>
-	<img src="{base}/favicon.svg" alt="Parametrix's logo" />
-	<img src="{base}/favicon.svg" alt="Parametrix's logo" />
-	<img src="{base}/favicon.svg" alt="Parametrix's logo" />
+	<Garland />
 	<ul>
 		<li class="footer-title">Parametrix</li>
 		<li><a href="https://github.com/charlyoleg/parametrix">Github repo</a></li>
 		<li><a href="https://charlyoleg.github.io/parametrix/">Github page</a></li>
 	</ul>
-	<img src="{base}/favicon.svg" alt="Parametrix's logo" />
-	<img src="{base}/favicon.svg" alt="Parametrix's logo" />
-	<img src="{base}/favicon.svg" alt="Parametrix's logo" />
+	<Garland />
 	<ul>
 		<li class="footer-title">Friends</li>
 		<li><a href="https://www.freecad.org/">FreeCAD</a></li>
@@ -46,25 +43,19 @@
 		<li><a href="https://cadquery.readthedocs.io">CadQuery</a></li>
 		<li><a href="https://github.com/tpaviot/pythonocc-core">PythonOCC</a></li>
 	</ul>
-	<img src="{base}/favicon.svg" alt="Parametrix's logo" />
-	<img src="{base}/favicon.svg" alt="Parametrix's logo" />
-	<img src="{base}/favicon.svg" alt="Parametrix's logo" />
+	<Garland />
 	<ul>
 		<li class="footer-title">Inspirations</li>
 		<li><a href="https://github.com/devbisme/skidl">SKiDL</a></li>
 		<li><a href="https://www.myhdl.org/">MyHDL</a></li>
 	</ul>
-	<img src="{base}/favicon.svg" alt="Parametrix's logo" />
-	<img src="{base}/favicon.svg" alt="Parametrix's logo" />
-	<img src="{base}/favicon.svg" alt="Parametrix's logo" />
+	<Garland />
 	<ul>
 		<li class="footer-title">Miscellaneous</li>
 		<li><a href="https://pythonhosted.org/Cnc25D/">cnc25D</a></li>
 		<li><a href="https://phydemo.app/ray-optics/">Ray Optics Simulation</a></li>
 	</ul>
-	<img src="{base}/favicon.svg" alt="Parametrix's logo" />
-	<img src="{base}/favicon.svg" alt="Parametrix's logo" />
-	<img src="{base}/favicon.svg" alt="Parametrix's logo" />
+	<Garland />
 </footer>
 
 <style lang="scss">
@@ -168,16 +159,6 @@
 		min-height: 30vh;
 		column-width: 16rem;
 		column-gap: 2rem;
-	}
-	footer > img {
-		width: 1rem;
-		height: 1rem;
-		margin: 0.1rem;
-		margin-top: 0.8rem;
-		transition: transform 0.5s;
-	}
-	footer > img:hover {
-		transform: rotate(180deg);
 	}
 	footer > ul {
 		list-style-type: none;
