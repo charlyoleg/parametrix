@@ -25,10 +25,46 @@
 </main>
 
 <footer>
+	<img src="{base}/favicon.svg" alt="Parametrix's logo" />
+	<img src="{base}/favicon.svg" alt="Parametrix's logo" />
+	<img src="{base}/favicon.svg" alt="Parametrix's logo" />
 	<ul>
+		<li class="footer-title">Parametrix</li>
 		<li><a href="https://github.com/charlyoleg/parametrix">Github repo</a></li>
 		<li><a href="https://charlyoleg.github.io/parametrix/">Github page</a></li>
 	</ul>
+	<img src="{base}/favicon.svg" alt="Parametrix's logo" />
+	<img src="{base}/favicon.svg" alt="Parametrix's logo" />
+	<img src="{base}/favicon.svg" alt="Parametrix's logo" />
+	<ul>
+		<li class="footer-title">Friends</li>
+		<li><a href="https://www.freecad.org/">FreeCAD</a></li>
+		<li><a href="https://openscad.org/">OpenSCAD</a></li>
+		<li><a href="https://librecad.org/">LibreCAD</a></li>
+		<li><a href="https://solvespace.com/">SolveSpace</a></li>
+		<li><a href="https://inkscape.org/">Inkscape</a></li>
+		<li><a href="https://cadquery.readthedocs.io">CadQuery</a></li>
+		<li><a href="https://github.com/tpaviot/pythonocc-core">PythonOCC</a></li>
+	</ul>
+	<img src="{base}/favicon.svg" alt="Parametrix's logo" />
+	<img src="{base}/favicon.svg" alt="Parametrix's logo" />
+	<img src="{base}/favicon.svg" alt="Parametrix's logo" />
+	<ul>
+		<li class="footer-title">Inspirations</li>
+		<li><a href="https://github.com/devbisme/skidl">SKiDL</a></li>
+		<li><a href="https://www.myhdl.org/">MyHDL</a></li>
+	</ul>
+	<img src="{base}/favicon.svg" alt="Parametrix's logo" />
+	<img src="{base}/favicon.svg" alt="Parametrix's logo" />
+	<img src="{base}/favicon.svg" alt="Parametrix's logo" />
+	<ul>
+		<li class="footer-title">Miscellaneous</li>
+		<li><a href="https://pythonhosted.org/Cnc25D/">cnc25D</a></li>
+		<li><a href="https://phydemo.app/ray-optics/">Ray Optics Simulation</a></li>
+	</ul>
+	<img src="{base}/favicon.svg" alt="Parametrix's logo" />
+	<img src="{base}/favicon.svg" alt="Parametrix's logo" />
+	<img src="{base}/favicon.svg" alt="Parametrix's logo" />
 </footer>
 
 <style lang="scss">
@@ -126,10 +162,33 @@
 	footer {
 		background-color: colors.$footer-bg;
 		padding-top: 1rem;
+		padding-left: 5rem;
+		padding-right: 5rem;
+		padding-bottom: 5rem;
 		min-height: 30vh;
+		column-width: 16rem;
+		column-gap: 2rem;
+	}
+	footer > img {
+		width: 1rem;
+		height: 1rem;
+		margin: 0.1rem;
+		margin-top: 0.8rem;
+		transition: transform 0.5s;
+	}
+	footer > img:hover {
+		transform: rotate(180deg);
 	}
 	footer > ul {
+		list-style-type: none;
 		margin: 0;
+		padding: 0;
+	}
+	footer > ul > li.footer-title {
+		font-size: 1rem;
+		font-weight: bold;
+		margin-top: 1.2rem;
+		margin-bottom: 0.2rem;
 	}
 	footer > ul > li > a {
 		color: colors.$footer;
