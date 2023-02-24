@@ -28,8 +28,8 @@
      inkscape:document-units="px"
      showgrid="false"
      inkscape:zoom="3.3638608"
-     inkscape:cx="52.61811"
-     inkscape:cy="72.684339"
+     inkscape:cx="52.618111"
+     inkscape:cy="72.981617"
      inkscape:window-width="1366"
      inkscape:window-height="836"
      inkscape:window-x="0"
@@ -45,27 +45,27 @@
     <path
        id="rect2589"
        style="fill:#ffffff;stroke:#808080;stroke-width:2.11667"
-       d="M 1.0583333,1.0583349 H 32.808329 c 0,0 -0.03297,14.4963231 0.0504,21.9218211 0.05668,5.048344 -4.537793,10.335693 -9.636366,9.835192 -2.43045,-0.238585 -7.326395,0.0054 -7.326395,0.0054 C 5.0090005,33.176665 1.0583333,28.389824 1.0583333,16.999758 Z"
+       d="M 1.0583333,1.0583349 H 32.808329 l 0.0504,24.0384881 c 0.01059,5.048651 -2.39662,7.715595 -7.5197,7.718525 l -9.443061,0.0054 C 5.003186,32.826977 1.0583333,29.977324 1.0583333,18.587258 Z"
        sodipodi:nodetypes="ccssssc" />
     <ellipse
        style="fill:none;stroke:#808080;stroke-width:2.11667"
        id="path3322"
-       cx="25.123869"
+       cx="25.653036"
        cy="25.141926"
        rx="3.0976672"
        ry="3.0647919" />
     <circle
        style="fill:none;stroke:#808080;stroke-width:2.11667"
        id="path3322-3"
-       cx="12.406687"
-       cy="21.605202"
+       cx="11.877521"
+       cy="22.134369"
        r="6.879168" />
     <rect
        style="fill:#ffffff;stroke:#808080;stroke-width:2.11667"
        id="rect994"
        width="11.571335"
        height="4.1804066"
-       x="13.244793"
+       x="15.361458"
        y="5.5220222" />
   </g>
 </svg>
