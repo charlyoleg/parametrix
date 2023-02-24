@@ -26,9 +26,10 @@
 	nav {
 		background-color: colors.$header-bg;
 		padding: 0.3rem;
-		padding-top: 0.8rem;
+		//padding-top: 0.8rem;
 	}
 	nav > a {
+		display: inline-block;
 		color: colors.$menu;
 		background-color: colors.$menu-back;
 		text-decoration: none;
@@ -38,6 +39,7 @@
 		border-width: 0.2rem;
 		border-radius: 0.6rem;
 		border-color: colors.$menu-border;
+		margin-top: 0.1rem;
 	}
 	nav > a:hover {
 		color: colors.$menu-hover;
