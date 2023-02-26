@@ -42,6 +42,11 @@
 		</li>
 		<li><a href="https://github.com/michaelgale/cq-kit">CadQuery Kit</a></li>
 		<li><a href="https://github.com/CadQuery/awesome-cadquery">CadQuery Awesome</a></li>
+		<li><a href="https://github.com/occi-cad">Open CAD Component Interface</a></li>
+		<li><a href="https://github.com/ArchiyouApp/archiyou-core">Archiyou-core</a></li>
+		<li><a href="https://github.com/sgenoud/replicad">Replicad</a></li>
+		<li><a href="https://github.com/zalo/CascadeStudio">CascadeStudio</a></li>
+		<li><a href="https://mirmik.github.io/zencad/en/index.html">ZenCAD</a></li>
 	</ul>
 	<Garland />
 	<ul>
@@ -49,6 +54,7 @@
 		<li><a href="https://github.com/devbisme/skidl">SKiDL</a></li>
 		<li><a href="https://www.myhdl.org/">MyHDL</a></li>
 		<li><a href="https://phydemo.app/ray-optics/">Ray Optics Simulation</a></li>
+		<li><a href="https://sonic-pi.net/">Sonic Pi</a></li>
 	</ul>
 	<Garland />
 </footer>
