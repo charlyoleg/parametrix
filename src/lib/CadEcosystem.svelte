@@ -121,11 +121,11 @@
 						>
 						<ul class="nested sub">
 							<li>
-								<a href="https://github.com/meadiode/cq_gears">CadQuery Gear</a>
+								<a href="https://github.com/meadiode/cq_gears">CQ Gear</a>
 								<small>Gear generator based on CadQuery</small>
 							</li>
 							<li>
-								<a href="https://github.com/michaelgale/cq-kit">CadQuery Kit</a>
+								<a href="https://github.com/michaelgale/cq-kit">CQ Kit</a>
 								<small>Helper python library for CadQuery</small>
 							</li>
 						</ul>
