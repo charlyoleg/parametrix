@@ -55,6 +55,8 @@
 		<li><a href="https://www.myhdl.org/">MyHDL</a></li>
 		<li><a href="https://phydemo.app/ray-optics/">Ray Optics Simulation</a></li>
 		<li><a href="https://sonic-pi.net/">Sonic Pi</a></li>
+		<li><a href="https://supercollider.github.io/">SuperCollider</a></li>
+		<li><a href="https://mermaid.js.org/">Mermaid.js</a></li>
 	</ul>
 	<Garland />
 </footer>
