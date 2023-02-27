@@ -82,7 +82,8 @@
 				>
 				<a href="https://dev.opencascade.org/">OpenCascade.org</a>
 				<small
-					>The world famous open source 3D modeling library originated from France</small
+					>The world famous open source 3D modeling library. Originated from France
+					defense industry</small
 				>
 				<ul class="nested">
 					<li>
@@ -155,7 +156,33 @@
 					</li>
 				</ul>
 			</li>
-			<li><a href="https://github.com/jscad/OpenJSCAD.org">OpenJsCAD</a></li>
+			<li>
+				<a href="https://github.com/jscad/OpenJSCAD.org">OpenJsCAD</a>
+				<small>Web based solid modeling in Javascript</small>
+			</li>
+			<li>
+				<a href="https://joostn.github.io/OpenJsCad/">OpenJsCAD predecessor</a>
+				<small>The unmaintained original version of OpenJsCAD</small>
+			</li>
+			<li>
+				<a href="https://garyhodgson.github.io/openscad.net/">OpenSCAD.net</a>
+				<small>Partial port of OpenSCAD for the web. Powered by OpenJsCad</small>
+			</li>
+			<li>
+				<a href="https://github.com/BRL-CAD/brlcad">BRL-CAD</a>
+				<small
+					>A powerful open source cross-platform solid modeling system. Originated from
+					American defense industry</small
+				>
+			</li>
+			<li>
+				<a href="https://libfive.com/">libfive</a>
+				<small>A library for parametric solid modeling and generative design</small>
+			</li>
+			<li>
+				<a href="https://github.com/mkeeter/antimony">Antimony</a>
+				<small>CAD from a parallel universe</small>
+			</li>
 		</ul>
 	</li>
 </ul>
