@@ -40,6 +40,10 @@
 							American defense industry</small
 						>
 					</li>
+					<li>
+						<a href="https://github.com/Haskell-Things/ImplicitCAD">ImplicitCAD</a>
+						<small>Programmatic CAD program, implemented in Haskell</small>
+					</li>
 				</MyUl>
 			</li>
 			<li>
