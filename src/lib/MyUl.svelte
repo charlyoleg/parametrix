@@ -1,6 +1,6 @@
 <script lang="ts">
-	export let checkboxId;
-	export let labelText;
+	export let checkboxId: string;
+	export let labelText: string;
 </script>
 
 <input type="checkbox" id={checkboxId} class="toggle" checked />
