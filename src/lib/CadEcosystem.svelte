@@ -172,6 +172,18 @@
 					</li>
 				</MyUl>
 			</li>
+			<li>
+				<MyUl checkboxId="toggle_ifc" labelText="BIM-IFC">
+					<li>
+						<a href="https://github.com/IFCjs/web-ifc">IFC.js</a>
+						<small>Reading and writing IFC files with Javascript</small>
+					</li>
+					<li>
+						<a href="https://github.com/opensourceBIM/BIMsurfer">BIMSurfer</a>
+						<small>WebGL-based IFC model viewer for BIMServer.</small>
+					</li>
+				</MyUl>
+			</li>
 		</MyUl>
 	</li>
 </ul>
