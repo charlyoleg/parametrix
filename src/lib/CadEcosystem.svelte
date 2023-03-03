@@ -180,7 +180,8 @@
 						>IFC</a
 					>
 					<small slot="top2"
-						>Industry Foundation Classes (IFC), the building description standard</small
+						>Industry Foundation Classes (IFC), the open standard for Building
+						Information Modelling (BIM)</small
 					>
 					<li>
 						<a href="https://ifcjs.github.io/info/">IFC.js</a>
@@ -188,7 +189,11 @@
 					</li>
 					<li>
 						<a href="https://github.com/opensourceBIM/BIMsurfer">BIMSurfer</a>
-						<small>WebGL-based IFC model viewer for BIMServer.</small>
+						<small>WebGL-based IFC model viewer for BIMServer</small>
+					</li>
+					<li>
+						<a href="https://github.com/IfcOpenShell/IfcOpenShell">IfcOpenShell</a>
+						<small>IFC library and geometry engine</small>
 					</li>
 				</MyUl>
 			</li>
