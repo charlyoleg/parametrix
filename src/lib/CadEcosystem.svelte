@@ -144,6 +144,20 @@
 							</li>
 						</MyUl>
 					</li>
+					<li>
+						<MyUl checkboxId="toggle_occt_import_js" labelText="occt-import-js">
+							<a slot="top1" href="https://github.com/kovacsv/occt-import-js"
+								>occt-import-js</a
+							>
+							<small slot="top2"
+								>js-library for OpenCascade import functionalities</small
+							>
+							<li>
+								<a href="https://github.com/kovacsv/Online3DViewer">3dviewer.net</a>
+								<small>visualize and explore 3D models in your browser</small>
+							</li>
+						</MyUl>
+					</li>
 				</MyUl>
 			</li>
 			<li>
