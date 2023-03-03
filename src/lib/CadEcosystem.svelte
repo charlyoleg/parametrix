@@ -174,8 +174,16 @@
 			</li>
 			<li>
 				<MyUl checkboxId="toggle_ifc" labelText="BIM-IFC">
+					<a
+						slot="top1"
+						href="https://www.buildingsmart.org/standards/bsi-standards/industry-foundation-classes/"
+						>IFC</a
+					>
+					<small slot="top2"
+						>Industry Foundation Classes (IFC), the building description standard</small
+					>
 					<li>
-						<a href="https://github.com/IFCjs/web-ifc">IFC.js</a>
+						<a href="https://ifcjs.github.io/info/">IFC.js</a>
 						<small>Reading and writing IFC files with Javascript</small>
 					</li>
 					<li>
