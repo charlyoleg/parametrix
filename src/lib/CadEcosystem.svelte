@@ -119,6 +119,10 @@
 								<a href="https://github.com/michaelgale/cq-kit">CQ Kit</a>
 								<small>Helper python library for CadQuery</small>
 							</li>
+							<li>
+								<a href="https://github.com/7BIndustries/Semblage">Semblage</a>
+								<small>CAD GUI backed by CadQuery</small>
+							</li>
 						</MyUl>
 					</li>
 					<li>
