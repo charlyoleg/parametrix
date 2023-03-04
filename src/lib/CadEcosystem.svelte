@@ -101,8 +101,16 @@
 						</MyUl>
 					</li>
 					<li>
-						<a href="https://github.com/trelau/pyOCCT">pyOCCT</a>
-						<small>Python binding of OpenCascade based on pybind11</small>
+						<MyUl checkboxId="toggle_pyocct" labelText="pyOCCT">
+							<a slot="top1" href="https://github.com/trelau/pyOCCT">pyOCCT</a>
+							<small slot="top2"
+								>Python binding of OpenCascade based on pybind11</small
+							>
+							<li>
+								<a href="https://declaracad.com/docs/introduction/">DeclaraCAD</a>
+								<small>CAD Qt-GUI based on pyOCCT using enaml scripts</small>
+							</li>
+						</MyUl>
 					</li>
 					<li>
 						<MyUl checkboxId="toggle_cq" labelText="CadQuery">
