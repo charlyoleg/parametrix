@@ -58,6 +58,9 @@
 		<li><a href="https://supercollider.github.io/">SuperCollider</a></li>
 		<li><a href="https://mermaid.js.org/">Mermaid.js</a></li>
 		<li><a href="https://opentoolchain.org/tools/">OpenToolchain.org</a></li>
+		<li><a href="http://docs.ros.org/">ROS</a></li>
+		<li><a href="https://micro.ros.org/">micro-ROS</a></li>
+		<li><a href="https://github.com/mROS-base/mros2">mROS</a></li>
 	</ul>
 	<Garland />
 </footer>
