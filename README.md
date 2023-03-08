@@ -28,4 +28,16 @@ npm i
 npm run dev -- --open
 ```
 
+Other useful commands:
+```bash
+npm run format
+npm run lint
+npm run check
+npm run test:unit -- --run
+npm run build
+npm run preview
+npm run clean
+```
+
+
 
