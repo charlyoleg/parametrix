@@ -70,6 +70,7 @@
 
 	footer {
 		background-color: colors.$footer-bg;
+		margin-top: 7rem;
 		padding-top: 1rem;
 		padding-left: 5rem;
 		padding-right: 5rem;

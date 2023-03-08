@@ -22,6 +22,7 @@
 	:global(body) {
 		font-family: 'Lucida Console', 'Monaco', 'Verdana';
 		margin: 0;
+		background-color: colors.$main-bg;
 	}
 	nav {
 		background-color: colors.$header-bg;
@@ -45,7 +46,7 @@
 		color: colors.$menu-hover;
 	}
 	main {
-		background-color: colors.$main-bg;
+		//background-color: colors.$main-bg;
 		min-height: 70vh;
 	}
 </style>

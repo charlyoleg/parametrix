@@ -2,7 +2,7 @@
 	import MyUl from '$lib/MyUl.svelte';
 </script>
 
-<ul>
+<ul class="list-top">
 	<li class="list-header">Open CAD Ecosystem</li>
 	<li>
 		<MyUl checkboxId="toggle_2d" labelText="2D drawing">
@@ -230,7 +230,7 @@
 <style lang="scss">
 	@use '$lib/style/colors.scss';
 
-	ul {
+	ul.list-top {
 		list-style-type: none;
 		margin: 0;
 		padding: 0;
