@@ -11,7 +11,7 @@
 	<a href="https://en.wikipedia.org/wiki/ISO_10303-21">STEP</a>,
 	<a href="https://dev.opencascade.org/doc/overview/html/specification__brep_format.html">BRep</a>
 	or <a href="https://en.wikipedia.org/wiki/STL_(file_format)">STL</a>. Those files can then be
-	used in CAD application, like
+	used in CAD applications, like
 	<a href="https://wiki.freecad.org/Manual:Import_and_export_to_other_filetypes">FreeCAD</a>.
 </article>
 <article>
