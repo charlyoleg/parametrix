@@ -3,6 +3,8 @@
 // euclid2d.ts deals with points, lines, vectors
 // euclid2d.ts depends only on the built-in library Math
 
+import type { CanvasAdjust } from '$lib/geom/canvas_utils.js';
+
 /* utils for angles */
 
 function degToRad(degrees: number) {
@@ -22,11 +24,12 @@ class Point {
 		this.cx = ix;
 		this.cy = iy;
 	}
-	draw(ctx: CanvasRenderingContext2D, ox: integer, oy: integer) {
+	draw(ctx: CanvasRenderingContext2D, cAdjust: CanvasAdjust) {
 		const radius = ctx.canvas.width * (0.7 / 100);
-		const cy2 = oy - this.cy;
+		const cx2 = cAdjust.oX + this.cx * cAdjust.scaleX;
+		const cy2 = cAdjust.oY - this.cy * cAdjust.scaleY;
 		ctx.beginPath();
-		ctx.arc(ox + this.cx, cy2, radius, 0, 2 * Math.PI);
+		ctx.arc(cx2, cy2, radius, 0, 2 * Math.PI);
 		ctx.strokeStyle = 'red';
 		ctx.stroke();
 	}
