@@ -4,6 +4,8 @@
 // euclid2d.ts depends only on the built-in library Math
 
 import type { CanvasAdjust } from '$lib/geom/canvas_utils.js';
+//import { colorCanvasPoint } from '$lib/style/colors.scss';
+import { colorCanvasPoint } from '$lib/geom/canvas_utils.js';
 
 /* utils for angles */
 
@@ -30,7 +32,7 @@ class Point {
 		const cy2 = cAdjust.oY - this.cy * cAdjust.scaleY;
 		ctx.beginPath();
 		ctx.arc(cx2, cy2, radius, 0, 2 * Math.PI);
-		ctx.strokeStyle = 'red';
+		ctx.strokeStyle = colorCanvasPoint;
 		ctx.stroke();
 	}
 }

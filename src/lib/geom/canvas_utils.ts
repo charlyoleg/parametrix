@@ -9,4 +9,7 @@ interface CanvasAdjust {
 	scaleY: number;
 }
 
+const colorCanvasPoint = 'grey';
+
 export type { CanvasAdjust };
+export { colorCanvasPoint };
