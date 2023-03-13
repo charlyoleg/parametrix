@@ -6,10 +6,12 @@
 
 <MyHeader />
 <nav>
-	<a href="{base}/">Index</a>
-	<a href="{base}/rough">Rough</a>
-	<a href="{base}/circles">Circles</a>
-	<a href="{base}/about">About</a>
+	<a href="{base}/">index</a>
+	<a href="{base}/rough">rough</a>
+	<a href="{base}/circles">circles</a>
+	<a href="{base}/docs">docs</a>
+	<a href="{base}/readme">readme</a>
+	<a href="{base}/about">about</a>
 </nav>
 <main>
 	<slot />

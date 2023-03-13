@@ -1,0 +1,11 @@
+---
+title: readme
+category: documentation
+---
+
+<script>
+	import Readme from '../../../README.md';
+</script>
+
+
+<Readme />
