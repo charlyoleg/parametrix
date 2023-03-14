@@ -1,6 +1,11 @@
 <script lang="ts">
+	import type { HTMLAttributes } from 'svelte/elements';
+	interface $$Props extends HTMLAttributes<HTMLElement> {
+		menuList: Array<Array<string>>;
+	}
+
 	import { base } from '$app/paths';
-	export const slot = 'navig';
+
 	export let menuList: Array<Array<string>>;
 </script>
 
