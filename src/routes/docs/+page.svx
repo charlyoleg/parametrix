@@ -3,6 +3,13 @@ title: docs
 category: documentation
 ---
 
+<script lang="ts">
+	import { menuFirst } from '$lib/menuList.js';
+	import Navig from '$lib/Navig.svelte';
+</script>
+
+<Navig slot="navig" menuList={menuFirst} />
+
 
 # {title}
 

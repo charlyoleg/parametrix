@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { menuFirst } from '$lib/menuList.js';
+	import Navig from '$lib/Navig.svelte';
+
 	import type { CanvasAdjust } from '$lib/geom/canvas_utils.js';
 	import { point } from '$lib/geom/euclid2d.js';
 	import { onMount } from 'svelte';
@@ -36,6 +39,8 @@
 		canvasRedraw();
 	});
 </script>
+
+<Navig slot="navig" menuList={menuFirst} />
 
 <svelte:window bind:innerWidth={windowWidth} on:resize={canvasRedraw} />
 

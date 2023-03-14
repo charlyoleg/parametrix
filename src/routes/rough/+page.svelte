@@ -7,9 +7,14 @@
 </script>
 
 <script lang="ts">
+	import { menuSpecial } from '$lib/menuList.js';
+	import Navig from '$lib/Navig.svelte';
+
 	let width = 5;
 	let height = 3;
 </script>
+
+<Navig slot="navig" menuList={menuSpecial} />
 
 <h2>Rough</h2>
 <article>An experimental page</article>
