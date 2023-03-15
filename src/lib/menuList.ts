@@ -1,19 +1,35 @@
 // menuList.ts
 
+import { get, writable } from 'svelte/store';
+
+// define section of menu
 const mIndex = [['', 'index']];
-
 const mFirst = [['circles', 'circles']];
-
 const mSpecial = [['rough', 'rough']];
-
 const mDocs = [
 	['docs', 'docs'],
 	['readme', 'readme']
 ];
-
 const mAbout = [['about', 'about']];
 
-const menuFirst = mIndex.concat(mFirst, mDocs, mAbout);
-const menuSpecial = mIndex.concat(mSpecial, mAbout);
+// define set of menu
+enum MenuSet {
+	First = 0,
+	Special
+}
+type menuType = Array<Array<string>>;
+const menuMenu: Array<menuType> = [];
+menuMenu.push(mIndex.concat(mFirst, mDocs, mAbout));
+menuMenu.push(mIndex.concat(mSpecial, mAbout));
 
-export { menuFirst, menuSpecial };
+// the variable to store the active menu
+const storeMenu = writable(MenuSet.First);
+
+function setMenu(iMenu: MenuSet): void {
+	storeMenu.set(iMenu);
+}
+function getMenuMenu(): menuType {
+	return menuMenu[get(storeMenu)];
+}
+
+export { MenuSet, setMenu, getMenuMenu };

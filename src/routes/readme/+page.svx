@@ -4,13 +4,13 @@ category: documentation
 ---
 
 <script lang="ts">
-	import { menuFirst } from '$lib/menuList.js';
+	import { getMenuMenu } from '$lib/menuList.js';
 	import Navig from '$lib/Navig.svelte';
 
 	import Readme from '../../../README.md';
 </script>
 
-<Navig slot="navig" menuList={menuFirst} />
+<Navig slot="navig" menuList={getMenuMenu()} />
 
 
 <Readme />

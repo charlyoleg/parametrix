@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { menuFirst } from '$lib/menuList.js';
+	import { MenuSet, setMenu, getMenuMenu } from '$lib/menuList.js';
 	import Navig from '$lib/Navig.svelte';
 
 	import type { CanvasAdjust } from '$lib/geom/canvas_utils.js';
@@ -38,9 +38,11 @@
 		// initial drawing
 		canvasRedraw();
 	});
+
+	setMenu(MenuSet.First);
 </script>
 
-<Navig slot="navig" menuList={menuFirst} />
+<Navig slot="navig" menuList={getMenuMenu()} />
 
 <svelte:window bind:innerWidth={windowWidth} on:resize={canvasRedraw} />
 

@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { menuFirst } from '$lib/menuList.js';
+	import { getMenuMenu } from '$lib/menuList.js';
 	import Navig from '$lib/Navig.svelte';
 	import { base } from '$app/paths';
 </script>
 
-<Navig slot="navig" menuList={menuFirst} />
+<Navig slot="navig" menuList={getMenuMenu()} />
 
 <h2>Index of 2D parametrics designs</h2>
 <ul>
