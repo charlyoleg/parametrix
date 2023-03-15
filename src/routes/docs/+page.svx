@@ -4,11 +4,10 @@ category: documentation
 ---
 
 <script lang="ts">
-	import { getMenuMenu } from '$lib/menuList.js';
-	import Navig from '$lib/Navig.svelte';
+	import Navigat from '$lib/Navigat.svelte';
 </script>
 
-<Navig slot="navig" menuList={getMenuMenu()} />
+<Navigat />
 
 
 # {title}

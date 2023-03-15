@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { MenuSet, setMenu, getMenuMenu } from '$lib/menuList.js';
-	import Navig from '$lib/Navig.svelte';
+	import { MenuSet, setMenu } from '$lib/menuList.js';
+	import Navigat from '$lib/Navigat.svelte';
 
 	import type { CanvasAdjust } from '$lib/geom/canvas_utils.js';
 	import { point } from '$lib/geom/euclid2d.js';
@@ -42,7 +42,7 @@
 	setMenu(MenuSet.First);
 </script>
 
-<Navig slot="navig" menuList={getMenuMenu()} />
+<Navigat />
 
 <svelte:window bind:innerWidth={windowWidth} on:resize={canvasRedraw} />
 

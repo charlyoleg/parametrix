@@ -1,11 +1,10 @@
 <script lang="ts">
-	import { getMenuMenu } from '$lib/menuList.js';
-	import Navig from '$lib/Navig.svelte';
+	import Navigat from '$lib/Navigat.svelte';
 
 	import CadEcosystem from '$lib/CadEcosystem.svelte';
 </script>
 
-<Navig slot="navig" menuList={getMenuMenu()} />
+<Navigat />
 
 <h2>About Parametrix</h2>
 <article>
