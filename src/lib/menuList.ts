@@ -32,4 +32,5 @@ function getMenuMenu(): menuType {
 	return menuMenu[get(storeMenu)];
 }
 
+export type { menuType };
 export { MenuSet, setMenu, getMenuMenu };

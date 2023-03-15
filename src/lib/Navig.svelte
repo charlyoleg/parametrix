@@ -1,12 +1,13 @@
 <script lang="ts">
+	import type { menuType } from '$lib/menuList.js';
 	import type { HTMLAttributes } from 'svelte/elements';
 	interface $$Props extends HTMLAttributes<HTMLElement> {
-		menuList: Array<Array<string>>;
+		menuList: menuType;
 	}
 
 	import { base } from '$app/paths';
 
-	export let menuList: Array<Array<string>>;
+	export let menuList: menuType;
 </script>
 
 <nav>
