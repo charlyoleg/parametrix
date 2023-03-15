@@ -3,9 +3,9 @@
 // euclid2d.ts deals with points, lines, vectors
 // euclid2d.ts depends only on the built-in library Math
 
-import type { CanvasAdjust } from '$lib/geom/canvas_utils.js';
+import type { CanvasAdjust } from '$lib/geom/canvas_utils';
 //import { colorCanvasPoint } from '$lib/style/colors.scss';
-import { colorCanvasPoint } from '$lib/geom/canvas_utils.js';
+import { colorCanvasPoint } from '$lib/geom/canvas_utils';
 
 /* utils for angles */
 

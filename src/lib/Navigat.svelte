@@ -2,7 +2,7 @@
 	//import type { HTMLAttributes } from 'svelte/elements';
 	//type $$Props = HTMLAttributes<HTMLElement>;
 
-	import { getMenuMenu } from '$lib/menuList.js';
+	import { getMenuMenu } from '$lib/menuList';
 	import Navig from '$lib/Navig.svelte';
 </script>
 

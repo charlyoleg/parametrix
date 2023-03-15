@@ -7,7 +7,7 @@
 </script>
 
 <script lang="ts">
-	import { MenuSet, setMenu } from '$lib/menuList.js';
+	import { MenuSet, setMenu } from '$lib/menuList';
 	import Navigat from '$lib/Navigat.svelte';
 
 	let width = 5;

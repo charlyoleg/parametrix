@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { menuType } from '$lib/menuList.js';
+	import type { menuType } from '$lib/menuList';
 	//import type { HTMLAttributes } from 'svelte/elements';
 	//interface $$Props extends HTMLAttributes<HTMLElement> {
 	//	menuList: menuType;

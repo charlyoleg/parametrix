@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { MenuSet, setMenu } from '$lib/menuList.js';
+	import { MenuSet, setMenu } from '$lib/menuList';
 	import Navigat from '$lib/Navigat.svelte';
 
-	import type { CanvasAdjust } from '$lib/geom/canvas_utils.js';
-	import { point } from '$lib/geom/euclid2d.js';
+	import type { CanvasAdjust } from '$lib/geom/canvas_utils';
+	import { point } from '$lib/geom/euclid2d';
 	import { onMount } from 'svelte';
 
 	let windowWidth: number;
