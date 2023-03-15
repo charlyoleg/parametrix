@@ -17,6 +17,7 @@ enum MenuSet {
 	First = 0,
 	Special
 }
+
 type menuType = Array<Array<string>>;
 const menuMenu: Array<menuType> = [];
 menuMenu.push(mIndex.concat(mFirst, mDocs, mAbout));
