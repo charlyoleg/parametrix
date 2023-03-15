@@ -16,7 +16,7 @@ jobs:
               with:
                   node-version: '18'
 
-            - run: npm i
+            - run: npm ci
 
             - name: Build and check Parametrix
               run: |
