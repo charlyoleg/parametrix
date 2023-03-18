@@ -20,9 +20,9 @@ const config = {
 			strict: true
 		}),
 		//appDir: 'app_',
-		paths: {
-			base: dev ? '' : '/parametrix'
-		}
+		//paths: {
+		//	base: dev ? '' : '/parametrix'
+		//}
 	}
 };
 
