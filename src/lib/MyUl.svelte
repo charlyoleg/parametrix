@@ -37,7 +37,7 @@
 		height: 0;
 		border-top: $arrow-size solid transparent;
 		border-bottom: $arrow-size solid transparent;
-		border-left: (1.8 * $arrow-size) solid DarkOrange;
+		border-left: (1.8 * $arrow-size) solid colors.$arrow;
 		margin-left: 0.5rem;
 	}
 	input.toggle:checked ~ label > div.arrow {
