@@ -11,9 +11,9 @@
 	<ul>
 		{#each menuLi as menuItem, itemIdx}
 			<li>
-				<img class:invis={itemIdx%2 === 1} src="{base}/{menuItem[2]}" alt={menuItem[1]} />
-				<a href="{base}/{menuItem[0]}">{listIdx+1}.{itemIdx+1} - {menuItem[1]}</a>
-				<img class:invis={itemIdx%2 === 0} src="{base}/{menuItem[2]}" alt={menuItem[1]} />
+				<img class:invis={itemIdx % 2 === 1} src="{base}/{menuItem[2]}" alt={menuItem[1]} />
+				<a href="{base}/{menuItem[0]}">{listIdx + 1}.{itemIdx + 1} - {menuItem[1]}</a>
+				<img class:invis={itemIdx % 2 === 0} src="{base}/{menuItem[2]}" alt={menuItem[1]} />
 			</li>
 		{/each}
 	</ul>
