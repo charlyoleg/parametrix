@@ -43,7 +43,7 @@
 
 <svelte:window bind:innerWidth={windowWidth} on:resize={canvasRedraw} />
 
-<h2>Circles</h2>
+<h1>Circles</h1>
 <article>A circle with circle holes.</article>
 <canvas id="full" width={canvas_size_min} height={canvas_size_min} bind:this={canvasFull} />
 <canvas id="zoom" width={canvas_size_min} height={canvas_size_min} bind:this={canvasZoom} />
@@ -51,8 +51,8 @@
 <style lang="scss">
 	@use '$lib/style/colors.scss';
 
-	h2 {
-		margin: 0;
+	h1 {
+		margin: 1rem;
 	}
 	canvas {
 		//display: block;

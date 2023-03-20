@@ -6,7 +6,7 @@
 
 <Navigat />
 
-<h2>About Parametrix</h2>
+<h1>About Parametrix</h1>
 <article>
 	Parametrix is a serie of web-pages, which generate two dimentional graphics that can be exported
 	as <a href="https://www.w3.org/Graphics/SVG/">SVG</a> or
@@ -26,7 +26,7 @@
 <style lang="scss">
 	@use '$lib/style/colors.scss';
 
-	h2 {
+	h1 {
 		margin: 1rem;
 	}
 	article {

@@ -1,5 +1,5 @@
 ---
-title: docs
+title: Parametrix'docs
 category: documentation
 ---
 
@@ -20,3 +20,8 @@ la maison dans le jarding.
 
 la maison dans la praire.
 
+<style>
+	h1 {
+		margin: 1rem;
+	}
+</style>

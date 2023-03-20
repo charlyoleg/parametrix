@@ -15,7 +15,7 @@
 
 <Navigat />
 
-<h2>Rough</h2>
+<h1>Rough</h1>
 <article>An experimental page</article>
 
 <section>
@@ -33,8 +33,8 @@
 </section>
 
 <style>
-	h2 {
-		margin: 0;
+	h1 {
+		margin: 1rem;
 	}
 	label {
 		display: flex;
