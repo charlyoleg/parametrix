@@ -4,8 +4,6 @@ import { get, writable } from 'svelte/store';
 
 // define section of menu
 const mIndex = [['', 'index', 'page_index.png']];
-const mFirst = [['circles', 'circles', 'page_circle.png']];
-const mSpecial = [['rough', 'rough', 'page_rough.png']];
 const mDocs = [
 	['docs', 'docs', 'page_docs.png'],
 	['readme', 'readme', 'page_readme.png']
@@ -13,28 +11,46 @@ const mDocs = [
 const mAbout = [['about', 'about', 'page_about.png']];
 
 type menuType = Array<Array<string>>;
-const menuMenu: Array<menuType> = [];
-function makeMenu(iMenu: menuType): menuType {
-	return mIndex.concat(iMenu, mAbout);
+class genMenu {
+	memMenu: Array<menuType> = [];
+	constructor(firstMenu: menuType) {
+		this.memMenu.push(firstMenu);
+	}
+	push(iMenu: menuType) {
+		this.memMenu.push(iMenu);
+	}
+	makeMenuMenu() {
+		const rMenuMenu: Array<menuType> = [];
+		for (const [idx, iMenu] of this.memMenu.entries()) {
+			if (idx === 0) {
+				rMenuMenu.push(mIndex.concat(iMenu, mDocs, mAbout));
+			} else {
+				rMenuMenu.push(mIndex.concat(iMenu, mAbout));
+			}
+		}
+		return rMenuMenu;
+	}
+	makeIndexMenu() {
+		const rIndexMenu: Array<menuType> = [];
+		rIndexMenu.push(mIndex);
+		for (const iMenu of this.memMenu) {
+			rIndexMenu.push(iMenu);
+		}
+		rIndexMenu.push(mDocs.concat(mAbout));
+		return rIndexMenu;
+	}
 }
-// define set of menu
-enum MenuSet {
-	First = 0,
-	Special
-}
-menuMenu.push(mIndex.concat(mFirst, mDocs, mAbout));
-menuMenu.push(makeMenu(mSpecial));
 
-const indexMenu: Array<menuType> = [];
-indexMenu.push(mIndex);
-indexMenu.push(mFirst);
-indexMenu.push(mSpecial);
-indexMenu.push(mDocs.concat(mAbout));
+// to be updated when new pages are created
+const oMenu = new genMenu([['circles', 'circles', 'page_circle.png']]);
+oMenu.push([['rough', 'rough', 'page_rough.png']]);
+// end of section to be updated
 
+const menuMenu: Array<menuType> = oMenu.makeMenuMenu();
+const indexMenu: Array<menuType> = oMenu.makeIndexMenu();
 // the variable to store the active menu
-const storeMenu = writable(MenuSet.First);
-
-function setMenu(iMenu: MenuSet): void {
+const storeMenu = writable(0);
+function setMenu(iMenu: number): void {
 	storeMenu.set(iMenu);
 }
 function getMenuMenu(): menuType {
@@ -52,7 +68,7 @@ function findMenuMenu(iPath: string) {
 	if (!univMenu.includes(iPath)) {
 		for (const [lidx, lmenu] of menuMenu.entries()) {
 			if (extractArr(lmenu).includes(iPath)) {
-				setMenu(lidx as MenuSet);
+				setMenu(lidx);
 				break;
 			}
 		}
