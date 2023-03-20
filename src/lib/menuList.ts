@@ -3,12 +3,12 @@
 import { get, writable } from 'svelte/store';
 
 // define section of menu
-const mIndex = [['', 'index', 'page_index.png']];
+const mIndex = [['', 'index', 'page_index.svg']];
 const mDocs = [
-	['docs', 'docs', 'page_docs.png'],
-	['readme', 'readme', 'page_readme.png']
+	['docs', 'docs', 'page_docs.svg'],
+	['readme', 'readme', 'page_readme.svg']
 ];
-const mAbout = [['about', 'about', 'page_about.png']];
+const mAbout = [['about', 'about', 'page_about.svg']];
 
 type menuType = Array<Array<string>>;
 class genMenu {
@@ -42,8 +42,8 @@ class genMenu {
 }
 
 // to be updated when new pages are created
-const oMenu = new genMenu([['circles', 'circles', 'page_circle.png']]);
-oMenu.push([['rough', 'rough', 'page_rough.png']]);
+const oMenu = new genMenu([['circles', 'circles', 'page_circle.svg']]);
+oMenu.push([['rough', 'rough', 'page_rough.svg']]);
 // end of section to be updated
 
 const menuMenu: Array<menuType> = oMenu.makeMenuMenu();
