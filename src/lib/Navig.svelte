@@ -6,19 +6,16 @@
 	//}
 
 	import { base } from '$app/paths';
-	import { page } from '$app/stores';
 
 	export let menuList: menuType;
+	export let menuSelected: string;
 </script>
 
 <nav>
 	{#each menuList as menuItem}
 		<div class="oneMenu">
 			<a href="{base}/{menuItem[0]}">{menuItem[1]}</a>
-			<div
-				class="arrow"
-				class:arrow-active={$page.url.pathname.split('/')[1] === menuItem[0]}
-			/>
+			<div class="arrow" class:arrow-active={menuSelected === menuItem[0]} />
 		</div>
 	{/each}
 </nav>

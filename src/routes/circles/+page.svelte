@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { MenuSet, setMenu } from '$lib/menuList';
 	import Navigat from '$lib/Navigat.svelte';
 
 	import type { CanvasAdjust } from '$lib/geom/canvas_utils';
@@ -38,8 +37,6 @@
 		// initial drawing
 		canvasRedraw();
 	});
-
-	setMenu(MenuSet.First);
 </script>
 
 <Navigat />

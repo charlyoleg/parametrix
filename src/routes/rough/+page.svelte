@@ -7,12 +7,10 @@
 </script>
 
 <script lang="ts">
-	import { MenuSet, setMenu } from '$lib/menuList';
 	import Navigat from '$lib/Navigat.svelte';
 
 	let width = 5;
 	let height = 3;
-	setMenu(MenuSet.Special);
 </script>
 
 <Navigat />

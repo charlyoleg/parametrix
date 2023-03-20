@@ -12,16 +12,18 @@ const mDocs = [
 ];
 const mAbout = [['about', 'about', 'page_about.png']];
 
+type menuType = Array<Array<string>>;
+const menuMenu: Array<menuType> = [];
+function makeMenu(iMenu: menuType): menuType {
+	return mIndex.concat(iMenu, mAbout);
+}
 // define set of menu
 enum MenuSet {
 	First = 0,
 	Special
 }
-
-type menuType = Array<Array<string>>;
-const menuMenu: Array<menuType> = [];
 menuMenu.push(mIndex.concat(mFirst, mDocs, mAbout));
-menuMenu.push(mIndex.concat(mSpecial, mAbout));
+menuMenu.push(makeMenu(mSpecial));
 
 const indexMenu: Array<menuType> = [];
 indexMenu.push(mIndex);
@@ -38,6 +40,25 @@ function setMenu(iMenu: MenuSet): void {
 function getMenuMenu(): menuType {
 	return menuMenu[get(storeMenu)];
 }
+function extractArr(iMenu: menuType): Array<string> {
+	const rPath: Array<string> = [];
+	for (const lItem of iMenu) {
+		rPath.push(lItem[0]);
+	}
+	return rPath;
+}
+function findMenuMenu(iPath: string) {
+	const univMenu = extractArr(mIndex.concat(mAbout)); // list of universal menus
+	if (!univMenu.includes(iPath)) {
+		for (const [lidx, lmenu] of menuMenu.entries()) {
+			if (extractArr(lmenu).includes(iPath)) {
+				setMenu(lidx as MenuSet);
+				break;
+			}
+		}
+	}
+	return getMenuMenu();
+}
 
 export type { menuType };
-export { MenuSet, setMenu, getMenuMenu, indexMenu };
+export { findMenuMenu, indexMenu };
