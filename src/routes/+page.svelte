@@ -42,11 +42,13 @@
 		height: 0.5rem;
 		border-radius: 0.3rem;
 		margin: 1rem;
-		margin-left: 1rem;
+		margin-top: 0.1rem;
 		background-color: colors.$indexSepara;
 	}
 	article > div.separation.sepaStop {
 		background-color: colors.$indexSeparaStop;
+		margin-top: 1rem;
+		margin-bottom: 0.1rem;
 	}
 	article > ul {
 		list-style-type: none;
