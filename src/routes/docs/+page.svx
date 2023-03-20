@@ -20,7 +20,9 @@ la maison dans le jarding.
 
 la maison dans la praire.
 
-<style>
+<style lang="scss">
+	@use '$lib/style/colors.scss';
+
 	h1 {
 		margin: 1rem;
 	}

@@ -25,7 +25,9 @@
 	{/each}
 </article>
 
-<style>
+<style lang="scss">
+	@use '$lib/style/colors.scss';
+
 	h1 {
 		margin: 1rem;
 	}
@@ -41,15 +43,19 @@
 		border-radius: 0.3rem;
 		margin: 1rem;
 		margin-left: 1rem;
-		background-color: darkBlue;
+		background-color: colors.$indexSepara;
 	}
 	article > div.separation.sepaStop {
-		background-color: lightBlue;
+		background-color: colors.$indexSeparaStop;
 	}
 	article > ul {
 		list-style-type: none;
 		margin: 0;
 		padding: 0;
+		/*
+		max-width: 15rem;
+		background-color: colors.$indexBg;
+		*/
 	}
 	article > ul > li > img {
 		margin: -1rem;

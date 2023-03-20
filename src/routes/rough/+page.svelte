@@ -32,7 +32,9 @@
 	<p>Surface: {area(width, height)} m2</p>
 </section>
 
-<style>
+<style lang="scss">
+	@use '$lib/style/colors.scss';
+
 	h1 {
 		margin: 1rem;
 	}
