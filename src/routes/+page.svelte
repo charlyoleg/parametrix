@@ -7,18 +7,22 @@
 <Navigat />
 <h1>Parametrix index</h1>
 <article>
-{#each indexMenu as menuLi, listIdx}
-	<div class="separation" />
-	<ul>
-		{#each menuLi as menuItem, itemIdx}
-			<li>
-				<img class:alter={(listIdx+itemIdx) % 2 === 1} src="{base}/{menuItem[2]}" alt={menuItem[1]} />
-				<a href="{base}/{menuItem[0]}">{listIdx + 1}.{itemIdx + 1} - {menuItem[1]}</a>
-			</li>
-		{/each}
-	</ul>
-	<div class="separation sepaStop" />
-{/each}
+	{#each indexMenu as menuLi, listIdx}
+		<div class="separation" />
+		<ul>
+			{#each menuLi as menuItem, itemIdx}
+				<li>
+					<img
+						class:alter={(listIdx + itemIdx) % 2 === 1}
+						src="{base}/{menuItem[2]}"
+						alt={menuItem[1]}
+					/>
+					<a href="{base}/{menuItem[0]}">{listIdx + 1}.{itemIdx + 1} - {menuItem[1]}</a>
+				</li>
+			{/each}
+		</ul>
+		<div class="separation sepaStop" />
+	{/each}
 </article>
 
 <style>
