@@ -11,10 +11,12 @@
 		"test:unit": "vitest",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write .",
+		"svgo": "svgo -f src/lib/svg -o src/lib/svg/min",
 		"github-pages-fix": "touch build/.nojekyll",
 		"clean": "shx rm -fr .svelte-kit build"
 	},
 	"devDependencies": {
+		"@svelte-put/preprocess-inline-svg": "^1.1.1",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/adapter-static": "^2.0.1",
 		"@sveltejs/kit": "^1.12.0",
@@ -30,6 +32,7 @@
 		"shx": "^0.3.4",
 		"svelte": "^3.57.0",
 		"svelte-check": "^3.1.4",
+		"svgo": "^3.0.2",
 		"tslib": "^2.5.0",
 		"typescript": "^5.0.2",
 		"vite": "^4.2.0",
