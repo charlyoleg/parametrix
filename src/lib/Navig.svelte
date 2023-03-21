@@ -14,8 +14,8 @@
 <nav>
 	{#each menuList as menuItem}
 		<div class="oneMenu">
-			<a href="{base}/{menuItem[0]}">{menuItem[1]}</a>
-			<div class="arrow" class:arrow-active={menuSelected === menuItem[0]} />
+			<a href="{base}/{menuItem.path}">{menuItem.label}</a>
+			<div class="arrow" class:arrow-active={menuSelected === menuItem.path} />
 		</div>
 	{/each}
 </nav>

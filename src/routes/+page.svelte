@@ -14,10 +14,12 @@
 				<li>
 					<img
 						class:alter={(listIdx + itemIdx) % 2 === 1}
-						src="{base}/{menuItem[2]}"
-						alt={menuItem[1]}
+						src="{base}/{menuItem.svg}"
+						alt={menuItem.label}
 					/>
-					<a href="{base}/{menuItem[0]}">{listIdx + 1}.{itemIdx + 1} - {menuItem[1]}</a>
+					<a href="{base}/{menuItem.path}"
+						>{listIdx + 1}.{itemIdx + 1} - {menuItem.label}</a
+					>
 				</li>
 			{/each}
 		</ul>

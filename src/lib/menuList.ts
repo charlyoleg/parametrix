@@ -2,15 +2,20 @@
 
 import { get, writable } from 'svelte/store';
 
-// define section of menu
-const mIndex = [['', 'index', 'page_index.svg']];
-const mDocs = [
-	['docs', 'docs', 'page_docs.svg'],
-	['readme', 'readme', 'page_readme.svg']
-];
-const mAbout = [['about', 'about', 'page_about.svg']];
+type menuType = Array<{
+	path: string;
+	label: string;
+	svg: string;
+}>;
 
-type menuType = Array<Array<string>>;
+// define section of menu
+const mIndex = [{ path: '', label: 'index', svg: 'page_index.svg' }];
+const mDocs = [
+	{ path: 'docs', label: 'docs', svg: 'page_docs.svg' },
+	{ path: 'readme', label: 'readme', svg: 'page_readme.svg' }
+];
+const mAbout = [{ path: 'about', label: 'about', svg: 'page_about.svg' }];
+
 class genMenu {
 	memMenu: Array<menuType> = [];
 	constructor(firstMenu: menuType) {
@@ -42,8 +47,8 @@ class genMenu {
 }
 
 // to be updated when new pages are created
-const oMenu = new genMenu([['circles', 'circles', 'page_circle.svg']]);
-oMenu.push([['rough', 'rough', 'page_rough.svg']]);
+const oMenu = new genMenu([{ path: 'circles', label: 'circles', svg: 'page_circle.svg' }]);
+oMenu.push([{ path: 'rough', label: 'rough', svg: 'page_rough.svg' }]);
 // end of section to be updated
 
 const menuMenu: Array<menuType> = oMenu.makeMenuMenu();
@@ -59,7 +64,7 @@ function getMenuMenu(): menuType {
 function extractArr(iMenu: menuType): Array<string> {
 	const rPath: Array<string> = [];
 	for (const lItem of iMenu) {
-		rPath.push(lItem[0]);
+		rPath.push(lItem.path);
 	}
 	return rPath;
 }
