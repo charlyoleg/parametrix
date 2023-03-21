@@ -16,7 +16,6 @@
 		"clean": "shx rm -fr .svelte-kit build"
 	},
 	"devDependencies": {
-		"@svelte-put/preprocess-inline-svg": "^1.1.1",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/adapter-static": "^2.0.1",
 		"@sveltejs/kit": "^1.12.0",
