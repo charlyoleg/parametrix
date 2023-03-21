@@ -11,7 +11,7 @@
 		"test:unit": "vitest",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write .",
-		"svgo": "svgo -f src/lib/svg -o src/lib/svg/min",
+		"svgo": "svgo -f src/lib/svg -o static",
 		"github-pages-fix": "touch build/.nojekyll",
 		"clean": "shx rm -fr .svelte-kit build"
 	},
