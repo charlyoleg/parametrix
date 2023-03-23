@@ -9,13 +9,23 @@ import { colorCanvasPoint } from '$lib/geom/canvas_utils';
 
 /* utils for angles */
 
-function degToRad(degrees: number) {
+function degToRad(degrees: number): number {
 	return degrees * (Math.PI / 180);
 }
 
-function radToDeg(rad: number) {
+function radToDeg(rad: number): number {
 	return rad / (Math.PI / 180);
 }
+
+function roundZero(ix: number): number {
+	let rx = ix;
+	if (Math.abs(rx) < 10 ** -4) {
+		rx = 0;
+	}
+	return rx;
+}
+
+type tPolar = [number, number]; // angle, distance
 
 /* Base classes */
 
@@ -35,6 +45,42 @@ class Point {
 		ctx.strokeStyle = colorCanvasPoint;
 		ctx.stroke();
 	}
+	distanceOrig(): number {
+		return Math.sqrt(this.cx ** 2 + this.cy ** 2);
+	}
+	angleOrig(): number {
+		return Math.atan2(this.cy, this.cx);
+	}
+	getPolar(): tPolar {
+		return [this.angleOrig(), this.distanceOrig()];
+	}
+	setPolar(ia: number, il: number): Point {
+		return new Point(il * Math.cos(ia), il * Math.sin(ia));
+	}
+	translate(ix: number, iy: number): Point {
+		return new Point(this.cx + ix, this.cy + iy);
+	}
+	rotateOrig(ia: number): Point {
+		// rotation with the origin as center
+		const polar = this.getPolar();
+		return this.setPolar(polar[0] + ia, polar[1]);
+	}
+	scaleOrig(ir: number): Point {
+		const polar = this.getPolar();
+		return this.setPolar(polar[0], polar[1] * ir);
+	}
+	rotate(ic: Point, ia: number): Point {
+		const p1 = this.translate(-1 * ic.cx, -1 * ic.cy);
+		const polar = p1.getPolar();
+		const p2 = this.setPolar(polar[0] + ia, polar[1]);
+		return p2.translate(ic.cx, ic.cy);
+	}
+	scale(ic: Point, ir: number): Point {
+		const p1 = this.translate(-1 * ic.cx, -1 * ic.cy);
+		const polar = p1.getPolar();
+		const p2 = this.setPolar(polar[0], polar[1] * ir);
+		return p2.translate(ic.cx, ic.cy);
+	}
 }
 
 function point(ix: number, iy: number) {
@@ -43,4 +89,4 @@ function point(ix: number, iy: number) {
 
 /* export */
 
-export { degToRad, radToDeg, point };
+export { degToRad, radToDeg, roundZero, point };
