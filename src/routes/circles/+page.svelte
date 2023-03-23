@@ -14,6 +14,7 @@
 	//const p2 = Point(5, 5);
 	//const l1 = Line(p1, p2);
 	//const a1 = Arc(p1, p2, 1);
+	const p0 = point(0, 0);
 	const p1 = point(10, 10);
 	const p2 = point(10, 30);
 
@@ -29,8 +30,13 @@
 			scaleX: 1.0,
 			scaleY: 1.0
 		};
+		p0.draw(ctx1, cAdjust, 'green');
 		p1.draw(ctx1, cAdjust);
 		p2.draw(ctx1, cAdjust);
+		for (let i = 0; i < 20; i++) {
+			const p3 = p1.scale(p2, 1 + 0.2 * i).rotate(p2, (i * Math.PI) / 12);
+			p3.draw(ctx1, cAdjust);
+		}
 	}
 
 	onMount(() => {

@@ -36,13 +36,13 @@ class Point {
 		this.cx = ix;
 		this.cy = iy;
 	}
-	draw(ctx: CanvasRenderingContext2D, cAdjust: CanvasAdjust) {
+	draw(ctx: CanvasRenderingContext2D, cAdjust: CanvasAdjust, color: string = colorCanvasPoint) {
 		const radius = ctx.canvas.width * (0.7 / 100);
 		const cx2 = cAdjust.oX + this.cx * cAdjust.scaleX;
 		const cy2 = cAdjust.oY - this.cy * cAdjust.scaleY;
 		ctx.beginPath();
 		ctx.arc(cx2, cy2, radius, 0, 2 * Math.PI);
-		ctx.strokeStyle = colorCanvasPoint;
+		ctx.strokeStyle = color;
 		ctx.stroke();
 	}
 	distanceOrig(): number {
