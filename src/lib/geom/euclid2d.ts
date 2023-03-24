@@ -3,7 +3,7 @@
 // euclid2d.ts deals with points, lines, vectors
 // euclid2d.ts depends only on the built-in library Math
 
-import type { CanvasAdjust } from '$lib/geom/canvas_utils';
+import type { tCanvasAdjust } from '$lib/geom/canvas_utils';
 //import { colorCanvasPoint } from '$lib/style/colors.scss';
 import { colorCanvasPoint } from '$lib/geom/canvas_utils';
 
@@ -30,18 +30,36 @@ type tPolar = [number, number]; // angle, distance
 /* Base classes */
 
 class Point {
-	cx;
-	cy;
+	cx: number;
+	cy: number;
 	constructor(ix: number, iy: number) {
 		this.cx = ix;
 		this.cy = iy;
 	}
-	draw(ctx: CanvasRenderingContext2D, cAdjust: CanvasAdjust, color: string = colorCanvasPoint) {
+	draw(
+		ctx: CanvasRenderingContext2D,
+		cAdjust: tCanvasAdjust,
+		color: string = colorCanvasPoint,
+		shape = 'circle'
+	) {
 		const radius = ctx.canvas.width * (0.7 / 100);
-		const cx2 = cAdjust.oX + this.cx * cAdjust.scaleX;
-		const cy2 = cAdjust.oY - this.cy * cAdjust.scaleY;
+		const cx2 = cAdjust.shiftX + (this.cx - cAdjust.xMin) * cAdjust.scaleX;
+		const cy2 = cAdjust.shiftY + (this.cy - cAdjust.yMin) * cAdjust.scaleY;
 		ctx.beginPath();
-		ctx.arc(cx2, cy2, radius, 0, 2 * Math.PI);
+		switch (shape) {
+			case 'cross':
+				ctx.moveTo(cx2 - radius, cy2);
+				ctx.lineTo(cx2 + radius, cy2);
+				ctx.moveTo(cx2, cy2 - radius);
+				ctx.lineTo(cx2, cy2 + radius);
+				break;
+			case 'rectangle':
+				ctx.rect(cx2 - radius, cy2 - radius, 2 * radius, 2 * radius);
+				break;
+			case 'circle':
+			default:
+				ctx.arc(cx2, cy2, radius, 0, 2 * Math.PI);
+		}
 		ctx.strokeStyle = color;
 		ctx.stroke();
 	}
@@ -87,6 +105,69 @@ function point(ix: number, iy: number) {
 	return new Point(ix, iy);
 }
 
+class EntityList {
+	pointList: Array<Point>;
+	xMin: number;
+	xMax: number;
+	yMin: number;
+	yMax: number;
+	constructor() {
+		this.pointList = [];
+		this.xMin = 0;
+		this.xMax = 0;
+		this.yMin = 0;
+		this.yMax = 0;
+	}
+	addPoint(ipoint: Point) {
+		this.pointList.push(ipoint);
+	}
+	getMinMax() {
+		if (this.pointList.length > 0) {
+			this.xMin = this.pointList[0].cx;
+			this.xMax = this.pointList[0].cx;
+			this.yMin = this.pointList[0].cy;
+			this.yMax = this.pointList[0].cy;
+			for (const p of this.pointList) {
+				this.xMin = Math.min(this.xMin, p.cx);
+				this.xMax = Math.max(this.xMax, p.cx);
+				this.yMin = Math.min(this.yMin, p.cy);
+				this.yMax = Math.max(this.yMax, p.cy);
+			}
+		}
+		//console.log(`dbg137: ${this.xMin}, ${this.xMax}, ${this.yMin}, ${this.yMax}`);
+	}
+	getCanvasAdjust(iCanvasWidth: number, iCanvasHeight: number): tCanvasAdjust {
+		//console.log(`dbg140: ${iCanvasWidth}, ${iCanvasHeight}`);
+		const rCanvasAdjust = { xMin: 0, yMin: 0, shiftX: 0, shiftY: 0, scaleX: 1, scaleY: 1 };
+		if (this.pointList.length > 0) {
+			this.getMinMax();
+			const xDiff = Math.max(this.xMax - this.xMin, 1);
+			const yDiff = Math.max(this.yMax - this.yMin, 1);
+			const xyScale = 0.9 * Math.min(iCanvasWidth / xDiff, iCanvasHeight / yDiff);
+			rCanvasAdjust.xMin = this.xMin;
+			rCanvasAdjust.yMin = this.yMin;
+			rCanvasAdjust.shiftX = 0.05 * iCanvasWidth;
+			rCanvasAdjust.scaleX = xyScale;
+			rCanvasAdjust.shiftY = iCanvasHeight - 0.05 * iCanvasHeight;
+			rCanvasAdjust.scaleY = -1 * xyScale;
+		}
+		//console.log(`dbg150: ${rCanvasAdjust.shiftX}, ${rCanvasAdjust.scaleX}`);
+		return rCanvasAdjust;
+	}
+	draw(ctx: CanvasRenderingContext2D) {
+		const canvasWidth = ctx.canvas.width;
+		const canvasHeight = ctx.canvas.height;
+		const canvasAdjust = this.getCanvasAdjust(canvasWidth, canvasHeight);
+		for (const p of this.pointList) {
+			p.draw(ctx, canvasAdjust);
+		}
+	}
+}
+
+function entityList() {
+	return new EntityList();
+}
+
 /* export */
 
-export { degToRad, radToDeg, roundZero, point };
+export { degToRad, radToDeg, roundZero, point, entityList };

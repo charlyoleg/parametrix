@@ -1,8 +1,8 @@
 <script lang="ts">
 	import Navigat from '$lib/Navigat.svelte';
 
-	import type { CanvasAdjust } from '$lib/geom/canvas_utils';
-	import { point } from '$lib/geom/euclid2d';
+	//import type { tCanvasAdjust } from '$lib/geom/canvas_utils';
+	import { point, entityList } from '$lib/geom/euclid2d';
 	import { onMount } from 'svelte';
 
 	let windowWidth: number;
@@ -14,9 +14,15 @@
 	//const p2 = Point(5, 5);
 	//const l1 = Line(p1, p2);
 	//const a1 = Arc(p1, p2, 1);
-	const p0 = point(0, 0);
+	const eList = entityList();
+	eList.addPoint(point(0, 0));
 	const p1 = point(10, 10);
 	const p2 = point(10, 30);
+	eList.addPoint(p1);
+	eList.addPoint(p2);
+	for (let i = 0; i < 20; i++) {
+		eList.addPoint(p1.scale(p2, 1 + 0.2 * i).rotate(p2, (i * Math.PI) / 12));
+	}
 
 	function canvasRedraw() {
 		console.log(`windowWidth: ${windowWidth}`);
@@ -24,19 +30,11 @@
 		const canvas_size = Math.max(0.4 * windowWidth, canvas_size_min);
 		ctx1.canvas.width = canvas_size;
 		ctx1.canvas.height = canvas_size;
-		const cAdjust: CanvasAdjust = {
-			oX: canvas_size / 2,
-			oY: canvas_size / 2,
-			scaleX: 1.0,
-			scaleY: 1.0
-		};
-		p0.draw(ctx1, cAdjust, 'green');
-		p1.draw(ctx1, cAdjust);
-		p2.draw(ctx1, cAdjust);
-		for (let i = 0; i < 20; i++) {
-			const p3 = p1.scale(p2, 1 + 0.2 * i).rotate(p2, (i * Math.PI) / 12);
-			p3.draw(ctx1, cAdjust);
-		}
+		eList.draw(ctx1);
+		const cAdjust = eList.getCanvasAdjust(ctx1.canvas.width, ctx1.canvas.height);
+		point(5, 5).draw(ctx1, cAdjust, 'green');
+		point(5, 15).draw(ctx1, cAdjust, 'blue', 'rectangle');
+		point(5, 25).draw(ctx1, cAdjust, 'red', 'cross');
 	}
 
 	onMount(() => {
