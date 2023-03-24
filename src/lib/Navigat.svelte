@@ -6,7 +6,7 @@
 	import Navig from '$lib/Navig.svelte';
 
 	import { page } from '$app/stores';
-	const pagePath: string = $page.url.pathname.split('/')[1];
+	const pagePath: string = $page.url.pathname.split('/').slice(-1)[0];
 </script>
 
 <Navig menuList={findMenuMenu(pagePath)} menuSelected={pagePath} />
