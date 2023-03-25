@@ -14,7 +14,7 @@
 <nav>
 	{#each menuList as menuItem}
 		<div class="oneMenu">
-			<a href="{base}/{menuItem.path}">{menuItem.label}</a>
+			<a href="{base}/{menuItem.path}" class:page-active={menuSelected === menuItem.path}>{menuItem.label}</a>
 			<div class="arrow" class:arrow-active={menuSelected === menuItem.path} />
 		</div>
 	{/each}
@@ -48,6 +48,9 @@
 		border-color: colors.$menu-border;
 		margin-top: 0.1rem;
 		//z-index: 0;
+	}
+	nav > div > a.page-active {
+		color: colors.$menu-active;
 	}
 	nav > div > a:hover {
 		color: colors.$menu-hover;
