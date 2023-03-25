@@ -17,7 +17,7 @@
 						src="{base}/{menuItem.svg}"
 						alt={menuItem.label}
 					/>
-					<a href="{base}/{menuItem.path}"
+					<a href="{base}{menuItem.path}"
 						>{listIdx + 1}.{itemIdx + 1} - {menuItem.label}</a
 					>
 				</li>

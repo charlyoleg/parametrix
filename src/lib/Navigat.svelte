@@ -2,11 +2,12 @@
 	//import type { HTMLAttributes } from 'svelte/elements';
 	//type $$Props = HTMLAttributes<HTMLElement>;
 
-	import { findMenuMenu } from '$lib/menuList';
+	import { checkEmptyPath, findMenuMenu } from '$lib/menuList';
 	import Navig from '$lib/Navig.svelte';
 
 	import { page } from '$app/stores';
-	const pagePath: string = $page.url.pathname.split('/').slice(-1)[0];
+	import { base } from '$app/paths';
+	const pagePath: string = checkEmptyPath($page.url.pathname.replace(base, ''));
 </script>
 
 <Navig menuList={findMenuMenu(pagePath)} menuSelected={pagePath} />

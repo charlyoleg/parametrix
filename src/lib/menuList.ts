@@ -9,12 +9,12 @@ type menuType = Array<{
 }>;
 
 // define section of menu
-const mIndex = [{ path: '', label: 'index', svg: 'page_index.svg' }];
+const mIndex = [{ path: '/', label: 'index', svg: 'page_index.svg' }];
 const mDocs = [
-	{ path: 'docs', label: 'docs', svg: 'page_docs.svg' },
-	{ path: 'readme', label: 'readme', svg: 'page_readme.svg' }
+	{ path: '/docs', label: 'docs', svg: 'page_docs.svg' },
+	{ path: '/readme', label: 'readme', svg: 'page_readme.svg' }
 ];
-const mAbout = [{ path: 'about', label: 'about', svg: 'page_about.svg' }];
+const mAbout = [{ path: '/about', label: 'about', svg: 'page_about.svg' }];
 
 class genMenu {
 	memMenu: Array<menuType> = [];
@@ -47,8 +47,8 @@ class genMenu {
 }
 
 // to be updated when new pages are created
-const oMenu = new genMenu([{ path: 'circles', label: 'circles', svg: 'page_circle.svg' }]);
-oMenu.push([{ path: 'rough', label: 'rough', svg: 'page_rough.svg' }]);
+const oMenu = new genMenu([{ path: '/circles', label: 'circles', svg: 'page_circle.svg' }]);
+oMenu.push([{ path: '/rough', label: 'rough', svg: 'page_rough.svg' }]);
 // end of section to be updated
 
 const menuMenu: Array<menuType> = oMenu.makeMenuMenu();
@@ -59,7 +59,11 @@ function setMenu(iMenu: number): void {
 	storeMenu.set(iMenu);
 }
 function getMenuMenu(): menuType {
-	return menuMenu[get(storeMenu)];
+	const rMenuMenu = menuMenu[get(storeMenu)];
+	//for (const menu of rMenuMenu) {
+	//	console.log(`dbg065: ${menu.path}`);
+	//}
+	return rMenuMenu;
 }
 function extractArr(iMenu: menuType): Array<string> {
 	const rPath: Array<string> = [];
@@ -74,12 +78,20 @@ function findMenuMenu(iPath: string) {
 		for (const [lidx, lmenu] of menuMenu.entries()) {
 			if (extractArr(lmenu).includes(iPath)) {
 				setMenu(lidx);
+				//console.log(`dbg080: ${lidx}`);
 				break;
 			}
 		}
 	}
 	return getMenuMenu();
 }
+function checkEmptyPath(iPath: string): string {
+	let rPath = iPath;
+	if (rPath === '') {
+		rPath = '/';
+	}
+	return rPath;
+}
 
 export type { menuType };
-export { findMenuMenu, indexMenu };
+export { checkEmptyPath, findMenuMenu, indexMenu };

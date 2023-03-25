@@ -14,7 +14,7 @@
 <nav>
 	{#each menuList as menuItem}
 		<div class="oneMenu">
-			<a href="{base}/{menuItem.path}" class:page-active={menuSelected === menuItem.path}
+			<a href="{base}{menuItem.path}" class:page-active={menuSelected === menuItem.path}
 				>{menuItem.label}</a
 			>
 			<div class="arrow" class:arrow-active={menuSelected === menuItem.path} />
