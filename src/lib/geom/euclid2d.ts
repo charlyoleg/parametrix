@@ -121,6 +121,9 @@ class EntityList {
 	addPoint(ipoint: Point) {
 		this.pointList.push(ipoint);
 	}
+	clear() {
+		this.pointList = [];
+	}
 	getMinMax() {
 		if (this.pointList.length > 0) {
 			this.xMin = this.pointList[0].cx;
