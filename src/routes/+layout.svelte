@@ -7,9 +7,6 @@
 
 <!-- named slot is not yet supported in +layout.svelte! Possible alternative <svelte:component>
 <slot name="navig" />
-<main>
-	<slot />
-</main>
 -->
 <main>
 	<slot />
