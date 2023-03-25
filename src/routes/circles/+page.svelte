@@ -1,6 +1,4 @@
 <script lang="ts">
-	import Navigat from '$lib/Navigat.svelte';
-
 	//import type { tCanvasAdjust } from '$lib/geom/canvas_utils';
 	import { point, entityList } from '$lib/geom/euclid2d';
 	import { onMount } from 'svelte';
@@ -45,8 +43,6 @@
 		canvasRedraw();
 	});
 </script>
-
-<Navigat />
 
 <svelte:window bind:innerWidth={windowWidth} on:resize={canvasRedraw} />
 

@@ -1,10 +1,8 @@
 <script lang="ts">
 	import { indexMenu } from '$lib/menuList';
-	import Navigat from '$lib/Navigat.svelte';
 	import { base } from '$app/paths';
 </script>
 
-<Navigat />
 <h1>Parametrix index</h1>
 <article>
 	{#each indexMenu as menuLi, listIdx}

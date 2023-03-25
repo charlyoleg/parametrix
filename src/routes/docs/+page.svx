@@ -3,11 +3,6 @@ title: Parametrix'docs
 category: documentation
 ---
 
-<script lang="ts">
-	import Navigat from '$lib/Navigat.svelte';
-</script>
-
-<Navigat />
 
 
 # {title}

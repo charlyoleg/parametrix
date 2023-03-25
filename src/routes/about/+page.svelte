@@ -1,10 +1,6 @@
 <script lang="ts">
-	import Navigat from '$lib/Navigat.svelte';
-
 	import CadEcosystem from '$lib/CadEcosystem.svelte';
 </script>
-
-<Navigat />
 
 <h1>About Parametrix</h1>
 <article>

@@ -7,13 +7,9 @@
 </script>
 
 <script lang="ts">
-	import Navigat from '$lib/Navigat.svelte';
-
 	let width = 5;
 	let height = 3;
 </script>
-
-<Navigat />
 
 <h1>Rough</h1>
 <article>An experimental page</article>

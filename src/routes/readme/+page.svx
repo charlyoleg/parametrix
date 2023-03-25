@@ -4,9 +4,7 @@ category: documentation
 ---
 
 <script lang="ts">
-	import Navigat from '$lib/Navigat.svelte';
 	import Readme from '../../../README.md';
 </script>
 
-<Navigat />
 <Readme />
