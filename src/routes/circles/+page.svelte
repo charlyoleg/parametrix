@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Point, point } from '$lib/geom/euclid2d';
+	import { point } from '$lib/geom/euclid2d';
 	import type { tParams, tGeom } from '$lib/paramGeom';
 	import ParamDrawExport from '$lib/ParamDrawExport.svelte';
 
@@ -12,7 +12,7 @@
 		}
 	};
 	function circleGeom(t: number): tGeom {
-		const rList: Array<Point> = [];
+		const rList: tGeom = [];
 		rList.push(point(0, 0));
 		const p1 = point(10, 10);
 		const p2 = point(10, 30);
