@@ -1,5 +1,6 @@
 <script lang="ts">
 	//import type { tCanvasAdjust } from '$lib/geom/canvas_utils';
+	import TimeControl from '$lib/TimeControl.svelte';
 	import { point, entityList } from '$lib/geom/euclid2d';
 	import { onMount } from 'svelte';
 
@@ -10,7 +11,7 @@
 
 	const eList = entityList();
 	const tMax = 10;
-	//const tStep = 0.1;
+	let simTime = 0;
 	function createGeom(t: number) {
 		eList.clear();
 		eList.addPoint(point(0, 0));
@@ -24,9 +25,8 @@
 			);
 		}
 	}
-	createGeom(0);
 	function canvasRedraw() {
-		console.log(`windowWidth: ${windowWidth}`);
+		//console.log(`windowWidth: ${windowWidth}`);
 		const ctx1 = canvasFull.getContext('2d') as CanvasRenderingContext2D;
 		const canvas_size = Math.max(0.4 * windowWidth, canvas_size_min);
 		ctx1.canvas.width = canvas_size;
@@ -38,16 +38,29 @@
 		point(5, 15).draw(ctx1, cAdjust, 'blue', 'rectangle');
 		point(5, 25).draw(ctx1, cAdjust, 'red', 'cross');
 	}
+	let domInit = 0;
+	function geomRedraw(iSimTime: number) {
+		createGeom(iSimTime);
+		canvasRedraw();
+		domInit = 1;
+	}
 	onMount(() => {
 		// initial drawing
-		canvasRedraw();
+		geomRedraw(simTime);
 	});
+	$: {
+		//console.log(`dbg050: ${simTime}`);
+		if (domInit === 1) {
+			geomRedraw(simTime);
+		}
+	}
 </script>
 
 <svelte:window bind:innerWidth={windowWidth} on:resize={canvasRedraw} />
 
 <h1>Circles</h1>
 <article>A circle with circle holes.</article>
+<TimeControl {tMax} tStep={0.1} tUpdate={500} bind:simTime />
 <canvas id="full" width={canvas_size_min} height={canvas_size_min} bind:this={canvasFull} />
 <canvas id="zoom" width={canvas_size_min} height={canvas_size_min} bind:this={canvasZoom} />
 
