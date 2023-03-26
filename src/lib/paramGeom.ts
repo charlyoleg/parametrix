@@ -4,7 +4,8 @@ import type { Point } from '$lib/geom/euclid2d';
 
 type tParam = {
 	name: string;
-	default: number;
+	unit: string;
+	init: number;
 	min: number;
 	max: number;
 	step: number;
@@ -19,7 +20,13 @@ type tParams = {
 	sim: tSimTime;
 };
 
+type tPObj = { [index: string]: number };
 type tGeom = Array<Point>;
-type tGeomFunc = (t: number) => tGeom;
+type tGeomFunc = (t: number, param: tPObj) => tGeom;
 
-export type { tParams, tGeom, tGeomFunc };
+function fround(ireal: number, iprecision = 1000.0): number {
+	return Math.floor(ireal * iprecision) / iprecision;
+}
+
+export type { tParams, tPObj, tGeom, tGeomFunc };
+export { fround };

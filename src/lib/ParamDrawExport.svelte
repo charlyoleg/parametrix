@@ -2,11 +2,16 @@
 	//import type { tCanvasAdjust } from '$lib/geom/canvas_utils';
 	import TimeControl from '$lib/TimeControl.svelte';
 	import { point, entityList } from '$lib/geom/euclid2d';
-	import type { tParams, tGeomFunc } from '$lib/paramGeom';
+	import type { tParams, tPObj, tGeomFunc } from '$lib/paramGeom';
 	import { onMount } from 'svelte';
 
 	export let params: tParams;
 	export let geom: tGeomFunc;
+
+	const pObj: tPObj = {};
+	for (const p of params.params) {
+		pObj[p.name] = p.init;
+	}
 
 	let windowWidth: number;
 	let canvasFull: HTMLCanvasElement;
@@ -36,7 +41,7 @@
 	}
 	let domInit = 0;
 	function geomRedraw(iSimTime: number) {
-		const points = geom(iSimTime);
+		const points = geom(iSimTime, pObj);
 		eList.clear();
 		for (const p of points) {
 			eList.addPoint(p);
@@ -56,10 +61,33 @@
 	}
 </script>
 
-// ParamDrawExport.svelte
-
 <svelte:window bind:innerWidth={windowWidth} on:resize={canvasRedraw} />
-
+<section>
+	{#each params.params as param}
+		<article class="oneParam">
+			<span>{param.name}:</span>
+			<input
+				id="{param.name}ID1"
+				type="number"
+				bind:value={pObj[param.name]}
+				min={param.min}
+				max={param.max}
+				step={param.step}
+			/>
+			<input
+				id="{param.name}ID2"
+				type="range"
+				bind:value={pObj[param.name]}
+				min={param.min}
+				max={param.max}
+				step={param.step}
+			/>
+			<span
+				>unit: {param.unit}, init: {param.init}, min: {param.min}, max: {param.max}, step: {param.step}</span
+			>
+		</article>
+	{/each}
+</section>
 <TimeControl
 	tMax={params.sim.tMax}
 	tStep={params.sim.tStep}
@@ -72,6 +100,9 @@
 <style lang="scss">
 	@use '$lib/style/colors.scss';
 
+	section > article > span {
+		color: darkBlue;
+	}
 	canvas {
 		//display: block;
 		background-color: pink;
