@@ -73,6 +73,7 @@
 				min={param.min}
 				max={param.max}
 				step={param.step}
+				on:change={() => geomRedraw(simTime)}
 			/>
 			<input
 				id="{param.name}ID2"
@@ -81,6 +82,7 @@
 				min={param.min}
 				max={param.max}
 				step={param.step}
+				on:change={() => geomRedraw(simTime)}
 			/>
 			<span
 				>unit: {param.unit}, init: {param.init}, min: {param.min}, max: {param.max}, step: {param.step}</span
