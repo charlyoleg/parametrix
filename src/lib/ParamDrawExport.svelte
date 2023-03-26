@@ -44,7 +44,7 @@
 		ctx2.clearRect(0, 0, ctx2.canvas.width, ctx2.canvas.height);
 		if (zAdjust === undefined || zAdjust.init === 0) {
 			zAdjust = eList.getAdjustZoom(ctx2.canvas.width, ctx2.canvas.height);
-			console.log(`dbg047: init zAdjust: ${zAdjust.xMin} ${zAdjust.yMin}`);
+			//console.log(`dbg047: init zAdjust: ${zAdjust.xMin} ${zAdjust.yMin}`);
 		}
 		eList.draw(ctx2, zAdjust);
 		// extra drawing
@@ -99,7 +99,7 @@
 		zAdjust.scaleY *= 1.0 / iFactor;
 	}
 	function zoomClick(event: CustomEvent<{ action: string }>) {
-		console.log(`dbg094: ${event.detail.action}`);
+		//console.log(`dbg094: ${event.detail.action}`);
 		switch (event.detail.action) {
 			case 'zoomInit':
 				zAdjust.init = 0;
