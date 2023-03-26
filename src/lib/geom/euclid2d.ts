@@ -139,16 +139,27 @@ class EntityList {
 		}
 		//console.log(`dbg137: ${this.xMin}, ${this.xMax}, ${this.yMin}, ${this.yMax}`);
 	}
-	getCanvasAdjust(iCanvasWidth: number, iCanvasHeight: number): tCanvasAdjust {
+	getAdjustFull(iCanvasWidth: number, iCanvasHeight: number): tCanvasAdjust {
 		//console.log(`dbg140: ${iCanvasWidth}, ${iCanvasHeight}`);
-		const rCanvasAdjust = { xMin: 0, yMin: 0, shiftX: 0, shiftY: 0, scaleX: 1, scaleY: 1 };
+		const rCanvasAdjust: tCanvasAdjust = {
+			init: 0,
+			xMin: 0,
+			yMin: 0,
+			xyDiff: 1,
+			shiftX: 0,
+			shiftY: 0,
+			scaleX: 1,
+			scaleY: 1
+		};
 		if (this.pointList.length > 0) {
 			this.getMinMax();
 			const xDiff = Math.max(this.xMax - this.xMin, 1);
 			const yDiff = Math.max(this.yMax - this.yMin, 1);
 			const xyScale = 0.9 * Math.min(iCanvasWidth / xDiff, iCanvasHeight / yDiff);
+			rCanvasAdjust.init = 1;
 			rCanvasAdjust.xMin = this.xMin;
 			rCanvasAdjust.yMin = this.yMin;
+			rCanvasAdjust.xyDiff = Math.max(xDiff, yDiff);
 			rCanvasAdjust.shiftX = 0.05 * iCanvasWidth;
 			rCanvasAdjust.scaleX = xyScale;
 			rCanvasAdjust.shiftY = iCanvasHeight - 0.05 * iCanvasHeight;
@@ -157,12 +168,38 @@ class EntityList {
 		//console.log(`dbg150: ${rCanvasAdjust.shiftX}, ${rCanvasAdjust.scaleX}`);
 		return rCanvasAdjust;
 	}
-	draw(ctx: CanvasRenderingContext2D) {
-		const canvasWidth = ctx.canvas.width;
-		const canvasHeight = ctx.canvas.height;
-		const canvasAdjust = this.getCanvasAdjust(canvasWidth, canvasHeight);
+	getAdjustZoom(iCanvasWidth: number, iCanvasHeight: number): tCanvasAdjust {
+		//console.log(`dbg140: ${iCanvasWidth}, ${iCanvasHeight}`);
+		const rCanvasAdjust: tCanvasAdjust = {
+			init: 0,
+			xMin: 0,
+			yMin: 0,
+			xyDiff: 1,
+			shiftX: 0,
+			shiftY: 0,
+			scaleX: 1,
+			scaleY: 1
+		};
+		if (this.pointList.length > 0) {
+			this.getMinMax();
+			const xDiff = Math.max(this.xMax - this.xMin, 1);
+			const yDiff = Math.max(this.yMax - this.yMin, 1);
+			const xyScale = 0.9 * Math.min(iCanvasWidth / xDiff, iCanvasHeight / yDiff);
+			rCanvasAdjust.init = 1;
+			rCanvasAdjust.xMin = (this.xMin + this.xMax) / 2;
+			rCanvasAdjust.yMin = (this.yMin + this.yMax) / 2;
+			rCanvasAdjust.xyDiff = Math.max(xDiff, yDiff);
+			rCanvasAdjust.shiftX = 0.05 * iCanvasWidth;
+			rCanvasAdjust.scaleX = 2 * xyScale;
+			rCanvasAdjust.shiftY = iCanvasHeight - 0.05 * iCanvasHeight;
+			rCanvasAdjust.scaleY = -2 * xyScale;
+		}
+		//console.log(`dbg150: ${rCanvasAdjust.shiftX}, ${rCanvasAdjust.scaleX}`);
+		return rCanvasAdjust;
+	}
+	draw(ctx: CanvasRenderingContext2D, adjust: tCanvasAdjust) {
 		for (const p of this.pointList) {
-			p.draw(ctx, canvasAdjust);
+			p.draw(ctx, adjust);
 		}
 	}
 }
