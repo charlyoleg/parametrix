@@ -3,7 +3,7 @@
 	import type { tParams, tGeom } from '$lib/paramGeom';
 	import ParamDrawExport from '$lib/ParamDrawExport.svelte';
 
-	const params: tParams = {
+	const circleParams: tParams = {
 		params: [],
 		sim: {
 			tMax: 10,
@@ -22,7 +22,7 @@
 			rList.push(
 				p1
 					.scale(p2, 1 + 0.2 * i)
-					.rotate(p2, (i * Math.PI) / 12 + (t * Math.PI) / 2 / params.sim.tMax)
+					.rotate(p2, (i * Math.PI) / 12 + (t * Math.PI) / 2 / circleParams.sim.tMax)
 			);
 		}
 		return rList;
@@ -31,7 +31,7 @@
 
 <h1>Circles</h1>
 <article>A circle with circle holes.</article>
-<ParamDrawExport {params} geom={circleGeom} />
+<ParamDrawExport params={circleParams} geom={circleGeom} />
 
 <style lang="scss">
 	@use '$lib/style/colors.scss';
