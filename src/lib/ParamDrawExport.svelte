@@ -67,7 +67,6 @@
 		<article class="oneParam">
 			<span>{param.name}:</span>
 			<input
-				id="{param.name}ID1"
 				type="number"
 				bind:value={pObj[param.name]}
 				min={param.min}
@@ -76,7 +75,6 @@
 				on:change={() => geomRedraw(simTime)}
 			/>
 			<input
-				id="{param.name}ID2"
 				type="range"
 				bind:value={pObj[param.name]}
 				min={param.min}

@@ -78,6 +78,8 @@
 	<button on:click={simPause}>||</button>
 	<button on:click={simIncrem}>&gt|</button>
 	<button on:click={simPlayForward}>-&gt</button>
+	<input type="range" bind:value={simTime} min="0" max={tMax} step={tStep} />
+	<input type="number" bind:value={simTime} min="0" max={tMax} step={tStep} />
 </nav>
 
 <style lang="scss">
