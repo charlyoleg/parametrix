@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { onDestroy } from 'svelte';
 
-	export const tMax = 10;
-	export const tStep = 0.1;
-	export const tUpdate = 500; // ms
+	export let tMax = 10;
+	export let tStep = 0.1;
+	export let tUpdate = 500; // ms
 	export let simTime = 0;
 
 	let intervalID: ReturnType<typeof setTimeout> | null = null;

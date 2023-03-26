@@ -173,4 +173,4 @@ function entityList() {
 
 /* export */
 
-export { degToRad, radToDeg, roundZero, point, entityList };
+export { degToRad, radToDeg, roundZero, Point, point, entityList };

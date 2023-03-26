@@ -1,0 +1,80 @@
+<script lang="ts">
+	//import type { tCanvasAdjust } from '$lib/geom/canvas_utils';
+	import TimeControl from '$lib/TimeControl.svelte';
+	import { point, entityList } from '$lib/geom/euclid2d';
+	import type { tParams, tGeomFunc } from '$lib/paramGeom';
+	import { onMount } from 'svelte';
+
+	export let params: tParams;
+	export let geom: tGeomFunc;
+
+	let windowWidth: number;
+	let canvasFull: HTMLCanvasElement;
+	let canvasZoom: HTMLCanvasElement;
+	const canvas_size_min = 400;
+
+	const eList = entityList();
+	let simTime = 0;
+	function canvasRedraw() {
+		//console.log(`windowWidth: ${windowWidth}`);
+		const ctx1 = canvasFull.getContext('2d') as CanvasRenderingContext2D;
+		const canvas_size = Math.max(0.4 * windowWidth, canvas_size_min);
+		ctx1.canvas.width = canvas_size;
+		ctx1.canvas.height = canvas_size;
+		eList.draw(ctx1);
+		// extra drawing
+		const cAdjust = eList.getCanvasAdjust(ctx1.canvas.width, ctx1.canvas.height);
+		//point(5, 5).draw(ctx1, cAdjust, 'green');
+		//point(5, 15).draw(ctx1, cAdjust, 'blue', 'rectangle');
+		for (const i of [10, 100, 200]) {
+			point(i, 0).draw(ctx1, cAdjust, 'blue', 'cross');
+			point(-i, 0).draw(ctx1, cAdjust, 'blue', 'cross');
+			point(0, i).draw(ctx1, cAdjust, 'blue', 'cross');
+			point(0, -i).draw(ctx1, cAdjust, 'blue', 'cross');
+		}
+		point(0, 0).draw(ctx1, cAdjust, 'red', 'cross');
+	}
+	let domInit = 0;
+	function geomRedraw(iSimTime: number) {
+		const points = geom(iSimTime);
+		eList.clear();
+		for (const p of points) {
+			eList.addPoint(p);
+		}
+		canvasRedraw();
+		domInit = 1;
+	}
+	onMount(() => {
+		// initial drawing
+		geomRedraw(simTime);
+	});
+	$: {
+		//console.log(`dbg050: ${simTime}`);
+		if (domInit === 1) {
+			geomRedraw(simTime);
+		}
+	}
+</script>
+
+// ParamDrawExport.svelte
+
+<svelte:window bind:innerWidth={windowWidth} on:resize={canvasRedraw} />
+
+<TimeControl
+	tMax={params.sim.tMax}
+	tStep={params.sim.tStep}
+	tUpdate={params.sim.tUpdate}
+	bind:simTime
+/>
+<canvas id="full" width={canvas_size_min} height={canvas_size_min} bind:this={canvasFull} />
+<canvas id="zoom" width={canvas_size_min} height={canvas_size_min} bind:this={canvasZoom} />
+
+<style lang="scss">
+	@use '$lib/style/colors.scss';
+
+	canvas {
+		//display: block;
+		background-color: pink;
+		margin: 1rem;
+	}
+</style>
