@@ -167,10 +167,20 @@
 			tUpdate={params.sim.tUpdate}
 			bind:simTime
 		/>
-		<canvas class="full" width={canvas_size_min} height={canvas_size_min} bind:this={canvasFull} />
+		<canvas
+			class="full"
+			width={canvas_size_min}
+			height={canvas_size_min}
+			bind:this={canvasFull}
+		/>
 	</div>
 	<div class="rack">
-		<canvas class="zoom" width={canvas_size_min} height={canvas_size_min} bind:this={canvasZoom} />
+		<canvas
+			class="zoom"
+			width={canvas_size_min}
+			height={canvas_size_min}
+			bind:this={canvasZoom}
+		/>
 		<ZoomControl on:myevent={zoomClick} />
 	</div>
 </section>

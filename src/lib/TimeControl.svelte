@@ -98,10 +98,10 @@
 		margin: 0;
 		background-color: colors.$timectrl-bg;
 	}
-	nav > input[type=range] {
+	nav > input[type='range'] {
 		width: 5rem;
 	}
-	nav > input[type=number] {
+	nav > input[type='number'] {
 		width: 3rem;
 		border-color: colors.$timectrl-sign;
 		background-color: colors.$timectrl-bg;
