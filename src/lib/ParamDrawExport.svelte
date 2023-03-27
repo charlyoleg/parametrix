@@ -131,6 +131,7 @@
 
 <svelte:window bind:innerWidth={windowWidth} on:resize={canvasResize} />
 <section>
+	<h2>Parameters</h2>
 	{#each params.params as param}
 		<article class="oneParam">
 			<span>{param.name}:</span>
@@ -156,25 +157,47 @@
 		</article>
 	{/each}
 </section>
-<TimeControl
-	tMax={params.sim.tMax}
-	tStep={params.sim.tStep}
-	tUpdate={params.sim.tUpdate}
-	bind:simTime
-/>
-<canvas id="full" width={canvas_size_min} height={canvas_size_min} bind:this={canvasFull} />
-<canvas id="zoom" width={canvas_size_min} height={canvas_size_min} bind:this={canvasZoom} />
-<ZoomControl on:myevent={zoomClick} />
+<section>
+	<h2>Log</h2>
+	<h2>Drawing</h2>
+	<div class="rack">
+		<TimeControl
+			tMax={params.sim.tMax}
+			tStep={params.sim.tStep}
+			tUpdate={params.sim.tUpdate}
+			bind:simTime
+		/>
+		<canvas class="full" width={canvas_size_min} height={canvas_size_min} bind:this={canvasFull} />
+	</div>
+	<div class="rack">
+		<canvas class="zoom" width={canvas_size_min} height={canvas_size_min} bind:this={canvasZoom} />
+		<ZoomControl on:myevent={zoomClick} />
+	</div>
+</section>
+<section>
+	<h2>Export</h2>
+</section>
 
 <style lang="scss">
 	@use '$lib/style/colors.scss';
 
-	section > article > span {
-		color: darkBlue;
+	section > h2 {
+		color: colors.$pde-title;
 	}
-	canvas {
-		//display: block;
-		background-color: pink;
+	section > article > span {
+		color: colors.$pde-params;
+	}
+	section > div.rack {
+		display: inline-block;
 		margin: 1rem;
+		text-align: center;
+	}
+	section > div.rack > canvas {
+		//display: block;
+		background-color: colors.$pde-canvas;
+		margin: 0.2rem;
+	}
+	section > div.rack > canvas.full {
+		margin-bottom: 2.8rem;
 	}
 </style>
