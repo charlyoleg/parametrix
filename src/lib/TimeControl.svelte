@@ -86,6 +86,24 @@
 	@use '$lib/style/colors.scss';
 
 	nav > button {
-		background-color: lightBlue;
+		height: 1.6rem;
+		width: 1.6rem;
+		color: colors.$timectrl-sign;
+		font-size: 1.1rem;
+		font-weight: 900;
+		border-style: solid;
+		border-width: 0.1rem;
+		border-radius: 0.2rem;
+		border-color: colors.$timectrl-sign;
+		margin: 0;
+		background-color: colors.$timectrl-bg;
+	}
+	nav > input[type=range] {
+		width: 5rem;
+	}
+	nav > input[type=number] {
+		width: 3rem;
+		border-color: colors.$timectrl-sign;
+		background-color: colors.$timectrl-bg;
 	}
 </style>
