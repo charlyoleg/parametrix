@@ -4,16 +4,13 @@
 	import { fround } from '$lib/paramGeom';
 	import ParamDrawExport from '$lib/ParamDrawExport.svelte';
 
+	const pi12 = fround(Math.PI / 12);
+	const pi24 = fround(Math.PI / 24); // input-number min and step must be rounded to avoid UI issue
+	const pi4 = fround(Math.PI / 4);
+	const pi120 = fround(Math.PI / 120); // rounded to avoid UI issue
 	const circleParams: tParams = {
 		params: [
-			{
-				name: 'angle',
-				unit: 'radian',
-				init: fround(Math.PI / 12),
-				min: fround(Math.PI / 24),
-				max: fround(Math.PI / 4),
-				step: fround(Math.PI / 120)
-			},
+			{ name: 'angle', unit: 'radian', init: pi12, min: pi24, max: pi4, step: pi120 },
 			{ name: 'amplitude-offset', unit: 'mm', init: 1, min: 0.5, max: 4, step: 0.1 },
 			{ name: 'amplitude-scale', unit: 'scalar', init: 0.2, min: 0.1, max: 0.5, step: 0.01 }
 		],
