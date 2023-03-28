@@ -5,7 +5,7 @@
 
 import type { tCanvasAdjust } from '$lib/geom/canvas_utils';
 //import { colorCanvasPoint } from '$lib/style/colors.scss';
-import { colorCanvasPoint } from '$lib/geom/canvas_utils';
+import { color, point2canvas } from '$lib/geom/canvas_utils';
 
 /* utils for angles */
 
@@ -27,6 +27,7 @@ function roundZero(ix: number): number {
 
 type tPolar = [number, number]; // angle, distance
 
+const colorPoint = color.point; // workaround for lint-warning
 /* Base classes */
 
 class Point {
@@ -39,12 +40,11 @@ class Point {
 	draw(
 		ctx: CanvasRenderingContext2D,
 		cAdjust: tCanvasAdjust,
-		color: string = colorCanvasPoint,
+		color: string = colorPoint,
 		shape = 'circle'
 	) {
 		const radius = ctx.canvas.width * (0.7 / 100);
-		const cx2 = cAdjust.shiftX + (this.cx - cAdjust.xMin) * cAdjust.scaleX;
-		const cy2 = cAdjust.shiftY + (this.cy - cAdjust.yMin) * cAdjust.scaleY;
+		const [cx2, cy2] = point2canvas(this.cx, this.cy, cAdjust);
 		ctx.beginPath();
 		switch (shape) {
 			case 'cross':
