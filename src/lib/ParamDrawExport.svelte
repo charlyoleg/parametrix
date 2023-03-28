@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { tCanvasAdjust } from '$lib/geom/canvas_utils';
-	import { color, canvas2point } from '$lib/geom/canvas_utils';
+	import { colors, canvas2point } from '$lib/geom/canvas_utils';
 	import TimeControl from '$lib/TimeControl.svelte';
 	import ZoomControl from '$lib/ZoomControl.svelte';
 	import { point, entityList } from '$lib/geom/euclid2d';
@@ -33,12 +33,12 @@
 		//point(5, 5).draw(ctx1, cAdjust, 'green');
 		//point(5, 15).draw(ctx1, cAdjust, 'blue', 'rectangle');
 		for (const i of [10, 100, 200]) {
-			point(i, 0).draw(ctx1, cAdjust, color.reference, 'cross');
-			point(-i, 0).draw(ctx1, cAdjust, color.reference, 'cross');
-			point(0, i).draw(ctx1, cAdjust, color.reference, 'cross');
-			point(0, -i).draw(ctx1, cAdjust, color.reference, 'cross');
+			point(i, 0).draw(ctx1, cAdjust, colors.reference, 'cross');
+			point(-i, 0).draw(ctx1, cAdjust, colors.reference, 'cross');
+			point(0, i).draw(ctx1, cAdjust, colors.reference, 'cross');
+			point(0, -i).draw(ctx1, cAdjust, colors.reference, 'cross');
 		}
-		point(0, 0).draw(ctx1, cAdjust, color.origin, 'cross');
+		point(0, 0).draw(ctx1, cAdjust, colors.origin, 'cross');
 	}
 	function canvasRedrawZoom() {
 		const ctx2 = canvasZoom.getContext('2d') as CanvasRenderingContext2D;
@@ -50,12 +50,12 @@
 		eList.draw(ctx2, zAdjust);
 		// extra drawing
 		for (const i of [10, 100, 200]) {
-			point(i, 0).draw(ctx2, zAdjust, color.reference, 'cross');
-			point(-i, 0).draw(ctx2, zAdjust, color.reference, 'cross');
-			point(0, i).draw(ctx2, zAdjust, color.reference, 'cross');
-			point(0, -i).draw(ctx2, zAdjust, color.reference, 'cross');
+			point(i, 0).draw(ctx2, zAdjust, colors.reference, 'cross');
+			point(-i, 0).draw(ctx2, zAdjust, colors.reference, 'cross');
+			point(0, i).draw(ctx2, zAdjust, colors.reference, 'cross');
+			point(0, -i).draw(ctx2, zAdjust, colors.reference, 'cross');
 		}
-		point(0, 0).draw(ctx2, zAdjust, color.origin, 'cross');
+		point(0, 0).draw(ctx2, zAdjust, colors.origin, 'cross');
 	}
 	function canvasSetSize() {
 		//console.log(`windowWidth: ${windowWidth}`);
@@ -133,14 +133,14 @@
 		//console.log(eve);
 		const ctx1 = canvasFull.getContext('2d') as CanvasRenderingContext2D;
 		const [px, py] = canvas2point(eve.offsetX, eve.offsetY, cAdjust);
-		point(px, py).draw(ctx1, cAdjust, color.mouse, 'rectangle');
+		point(px, py).draw(ctx1, cAdjust, colors.mouse, 'rectangle');
 	}
 	function cFullClickUp(eve: MouseEvent) {
 		console.log(`dbg139: cFullClickUp ${eve.offsetX} ${eve.offsetY} ${eve.button}`);
 		//console.log(eve);
 		const ctx1 = canvasFull.getContext('2d') as CanvasRenderingContext2D;
 		const [px, py] = canvas2point(eve.offsetX, eve.offsetY, cAdjust);
-		point(px, py).draw(ctx1, cAdjust, color.mouse, 'circle');
+		point(px, py).draw(ctx1, cAdjust, colors.mouse, 'circle');
 	}
 </script>
 

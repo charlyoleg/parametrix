@@ -13,7 +13,7 @@ type tCanvasAdjust = {
 	scaleY: number;
 };
 
-const color = {
+const colors = {
 	point: 'grey',
 	origin: 'red',
 	reference: 'blue',
@@ -33,4 +33,4 @@ function canvas2point(cx: number, cy: number, cAdjust: tCanvasAdjust): [number, 
 }
 
 export type { tCanvasAdjust };
-export { color, point2canvas, canvas2point };
+export { colors, point2canvas, canvas2point };
