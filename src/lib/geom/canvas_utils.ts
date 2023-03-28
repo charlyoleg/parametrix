@@ -51,7 +51,7 @@ function adjustInit(
 	cWidth: number,
 	cHeight: number
 ): tCanvasAdjust {
-	const rAdjust: tCanvasAdjust = cAdjustZero;
+	const rAdjust: tCanvasAdjust = structuredClone(cAdjustZero);
 	const xDiff = Math.max(xMax - xMin, 1);
 	const yDiff = Math.max(yMax - yMin, 1);
 	const xScale = cWidth / xDiff;

@@ -140,7 +140,7 @@ class EntityList {
 	}
 	getAdjustFull(iCanvasWidth: number, iCanvasHeight: number): tCanvasAdjust {
 		//console.log(`dbg140: ${iCanvasWidth}, ${iCanvasHeight}`);
-		let rCanvasAdjust: tCanvasAdjust = cAdjustZero;
+		let rCanvasAdjust: tCanvasAdjust = structuredClone(cAdjustZero);
 		if (this.pointList.length > 0) {
 			this.getMinMax();
 			rCanvasAdjust = adjustInit(
@@ -157,7 +157,7 @@ class EntityList {
 	}
 	getAdjustZoom(iCanvasWidth: number, iCanvasHeight: number): tCanvasAdjust {
 		//console.log(`dbg140: ${iCanvasWidth}, ${iCanvasHeight}`);
-		let rCanvasAdjust: tCanvasAdjust = cAdjustZero;
+		let rCanvasAdjust: tCanvasAdjust = structuredClone(cAdjustZero);
 		if (this.pointList.length > 0) {
 			this.getMinMax();
 			const xMin = (this.xMin + this.xMax) / 2;
