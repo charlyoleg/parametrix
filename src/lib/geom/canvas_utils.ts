@@ -20,15 +20,15 @@ type tCanvasAdjust = {
 	scaleY: number;
 };
 
-function point2canvas(px: number, py: number, cAdjust: tCanvasAdjust): [number, number] {
-	const cx2 = cAdjust.shiftX + (px - cAdjust.xMin) * cAdjust.scaleX;
-	const cy2 = cAdjust.shiftY + (py - cAdjust.yMin) * cAdjust.scaleY;
+function point2canvas(px: number, py: number, iAdjust: tCanvasAdjust): [number, number] {
+	const cx2 = iAdjust.shiftX + (px - iAdjust.xMin) * iAdjust.scaleX;
+	const cy2 = iAdjust.shiftY + (py - iAdjust.yMin) * iAdjust.scaleY;
 	return [cx2, cy2];
 }
 
-function canvas2point(cx: number, cy: number, cAdjust: tCanvasAdjust): [number, number] {
-	const px2 = (cx - cAdjust.shiftX) / cAdjust.scaleX + cAdjust.xMin;
-	const py2 = (cy - cAdjust.shiftY) / cAdjust.scaleY + cAdjust.yMin;
+function canvas2point(cx: number, cy: number, iAdjust: tCanvasAdjust): [number, number] {
+	const px2 = (cx - iAdjust.shiftX) / iAdjust.scaleX + iAdjust.xMin;
+	const py2 = (cy - iAdjust.shiftY) / iAdjust.scaleY + iAdjust.yMin;
 	return [px2, py2];
 }
 
@@ -93,6 +93,25 @@ function adjustRect(
 	const rAdjust = adjustInit(xMin, xMax, yMin, yMax, cWidth, cHeight);
 	return rAdjust;
 }
+function adjustScale(iFactor: number, iAdjust: tCanvasAdjust): tCanvasAdjust {
+	const rAdjust: tCanvasAdjust = iAdjust;
+	const shift = (1 - iFactor) / 2;
+	rAdjust.xMin += shift * iAdjust.xyDiff;
+	rAdjust.yMin += shift * iAdjust.xyDiff;
+	rAdjust.xyDiff *= iFactor;
+	rAdjust.scaleX *= 1.0 / iFactor;
+	rAdjust.scaleY *= 1.0 / iFactor;
+	return rAdjust;
+}
 
 export type { tCanvasAdjust };
-export { colors, point2canvas, canvas2point, cAdjustZero, adjustInit, adjustCenter, adjustRect };
+export {
+	colors,
+	point2canvas,
+	canvas2point,
+	cAdjustZero,
+	adjustInit,
+	adjustCenter,
+	adjustRect,
+	adjustScale
+};

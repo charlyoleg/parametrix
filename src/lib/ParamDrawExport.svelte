@@ -1,6 +1,12 @@
 <script lang="ts">
 	import type { tCanvasAdjust } from '$lib/geom/canvas_utils';
-	import { colors, canvas2point, adjustCenter, adjustRect } from '$lib/geom/canvas_utils';
+	import {
+		colors,
+		canvas2point,
+		adjustCenter,
+		adjustRect,
+		adjustScale
+	} from '$lib/geom/canvas_utils';
 	import TimeControl from '$lib/TimeControl.svelte';
 	import ZoomControl from '$lib/ZoomControl.svelte';
 	import { point, entityList } from '$lib/geom/euclid2d';
@@ -91,14 +97,6 @@
 			geomRedraw(simTime);
 		}
 	}
-	function zoomScale(iFactor: number) {
-		const shift = (1 - iFactor) / 2;
-		zAdjust.xMin += shift * zAdjust.xyDiff;
-		zAdjust.yMin += shift * zAdjust.xyDiff;
-		zAdjust.xyDiff *= iFactor;
-		zAdjust.scaleX *= 1.0 / iFactor;
-		zAdjust.scaleY *= 1.0 / iFactor;
-	}
 	function zoomClick(event: CustomEvent<{ action: string }>) {
 		//console.log(`dbg094: ${event.detail.action}`);
 		switch (event.detail.action) {
@@ -106,10 +104,10 @@
 				zAdjust.init = 0;
 				break;
 			case 'zoomIn':
-				zoomScale(0.7);
+				zAdjust = adjustScale(0.7, zAdjust);
 				break;
 			case 'zoomOut':
-				zoomScale(1.3);
+				zAdjust = adjustScale(1.3, zAdjust);
 				break;
 			case 'moveLeft':
 				zAdjust.xMin += -0.2 * zAdjust.xyDiff;
