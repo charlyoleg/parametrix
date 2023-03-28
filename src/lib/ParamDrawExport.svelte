@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { tCanvasAdjust } from '$lib/geom/canvas_utils';
-	import { colors, canvas2point } from '$lib/geom/canvas_utils';
+	import { colors, canvas2point, adjustCenter, adjustRect } from '$lib/geom/canvas_utils';
 	import TimeControl from '$lib/TimeControl.svelte';
 	import ZoomControl from '$lib/ZoomControl.svelte';
 	import { point, entityList } from '$lib/geom/euclid2d';
@@ -128,19 +128,74 @@
 		}
 		canvasRedrawZoom();
 	}
-	function cFullClickDn(eve: MouseEvent) {
-		console.log(`dbg131: cFullClickDown ${eve.offsetX} ${eve.offsetY} ${eve.button}`);
-		//console.log(eve);
-		const ctx1 = canvasFull.getContext('2d') as CanvasRenderingContext2D;
-		const [px, py] = canvas2point(eve.offsetX, eve.offsetY, cAdjust);
-		point(px, py).draw(ctx1, cAdjust, colors.mouse, 'rectangle');
+	// zoom functions on the canvasFull
+	type tMouse = {
+		timestamp: number;
+		offsetX: number;
+		offsetY: number;
+	};
+	const mouseDelayMax = 3000; // only action if mouse-up occurs less than 3000 ms after mouse-down
+	const mouseDiffClick = 10; // if diffX and diffY are smaller than 10 pixel then it's a click
+	const mouseDiffRatioSelect = 3; // The selection must be more or less a square
+	let mouseF: tMouse = { timestamp: 0, offsetX: 0, offsetY: 0 };
+	function cFullMouseDn(eve: MouseEvent) {
+		//console.log(`dbg131: cFullMouseDn ${eve.offsetX} ${eve.offsetY} ${eve.button}`);
+		// left click
+		if (eve.button === 0) {
+			mouseF.timestamp = Date.now();
+			mouseF.offsetX = eve.offsetX;
+			mouseF.offsetY = eve.offsetY;
+			//const ctx1 = canvasFull.getContext('2d') as CanvasRenderingContext2D;
+			//const [px, py] = canvas2point(eve.offsetX, eve.offsetY, cAdjust);
+			//point(px, py).draw(ctx1, cAdjust, colors.mouse, 'rectangle');
+		}
 	}
-	function cFullClickUp(eve: MouseEvent) {
-		console.log(`dbg139: cFullClickUp ${eve.offsetX} ${eve.offsetY} ${eve.button}`);
-		//console.log(eve);
-		const ctx1 = canvasFull.getContext('2d') as CanvasRenderingContext2D;
-		const [px, py] = canvas2point(eve.offsetX, eve.offsetY, cAdjust);
-		point(px, py).draw(ctx1, cAdjust, colors.mouse, 'circle');
+	function cFullMouseUp(eve: MouseEvent) {
+		//console.log(`dbg139: cFullMouseUp ${eve.offsetX} ${eve.offsetY} ${eve.button}`);
+		// left click
+		if (eve.button === 0) {
+			//const ctx1 = canvasFull.getContext('2d') as CanvasRenderingContext2D;
+			//const [px, py] = canvas2point(eve.offsetX, eve.offsetY, cAdjust);
+			//point(px, py).draw(ctx1, cAdjust, colors.mouse, 'circle');
+			if (Date.now() - mouseF.timestamp < mouseDelayMax) {
+				const diffX = Math.abs(mouseF.offsetX - eve.offsetX);
+				const diffY = Math.abs(mouseF.offsetY - eve.offsetY);
+				if (diffX < mouseDiffClick && diffY < mouseDiffClick) {
+					console.log(`dbg160: a click at ${eve.offsetX} ${eve.offsetY}`);
+					const [px, py] = canvas2point(eve.offsetX, eve.offsetY, cAdjust);
+					zAdjust = adjustCenter(px, py, zAdjust);
+					geomRedraw(simTime);
+				}
+				if (diffX > mouseDiffClick && diffY > mouseDiffClick) {
+					const diffRatio1 = diffX / diffY;
+					const diffRatio2 = 1.0 / diffRatio1;
+					if (diffRatio1 < mouseDiffRatioSelect && diffRatio2 < mouseDiffRatioSelect) {
+						console.log(`dbg160: a selection at ${eve.offsetX} ${eve.offsetY}`);
+						const [p1x, p1y] = canvas2point(eve.offsetX, eve.offsetY, cAdjust);
+						const [p2x, p2y] = canvas2point(mouseF.offsetX, mouseF.offsetY, cAdjust);
+						zAdjust = adjustRect(p1x, p1y, p2x, p2y, canvas_size_min, canvas_size_min);
+						geomRedraw(simTime);
+					}
+				}
+			} else {
+				console.log(`dbg205: ignore ${eve.offsetX} ${eve.offsetY} because too slow`);
+			}
+		}
+	}
+	// just drawing a rectangle to help zooming
+	function cFullMouseMove(eve: MouseEvent) {
+		//console.log(`dbg179: cFullMouseMove ${eve.offsetX} ${eve.offsetY} ${eve.buttons}`);
+		// left click
+		if (eve.buttons === 1) {
+			const diffX = eve.offsetX - mouseF.offsetX;
+			const diffY = eve.offsetY - mouseF.offsetY;
+			canvasRedrawFull();
+			const ctx1 = canvasFull.getContext('2d') as CanvasRenderingContext2D;
+			ctx1.beginPath();
+			ctx1.rect(mouseF.offsetX, mouseF.offsetY, diffX, diffY);
+			ctx1.strokeStyle = colors.mouse;
+			ctx1.stroke();
+		}
 	}
 </script>
 
@@ -187,8 +242,9 @@
 			width={canvas_size_min}
 			height={canvas_size_min}
 			bind:this={canvasFull}
-			on:mousedown={cFullClickDn}
-			on:mouseup={cFullClickUp}
+			on:mousedown={cFullMouseDn}
+			on:mouseup={cFullMouseUp}
+			on:mousemove={cFullMouseMove}
 		/>
 	</div>
 	<div class="rack">

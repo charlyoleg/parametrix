@@ -5,7 +5,7 @@
 
 import type { tCanvasAdjust } from '$lib/geom/canvas_utils';
 //import { colorCanvasPoint } from '$lib/style/colors.scss';
-import { colors, point2canvas } from '$lib/geom/canvas_utils';
+import { colors, point2canvas, cAdjustZero, adjustInit } from '$lib/geom/canvas_utils';
 
 /* utils for angles */
 
@@ -140,58 +140,36 @@ class EntityList {
 	}
 	getAdjustFull(iCanvasWidth: number, iCanvasHeight: number): tCanvasAdjust {
 		//console.log(`dbg140: ${iCanvasWidth}, ${iCanvasHeight}`);
-		const rCanvasAdjust: tCanvasAdjust = {
-			init: 0,
-			xMin: 0,
-			yMin: 0,
-			xyDiff: 1,
-			shiftX: 0,
-			shiftY: 0,
-			scaleX: 1,
-			scaleY: 1
-		};
+		let rCanvasAdjust: tCanvasAdjust = cAdjustZero;
 		if (this.pointList.length > 0) {
 			this.getMinMax();
-			const xDiff = Math.max(this.xMax - this.xMin, 1);
-			const yDiff = Math.max(this.yMax - this.yMin, 1);
-			const xyScale = 0.9 * Math.min(iCanvasWidth / xDiff, iCanvasHeight / yDiff);
-			rCanvasAdjust.init = 1;
-			rCanvasAdjust.xMin = this.xMin;
-			rCanvasAdjust.yMin = this.yMin;
-			rCanvasAdjust.xyDiff = Math.max(xDiff, yDiff);
-			rCanvasAdjust.shiftX = 0.05 * iCanvasWidth;
-			rCanvasAdjust.scaleX = xyScale;
-			rCanvasAdjust.shiftY = iCanvasHeight - 0.05 * iCanvasHeight;
-			rCanvasAdjust.scaleY = -1 * xyScale;
+			rCanvasAdjust = adjustInit(
+				this.xMin,
+				this.xMax,
+				this.yMin,
+				this.yMax,
+				iCanvasWidth,
+				iCanvasHeight
+			);
 		}
 		//console.log(`dbg150: ${rCanvasAdjust.shiftX}, ${rCanvasAdjust.scaleX}`);
 		return rCanvasAdjust;
 	}
 	getAdjustZoom(iCanvasWidth: number, iCanvasHeight: number): tCanvasAdjust {
 		//console.log(`dbg140: ${iCanvasWidth}, ${iCanvasHeight}`);
-		const rCanvasAdjust: tCanvasAdjust = {
-			init: 0,
-			xMin: 0,
-			yMin: 0,
-			xyDiff: 1,
-			shiftX: 0,
-			shiftY: 0,
-			scaleX: 1,
-			scaleY: 1
-		};
+		let rCanvasAdjust: tCanvasAdjust = cAdjustZero;
 		if (this.pointList.length > 0) {
 			this.getMinMax();
-			const xDiff = Math.max(this.xMax - this.xMin, 1);
-			const yDiff = Math.max(this.yMax - this.yMin, 1);
-			const xyScale = 0.9 * Math.min(iCanvasWidth / xDiff, iCanvasHeight / yDiff);
-			rCanvasAdjust.init = 1;
-			rCanvasAdjust.xMin = (this.xMin + this.xMax) / 2;
-			rCanvasAdjust.yMin = (this.yMin + this.yMax) / 2;
-			rCanvasAdjust.xyDiff = Math.max(xDiff, yDiff);
-			rCanvasAdjust.shiftX = 0.05 * iCanvasWidth;
-			rCanvasAdjust.scaleX = 2 * xyScale;
-			rCanvasAdjust.shiftY = iCanvasHeight - 0.05 * iCanvasHeight;
-			rCanvasAdjust.scaleY = -2 * xyScale;
+			const xMin = (this.xMin + this.xMax) / 2;
+			const yMin = (this.yMin + this.yMax) / 2;
+			rCanvasAdjust = adjustInit(
+				xMin,
+				this.xMax,
+				yMin,
+				this.yMax,
+				iCanvasWidth,
+				iCanvasHeight
+			);
 		}
 		//console.log(`dbg150: ${rCanvasAdjust.shiftX}, ${rCanvasAdjust.scaleX}`);
 		return rCanvasAdjust;
