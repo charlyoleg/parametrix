@@ -5,7 +5,7 @@
 
 import type { tCanvasAdjust } from '$lib/geom/canvas_utils';
 //import { colorCanvasPoint } from '$lib/style/colors.scss';
-import { colors, point2canvas, cAdjustZero, adjustInit } from '$lib/geom/canvas_utils';
+import { colors, point2canvas, adjustZero, adjustInit } from '$lib/geom/canvas_utils';
 
 /* utils for angles */
 
@@ -140,7 +140,7 @@ class EntityList {
 	}
 	getAdjustFull(iCanvasWidth: number, iCanvasHeight: number): tCanvasAdjust {
 		//console.log(`dbg140: ${iCanvasWidth}, ${iCanvasHeight}`);
-		let rCanvasAdjust: tCanvasAdjust = structuredClone(cAdjustZero);
+		let rCanvasAdjust: tCanvasAdjust = adjustZero();
 		if (this.pointList.length > 0) {
 			this.getMinMax();
 			rCanvasAdjust = adjustInit(
@@ -157,7 +157,7 @@ class EntityList {
 	}
 	getAdjustZoom(iCanvasWidth: number, iCanvasHeight: number): tCanvasAdjust {
 		//console.log(`dbg140: ${iCanvasWidth}, ${iCanvasHeight}`);
-		let rCanvasAdjust: tCanvasAdjust = structuredClone(cAdjustZero);
+		let rCanvasAdjust: tCanvasAdjust = adjustZero();
 		if (this.pointList.length > 0) {
 			this.getMinMax();
 			const xMin = (this.xMin + this.xMax) / 2;

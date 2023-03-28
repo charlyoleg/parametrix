@@ -32,17 +32,19 @@ function canvas2point(cx: number, cy: number, iAdjust: tCanvasAdjust): [number, 
 	return [px2, py2];
 }
 
-const cAdjustZero: tCanvasAdjust = {
-	init: 0,
-	xMin: 0,
-	yMin: 0,
-	xyDiff: 1,
-	shiftX: 0,
-	shiftY: 0,
-	scaleX: 1,
-	scaleY: 1
-};
-
+function adjustZero(): tCanvasAdjust {
+	const rAdjustZero = {
+		init: 0,
+		xMin: 0,
+		yMin: 0,
+		xyDiff: 1,
+		shiftX: 0,
+		shiftY: 0,
+		scaleX: 1,
+		scaleY: 1
+	};
+	return rAdjustZero;
+}
 function adjustInit(
 	xMin: number,
 	xMax: number,
@@ -51,7 +53,7 @@ function adjustInit(
 	cWidth: number,
 	cHeight: number
 ): tCanvasAdjust {
-	const rAdjust: tCanvasAdjust = structuredClone(cAdjustZero);
+	const rAdjust: tCanvasAdjust = adjustZero();
 	const xDiff = Math.max(xMax - xMin, 1);
 	const yDiff = Math.max(yMax - yMin, 1);
 	const xScale = cWidth / xDiff;
@@ -109,7 +111,7 @@ export {
 	colors,
 	point2canvas,
 	canvas2point,
-	cAdjustZero,
+	adjustZero,
 	adjustInit,
 	adjustCenter,
 	adjustRect,
