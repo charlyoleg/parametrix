@@ -5,7 +5,7 @@ Parametrix
 Presentation
 ------------
 
-A static website to generate few 2D paramteric designs.
+A static website to run some parametric - generic - generative 2D designs.
 
 This static website is deployed on [github-pages](https://charlyoleg.github.io/parametrix).
 The sources are available on [github](https://github.com/charlyoleg/parametrix).
