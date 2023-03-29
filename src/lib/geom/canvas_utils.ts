@@ -75,7 +75,7 @@ function adjustInit(
 	return rAdjust;
 }
 function adjustCenter(px: number, py: number, iAdjust: tCanvasAdjust): tCanvasAdjust {
-	const rAdjust: tCanvasAdjust = iAdjust;
+	const rAdjust: tCanvasAdjust = structuredClone(iAdjust);
 	rAdjust.xMin = px - rAdjust.xyDiff / 2;
 	rAdjust.yMin = py - rAdjust.xyDiff / 2;
 	return rAdjust;
@@ -96,13 +96,28 @@ function adjustRect(
 	return rAdjust;
 }
 function adjustScale(iFactor: number, iAdjust: tCanvasAdjust): tCanvasAdjust {
-	const rAdjust: tCanvasAdjust = iAdjust;
+	const rAdjust: tCanvasAdjust = structuredClone(iAdjust);
 	const shift = (1 - iFactor) / 2;
 	rAdjust.xMin += shift * iAdjust.xyDiff;
 	rAdjust.yMin += shift * iAdjust.xyDiff;
 	rAdjust.xyDiff *= iFactor;
 	rAdjust.scaleX *= 1.0 / iFactor;
 	rAdjust.scaleY *= 1.0 / iFactor;
+	return rAdjust;
+}
+function adjustTranslate(
+	p1x: number,
+	p1y: number,
+	p2x: number,
+	p2y: number,
+	iAdjust: tCanvasAdjust
+): tCanvasAdjust {
+	const rAdjust: tCanvasAdjust = structuredClone(iAdjust);
+	const xDiff = p2x - p1x;
+	const yDiff = p2y - p1y;
+	//console.log(`dbg118: ${xDiff} ${yDiff}`);
+	rAdjust.xMin += -xDiff;
+	rAdjust.yMin += -yDiff;
 	return rAdjust;
 }
 
@@ -115,5 +130,6 @@ export {
 	adjustInit,
 	adjustCenter,
 	adjustRect,
-	adjustScale
+	adjustScale,
+	adjustTranslate
 };

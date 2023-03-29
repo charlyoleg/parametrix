@@ -5,7 +5,8 @@
 		canvas2point,
 		adjustCenter,
 		adjustRect,
-		adjustScale
+		adjustScale,
+		adjustTranslate
 	} from '$lib/geom/canvas_utils';
 	import TimeControl from '$lib/TimeControl.svelte';
 	import ZoomControl from '$lib/ZoomControl.svelte';
@@ -195,6 +196,40 @@
 			ctx1.stroke();
 		}
 	}
+	// translate Zoom drawing
+	let mouseZx: number;
+	let mouseZy: number;
+	let mouseZadjust: tCanvasAdjust;
+	function cZoomMouseDn(eve: MouseEvent) {
+		//console.log(`dbg231: cZoomMouseDn ${eve.offsetX} ${eve.offsetY} ${eve.button}`);
+		// left click
+		if (eve.button === 0) {
+			const [p1x, p1y] = canvas2point(eve.offsetX, eve.offsetY, zAdjust);
+			mouseZx = p1x; // point
+			mouseZy = p1y;
+			mouseZadjust = structuredClone(zAdjust); // deepCopy
+			//const ctx2 = canvasZoom.getContext('2d') as CanvasRenderingContext2D;
+			//const [px, py] = canvas2point(eve.offsetX, eve.offsetY, cAdjust);
+			//point(px, py).draw(ctx2, cAdjust, colors.mouse, 'rectangle');
+		}
+	}
+	function cZoomMouseMove(eve: MouseEvent) {
+		//console.log(`dbg202: cZoomMouseMove ${eve.offsetX} ${eve.offsetY} ${eve.buttons}`);
+		// left click
+		if (eve.buttons === 1) {
+			const [p2x, p2y] = canvas2point(eve.offsetX, eve.offsetY, mouseZadjust);
+			zAdjust = adjustTranslate(mouseZx, mouseZy, p2x, p2y, mouseZadjust);
+			canvasRedrawZoom();
+		}
+	}
+	function cZoomWheel(eve: WheelEvent) {
+		if (eve.deltaY > 0) {
+			zAdjust = adjustScale(0.7, zAdjust);
+		} else {
+			zAdjust = adjustScale(1.3, zAdjust);
+		}
+		canvasRedrawZoom();
+	}
 </script>
 
 <svelte:window bind:innerWidth={windowWidth} on:resize={canvasResize} />
@@ -251,6 +286,9 @@
 			width={canvas_size_min}
 			height={canvas_size_min}
 			bind:this={canvasZoom}
+			on:mousedown={cZoomMouseDn}
+			on:mousemove={cZoomMouseMove}
+			on:wheel|preventDefault={cZoomWheel}
 		/>
 		<ZoomControl on:myevent={zoomClick} />
 	</div>
