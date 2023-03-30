@@ -21,7 +21,10 @@ type tParams = {
 };
 
 type tPObj = { [index: string]: number };
-type tGeom = Array<Point>;
+type tGeom = {
+	points: Array<Point>;
+	logstr: string;
+};
 type tGeomFunc = (t: number, param: tPObj) => tGeom;
 
 function fround(ireal: number, iprecision = 1000.0): number {

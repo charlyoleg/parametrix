@@ -21,20 +21,21 @@
 		}
 	};
 	function circleGeom(t: number, param: tPObj): tGeom {
-		const rList: tGeom = [];
-		rList.push(point(0, 0));
+		const rGeome: tGeom = { points: [], logstr: '' };
+		rGeome.points.push(point(0, 0));
 		const p1 = point(10, 10);
 		const p2 = point(10, 30);
-		rList.push(p1);
-		rList.push(p2);
+		rGeome.points.push(p1);
+		rGeome.points.push(p2);
 		for (let i = 0; i < 20; i++) {
-			rList.push(
+			rGeome.points.push(
 				p1
 					.scale(p2, param['amplitude-offset'] + param['amplitude-scale'] * i)
 					.rotate(p2, i * param['angle'] + (t * Math.PI) / 2 / circleParams.sim.tMax)
 			);
 		}
-		return rList;
+		rGeome.logstr += 'Alles gut!\n';
+		return rGeome;
 	}
 </script>
 

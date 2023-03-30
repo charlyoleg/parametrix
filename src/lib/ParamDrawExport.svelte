@@ -78,9 +78,9 @@
 	}
 	let domInit = 0;
 	function geomRedraw(iSimTime: number) {
-		const points = geom(iSimTime, pObj);
+		const geome = geom(iSimTime, pObj);
 		eList.clear();
-		for (const p of points) {
+		for (const p of geome.points) {
 			eList.addPoint(p);
 		}
 		canvasRedrawFull();
@@ -90,7 +90,8 @@
 	onMount(() => {
 		// initial drawing
 		canvasSetSize();
-		geomRedraw(simTime);
+		//geomRedraw(simTime);
+		paramChange();
 	});
 	$: {
 		//console.log(`dbg050: ${simTime}`);
@@ -230,6 +231,14 @@
 		}
 		canvasRedrawZoom();
 	}
+	// log and paramChange
+	let logValue = 'blavbla\njojo';
+	function paramChange() {
+		logValue = 'Geometry computed at ' + new Date().toLocaleTimeString() + '\n';
+		const geome = geom(simTime, pObj);
+		logValue += geome.logstr;
+		geomRedraw(simTime);
+	}
 </script>
 
 <svelte:window bind:innerWidth={windowWidth} on:resize={canvasResize} />
@@ -244,7 +253,7 @@
 				min={param.min}
 				max={param.max}
 				step={param.step}
-				on:change={() => geomRedraw(simTime)}
+				on:change={paramChange}
 			/>
 			<input
 				type="range"
@@ -252,7 +261,7 @@
 				min={param.min}
 				max={param.max}
 				step={param.step}
-				on:change={() => geomRedraw(simTime)}
+				on:change={paramChange}
 			/>
 			<span
 				>unit: {param.unit}, init: {param.init}, min: {param.min}, max: {param.max}, step: {param.step}</span
@@ -262,6 +271,9 @@
 </section>
 <section>
 	<h2>Log</h2>
+	<textarea rows="5" cols="80" readonly wrap="off" bind:value={logValue} />
+</section>
+<section>
 	<h2>Drawing</h2>
 	<div class="rack">
 		<TimeControl
@@ -305,6 +317,9 @@
 	}
 	section > article > span {
 		color: colors.$pde-params;
+	}
+	section > textarea {
+		resize: horizontal;
 	}
 	section > div.rack {
 		display: inline-block;
