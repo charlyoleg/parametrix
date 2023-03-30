@@ -9,6 +9,7 @@
 	const pi4 = fround(Math.PI / 4);
 	const pi120 = fround(Math.PI / 120); // rounded to avoid UI issue
 	const circleParams: tParams = {
+		page: 'circle',
 		params: [
 			{ name: 'angle', unit: 'radian', init: pi12, min: pi24, max: pi4, step: pi120 },
 			{ name: 'amplitude-offset', unit: 'mm', init: 1, min: 0.5, max: 4, step: 0.1 },

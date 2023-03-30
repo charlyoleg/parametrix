@@ -16,6 +16,7 @@ type tSimTime = {
 	tUpdate: number; // in ms
 };
 type tParams = {
+	page: string;
 	params: Array<tParam>;
 	sim: tSimTime;
 };

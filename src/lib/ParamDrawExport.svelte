@@ -27,6 +27,54 @@
 	let canvasZoom: HTMLCanvasElement;
 	const canvas_size_min = 400;
 
+	// load parameters
+	let paramFiles: FileList;
+	function loadFile(fileP: File) {
+		const reader = new FileReader();
+		reader.addEventListener('loadend', () => {
+			const paramJson: tPObj = JSON.parse(reader.result as string);
+			//console.log(`dbg345`);
+			for (const p of params.params) {
+				if (Object.hasOwn(paramJson, p.name)) {
+					pObj[p.name] = paramJson[p.name];
+				}
+			}
+			paramChange();
+		});
+		reader.readAsText(fileP);
+	}
+	$: if (paramFiles) {
+		//console.log(paramFiles);
+		loadFile(paramFiles[0]);
+	}
+	// download parameters
+	function download_file(file_name: string, file_content: string) {
+		//create temporary an invisible element
+		let elem_a_download = document.createElement('a');
+		elem_a_download.setAttribute(
+			'href',
+			'data:text/plain;charset=utf-8,' + encodeURIComponent(file_content)
+		);
+		elem_a_download.setAttribute('download', file_name);
+		//document.body.appendChild(elem_a_download); // it does not seem required to append the element to the DOM to use it
+		elem_a_download.click();
+		//document.body.removeChild(elem_a_download);
+		elem_a_download.remove(); // Is this really required?
+	}
+	function dowloadParams() {
+		const re1 = /[-:]/g;
+		const re2 = /\..*$/;
+		const datestr = new Date()
+			.toISOString()
+			.replace(re1, '')
+			.replace(re2, '')
+			.replace('T', '_');
+		const file_name = `px_${params.page}_${datestr}.json`;
+		const file_content = JSON.stringify(pObj, null, '  ');
+		download_file(file_name, file_content);
+		console.log(`dbg343: ${file_name}`);
+	}
+	// Canavas Figures
 	const eList = entityList();
 	let simTime = 0;
 	let cAdjust: tCanvasAdjust;
@@ -232,7 +280,7 @@
 		canvasRedrawZoom();
 	}
 	// log and paramChange
-	let logValue = 'blavbla\njojo';
+	let logValue = 'Dummy initial\nWill be replaced during onMount\n';
 	function paramChange() {
 		logValue = 'Geometry computed at ' + new Date().toLocaleTimeString() + '\n';
 		const geome = geom(simTime, pObj);
@@ -244,6 +292,15 @@
 <svelte:window bind:innerWidth={windowWidth} on:resize={canvasResize} />
 <section>
 	<h2>Parameters</h2>
+	<label for="loadParams">Load Params from file</label>
+	<input
+		id="loadParams"
+		type="file"
+		accept="text/plain, application/json"
+		bind:files={paramFiles}
+	/>
+	<button on:click={dowloadParams}>Set Params Default</button>
+	<button on:click={dowloadParams}>Load Params from localStorage</button>
 	{#each params.params as param}
 		<article class="oneParam">
 			<span>{param.name}:</span>
@@ -268,6 +325,7 @@
 			>
 		</article>
 	{/each}
+	<button on:click={dowloadParams}>Save Parameters to File</button>
 </section>
 <section>
 	<h2>Log</h2>
@@ -307,6 +365,12 @@
 </section>
 <section>
 	<h2>Export</h2>
+	<select>
+		<option value="svg">svg</option>
+		<option value="sxf">dxf</option>
+		<option value="png">png</option>
+	</select>
+	<button on:click={dowloadParams}>Save to File</button>
 </section>
 
 <style lang="scss">
