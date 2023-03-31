@@ -395,7 +395,7 @@
 		margin: 0.5rem;
 		background-color: colors.$timectrl-bg;
 	}
-	section > input[type="file"] {
+	section > input[type='file'] {
 		display: none;
 	}
 	section > button,
@@ -413,7 +413,6 @@
 		border-color: colors.$timectrl-sign;
 		margin: 0.5rem;
 		background-color: colors.$timectrl-bg;
-
 	}
 	section > article > span {
 		color: colors.$pde-params;
