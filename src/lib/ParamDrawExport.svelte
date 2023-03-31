@@ -292,7 +292,7 @@
 <svelte:window bind:innerWidth={windowWidth} on:resize={canvasResize} />
 <section>
 	<h2>Parameters</h2>
-	<label for="loadParams">Load Params from file</label>
+	<label for="loadParams" class="fileUpload">Load Params from File</label>
 	<input
 		id="loadParams"
 		type="file"
@@ -326,6 +326,7 @@
 		</article>
 	{/each}
 	<button on:click={dowloadParams}>Save Parameters to File</button>
+	<button on:click={dowloadParams}>Save Parameters to localStorage</button>
 </section>
 <section>
 	<h2>Log</h2>
@@ -378,6 +379,41 @@
 
 	section > h2 {
 		color: colors.$pde-title;
+	}
+	section > label.fileUpload {
+		display: inline-block;
+		height: 1.2rem;
+		/*width: 1.6rem;*/
+		color: colors.$timectrl-sign;
+		font-size: 0.8rem;
+		font-weight: 400;
+		padding: 0.1rem 0.4rem 0.1rem;
+		border-style: solid;
+		border-width: 0.1rem;
+		border-radius: 0.2rem;
+		border-color: colors.$timectrl-sign;
+		margin: 0.5rem;
+		background-color: colors.$timectrl-bg;
+	}
+	section > input[type="file"] {
+		display: none;
+	}
+	section > button,
+	section > select {
+		/*display: inline-block;*/
+		height: 1.6rem;
+		/*width: 1.6rem;*/
+		color: colors.$timectrl-sign;
+		font-size: 0.8rem;
+		font-weight: 400;
+		padding: 0.2rem 0.4rem 0.2rem;
+		border-style: solid;
+		border-width: 0.1rem;
+		border-radius: 0.2rem;
+		border-color: colors.$timectrl-sign;
+		margin: 0.5rem;
+		background-color: colors.$timectrl-bg;
+
 	}
 	section > article > span {
 		color: colors.$pde-params;
