@@ -71,6 +71,12 @@
 	let modalLoadDefault = false;
 	let modalLoadLocal = false;
 	let modalSaveLocal = false;
+	function loadDefaults() {
+		for (const p of pDef.params) {
+			pVal[p.name] = p.init;
+		}
+		paramChange();
+	}
 	const foop: tOkFunc = () => {
 		console.log('hyop');
 	};
@@ -95,7 +101,7 @@
 			modalLoadLocal = true;
 		}}>Load Params from localStorage</button
 	>
-	<ModalDiag bind:modalOpen={modalLoadDefault} okName="Load Default Parameters" okFunc={foop}
+	<ModalDiag bind:modalOpen={modalLoadDefault} okName="Overwrite Parameters" okFunc={loadDefaults}
 		>Load the default parameters ?</ModalDiag
 	>
 	<ModalDiag bind:modalOpen={modalLoadLocal} okName="Load Parameters" okFunc={foop}
