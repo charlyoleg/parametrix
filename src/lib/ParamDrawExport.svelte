@@ -8,6 +8,8 @@
 		adjustScale,
 		adjustTranslate
 	} from '$lib/geom/canvas_utils';
+	import type { tOkFunc } from '$lib/ModalDiag.svelte';
+	import ModalDiag from '$lib/ModalDiag.svelte';
 	import TimeControl from '$lib/TimeControl.svelte';
 	import ZoomControl from '$lib/ZoomControl.svelte';
 	import { point, entityList } from '$lib/geom/euclid2d';
@@ -209,7 +211,7 @@
 				const diffX = Math.abs(mouseF.offsetX - eve.offsetX);
 				const diffY = Math.abs(mouseF.offsetY - eve.offsetY);
 				if (diffX < mouseDiffClick && diffY < mouseDiffClick) {
-					console.log(`dbg160: a click at ${eve.offsetX} ${eve.offsetY}`);
+					//console.log(`dbg160: a click at ${eve.offsetX} ${eve.offsetY}`);
 					const [px, py] = canvas2point(eve.offsetX, eve.offsetY, cAdjust);
 					zAdjust = adjustCenter(px, py, zAdjust);
 					geomRedraw(simTime);
@@ -218,7 +220,7 @@
 					const diffRatio1 = diffX / diffY;
 					const diffRatio2 = 1.0 / diffRatio1;
 					if (diffRatio1 < mouseDiffRatioSelect && diffRatio2 < mouseDiffRatioSelect) {
-						console.log(`dbg160: a selection at ${eve.offsetX} ${eve.offsetY}`);
+						//console.log(`dbg160: a selection at ${eve.offsetX} ${eve.offsetY}`);
 						const [p1x, p1y] = canvas2point(eve.offsetX, eve.offsetY, cAdjust);
 						const [p2x, p2y] = canvas2point(mouseF.offsetX, mouseF.offsetY, cAdjust);
 						zAdjust = adjustRect(p1x, p1y, p2x, p2y, canvas_size_min, canvas_size_min);
@@ -287,6 +289,13 @@
 		logValue += geome.logstr;
 		geomRedraw(simTime);
 	}
+	// modal
+	let modalLoadDefault = false;
+	let modalLoadLocal = false;
+	let modalSaveLocal = false;
+	const foop: tOkFunc = () => {
+		console.log('hyop');
+	};
 </script>
 
 <svelte:window bind:innerWidth={windowWidth} on:resize={canvasResize} />
@@ -299,8 +308,22 @@
 		accept="text/plain, application/json"
 		bind:files={paramFiles}
 	/>
-	<button on:click={dowloadParams}>Set Params Default</button>
-	<button on:click={dowloadParams}>Load Params from localStorage</button>
+	<button
+		on:click={() => {
+			modalLoadDefault = true;
+		}}>Set Params Default</button
+	>
+	<button
+		on:click={() => {
+			modalLoadLocal = true;
+		}}>Load Params from localStorage</button
+	>
+	<ModalDiag bind:modalOpen={modalLoadDefault} okName="Load Default Parameters" okFunc={foop}
+		>Load the default parameters ?</ModalDiag
+	>
+	<ModalDiag bind:modalOpen={modalLoadLocal} okName="Load Parameters" okFunc={foop}
+		>Load parameters from localStorage ?</ModalDiag
+	>
 	{#each params.params as param}
 		<article class="oneParam">
 			<span>{param.name}:</span>
@@ -326,7 +349,14 @@
 		</article>
 	{/each}
 	<button on:click={dowloadParams}>Save Parameters to File</button>
-	<button on:click={dowloadParams}>Save Parameters to localStorage</button>
+	<button
+		on:click={() => {
+			modalSaveLocal = true;
+		}}>Save Parameters to localStorage</button
+	>
+	<ModalDiag bind:modalOpen={modalSaveLocal} okName="Save to localStorage" okFunc={foop}
+		>Save parameters to localStorage ?</ModalDiag
+	>
 </section>
 <section>
 	<h2>Log</h2>
