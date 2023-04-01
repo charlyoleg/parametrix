@@ -2,6 +2,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import type { tOkFunc } from '$lib/ModalDiag.svelte';
 	import ModalDiag from '$lib/ModalDiag.svelte';
+	import LocStorWrite from '$lib/LocStorWrite.svelte';
 	import type { tParamDef, tParamVal } from '$lib/paramGeom';
 	import { onMount } from 'svelte';
 
@@ -80,6 +81,9 @@
 	const foop: tOkFunc = () => {
 		console.log('hyop');
 	};
+	function saveInLocStor() {
+		console.log('save in localStorage');
+	}
 </script>
 
 <section>
@@ -137,8 +141,10 @@
 			modalSaveLocal = true;
 		}}>Save Parameters to localStorage</button
 	>
-	<ModalDiag bind:modalOpen={modalSaveLocal} okName="Save to localStorage" okFunc={foop}
-		>Save parameters to localStorage ?</ModalDiag
+	<ModalDiag
+		bind:modalOpen={modalSaveLocal}
+		okName="Save into localStorage"
+		okFunc={saveInLocStor}><LocStorWrite pageName={pDef.page} /></ModalDiag
 	>
 </section>
 

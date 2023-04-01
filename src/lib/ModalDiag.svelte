@@ -60,6 +60,7 @@
 		height: 80%;
 		overflow: auto;
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 	}
