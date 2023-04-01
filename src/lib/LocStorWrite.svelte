@@ -21,8 +21,8 @@
 	value={defaultName(pageName)}
 	required
 	minlength="4"
-	maxlength="20"
-	size="22"
+	maxlength="30"
+	size="32"
 />
 <p>Warning name already used</p>
 
