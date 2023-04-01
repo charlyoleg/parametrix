@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { point } from '$lib/geom/euclid2d';
-	import type { tParams, tPObj, tGeom } from '$lib/paramGeom';
+	import type { tParamDef, tParamVal, tGeom } from '$lib/paramGeom';
 	import { fround } from '$lib/paramGeom';
 	import ParamDrawExport from '$lib/ParamDrawExport.svelte';
 
@@ -8,7 +8,7 @@
 	const pi24 = fround(Math.PI / 24); // input-number min and step must be rounded to avoid UI issue
 	const pi4 = fround(Math.PI / 4);
 	const pi120 = fround(Math.PI / 120); // rounded to avoid UI issue
-	const circleParams: tParams = {
+	const circleParams: tParamDef = {
 		page: 'circle',
 		params: [
 			{ name: 'angle', unit: 'radian', init: pi12, min: pi24, max: pi4, step: pi120 },
@@ -21,7 +21,7 @@
 			tUpdate: 500
 		}
 	};
-	function circleGeom(t: number, param: tPObj): tGeom {
+	function circleGeom(t: number, param: tParamVal): tGeom {
 		const rGeome: tGeom = { points: [], logstr: '' };
 		rGeome.points.push(point(0, 0));
 		const p1 = point(10, 10);
@@ -42,7 +42,7 @@
 
 <h1>Circles</h1>
 <article>A circle with circle holes.</article>
-<ParamDrawExport params={circleParams} geom={circleGeom} />
+<ParamDrawExport pDef={circleParams} geom={circleGeom} />
 
 <style lang="scss">
 	@use '$lib/style/colors.scss';

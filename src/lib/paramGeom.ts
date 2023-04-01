@@ -15,22 +15,22 @@ type tSimTime = {
 	tStep: number;
 	tUpdate: number; // in ms
 };
-type tParams = {
+type tParamDef = {
 	page: string;
 	params: Array<tParam>;
 	sim: tSimTime;
 };
 
-type tPObj = { [index: string]: number };
+type tParamVal = { [index: string]: number };
 type tGeom = {
 	points: Array<Point>;
 	logstr: string;
 };
-type tGeomFunc = (t: number, param: tPObj) => tGeom;
+type tGeomFunc = (t: number, ipVal: tParamVal) => tGeom;
 
 function fround(ireal: number, iprecision = 1000.0): number {
 	return Math.floor(ireal * iprecision) / iprecision;
 }
 
-export type { tParams, tPObj, tGeom, tGeomFunc };
+export type { tParamDef, tParamVal, tGeom, tGeomFunc };
 export { fround };

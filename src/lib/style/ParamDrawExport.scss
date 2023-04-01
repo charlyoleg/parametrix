@@ -1,0 +1,22 @@
+// ParamDrawExport.scss
+@use '$lib/style/colors.scss';
+
+section > h2 {
+	color: colors.$pde-title;
+}
+
+@mixin mix-button {
+	/*display: inline-block;*/
+	height: 1.6rem;
+	/*width: 1.6rem;*/
+	color: colors.$timectrl-sign;
+	font-size: 0.8rem;
+	font-weight: 400;
+	padding: 0.2rem 0.4rem 0.2rem;
+	border-style: solid;
+	border-width: 0.1rem;
+	border-radius: 0.2rem;
+	border-color: colors.$timectrl-sign;
+	margin: 0.5rem;
+	background-color: colors.$timectrl-bg;
+}
