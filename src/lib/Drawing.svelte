@@ -93,7 +93,8 @@
 	});
 	// reactivity on simTime and pValEve
 	$: {
-		console.log(`dbg101: pValEve: ${pValEve}`);
+		//console.log(`dbg101: pValEve: ${pValEve}`);
+		pValEve = pValEve;
 		if (domInit === 1) {
 			geomRedraw(simTime);
 		}
@@ -271,6 +272,9 @@
 	@use '$lib/style/colors.scss';
 	@use '$lib/style/ParamDrawExport.scss';
 
+	section > h2 {
+		@include ParamDrawExport.mix-h2;
+	}
 	section > div.rack {
 		display: inline-block;
 		margin: 1rem;

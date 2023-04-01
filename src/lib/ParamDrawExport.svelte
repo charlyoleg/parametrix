@@ -43,6 +43,9 @@
 	@use '$lib/style/colors.scss';
 	@use '$lib/style/ParamDrawExport.scss';
 
+	section > h2 {
+		@include ParamDrawExport.mix-h2;
+	}
 	section > textarea {
 		resize: horizontal;
 	}

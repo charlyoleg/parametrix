@@ -1,7 +1,7 @@
 // ParamDrawExport.scss
 @use '$lib/style/colors.scss';
 
-section > h2 {
+@mixin mix-h2 {
 	color: colors.$pde-title;
 }
 

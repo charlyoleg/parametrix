@@ -3,20 +3,23 @@
 	import type { tOkFunc } from '$lib/ModalDiag.svelte';
 	import ModalDiag from '$lib/ModalDiag.svelte';
 	import type { tParamDef, tParamVal } from '$lib/paramGeom';
-	//import { onMount } from 'svelte';
+	import { onMount } from 'svelte';
 
 	const dispatch = createEventDispatcher();
 
 	export let pDef: tParamDef;
 	export let pVal: tParamVal;
 
-	for (const p of pDef.params) {
-		pVal[p.name] = p.init;
-	}
-
+	// initialization
 	function paramChange() {
 		dispatch('paramChg', { foo: 'bla' });
 	}
+	for (const p of pDef.params) {
+		pVal[p.name] = p.init;
+	}
+	onMount(() => {
+		paramChange();
+	});
 	// load parameters
 	let paramFiles: FileList;
 	function loadFile(fileP: File) {
@@ -137,6 +140,9 @@
 	@use '$lib/style/colors.scss';
 	@use '$lib/style/ParamDrawExport.scss';
 
+	section > h2 {
+		@include ParamDrawExport.mix-h2;
+	}
 	section > label.fileUpload {
 		display: inline-block;
 		height: 1.2rem;
