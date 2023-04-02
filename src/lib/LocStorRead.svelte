@@ -8,13 +8,18 @@
 	let localKeys: Array<string> = [];
 	// create a default key name
 	function defaultName(ilocalKeys: Array<string>) {
-		let rname = '';
-		if (ilocalKeys.length > 0) {
-			rname = ilocalKeys[0];
+		let rname = storeName;
+		if (rname === undefined || rname === '') {
+			if (ilocalKeys.length > 0) {
+				rname = ilocalKeys[0];
+			} else {
+				rname = '';
+			}
 		}
 		return rname;
 	}
 	$: storeName = defaultName(localKeys);
+	//$: console.log(`dbg994: ${storeName}`);
 </script>
 
 <LocStorTable {pageName} bind:storeName bind:localKeys />
