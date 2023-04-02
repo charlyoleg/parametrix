@@ -2,6 +2,7 @@
 	//import type { tOkFunc } from '$lib/ModalDiag.svelte';
 	import ModalDiag from '$lib/ModalDiag.svelte';
 	import LocStorWrite from '$lib/LocStorWrite.svelte';
+	import LocStorRead from '$lib/LocStorRead.svelte';
 	import type { tParamDef, tParamVal } from '$lib/paramGeom';
 	import { onMount } from 'svelte';
 	import { createEventDispatcher } from 'svelte';
@@ -87,7 +88,7 @@
 	// load parameters from localStorage
 	let locStorRname: string;
 	function loadLocStor() {
-		if (locStorRname !== undefined) {
+		if (locStorRname !== undefined && locStorRname !== '') {
 			const storeKey = `${pDef.page}_${locStorRname}`;
 			console.log(`load from localStorage ${storeKey}`);
 			if (browser) {
@@ -99,19 +100,23 @@
 					loadParams(storeVal);
 				}
 			}
+		} else {
+			console.log('Warn239: No valid name for loading from localStorage!');
 		}
 	}
 	// save parameters into localStorage
 	let locStorWname: string;
 	//$: console.log(`dbg888: ${locStorWname}`);
 	function saveInLocStor() {
-		if (locStorWname !== undefined) {
+		if (locStorWname !== undefined && locStorWname !== '') {
 			const storeKey = `${pDef.page}_${locStorWname}`;
 			const storeVal = JSON.stringify(pVal);
 			console.log(`save in localStorage ${storeKey}`);
 			if (browser) {
 				window.localStorage.setItem(storeKey, storeVal);
 			}
+		} else {
+			console.log('Warn639: No valid name for writing to localStorage!');
 		}
 	}
 </script>
@@ -139,7 +144,7 @@
 		>Load the default parameters ?</ModalDiag
 	>
 	<ModalDiag bind:modalOpen={modalLoadLocal} okName="Load Parameters" okFunc={loadLocStor}
-		>Load parameters from localStorage ?</ModalDiag
+		><LocStorRead pageName={pDef.page} bind:storeName={locStorRname} /></ModalDiag
 	>
 	{#each pDef.params as param}
 		<article class="oneParam">
