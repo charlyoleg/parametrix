@@ -1,40 +1,23 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
+	import LocStorTable from '$lib/LocStorTable.svelte';
+	//import { browser } from '$app/environment';
 
 	export let pageName: string;
 	export let storeName: string;
 
-	// get the list of localStorage keys
-	function getLocalKey() {
-		let rKeyList: Array<string> = [];
-		const re = new RegExp(`^${pageName}_`);
-		if (browser) {
-			const keyList = Object.keys(window.localStorage).filter((k) => re.test(k));
-			//console.log(keyList);
-			rKeyList = keyList.map((k) => k.replace(re, ''));
-		}
-		//console.log(rKeyList);
-		return rKeyList;
-	}
-	const localKeys = getLocalKey();
+	let localKeys: Array<string> = [];
 	// create a default key name
-	function defaultName() {
+	function defaultName(ilocalKeys: Array<string>) {
 		let rname = '';
-		if (localKeys.length > 0) {
-			rname = localKeys[0];
+		if (ilocalKeys.length > 0) {
+			rname = ilocalKeys[0];
 		}
 		return rname;
 	}
-	storeName = defaultName();
+	$: storeName = defaultName(localKeys);
 </script>
 
-<table>
-	<tbody>
-		{#each localKeys as kname}
-			<tr><td>{kname}</td></tr>
-		{/each}
-	</tbody>
-</table>
+<LocStorTable {pageName} bind:storeName bind:localKeys />
 <label for="storName">Select a parameter-set:</label>
 <input
 	type="text"
@@ -48,13 +31,4 @@
 
 <style lang="scss">
 	@use '$lib/style/colors.scss';
-
-	/*
-	label {
-		display: block;
-	}
-	input {
-		display: block;
-	}
-	*/
 </style>

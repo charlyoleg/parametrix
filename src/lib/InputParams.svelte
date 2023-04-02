@@ -50,7 +50,7 @@
 	// download parameters
 	function download_file(file_name: string, file_content: string) {
 		//create temporary an invisible element
-		let elem_a_download = document.createElement('a');
+		const elem_a_download = document.createElement('a');
 		elem_a_download.setAttribute(
 			'href',
 			'data:text/plain;charset=utf-8,' + encodeURIComponent(file_content)
@@ -97,7 +97,7 @@
 					console.log(`localStorage key ${storeKey} is null`);
 				} else {
 					const storeVal = JSON.parse(storeStr);
-					loadParams(storeVal);
+					loadParams(storeVal.pVal);
 				}
 			}
 		} else {
@@ -110,7 +110,9 @@
 	function saveInLocStor() {
 		if (locStorWname !== undefined && locStorWname !== '') {
 			const storeKey = `${pDef.page}_${locStorWname}`;
-			const storeVal = JSON.stringify(pVal);
+			const re2 = /\..*$/;
+			const lastModif = new Date().toISOString().replace(re2, '');
+			const storeVal = JSON.stringify({ lastModif: lastModif, pVal: pVal });
 			console.log(`save in localStorage ${storeKey}`);
 			if (browser) {
 				window.localStorage.setItem(storeKey, storeVal);

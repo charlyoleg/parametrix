@@ -1,22 +1,11 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
+	import LocStorTable from '$lib/LocStorTable.svelte';
+	//import { browser } from '$app/environment';
 
 	export let pageName: string;
 	export let storeName: string;
 
-	// get the list of localStorage keys
-	function getLocalKey() {
-		let rKeyList: Array<string> = [];
-		const re = new RegExp(`^${pageName}_`);
-		if (browser) {
-			const keyList = Object.keys(window.localStorage).filter((k) => re.test(k));
-			//console.log(keyList);
-			rKeyList = keyList.map((k) => k.replace(re, ''));
-		}
-		//console.log(rKeyList);
-		return rKeyList;
-	}
-	const localKeys = getLocalKey();
+	let localKeys: Array<string> = [];
 	// create a default key name
 	function defaultName(prefix: string) {
 		const re1 = /[-:]/g;
@@ -32,22 +21,22 @@
 	storeName = defaultName(pageName);
 	// check if the key already exist
 	let warn = false;
+	function checkWarning(iname: string) {
+		warn = localKeys.includes(iname);
+		//console.log(`dbg040: ${warn}`);
+	}
 	function validInput(eve: Event) {
 		const storeName2 = (eve.target as HTMLInputElement).value;
 		//const storeName2 = storeName;
 		//console.log(`dbg162: ${storeName2}`);
-		warn = localKeys.includes(storeName2);
-		//console.log(`dbg040: ${warn}`);
+		//warn = localKeys.includes(storeName2);
+		checkWarning(storeName2);
 	}
+	// modify input
+	$: checkWarning(storeName);
 </script>
 
-<table>
-	<tbody>
-		{#each localKeys as kname}
-			<tr><td>{kname}</td></tr>
-		{/each}
-	</tbody>
-</table>
+<LocStorTable {pageName} bind:storeName bind:localKeys />
 <label for="storName">Give a name to your parameter-set:</label>
 <input
 	type="text"
@@ -65,13 +54,4 @@
 
 <style lang="scss">
 	@use '$lib/style/colors.scss';
-
-	/*
-	label {
-		display: block;
-	}
-	input {
-		display: block;
-	}
-	*/
 </style>
