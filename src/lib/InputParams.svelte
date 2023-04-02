@@ -1,10 +1,11 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
-	import type { tOkFunc } from '$lib/ModalDiag.svelte';
+	//import type { tOkFunc } from '$lib/ModalDiag.svelte';
 	import ModalDiag from '$lib/ModalDiag.svelte';
 	import LocStorWrite from '$lib/LocStorWrite.svelte';
 	import type { tParamDef, tParamVal } from '$lib/paramGeom';
 	import { onMount } from 'svelte';
+	import { createEventDispatcher } from 'svelte';
+	import { browser } from '$app/environment';
 
 	const dispatch = createEventDispatcher();
 
@@ -22,18 +23,22 @@
 		paramChange();
 	});
 	// load parameters
+	function loadParams(iNew: tParamVal) {
+		for (const p of pDef.params) {
+			if (Object.hasOwn(iNew, p.name)) {
+				pVal[p.name] = iNew[p.name];
+			}
+		}
+		paramChange();
+	}
+	// load from file
 	let paramFiles: FileList;
 	function loadFile(fileP: File) {
 		const reader = new FileReader();
 		reader.addEventListener('loadend', () => {
 			const paramJson: tParamVal = JSON.parse(reader.result as string);
 			//console.log(`dbg345`);
-			for (const p of pDef.params) {
-				if (Object.hasOwn(paramJson, p.name)) {
-					pVal[p.name] = paramJson[p.name];
-				}
-			}
-			paramChange();
+			loadParams(paramJson);
 		});
 		reader.readAsText(fileP);
 	}
@@ -73,26 +78,49 @@
 	let modalLoadLocal = false;
 	let modalSaveLocal = false;
 	function loadDefaults() {
+		const pInit: tParamVal = {};
 		for (const p of pDef.params) {
-			pVal[p.name] = p.init;
+			pInit[p.name] = p.init;
 		}
-		paramChange();
+		loadParams(pInit);
 	}
-	const foop: tOkFunc = () => {
-		console.log('hyop');
-	};
-	function saveInLocStor() {
-		console.log('save in localStorage');
+	// load parameters from localStorage
+	let locStorRname: string;
+	function loadLocStor() {
+		if (locStorRname !== undefined) {
+			const storeKey = `${pDef.page}_${locStorRname}`;
+			console.log(`load from localStorage ${storeKey}`);
+			if (browser) {
+				const storeStr = window.localStorage.getItem(storeKey);
+				if (storeStr === null) {
+					console.log(`localStorage key ${storeKey} is null`);
+				} else {
+					const storeVal = JSON.parse(storeStr);
+					loadParams(storeVal);
+				}
+			}
+		}
 	}
+	// save parameters into localStorage
 	let locStorWname: string;
-	$: console.log(`dbg888: ${locStorWname}`);
+	//$: console.log(`dbg888: ${locStorWname}`);
+	function saveInLocStor() {
+		if (locStorWname !== undefined) {
+			const storeKey = `${pDef.page}_${locStorWname}`;
+			const storeVal = JSON.stringify(pVal);
+			console.log(`save in localStorage ${storeKey}`);
+			if (browser) {
+				window.localStorage.setItem(storeKey, storeVal);
+			}
+		}
+	}
 </script>
 
 <section>
 	<h2>Parameters</h2>
-	<label for="loadParams" class="fileUpload">Load Params from File</label>
+	<label for="loadFParams" class="fileUpload">Load Params from File</label>
 	<input
-		id="loadParams"
+		id="loadFParams"
 		type="file"
 		accept="text/plain, application/json"
 		bind:files={paramFiles}
@@ -110,7 +138,7 @@
 	<ModalDiag bind:modalOpen={modalLoadDefault} okName="Overwrite Parameters" okFunc={loadDefaults}
 		>Load the default parameters ?</ModalDiag
 	>
-	<ModalDiag bind:modalOpen={modalLoadLocal} okName="Load Parameters" okFunc={foop}
+	<ModalDiag bind:modalOpen={modalLoadLocal} okName="Load Parameters" okFunc={loadLocStor}
 		>Load parameters from localStorage ?</ModalDiag
 	>
 	{#each pDef.params as param}
@@ -147,7 +175,7 @@
 		bind:modalOpen={modalSaveLocal}
 		okName="Save into localStorage"
 		okFunc={saveInLocStor}
-		><LocStorWrite pageName={pDef.page} storeName={locStorWname} /></ModalDiag
+		><LocStorWrite pageName={pDef.page} bind:storeName={locStorWname} /></ModalDiag
 	>
 </section>
 

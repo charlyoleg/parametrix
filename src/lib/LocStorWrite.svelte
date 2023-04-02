@@ -15,10 +15,9 @@
 	}
 	storeName = defaultName(pageName);
 	function validInput(eve: Event) {
-		console.log(eve);
-		//console.log(`dbg161: ${(eve.target as HTMLInputElement).value}`);
-		console.log(`dbg161: ${storeName}`);
-		//storeName = eve.target.value;
+		const storeName2 = (eve.target as HTMLInputElement).value;
+		//const storeName2 = storeName;
+		console.log(`dbg162: ${storeName2}`);
 	}
 </script>
 
