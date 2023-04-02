@@ -84,6 +84,8 @@
 	function saveInLocStor() {
 		console.log('save in localStorage');
 	}
+	let locStorWname: string;
+	$: console.log(`dbg888: ${locStorWname}`);
 </script>
 
 <section>
@@ -144,16 +146,17 @@
 	<ModalDiag
 		bind:modalOpen={modalSaveLocal}
 		okName="Save into localStorage"
-		okFunc={saveInLocStor}><LocStorWrite pageName={pDef.page} /></ModalDiag
+		okFunc={saveInLocStor}
+		><LocStorWrite pageName={pDef.page} storeName={locStorWname} /></ModalDiag
 	>
 </section>
 
 <style lang="scss">
 	@use '$lib/style/colors.scss';
-	@use '$lib/style/ParamDrawExport.scss';
+	@use '$lib/style/styling.scss';
 
 	section > h2 {
-		@include ParamDrawExport.mix-h2;
+		@include styling.mix-h2;
 	}
 	section > label.fileUpload {
 		display: inline-block;
@@ -177,6 +180,6 @@
 		color: colors.$pde-params;
 	}
 	section > button {
-		@include ParamDrawExport.mix-button;
+		@include styling.mix-button;
 	}
 </style>

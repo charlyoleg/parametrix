@@ -270,10 +270,10 @@
 
 <style lang="scss">
 	@use '$lib/style/colors.scss';
-	@use '$lib/style/ParamDrawExport.scss';
+	@use '$lib/style/styling.scss';
 
 	section > h2 {
-		@include ParamDrawExport.mix-h2;
+		@include styling.mix-h2;
 	}
 	section > div.rack {
 		display: inline-block;
