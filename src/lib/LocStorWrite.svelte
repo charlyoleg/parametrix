@@ -37,21 +37,41 @@
 </script>
 
 <LocStorTable {pageName} bind:storeName bind:localKeys />
-<label for="storName">Give a name to your parameter-set:</label>
-<input
-	type="text"
-	id="storName"
-	bind:value={storeName}
-	required
-	minlength="4"
-	maxlength="30"
-	size="32"
-	on:input={validInput}
-/>
-{#if warn}
-	<p>Warning: name {storeName} already used</p>
-{/if}
+<div>
+	<label for="storName">Give a name to your parameter-set:</label>
+	<input
+		type="text"
+		id="storName"
+		bind:value={storeName}
+		required
+		minlength="4"
+		maxlength="30"
+		size="32"
+		on:input={validInput}
+	/>
+	{#if warn}
+		<p class="warnMsg">Warning: name {storeName} already used</p>
+	{/if}
+</div>
 
 <style lang="scss">
 	@use '$lib/style/colors.scss';
+
+	div {
+		min-height: 6rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+	}
+	div > label,
+	div > input,
+	div > p.warnMsg {
+		font-size: 1rem;
+		font-weight: 400;
+		margin: 0.2rem;
+	}
+	div > p.warnMsg {
+		color: colors.$warning-message;
+	}
 </style>

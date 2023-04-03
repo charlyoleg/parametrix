@@ -85,10 +85,10 @@
 		}}>Delete</button
 	>
 	<ModalDiag bind:modalOpen={modalDelConfirm} okName="Confirm" okFunc={actionDel}>
-		<p>Do you really want to delete the following localStorage keys?</p>
+		<p class="diagTitle">Do you really want to delete the following localStorage keys?</p>
 		{#each localKeys as kname}
 			{#if localDel[kname]}
-				<p>{kname}</p>
+				<p class="diagItem">{kname}</p>
 			{/if}
 		{/each}
 	</ModalDiag>
@@ -132,7 +132,7 @@
 	div > table {
 		font-size: 0.8rem;
 		font-weight: 400;
-		margin: 2rem;
+		margin: 0.5rem 2rem 0.5rem;
 	}
 	div > table > thead {
 		background-color: colors.$table-head;
@@ -144,5 +144,15 @@
 		color: colors.$timectrl-sign;
 		background-color: transparent;
 		border: 0;
+	}
+	p.diagTitle {
+		font-size: 1rem;
+		font-weight: 400;
+		margin: 0.2rem;
+	}
+	p.diagItem {
+		font-size: 0.8rem;
+		font-weight: 400;
+		margin: 0;
 	}
 </style>

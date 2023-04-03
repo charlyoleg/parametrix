@@ -54,6 +54,7 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
+		align-items: stretch;
 	}
 	aside > div > article.question {
 		font-size: 1.2rem;
