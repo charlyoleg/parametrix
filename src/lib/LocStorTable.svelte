@@ -1,4 +1,5 @@
 <script lang="ts">
+	import ModalDiag from '$lib/ModalDiag.svelte';
 	import { browser } from '$app/environment';
 
 	export let pageName: string;
@@ -61,16 +62,8 @@
 		}
 	}
 	$: setGlobalDel(globalDel);
-	// delete unlock
-	let unlock = [false, false];
-	let borColor = ['transparent', 'transparent'];
-	function delay(milliseconds: number) {
-		return new Promise((resolve) => {
-			setTimeout(resolve, milliseconds);
-		});
-	}
-	async function actionDel() {
-		unlock = [false, false];
+	// delete action
+	function actionDel() {
 		if (browser) {
 			for (const k of localKeys) {
 				if (localDel[k]) {
@@ -81,23 +74,24 @@
 			}
 		}
 		localKeys = getLocalKey();
-		await delay(500);
-		borColor = ['transparent', 'transparent'];
 	}
-	function toggleDel(idx: number) {
-		//console.log(`dbg756: ${idx}`);
-		unlock[idx] = !unlock[idx];
-		borColor[idx] = unlock[idx] ? 'red' : 'transparent';
-		if (unlock[0] && unlock[1]) {
-			actionDel();
-		}
-	}
+	let modalDelConfirm = false;
 </script>
 
 <div class="deleteKeys">
-	<div class="lock" style:border-color={borColor[0]}>
-		<button on:click={() => toggleDel(0)}>Delete<br />unlock-1</button>
-	</div>
+	<button
+		on:click={() => {
+			modalDelConfirm = true;
+		}}>Delete</button
+	>
+	<ModalDiag bind:modalOpen={modalDelConfirm} okName="Confirm" okFunc={actionDel}>
+		<p>Do you really want to delete the following localStorage keys?</p>
+		{#each localKeys as kname}
+			{#if localDel[kname]}
+				<p>{kname}</p>
+			{/if}
+		{/each}
+	</ModalDiag>
 	<table>
 		<thead>
 			<tr>
@@ -121,9 +115,6 @@
 			{/each}
 		</tbody>
 	</table>
-	<div class="lock" style:border-color={borColor[1]}>
-		<button on:click={() => toggleDel(1)}>Delete<br />unlock-2</button>
-	</div>
 </div>
 
 <style lang="scss">
@@ -135,17 +126,8 @@
 		justify-content: space-between;
 		align-items: center;
 	}
-	div > div.lock {
-		border-style: solid;
-		border-radius: 0.6rem;
-		border-width: 0.5rem;
-		border-color: transparent;
-		transition-property: border-color;
-		transition-duration: 0.2s;
-	}
-	div > div.lock > button {
+	div > button {
 		@include styling.mix-button;
-		height: 2.6rem;
 	}
 	div > table {
 		font-size: 0.8rem;
