@@ -24,12 +24,29 @@
 		paramChange();
 	});
 	// load parameters
+	let loadMsg = "";
 	function loadParams(iNew: tParamVal) {
+		let cover = 0;
+		let uncover = 0;
+		let equal = 0
 		for (const p of pDef.params) {
 			if (Object.hasOwn(iNew, p.name)) {
-				pVal[p.name] = iNew[p.name];
+				cover += 1;
+				if (pVal[p.name] === iNew[p.name]) {
+					equal += 1
+				} else {
+					pVal[p.name] = iNew[p.name];
+				}
+			} else {
+				uncover += 1;
 			}
 		}
+		const loadDate = new Date().toLocaleTimeString();
+		loadMsg = `Parameters loaded at ${loadDate} :`
+		loadMsg += ` def-nb: ${Object.keys(pDef.params).length}`;
+		loadMsg += `, load-nb: ${Object.keys(iNew).length}`;
+		loadMsg += `, cover-nb: ${cover}, uncover-nb: ${uncover}`;
+		loadMsg += `, equal-nb: ${equal}, diff-nb: ${cover-equal}`;
 		paramChange();
 	}
 	// load from file
@@ -148,6 +165,7 @@
 	<ModalDiag bind:modalOpen={modalLoadLocal} okName="Load Parameters" okFunc={loadLocStor}
 		><LocStorRead pageName={pDef.page} bind:storeName={locStorRname} /></ModalDiag
 	>
+	<p class="load-msg">{loadMsg}</p>
 	{#each pDef.params as param}
 		<article class="oneParam">
 			<span>{param.name}:</span>
@@ -210,6 +228,11 @@
 	}
 	section > input[type='file'] {
 		display: none;
+	}
+	section > p.load-msg {
+		font-size: 0.8rem;
+		font-weight: 400;
+		margin: 0.2rem;
 	}
 	section > article > span {
 		color: colors.$pde-params;
