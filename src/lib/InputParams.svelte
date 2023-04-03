@@ -94,6 +94,7 @@
 	// modal
 	let modalLoadDefault = false;
 	let modalLoadLocal = false;
+	let modalSaveUrl = false;
 	let modalSaveLocal = false;
 	function loadDefaults() {
 		const pInit: tParamVal = {};
@@ -137,6 +138,10 @@
 		} else {
 			console.log('Warn639: No valid name for writing to localStorage!');
 		}
+	}
+	// Save as URL
+	function saveAsUrl() {
+		console.log(`dbg244: voila`);
 	}
 	// parameter picture
 	function paramPict(keyName: string) {
@@ -222,8 +227,16 @@
 	<button on:click={dowloadParams}>Save Parameters to File</button>
 	<button
 		on:click={() => {
+			modalSaveUrl = true;
+		}}>Save Parameters as URL</button
+	>
+	<button
+		on:click={() => {
 			modalSaveLocal = true;
 		}}>Save Parameters to localStorage</button
+	>
+	<ModalDiag bind:modalOpen={modalSaveUrl} okName="Done" okFunc={saveAsUrl}
+		>Voila l&apos;URL</ModalDiag
 	>
 	<ModalDiag
 		bind:modalOpen={modalSaveLocal}
