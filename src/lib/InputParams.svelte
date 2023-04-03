@@ -24,16 +24,16 @@
 		paramChange();
 	});
 	// load parameters
-	let loadMsg = "";
+	let loadMsg = '';
 	function loadParams(iNew: tParamVal) {
 		let cover = 0;
 		let uncover = 0;
-		let equal = 0
+		let equal = 0;
 		for (const p of pDef.params) {
 			if (Object.hasOwn(iNew, p.name)) {
 				cover += 1;
 				if (pVal[p.name] === iNew[p.name]) {
-					equal += 1
+					equal += 1;
 				} else {
 					pVal[p.name] = iNew[p.name];
 				}
@@ -42,11 +42,11 @@
 			}
 		}
 		const loadDate = new Date().toLocaleTimeString();
-		loadMsg = `Parameters loaded at ${loadDate} :`
+		loadMsg = `Parameters loaded at ${loadDate} :`;
 		loadMsg += ` def-nb: ${Object.keys(pDef.params).length}`;
 		loadMsg += `, load-nb: ${Object.keys(iNew).length}`;
 		loadMsg += `, cover-nb: ${cover}, uncover-nb: ${uncover}`;
-		loadMsg += `, equal-nb: ${equal}, diff-nb: ${cover-equal}`;
+		loadMsg += `, equal-nb: ${equal}, diff-nb: ${cover - equal}`;
 		paramChange();
 	}
 	// load from file
@@ -138,6 +138,12 @@
 			console.log('Warn639: No valid name for writing to localStorage!');
 		}
 	}
+	// parameter picture
+	function paramPict(keyName: string) {
+		console.log(`dbg783: ${keyName}`);
+	}
+	// input comment
+	let inputComment = '';
 </script>
 
 <section>
@@ -166,30 +172,53 @@
 		><LocStorRead pageName={pDef.page} bind:storeName={locStorRname} /></ModalDiag
 	>
 	<p class="load-msg">{loadMsg}</p>
-	{#each pDef.params as param}
-		<article class="oneParam">
-			<span>{param.name}:</span>
-			<input
-				type="number"
-				bind:value={pVal[param.name]}
-				min={param.min}
-				max={param.max}
-				step={param.step}
-				on:change={paramChange}
-			/>
-			<input
-				type="range"
-				bind:value={pVal[param.name]}
-				min={param.min}
-				max={param.max}
-				step={param.step}
-				on:change={paramChange}
-			/>
-			<span
-				>unit: {param.unit}, init: {param.init}, min: {param.min}, max: {param.max}, step: {param.step}</span
-			>
-		</article>
-	{/each}
+	<table>
+		<thead>
+			<tr>
+				<td>Parameter name</td>
+				<td>Value</td>
+				<td>Unit</td>
+				<td>Default</td>
+				<td>Min</td>
+				<td>Max</td>
+				<td>Step</td>
+			</tr>
+		</thead>
+		<tbody>
+			{#each pDef.params as param}
+				<tr>
+					<td><button on:click={() => paramPict(param.name)}>{param.name}</button></td>
+					<td>
+						<input
+							type="number"
+							bind:value={pVal[param.name]}
+							min={param.min}
+							max={param.max}
+							step={param.step}
+							on:change={paramChange}
+						/>
+						<input
+							type="range"
+							bind:value={pVal[param.name]}
+							min={param.min}
+							max={param.max}
+							step={param.step}
+							on:change={paramChange}
+						/>
+					</td>
+					<td>{param.unit}</td>
+					<td>{param.init}</td>
+					<td>{param.min}</td>
+					<td>{param.max}</td>
+					<td>{param.step}</td>
+				</tr>
+			{/each}
+		</tbody>
+	</table>
+	<div class="comment">
+		<label for="inComment">Comment:</label>
+		<input type="text" id="inComment" bind:value={inputComment} maxlength="150" size="80" />
+	</div>
 	<button on:click={dowloadParams}>Save Parameters to File</button>
 	<button
 		on:click={() => {
@@ -234,8 +263,21 @@
 		font-weight: 400;
 		margin: 0.2rem;
 	}
-	section > article > span {
-		color: colors.$pde-params;
+	section > table {
+		font-size: 0.8rem;
+		font-weight: 400;
+		margin: 0.2rem 0.5rem 0.2rem;
+	}
+	section > table > thead {
+		background-color: colors.$table-head;
+	}
+	section > table > tbody {
+		background-color: colors.$table-body;
+	}
+	section > table > tbody > tr > td > button {
+		color: colors.$timectrl-sign;
+		background-color: transparent;
+		border: 0;
 	}
 	section > button {
 		@include styling.mix-button;
