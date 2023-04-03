@@ -9,7 +9,8 @@
 	// create a default key name
 	function defaultName(ilocalKeys: Array<string>) {
 		let rname = storeName;
-		if (rname === undefined || rname === '') {
+		const nameUpdate = !ilocalKeys.includes(rname);
+		if (nameUpdate) {
 			if (ilocalKeys.length > 0) {
 				rname = ilocalKeys[0];
 			} else {
