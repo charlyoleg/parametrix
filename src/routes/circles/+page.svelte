@@ -23,6 +23,7 @@
 	};
 	function circleGeom(t: number, param: tParamVal): tGeom {
 		const rGeome: tGeom = { points: [], logstr: '' };
+		rGeome.logstr += `simTime: ${t}\n`;
 		rGeome.points.push(point(0, 0));
 		const p1 = point(10, 10);
 		const p2 = point(10, 30);
@@ -35,7 +36,7 @@
 					.rotate(p2, i * param['angle'] + (t * Math.PI) / 2 / circleParams.sim.tMax)
 			);
 		}
-		rGeome.logstr += 'Alles gut!\n';
+		rGeome.logstr += 'Circle draw successfully!\n';
 		return rGeome;
 	}
 </script>

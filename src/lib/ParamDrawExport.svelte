@@ -8,11 +8,12 @@
 
 	let pVal: tParamVal = {};
 	let pValEve = 0;
+	let simTime = 0;
 	// log and paramChange
 	let logValue = 'Dummy initial\nWill be replaced during onMount\n';
 	function paramChange() {
 		logValue = 'Geometry computed at ' + new Date().toLocaleTimeString() + '\n';
-		const geome = geom(0, pVal);
+		const geome = geom(simTime, pVal);
 		logValue += geome.logstr;
 		pValEve += 1;
 		//geomRedraw(simTime);
@@ -28,7 +29,7 @@
 	<h2>Log</h2>
 	<textarea rows="5" cols="80" readonly wrap="off" bind:value={logValue} />
 </section>
-<Drawing {pDef} {pVal} {pValEve} {geom} />
+<Drawing {pDef} {pVal} {pValEve} {geom} bind:simTime />
 <section>
 	<h2>Export</h2>
 	<select>

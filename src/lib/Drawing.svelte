@@ -18,6 +18,7 @@
 	export let pVal: tParamVal;
 	export let pValEve: number;
 	export let geom: tGeomFunc;
+	export let simTime = 0;
 
 	let windowWidth: number;
 	let canvasFull: HTMLCanvasElement;
@@ -26,7 +27,6 @@
 
 	// Canavas Figures
 	const eList = entityList();
-	let simTime = 0;
 	let cAdjust: tCanvasAdjust;
 	let zAdjust: tCanvasAdjust;
 	function canvasRedrawFull() {
