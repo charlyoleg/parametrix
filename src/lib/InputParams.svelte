@@ -23,37 +23,55 @@
 	function paramChange() {
 		dispatch('paramChg', { foo: 'bla' });
 	}
-	for (const p of pDef.params) {
-		pVal[p.name] = p.init;
+	function initpVal(ipVal: tParamVal) {
+		let cover = 0;
+		let uncover = 0;
+		let equal = 0;
+		for (const p of pDef.params) {
+			if (Object.hasOwn(ipVal, p.name)) {
+				cover += 1;
+				if (pVal[p.name] === ipVal[p.name]) {
+					equal += 1;
+				} else {
+					pVal[p.name] = ipVal[p.name];
+				}
+			} else {
+				uncover += 1;
+			}
+		}
+		const loadDate = new Date().toLocaleTimeString();
+		loadMsg = `Parameters loaded at ${loadDate} :`;
+		loadMsg += ` def-nb: ${Object.keys(pDef.params).length}`;
+		loadMsg += `, load-nb: ${Object.keys(ipVal).length}`;
+		loadMsg += `, cover-nb: ${cover}, uncover-nb: ${uncover}`;
+		loadMsg += `, equal-nb: ${equal}, diff-nb: ${cover - equal}`;
 	}
+	function initParams1() {
+		for (const p of pDef.params) {
+			pVal[p.name] = p.init;
+		}
+	}
+	function initParams2() {
+		if (browser) {
+			const searchParams = new URLSearchParams($page.url.search);
+			const pVal2 : tParamVal = {};
+			for (const [kk, vv] of searchParams) {
+				//console.log(`dbg638: ${kk} ${vv}`);
+				pVal2[kk] = vv;
+			}
+			initpVal(pVal2);
+		}
+	}
+	initParams1();
 	onMount(() => {
+		initParams2();
 		paramChange();
 	});
 	// load parameters
 	let loadMsg = '';
 	function loadParams(iNew: tAllVal) {
 		if (Object.hasOwn(iNew, pValKey)) {
-			let cover = 0;
-			let uncover = 0;
-			let equal = 0;
-			for (const p of pDef.params) {
-				if (Object.hasOwn(iNew.pVal, p.name)) {
-					cover += 1;
-					if (pVal[p.name] === iNew.pVal[p.name]) {
-						equal += 1;
-					} else {
-						pVal[p.name] = iNew.pVal[p.name];
-					}
-				} else {
-					uncover += 1;
-				}
-			}
-			const loadDate = new Date().toLocaleTimeString();
-			loadMsg = `Parameters loaded at ${loadDate} :`;
-			loadMsg += ` def-nb: ${Object.keys(pDef.params).length}`;
-			loadMsg += `, load-nb: ${Object.keys(iNew.pVal).length}`;
-			loadMsg += `, cover-nb: ${cover}, uncover-nb: ${uncover}`;
-			loadMsg += `, equal-nb: ${equal}, diff-nb: ${cover - equal}`;
+			initpVal(iNew[pValKey]);
 		}
 		if (Object.hasOwn(iNew, commentKey)) {
 			inputComment = iNew[commentKey];
@@ -161,8 +179,8 @@
 	let pUrl = '';
 	function generateUrl(): string {
 		const url1 = new URL($page.url.href);
-		for (const k of Object.keys(pVal)) {
-			url1.searchParams.append(encodeURIComponent(k), encodeURIComponent(pVal[k]));
+		for (const ky of Object.keys(pVal)) {
+			url1.searchParams.append(encodeURIComponent(ky), encodeURIComponent(pVal[ky]));
 		}
 		return url1.toString();
 	}
