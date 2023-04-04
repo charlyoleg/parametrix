@@ -22,6 +22,7 @@ type tParamDef = {
 };
 
 type tParamVal = { [index: string]: number };
+type tAllVal = { lastModif: string; pVal: tParamVal; comment: string };
 type tGeom = {
 	points: Array<Point>;
 	logstr: string;
@@ -32,5 +33,5 @@ function fround(ireal: number, iprecision = 1000.0): number {
 	return Math.floor(ireal * iprecision) / iprecision;
 }
 
-export type { tParamDef, tParamVal, tGeom, tGeomFunc };
+export type { tParamDef, tParamVal, tAllVal, tGeom, tGeomFunc };
 export { fround };

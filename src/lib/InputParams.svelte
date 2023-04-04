@@ -3,7 +3,7 @@
 	import ModalDiag from '$lib/ModalDiag.svelte';
 	import LocStorWrite from '$lib/LocStorWrite.svelte';
 	import LocStorRead from '$lib/LocStorRead.svelte';
-	import type { tParamDef, tParamVal } from '$lib/paramGeom';
+	import type { tParamDef, tParamVal, tAllVal } from '$lib/paramGeom';
 	import { onMount } from 'svelte';
 	import { createEventDispatcher } from 'svelte';
 	import { browser } from '$app/environment';
@@ -12,6 +12,11 @@
 
 	export let pDef: tParamDef;
 	export let pVal: tParamVal;
+
+	//const lastModifKey = 'lastModif';
+	const pValKey = 'pVal';
+	const commentKey = 'comment';
+	let inputComment = '';
 
 	// initialization
 	function paramChange() {
@@ -25,28 +30,35 @@
 	});
 	// load parameters
 	let loadMsg = '';
-	function loadParams(iNew: tParamVal) {
-		let cover = 0;
-		let uncover = 0;
-		let equal = 0;
-		for (const p of pDef.params) {
-			if (Object.hasOwn(iNew, p.name)) {
-				cover += 1;
-				if (pVal[p.name] === iNew[p.name]) {
-					equal += 1;
+	function loadParams(iNew: tAllVal) {
+		if (Object.hasOwn(iNew, pValKey)) {
+			let cover = 0;
+			let uncover = 0;
+			let equal = 0;
+			for (const p of pDef.params) {
+				if (Object.hasOwn(iNew.pVal, p.name)) {
+					cover += 1;
+					if (pVal[p.name] === iNew.pVal[p.name]) {
+						equal += 1;
+					} else {
+						pVal[p.name] = iNew.pVal[p.name];
+					}
 				} else {
-					pVal[p.name] = iNew[p.name];
+					uncover += 1;
 				}
-			} else {
-				uncover += 1;
 			}
+			const loadDate = new Date().toLocaleTimeString();
+			loadMsg = `Parameters loaded at ${loadDate} :`;
+			loadMsg += ` def-nb: ${Object.keys(pDef.params).length}`;
+			loadMsg += `, load-nb: ${Object.keys(iNew.pVal).length}`;
+			loadMsg += `, cover-nb: ${cover}, uncover-nb: ${uncover}`;
+			loadMsg += `, equal-nb: ${equal}, diff-nb: ${cover - equal}`;
 		}
-		const loadDate = new Date().toLocaleTimeString();
-		loadMsg = `Parameters loaded at ${loadDate} :`;
-		loadMsg += ` def-nb: ${Object.keys(pDef.params).length}`;
-		loadMsg += `, load-nb: ${Object.keys(iNew).length}`;
-		loadMsg += `, cover-nb: ${cover}, uncover-nb: ${uncover}`;
-		loadMsg += `, equal-nb: ${equal}, diff-nb: ${cover - equal}`;
+		if (Object.hasOwn(iNew, commentKey)) {
+			inputComment = iNew[commentKey];
+		} else {
+			inputComment = '';
+		}
 		paramChange();
 	}
 	// load from file
@@ -54,9 +66,9 @@
 	function loadFile(fileP: File) {
 		const reader = new FileReader();
 		reader.addEventListener('loadend', () => {
-			const paramJson: tParamVal = JSON.parse(reader.result as string);
+			const allJson: tAllVal = JSON.parse(reader.result as string);
 			//console.log(`dbg345`);
-			loadParams(paramJson);
+			loadParams(allJson);
 		});
 		reader.readAsText(fileP);
 	}
@@ -87,7 +99,8 @@
 			.replace(re2, '')
 			.replace('T', '_');
 		const file_name = `px_${pDef.page}_${datestr}.json`;
-		const file_content = JSON.stringify(pVal, null, '  ');
+		const allVal = { lastModif: datestr, pVal: pVal, comment: inputComment };
+		const file_content = JSON.stringify(allVal, null, '  ');
 		download_file(file_name, file_content);
 		console.log(`dbg343: ${file_name}`);
 	}
@@ -101,7 +114,7 @@
 		for (const p of pDef.params) {
 			pInit[p.name] = p.init;
 		}
-		loadParams(pInit);
+		loadParams({ pVal: pInit } as tAllVal);
 	}
 	// load parameters from localStorage
 	let locStorRname: string;
@@ -114,8 +127,8 @@
 				if (storeStr === null) {
 					console.log(`localStorage key ${storeKey} is null`);
 				} else {
-					const storeVal = JSON.parse(storeStr);
-					loadParams(storeVal.pVal);
+					const storeAll = JSON.parse(storeStr);
+					loadParams(storeAll);
 				}
 			}
 		} else {
@@ -130,10 +143,14 @@
 			const storeKey = `${pDef.page}_${locStorWname}`;
 			const re2 = /\..*$/;
 			const lastModif = new Date().toISOString().replace(re2, '');
-			const storeVal = JSON.stringify({ lastModif: lastModif, pVal: pVal });
+			const storeAll = JSON.stringify({
+				lastModif: lastModif,
+				pVal: pVal,
+				comment: inputComment
+			});
 			console.log(`save in localStorage ${storeKey}`);
 			if (browser) {
-				window.localStorage.setItem(storeKey, storeVal);
+				window.localStorage.setItem(storeKey, storeAll);
 			}
 		} else {
 			console.log('Warn639: No valid name for writing to localStorage!');
@@ -148,7 +165,6 @@
 		console.log(`dbg783: ${keyName}`);
 	}
 	// input comment
-	let inputComment = '';
 </script>
 
 <section>
