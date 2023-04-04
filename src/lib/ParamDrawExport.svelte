@@ -49,6 +49,7 @@
 	}
 	section > textarea {
 		resize: horizontal;
+		margin-left: 0.5rem;
 	}
 	section > button,
 	section > select {

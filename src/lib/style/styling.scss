@@ -3,6 +3,7 @@
 
 @mixin mix-h2 {
 	color: colors.$pde-title;
+	margin: 1rem 0.5rem 0;
 }
 
 @mixin mix-button {

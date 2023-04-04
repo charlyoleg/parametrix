@@ -164,7 +164,6 @@
 	function paramPict(keyName: string) {
 		console.log(`dbg783: ${keyName}`);
 	}
-	// input comment
 </script>
 
 <section>
@@ -291,6 +290,7 @@
 		font-size: 0.8rem;
 		font-weight: 400;
 		margin: 0.2rem;
+		margin-left: 0.5rem;
 	}
 	section > table {
 		font-size: 0.8rem;
@@ -303,10 +303,22 @@
 	section > table > tbody {
 		background-color: colors.$table-body;
 	}
+	section > table > thead > tr > td,
+	section > table > tbody > tr > td {
+		padding-left: 0.4rem;
+		padding-right: 0.4rem;
+	}
 	section > table > tbody > tr > td > button {
 		color: colors.$timectrl-sign;
 		background-color: transparent;
 		border: 0;
+	}
+	section > table > tbody > tr > td > input {
+		height: 0.8rem;
+	}
+	div.comment {
+		font-size: 0.8rem;
+		margin-left: 0.5rem;
 	}
 	section > button {
 		@include styling.mix-button;
