@@ -7,6 +7,7 @@
 	import { onMount } from 'svelte';
 	import { createEventDispatcher } from 'svelte';
 	import { browser } from '$app/environment';
+	import { page } from '$app/stores';
 
 	const dispatch = createEventDispatcher();
 
@@ -157,6 +158,18 @@
 		}
 	}
 	// Save as URL
+	let pUrl = '';
+	function generateUrl(): string {
+		const url1 = new URL($page.url.href);
+		for (const k of Object.keys(pVal)) {
+			url1.searchParams.append(encodeURIComponent(k), encodeURIComponent(pVal[k]));
+		}
+		return url1.toString();
+	}
+	function openModalUrl() {
+		pUrl = generateUrl();
+		modalSaveUrl = true;
+	}
 	function saveAsUrl() {
 		console.log(`dbg244: voila`);
 	}
@@ -240,18 +253,15 @@
 		<input type="text" id="inComment" bind:value={inputComment} maxlength="150" size="80" />
 	</div>
 	<button on:click={dowloadParams}>Save Parameters to File</button>
-	<button
-		on:click={() => {
-			modalSaveUrl = true;
-		}}>Save Parameters as URL</button
-	>
+	<button on:click={openModalUrl}>Save Parameters as URL</button>
 	<button
 		on:click={() => {
 			modalSaveLocal = true;
 		}}>Save Parameters to localStorage</button
 	>
 	<ModalDiag bind:modalOpen={modalSaveUrl} okName="Done" okFunc={saveAsUrl}
-		>Voila l&apos;URL</ModalDiag
+		><p>Copy this URL and send it to your friends!</p>
+		<p class="cUrl">{pUrl}</p></ModalDiag
 	>
 	<ModalDiag
 		bind:modalOpen={modalSaveLocal}
@@ -322,5 +332,8 @@
 	}
 	section > button {
 		@include styling.mix-button;
+	}
+	p.cUrl {
+		margin: 0 1rem 0;
 	}
 </style>
