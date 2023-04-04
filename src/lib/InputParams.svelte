@@ -54,7 +54,7 @@
 	function initParams2() {
 		if (browser) {
 			const searchParams = new URLSearchParams($page.url.search);
-			const pVal2 : tParamVal = {};
+			const pVal2: tParamVal = {};
 			for (const [kk, vv] of searchParams) {
 				//console.log(`dbg638: ${kk} ${vv}`);
 				pVal2[kk] = vv;
