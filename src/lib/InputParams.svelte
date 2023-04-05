@@ -4,10 +4,10 @@
 	import LocStorWrite from '$lib/LocStorWrite.svelte';
 	import LocStorRead from '$lib/LocStorRead.svelte';
 	import type { tParamDef, tParamVal, tAllVal } from '$lib/paramGeom';
-	import { onMount } from 'svelte';
-	import { createEventDispatcher } from 'svelte';
+	import { onMount, createEventDispatcher } from 'svelte';
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
+	import { base } from '$app/paths';
 
 	const dispatch = createEventDispatcher();
 
@@ -197,13 +197,19 @@
 		console.log(`dbg244: voila`);
 	}
 	// parameter picture
+	let paramSvg = '';
 	function paramPict(keyName: string) {
 		console.log(`dbg783: ${keyName}`);
+		paramSvg = `${base}/${pDef.page}_${keyName}.svg`;
 	}
+	paramPict(Object.keys(pVal)[0]);
 </script>
 
 <section>
 	<h2>Parameters</h2>
+	<aside class="pictures">
+		<img src={paramSvg} alt={paramSvg} />
+	</aside>
 	<label for="loadFParams" class="fileUpload">Load Params from File</label>
 	<input
 		id="loadFParams"
@@ -358,5 +364,9 @@
 	}
 	p.cUrl {
 		margin: 0 1rem 0;
+	}
+	aside.pictures {
+		position: absolute;
+		right: 3rem;
 	}
 </style>
