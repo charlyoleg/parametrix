@@ -26,7 +26,7 @@
      showgrid="false"
      inkscape:zoom="1.6819304"
      inkscape:cx="250.90218"
-     inkscape:cy="151.90878"
+     inkscape:cy="580.58288"
      inkscape:window-width="1366"
      inkscape:window-height="836"
      inkscape:window-x="0"
@@ -47,6 +47,16 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(-34.811008,-78.060845)">
+    <rect
+       style="fill:#ffffff;stroke:#ffffff;stroke-width:0.264583;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect1448-0"
+       width="52.652084"
+       height="52.652084"
+       x="34.943298"
+       y="78.193138"
+       inkscape:export-filename="circle_amplitude-offset.svg"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 50.492535,107.54814 h 5.693491"
@@ -83,16 +93,6 @@
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1"
        d="M 78.405786,79.325985 53.339284,107.54814"
        id="path619-3" />
-    <rect
-       style="fill:none;stroke:#cccccc;stroke-width:0.264583;stroke-dasharray:none;stroke-dashoffset:0"
-       id="rect1448-0"
-       width="52.652084"
-       height="52.652084"
-       x="34.943298"
-       y="78.193138"
-       inkscape:export-filename="circle_amplitude-offset.svg"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,9.3727386,50.158097)"
@@ -100,7 +100,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1984-5);display:inline;fill:#ff6600"><tspan
          x="102.45898"
          y="299.94534"
-         id="tspan3752">amplitude-offset</tspan></text>
+         id="tspan347">amplitude-offset</tspan></text>
     <path
        style="fill:none;stroke:#ff6600;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 71.697436,126.71465 53.339285,107.54813"
