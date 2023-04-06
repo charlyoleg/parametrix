@@ -3,7 +3,8 @@
 	import ModalDiag from '$lib/ModalDiag.svelte';
 	import LocStorWrite from '$lib/LocStorWrite.svelte';
 	import LocStorRead from '$lib/LocStorRead.svelte';
-	import type { tParamDef, tParamVal, tAllVal } from '$lib/paramGeom';
+	import SimpleDrawing from '$lib/SimpleDrawing.svelte';
+	import type { tParamDef, tParamVal, tAllVal, tGeomFunc } from '$lib/paramGeom';
 	import { onMount, createEventDispatcher } from 'svelte';
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
@@ -13,6 +14,8 @@
 
 	export let pDef: tParamDef;
 	export let pVal: tParamVal;
+	export let geom: tGeomFunc;
+	export let simTime = 0;
 
 	//const lastModifKey = 'lastModif';
 	const pValKey = 'pVal';
@@ -20,8 +23,10 @@
 	let inputComment = '';
 
 	// initialization
+	let pValEve = 0;
 	function paramChange() {
 		dispatch('paramChg', { foo: 'bla' });
+		pValEve += 1;
 	}
 	function initpVal(ipVal: tParamVal) {
 		let cover = 0;
@@ -301,7 +306,7 @@
 		>
 	</main>
 	<img src={paramSvg} alt={paramSvg} />
-	<canvas width="200" height="200" />
+	<div class="mini-canvas"><SimpleDrawing {pVal} {pValEve} {geom} {simTime} /></div>
 </section>
 
 <style lang="scss">
@@ -378,8 +383,8 @@
 		position: sticky;
 		top: 0.5rem;
 	}
-	section > canvas {
-		background-color: colors.$pde-canvas;
+	section > div.mini-canvas {
+		display: inline-block;
 		margin: 0.2rem;
 		vertical-align: top;
 		position: sticky;
