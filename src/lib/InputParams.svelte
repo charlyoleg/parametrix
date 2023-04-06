@@ -301,7 +301,7 @@
 		>
 	</main>
 	<img src={paramSvg} alt={paramSvg} />
-	<canvas width=200 height=200 />
+	<canvas width="200" height="200" />
 </section>
 
 <style lang="scss">
