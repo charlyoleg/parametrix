@@ -207,97 +207,101 @@
 
 <section>
 	<h2>Parameters</h2>
-	<aside class="pictures">
-		<img src={paramSvg} alt={paramSvg} />
-	</aside>
-	<label for="loadFParams" class="fileUpload">Load Params from File</label>
-	<input
-		id="loadFParams"
-		type="file"
-		accept="text/plain, application/json"
-		bind:files={paramFiles}
-	/>
-	<button
-		on:click={() => {
-			modalLoadDefault = true;
-		}}>Set Params Default</button
-	>
-	<button
-		on:click={() => {
-			modalLoadLocal = true;
-		}}>Load Params from localStorage</button
-	>
-	<ModalDiag bind:modalOpen={modalLoadDefault} okName="Overwrite Parameters" okFunc={loadDefaults}
-		>Load the default parameters ?</ModalDiag
-	>
-	<ModalDiag bind:modalOpen={modalLoadLocal} okName="Load Parameters" okFunc={loadLocStor}
-		><LocStorRead pageName={pDef.page} bind:storeName={locStorRname} /></ModalDiag
-	>
-	<p class="load-msg">{loadMsg}</p>
-	<table>
-		<thead>
-			<tr>
-				<td>Parameter name</td>
-				<td>Value</td>
-				<td>Unit</td>
-				<td>Default</td>
-				<td>Min</td>
-				<td>Max</td>
-				<td>Step</td>
-			</tr>
-		</thead>
-		<tbody>
-			{#each pDef.params as param}
+	<main>
+		<label for="loadFParams" class="fileUpload">Load Params from File</label>
+		<input
+			id="loadFParams"
+			type="file"
+			accept="text/plain, application/json"
+			bind:files={paramFiles}
+		/>
+		<button
+			on:click={() => {
+				modalLoadDefault = true;
+			}}>Set Params Default</button
+		>
+		<button
+			on:click={() => {
+				modalLoadLocal = true;
+			}}>Load Params from localStorage</button
+		>
+		<ModalDiag
+			bind:modalOpen={modalLoadDefault}
+			okName="Overwrite Parameters"
+			okFunc={loadDefaults}>Load the default parameters ?</ModalDiag
+		>
+		<ModalDiag bind:modalOpen={modalLoadLocal} okName="Load Parameters" okFunc={loadLocStor}
+			><LocStorRead pageName={pDef.page} bind:storeName={locStorRname} /></ModalDiag
+		>
+		<p class="load-msg">{loadMsg}</p>
+		<table>
+			<thead>
 				<tr>
-					<td><button on:click={() => paramPict(param.name)}>{param.name}</button></td>
-					<td>
-						<input
-							type="number"
-							bind:value={pVal[param.name]}
-							min={param.min}
-							max={param.max}
-							step={param.step}
-							on:change={paramChange}
-						/>
-						<input
-							type="range"
-							bind:value={pVal[param.name]}
-							min={param.min}
-							max={param.max}
-							step={param.step}
-							on:change={paramChange}
-						/>
-					</td>
-					<td>{param.unit}</td>
-					<td>{param.init}</td>
-					<td>{param.min}</td>
-					<td>{param.max}</td>
-					<td>{param.step}</td>
+					<td>Parameter name</td>
+					<td>Value</td>
+					<td>Unit</td>
+					<td>Default</td>
+					<td>Min</td>
+					<td>Max</td>
+					<td>Step</td>
 				</tr>
-			{/each}
-		</tbody>
-	</table>
-	<div class="comment">
-		<label for="inComment">Comment:</label>
-		<input type="text" id="inComment" bind:value={inputComment} maxlength="150" size="80" />
-	</div>
-	<button on:click={dowloadParams}>Save Parameters to File</button>
-	<button on:click={openModalUrl}>Save Parameters as URL</button>
-	<button
-		on:click={() => {
-			modalSaveLocal = true;
-		}}>Save Parameters to localStorage</button
-	>
-	<ModalDiag bind:modalOpen={modalSaveUrl} okName="Done" okFunc={saveAsUrl}
-		><p>Copy this URL and send it to your friends!</p>
-		<p class="cUrl">{pUrl}</p></ModalDiag
-	>
-	<ModalDiag
-		bind:modalOpen={modalSaveLocal}
-		okName="Save into localStorage"
-		okFunc={saveInLocStor}
-		><LocStorWrite pageName={pDef.page} bind:storeName={locStorWname} /></ModalDiag
-	>
+			</thead>
+			<tbody>
+				{#each pDef.params as param}
+					<tr>
+						<td><button on:click={() => paramPict(param.name)}>{param.name}</button></td
+						>
+						<td>
+							<input
+								type="number"
+								bind:value={pVal[param.name]}
+								min={param.min}
+								max={param.max}
+								step={param.step}
+								on:change={paramChange}
+							/>
+							<input
+								type="range"
+								bind:value={pVal[param.name]}
+								min={param.min}
+								max={param.max}
+								step={param.step}
+								on:change={paramChange}
+							/>
+						</td>
+						<td>{param.unit}</td>
+						<td>{param.init}</td>
+						<td>{param.min}</td>
+						<td>{param.max}</td>
+						<td>{param.step}</td>
+					</tr>
+				{/each}
+			</tbody>
+		</table>
+		<div class="comment">
+			<label for="inComment">Comment:</label>
+			<input type="text" id="inComment" bind:value={inputComment} maxlength="150" size="80" />
+		</div>
+		<button on:click={dowloadParams}>Save Parameters to File</button>
+		<button on:click={openModalUrl}>Save Parameters as URL</button>
+		<button
+			on:click={() => {
+				modalSaveLocal = true;
+			}}>Save Parameters to localStorage</button
+		>
+		<ModalDiag bind:modalOpen={modalSaveUrl} okName="Done" okFunc={saveAsUrl}
+			><p>Copy this URL and send it to your friends!</p>
+			<p class="cUrl">{pUrl}</p></ModalDiag
+		>
+		<ModalDiag
+			bind:modalOpen={modalSaveLocal}
+			okName="Save into localStorage"
+			okFunc={saveInLocStor}
+			><LocStorWrite pageName={pDef.page} bind:storeName={locStorWname} /></ModalDiag
+		>
+	</main>
+	<img src={paramSvg} alt={paramSvg} />
+	<canvas width=200 height=200 />
 </section>
 
 <style lang="scss">
@@ -307,7 +311,10 @@
 	section > h2 {
 		@include styling.mix-h2;
 	}
-	section > label.fileUpload {
+	section > main {
+		display: inline-block;
+	}
+	section > main > label.fileUpload {
 		display: inline-block;
 		height: 1.2rem;
 		/*width: 1.6rem;*/
@@ -322,51 +329,60 @@
 		margin: 0.5rem;
 		background-color: colors.$timectrl-bg;
 	}
-	section > input[type='file'] {
+	section > main > input[type='file'] {
 		display: none;
 	}
-	section > p.load-msg {
+	section > main > p.load-msg {
 		font-size: 0.8rem;
 		font-weight: 400;
 		margin: 0.2rem;
 		margin-left: 0.5rem;
 	}
-	section > table {
+	section > main > table {
 		font-size: 0.8rem;
 		font-weight: 400;
 		margin: 0.2rem 0.5rem 0.2rem;
 	}
-	section > table > thead {
+	section > main > table > thead {
 		background-color: colors.$table-head;
 	}
-	section > table > tbody {
+	section > main > table > tbody {
 		background-color: colors.$table-body;
 	}
-	section > table > thead > tr > td,
-	section > table > tbody > tr > td {
+	section > main > table > thead > tr > td,
+	section > main > table > tbody > tr > td {
 		padding-left: 0.4rem;
 		padding-right: 0.4rem;
 	}
-	section > table > tbody > tr > td > button {
+	section > main > table > tbody > tr > td > button {
 		color: colors.$timectrl-sign;
 		background-color: transparent;
 		border: 0;
 	}
-	section > table > tbody > tr > td > input {
+	section > main > table > tbody > tr > td > input {
 		height: 0.8rem;
 	}
-	div.comment {
+	section > main > div.comment {
 		font-size: 0.8rem;
 		margin-left: 0.5rem;
 	}
-	section > button {
+	section > main > button {
 		@include styling.mix-button;
 	}
 	p.cUrl {
 		margin: 0 1rem 0;
 	}
-	aside.pictures {
-		position: absolute;
-		right: 3rem;
+	section > img {
+		margin: 0.2rem;
+		vertical-align: top;
+		position: sticky;
+		top: 0.5rem;
+	}
+	section > canvas {
+		background-color: colors.$pde-canvas;
+		margin: 0.2rem;
+		vertical-align: top;
+		position: sticky;
+		top: 0.5rem;
 	}
 </style>
