@@ -24,10 +24,10 @@
 	function circleGeom(t: number, param: tParamVal): tGeom {
 		const rGeome: tGeom = { points: [], logstr: '' };
 		rGeome.logstr += `simTime: ${t}\n`;
-		rGeome.points.push(point(0, 0));
+		//rGeome.points.push(point(0, 0));
 		const p1 = point(10, 10);
 		const p2 = point(10, 30);
-		rGeome.points.push(p1);
+		//rGeome.points.push(p1);
 		rGeome.points.push(p2);
 		for (let i = 0; i < 20; i++) {
 			rGeome.points.push(
