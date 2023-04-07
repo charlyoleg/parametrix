@@ -1,11 +1,11 @@
 <script lang="ts">
 	import ParamDrawExport from '$lib/ParamDrawExport.svelte';
-	import { pTitle, pDescription, pDef, geom } from '$lib/design/circles';
+	import { pageDef } from '$lib/design/circles';
 </script>
 
-<h1>{pTitle}</h1>
-<article>{pDescription}</article>
-<ParamDrawExport {pDef} {geom} />
+<h1>{pageDef.pTitle}</h1>
+<article>{pageDef.pDescription}</article>
+<ParamDrawExport pDef={pageDef.pDef} geom={pageDef.pGeom} />
 
 <style lang="scss">
 	@use '$lib/style/colors.scss';

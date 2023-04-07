@@ -1,13 +1,14 @@
 // circles.ts
 
 import { point } from '$lib/geom/euclid2d';
-import type { tParamDef, tParamVal, tGeom } from '$lib/paramGeom';
+import type { tParamDef, tParamVal, tGeom, tPageDef } from '$lib/paramGeom';
 import { fround } from '$lib/paramGeom';
 
 const pi12 = fround(Math.PI / 12);
 const pi24 = fround(Math.PI / 24); // input-number min and step must be rounded to avoid UI issue
 const pi4 = fround(Math.PI / 4);
 const pi120 = fround(Math.PI / 120); // rounded to avoid UI issue
+
 const pDef: tParamDef = {
 	page: 'circle',
 	params: [
@@ -21,7 +22,8 @@ const pDef: tParamDef = {
 		tUpdate: 500
 	}
 };
-function geom(t: number, param: tParamVal): tGeom {
+
+function pGeom(t: number, param: tParamVal): tGeom {
 	const rGeome: tGeom = { points: [], logstr: '' };
 	rGeome.logstr += `simTime: ${t}\n`;
 	//rGeome.points.push(point(0, 0));
@@ -40,7 +42,11 @@ function geom(t: number, param: tParamVal): tGeom {
 	return rGeome;
 }
 
-const pTitle = 'Circles';
-const pDescription = 'A circle with circle holes.';
+const pageDef: tPageDef = {
+	pTitle: 'Circles',
+	pDescription: 'A circle with circle holes.',
+	pDef: pDef,
+	pGeom: pGeom
+};
 
-export { pTitle, pDescription, pDef, geom };
+export { pageDef };

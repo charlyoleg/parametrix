@@ -29,9 +29,16 @@ type tGeom = {
 };
 type tGeomFunc = (t: number, ipVal: tParamVal) => tGeom;
 
+type tPageDef = {
+	pTitle: string;
+	pDescription: string;
+	pDef: tParamDef;
+	pGeom: tGeomFunc;
+};
+
 function fround(ireal: number, iprecision = 1000.0): number {
 	return Math.floor(ireal * iprecision) / iprecision;
 }
 
-export type { tParamDef, tParamVal, tAllVal, tGeom, tGeomFunc };
+export type { tParamDef, tParamVal, tAllVal, tGeom, tGeomFunc, tPageDef };
 export { fround };
