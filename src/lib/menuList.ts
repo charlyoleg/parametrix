@@ -55,7 +55,7 @@ class genMenu {
 }
 
 // to be updated when new pages are created
-const oMenu = new genMenu([{ path: '/circles', label: 'circles', svg: 'page_circle.svg' }]);
+const oMenu = new genMenu([{ path: '/circles', label: 'circles', svg: 'page_circles.svg' }]);
 oMenu.push([{ path: '/rough', label: 'rough', svg: 'page_rough.svg' }]);
 // end of section to be updated
 

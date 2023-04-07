@@ -10,7 +10,7 @@ const pi4 = fround(Math.PI / 4);
 const pi120 = fround(Math.PI / 120); // rounded to avoid UI issue
 
 const pDef: tParamDef = {
-	page: 'circle',
+	page: 'circles',
 	params: [
 		{ name: 'angle', unit: 'radian', init: pi12, min: pi24, max: pi4, step: pi120 },
 		{ name: 'amplitude-offset', unit: 'mm', init: 1, min: 0.5, max: 4, step: 0.1 },
@@ -44,7 +44,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 
 const pageDef: tPageDef = {
 	pTitle: 'Circles',
-	pDescription: 'A circle with circle holes.',
+	pDescription: 'A spiral made by points.',
 	pDef: pDef,
 	pGeom: pGeom
 };

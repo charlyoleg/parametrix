@@ -205,6 +205,7 @@
 	let paramSvg = '';
 	function paramPict(keyName: string) {
 		console.log(`dbg783: ${keyName}`);
+		// convention for the file-names of the parameter description
 		paramSvg = `${base}/${pDef.page}_${keyName}.svg`;
 	}
 	paramPict(Object.keys(pVal)[0]);
