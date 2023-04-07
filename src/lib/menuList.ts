@@ -1,6 +1,14 @@
 // menuList.ts
 
+import { pageDef as circlesDef } from '$lib/design/circles';
+import type { tPageDef } from '$lib/design/aaParamGeom';
 import { get, writable } from 'svelte/store';
+
+type tAllPageDef = { [index: string]: tPageDef };
+const designDefs: tAllPageDef = {
+	circles: circlesDef,
+	rough: circlesDef
+};
 
 type menuType = Array<{
 	path: string;
@@ -94,4 +102,4 @@ function checkEmptyPath(iPath: string): string {
 }
 
 export type { menuType };
-export { checkEmptyPath, findMenuMenu, indexMenu };
+export { checkEmptyPath, findMenuMenu, indexMenu, designDefs };

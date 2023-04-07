@@ -1,15 +1,7 @@
 // [design]/+page.js
 
+import { designDefs } from '$lib/menuList';
 import { error } from '@sveltejs/kit';
-import { pageDef as circlesDef } from '$lib/design/circles';
-
-import type { tPageDef } from '$lib/design/aaParamGeom';
-type tAllPageDef = { [index: string]: tPageDef };
-
-const designDefs: tAllPageDef = {
-	circles: circlesDef,
-	rough: circlesDef
-};
 
 export function load({ params }) {
 	console.log(params);
