@@ -379,6 +379,8 @@
 	}
 	section > img {
 		margin: 0.2rem;
+		font-size: 0.6rem;
+		background-color: colors.$mini-picture;
 		vertical-align: top;
 		position: sticky;
 		top: 0.5rem;
