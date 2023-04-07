@@ -49,7 +49,6 @@
 		border-radius: 0.6rem;
 		border-color: colors.$menu-border;
 		margin-top: 0.1rem;
-		//z-index: 0;
 	}
 	nav > div > a.page-active {
 		color: colors.$menu-active;
@@ -70,9 +69,9 @@
 		//margin-top: -0.3rem;
 		margin-bottom: -0.3rem;
 		position: relative;
+		z-index: 0;
 		bottom: 0.2rem;
 		//left: 1rem;
-		//z-index: 1;
 	}
 	nav > div > div.arrow-active {
 		display: block;

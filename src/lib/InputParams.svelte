@@ -386,6 +386,7 @@
 		background-color: colors.$mini-picture;
 		vertical-align: top;
 		position: sticky;
+		z-index: 1;
 		top: 0.5rem;
 	}
 	section > div.mini-canvas {
@@ -393,6 +394,7 @@
 		margin: 0.2rem;
 		vertical-align: top;
 		position: sticky;
+		z-index: 1;
 		top: 0.5rem;
 	}
 </style>
