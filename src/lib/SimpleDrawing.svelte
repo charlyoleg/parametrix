@@ -2,7 +2,7 @@
 	import type { tCanvasAdjust } from '$lib/geom/canvas_utils';
 	import { colors } from '$lib/geom/canvas_utils';
 	import { point, entityList } from '$lib/geom/euclid2d';
-	import type { tParamVal, tGeomFunc } from '$lib/paramGeom';
+	import type { tParamVal, tGeomFunc } from '$lib/design/aaParamGeom';
 	import { onMount } from 'svelte';
 
 	export let pVal: tParamVal;

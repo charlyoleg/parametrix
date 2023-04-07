@@ -11,7 +11,7 @@
 	import TimeControl from '$lib/TimeControl.svelte';
 	import ZoomControl from '$lib/ZoomControl.svelte';
 	import { point, entityList } from '$lib/geom/euclid2d';
-	import type { tParamDef, tParamVal, tGeomFunc } from '$lib/paramGeom';
+	import type { tParamDef, tParamVal, tGeomFunc } from '$lib/design/aaParamGeom';
 	import { onMount } from 'svelte';
 
 	export let pDef: tParamDef;

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { tParamDef, tParamVal, tGeomFunc } from '$lib/paramGeom';
+	import type { tParamDef, tParamVal, tGeomFunc } from '$lib/design/aaParamGeom';
 	import InputParams from '$lib/InputParams.svelte';
 	import Drawing from '$lib/Drawing.svelte';
 

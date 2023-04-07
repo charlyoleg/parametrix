@@ -1,4 +1,4 @@
-// paramGeom.ts
+// aaParamGeom.ts
 
 import type { Point } from '$lib/geom/euclid2d';
 

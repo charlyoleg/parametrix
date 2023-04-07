@@ -1,8 +1,8 @@
 // circles.ts
 
 import { point } from '$lib/geom/euclid2d';
-import type { tParamDef, tParamVal, tGeom, tPageDef } from '$lib/paramGeom';
-import { fround } from '$lib/paramGeom';
+import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
+import { fround } from './aaParamGeom';
 
 const pi12 = fround(Math.PI / 12);
 const pi24 = fround(Math.PI / 24); // input-number min and step must be rounded to avoid UI issue
