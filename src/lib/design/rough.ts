@@ -5,7 +5,7 @@ import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
 //import { fround } from './aaParamGeom';
 
 const pDef: tParamDef = {
-	page: 'circles',
+	page: 'rough',
 	params: [],
 	sim: {
 		tMax: 10,
