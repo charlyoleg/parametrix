@@ -131,7 +131,7 @@
 		const allVal = { lastModif: datestr, pVal: pVal, comment: inputComment };
 		const file_content = JSON.stringify(allVal, null, '  ');
 		download_file(file_name, file_content);
-		console.log(`dbg343: ${file_name}`);
+		//console.log(`dbg343: ${file_name}`);
 	}
 	// modal
 	let modalLoadDefault = false;
@@ -150,11 +150,11 @@
 	function loadLocStor() {
 		if (locStorRname !== undefined && locStorRname !== '') {
 			const storeKey = `${pDef.page}_${locStorRname}`;
-			console.log(`load from localStorage ${storeKey}`);
+			//console.log(`load from localStorage ${storeKey}`);
 			if (browser) {
 				const storeStr = window.localStorage.getItem(storeKey);
 				if (storeStr === null) {
-					console.log(`localStorage key ${storeKey} is null`);
+					console.log(`Warn157: localStorage key ${storeKey} is null`);
 				} else {
 					const storeAll = JSON.parse(storeStr);
 					loadParams(storeAll);
@@ -177,7 +177,7 @@
 				pVal: pVal,
 				comment: inputComment
 			});
-			console.log(`save in localStorage ${storeKey}`);
+			//console.log(`save in localStorage ${storeKey}`);
 			if (browser) {
 				window.localStorage.setItem(storeKey, storeAll);
 			}
@@ -199,16 +199,18 @@
 		modalSaveUrl = true;
 	}
 	function saveAsUrl() {
-		console.log(`dbg244: voila`);
+		//console.log(`dbg244: voila`);
 	}
 	// parameter picture
 	let paramSvg = '';
 	function paramPict(keyName: string) {
-		console.log(`dbg783: ${keyName}`);
+		//console.log(`dbg783: ${keyName}`);
 		// convention for the file-names of the parameter description
 		paramSvg = `${base}/${pDef.page}_${keyName}.svg`;
 	}
-	paramPict(Object.keys(pVal)[0]);
+	if (Object.keys(pVal).length > 0) {
+		paramPict(Object.keys(pVal)[0]);
+	}
 </script>
 
 <section>

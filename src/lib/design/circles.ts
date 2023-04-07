@@ -38,7 +38,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 				.rotate(p2, i * param['angle'] + (t * Math.PI) / 2 / pDef.sim.tMax)
 		);
 	}
-	rGeome.logstr += 'Circle draw successfully!\n';
+	rGeome.logstr += 'Circles draw successfully!\n';
 	return rGeome;
 }
 

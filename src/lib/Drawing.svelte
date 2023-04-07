@@ -179,7 +179,7 @@
 					}
 				}
 			} else {
-				console.log(`dbg205: ignore ${eve.offsetX} ${eve.offsetY} because too slow`);
+				console.log(`Warn205: ignore ${eve.offsetX} ${eve.offsetY} because too slow`);
 			}
 		}
 	}

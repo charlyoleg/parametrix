@@ -36,7 +36,7 @@
 					const val2 = JSON.parse(storeStr);
 					lastModif = val2.lastModif;
 				}
-				console.log(`dbg194: ${lastModif}`);
+				//console.log(`dbg194: ${lastModif}`);
 				rLocalDate[k] = lastModif;
 			}
 		}
@@ -67,7 +67,7 @@
 		if (browser) {
 			for (const k of localKeys) {
 				if (localDel[k]) {
-					console.log(`delete ${k}`);
+					//console.log(`delete ${k}`);
 					const k2 = `${pageName}_${k}`;
 					window.localStorage.removeItem(k2);
 				}

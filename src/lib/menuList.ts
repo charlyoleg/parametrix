@@ -1,13 +1,14 @@
 // menuList.ts
 
 import { pageDef as circlesDef } from '$lib/design/circles';
+import { pageDef as roughDef } from '$lib/design/rough';
 import type { tPageDef } from '$lib/design/aaParamGeom';
 import { get, writable } from 'svelte/store';
 
 type tAllPageDef = { [index: string]: tPageDef };
 const designDefs: tAllPageDef = {
 	circles: circlesDef,
-	rough: circlesDef
+	rough: roughDef
 };
 
 type menuType = Array<{
