@@ -11,8 +11,8 @@ const pDef: tParamDef = {
 		{ name: 'height', unit: 'mm', init: 10, min: 3, max: 40, step: 0.5 }
 	],
 	sim: {
-		tMax: 10,
-		tStep: 0.1,
+		tMax: 120,
+		tStep: 1,
 		tUpdate: 500
 	}
 };
@@ -20,9 +20,15 @@ const pDef: tParamDef = {
 function pGeom(t: number, param: tParamVal): tGeom {
 	const rGeome: tGeom = { points: [], logstr: '' };
 	rGeome.logstr += `simTime: ${t}\n`;
-	rGeome.points.push(point(10 + param['width'], 10));
-	rGeome.points.push(point(30, 30 + param['height']));
-	rGeome.points.push(point(30, 0));
+	const p1 = point(10, 10);
+	const p2 = point(10 + param['width'], 10);
+	const p3 = point(10 + param['width'], 10 + param['height']);
+	const p4 = point(10, 10 + param['height']);
+	const angle = (t * Math.PI) / 180;
+	rGeome.points.push(p1);
+	rGeome.points.push(p2.rotate(p1, angle));
+	rGeome.points.push(p3.rotate(p1, angle));
+	rGeome.points.push(p4.rotate(p1, angle));
 	rGeome.logstr += 'Rectangle draw successfully!\n';
 	return rGeome;
 }
