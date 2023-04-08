@@ -208,9 +208,13 @@
 		// convention for the file-names of the parameter description
 		paramSvg = `${base}/${pDef.page}_${keyName}.svg`;
 	}
-	if (Object.keys(pVal).length > 0) {
-		paramPict(Object.keys(pVal)[0]);
+	function paramPict2(idx: number) {
+		const paramNb = Object.keys(pVal).length;
+		if (idx < paramNb) {
+			paramPict(Object.keys(pVal)[idx]);
+		}
 	}
+	paramPict2(0);
 </script>
 
 <section>
