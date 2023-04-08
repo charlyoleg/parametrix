@@ -8,7 +8,7 @@ const pDef: tParamDef = {
 	page: 'rectangle',
 	params: [
 		{ name: 'width', unit: 'mm', init: 15, min: 3, max: 40, step: 0.5 },
-		{ name: 'height', unit: 'mm', init: 10, min: 3, max: 40, step: 0.5 },
+		{ name: 'height', unit: 'mm', init: 10, min: 3, max: 40, step: 0.5 }
 	],
 	sim: {
 		tMax: 10,
