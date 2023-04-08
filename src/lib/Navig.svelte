@@ -1,13 +1,13 @@
 <script lang="ts">
-	import type { menuType } from '$lib/menuList';
+	import type { tMenu } from '$lib/menuList';
 	//import type { HTMLAttributes } from 'svelte/elements';
 	//interface $$Props extends HTMLAttributes<HTMLElement> {
-	//	menuList: menuType;
+	//	menuList: tMenu;
 	//}
 
 	import { base } from '$app/paths';
 
-	export let menuList: menuType;
+	export let menuList: tMenu;
 	export let menuSelected: string;
 </script>
 

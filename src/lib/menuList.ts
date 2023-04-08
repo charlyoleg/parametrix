@@ -11,70 +11,101 @@ const designDefs: tAllPageDef = {
 	rough: roughDef
 };
 
-type menuType = Array<{
+/* Create the Header Menu and Index Menu */
+// define section of menu
+const mIndex = ['index'];
+const mDocs = ['docs', 'readme'];
+const mAbout = ['about'];
+
+type tArrayLabel = Array<string>;
+type tMenuElem = {
 	path: string;
 	label: string;
 	svg: string;
-}>;
+};
+type tMenu = Array<tMenuElem>;
 
-// define section of menu
-const mIndex = [{ path: '/', label: 'index', svg: 'page_index.svg' }];
-const mDocs = [
-	{ path: '/docs', label: 'docs', svg: 'page_docs.svg' },
-	{ path: '/readme', label: 'readme', svg: 'page_readme.svg' }
-];
-const mAbout = [{ path: '/about', label: 'about', svg: 'page_about.svg' }];
-
+function oneMenu(menuName: string): tMenuElem {
+	const mSvg = `page_${menuName}.svg`; // svg file name convention
+	let mPath = `/${menuName}`;
+	if (mPath === '/index') {
+		mPath = '/';
+	}
+	const rMenu: tMenuElem = {
+		path: mPath,
+		label: menuName,
+		svg: mSvg
+	};
+	return rMenu;
+}
 class genMenu {
-	memMenu: Array<menuType> = [];
-	constructor(firstMenu: menuType) {
+	memMenu: Array<tArrayLabel> = [];
+	constructor(firstMenu: tArrayLabel) {
 		this.memMenu.push(firstMenu);
 	}
-	push(iMenu: menuType) {
+	push(iMenu: tArrayLabel) {
 		this.memMenu.push(iMenu);
 	}
 	makeMenuMenu() {
-		const rMenuMenu: Array<menuType> = [];
+		const labelMenu: Array<tArrayLabel> = [];
 		for (const [idx, iMenu] of this.memMenu.entries()) {
 			if (idx === 0) {
-				rMenuMenu.push(mIndex.concat(iMenu, mDocs, mAbout));
+				labelMenu.push(mIndex.concat(iMenu, mDocs, mAbout));
 			} else {
-				rMenuMenu.push(mIndex.concat(iMenu, mAbout));
+				labelMenu.push(mIndex.concat(iMenu, mAbout));
 			}
+		}
+		const rMenuMenu: Array<tMenu> = [];
+		for (const arr1 of labelMenu) {
+			rMenuMenu.push(arr1.map((menu: string) => oneMenu(menu)));
 		}
 		return rMenuMenu;
 	}
 	makeIndexMenu() {
-		const rIndexMenu: Array<menuType> = [];
-		rIndexMenu.push(mIndex);
+		const labelMenu: Array<tArrayLabel> = [];
+		labelMenu.push(mIndex);
 		for (const iMenu of this.memMenu) {
-			rIndexMenu.push(iMenu);
+			labelMenu.push(iMenu);
 		}
-		rIndexMenu.push(mDocs.concat(mAbout));
+		labelMenu.push(mDocs.concat(mAbout));
+		const rIndexMenu: Array<tMenu> = [];
+		for (const arr1 of labelMenu) {
+			rIndexMenu.push(arr1.map((menu: string) => oneMenu(menu)));
+		}
 		return rIndexMenu;
 	}
 }
 
 // to be updated when new pages are created
-const oMenu = new genMenu([{ path: '/circles', label: 'circles', svg: 'page_circles.svg' }]);
-oMenu.push([{ path: '/rough', label: 'rough', svg: 'page_rough.svg' }]);
+const oMenu = new genMenu(['circles']);
+oMenu.push(['rough']);
 // end of section to be updated
 
-const menuMenu: Array<menuType> = oMenu.makeMenuMenu();
-const indexMenu: Array<menuType> = oMenu.makeIndexMenu();
+/* The Header Menu and Index Menu */
+const menuMenu: Array<tMenu> = oMenu.makeMenuMenu();
+const indexMenu: Array<tMenu> = oMenu.makeIndexMenu();
+
+/* Managing thr Header Menu */
 // the variable to store the active menu
 const storeMenu = writable(0);
 function setMenu(iMenu: number): void {
 	storeMenu.set(iMenu);
 }
-function getMenuMenu(): menuType {
+function getMenuMenu(): tMenu {
 	const rMenuMenu = menuMenu[get(storeMenu)];
 	//for (const menu of rMenuMenu) {
 	//	console.log(`dbg065: ${menu.path}`);
 	//}
 	return rMenuMenu;
 }
-function extractArr(iMenu: menuType): Array<string> {
+function getLabelPath(iMenu: tArrayLabel): Array<string> {
+	const rPath: Array<string> = [];
+	for (const lItem of iMenu) {
+		rPath.push(oneMenu(lItem).path);
+	}
+	return rPath;
+}
+function getMenuPath(iMenu: tMenu): Array<string> {
 	const rPath: Array<string> = [];
 	for (const lItem of iMenu) {
 		rPath.push(lItem.path);
@@ -82,10 +113,10 @@ function extractArr(iMenu: menuType): Array<string> {
 	return rPath;
 }
 function findMenuMenu(iPath: string) {
-	const univMenu = extractArr(mIndex.concat(mAbout)); // list of universal menus
+	const univMenu = getLabelPath(mIndex.concat(mAbout)); // list of universal menus
 	if (!univMenu.includes(iPath)) {
 		for (const [lidx, lmenu] of menuMenu.entries()) {
-			if (extractArr(lmenu).includes(iPath)) {
+			if (getMenuPath(lmenu).includes(iPath)) {
 				setMenu(lidx);
 				//console.log(`dbg080: ${lidx}`);
 				break;
@@ -102,5 +133,5 @@ function checkEmptyPath(iPath: string): string {
 	return rPath;
 }
 
-export type { menuType };
+export type { tMenu };
 export { checkEmptyPath, findMenuMenu, indexMenu, designDefs };
