@@ -12,10 +12,12 @@ const designDefs: tAllPageDef = {
 };
 
 /* Create the Header Menu and Index Menu */
-// define section of menu
 const mIndex = ['index'];
 const mDocs = ['docs', 'readme'];
 const mAbout = ['about'];
+// to be updated when new pages are created
+const mLabel = [['circles'], ['rough']];
+// end of section to be updated
 
 type tArrayLabel = Array<string>;
 type tMenuElem = {
@@ -76,10 +78,10 @@ class genMenu {
 	}
 }
 
-// to be updated when new pages are created
-const oMenu = new genMenu(['circles']);
-oMenu.push(['rough']);
-// end of section to be updated
+const oMenu = new genMenu(mLabel[0]);
+for (let i = 1; i < mLabel.length; i++) {
+	oMenu.push(mLabel[i]);
+}
 
 /* The Header Menu and Index Menu */
 const menuMenu: Array<tMenu> = oMenu.makeMenuMenu();
