@@ -25,8 +25,8 @@
      inkscape:document-units="px"
      showgrid="false"
      inkscape:zoom="1.5729487"
-     inkscape:cx="188.1816"
-     inkscape:cy="246.3526"
+     inkscape:cx="274.64341"
+     inkscape:cy="246.98835"
      inkscape:window-width="1366"
      inkscape:window-height="836"
      inkscape:window-x="0"
@@ -99,7 +99,7 @@
        style="font-style:normal;font-weight:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect113);display:inline;fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="7.9628906"
          y="18.576202"
-         id="tspan263">menu_icons.svg</tspan></text>
+         id="tspan2571">menu_icons.svg</tspan></text>
     <rect
        style="fill:none;stroke:none;stroke-width:0.264583;fill-opacity:1"
        id="rect111"
@@ -127,27 +127,27 @@
        style="font-style:normal;font-weight:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect481);display:inline;fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="399.25586"
          y="45.830108"
-         id="tspan265">index
+         id="tspan2573">index
 </tspan><tspan
          x="399.25586"
          y="64.163482"
-         id="tspan267">rough
+         id="tspan2575">rough
 </tspan><tspan
          x="399.25586"
          y="82.496856"
-         id="tspan269">circle
+         id="tspan2577">circle
 </tspan><tspan
          x="399.25586"
          y="100.83023"
-         id="tspan271">docs
+         id="tspan2579">docs
 </tspan><tspan
          x="399.25586"
          y="119.1636"
-         id="tspan273">readme
+         id="tspan2581">readme
 </tspan><tspan
          x="399.25586"
          y="137.49698"
-         id="tspan275">about</tspan></text>
+         id="tspan2583">about</tspan></text>
     <rect
        style="fill:none;stroke:#e6e6e6;stroke-width:0.264583"
        id="rect111-3"
@@ -270,5 +270,26 @@
        cy="90.636902"
        rx="3.0395725"
        ry="2.9633758" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#6495ed;stroke-width:1.5875;stroke-dasharray:none;stroke-opacity:1"
+       id="rect221"
+       width="16.602705"
+       height="8.2451563"
+       x="57.243599"
+       y="80.521927"
+       transform="matrix(0.96249558,-0.27129737,0.27683339,0.96091793,0,0)"
+       inkscape:export-filename="page_rectangle.svg"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:none;stroke:none;stroke-width:0.264583"
+       id="rect111-3-6-6"
+       width="21.166666"
+       height="21.166666"
+       x="76.022354"
+       y="53.264275"
+       inkscape:export-filename="page_rough.svg"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
   </g>
 </svg>

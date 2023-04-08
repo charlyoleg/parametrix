@@ -1,14 +1,14 @@
 // menuList.ts
 
 import { pageDef as circlesDef } from '$lib/design/circles';
-import { pageDef as roughDef } from '$lib/design/rough';
+import { pageDef as rectangleDef } from '$lib/design/rectangle';
 import type { tPageDef } from '$lib/design/aaParamGeom';
 import { get, writable } from 'svelte/store';
 
 type tAllPageDef = { [index: string]: tPageDef };
 const designDefs: tAllPageDef = {
 	circles: circlesDef,
-	rough: roughDef
+	rectangle: rectangleDef
 };
 
 /* Create the Header Menu and Index Menu */
@@ -16,7 +16,7 @@ const mIndex = ['index'];
 const mDocs = ['docs', 'readme'];
 const mAbout = ['about'];
 // to be updated when new pages are created
-const mLabel = [['circles'], ['rough']];
+const mLabel = [['circles'], ['rectangle']];
 // end of section to be updated
 
 type tArrayLabel = Array<string>;
