@@ -5,6 +5,7 @@
 	import LocStorRead from '$lib/LocStorRead.svelte';
 	import SimpleDrawing from '$lib/SimpleDrawing.svelte';
 	import type { tParamDef, tParamVal, tAllVal, tGeomFunc } from '$lib/design/aaParamGeom';
+	import { storePV } from '$lib/storePVal';
 	import { onMount, createEventDispatcher } from 'svelte';
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
@@ -13,7 +14,6 @@
 	const dispatch = createEventDispatcher();
 
 	export let pDef: tParamDef;
-	export let pVal: tParamVal;
 	export let geom: tGeomFunc;
 	export let simTime = 0;
 
@@ -35,10 +35,10 @@
 		for (const p of pDef.params) {
 			if (Object.hasOwn(ipVal, p.name)) {
 				cover += 1;
-				if (pVal[p.name] === ipVal[p.name]) {
+				if ($storePV[pDef.page][p.name] === ipVal[p.name]) {
 					equal += 1;
 				} else {
-					pVal[p.name] = ipVal[p.name];
+					$storePV[pDef.page][p.name] = ipVal[p.name];
 				}
 			} else {
 				uncover += 1;
@@ -53,7 +53,7 @@
 	}
 	function initParams1() {
 		for (const p of pDef.params) {
-			pVal[p.name] = p.init;
+			$storePV[pDef.page][p.name] = p.init;
 		}
 	}
 	function initParams2() {
@@ -128,7 +128,7 @@
 			.replace(re2, '')
 			.replace('T', '_');
 		const file_name = `px_${pDef.page}_${datestr}.json`;
-		const allVal = { lastModif: datestr, pVal: pVal, comment: inputComment };
+		const allVal = { lastModif: datestr, pVal: $storePV[pDef.page], comment: inputComment };
 		const file_content = JSON.stringify(allVal, null, '  ');
 		download_file(file_name, file_content);
 		//console.log(`dbg343: ${file_name}`);
@@ -174,7 +174,7 @@
 			const lastModif = new Date().toISOString().replace(re2, '');
 			const storeAll = JSON.stringify({
 				lastModif: lastModif,
-				pVal: pVal,
+				pVal: $storePV[pDef.page],
 				comment: inputComment
 			});
 			//console.log(`save in localStorage ${storeKey}`);
@@ -189,8 +189,11 @@
 	let pUrl = '';
 	function generateUrl(): string {
 		const url1 = new URL($page.url.href);
-		for (const ky of Object.keys(pVal)) {
-			url1.searchParams.append(encodeURIComponent(ky), encodeURIComponent(pVal[ky]));
+		for (const ky of Object.keys($storePV[pDef.page])) {
+			url1.searchParams.append(
+				encodeURIComponent(ky),
+				encodeURIComponent($storePV[pDef.page][ky])
+			);
 		}
 		return url1.toString();
 	}
@@ -209,9 +212,9 @@
 		paramSvg = `${base}/${pDef.page}_${keyName}.svg`;
 	}
 	function paramPict2(idx: number) {
-		const paramNb = Object.keys(pVal).length;
+		const paramNb = Object.keys($storePV[pDef.page]).length;
 		if (idx < paramNb) {
-			paramPict(Object.keys(pVal)[idx]);
+			paramPict(Object.keys($storePV[pDef.page])[idx]);
 		}
 	}
 	paramPict2(0);
@@ -266,7 +269,7 @@
 						<td>
 							<input
 								type="number"
-								bind:value={pVal[param.name]}
+								bind:value={$storePV[pDef.page][param.name]}
 								min={param.min}
 								max={param.max}
 								step={param.step}
@@ -274,7 +277,7 @@
 							/>
 							<input
 								type="range"
-								bind:value={pVal[param.name]}
+								bind:value={$storePV[pDef.page][param.name]}
 								min={param.min}
 								max={param.max}
 								step={param.step}
@@ -313,7 +316,9 @@
 		>
 	</main>
 	<img src={paramSvg} alt={paramSvg} />
-	<div class="mini-canvas"><SimpleDrawing {pVal} {pValEve} {geom} {simTime} /></div>
+	<div class="mini-canvas">
+		<SimpleDrawing pVal={$storePV[pDef.page]} {pValEve} {geom} {simTime} />
+	</div>
 </section>
 
 <style lang="scss">

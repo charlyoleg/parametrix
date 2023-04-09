@@ -22,7 +22,7 @@
 	}
 </script>
 
-<InputParams {pDef} bind:pVal={$storePV[pDef.page]} on:paramChg={paramChange} {geom} {simTime} />
+<InputParams {pDef} on:paramChg={paramChange} {geom} {simTime} />
 <section>
 	<h2>Log</h2>
 	<textarea rows="5" cols="80" readonly wrap="off" bind:value={logValue} />
