@@ -12,11 +12,10 @@
 	import ZoomControl from '$lib/ZoomControl.svelte';
 	import { point, entityList } from '$lib/geom/euclid2d';
 	import type { tParamDef, tParamVal, tGeomFunc } from '$lib/design/aaParamGeom';
+	import { storePV } from '$lib/storePVal';
 	import { onMount } from 'svelte';
 
 	export let pDef: tParamDef;
-	export let pVal: tParamVal;
-	export let pValEve: number;
 	export let geom: tGeomFunc;
 	export let simTime = 0;
 
@@ -75,7 +74,7 @@
 		canvasRedrawZoom();
 	}
 	let domInit = 0;
-	function geomRedraw(iSimTime: number) {
+	function geomRedrawSub(iSimTime: number, pVal: tParamVal) {
 		const geome = geom(iSimTime, pVal);
 		eList.clear();
 		for (const p of geome.points) {
@@ -85,18 +84,19 @@
 		canvasRedrawZoom();
 		domInit = 1;
 	}
+	function geomRedraw(iSimTime: number) {
+		geomRedrawSub(iSimTime, $storePV[pDef.page]);
+	}
 	onMount(() => {
 		// initial drawing
 		canvasSetSize();
 		geomRedraw(simTime);
 		//paramChange();
 	});
-	// reactivity on simTime and pValEve
+	// reactivity on simTime and $storePV
 	$: {
-		//console.log(`dbg101: pValEve: ${pValEve}`);
-		pValEve = pValEve;
 		if (domInit === 1) {
-			geomRedraw(simTime);
+			geomRedrawSub(simTime, $storePV[pDef.page]);
 		}
 	}
 	// Zoom stories

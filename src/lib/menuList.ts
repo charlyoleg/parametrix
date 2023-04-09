@@ -2,7 +2,9 @@
 
 import { pageDef as circlesDef } from '$lib/design/circles';
 import { pageDef as rectangleDef } from '$lib/design/rectangle';
-import type { tPageDef } from '$lib/design/aaParamGeom';
+import type { tParamVal, tPageDef } from '$lib/design/aaParamGeom';
+import type { tStorePVal } from '$lib/storePVal';
+import { storePV } from '$lib/storePVal';
 import { get, writable } from 'svelte/store';
 
 type tAllPageDef = { [index: string]: tPageDef };
@@ -18,6 +20,18 @@ const mAbout = ['about'];
 // to be updated when new pages are created
 const mLabel = [['circles'], ['rectangle']];
 // end of section to be updated
+
+/* initialization storePV */
+const iniPV: tStorePVal = {};
+for (const design of Object.keys(designDefs)) {
+	const designParam: tParamVal = {};
+	for (const param of designDefs[design].pDef.params) {
+		designParam[param.name] = param.init;
+	}
+	iniPV[design] = designParam;
+}
+storePV.set(iniPV);
+/* end of initialization storePV */
 
 type tArrayLabel = Array<string>;
 type tMenuElem = {
