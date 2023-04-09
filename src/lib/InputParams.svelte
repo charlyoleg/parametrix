@@ -23,10 +23,8 @@
 	let inputComment = '';
 
 	// initialization
-	let pValEve = 0;
 	function paramChange() {
 		dispatch('paramChg', { foo: 'bla' });
-		pValEve += 1;
 	}
 	function initpVal(ipVal: tParamVal) {
 		let cover = 0;
@@ -317,7 +315,7 @@
 	</main>
 	<img src={paramSvg} alt={paramSvg} />
 	<div class="mini-canvas">
-		<SimpleDrawing pVal={$storePV[pDef.page]} {pValEve} {geom} {simTime} />
+		<SimpleDrawing pageName={pDef.page} {geom} {simTime} />
 	</div>
 </section>
 

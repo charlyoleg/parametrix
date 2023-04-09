@@ -3,10 +3,10 @@
 	import { colors } from '$lib/geom/canvas_utils';
 	import { point, entityList } from '$lib/geom/euclid2d';
 	import type { tParamVal, tGeomFunc } from '$lib/design/aaParamGeom';
+	import { storePV } from '$lib/storePVal';
 	import { onMount } from 'svelte';
 
-	export let pVal: tParamVal;
-	export let pValEve: number;
+	export let pageName: string;
 	export let geom: tGeomFunc;
 	export let simTime = 0;
 
@@ -33,8 +33,8 @@
 		point(0, 0).draw(ctx1, mAdjust, colors.origin, 'cross');
 	}
 	let domInit = 0;
-	function geomRedraw(iSimTime: number) {
-		const geome = geom(iSimTime, pVal);
+	function geomRedraw(iSimTime: number, ipVal: tParamVal) {
+		const geome = geom(iSimTime, ipVal);
 		eList.clear();
 		for (const p of geome.points) {
 			eList.addPoint(p);
@@ -44,15 +44,13 @@
 	}
 	onMount(() => {
 		// initial drawing
-		geomRedraw(simTime);
+		geomRedraw(simTime, $storePV[pageName]);
 		//paramChange();
 	});
-	// reactivity on simTime and pValEve
+	// reactivity on simTime and $storePV
 	$: {
-		//console.log(`dbg101: pValEve: ${pValEve}`);
-		pValEve = pValEve;
 		if (domInit === 1) {
-			geomRedraw(simTime);
+			geomRedraw(simTime, $storePV[pageName]);
 		}
 	}
 </script>
