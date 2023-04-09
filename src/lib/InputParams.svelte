@@ -49,11 +49,11 @@
 		loadMsg += `, cover-nb: ${cover}, uncover-nb: ${uncover}`;
 		loadMsg += `, equal-nb: ${equal}, diff-nb: ${cover - equal}`;
 	}
-	function initParams1() {
-		for (const p of pDef.params) {
-			$storePV[pDef.page][p.name] = p.init;
-		}
-	}
+	//function initParams1() {
+	//	for (const p of pDef.params) {
+	//		$storePV[pDef.page][p.name] = p.init;
+	//	}
+	//}
 	function initParams2() {
 		if (browser) {
 			const searchParams = new URLSearchParams($page.url.search);
@@ -70,7 +70,8 @@
 			}
 		}
 	}
-	initParams1();
+	// No initialization when loading page! Keep the previous values!
+	//initParams1();
 	onMount(() => {
 		initParams2();
 		paramChange();
