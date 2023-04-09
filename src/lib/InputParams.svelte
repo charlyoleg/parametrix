@@ -90,7 +90,6 @@
 		paramChange();
 	}
 	// load from file
-	let paramFiles: FileList;
 	function loadFile(fileP: File) {
 		const reader = new FileReader();
 		reader.addEventListener('loadend', () => {
@@ -100,9 +99,14 @@
 		});
 		reader.readAsText(fileP);
 	}
-	$: if (paramFiles) {
-		//console.log(paramFiles);
-		loadFile(paramFiles[0]);
+	function loadParamFromFile(eve: Event) {
+		if (eve.target) {
+			type tEveFileList = FileList | null;
+			const paramFiles: tEveFileList = (<HTMLInputElement>eve.target).files;
+			if (paramFiles) {
+				loadFile(paramFiles[0]);
+			}
+		}
 	}
 	// download parameters
 	function download_file(file_name: string, file_content: string) {
@@ -227,7 +231,7 @@
 			id="loadFParams"
 			type="file"
 			accept="text/plain, application/json"
-			bind:files={paramFiles}
+			on:change={loadParamFromFile}
 		/>
 		<button
 			on:click={() => {
