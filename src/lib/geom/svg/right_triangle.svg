@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="318.39941"
+   height="218.64432"
+   viewBox="0 0 84.243178 57.849642"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09, custom)"
+   sodipodi:docname="geom.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:zoom="0.5946522"
+     inkscape:cx="-227.02346"
+     inkscape:cy="1497.514"
+     inkscape:window-width="1366"
+     inkscape:window-height="836"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     showguides="false" />
+  <defs
+     id="defs2">
+    <rect
+       x="56.152924"
+       y="1297.5906"
+       width="173.66579"
+       height="33.432102"
+       id="rect10042" />
+    <rect
+       x="69.741753"
+       y="1229.6952"
+       width="214.89212"
+       height="126.22447"
+       id="rect10027" />
+    <rect
+       x="327.76465"
+       y="1103.5288"
+       width="47.1208"
+       height="23.930836"
+       id="rect10021" />
+    <rect
+       x="246.91216"
+       y="1098.8583"
+       width="48.846401"
+       height="30.164371"
+       id="rect10015" />
+    <rect
+       x="182.11031"
+       y="1105.8234"
+       width="39.468227"
+       height="27.514421"
+       id="rect10009" />
+    <rect
+       x="54.573639"
+       y="1078.3508"
+       width="67.437859"
+       height="40.34845"
+       id="rect10003" />
+    <rect
+       x="270.31113"
+       y="1136.3942"
+       width="43.899521"
+       height="38.843479"
+       id="rect9997" />
+    <rect
+       x="110.57792"
+       y="1206.475"
+       width="77.398972"
+       height="47.288017"
+       id="rect9991" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-14.666461,-288.28577)">
+    <rect
+       style="fill:#ffffff;stroke:#ffffff;stroke-width:0.264583;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect10046"
+       width="83.9786"
+       height="57.585045"
+       x="14.798752"
+       y="288.41806"
+       inkscape:export-filename="right_triangle.svg"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:#ffffff;stroke:#ff00ff;stroke-width:0.264595;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect9928"
+       width="3.0006669"
+       height="3.2356124"
+       x="-68.594299"
+       y="308.38208"
+       transform="matrix(0.95195548,-0.30623645,0.31892513,0.94777991,0,0)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 27.318155,296.23972 6.760749,20.09156 34.549315,-11.11425 -41.310064,-8.97731"
+       id="path9982" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,2.2287535,-2.6078936)"
+       id="text9989"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect9991);display:inline"><tspan
+         x="110.57812"
+         y="1219.4512"
+         id="tspan24340">A</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-2.0302734,1.6271683)"
+       id="text9995"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect9997);display:inline"><tspan
+         x="270.31055"
+         y="1149.3711"
+         id="tspan24342">B</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,9.0778539,6.8263643)"
+       id="text10001"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect10003);display:inline"><tspan
+         x="54.574219"
+         y="1091.3282"
+         id="tspan24344">C</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-2.3682427,2.8665937)"
+       id="text10007"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect10009);display:inline"><tspan
+         x="182.10938"
+         y="1118.8008"
+         id="tspan24346">a</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-37.241138,14.285038)"
+       id="text10013"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect10015);display:inline"><tspan
+         x="246.91211"
+         y="1111.834"
+         id="tspan24348">b</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-35.789714,19.078057)"
+       id="text10019"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect10021);display:inline"><tspan
+         x="327.76562"
+         y="1116.5059"
+         id="tspan24350">c</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,27.721467,-3.7471572)"
+       id="text10025"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect10027);display:inline"><tspan
+         x="69.742188"
+         y="1242.6719"
+         id="tspan24358">a<tspan
+   style="baseline-shift:super"
+   id="tspan24352">2 </tspan>= b<tspan
+   style="baseline-shift:super"
+   id="tspan24354">2</tspan>+c<tspan
+   style="baseline-shift:super"
+   id="tspan24356">2</tspan>   [Pythagore]
+</tspan><tspan
+         x="69.742188"
+         y="1261.0053"
+         id="tspan24360">c = a * cos(B)
+</tspan><tspan
+         x="69.742188"
+         y="1279.3387"
+         id="tspan24362">b = a * sin(B)</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,2.1187599,-3.5929203)"
+       id="text10040"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect10042);display:inline"><tspan
+         x="56.152344"
+         y="1310.5664"
+         id="tspan24364">right triangle</tspan></text>
+  </g>
+</svg>

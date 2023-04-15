@@ -3,17 +3,31 @@ title: Parametrix'docs
 category: documentation
 ---
 
+<script lang="ts">
+	import { base } from '$app/paths';
+</script>
 
 
 # {title}
 
-## sous titre
+## Point
 
-la maison dans le jarding.
+![point_1.svg]({base}/point_1.svg)
+![point_2.svg]({base}/point_2.svg)
+![point_3.svg]({base}/point_3.svg)
+![point_4.svg]({base}/point_4.svg)
 
-## deuz
 
-la maison dans la praire.
+## Triangle
+
+### Right triangle
+
+![right_triangle.svg]({base}/right_triangle.svg)
+
+### Any triangle
+
+![any_triangle.svg]({base}/any_triangle.svg)
+
 
 <style lang="scss">
 	@use '$lib/style/colors.scss';
