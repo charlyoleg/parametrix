@@ -22,7 +22,7 @@
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/adapter-static": "^2.0.2",
-		"@sveltejs/kit": "^1.15.4",
+		"@sveltejs/kit": "^1.15.5",
 		"@typescript-eslint/eslint-plugin": "^5.58.0",
 		"@typescript-eslint/parser": "^5.58.0",
 		"eslint": "^8.38.0",
@@ -32,7 +32,7 @@
 		"npm-run-all": "^4.1.5",
 		"prettier": "^2.8.7",
 		"prettier-plugin-svelte": "^2.10.0",
-		"sass": "^1.61.0",
+		"sass": "^1.62.0",
 		"shx": "^0.3.4",
 		"svelte": "^3.58.0",
 		"svelte-check": "^3.2.0",
