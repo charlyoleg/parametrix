@@ -31,6 +31,7 @@
 		<li>
 			<a href="https://github.com/janssen86/OpenSCAD-Getriebebibliothek">OpenSCAD Gear</a>
 		</li>
+		<li><a href="https://maker.js.org/docs/">Maker.js</a></li>
 	</ul>
 	<Garland />
 	<ul>
