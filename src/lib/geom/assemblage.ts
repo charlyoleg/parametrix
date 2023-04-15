@@ -1,5 +1,5 @@
-// clideu.ts
+// assemblage.ts
 // Working with paths, parts and assembly
-// clideu.ts depends on culcal.ts
+// assemblage.ts depends on part.ts
 
 export {};
