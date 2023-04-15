@@ -85,6 +85,16 @@ function point(ix: number, iy: number) {
 	return new Point(ix, iy);
 }
 
+function distancePoints(p1: Point, p2: Point) {
+	const rd = Math.sqrt((p2.cx - p1.cx) ** 2 + (p2.cy - p1.cy) ** 2);
+	return rd;
+}
+
+function anglePoints(p1: Point, p2: Point) {
+	const ra = Math.atan2(p2.cy - p1.cy, p2.cx - p1.cx);
+	return ra;
+}
+
 /* export */
 
-export { Point, point };
+export { Point, point, distancePoints, anglePoints };

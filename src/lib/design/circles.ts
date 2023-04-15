@@ -1,6 +1,6 @@
 // circles.ts
 
-import { point } from '$lib/geom/euclid2d';
+import { degToRad, point } from '$lib/geom/euclid2d';
 import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
 //import { fround } from './aaParamGeom';
 
@@ -35,10 +35,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rGeome.points.push(
 			p1
 				.scale(p2, param['amplitude-offset'] + param['amplitude-scale'] * i)
-				.rotate(
-					p2,
-					(i * param['angle'] * Math.PI) / 180 + (t * Math.PI) / 2 / pDef.sim.tMax
-				)
+				.rotate(p2, i * degToRad(param['angle']) + (t * Math.PI) / 2 / pDef.sim.tMax)
 		);
 	}
 	rGeome.logstr += 'Circles draw successfully!\n';

@@ -4,6 +4,7 @@
 
 const colors = {
 	point: 'grey',
+	line: 'grey',
 	origin: 'red',
 	reference: 'blue',
 	mouse: 'yellow'
