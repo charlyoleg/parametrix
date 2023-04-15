@@ -44,25 +44,41 @@ class Line {
 		let rX = Infinity;
 		if (roundZero(this.ca % Math.PI) !== 0) {
 			const p1 = new Point(this.cx, this.cy);
-			const tra13 = p1.angleOrig();
-			const trs1 = p1.distanceOrig();
-			const tra23 = Math.PI - this.ca;
-			rX = p1.cx + tra13 + trs1 + tra23;
+			const a31 = p1.angleOrig();
+			const s1 = p1.distanceOrig();
+			const a23 = Math.PI - this.ca;
+			const a12 = Math.PI - a31 - a23;
+			rX = (s1 * Math.sin(a12)) / Math.sin(a23);
 		}
 		return rX;
 	}
 	getAxisYIntersection() {
 		let rY = Infinity;
-		if (roundZero(this.ca)) {
-			rY = 0;
+		if (roundZero((this.ca - Math.PI / 2) % Math.PI) !== 0) {
+			const p1 = new Point(this.cx, this.cy);
+			const a31 = p1.angleOrig();
+			const s1 = p1.distanceOrig();
+			const a23 = Math.PI / 2 + this.ca;
+			const a12 = Math.PI - a31 - a23;
+			rY = (s1 * Math.sin(a12)) / Math.sin(a23);
 		}
 		return rY;
 	}
 	distanceOrig(): number {
-		return Math.sqrt(this.cx ** 2 + this.cy ** 2);
+		const a23 = Math.PI - this.ca;
+		let rd = Infinity;
+		if (Math.abs(roundZero(this.ca % (Math.PI / 2))) > Math.PI / 4) {
+			const lx = this.getAxisXIntersection();
+			rd = lx * Math.sin(a23);
+		} else {
+			const ly = this.getAxisYIntersection();
+			rd = ly * Math.sin(Math.PI / 2 + a23);
+		}
+		return rd;
 	}
 	angleOrig(): number {
-		return Math.atan2(this.cy, this.cx);
+		const ra = Math.PI / 2 + this.ca;
+		return ra;
 	}
 	getPolar(): tPolar {
 		return [this.angleOrig(), this.distanceOrig()];
