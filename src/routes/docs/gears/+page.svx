@@ -1,0 +1,23 @@
+---
+title: Gears'docs
+category: documentation
+---
+
+<script lang="ts">
+	//import { base } from '$app/paths';
+</script>
+
+
+# {title}
+
+Many gears
+
+
+
+<style lang="scss">
+	@use '$lib/style/colors.scss';
+
+	h1 {
+		margin: 1rem;
+	}
+</style>

@@ -1,5 +1,5 @@
 ---
-title: Parametrix'docs
+title: Geom'docs
 category: documentation
 ---
 
@@ -9,13 +9,6 @@ category: documentation
 
 
 # {title}
-
-## Point
-
-![point_1.svg]({base}/point_1.svg)
-![point_2.svg]({base}/point_2.svg)
-![point_3.svg]({base}/point_3.svg)
-![point_4.svg]({base}/point_4.svg)
 
 
 ## Triangle
@@ -27,6 +20,20 @@ category: documentation
 ### Any triangle
 
 ![any_triangle.svg]({base}/any_triangle.svg)
+
+
+## Point
+
+![point_1.svg]({base}/point_1.svg)
+![point_2.svg]({base}/point_2.svg)
+![point_3.svg]({base}/point_3.svg)
+![point_4.svg]({base}/point_4.svg)
+
+
+## Line
+
+
+## Vector
 
 
 <style lang="scss">

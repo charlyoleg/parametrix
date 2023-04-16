@@ -1,0 +1,23 @@
+---
+title: Docs of Parametric UI
+category: documentation
+---
+
+<script lang="ts">
+	//import { base } from '$app/paths';
+</script>
+
+
+# {title}
+
+Right click on canvas to export the drawing as png.
+
+
+
+<style lang="scss">
+	@use '$lib/style/colors.scss';
+
+	h1 {
+		margin: 1rem;
+	}
+</style>
