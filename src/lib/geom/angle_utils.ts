@@ -23,13 +23,17 @@ function roundZero(ix: number): number {
 function withinZero2Pi(ia: number) {
 	let ra = ia % (2 * Math.PI);
 	if (ra < 0) {
+		//console.log(`dbg026: ${ra}`);
 		ra += 2 * Math.PI;
 	}
 	return ra;
 }
 
 function withinPiPi(ia: number) {
-	const ra = ia % Math.PI;
+	let ra = withinZero2Pi(ia);
+	if (ra > Math.PI) {
+		ra -= 2 * Math.PI;
+	}
 	return ra;
 }
 
@@ -42,7 +46,10 @@ function withinZeroPi(ia: number) {
 }
 
 function withinHPiHPi(ia: number) {
-	const ra = ia % (Math.PI / 2);
+	let ra = withinZeroPi(ia);
+	if (ra > Math.PI / 2) {
+		ra -= Math.PI;
+	}
 	return ra;
 }
 
