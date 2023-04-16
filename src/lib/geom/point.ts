@@ -1,15 +1,14 @@
 // point.ts
 // point.ts deals with points
-// point.ts depends on geom_utils.ts
+// point.ts depends on canvas_utils.ts
 
 import type { tCanvasAdjust } from '$lib/geom/canvas_utils';
-import type { tPolar } from '$lib/geom/geom_utils';
 //import { colorCanvasPoint } from '$lib/style/colors.scss';
 import { colors, point2canvas } from '$lib/geom/canvas_utils';
-//import { degToRad, radToDeg, roundZero } from '$lib/geom/geom_utils';
+
+type tPolar = [number, number]; // angle, distance
 
 /* Base classes */
-
 class Point {
 	cx: number;
 	cy: number;
@@ -97,4 +96,5 @@ function anglePoints(p1: Point, p2: Point) {
 
 /* export */
 
+export type { tPolar };
 export { Point, point, distancePoints, anglePoints };

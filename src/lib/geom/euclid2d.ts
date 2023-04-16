@@ -4,10 +4,9 @@
 // euclid2d.ts depends only on the built-in library Math
 
 import type { tCanvasAdjust } from '$lib/geom/canvas_utils';
-//import type { tPolar } from '$lib/geom/geom_utils';
 //import { colorCanvasPoint } from '$lib/style/colors.scss';
 import { adjustZero, adjustInit } from '$lib/geom/canvas_utils';
-import { degToRad, radToDeg, roundZero } from '$lib/geom/geom_utils';
+import { degToRad, radToDeg, roundZero } from '$lib/geom/angle_utils';
 import { Point, point } from '$lib/geom/point';
 
 class EntityList {

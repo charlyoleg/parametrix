@@ -1,6 +1,6 @@
-// geom_utils.ts
-// some useful function foe 2D geometry
-// geom_utils.ts has no dependency
+// angle_utils.ts
+// some useful functions manipulating angles
+// angle_utils.ts has no dependency
 
 /* utils for angles */
 
@@ -20,9 +20,6 @@ function roundZero(ix: number): number {
 	return rx;
 }
 
-type tPolar = [number, number]; // angle, distance
-
 /* export */
 
-export type { tPolar };
 export { degToRad, radToDeg, roundZero };
