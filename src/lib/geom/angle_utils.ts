@@ -20,6 +20,32 @@ function roundZero(ix: number): number {
 	return rx;
 }
 
+function withinZero2Pi(ia: number) {
+	let ra = ia % (2 * Math.PI);
+	if (ra < 0) {
+		ra += 2 * Math.PI;
+	}
+	return ra;
+}
+
+function withinPiPi(ia: number) {
+	const ra = ia % Math.PI;
+	return ra;
+}
+
+function withinZeroPi(ia: number) {
+	let ra = ia % Math.PI;
+	if (ra < 0) {
+		ra += Math.PI;
+	}
+	return ra;
+}
+
+function withinHPiHPi(ia: number) {
+	const ra = ia % (Math.PI / 2);
+	return ra;
+}
+
 /* export */
 
-export { degToRad, radToDeg, roundZero };
+export { degToRad, radToDeg, roundZero, withinZero2Pi, withinPiPi, withinZeroPi, withinHPiHPi };
