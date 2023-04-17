@@ -21,7 +21,7 @@ const mAbout = ['about'];
 const mLabel = [
 	['gears/circles'],
 	['architecture/rectangle'],
-	['docs/ui', 'docs/geom', 'docs/gears', 'readme']
+	['docs/ui', 'docs/geom', 'docs/gears']
 ];
 // end of section to be updated
 
