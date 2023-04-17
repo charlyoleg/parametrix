@@ -5,9 +5,11 @@ import { error } from '@sveltejs/kit';
 
 export function load({ params }) {
 	//console.log(params);
-	if (Object.keys(designDefs).includes(params.design)) {
+	const re = /^.*\//g;
+	const short = params.design.replace(re, '');
+	if (Object.keys(designDefs).includes(short)) {
 		return {
-			pageDef: designDefs[params.design]
+			pageDef: designDefs[short]
 		};
 	}
 	throw error(404, 'Design undefined!');

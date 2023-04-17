@@ -15,10 +15,14 @@ const designDefs: tAllPageDef = {
 
 /* Create the Header Menu and Index Menu */
 const mIndex = ['index'];
-const mDocs = ['docs/ui', 'docs/geom', 'docs/gears', 'readme'];
+const mDocs = ['readme'];
 const mAbout = ['about'];
 // to be updated when new pages are created
-const mLabel = [['circles'], ['rectangle']];
+const mLabel = [
+	['gears/circles'],
+	['architecture/rectangle'],
+	['docs/ui', 'docs/geom', 'docs/gears', 'readme']
+];
 // end of section to be updated
 
 /* initialization storePV */
@@ -42,9 +46,10 @@ type tMenuElem = {
 type tMenu = Array<tMenuElem>;
 
 function oneMenu(menuName: string): tMenuElem {
-	const svgString = menuName.replace('/', '_');
+	const re = /^.*\//g;
+	const svgString = menuName.replace(re, '');
 	const mSvg = `page_${svgString}.svg`; // svg file name convention
-	const labelString = menuName.replace('/', ':');
+	const labelString = menuName.replace(re, '');
 	let mPath = `/${menuName}`;
 	if (mPath === '/index') {
 		mPath = '/';
