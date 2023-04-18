@@ -9,19 +9,19 @@ import { colors, point2canvas } from '$lib/geom/canvas_utils';
 import {
 	//degToRad,
 	//radToDeg,
-	roundZero
+	roundZero,
 	//withinZero2Pi,
-	//withinPiPi,
+	withinPiPi,
 	//withinZeroPi,
-	//withinHPiHPi
+	withinHPiHPi
 } from '$lib/geom/angle_utils';
 import {
 	//rightTriLaFromLbLc,
 	//rightTriLbFromLaLc,
 	//lcFromLaLbAc,
 	//aCFromLaLbLc,
-	aCFromAaAb
-	//lbFromLaAaAb,
+	//aCFromAaAb
+	lbFromLaAaAb
 	//aBFromLaLbAa
 } from '$lib/geom/triangle_utils';
 import { Point, anglePoints } from '$lib/geom/point';
@@ -61,11 +61,10 @@ class Line {
 		let rX = Infinity;
 		if (roundZero(this.ca % Math.PI) !== 0) {
 			const p1 = new Point(this.cx, this.cy);
-			const a31 = p1.angleOrig();
-			const s1 = p1.distanceOrig();
-			const a23 = Math.PI - this.ca;
-			const a12 = Math.PI - a31 - a23;
-			rX = (s1 * Math.sin(a12)) / Math.sin(a23);
+			const aB = p1.angleOrig();
+			const la = p1.distanceOrig();
+			const aA = this.ca;
+			rX = lbFromLaAaAb(la, aA, aB);
 		}
 		return rX;
 	}
@@ -73,28 +72,24 @@ class Line {
 		let rY = Infinity;
 		if (roundZero((this.ca - Math.PI / 2) % Math.PI) !== 0) {
 			const p1 = new Point(this.cx, this.cy);
-			const a31 = p1.angleOrig();
-			const s1 = p1.distanceOrig();
-			const a23 = Math.PI / 2 + this.ca;
-			const a12 = Math.PI - a31 - a23;
-			rY = (s1 * Math.sin(a12)) / Math.sin(a23);
+			const aB = Math.PI / 2 - p1.angleOrig();
+			const la = p1.distanceOrig();
+			const aA = this.ca - Math.PI / 2;
+			rY = lbFromLaAaAb(la, aA, aB);
 		}
 		return rY;
 	}
 	distanceOrig(): number {
-		const a23 = Math.PI - this.ca;
-		let rd = Infinity;
-		if (Math.abs(roundZero(this.ca % (Math.PI / 2))) > Math.PI / 4) {
-			const lx = this.getAxisXIntersection();
-			rd = lx * Math.sin(a23);
-		} else {
-			const ly = this.getAxisYIntersection();
-			rd = ly * Math.sin(Math.PI / 2 + a23);
-		}
+		const a1 = this.angleOrig();
+		const p1 = new Point(this.cx, this.cy);
+		const a2 = p1.angleOrig();
+		const la = p1.distanceOrig();
+		const a12 = withinHPiHPi(a2 - a1);
+		const rd = la * Math.cos(a12);
 		return rd;
 	}
 	angleOrig(): number {
-		const ra = Math.PI / 2 + this.ca;
+		const ra = withinPiPi(Math.PI / 2 + this.ca);
 		return ra;
 	}
 	getPolar(): tPolar {
