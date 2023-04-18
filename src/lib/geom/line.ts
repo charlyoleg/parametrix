@@ -6,7 +6,24 @@ import type { tCanvasAdjust } from '$lib/geom/canvas_utils';
 import type { tPolar } from '$lib/geom/point';
 //import { colorCanvasPoint } from '$lib/style/colors.scss';
 import { colors, point2canvas } from '$lib/geom/canvas_utils';
-import { roundZero } from '$lib/geom/angle_utils';
+import {
+	//degToRad,
+	//radToDeg,
+	roundZero
+	//withinZero2Pi,
+	//withinPiPi,
+	//withinZeroPi,
+	//withinHPiHPi
+} from '$lib/geom/angle_utils';
+import {
+	//rightTriLaFromLbLc,
+	//rightTriLbFromLaLc,
+	//lcFromLaLbAc,
+	//aCFromLaLbLc,
+	aCFromAaAb
+	//lbFromLaAaAb,
+	//aBFromLaLbAa
+} from '$lib/geom/triangle_utils';
 import { Point, anglePoints } from '$lib/geom/point';
 
 /* Base classes */
