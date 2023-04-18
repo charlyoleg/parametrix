@@ -30,7 +30,7 @@ function rightTriLbFromLaLc(ila: number, ilc: number): number {
  * */
 
 function lcFromLaLbAc(la: number, lb: number, ac: number) {
-	const rlc = la ** 2 + lb ** 2 - 2 * la * lb * Math.cos(ac);
+	const rlc = Math.sqrt(la ** 2 + lb ** 2 - 2 * la * lb * Math.cos(ac));
 	return rlc;
 }
 
@@ -43,9 +43,9 @@ function aCFromLaLbLc(la: number, lb: number, lc: number) {
 		}
 	}
 	const l3s = l3.sort(function (a, b) {
-		return a - b;
+		return b - a;
 	});
-	console.log(l3s);
+	//console.log(l3s);
 	if (l3s[0] > l3s[1] + l3s[2]) {
 		console.log(`err839: impossible triangle with length ${la}, ${lb} and ${lc}`);
 	} else {
@@ -86,7 +86,7 @@ function lbFromLaAaAb(ila: number, iaA: number, iaB: number) {
 	return rlb;
 }
 
-function abFromLaLbAa(ila: number, ilb: number, iaA: number) {
+function aBFromLaLbAa(ila: number, ilb: number, iaA: number) {
 	let rab = 0;
 	const args = [ila, ilb, iaA];
 	for (let i = 0; i < args.length; i++) {
@@ -107,5 +107,5 @@ export {
 	aCFromLaLbLc,
 	aCFromAaAb,
 	lbFromLaAaAb,
-	abFromLaLbAa
+	aBFromLaLbAa
 };
