@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { tCanvasAdjust } from '$lib/geom/canvas_utils';
 	import { colors } from '$lib/geom/canvas_utils';
-	import { point, entityList } from '$lib/geom/euclid2d';
+	import { point, Figure } from '$lib/geom/euclid2d';
 	import type { tParamVal, tGeomFunc } from '$lib/design/aaParamGeom';
 	import { storePV } from '$lib/storePVal';
 	import { onMount } from 'svelte';
@@ -14,13 +14,13 @@
 	const canvas_size_mini = 200;
 
 	// Canavas Figures
-	const eList = entityList();
+	let aFigure: Figure;
 	let mAdjust: tCanvasAdjust;
 	function canvasRedrawMini() {
 		const ctx1 = canvasMini.getContext('2d') as CanvasRenderingContext2D;
 		ctx1.clearRect(0, 0, ctx1.canvas.width, ctx1.canvas.height);
-		mAdjust = eList.getAdjustFull(ctx1.canvas.width, ctx1.canvas.height);
-		eList.draw(ctx1, mAdjust);
+		mAdjust = aFigure.getAdjustFull(ctx1.canvas.width, ctx1.canvas.height);
+		aFigure.draw(ctx1, mAdjust);
 		// extra drawing
 		//point(5, 5).draw(ctx1, mAdjust, 'green');
 		//point(5, 15).draw(ctx1, mAdjust, 'blue', 'rectangle');
@@ -34,11 +34,7 @@
 	}
 	let domInit = 0;
 	function geomRedraw(iSimTime: number, ipVal: tParamVal) {
-		const geome = geom(iSimTime, ipVal);
-		eList.clear();
-		for (const p of geome.points) {
-			eList.addPoint(p);
-		}
+		aFigure = geom(iSimTime, ipVal).fig;
 		canvasRedrawMini();
 		domInit = 1;
 	}

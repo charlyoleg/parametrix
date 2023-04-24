@@ -1,6 +1,6 @@
 // circles.ts
 
-import { degToRad, point } from '$lib/geom/euclid2d';
+import { degToRad, point, Figure } from '$lib/geom/euclid2d';
 import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
 //import { fround } from './aaParamGeom';
 
@@ -24,15 +24,15 @@ const pDef: tParamDef = {
 };
 
 function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome: tGeom = { points: [], logstr: '' };
+	const rGeome: tGeom = { fig: new Figure(), logstr: '' };
 	rGeome.logstr += `simTime: ${t}\n`;
-	//rGeome.points.push(point(0, 0));
+	//rGeome.fig.addPoint(point(0, 0));
 	const p1 = point(10, 10);
 	const p2 = point(10, 30);
-	//rGeome.points.push(p1);
-	rGeome.points.push(p2);
+	//rGeome.fig.addPoint(p1);
+	rGeome.fig.addPoint(p2);
 	for (let i = 0; i < 20; i++) {
-		rGeome.points.push(
+		rGeome.fig.addPoint(
 			p1
 				.scale(p2, param['amplitude-offset'] + param['amplitude-scale'] * i)
 				.rotate(p2, i * degToRad(param['angle']) + (t * Math.PI) / 2 / pDef.sim.tMax)

@@ -8,15 +8,18 @@ import type { tCanvasAdjust } from '$lib/geom/canvas_utils';
 import { adjustZero, adjustInit } from '$lib/geom/canvas_utils';
 import { degToRad, radToDeg, roundZero } from '$lib/geom/angle_utils';
 import { Point, point } from '$lib/geom/point';
+import { Line, line } from '$lib/geom/line';
 
-class EntityList {
+class Figure {
 	pointList: Array<Point>;
+	lineList: Array<Line>;
 	xMin: number;
 	xMax: number;
 	yMin: number;
 	yMax: number;
 	constructor() {
 		this.pointList = [];
+		this.lineList = [];
 		this.xMin = 0;
 		this.xMax = 0;
 		this.yMin = 0;
@@ -25,8 +28,12 @@ class EntityList {
 	addPoint(ipoint: Point) {
 		this.pointList.push(ipoint);
 	}
+	addLine(iline: Line) {
+		this.lineList.push(iline);
+	}
 	clear() {
 		this.pointList = [];
+		this.lineList = [];
 	}
 	getMinMax() {
 		if (this.pointList.length > 0) {
@@ -83,13 +90,16 @@ class EntityList {
 		for (const p of this.pointList) {
 			p.draw(ctx, adjust);
 		}
+		for (const li of this.lineList) {
+			li.draw(ctx, adjust);
+		}
 	}
 }
 
-function entityList() {
-	return new EntityList();
+function figure() {
+	return new Figure();
 }
 
 /* export */
 
-export { degToRad, radToDeg, roundZero, Point, point, entityList };
+export { degToRad, radToDeg, roundZero, Point, point, Line, line, Figure, figure };

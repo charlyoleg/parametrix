@@ -10,7 +10,7 @@
 	} from '$lib/geom/canvas_utils';
 	import TimeControl from '$lib/TimeControl.svelte';
 	import ZoomControl from '$lib/ZoomControl.svelte';
-	import { point, entityList } from '$lib/geom/euclid2d';
+	import { point, Figure } from '$lib/geom/euclid2d';
 	import type { tParamDef, tParamVal, tGeomFunc } from '$lib/design/aaParamGeom';
 	import { storePV } from '$lib/storePVal';
 	import { onMount } from 'svelte';
@@ -25,14 +25,14 @@
 	const canvas_size_min = 400;
 
 	// Canavas Figures
-	const eList = entityList();
+	let aFigure: Figure;
 	let cAdjust: tCanvasAdjust;
 	let zAdjust: tCanvasAdjust;
 	function canvasRedrawFull() {
 		const ctx1 = canvasFull.getContext('2d') as CanvasRenderingContext2D;
 		ctx1.clearRect(0, 0, ctx1.canvas.width, ctx1.canvas.height);
-		cAdjust = eList.getAdjustFull(ctx1.canvas.width, ctx1.canvas.height);
-		eList.draw(ctx1, cAdjust);
+		cAdjust = aFigure.getAdjustFull(ctx1.canvas.width, ctx1.canvas.height);
+		aFigure.draw(ctx1, cAdjust);
 		// extra drawing
 		//point(5, 5).draw(ctx1, cAdjust, 'green');
 		//point(5, 15).draw(ctx1, cAdjust, 'blue', 'rectangle');
@@ -48,10 +48,10 @@
 		const ctx2 = canvasZoom.getContext('2d') as CanvasRenderingContext2D;
 		ctx2.clearRect(0, 0, ctx2.canvas.width, ctx2.canvas.height);
 		if (zAdjust === undefined || zAdjust.init === 0) {
-			zAdjust = eList.getAdjustZoom(ctx2.canvas.width, ctx2.canvas.height);
+			zAdjust = aFigure.getAdjustZoom(ctx2.canvas.width, ctx2.canvas.height);
 			//console.log(`dbg047: init zAdjust: ${zAdjust.xMin} ${zAdjust.yMin}`);
 		}
-		eList.draw(ctx2, zAdjust);
+		aFigure.draw(ctx2, zAdjust);
 		// extra drawing
 		for (const i of [10, 100, 200]) {
 			point(i, 0).draw(ctx2, zAdjust, colors.reference, 'cross');
@@ -75,11 +75,7 @@
 	}
 	let domInit = 0;
 	function geomRedrawSub(iSimTime: number, pVal: tParamVal) {
-		const geome = geom(iSimTime, pVal);
-		eList.clear();
-		for (const p of geome.points) {
-			eList.addPoint(p);
-		}
+		aFigure = geom(iSimTime, pVal).fig;
 		canvasRedrawFull();
 		canvasRedrawZoom();
 		domInit = 1;

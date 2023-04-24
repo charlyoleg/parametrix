@@ -3,7 +3,7 @@
 // line.ts depends on angle_utils.ts, triangle_utils.ts and point.ts
 
 import type { tCanvasAdjust } from '$lib/geom/canvas_utils';
-import type { tPolar } from '$lib/geom/point';
+//import type { tPolar } from '$lib/geom/point';
 //import { colorCanvasPoint } from '$lib/style/colors.scss';
 import { colors, point2canvas } from '$lib/geom/canvas_utils';
 import {
@@ -92,35 +92,25 @@ class Line {
 		const ra = withinPiPi(Math.PI / 2 + this.ca);
 		return ra;
 	}
-	getPolar(): tPolar {
-		return [this.angleOrig(), this.distanceOrig()];
+	translate(ix: number, iy: number): Line {
+		return new Line(this.cx + ix, this.cy + iy, this.ca);
 	}
-	setPolar(ia: number, il: number): Point {
-		return new Point(il * Math.cos(ia), il * Math.sin(ia));
-	}
-	translate(ix: number, iy: number): Point {
-		return new Point(this.cx + ix, this.cy + iy);
-	}
-	rotateOrig(ia: number): Point {
+	rotateOrig(ia: number): Line {
 		// rotation with the origin as center
-		const polar = this.getPolar();
-		return this.setPolar(polar[0] + ia, polar[1]);
+		const lPoint2 = new Point(this.cx, this.cy).rotateOrig(ia);
+		return new Line(lPoint2.cx, lPoint2.cy, withinPiPi(this.ca + ia));
 	}
-	scaleOrig(ir: number): Point {
-		const polar = this.getPolar();
-		return this.setPolar(polar[0], polar[1] * ir);
+	scaleOrig(ir: number): Line {
+		const lPoint2 = new Point(this.cx, this.cy).scaleOrig(ir);
+		return new Line(lPoint2.cx, lPoint2.cy, this.ca);
 	}
-	rotate(ic: Point, ia: number): Point {
-		const p1 = this.translate(-1 * ic.cx, -1 * ic.cy);
-		const polar = p1.getPolar();
-		const p2 = this.setPolar(polar[0] + ia, polar[1]);
-		return p2.translate(ic.cx, ic.cy);
+	rotate(ic: Point, ia: number): Line {
+		const lPoint2 = new Point(this.cx, this.cy).rotate(ic, ia);
+		return new Line(lPoint2.cx, lPoint2.cy, withinPiPi(this.ca + ia));
 	}
-	scale(ic: Point, ir: number): Point {
-		const p1 = this.translate(-1 * ic.cx, -1 * ic.cy);
-		const polar = p1.getPolar();
-		const p2 = this.setPolar(polar[0], polar[1] * ir);
-		return p2.translate(ic.cx, ic.cy);
+	scale(ic: Point, ir: number): Line {
+		const lPoint2 = new Point(this.cx, this.cy).scale(ic, ir);
+		return new Line(lPoint2.cx, lPoint2.cy, this.ca);
 	}
 }
 

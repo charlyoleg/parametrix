@@ -1,6 +1,6 @@
 // aaParamGeom.ts
 
-import type { Point } from '$lib/geom/euclid2d';
+import type { Figure } from '$lib/geom/euclid2d';
 
 type tParam = {
 	name: string;
@@ -24,7 +24,7 @@ type tParamDef = {
 type tParamVal = { [index: string]: number };
 type tAllVal = { lastModif: string; pVal: tParamVal; comment: string };
 type tGeom = {
-	points: Array<Point>;
+	fig: Figure;
 	logstr: string;
 };
 type tGeomFunc = (t: number, ipVal: tParamVal) => tGeom;

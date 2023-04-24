@@ -1,6 +1,6 @@
 // rectangle.ts
 
-import { point } from '$lib/geom/euclid2d';
+import { point, Figure } from '$lib/geom/euclid2d';
 import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
 //import { fround } from './aaParamGeom';
 
@@ -18,17 +18,17 @@ const pDef: tParamDef = {
 };
 
 function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome: tGeom = { points: [], logstr: '' };
+	const rGeome: tGeom = { fig: new Figure(), logstr: '' };
 	rGeome.logstr += `simTime: ${t}\n`;
 	const p1 = point(10, 10);
 	const p2 = point(10 + param['width'], 10);
 	const p3 = point(10 + param['width'], 10 + param['height']);
 	const p4 = point(10, 10 + param['height']);
 	const angle = (t * Math.PI) / 180;
-	rGeome.points.push(p1);
-	rGeome.points.push(p2.rotate(p1, angle));
-	rGeome.points.push(p3.rotate(p1, angle));
-	rGeome.points.push(p4.rotate(p1, angle));
+	rGeome.fig.addPoint(p1);
+	rGeome.fig.addPoint(p2.rotate(p1, angle));
+	rGeome.fig.addPoint(p3.rotate(p1, angle));
+	rGeome.fig.addPoint(p4.rotate(p1, angle));
 	rGeome.logstr += 'Rectangle draw successfully!\n';
 	return rGeome;
 }
