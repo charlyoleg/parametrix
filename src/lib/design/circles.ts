@@ -1,6 +1,6 @@
 // circles.ts
 
-import { degToRad, point, Figure } from '$lib/geom/euclid2d';
+import { degToRad, point, line, Figure } from '$lib/geom/euclid2d';
 import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
 //import { fround } from './aaParamGeom';
 
@@ -31,6 +31,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	const p2 = point(10, 30);
 	//rGeome.fig.addPoint(p1);
 	rGeome.fig.addPoint(p2);
+	rGeome.fig.addLine(line(40, 40, Math.PI / 4));
 	for (let i = 0; i < 20; i++) {
 		rGeome.fig.addPoint(
 			p1

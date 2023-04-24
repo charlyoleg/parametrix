@@ -39,16 +39,19 @@ class Line {
 	}
 	draw(ctx: CanvasRenderingContext2D, cAdjust: tCanvasAdjust, color: string = colors.line) {
 		const display_length = ctx.canvas.width * 2;
-		const [cx2, cy2] = point2canvas(this.cx, this.cy, cAdjust);
+		const [cx1, cy1] = point2canvas(
+			this.cx - display_length * Math.cos(this.ca),
+			this.cy - display_length * Math.sin(this.ca),
+			cAdjust
+		);
+		const [cx2, cy2] = point2canvas(
+			this.cx + 2 * display_length * Math.cos(this.ca),
+			this.cy + 2 * display_length * Math.sin(this.ca),
+			cAdjust
+		);
 		ctx.beginPath();
-		ctx.moveTo(
-			cx2 - display_length * Math.cos(this.ca),
-			cy2 - display_length * Math.sin(this.ca)
-		);
-		ctx.lineTo(
-			cx2 + 2 * display_length * Math.cos(this.ca),
-			cy2 + 2 * display_length * Math.sin(this.ca)
-		);
+		ctx.moveTo(cx1, cy1);
+		ctx.lineTo(cx2, cy2);
 		ctx.strokeStyle = color;
 		ctx.stroke();
 	}
