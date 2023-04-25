@@ -10,7 +10,7 @@
 	} from '$lib/geom/canvas_utils';
 	import TimeControl from '$lib/TimeControl.svelte';
 	import ZoomControl from '$lib/ZoomControl.svelte';
-	import { point, Figure } from '$lib/geom/euclid2d';
+	import { point, Figure } from '$lib/geom/figure';
 	import type { tParamDef, tParamVal, tGeomFunc } from '$lib/design/aaParamGeom';
 	import { storePV } from '$lib/storePVal';
 	import { onMount } from 'svelte';

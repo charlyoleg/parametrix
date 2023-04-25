@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { degToRad, radToDeg, roundZero, point } from './euclid2d';
+import { degToRad, radToDeg, roundZero, point } from './figure';
 
 describe('angle suit', () => {
 	it('radian to degree', () => {

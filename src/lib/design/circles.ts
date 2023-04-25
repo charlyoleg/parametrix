@@ -1,6 +1,6 @@
 // circles.ts
 
-import { degToRad, point, line, Figure } from '$lib/geom/euclid2d';
+import { degToRad, point, line, Figure } from '$lib/geom/figure';
 import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
 //import { fround } from './aaParamGeom';
 

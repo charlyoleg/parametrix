@@ -1,6 +1,6 @@
 // rectangle.ts
 
-import { point, Figure } from '$lib/geom/euclid2d';
+import { point, Figure } from '$lib/geom/figure';
 import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
 //import { fround } from './aaParamGeom';
 

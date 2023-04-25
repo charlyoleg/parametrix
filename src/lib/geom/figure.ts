@@ -1,7 +1,7 @@
-// euclid2d.ts
+// figure.ts
 // a minimalistic 2D euclid geometry calculation library
-// euclid2d.ts deals with points, lines, vectors
-// euclid2d.ts depends only on the built-in library Math
+// figure.ts deals with points, lines, vectors, segments, contours
+// figure.ts gather all other modules of geom
 
 import type { tCanvasAdjust } from '$lib/geom/canvas_utils';
 //import { colorCanvasPoint } from '$lib/style/colors.scss';

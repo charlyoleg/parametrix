@@ -1,6 +1,6 @@
 // aaParamGeom.ts
 
-import type { Figure } from '$lib/geom/euclid2d';
+import type { Figure } from '$lib/geom/figure';
 
 type tParam = {
 	name: string;
