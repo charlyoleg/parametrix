@@ -12,7 +12,6 @@ import {
 	//adjustTranslate
 } from './canvas_utils';
 
-
 const cAdjust = adjustInit(0, 200, 0, 200, 200, 200);
 
 describe('canvas_utils', () => {
