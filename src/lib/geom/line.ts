@@ -2,10 +2,10 @@
 // line.ts deals with lines
 // line.ts depends on angle_utils.ts, triangle_utils.ts and point.ts
 
-import type { tCanvasAdjust } from '$lib/geom/canvas_utils';
-//import type { tPolar } from '$lib/geom/point';
+import type { tCanvasAdjust } from './canvas_utils';
+//import type { tPolar } from './point';
 //import { colorCanvasPoint } from '$lib/style/colors.scss';
-import { colors, point2canvas } from '$lib/geom/canvas_utils';
+import { colors, point2canvas } from './canvas_utils';
 import {
 	//degToRad,
 	//radToDeg,
@@ -14,7 +14,7 @@ import {
 	withinPiPi,
 	//withinZeroPi,
 	withinHPiHPi
-} from '$lib/geom/angle_utils';
+} from './angle_utils';
 import {
 	//rightTriLaFromLbLc,
 	//rightTriLbFromLaLc,
@@ -23,8 +23,8 @@ import {
 	//aCFromAaAb
 	lbFromLaAaAb
 	//aBFromLaLbAa
-} from '$lib/geom/triangle_utils';
-import { Point, anglePoints } from '$lib/geom/point';
+} from './triangle_utils';
+import { Point, anglePoints } from './point';
 
 /* Base classes */
 

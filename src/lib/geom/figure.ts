@@ -3,12 +3,12 @@
 // figure.ts deals with points, lines, vectors, segments, contours
 // figure.ts gather all other modules of geom
 
-import type { tCanvasAdjust } from '$lib/geom/canvas_utils';
+import type { tCanvasAdjust } from './canvas_utils';
 //import { colorCanvasPoint } from '$lib/style/colors.scss';
-import { adjustZero, adjustInit } from '$lib/geom/canvas_utils';
-import { degToRad, radToDeg, roundZero } from '$lib/geom/angle_utils';
-import { Point, point } from '$lib/geom/point';
-import { Line, line } from '$lib/geom/line';
+import { adjustZero, adjustInit } from './canvas_utils';
+import { degToRad, radToDeg, roundZero } from './angle_utils';
+import { Point, point } from './point';
+import { Line, line } from './line';
 
 class Figure {
 	pointList: Array<Point>;
