@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { tCanvasAdjust } from '$lib/geom/canvas_utils';
-	import { colors } from '$lib/geom/canvas_utils';
+	//import { colors } from '$lib/geom/canvas_utils';
 	//import type { tLayers } from '$lib/geom/figure';
-	import { point, Figure, initLayers } from '$lib/geom/figure';
+	import { Figure, initLayers } from '$lib/geom/figure';
 	import type { tParamVal, tGeomFunc } from '$lib/design/aaParamGeom';
 	import { storePV } from '$lib/storePVal';
 	import { onMount } from 'svelte';
@@ -26,13 +26,6 @@
 		// extra drawing
 		//point(5, 5).draw(ctx1, mAdjust, 'green');
 		//point(5, 15).draw(ctx1, mAdjust, 'blue', 'rectangle');
-		for (const i of [10, 100, 200]) {
-			point(i, 0).draw(ctx1, mAdjust, colors.reference, 'cross');
-			point(-i, 0).draw(ctx1, mAdjust, colors.reference, 'cross');
-			point(0, i).draw(ctx1, mAdjust, colors.reference, 'cross');
-			point(0, -i).draw(ctx1, mAdjust, colors.reference, 'cross');
-		}
-		point(0, 0).draw(ctx1, mAdjust, colors.origin, 'cross');
 	}
 	let domInit = 0;
 	function geomRedraw(iSimTime: number, ipVal: tParamVal) {

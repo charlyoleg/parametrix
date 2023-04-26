@@ -7,6 +7,7 @@
 	export let lc_second = true;
 	export let lc_secondB = true;
 	export let lc_dynamics = true;
+	export let lc_frame = true;
 </script>
 
 <label><input type="checkbox" bind:checked={lc_points} />points</label>
@@ -17,6 +18,7 @@
 <label><input type="checkbox" bind:checked={lc_second} />second parts</label>
 <label><input type="checkbox" bind:checked={lc_secondB} />second skeletons</label>
 <label><input type="checkbox" bind:checked={lc_dynamics} />dynamics</label>
+<label><input type="checkbox" bind:checked={lc_frame} />frame of reference</label>
 
 <style lang="scss">
 	@use '$lib/style/colors.scss';

@@ -59,6 +59,7 @@ class Line {
 		this.cx = p1.cx;
 		this.cy = p1.cy;
 		this.ca = anglePoints(p1, p2);
+		return this;
 	}
 	getAxisXIntersection() {
 		let rX = Infinity;

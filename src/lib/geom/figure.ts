@@ -5,7 +5,7 @@
 
 import type { tCanvasAdjust } from './canvas_utils';
 //import { colorCanvasPoint } from '$lib/style/colors.scss';
-import { adjustZero, adjustInit } from './canvas_utils';
+import { colors, adjustZero, adjustInit } from './canvas_utils';
 import { degToRad, radToDeg, roundZero } from './angle_utils';
 import { Point, point } from './point';
 import { Line, line } from './line';
@@ -19,6 +19,7 @@ type tLayers = {
 	second: boolean;
 	secondB: boolean;
 	dynamics: boolean;
+	frame: boolean;
 };
 
 class Figure {
@@ -126,6 +127,15 @@ class Figure {
 		if (layers.dynamics) {
 			console.log('draw dynamics');
 		}
+		if (layers.frame) {
+			for (const i of [10, 100, 200]) {
+				point(i, 0).draw(ctx, adjust, colors.reference, 'cross');
+				point(-i, 0).draw(ctx, adjust, colors.reference, 'cross');
+				point(0, i).draw(ctx, adjust, colors.reference, 'cross');
+				point(0, -i).draw(ctx, adjust, colors.reference, 'cross');
+			}
+			point(0, 0).draw(ctx, adjust, colors.origin, 'cross');
+		}
 	}
 }
 
@@ -142,7 +152,8 @@ function initLayers(): tLayers {
 		mainB: true,
 		second: true,
 		secondB: true,
-		dynamics: true
+		dynamics: true,
+		frame: true
 	};
 	return layers;
 }

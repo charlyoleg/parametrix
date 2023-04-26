@@ -12,7 +12,7 @@
 	import ZoomControl from '$lib/ZoomControl.svelte';
 	import LabelCheckbox from '$lib/LabelCheckbox.svelte';
 	import type { tLayers } from '$lib/geom/figure';
-	import { point, Figure, initLayers } from '$lib/geom/figure';
+	import { Figure, initLayers } from '$lib/geom/figure';
 	import type { tParamDef, tParamVal, tGeomFunc } from '$lib/design/aaParamGeom';
 	import { storePV } from '$lib/storePVal';
 	import { onMount } from 'svelte';
@@ -35,6 +35,7 @@
 	let lc_second: boolean;
 	let lc_secondB: boolean;
 	let lc_dynamics: boolean;
+	let lc_frame: boolean;
 	let layers = initLayers();
 	let aFigure: Figure;
 	let cAdjust: tCanvasAdjust;
@@ -48,6 +49,7 @@
 		layers.second = lc_second;
 		layers.secondB = lc_secondB;
 		layers.dynamics = lc_dynamics;
+		layers.frame = lc_frame;
 	}
 	function canvasRedrawFull(iLayers: tLayers) {
 		const ctx1 = canvasFull.getContext('2d') as CanvasRenderingContext2D;
@@ -57,13 +59,6 @@
 		// extra drawing
 		//point(5, 5).draw(ctx1, cAdjust, 'green');
 		//point(5, 15).draw(ctx1, cAdjust, 'blue', 'rectangle');
-		for (const i of [10, 100, 200]) {
-			point(i, 0).draw(ctx1, cAdjust, colors.reference, 'cross');
-			point(-i, 0).draw(ctx1, cAdjust, colors.reference, 'cross');
-			point(0, i).draw(ctx1, cAdjust, colors.reference, 'cross');
-			point(0, -i).draw(ctx1, cAdjust, colors.reference, 'cross');
-		}
-		point(0, 0).draw(ctx1, cAdjust, colors.origin, 'cross');
 	}
 	function canvasRedrawZoom(iLayers: tLayers) {
 		const ctx2 = canvasZoom.getContext('2d') as CanvasRenderingContext2D;
@@ -73,14 +68,6 @@
 			//console.log(`dbg047: init zAdjust: ${zAdjust.xMin} ${zAdjust.yMin}`);
 		}
 		aFigure.draw(ctx2, zAdjust, iLayers);
-		// extra drawing
-		for (const i of [10, 100, 200]) {
-			point(i, 0).draw(ctx2, zAdjust, colors.reference, 'cross');
-			point(-i, 0).draw(ctx2, zAdjust, colors.reference, 'cross');
-			point(0, i).draw(ctx2, zAdjust, colors.reference, 'cross');
-			point(0, -i).draw(ctx2, zAdjust, colors.reference, 'cross');
-		}
-		point(0, 0).draw(ctx2, zAdjust, colors.origin, 'cross');
 	}
 	function canvasSetSize() {
 		//console.log(`windowWidth: ${windowWidth}`);
@@ -263,6 +250,7 @@
 		bind:lc_second
 		bind:lc_secondB
 		bind:lc_dynamics
+		bind:lc_frame
 	/>
 	<div class="rack">
 		<TimeControl
