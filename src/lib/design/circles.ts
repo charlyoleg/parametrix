@@ -15,7 +15,7 @@ const pDef: tParamDef = {
 		{ name: 'angle', unit: 'degree', init: 15, min: 5, max: 45, step: 1 },
 		{ name: 'amplitude-offset', unit: 'mm', init: 1, min: 0.5, max: 4, step: 0.1 },
 		{ name: 'amplitude-scale', unit: 'scalar', init: 0.2, min: 0.1, max: 0.5, step: 0.01 },
-		{ name: 'angle2', unit: 'degree', init: 45, min: -200, max: 200, step: 1 }
+		{ name: 'tmp_angle', unit: 'degree', init: 45, min: -200, max: 200, step: 1 }
 	],
 	sim: {
 		tMax: 10,
@@ -39,7 +39,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 				.rotate(p2, i * degToRad(param['angle']) + (t * Math.PI) / 2 / pDef.sim.tMax)
 		);
 	}
-	const l1 = line(40, 40, degToRad(param['angle2']));
+	const l1 = line(40, 40, degToRad(param['tmp_angle']));
 	const l2 = line(0, 0, 0).setFromPoints(p1, p2);
 	rGeome.fig.addLine(l1);
 	rGeome.fig.addLine(l2);
