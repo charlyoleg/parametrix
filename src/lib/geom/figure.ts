@@ -10,6 +10,17 @@ import { degToRad, radToDeg, roundZero } from './angle_utils';
 import { Point, point } from './point';
 import { Line, line } from './line';
 
+type tLayers = {
+	points: boolean;
+	lines: boolean;
+	vectors: boolean;
+	main: boolean;
+	mainB: boolean;
+	second: boolean;
+	secondB: boolean;
+	dynamics: boolean;
+};
+
 class Figure {
 	pointList: Array<Point>;
 	lineList: Array<Line>;
@@ -86,12 +97,34 @@ class Figure {
 		//console.log(`dbg150: ${rCanvasAdjust.shiftX}, ${rCanvasAdjust.scaleX}`);
 		return rCanvasAdjust;
 	}
-	draw(ctx: CanvasRenderingContext2D, adjust: tCanvasAdjust) {
-		for (const p of this.pointList) {
-			p.draw(ctx, adjust);
+	draw(ctx: CanvasRenderingContext2D, adjust: tCanvasAdjust, layers: tLayers) {
+		if (layers.points) {
+			for (const p of this.pointList) {
+				p.draw(ctx, adjust);
+			}
 		}
-		for (const li of this.lineList) {
-			li.draw(ctx, adjust);
+		if (layers.lines) {
+			for (const li of this.lineList) {
+				li.draw(ctx, adjust);
+			}
+		}
+		if (layers.vectors) {
+			console.log('draw vetors');
+		}
+		if (layers.main) {
+			console.log('draw main');
+		}
+		if (layers.mainB) {
+			console.log('draw mainB');
+		}
+		if (layers.second) {
+			console.log('draw second');
+		}
+		if (layers.secondB) {
+			console.log('draw secondB');
+		}
+		if (layers.dynamics) {
+			console.log('draw dynamics');
 		}
 	}
 }
@@ -100,6 +133,21 @@ function figure() {
 	return new Figure();
 }
 
+function initLayers(): tLayers {
+	const layers: tLayers = {
+		points: true,
+		lines: true,
+		vectors: true,
+		main: true,
+		mainB: true,
+		second: true,
+		secondB: true,
+		dynamics: true
+	};
+	return layers;
+}
+
 /* export */
 
-export { degToRad, radToDeg, roundZero, Point, point, Line, line, Figure, figure };
+export type { tLayers };
+export { degToRad, radToDeg, roundZero, Point, point, Line, line, Figure, figure, initLayers };

@@ -10,7 +10,9 @@
 	} from '$lib/geom/canvas_utils';
 	import TimeControl from '$lib/TimeControl.svelte';
 	import ZoomControl from '$lib/ZoomControl.svelte';
-	import { point, Figure } from '$lib/geom/figure';
+	import LabelCheckbox from '$lib/LabelCheckbox.svelte';
+	//import type { tLayers } from '$lib/geom/figure';
+	import { point, Figure, initLayers } from '$lib/geom/figure';
 	import type { tParamDef, tParamVal, tGeomFunc } from '$lib/design/aaParamGeom';
 	import { storePV } from '$lib/storePVal';
 	import { onMount } from 'svelte';
@@ -25,14 +27,33 @@
 	const canvas_size_min = 400;
 
 	// Canavas Figures
+	let lc_points: boolean;
+	let lc_lines: boolean;
+	let lc_vectors: boolean;
+	let lc_main: boolean;
+	let lc_mainB: boolean;
+	let lc_second: boolean;
+	let lc_secondB: boolean;
+	let lc_dynamics: boolean;
+	let layers = initLayers();
 	let aFigure: Figure;
 	let cAdjust: tCanvasAdjust;
 	let zAdjust: tCanvasAdjust;
+	$: {
+		layers.points = lc_points;
+		layers.lines = lc_lines;
+		layers.vectors = lc_vectors;
+		layers.main = lc_main;
+		layers.mainB = lc_mainB;
+		layers.second = lc_second;
+		layers.secondB = lc_secondB;
+		layers.dynamics = lc_dynamics;
+	}
 	function canvasRedrawFull() {
 		const ctx1 = canvasFull.getContext('2d') as CanvasRenderingContext2D;
 		ctx1.clearRect(0, 0, ctx1.canvas.width, ctx1.canvas.height);
 		cAdjust = aFigure.getAdjustFull(ctx1.canvas.width, ctx1.canvas.height);
-		aFigure.draw(ctx1, cAdjust);
+		aFigure.draw(ctx1, cAdjust, layers);
 		// extra drawing
 		//point(5, 5).draw(ctx1, cAdjust, 'green');
 		//point(5, 15).draw(ctx1, cAdjust, 'blue', 'rectangle');
@@ -51,7 +72,7 @@
 			zAdjust = aFigure.getAdjustZoom(ctx2.canvas.width, ctx2.canvas.height);
 			//console.log(`dbg047: init zAdjust: ${zAdjust.xMin} ${zAdjust.yMin}`);
 		}
-		aFigure.draw(ctx2, zAdjust);
+		aFigure.draw(ctx2, zAdjust, layers);
 		// extra drawing
 		for (const i of [10, 100, 200]) {
 			point(i, 0).draw(ctx2, zAdjust, colors.reference, 'cross');
@@ -233,6 +254,16 @@
 <svelte:window bind:innerWidth={windowWidth} on:resize={canvasResize} />
 <section>
 	<h2>Drawing</h2>
+	<LabelCheckbox
+		bind:lc_points
+		bind:lc_lines
+		bind:lc_vectors
+		bind:lc_main
+		bind:lc_mainB
+		bind:lc_second
+		bind:lc_secondB
+		bind:lc_dynamics
+	/>
 	<div class="rack">
 		<TimeControl
 			tMax={pDef.sim.tMax}

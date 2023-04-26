@@ -1,7 +1,8 @@
 <script lang="ts">
 	import type { tCanvasAdjust } from '$lib/geom/canvas_utils';
 	import { colors } from '$lib/geom/canvas_utils';
-	import { point, Figure } from '$lib/geom/figure';
+	//import type { tLayers } from '$lib/geom/figure';
+	import { point, Figure, initLayers } from '$lib/geom/figure';
 	import type { tParamVal, tGeomFunc } from '$lib/design/aaParamGeom';
 	import { storePV } from '$lib/storePVal';
 	import { onMount } from 'svelte';
@@ -13,6 +14,7 @@
 	let canvasMini: HTMLCanvasElement;
 	const canvas_size_mini = 200;
 
+	const layers = initLayers();
 	// Canavas Figures
 	let aFigure: Figure;
 	let mAdjust: tCanvasAdjust;
@@ -20,7 +22,7 @@
 		const ctx1 = canvasMini.getContext('2d') as CanvasRenderingContext2D;
 		ctx1.clearRect(0, 0, ctx1.canvas.width, ctx1.canvas.height);
 		mAdjust = aFigure.getAdjustFull(ctx1.canvas.width, ctx1.canvas.height);
-		aFigure.draw(ctx1, mAdjust);
+		aFigure.draw(ctx1, mAdjust, layers);
 		// extra drawing
 		//point(5, 5).draw(ctx1, mAdjust, 'green');
 		//point(5, 15).draw(ctx1, mAdjust, 'blue', 'rectangle');
