@@ -11,7 +11,7 @@
 	import TimeControl from '$lib/TimeControl.svelte';
 	import ZoomControl from '$lib/ZoomControl.svelte';
 	import LabelCheckbox from '$lib/LabelCheckbox.svelte';
-	//import type { tLayers } from '$lib/geom/figure';
+	import type { tLayers } from '$lib/geom/figure';
 	import { point, Figure, initLayers } from '$lib/geom/figure';
 	import type { tParamDef, tParamVal, tGeomFunc } from '$lib/design/aaParamGeom';
 	import { storePV } from '$lib/storePVal';
@@ -49,11 +49,11 @@
 		layers.secondB = lc_secondB;
 		layers.dynamics = lc_dynamics;
 	}
-	function canvasRedrawFull() {
+	function canvasRedrawFull(iLayers: tLayers) {
 		const ctx1 = canvasFull.getContext('2d') as CanvasRenderingContext2D;
 		ctx1.clearRect(0, 0, ctx1.canvas.width, ctx1.canvas.height);
 		cAdjust = aFigure.getAdjustFull(ctx1.canvas.width, ctx1.canvas.height);
-		aFigure.draw(ctx1, cAdjust, layers);
+		aFigure.draw(ctx1, cAdjust, iLayers);
 		// extra drawing
 		//point(5, 5).draw(ctx1, cAdjust, 'green');
 		//point(5, 15).draw(ctx1, cAdjust, 'blue', 'rectangle');
@@ -65,14 +65,14 @@
 		}
 		point(0, 0).draw(ctx1, cAdjust, colors.origin, 'cross');
 	}
-	function canvasRedrawZoom() {
+	function canvasRedrawZoom(iLayers: tLayers) {
 		const ctx2 = canvasZoom.getContext('2d') as CanvasRenderingContext2D;
 		ctx2.clearRect(0, 0, ctx2.canvas.width, ctx2.canvas.height);
 		if (zAdjust === undefined || zAdjust.init === 0) {
 			zAdjust = aFigure.getAdjustZoom(ctx2.canvas.width, ctx2.canvas.height);
 			//console.log(`dbg047: init zAdjust: ${zAdjust.xMin} ${zAdjust.yMin}`);
 		}
-		aFigure.draw(ctx2, zAdjust, layers);
+		aFigure.draw(ctx2, zAdjust, iLayers);
 		// extra drawing
 		for (const i of [10, 100, 200]) {
 			point(i, 0).draw(ctx2, zAdjust, colors.reference, 'cross');
@@ -91,18 +91,18 @@
 	}
 	function canvasResize() {
 		canvasSetSize();
-		canvasRedrawFull();
-		canvasRedrawZoom();
+		canvasRedrawFull(layers);
+		canvasRedrawZoom(layers);
 	}
 	let domInit = 0;
-	function geomRedrawSub(iSimTime: number, pVal: tParamVal) {
+	function geomRedrawSub(iSimTime: number, pVal: tParamVal, iLayers: tLayers) {
 		aFigure = geom(iSimTime, pVal).fig;
-		canvasRedrawFull();
-		canvasRedrawZoom();
+		canvasRedrawFull(iLayers);
+		canvasRedrawZoom(iLayers);
 		domInit = 1;
 	}
 	function geomRedraw(iSimTime: number) {
-		geomRedrawSub(iSimTime, $storePV[pDef.page]);
+		geomRedrawSub(iSimTime, $storePV[pDef.page], layers);
 	}
 	onMount(() => {
 		// initial drawing
@@ -110,10 +110,10 @@
 		geomRedraw(simTime);
 		//paramChange();
 	});
-	// reactivity on simTime and $storePV
+	// reactivity on simTime, $storePV and layers
 	$: {
 		if (domInit === 1) {
-			geomRedrawSub(simTime, $storePV[pDef.page]);
+			geomRedrawSub(simTime, $storePV[pDef.page], layers);
 		}
 	}
 	// Zoom stories
@@ -144,7 +144,7 @@
 			default:
 				console.log(`ERR423: ${event.detail.action} has no case!`);
 		}
-		canvasRedrawZoom();
+		canvasRedrawZoom(layers);
 	}
 	// zoom functions on the canvasFull
 	type tMouse = {
@@ -207,7 +207,7 @@
 		if (eve.buttons === 1) {
 			const diffX = eve.offsetX - mouseF.offsetX;
 			const diffY = eve.offsetY - mouseF.offsetY;
-			canvasRedrawFull();
+			canvasRedrawFull(layers);
 			const ctx1 = canvasFull.getContext('2d') as CanvasRenderingContext2D;
 			ctx1.beginPath();
 			ctx1.rect(mouseF.offsetX, mouseF.offsetY, diffX, diffY);
@@ -238,7 +238,7 @@
 		if (eve.buttons === 1) {
 			const [p2x, p2y] = canvas2point(eve.offsetX, eve.offsetY, mouseZadjust);
 			zAdjust = adjustTranslate(mouseZx, mouseZy, p2x, p2y, mouseZadjust);
-			canvasRedrawZoom();
+			canvasRedrawZoom(layers);
 		}
 	}
 	function cZoomWheel(eve: WheelEvent) {
@@ -247,7 +247,7 @@
 		} else {
 			zAdjust = adjustScale(1.3, zAdjust);
 		}
-		canvasRedrawZoom();
+		canvasRedrawZoom(layers);
 	}
 </script>
 
