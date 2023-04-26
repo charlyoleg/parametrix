@@ -12,7 +12,7 @@ import {
 	roundZero,
 	//withinZero2Pi,
 	withinPiPi,
-	//withinZeroPi,
+	withinZeroPi,
 	withinHPiHPi
 } from './angle_utils';
 import {
@@ -65,9 +65,10 @@ class Line {
 		let rX = Infinity;
 		if (roundZero(this.ca % Math.PI) !== 0) {
 			const p1 = new Point(this.cx, this.cy);
-			const aB = p1.angleOrig();
+			const aC = p1.angleOrig();
 			const la = p1.distanceOrig();
-			const aA = this.ca;
+			const aA = withinZeroPi(Math.PI - this.ca);
+			const aB = withinZeroPi(Math.PI - aA - aC);
 			rX = lbFromLaAaAb(la, aA, aB);
 		}
 		return rX;
@@ -76,9 +77,10 @@ class Line {
 		let rY = Infinity;
 		if (roundZero((this.ca - Math.PI / 2) % Math.PI) !== 0) {
 			const p1 = new Point(this.cx, this.cy);
-			const aB = Math.PI / 2 - p1.angleOrig();
+			const aC = Math.PI / 2 - p1.angleOrig();
 			const la = p1.distanceOrig();
 			const aA = this.ca - Math.PI / 2;
+			const aB = Math.PI - aA - aC;
 			rY = lbFromLaAaAb(la, aA, aB);
 		}
 		return rY;
