@@ -25,6 +25,12 @@ type tLayers = {
 class Figure {
 	pointList: Array<Point>;
 	lineList: Array<Line>;
+	vectorList: Array<Line>;
+	mainList: Array<Line>;
+	mainBList: Array<Line>;
+	secondList: Array<Line>;
+	secondBList: Array<Line>;
+	dynamicsList: Array<Line>;
 	xMin: number;
 	xMax: number;
 	yMin: number;
@@ -32,6 +38,12 @@ class Figure {
 	constructor() {
 		this.pointList = [];
 		this.lineList = [];
+		this.vectorList = [];
+		this.mainList = [];
+		this.mainBList = [];
+		this.secondList = [];
+		this.secondBList = [];
+		this.dynamicsList = [];
 		this.xMin = 0;
 		this.xMax = 0;
 		this.yMin = 0;
@@ -110,22 +122,34 @@ class Figure {
 			}
 		}
 		if (layers.vectors) {
-			console.log('draw vetors');
+			for (const li of this.vectorList) {
+				li.draw(ctx, adjust);
+			}
 		}
 		if (layers.main) {
-			console.log('draw main');
+			for (const li of this.mainList) {
+				li.draw(ctx, adjust);
+			}
 		}
 		if (layers.mainB) {
-			console.log('draw mainB');
+			for (const li of this.mainBList) {
+				li.draw(ctx, adjust);
+			}
 		}
 		if (layers.second) {
-			console.log('draw second');
+			for (const li of this.secondList) {
+				li.draw(ctx, adjust);
+			}
 		}
 		if (layers.secondB) {
-			console.log('draw secondB');
+			for (const li of this.secondList) {
+				li.draw(ctx, adjust);
+			}
 		}
 		if (layers.dynamics) {
-			console.log('draw dynamics');
+			for (const li of this.dynamicsList) {
+				li.draw(ctx, adjust);
+			}
 		}
 		if (layers.frame) {
 			for (const i of [10, 100, 200]) {
