@@ -2,6 +2,7 @@
 
 import { pageDef as circlesDef } from '$lib/design/circles';
 import { pageDef as rectangleDef } from '$lib/design/rectangle';
+import { pageDef as verifyLineDef } from '$lib/design/verify_line';
 import type { tParamVal, tPageDef } from '$lib/design/aaParamGeom';
 import type { tStorePVal } from '$lib/storePVal';
 import { storePV } from '$lib/storePVal';
@@ -10,7 +11,8 @@ import { get, writable } from 'svelte/store';
 type tAllPageDef = { [index: string]: tPageDef };
 const designDefs: tAllPageDef = {
 	circles: circlesDef,
-	rectangle: rectangleDef
+	rectangle: rectangleDef,
+	verify_line: verifyLineDef
 };
 
 /* Create the Header Menu and Index Menu */
@@ -21,6 +23,7 @@ const mAbout = ['about'];
 const mLabel = [
 	['gears/circles'],
 	['architecture/rectangle'],
+	['dev/verify_line'],
 	['docs/ui', 'docs/geom', 'docs/gears']
 ];
 // end of section to be updated
