@@ -24,6 +24,7 @@ class Point {
 	) {
 		const radius = ctx.canvas.width * (0.7 / 100);
 		const [cx2, cy2] = point2canvas(this.cx, this.cy, cAdjust);
+		//console.log(`dbg493: ${cx2} ${cy2}`);
 		ctx.beginPath();
 		switch (shape) {
 			case 'cross':
