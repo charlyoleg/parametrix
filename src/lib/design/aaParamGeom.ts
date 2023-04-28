@@ -18,6 +18,7 @@ type tSimTime = {
 type tParamDef = {
 	page: string;
 	params: Array<tParam>;
+	paramSvg: { [index: string]: string };
 	sim: tSimTime;
 };
 

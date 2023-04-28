@@ -10,6 +10,10 @@ const pDef: tParamDef = {
 		{ name: 'width', unit: 'mm', init: 15, min: 3, max: 40, step: 0.5 },
 		{ name: 'height', unit: 'mm', init: 10, min: 3, max: 40, step: 0.5 }
 	],
+	paramSvg: {
+		width: 'rectangle_width.svg',
+		height: 'rectangle_height.svg'
+	},
 	sim: {
 		tMax: 120,
 		tStep: 1,

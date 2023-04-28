@@ -13,6 +13,10 @@ const pDef: tParamDef = {
 		{ name: 'p3x', unit: 'mm', init: -30, min: -200, max: 200, step: 1 },
 		{ name: 'p3y', unit: 'mm', init: 30, min: -200, max: 200, step: 1 }
 	],
+	paramSvg: {
+		p1x: 'verify_line_p1x.svg',
+		p1y: 'verify_line_p1y.svg'
+	},
 	sim: {
 		tMax: 10,
 		tStep: 0.1,

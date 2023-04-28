@@ -16,6 +16,11 @@ const pDef: tParamDef = {
 		{ name: 'amplitude-offset', unit: 'mm', init: 1, min: 0.5, max: 4, step: 0.1 },
 		{ name: 'amplitude-scale', unit: 'scalar', init: 0.2, min: 0.1, max: 0.5, step: 0.01 }
 	],
+	paramSvg: {
+		angle: 'circles_angle.svg',
+		'amplitude-offset': 'circles_amplitude-offset.svg',
+		'amplitude-scale': 'circles_amplitude-scale.svg'
+	},
 	sim: {
 		tMax: 10,
 		tStep: 0.1,
