@@ -14,12 +14,12 @@ const pDef: tParamDef = {
 		{ name: 'scaleOrig', unit: 'scalar', init: 1.5, min: 0.1, max: 2, step: 0.1 }
 	],
 	paramSvg: {
-		p1x: 'verify_line_p1x.svg',
-		p1y: 'verify_line_p1x.svg',
-		p2a: 'verify_line_p1x.svg',
-		p2l: 'verify_line_p1x.svg',
-		rotateOrig: 'verify_line_p1x.svg',
-		scaleOrig: 'verify_line_p1x.svg'
+		p1x: 'verify_point_p1x.svg',
+		p1y: 'verify_point_p1x.svg',
+		p2a: 'verify_point_p1x.svg',
+		p2l: 'verify_point_p1x.svg',
+		rotateOrig: 'verify_point_p1x.svg',
+		scaleOrig: 'verify_point_p1x.svg'
 	},
 	sim: {
 		tMax: 10,
