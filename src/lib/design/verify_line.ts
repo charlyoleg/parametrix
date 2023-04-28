@@ -15,7 +15,11 @@ const pDef: tParamDef = {
 	],
 	paramSvg: {
 		p1x: 'verify_line_p1x.svg',
-		p1y: 'verify_line_p1y.svg'
+		p1y: 'verify_line_p1x.svg',
+		p2x: 'verify_line_p1x.svg',
+		p2y: 'verify_line_p1x.svg',
+		p3x: 'verify_line_p1x.svg',
+		p3y: 'verify_line_p1x.svg'
 	},
 	sim: {
 		tMax: 10,
