@@ -10,6 +10,7 @@ import { storePV } from '$lib/storePVal';
 import { get, writable } from 'svelte/store';
 
 type tAllPageDef = { [index: string]: tPageDef };
+type tIcon = { [inedx: string]: string };
 const designDefs: tAllPageDef = {
 	circles: circlesDef,
 	rectangle: rectangleDef,
@@ -28,6 +29,18 @@ const mLabel = [
 	['dev/verify_point', 'dev/verify_line'],
 	['docs/ui', 'docs/geom', 'docs/gears']
 ];
+const mIcon: tIcon = {
+	index: 'page_index.svg',
+	circles: 'page_circles.svg',
+	rectangle: 'page_rectangle.svg',
+	verify_point: 'page_verify_point.svg',
+	verify_line: 'page_verify_line.svg',
+	ui: 'page_ui.svg',
+	geom: 'page_geom.svg',
+	gears: 'page_gears.svg',
+	readme: 'page_readme.svg',
+	about: 'page_about.svg'
+};
 // end of section to be updated
 
 /* initialization storePV */
@@ -52,9 +65,10 @@ type tMenu = Array<tMenuElem>;
 
 function oneMenu(menuName: string): tMenuElem {
 	const re = /^.*\//g;
-	const svgString = menuName.replace(re, '');
-	const mSvg = `page_${svgString}.svg`; // svg file name convention
 	const labelString = menuName.replace(re, '');
+	//const svgString = menuName.replace(re, '');
+	//const mSvg = `page_${svgString}.svg`; // svg file name convention
+	const mSvg = mIcon[labelString]; // configured svg filename (i.e. no convention)
 	let mPath = `/${menuName}`;
 	if (mPath === '/index') {
 		mPath = '/';
