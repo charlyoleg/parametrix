@@ -63,25 +63,41 @@ class Line {
 	}
 	getAxisXIntersection() {
 		let rX = Infinity;
-		if (roundZero(this.ca % Math.PI) !== 0) {
+		if (roundZero(withinHPiHPi(this.ca)) !== 0) {
 			const p1 = new Point(this.cx, this.cy);
+			const l1ca = withinZeroPi(this.ca);
 			const aC = p1.angleOrig();
 			const la = p1.distanceOrig();
-			const aA = withinZeroPi(Math.PI - this.ca);
-			const aB = withinZeroPi(Math.PI - aA - aC);
-			rX = lbFromLaAaAb(la, aA, aB);
+			if (l1ca > aC) {
+				const aA = withinZeroPi(Math.PI - l1ca);
+				const aB = withinZeroPi(Math.PI - aA - aC);
+				rX = lbFromLaAaAb(la, aA, aB);
+			} else {
+				const aA = l1ca;
+				const aB = withinZeroPi(aC - aA);
+				rX = -1 * lbFromLaAaAb(la, aA, aB);
+			}
 		}
 		return rX;
 	}
 	getAxisYIntersection() {
 		let rY = Infinity;
-		if (roundZero((this.ca - Math.PI / 2) % Math.PI) !== 0) {
+		if (roundZero(withinHPiHPi(this.ca - Math.PI / 2)) !== 0) {
 			const p1 = new Point(this.cx, this.cy);
-			const aC = Math.PI / 2 - p1.angleOrig();
+			const l1ca = withinZeroPi(this.ca - Math.PI / 2);
+			const aC2 = p1.angleOrig();
 			const la = p1.distanceOrig();
-			const aA = this.ca - Math.PI / 2;
-			const aB = Math.PI - aA - aC;
-			rY = lbFromLaAaAb(la, aA, aB);
+			if (l1ca > aC2) {
+				const aC = Math.PI / 2 - aC2;
+				const aA = this.ca - Math.PI / 2;
+				const aB = Math.PI - aA - aC;
+				rY = lbFromLaAaAb(la, aA, aB);
+			} else {
+				const aC = Math.PI / 2 - aC2;
+				const aA = this.ca - Math.PI / 2;
+				const aB = Math.PI - aA - aC;
+				rY = -1 * lbFromLaAaAb(la, aA, aB);
+			}
 		}
 		return rY;
 	}
