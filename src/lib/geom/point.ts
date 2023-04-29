@@ -22,26 +22,30 @@ class Point {
 		color: string = colors.point,
 		shape = 'circle'
 	) {
-		const radius = ctx.canvas.width * (0.7 / 100);
-		const [cx2, cy2] = point2canvas(this.cx, this.cy, cAdjust);
-		//console.log(`dbg493: ${cx2} ${cy2}`);
-		ctx.beginPath();
-		switch (shape) {
-			case 'cross':
-				ctx.moveTo(cx2 - radius, cy2);
-				ctx.lineTo(cx2 + radius, cy2);
-				ctx.moveTo(cx2, cy2 - radius);
-				ctx.lineTo(cx2, cy2 + radius);
-				break;
-			case 'rectangle':
-				ctx.rect(cx2 - radius, cy2 - radius, 2 * radius, 2 * radius);
-				break;
-			case 'circle':
-			default:
-				ctx.arc(cx2, cy2, radius, 0, 2 * Math.PI);
+		if (isFinite(this.cx) && isFinite(this.cy)) {
+			const radius = ctx.canvas.width * (0.7 / 100);
+			const [cx2, cy2] = point2canvas(this.cx, this.cy, cAdjust);
+			//console.log(`dbg493: ${cx2} ${cy2}`);
+			ctx.beginPath();
+			switch (shape) {
+				case 'cross':
+					ctx.moveTo(cx2 - radius, cy2);
+					ctx.lineTo(cx2 + radius, cy2);
+					ctx.moveTo(cx2, cy2 - radius);
+					ctx.lineTo(cx2, cy2 + radius);
+					break;
+				case 'rectangle':
+					ctx.rect(cx2 - radius, cy2 - radius, 2 * radius, 2 * radius);
+					break;
+				case 'circle':
+				default:
+					ctx.arc(cx2, cy2, radius, 0, 2 * Math.PI);
+			}
+			ctx.strokeStyle = color;
+			ctx.stroke();
+		} else {
+			console.log(`INFO489: point not draw because of infinity ${this.cx} ${this.cy}`);
 		}
-		ctx.strokeStyle = color;
-		ctx.stroke();
 	}
 	distanceOrig(): number {
 		return Math.sqrt(this.cx ** 2 + this.cy ** 2);

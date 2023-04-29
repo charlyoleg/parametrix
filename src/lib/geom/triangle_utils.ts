@@ -3,7 +3,7 @@
 // triangle_utils.ts dependences on angle_utils.ts
 
 //import { degToRad, radToDeg, roundZero, withinZero2Pi, withinPiPi, withinZeroPi, withinHPiHPi } from './angle_utils';
-import { withinZeroPi } from './angle_utils';
+import { roundZero, withinZeroPi } from './angle_utils';
 
 /* right triangle
  *	sides: la [hypothenuse], lb, lc
@@ -71,7 +71,7 @@ function lbFromLaAaAb(ila: number, iaA: number, iaB: number) {
 	let rlb = 0;
 	const args = [ila, iaA, iaB];
 	for (let i = 0; i < args.length; i++) {
-		if (args[i] <= 0) {
+		if (roundZero(args[i]) <= 0) {
 			console.log(`err329: negative or zero triangle-args ${i} : ${args[i]}`);
 		}
 	}

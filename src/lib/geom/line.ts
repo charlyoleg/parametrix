@@ -84,18 +84,16 @@ class Line {
 		let rY = Infinity;
 		if (roundZero(withinHPiHPi(this.ca - Math.PI / 2)) !== 0) {
 			const p1 = new Point(this.cx, this.cy);
-			const l1ca = withinZeroPi(this.ca - Math.PI / 2);
-			const aC2 = p1.angleOrig();
+			const l1ca = withinHPiHPi(this.ca);
+			const aC = p1.angleOrig();
 			const la = p1.distanceOrig();
-			if (l1ca > aC2) {
-				const aC = Math.PI / 2 - aC2;
-				const aA = this.ca - Math.PI / 2;
-				const aB = Math.PI - aA - aC;
+			if (l1ca < aC) {
+				const aA = withinZeroPi(l1ca - Math.PI / 2);
+				const aB = withinZeroPi(aC + Math.PI / 2 - aA);
 				rY = lbFromLaAaAb(la, aA, aB);
 			} else {
-				const aC = Math.PI / 2 - aC2;
-				const aA = this.ca - Math.PI / 2;
-				const aB = Math.PI - aA - aC;
+				const aA = withinZeroPi(Math.PI / 2 - l1ca);
+				const aB = withinZeroPi(l1ca - aC);
 				rY = -1 * lbFromLaAaAb(la, aA, aB);
 			}
 		}
