@@ -72,14 +72,11 @@ class Line {
 				rX = 0;
 			} else if (roundZero(withinHPiHPi(l1ca - aC)) === 0) {
 				rX = 0;
-			} else if (l1ca > aC) {
-				const aA = withinZeroPi(Math.PI - l1ca);
-				const aB = withinZeroPi(Math.PI - aA - aC);
-				rX = lbFromLaAaAb(la, aA, aB);
 			} else {
-				const aA = l1ca;
-				const aB = withinZeroPi(aC - aA);
-				rX = -1 * lbFromLaAaAb(la, aA, aB);
+				const aA = Math.min(l1ca, Math.PI - l1ca);
+				const aB = withinPiPi(l1ca - aC);
+				const aB2 = Math.min(Math.abs(aB), Math.PI - Math.abs(aB));
+				rX = Math.sign(aB) * lbFromLaAaAb(la, aA, aB2);
 			}
 		}
 		return rX;
@@ -91,18 +88,17 @@ class Line {
 			const l1ca = withinHPiHPi(this.ca);
 			const aC = p1.angleOrig();
 			const la = p1.distanceOrig();
+			const angleDiff = withinHPiHPi(l1ca - aC);
 			if (roundZero(la) === 0) {
 				rY = 0;
-			} else if (roundZero(withinHPiHPi(l1ca - aC)) === 0) {
+			} else if (roundZero(angleDiff) === 0) {
 				rY = 0;
-			} else if (l1ca < aC) {
-				const aA = withinZeroPi(l1ca - Math.PI / 2);
-				const aB = withinZeroPi(aC + Math.PI / 2 - aA);
-				rY = lbFromLaAaAb(la, aA, aB);
 			} else {
-				const aA = withinZeroPi(Math.PI / 2 - l1ca);
-				const aB = withinZeroPi(l1ca - aC);
-				rY = -1 * lbFromLaAaAb(la, aA, aB);
+				const aA = withinZeroPi(l1ca - Math.PI / 2);
+				const aB = -1 * withinPiPi(l1ca - aC);
+				const aA2 = Math.min(aA, Math.PI - aA);
+				const aB2 = Math.min(Math.abs(aB), Math.PI - Math.abs(aB));
+				rY = Math.sign(aB) * lbFromLaAaAb(la, aA2, aB2);
 			}
 		}
 		return rY;
