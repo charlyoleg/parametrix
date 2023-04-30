@@ -70,8 +70,8 @@ class Line {
 			const la = p1.distanceOrig();
 			if (roundZero(la) === 0) {
 				rX = 0;
-				//} else if (roundZero(withinHPiHPi(l1ca - aC)) === 0) {
-				//	rX = 0;
+			} else if (roundZero(withinHPiHPi(l1ca - aC)) === 0) {
+				rX = 0;
 			} else if (l1ca > aC) {
 				const aA = withinZeroPi(Math.PI - l1ca);
 				const aB = withinZeroPi(Math.PI - aA - aC);
@@ -93,8 +93,8 @@ class Line {
 			const la = p1.distanceOrig();
 			if (roundZero(la) === 0) {
 				rY = 0;
-				//} else if (roundZero(withinHPiHPi(l1ca - aC)) === 0) {
-				//	rY = 0;
+			} else if (roundZero(withinHPiHPi(l1ca - aC)) === 0) {
+				rY = 0;
 			} else if (l1ca < aC) {
 				const aA = withinZeroPi(l1ca - Math.PI / 2);
 				const aB = withinZeroPi(aC + Math.PI / 2 - aA);
