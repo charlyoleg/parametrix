@@ -31,18 +31,23 @@ const pDef: tParamDef = {
 function pGeom(t: number, param: tParamVal): tGeom {
 	const rGeome: tGeom = { fig: new Figure(), logstr: '' };
 	rGeome.logstr += `simTime: ${t}\n`;
-	const p1 = point(param['p1x'], param['p1y'] + t);
-	const p2 = point(param['p2x'], param['p2y']);
-	const p3 = point(param['p3x'], param['p3y']);
-	rGeome.fig.addPoint(p1);
-	rGeome.fig.addPoint(p2);
-	rGeome.fig.addPoint(p3);
-	const l1 = line(0, 0, 0).setFromPoints(p1, p2);
-	rGeome.fig.addLine(l1);
-	//rGeome.fig.addLine(l2);
-	rGeome.fig.addPoint(point(l1.getAxisXIntersection(), 0));
-	rGeome.fig.addPoint(point(0, l1.getAxisYIntersection()));
-	rGeome.logstr += 'verify_line draw successfully!\n';
+	try {
+		const p1 = point(param['p1x'], param['p1y'] + t);
+		const p2 = point(param['p2x'], param['p2y']);
+		const p3 = point(param['p3x'], param['p3y']);
+		rGeome.fig.addPoint(p1);
+		rGeome.fig.addPoint(p2);
+		rGeome.fig.addPoint(p3);
+		const l1 = line(0, 0, 0).setFromPoints(p1, p2);
+		rGeome.fig.addLine(l1);
+		//rGeome.fig.addLine(l2);
+		rGeome.fig.addPoint(point(l1.getAxisXIntersection(), 0));
+		rGeome.fig.addPoint(point(0, l1.getAxisYIntersection()));
+		rGeome.logstr += 'verify_line draw successfully!\n';
+	} catch (emsg) {
+		rGeome.logstr += emsg;
+		console.error(emsg);
+	}
 	return rGeome;
 }
 

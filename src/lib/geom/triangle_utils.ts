@@ -79,7 +79,7 @@ function lbFromLaAaAb(ila: number, iaA: number, iaB: number) {
 	const aB = withinZeroPi(iaB);
 	const sum = aA + aB;
 	if (sum > Math.PI) {
-		console.log(`err939: impossible triangle with angles ${iaA} and ${iaB}`);
+		throw `err939: impossible triangle with angles ${iaA} and ${iaB}`;
 	} else {
 		rlb = (ila * Math.sin(iaB)) / Math.sin(iaA);
 	}
