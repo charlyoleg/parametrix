@@ -69,7 +69,7 @@ class Figure {
 				p0.cy === Number.NEGATIVE_INFINITY ||
 				p0.cy === Number.POSITIVE_INFINITY
 			) {
-				console.log(`err392: first point with infinity: ${p0.cx} ${p0.cy}`);
+				throw `err392: first point with infinity: ${p0.cx} ${p0.cy}`;
 			}
 			this.xMin = this.pointList[0].cx;
 			this.xMax = this.pointList[0].cx;

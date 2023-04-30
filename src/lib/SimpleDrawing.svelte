@@ -21,8 +21,13 @@
 	function canvasRedrawMini() {
 		const ctx1 = canvasMini.getContext('2d') as CanvasRenderingContext2D;
 		ctx1.clearRect(0, 0, ctx1.canvas.width, ctx1.canvas.height);
-		mAdjust = aFigure.getAdjustFull(ctx1.canvas.width, ctx1.canvas.height);
-		aFigure.draw(ctx1, mAdjust, layers);
+		try {
+			mAdjust = aFigure.getAdjustFull(ctx1.canvas.width, ctx1.canvas.height);
+			aFigure.draw(ctx1, mAdjust, layers);
+		} catch (emsg) {
+			//rGeome.logstr += emsg;
+			console.error(emsg);
+		}
 		// extra drawing
 		//point(5, 5).draw(ctx1, mAdjust, 'green');
 		//point(5, 15).draw(ctx1, mAdjust, 'blue', 'rectangle');

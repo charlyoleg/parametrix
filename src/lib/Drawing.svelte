@@ -54,8 +54,13 @@
 	function canvasRedrawFull(iLayers: tLayers) {
 		const ctx1 = canvasFull.getContext('2d') as CanvasRenderingContext2D;
 		ctx1.clearRect(0, 0, ctx1.canvas.width, ctx1.canvas.height);
-		cAdjust = aFigure.getAdjustFull(ctx1.canvas.width, ctx1.canvas.height);
-		aFigure.draw(ctx1, cAdjust, iLayers);
+		try {
+			cAdjust = aFigure.getAdjustFull(ctx1.canvas.width, ctx1.canvas.height);
+			aFigure.draw(ctx1, cAdjust, iLayers);
+		} catch (emsg) {
+			//rGeome.logstr += emsg;
+			console.error(emsg);
+		}
 		// extra drawing
 		//point(5, 5).draw(ctx1, cAdjust, 'green');
 		//point(5, 15).draw(ctx1, cAdjust, 'blue', 'rectangle');
@@ -63,11 +68,16 @@
 	function canvasRedrawZoom(iLayers: tLayers) {
 		const ctx2 = canvasZoom.getContext('2d') as CanvasRenderingContext2D;
 		ctx2.clearRect(0, 0, ctx2.canvas.width, ctx2.canvas.height);
-		if (zAdjust === undefined || zAdjust.init === 0) {
-			zAdjust = aFigure.getAdjustZoom(ctx2.canvas.width, ctx2.canvas.height);
-			//console.log(`dbg047: init zAdjust: ${zAdjust.xMin} ${zAdjust.yMin}`);
+		try {
+			if (zAdjust === undefined || zAdjust.init === 0) {
+				zAdjust = aFigure.getAdjustZoom(ctx2.canvas.width, ctx2.canvas.height);
+				//console.log(`dbg047: init zAdjust: ${zAdjust.xMin} ${zAdjust.yMin}`);
+			}
+			aFigure.draw(ctx2, zAdjust, iLayers);
+		} catch (emsg) {
+			//rGeome.logstr += emsg;
+			console.error(emsg);
 		}
-		aFigure.draw(ctx2, zAdjust, iLayers);
 	}
 	function canvasSetSize() {
 		//console.log(`windowWidth: ${windowWidth}`);

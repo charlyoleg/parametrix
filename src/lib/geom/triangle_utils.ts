@@ -17,7 +17,7 @@ function rightTriLaFromLbLc(ilb: number, ilc: number): number {
 function rightTriLbFromLaLc(ila: number, ilc: number): number {
 	let rlb = 0;
 	if (ilc > ila) {
-		console.log(`err539: ilc:${ilc} > ila${ila}`);
+		throw `err539: ilc:${ilc} > ila${ila}`;
 	} else {
 		rlb = Math.sqrt(ila ** 2 - ilc ** 2);
 	}
@@ -39,7 +39,7 @@ function aCFromLaLbLc(la: number, lb: number, lc: number) {
 	const l3 = [la, lb, lc];
 	for (let i = 0; i < l3.length; i++) {
 		if (l3[i] < 0) {
-			console.log(`err209: l3[${i}] = ${l3[i]}`);
+			throw `err209: l3[${i}] = ${l3[i]}`;
 		}
 	}
 	const l3s = l3.sort(function (a, b) {
@@ -47,7 +47,7 @@ function aCFromLaLbLc(la: number, lb: number, lc: number) {
 	});
 	//console.log(l3s);
 	if (l3s[0] > l3s[1] + l3s[2]) {
-		console.log(`err839: impossible triangle with length ${la}, ${lb} and ${lc}`);
+		throw `err839: impossible triangle with length ${la}, ${lb} and ${lc}`;
 	} else {
 		rac = Math.acos((la ** 2 + lb ** 2 - lc ** 2) / (2 * la * lb));
 	}
@@ -60,7 +60,7 @@ function aCFromAaAb(iaA: number, iaB: number) {
 	const aB = withinZeroPi(iaB);
 	const sum = aA + aB;
 	if (sum > Math.PI) {
-		console.log(`err739: impossible triangle with angles ${iaA} and ${iaB}`);
+		throw `err739: impossible triangle with angles ${iaA} and ${iaB}`;
 	} else {
 		rac = Math.PI - sum;
 	}
@@ -72,7 +72,7 @@ function lbFromLaAaAb(ila: number, iaA: number, iaB: number) {
 	const args = [ila, iaA, iaB];
 	for (let i = 0; i < args.length; i++) {
 		if (roundZero(args[i]) <= 0) {
-			console.log(`err329: negative or zero triangle-args ${i} : ${args[i]}`);
+			throw `err329: negative or zero triangle-args ${i} : ${args[i]}`;
 		}
 	}
 	const aA = withinZeroPi(iaA);
@@ -91,7 +91,7 @@ function aBFromLaLbAa(ila: number, ilb: number, iaA: number) {
 	const args = [ila, ilb, iaA];
 	for (let i = 0; i < args.length; i++) {
 		if (args[i] <= 0) {
-			console.log(`err429: negative or zero triangle-args ${i} : ${args[i]}`);
+			throw `err429: negative or zero triangle-args ${i} : ${args[i]}`;
 		}
 	}
 	rab = Math.asin((ilb * Math.sin(iaA)) / ila);

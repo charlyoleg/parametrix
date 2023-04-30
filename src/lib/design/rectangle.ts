@@ -24,16 +24,21 @@ const pDef: tParamDef = {
 function pGeom(t: number, param: tParamVal): tGeom {
 	const rGeome: tGeom = { fig: new Figure(), logstr: '' };
 	rGeome.logstr += `simTime: ${t}\n`;
-	const p1 = point(10, 10);
-	const p2 = point(10 + param['width'], 10);
-	const p3 = point(10 + param['width'], 10 + param['height']);
-	const p4 = point(10, 10 + param['height']);
-	const angle = (t * Math.PI) / 180;
-	rGeome.fig.addPoint(p1);
-	rGeome.fig.addPoint(p2.rotate(p1, angle));
-	rGeome.fig.addPoint(p3.rotate(p1, angle));
-	rGeome.fig.addPoint(p4.rotate(p1, angle));
-	rGeome.logstr += 'Rectangle draw successfully!\n';
+	try {
+		const p1 = point(10, 10);
+		const p2 = point(10 + param['width'], 10);
+		const p3 = point(10 + param['width'], 10 + param['height']);
+		const p4 = point(10, 10 + param['height']);
+		const angle = (t * Math.PI) / 180;
+		rGeome.fig.addPoint(p1);
+		rGeome.fig.addPoint(p2.rotate(p1, angle));
+		rGeome.fig.addPoint(p3.rotate(p1, angle));
+		rGeome.fig.addPoint(p4.rotate(p1, angle));
+		rGeome.logstr += 'Rectangle draw successfully!\n';
+	} catch (emsg) {
+		rGeome.logstr += emsg;
+		console.error(emsg);
+	}
 	return rGeome;
 }
 

@@ -31,15 +31,20 @@ const pDef: tParamDef = {
 function pGeom(t: number, param: tParamVal): tGeom {
 	const rGeome: tGeom = { fig: new Figure(), logstr: '' };
 	rGeome.logstr += `simTime: ${t}\n`;
-	const p1 = point(param['p1x'], param['p1y'] + t);
-	const p2 = point(0, 0).setPolar(degToRad(param['p2a']), param['p2l']);
-	const p3 = p1.rotateOrig(degToRad(param['rotateOrig']));
-	const p4 = p1.scaleOrig(param['scaleOrig']);
-	rGeome.fig.addPoint(p1);
-	rGeome.fig.addPoint(p2);
-	rGeome.fig.addPoint(p3);
-	rGeome.fig.addPoint(p4);
-	rGeome.logstr += 'verify_point draw successfully!\n';
+	try {
+		const p1 = point(param['p1x'], param['p1y'] + t);
+		const p2 = point(0, 0).setPolar(degToRad(param['p2a']), param['p2l']);
+		const p3 = p1.rotateOrig(degToRad(param['rotateOrig']));
+		const p4 = p1.scaleOrig(param['scaleOrig']);
+		rGeome.fig.addPoint(p1);
+		rGeome.fig.addPoint(p2);
+		rGeome.fig.addPoint(p3);
+		rGeome.fig.addPoint(p4);
+		rGeome.logstr += 'verify_point draw successfully!\n';
+	} catch (emsg) {
+		rGeome.logstr += emsg;
+		console.error(emsg);
+	}
 	return rGeome;
 }
 

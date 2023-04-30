@@ -31,19 +31,24 @@ const pDef: tParamDef = {
 function pGeom(t: number, param: tParamVal): tGeom {
 	const rGeome: tGeom = { fig: new Figure(), logstr: '' };
 	rGeome.logstr += `simTime: ${t}\n`;
-	//rGeome.fig.addPoint(point(0, 0));
-	const p1 = point(10, 10);
-	const p2 = point(10, 30);
-	//rGeome.fig.addPoint(p1);
-	rGeome.fig.addPoint(p2);
-	for (let i = 0; i < 20; i++) {
-		rGeome.fig.addPoint(
-			p1
-				.scale(p2, param['amplitude-offset'] + param['amplitude-scale'] * i)
-				.rotate(p2, i * degToRad(param['angle']) + (t * Math.PI) / 2 / pDef.sim.tMax)
-		);
+	try {
+		//rGeome.fig.addPoint(point(0, 0));
+		const p1 = point(10, 10);
+		const p2 = point(10, 30);
+		//rGeome.fig.addPoint(p1);
+		rGeome.fig.addPoint(p2);
+		for (let i = 0; i < 20; i++) {
+			rGeome.fig.addPoint(
+				p1
+					.scale(p2, param['amplitude-offset'] + param['amplitude-scale'] * i)
+					.rotate(p2, i * degToRad(param['angle']) + (t * Math.PI) / 2 / pDef.sim.tMax)
+			);
+		}
+		rGeome.logstr += 'Circles draw successfully!\n';
+	} catch (emsg) {
+		rGeome.logstr += emsg;
+		console.error(emsg);
 	}
-	rGeome.logstr += 'Circles draw successfully!\n';
 	return rGeome;
 }
 
