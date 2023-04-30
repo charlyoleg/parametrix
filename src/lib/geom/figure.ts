@@ -61,15 +61,33 @@ class Figure {
 	}
 	getMinMax() {
 		if (this.pointList.length > 0) {
+			// the first point of the list should not contain infinity
+			const p0 = this.pointList[0];
+			if (
+				p0.cx === Number.NEGATIVE_INFINITY ||
+				p0.cx === Number.POSITIVE_INFINITY ||
+				p0.cy === Number.NEGATIVE_INFINITY ||
+				p0.cy === Number.POSITIVE_INFINITY
+			) {
+				console.log(`err392: first point with infinity: ${p0.cx} ${p0.cy}`);
+			}
 			this.xMin = this.pointList[0].cx;
 			this.xMax = this.pointList[0].cx;
 			this.yMin = this.pointList[0].cy;
 			this.yMax = this.pointList[0].cy;
 			for (const p of this.pointList) {
-				this.xMin = Math.min(this.xMin, p.cx);
-				this.xMax = Math.max(this.xMax, p.cx);
-				this.yMin = Math.min(this.yMin, p.cy);
-				this.yMax = Math.max(this.yMax, p.cy);
+				if (p.cx !== Number.NEGATIVE_INFINITY) {
+					this.xMin = Math.min(this.xMin, p.cx);
+				}
+				if (p.cx !== Number.POSITIVE_INFINITY) {
+					this.xMax = Math.max(this.xMax, p.cx);
+				}
+				if (p.cy !== Number.NEGATIVE_INFINITY) {
+					this.yMin = Math.min(this.yMin, p.cy);
+				}
+				if (p.cy !== Number.POSITIVE_INFINITY) {
+					this.yMax = Math.max(this.yMax, p.cy);
+				}
 			}
 		}
 		//console.log(`dbg137: ${this.xMin}, ${this.xMax}, ${this.yMin}, ${this.yMax}`);
