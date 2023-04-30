@@ -10,10 +10,12 @@
 	let simTime = 0;
 	// log and paramChange
 	let logValue = 'Dummy initial\nWill be replaced during onMount\n';
+	let calcErr = false;
 	function paramChange() {
 		logValue = 'Geometry computed at ' + new Date().toLocaleTimeString() + '\n';
 		const geome = geom(simTime, $storePV[pDef.page]);
 		logValue += geome.logstr;
+		calcErr = geome.calcErr;
 		//geomRedraw(simTime);
 	}
 	// export drawings
@@ -25,7 +27,7 @@
 <InputParams {pDef} on:paramChg={paramChange} {geom} {simTime} />
 <section>
 	<h2>Log</h2>
-	<textarea rows="5" cols="80" readonly wrap="off" bind:value={logValue} />
+	<textarea rows="5" cols="80" readonly wrap="off" value={logValue} class:colorWarn={calcErr} />
 </section>
 <Drawing {pDef} {geom} bind:simTime />
 <section>
@@ -48,6 +50,9 @@
 	section > textarea {
 		resize: horizontal;
 		margin-left: 0.5rem;
+	}
+	section > textarea.colorWarn {
+		background-color: colors.$warn-calc-error;
 	}
 	section > button,
 	section > select {

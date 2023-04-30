@@ -29,7 +29,7 @@ const pDef: tParamDef = {
 };
 
 function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome: tGeom = { fig: new Figure(), logstr: '' };
+	const rGeome: tGeom = { fig: new Figure(), logstr: '', calcErr: true };
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		//rGeome.fig.addPoint(point(0, 0));
@@ -45,6 +45,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			);
 		}
 		rGeome.logstr += 'Circles draw successfully!\n';
+		rGeome.calcErr = false;
 	} catch (emsg) {
 		rGeome.logstr += emsg;
 		console.log(emsg);

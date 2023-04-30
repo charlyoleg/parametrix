@@ -29,7 +29,7 @@ const pDef: tParamDef = {
 };
 
 function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome: tGeom = { fig: new Figure(), logstr: '' };
+	const rGeome: tGeom = { fig: new Figure(), logstr: '', calcErr: true };
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const p1 = point(param['p1x'], param['p1y'] + t);
@@ -44,6 +44,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rGeome.fig.addPoint(point(l1.getAxisXIntersection(), 0));
 		rGeome.fig.addPoint(point(0, l1.getAxisYIntersection()));
 		rGeome.logstr += 'verify_line draw successfully!\n';
+		rGeome.calcErr = false;
 	} catch (emsg) {
 		rGeome.logstr += emsg;
 		console.log(emsg);

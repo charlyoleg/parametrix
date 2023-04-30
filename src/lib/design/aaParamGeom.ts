@@ -27,6 +27,7 @@ type tAllVal = { lastModif: string; pVal: tParamVal; comment: string };
 type tGeom = {
 	fig: Figure;
 	logstr: string;
+	calcErr: boolean;
 };
 type tGeomFunc = (t: number, ipVal: tParamVal) => tGeom;
 

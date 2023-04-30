@@ -22,7 +22,7 @@ const pDef: tParamDef = {
 };
 
 function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome: tGeom = { fig: new Figure(), logstr: '' };
+	const rGeome: tGeom = { fig: new Figure(), logstr: '', calcErr: true };
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const p1 = point(10, 10);
@@ -35,6 +35,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rGeome.fig.addPoint(p3.rotate(p1, angle));
 		rGeome.fig.addPoint(p4.rotate(p1, angle));
 		rGeome.logstr += 'Rectangle draw successfully!\n';
+		rGeome.calcErr = false;
 	} catch (emsg) {
 		rGeome.logstr += emsg;
 		console.log(emsg);
