@@ -47,7 +47,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rGeome.logstr += 'Circles draw successfully!\n';
 	} catch (emsg) {
 		rGeome.logstr += emsg;
-		console.error(emsg);
+		console.log(emsg);
 	}
 	return rGeome;
 }

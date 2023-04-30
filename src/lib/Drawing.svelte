@@ -59,7 +59,7 @@
 			aFigure.draw(ctx1, cAdjust, iLayers);
 		} catch (emsg) {
 			//rGeome.logstr += emsg;
-			console.error(emsg);
+			console.log(emsg);
 		}
 		// extra drawing
 		//point(5, 5).draw(ctx1, cAdjust, 'green');
@@ -76,7 +76,7 @@
 			aFigure.draw(ctx2, zAdjust, iLayers);
 		} catch (emsg) {
 			//rGeome.logstr += emsg;
-			console.error(emsg);
+			console.log(emsg);
 		}
 	}
 	function canvasSetSize() {

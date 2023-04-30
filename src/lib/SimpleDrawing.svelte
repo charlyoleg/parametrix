@@ -26,7 +26,7 @@
 			aFigure.draw(ctx1, mAdjust, layers);
 		} catch (emsg) {
 			//rGeome.logstr += emsg;
-			console.error(emsg);
+			console.log(emsg);
 		}
 		// extra drawing
 		//point(5, 5).draw(ctx1, mAdjust, 'green');
