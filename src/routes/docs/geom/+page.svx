@@ -34,8 +34,11 @@ category: documentation
 
 ![line_getAxisXIntersection.svg]({base}/line_getAxisXIntersection.svg)
 ![line_getAxisXIntersection_2.svg]({base}/line_getAxisXIntersection_2.svg)
+
 ![line_getAxisYIntersection.svg]({base}/line_getAxisYIntersection.svg)
 ![line_getAxisYIntersection_2.svg]({base}/line_getAxisYIntersection_2.svg)
+![line_getAxisYIntersection_3.svg]({base}/line_getAxisYIntersection_3.svg)
+
 ![line_distanceOrig.svg]({base}/line_distanceOrig.svg)
 
 

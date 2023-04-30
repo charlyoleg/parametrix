@@ -7,33 +7,8 @@
    viewBox="0 0 69.324604 51.766236"
    version="1.1"
    id="svg5"
-   inkscape:version="1.2.2 (1:1.2.2+202212051552+b0a8486541)"
-   sodipodi:docname="geom.svg"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
-  <sodipodi:namedview
-     id="namedview7"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:showpageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#d1d1d1"
-     inkscape:document-units="px"
-     showgrid="false"
-     inkscape:zoom="2.3786088"
-     inkscape:cx="372.48664"
-     inkscape:cy="2991.8749"
-     inkscape:window-width="1366"
-     inkscape:window-height="836"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="layer1"
-     showguides="false" />
   <defs
      id="defs2">
     <marker
@@ -42,12 +17,9 @@
        refX="0"
        refY="0"
        orient="auto-start-reverse"
-       inkscape:stockid="Arrow1L"
        markerWidth="8.75"
        markerHeight="5"
        viewBox="0 0 8.75 5"
-       inkscape:isstock="true"
-       inkscape:collect="always"
        preserveAspectRatio="xMidYMid">
       <path
          style="fill:context-stroke;fill-rule:evenodd;stroke:none"
@@ -61,12 +33,9 @@
        refX="0"
        refY="0"
        orient="auto-start-reverse"
-       inkscape:stockid="Arrow1L"
        markerWidth="8.75"
        markerHeight="5"
        viewBox="0 0 8.75 5"
-       inkscape:isstock="true"
-       inkscape:collect="always"
        preserveAspectRatio="xMidYMid">
       <path
          style="fill:context-stroke;fill-rule:evenodd;stroke:none"
@@ -130,8 +99,6 @@
        id="rect1290-9-0" />
   </defs>
   <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
      id="layer1"
      transform="translate(-38.993267,-688.78455)">
     <rect
@@ -140,15 +107,11 @@
        width="69.06002"
        height="51.501595"
        x="39.125557"
-       y="688.91687"
-       inkscape:export-filename="line_getAxisXIntersection_2.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
+       y="688.91687" />
     <path
        style="fill:none;stroke:#008000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 73.433581,710.60821 52.880276,727.20789"
-       id="path1069-4-2-0-1"
-       sodipodi:nodetypes="cc" />
+       d="M 73.435596,710.61048 48.459205,730.78994"
+       id="path1069-4-2-0-1" />
     <path
        style="fill:none;stroke:#999999;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 73.433097,710.60765 h 6.68089"
@@ -168,7 +131,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1269-4-3-3-62);display:inline"><tspan
          x="254.32031"
          y="250.96683"
-         id="tspan3072">x</tspan></text>
+         id="tspan1885">x</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,26.589754,653.01893)"
@@ -176,7 +139,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1287-8-5-5-9);display:inline"><tspan
          x="130.98438"
          y="153.5137"
-         id="tspan3074">y</tspan></text>
+         id="tspan1887">y</tspan></text>
     <path
        style="fill:none;stroke:#cccccc;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:2, 1;stroke-dashoffset:0;stroke-opacity:1"
        d="m 73.433097,727.5499 v -16.94225 h -9.51751"
@@ -188,7 +151,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1388-7-62-6-1);display:inline"><tspan
          x="232.47656"
          y="174.34183"
-         id="tspan3076">p1</tspan></text>
+         id="tspan1889">p1</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,17.845389,652.26108)"
@@ -196,7 +159,7 @@
        style="font-size:8px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1406-17-9-2-2);display:inline"><tspan
          x="200.71484"
          y="295.26758"
-         id="tspan3078">p1.cx</tspan></text>
+         id="tspan1891">p1.cx</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,3.5125768,633.33608)"
@@ -204,7 +167,7 @@
        style="font-size:8px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1406-3-2-1-9-7);display:inline"><tspan
          x="200.71484"
          y="295.26758"
-         id="tspan3080">p1.cy</tspan></text>
+         id="tspan1893">p1.cy</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 63.156927,710.60765 h 1.51731"
@@ -220,17 +183,15 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect3974-2-2-1-09);display:inline"><tspan
          x="63.429688"
          y="346.04105"
-         id="tspan3082">line_getAxisXIntersection 2</tspan></text>
+         id="tspan1895">line_getAxisXIntersection 2</tspan></text>
     <path
        style="fill:none;stroke:#008000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 93.054866,694.59395 73.516212,710.37244"
-       id="path1069-4-2-0"
-       sodipodi:nodetypes="cc" />
+       id="path1069-4-2-0" />
     <path
        style="fill:none;stroke:#0000ff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 76.241527,710.68185 c 0,0 0.03638,-0.80344 -0.132129,-1.15088 -0.141096,-0.29091 -0.688247,-0.68347 -0.688247,-0.68347"
-       id="path1176-89-3"
-       sodipodi:nodetypes="cac" />
+       id="path1176-89-3" />
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-4.6558307,212.84415)"
@@ -238,7 +199,7 @@
        style="font-size:8px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1180-2-3);display:inline;fill:#0000ff"><tspan
          x="309.29102"
          y="1878.8633"
-         id="tspan3084">ca</tspan></text>
+         id="tspan1897">ca</tspan></text>
     <path
        style="fill:#800080;stroke:#800080;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 73.433097,710.60765 -9.35514,16.84729"
@@ -246,8 +207,7 @@
     <path
        style="fill:none;stroke:#800080;stroke-width:0.264584px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 65.718927,724.53968 c 0,0 1.04247,0.55173 1.28073,1.15356 0.21063,0.53204 -0.017,1.79697 -0.017,1.79697"
-       id="path1176-8-4-1-0"
-       sodipodi:nodetypes="cac" />
+       id="path1176-8-4-1-0" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 72.845187,711.35258 1.17582,-1.48983"
@@ -263,7 +223,7 @@
        style="font-size:8px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1213-5-0-6);display:inline;fill:#800080"><tspan
          x="323.20508"
          y="1887.8848"
-         id="tspan3086">a1</tspan></text>
+         id="tspan1899">a1</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-21.805485,218.6822)"
@@ -271,16 +231,14 @@
        style="font-size:8px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1290-9-0);display:inline;fill:#800080"><tspan
          x="346.23828"
          y="1890.7598"
-         id="tspan3088">L1</tspan></text>
+         id="tspan1901">L1</tspan></text>
     <path
        style="fill:none;stroke:#ff6600;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 52.780375,727.40861 11.133804,0.009"
-       id="path1370-6"
-       sodipodi:nodetypes="cc" />
+       id="path1370-6" />
     <path
        style="fill:none;stroke:#ff6600;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 70.905476,712.6372 c 0,0 -0.106944,0.43326 0.267761,0.75284 0.294879,0.25159 0.759283,0.0456 0.759283,0.0456"
-       id="path1468-1"
-       sodipodi:nodetypes="csc" />
+       id="path1468-1" />
   </g>
 </svg>
