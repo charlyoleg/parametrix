@@ -8,8 +8,8 @@ describe('line module', () => {
 	const p1 = point(30, 30);
 	const p2 = point(30, -30);
 	it('Line construction', () => {
-		expect(() => (new Line(0, 0, 0)).setFromPoints(p1, p1)).toThrowError(/err434/);
-		expect((new Line(0, 0, 0)).setFromPoints(p2, p1).ca).toBeCloseTo(Math.PI / 2, 5);
+		expect(() => new Line(0, 0, 0).setFromPoints(p1, p1)).toThrowError(/err434/);
+		expect(new Line(0, 0, 0).setFromPoints(p2, p1).ca).toBeCloseTo(Math.PI / 2, 5);
 	});
 	it('Line Axis X and Y intersection', () => {
 		expect(l1.getAxisXIntersection()).toBeCloseTo(0, 5);

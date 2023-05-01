@@ -5,6 +5,7 @@
 
 <h1>{data.pageDef.pTitle}</h1>
 <article>{data.pageDef.pDescription}</article>
+<!--article>Category: {data.category}</article-->
 <ParamDrawExport pDef={data.pageDef.pDef} geom={data.pageDef.pGeom} />
 
 <style lang="scss">
