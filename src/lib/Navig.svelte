@@ -9,6 +9,7 @@
 
 	export let menuList: tMenu;
 	export let menuSelected: string;
+	export let category: string;
 </script>
 
 <nav>
@@ -20,6 +21,9 @@
 			<div class="arrow" class:arrow-active={menuSelected === menuItem.path} />
 		</div>
 	{/each}
+	{#if category}
+		<span>[{category}]</span>
+	{/if}
 </nav>
 
 <style lang="scss">
@@ -75,5 +79,8 @@
 	}
 	nav > div > div.arrow-active {
 		display: block;
+	}
+	nav > span {
+		color: colors.$menu-category;
 	}
 </style>
