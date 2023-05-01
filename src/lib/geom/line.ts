@@ -24,7 +24,7 @@ import {
 	lbFromLaAaAb
 	//aBFromLaLbAa
 } from './triangle_utils';
-import { Point, anglePoints } from './point';
+import { point, Point, anglePoints } from './point';
 
 /* Base classes */
 
@@ -113,8 +113,23 @@ class Line {
 		return rd;
 	}
 	angleOrig(): number {
-		const ra = withinPiPi(Math.PI / 2 + this.ca);
+		// compute sign, i.e. top-side or bottom-side
+		const p1 = new Point(this.cx, this.cy);
+		const aC = p1.angleOrig();
+		const l1ca = withinHPiHPi(this.ca);
+		const aB = -1 * withinPiPi(l1ca - aC);
+		let sign = 1;
+		if (aB < 0) {
+			sign = -1;
+		}
+		// end of sign calculation
+		const ra = sign * withinZeroPi(Math.PI / 2 + this.ca);
 		return ra;
+	}
+	projectOrig(): Point {
+		const pa = this.angleOrig();
+		const pl = this.distanceOrig();
+		return point(0, 0).setPolar(pa, pl);
 	}
 	translate(ix: number, iy: number): Line {
 		return new Line(this.cx + ix, this.cy + iy, this.ca);

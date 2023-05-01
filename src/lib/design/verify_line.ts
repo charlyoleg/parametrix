@@ -43,6 +43,11 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		//rGeome.fig.addLine(l2);
 		rGeome.fig.addPoint(point(l1.getAxisXIntersection(), 0));
 		rGeome.fig.addPoint(point(0, l1.getAxisYIntersection()));
+		const p4 = l1.projectOrig();
+		const p0 = point(0, 0);
+		const l2 = line(0, 0, 0).setFromPoints(p0, p4);
+		rGeome.fig.addPoint(p4);
+		rGeome.fig.addLine(l2);
 		rGeome.logstr += 'verify_line draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
