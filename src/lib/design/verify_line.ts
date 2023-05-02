@@ -48,6 +48,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const l2 = line(0, 0, 0).setFromPoints(p0, p4);
 		rGeome.fig.addPoint(p4);
 		rGeome.fig.addLine(l2);
+		rGeome.fig.addLine(l1.lineOrthogonal(p3));
+		rGeome.fig.addLine(l1.lineParallel(p3));
 		rGeome.logstr += 'verify_line draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {

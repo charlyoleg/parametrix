@@ -131,6 +131,7 @@ class Line {
 		const pl = this.distanceOrig();
 		return point(0, 0).setPolar(pa, pl);
 	}
+	// methods inherited from point
 	translate(ix: number, iy: number): Line {
 		return new Line(this.cx + ix, this.cy + iy, this.ca);
 	}
@@ -150,6 +151,24 @@ class Line {
 	scale(ic: Point, ir: number): Line {
 		const lPoint2 = new Point(this.cx, this.cy).scale(ic, ir);
 		return new Line(lPoint2.cx, lPoint2.cy, this.ca);
+	}
+	// end of methods from point
+	// line creation
+	lineOrthogonal(ic: Point): Line {
+		return line(ic.cx, ic.cy, this.ca + Math.PI / 2);
+	}
+	lineParallel(ic: Point): Line {
+		return line(ic.cx, ic.cy, this.ca);
+	}
+	// orthogonal projection
+	anglePoint(ic: Point): number {
+		return ic.cx;
+	}
+	distancePoint(ic: Point): number {
+		return ic.cx;
+	}
+	projectPoint(ic: Point): Point {
+		return ic;
 	}
 }
 
