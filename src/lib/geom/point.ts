@@ -84,6 +84,10 @@ class Point {
 		const p2 = this.setPolar(polar[0], polar[1] * ir);
 		return p2.translate(ic.cx, ic.cy);
 	}
+	equal(ic: Point): boolean {
+		const rb = roundZero(this.cx - ic.cx) === 0 && roundZero(this.cy - ic.cy) === 0;
+		return rb;
+	}
 }
 
 function point(ix: number, iy: number) {

@@ -170,6 +170,13 @@ class Line {
 	projectPoint(ic: Point): Point {
 		return ic;
 	}
+	// lien equality
+	equal(il: Line): boolean {
+		const p2 = point(il.cx, il.cy);
+		const dist = this.distancePoint(p2);
+		const rb = roundZero(dist) === 0 && roundZero(withinHPiHPi(this.ca - il.ca)) === 0;
+		return rb;
+	}
 }
 
 function line(ix: number, iy: number, ia: number) {
