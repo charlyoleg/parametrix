@@ -103,6 +103,20 @@ class Line {
 		}
 		return rY;
 	}
+	angleOrig(): number {
+		// compute direction, i.e. top-side or bottom-side
+		const p1 = new Point(this.cx, this.cy);
+		const aC = p1.angleOrig();
+		const l1ca = withinHPiHPi(this.ca);
+		const aB = -1 * withinPiPi(l1ca - aC);
+		let direction = 0;
+		if (aB < 0) {
+			direction = -Math.PI;
+		}
+		// end of direction calculation
+		const ra = withinZeroPi(Math.PI / 2 + this.ca) + direction;
+		return ra;
+	}
 	distanceOrig(): number {
 		const a1 = this.angleOrig();
 		const p1 = new Point(this.cx, this.cy);
@@ -111,20 +125,6 @@ class Line {
 		const a12 = withinHPiHPi(a2 - a1);
 		const rd = la * Math.cos(a12);
 		return rd;
-	}
-	angleOrig(): number {
-		// compute sign, i.e. top-side or bottom-side
-		const p1 = new Point(this.cx, this.cy);
-		const aC = p1.angleOrig();
-		const l1ca = withinHPiHPi(this.ca);
-		const aB = -1 * withinPiPi(l1ca - aC);
-		let sign = 1;
-		if (aB < 0) {
-			sign = -1;
-		}
-		// end of sign calculation
-		const ra = sign * withinZeroPi(Math.PI / 2 + this.ca);
-		return ra;
 	}
 	projectOrig(): Point {
 		const pa = this.angleOrig();
