@@ -22,4 +22,8 @@
 
 <style lang="scss">
 	@use '$lib/style/colors.scss';
+
+	input {
+		margin-left: 1rem;
+	}
 </style>
