@@ -46,7 +46,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const p4 = l1.projectOrig();
 		rGeome.fig.addPoint(p4);
 		const p0 = point(0, 0);
-		if (!p0.equal(p4)) {
+		if (!p0.isEqual(p4)) {
 			const l2 = line(0, 0, 0).setFromPoints(p0, p4);
 			rGeome.fig.addLine(l2);
 		}

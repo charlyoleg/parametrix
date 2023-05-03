@@ -176,12 +176,15 @@ class Line {
 		return ra;
 	}
 	distancePoint(ic: Point): number {
-		const a1 = this.anglePoint(ic);
+		let rd = 0;
 		const p1 = new Point(this.cx, this.cy);
-		const a2 = anglePoints(p1, ic);
-		const la = distancePoints(p1, ic);
-		const a12 = withinHPiHPi(a2 - a1);
-		const rd = la * Math.cos(a12);
+		if (!ic.isEqual(p1)) {
+			const a1 = this.anglePoint(ic);
+			const a2 = anglePoints(p1, ic);
+			const la = distancePoints(p1, ic);
+			const a12 = withinHPiHPi(a2 - a1);
+			rd = la * Math.cos(a12);
+		}
 		return rd;
 	}
 	projectPoint(ic: Point): Point {

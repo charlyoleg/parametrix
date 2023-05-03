@@ -8,7 +8,7 @@ describe('point module', () => {
 	const p3 = point(25, 25);
 	it('Point class', () => {
 		expect(p1.distanceOrig()).toBeCloseTo(5 * Math.sqrt(2), 5);
-		expect(p1.equal(p1)).toBe(true);
+		expect(p1.isEqual(p1)).toBe(true);
 	});
 	it('distancePoints function', () => {
 		expect(distancePoints(p1, p2)).toBeCloseTo(5);
