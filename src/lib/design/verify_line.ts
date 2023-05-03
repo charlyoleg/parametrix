@@ -52,6 +52,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		}
 		rGeome.fig.addLine(l1.lineOrthogonal(p3));
 		rGeome.fig.addLine(l1.lineParallel(p3));
+		rGeome.fig.addPoint(l1.projectPoint(p3));
+		rGeome.logstr += `dist(l1, p3) = ${l1.distancePoint(p3)}\n`;
 		rGeome.logstr += 'verify_line draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {

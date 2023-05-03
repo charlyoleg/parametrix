@@ -24,7 +24,7 @@ import {
 	lbFromLaAaAb
 	//aBFromLaLbAa
 } from './triangle_utils';
-import { point, Point, anglePoints } from './point';
+import { point, Point, distancePoints, anglePoints } from './point';
 
 /* Base classes */
 
@@ -162,13 +162,33 @@ class Line {
 	}
 	// orthogonal projection
 	anglePoint(ic: Point): number {
-		return ic.cx;
+		// compute direction, i.e. top-side or bottom-side
+		const p1 = new Point(this.cx, this.cy);
+		const aC = anglePoints(p1, ic);
+		const l1ca = withinHPiHPi(this.ca);
+		const aB = -1 * withinPiPi(l1ca - aC);
+		let direction = 0;
+		if (aB > 0) {
+			direction = -Math.PI;
+		}
+		// end of direction calculation
+		const ra = withinZeroPi(Math.PI / 2 + this.ca) + direction;
+		return ra;
 	}
 	distancePoint(ic: Point): number {
-		return ic.cx;
+		const a1 = this.anglePoint(ic);
+		const p1 = new Point(this.cx, this.cy);
+		const a2 = anglePoints(p1, ic);
+		const la = distancePoints(p1, ic);
+		const a12 = withinHPiHPi(a2 - a1);
+		const rd = la * Math.cos(a12);
+		return rd;
 	}
 	projectPoint(ic: Point): Point {
-		return ic;
+		const pa = this.anglePoint(ic);
+		const pl = this.distancePoint(ic);
+		const rp = point(0, 0).setPolar(pa, pl).translate(ic.cx, ic.cy);
+		return rp;
 	}
 	// lien equality
 	equal(il: Line): boolean {
