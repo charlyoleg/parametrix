@@ -42,6 +42,7 @@ category: documentation
 ![line_axis_y_cases.svg]({base}/line_axis_y_cases.svg)
 
 ![line_distanceOrig.svg]({base}/line_distanceOrig.svg)
+![line_projectPoint.svg]({base}/line_projectPoint.svg)
 
 
 ## Vector

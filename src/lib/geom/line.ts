@@ -190,12 +190,27 @@ class Line {
 		const rp = point(0, 0).setPolar(pa, pl).translate(ic.cx, ic.cy);
 		return rp;
 	}
-	// lien equality
-	equal(il: Line): boolean {
+	// line comparison
+	isParallel(il: Line): boolean {
+		const rb = roundZero(withinHPiHPi(this.ca - il.ca)) === 0;
+		return rb;
+	}
+	isOrthogonal(il: Line): boolean {
+		const rb = roundZero(withinHPiHPi(Math.PI / 2 + this.ca - il.ca)) === 0;
+		return rb;
+	}
+	isEqual(il: Line): boolean {
 		const p2 = point(il.cx, il.cy);
 		const dist = this.distancePoint(p2);
-		const rb = roundZero(dist) === 0 && roundZero(withinHPiHPi(this.ca - il.ca)) === 0;
+		const rb = roundZero(dist) === 0 && this.isParallel(il);
 		return rb;
+	}
+	// intersection
+	intersection(il: Line): Point {
+		return point(il.cx, il.cy);
+	}
+	bisector(il: Line, ip: Point): Line {
+		return line(ip.cx, ip.cy, il.ca);
 	}
 }
 
@@ -203,6 +218,10 @@ function line(ix: number, iy: number, ia: number) {
 	return new Line(ix, iy, ia);
 }
 
+function bisector(ip1: Point, ip2: Point) {
+	return new Line(ip1.cx, ip2.cy, ip1.cy);
+}
+
 /* export */
 
-export { Line, line };
+export { Line, line, bisector };
