@@ -16,4 +16,11 @@ describe('point module', () => {
 	it('anglePoints function', () => {
 		expect(anglePoints(p1, p3)).toBeCloseTo(Math.PI / 4, 5);
 	});
+	const p4 = point(5, -1);
+	it('point creation middle', () => {
+		expect(p1.middlePoint(p4).isEqual(point(5, 2))).toBeTruthy;
+	});
+	it('point creation equidistance', () => {
+		expect(p1.equidistantPoint(p4, 10, p2).isEqual(point(13, 2))).toBeTruthy;
+	});
 });

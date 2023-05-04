@@ -84,9 +84,45 @@ class Point {
 		const p2 = this.setPolar(polar[0], polar[1] * ir);
 		return p2.translate(ic.cx, ic.cy);
 	}
+	// point comparison
 	isEqual(ic: Point): boolean {
 		const rb = roundZero(this.cx - ic.cx) === 0 && roundZero(this.cy - ic.cy) === 0;
 		return rb;
+	}
+	// measurement
+	distanceToPoint(p2: Point): number {
+		const rd = Math.sqrt((p2.cx - this.cx) ** 2 + (p2.cy - this.cy) ** 2);
+		return rd;
+	}
+	angleToPoint(p2: Point): number {
+		if (roundZero(this.distanceToPoint(p2)) === 0) {
+			throw `err434: no angle because points identical ${this.cx} ${p2.cx} ${this.cy} ${p2.cy}`;
+		}
+		const ra = Math.atan2(p2.cy - this.cy, p2.cx - this.cx);
+		return ra;
+	}
+	// create new point
+	middlePoint(p2: Point): Point {
+		const rx = (this.cx + p2.cx) / 2;
+		const ry = (this.cy + p2.cy) / 2;
+		return new Point(rx, ry);
+	}
+	equidistantPoint(p2: Point, dist: number, p3: Point): Point {
+		const lp1p2 = this.distanceToPoint(p2);
+		if (dist < lp1p2) {
+			throw `err392: equidistance ${dist} smaller than lp1p2 ${lp1p2}`;
+		}
+		const pbi = this.middlePoint(p2);
+		const abi = this.angleToPoint(p2) + Math.PI / 2;
+		const rp1 = this.setPolar(abi, lp1p2).translate(pbi.cx, pbi.cy);
+		const rp2 = this.setPolar(abi + Math.PI, lp1p2).translate(pbi.cx, pbi.cy);
+		const dp1 = p3.distanceToPoint(rp1);
+		const dp2 = p3.distanceToPoint(rp2);
+		let rp = rp1;
+		if (dp2 < dp1) {
+			rp = rp2;
+		}
+		return rp;
 	}
 }
 
@@ -95,16 +131,10 @@ function point(ix: number, iy: number) {
 }
 
 function distancePoints(p1: Point, p2: Point) {
-	const rd = Math.sqrt((p2.cx - p1.cx) ** 2 + (p2.cy - p1.cy) ** 2);
-	return rd;
+	return p1.distanceToPoint(p2);
 }
-
 function anglePoints(p1: Point, p2: Point) {
-	if (roundZero(distancePoints(p1, p2)) === 0) {
-		throw `err434: no angle because points identical ${p1.cx} ${p2.cx} ${p1.cy} ${p2.cy}`;
-	}
-	const ra = Math.atan2(p2.cy - p1.cy, p2.cx - p1.cx);
-	return ra;
+	return p1.angleToPoint(p2);
 }
 
 /* export */
