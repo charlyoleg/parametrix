@@ -161,7 +161,7 @@ class Line {
 		return line(ic.cx, ic.cy, this.ca);
 	}
 	// orthogonal projection
-	anglePoint(ic: Point): number {
+	angleToPoint(ic: Point): number {
 		// compute direction, i.e. top-side or bottom-side
 		const p1 = new Point(this.cx, this.cy);
 		const aC = p1.angleToPoint(ic);
@@ -175,11 +175,11 @@ class Line {
 		const ra = withinZeroPi(Math.PI / 2 + this.ca) + direction;
 		return ra;
 	}
-	distancePoint(ic: Point): number {
+	distanceToPoint(ic: Point): number {
 		let rd = 0;
 		const p1 = new Point(this.cx, this.cy);
 		if (!ic.isEqual(p1)) {
-			const a1 = this.anglePoint(ic);
+			const a1 = this.angleToPoint(ic);
 			const a2 = p1.angleToPoint(ic);
 			const la = p1.distanceToPoint(ic);
 			const a12 = withinHPiHPi(a2 - a1);
@@ -188,8 +188,8 @@ class Line {
 		return rd;
 	}
 	projectPoint(ic: Point): Point {
-		const pa = this.anglePoint(ic);
-		const pl = this.distancePoint(ic);
+		const pa = this.angleToPoint(ic);
+		const pl = this.distanceToPoint(ic);
 		const rp = point(0, 0).setPolar(pa, pl).translate(ic.cx, ic.cy);
 		return rp;
 	}
@@ -204,7 +204,7 @@ class Line {
 	}
 	isEqual(il: Line): boolean {
 		const p2 = point(il.cx, il.cy);
-		const dist = this.distancePoint(p2);
+		const dist = this.distanceToPoint(p2);
 		const rb = roundZero(dist) === 0 && this.isParallel(il);
 		return rb;
 	}

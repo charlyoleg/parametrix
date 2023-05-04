@@ -24,10 +24,18 @@ category: documentation
 
 ## Point
 
+### Point polar coordinates
 ![point_1.svg]({base}/point_1.svg)
+
+### Basic point transforms
 ![point_2.svg]({base}/point_2.svg)
 ![point_3.svg]({base}/point_3.svg)
+
+### Measurements between 2 points
 ![point_4.svg]({base}/point_4.svg)
+
+### Create a point from 2 points
+![point_5.svg]({base}/point_5.svg)
 
 
 ## Line
