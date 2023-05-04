@@ -24,7 +24,7 @@ import {
 	lbFromLaAaAb
 	//aBFromLaLbAa
 } from './triangle_utils';
-import { point, Point, distancePoints, anglePoints } from './point';
+import { point, Point } from './point';
 
 /* Base classes */
 
@@ -58,7 +58,7 @@ class Line {
 	setFromPoints(p1: Point, p2: Point) {
 		this.cx = p1.cx;
 		this.cy = p1.cy;
-		this.ca = anglePoints(p1, p2);
+		this.ca = p1.angleToPoint(p2);
 		return this;
 	}
 	getAxisXIntersection() {
@@ -164,7 +164,7 @@ class Line {
 	anglePoint(ic: Point): number {
 		// compute direction, i.e. top-side or bottom-side
 		const p1 = new Point(this.cx, this.cy);
-		const aC = anglePoints(p1, ic);
+		const aC = p1.angleToPoint(ic);
 		const l1ca = withinHPiHPi(this.ca);
 		const aB = -1 * withinPiPi(l1ca - aC);
 		let direction = 0;
@@ -180,8 +180,8 @@ class Line {
 		const p1 = new Point(this.cx, this.cy);
 		if (!ic.isEqual(p1)) {
 			const a1 = this.anglePoint(ic);
-			const a2 = anglePoints(p1, ic);
-			const la = distancePoints(p1, ic);
+			const a2 = p1.angleToPoint(ic);
+			const la = p1.distanceToPoint(ic);
 			const a12 = withinHPiHPi(a2 - a1);
 			rd = la * Math.cos(a12);
 		}

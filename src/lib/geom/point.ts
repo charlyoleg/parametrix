@@ -101,7 +101,7 @@ class Point {
 		const ra = Math.atan2(p2.cy - this.cy, p2.cx - this.cx);
 		return ra;
 	}
-	// create new point
+	// from 2 points create a new point
 	middlePoint(p2: Point): Point {
 		const rx = (this.cx + p2.cx) / 2;
 		const ry = (this.cy + p2.cy) / 2;
@@ -130,14 +130,7 @@ function point(ix: number, iy: number) {
 	return new Point(ix, iy);
 }
 
-function distancePoints(p1: Point, p2: Point) {
-	return p1.distanceToPoint(p2);
-}
-function anglePoints(p1: Point, p2: Point) {
-	return p1.angleToPoint(p2);
-}
-
 /* export */
 
 export type { tPolar };
-export { Point, point, distancePoints, anglePoints };
+export { Point, point };
