@@ -210,7 +210,21 @@ class Line {
 	}
 	// intersection
 	intersection(il: Line): Point {
-		return point(il.cx, il.cy);
+		if (this.isParallel(il)) {
+			throw `err902: no intersection, lines are parallel ca1: ${this.ca} ca2: ${il.ca}`;
+		}
+		const p1 = point(this.cx, this.cy);
+		const p2 = point(il.cx, il.cy);
+		let rp = point(0, 0);
+		if (p1.isEqual(p2)) {
+			rp = p1;
+		} else {
+			const lp1p2 = p1.distanceToPoint(p2);
+			const ap1p2 = p1.angleToPoint(p2);
+			const a1 = withinZeroPi(this.ca - ap1p2);
+			const a2 = withinZeroPi(il.ca - ap1p2);
+		}
+		return rp;
 	}
 	bisector(il: Line, ip: Point): Line {
 		return line(ip.cx, ip.cy, il.ca);
@@ -222,7 +236,12 @@ function line(ix: number, iy: number, ia: number) {
 }
 
 function bisector(ip1: Point, ip2: Point) {
-	return new Line(ip1.cx, ip2.cy, ip1.cy);
+	if (ip1.isEqual(ip2)) {
+		throw `err546: no bisector with two same points cx: ${ip1.cx} cy: ${ip1.cy}`;
+	}
+	const pbi = ip1.middlePoint(ip2);
+	const abi = withinZeroPi(ip1.angleToPoint(ip2) + Math.PI / 2);
+	return new Line(pbi.cx, pbi.cy, abi);
 }
 
 /* export */

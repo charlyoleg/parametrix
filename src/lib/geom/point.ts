@@ -108,16 +108,20 @@ class Point {
 		return new Point(rx, ry);
 	}
 	equidistantPoint(p2: Point, dist: number, p3: Point): Point {
-		const lp1p2 = this.distanceToPoint(p2);
-		if (dist < lp1p2) {
-			throw `err392: equidistance ${dist} smaller than lp1p2 ${lp1p2}`;
+		const lp1p2h = this.distanceToPoint(p2) / 2;
+		if (dist < lp1p2h) {
+			throw `err392: equidistance ${dist} smaller than lp1p2h ${lp1p2h}`;
 		}
 		const pbi = this.middlePoint(p2);
 		const abi = this.angleToPoint(p2) + Math.PI / 2;
-		const rp1 = this.setPolar(abi, lp1p2).translate(pbi.cx, pbi.cy);
-		const rp2 = this.setPolar(abi + Math.PI, lp1p2).translate(pbi.cx, pbi.cy);
+		const oppos = Math.sqrt(dist ** 2 - lp1p2h ** 2);
+		const rp1 = this.setPolar(abi, oppos).translate(pbi.cx, pbi.cy);
+		const rp2 = this.setPolar(abi + Math.PI, oppos).translate(pbi.cx, pbi.cy);
 		const dp1 = p3.distanceToPoint(rp1);
 		const dp2 = p3.distanceToPoint(rp2);
+		if (oppos !== 0 && dp1 === dp2) {
+			throw `err284: magnet point p3 is on line p1p2. cx ${p3.cx} cy: ${p3.cy}`;
+		}
 		let rp = rp1;
 		if (dp2 < dp1) {
 			rp = rp2;

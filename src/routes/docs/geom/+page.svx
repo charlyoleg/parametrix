@@ -40,17 +40,27 @@ category: documentation
 
 ## Line
 
+### Line and X-axis
 ![line_getAxisXIntersection.svg]({base}/line_getAxisXIntersection.svg)
 ![line_getAxisXIntersection_2.svg]({base}/line_getAxisXIntersection_2.svg)
 ![line_axis_x_cases.svg]({base}/line_axis_x_cases.svg)
 
+### Line and Y-axis
 ![line_getAxisYIntersection.svg]({base}/line_getAxisYIntersection.svg)
 ![line_getAxisYIntersection_2.svg]({base}/line_getAxisYIntersection_2.svg)
 ![line_getAxisYIntersection_3.svg]({base}/line_getAxisYIntersection_3.svg)
 ![line_axis_y_cases.svg]({base}/line_axis_y_cases.svg)
 
+### Projection of origin on line
 ![line_distanceOrig.svg]({base}/line_distanceOrig.svg)
+
+### Projection of point on line
 ![line_projectPoint.svg]({base}/line_projectPoint.svg)
+
+### Line intersection and bisector
+![line_intersection.svg]({base}/line_intersection.svg)
+![construction_of_line_intersection_1.svg]({base}/construction_of_line_intersection_1.svg)
+![construction_of_line_intersection_2.svg]({base}/construction_of_line_intersection_2.svg)
 
 
 ## Vector

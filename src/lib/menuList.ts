@@ -3,6 +3,7 @@
 import { pageDef as circlesDef } from '$lib/design/circles';
 import { pageDef as rectangleDef } from '$lib/design/rectangle';
 import { pageDef as verifyPointDef } from '$lib/design/verify_point';
+import { pageDef as verifyPoint2Def } from '$lib/design/verify_point_2';
 import { pageDef as verifyLineDef } from '$lib/design/verify_line';
 import type { tParamVal, tPageDef } from '$lib/design/aaParamGeom';
 import type { tStorePVal } from '$lib/storePVal';
@@ -15,6 +16,7 @@ const designDefs: tAllPageDef = {
 	circles: circlesDef,
 	rectangle: rectangleDef,
 	verify_point: verifyPointDef,
+	verify_point_2: verifyPoint2Def,
 	verify_line: verifyLineDef
 };
 
@@ -26,7 +28,7 @@ const mAbout = ['about'];
 const mLabel = [
 	['gears/circles'],
 	['architecture/rectangle'],
-	['dev/verify_point', 'dev/verify_line'],
+	['dev/verify_point', 'dev/verify_point_2', 'dev/verify_line'],
 	['docs/ui', 'docs/geom', 'docs/gears']
 ];
 const mIcon: tIcon = {
@@ -34,6 +36,7 @@ const mIcon: tIcon = {
 	circles: 'page_circles.svg',
 	rectangle: 'page_rectangle.svg',
 	verify_point: 'page_verify_point.svg',
+	verify_point_2: 'page_verify_point.svg',
 	verify_line: 'page_verify_line.svg',
 	ui: 'page_ui.svg',
 	geom: 'page_geom.svg',

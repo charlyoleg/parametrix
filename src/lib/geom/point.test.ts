@@ -21,7 +21,7 @@ describe('point module', () => {
 		expect(p1.middlePoint(p4).isEqual(point(5, 2))).toBeTruthy;
 	});
 	it('point creation equidistance', () => {
-		expect(() => p1.equidistantPoint(p4, 5, p2)).toThrowError(/err392/);
+		expect(() => p1.equidistantPoint(p4, 2, p2)).toThrowError(/err392/);
 		expect(p1.equidistantPoint(p4, 10, p2).isEqual(point(13, 2))).toBeTruthy;
 	});
 });
