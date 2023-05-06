@@ -218,13 +218,13 @@
 			paramSvg = `${base}/${pDef.paramSvg[keyName]}`;
 		}
 	}
-	function paramPict2(idx: number) {
-		const paramNb = Object.keys($storePV[pDef.page]).length;
+	function paramPict2(idx: number, pDef_page: string) {
+		const paramNb = Object.keys($storePV[pDef_page]).length;
 		if (idx < paramNb) {
-			paramPict(Object.keys($storePV[pDef.page])[idx]);
+			paramPict(Object.keys($storePV[pDef_page])[idx]);
 		}
 	}
-	paramPict2(0);
+	$: paramPict2(0, pDef.page);
 </script>
 
 <section>
