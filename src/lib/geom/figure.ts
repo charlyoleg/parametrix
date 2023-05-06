@@ -8,7 +8,7 @@ import type { tCanvasAdjust } from './canvas_utils';
 import { colors, adjustZero, adjustInit } from './canvas_utils';
 import { degToRad, radToDeg, roundZero } from './angle_utils';
 import { Point, point } from './point';
-import { Line, line } from './line';
+import { Line, line, bisector, circleCenter } from './line';
 
 type tLayers = {
 	points: boolean;
@@ -203,4 +203,17 @@ function initLayers(): tLayers {
 /* export */
 
 export type { tLayers };
-export { degToRad, radToDeg, roundZero, Point, point, Line, line, Figure, figure, initLayers };
+export {
+	degToRad,
+	radToDeg,
+	roundZero,
+	Point,
+	point,
+	Line,
+	line,
+	bisector,
+	circleCenter,
+	Figure,
+	figure,
+	initLayers
+};

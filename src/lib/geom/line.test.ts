@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { Line, line } from './line';
+import { Line, line, bisector, circleCenter } from './line';
 import { point } from './point';
 import { degToRad } from './angle_utils';
 
@@ -62,5 +62,17 @@ describe('line module', () => {
 		expect(l1.isEqual(l1)).toBeTruthy();
 		expect(l1.isEqual(l2)).toBeFalsy();
 		expect(l5.isEqual(l6)).toBeTruthy();
+	});
+	it('Bisector of 2 points', () => {
+		const lAxisX = line(0, 0, 0);
+		expect(bisector(p1, p2).isEqual(lAxisX)).toBeTruthy();
+	});
+	it('Circle-center of 3 points', () => {
+		const pA = point(38, 54);
+		const pB = point(-5, 28);
+		const pC = point(5, 79);
+		expect(circleCenter(pA, pB, pC).isEqual(circleCenter(pA, pC, pB))).toBeTruthy();
+		expect(circleCenter(pA, pB, pC).isEqual(circleCenter(pC, pA, pB))).toBeTruthy();
+		expect(circleCenter(pA, pB, pC).isEqual(circleCenter(pB, pA, pC))).toBeTruthy();
 	});
 });
