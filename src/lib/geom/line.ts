@@ -26,6 +26,14 @@ import {
 } from './triangle_utils';
 import { point, Point } from './point';
 
+type tAffine = {
+	quasiVertical: boolean;
+	ha: number;
+	hb: number;
+	va: number;
+	vb: number;
+};
+
 /* Base classes */
 
 class Line {
@@ -61,7 +69,82 @@ class Line {
 		this.ca = p1.angleToPoint(p2);
 		return this;
 	}
-	getAxisXIntersection() {
+	getAffine(): tAffine {
+		const rAffine: tAffine = { quasiVertical: false, ha: 0, hb: 0, va: 0, vb: 0 };
+		const angleZeroHPi = Math.abs(withinHPiHPi(this.ca));
+		if (angleZeroHPi > Math.PI / 4) {
+			// x = va * y + vb
+			rAffine.quasiVertical = true;
+			rAffine.va = -1 * Math.tan(withinHPiHPi(this.ca - Math.PI / 2));
+			rAffine.vb = this.cx - rAffine.va * this.cy;
+		} else {
+			// y = ha * x + hb
+			rAffine.ha = Math.tan(withinHPiHPi(this.ca));
+			rAffine.hb = this.cy - rAffine.ha * this.cx;
+		}
+		return rAffine;
+	}
+	setAffine(iAffine: tAffine): Line {
+		const rLine = new Line(0, 0, 0);
+		if (iAffine.quasiVertical) {
+			rLine.ca = Math.PI / 2 - Math.atan(iAffine.va);
+			rLine.cx = iAffine.vb;
+			rLine.cy = 0;
+		} else {
+			rLine.ca = Math.atan(iAffine.ha);
+			rLine.cx = 0;
+			rLine.cy = iAffine.hb;
+		}
+		return rLine;
+	}
+	// intersection
+	intersection(il: Line): Point {
+		if (this.isParallel(il)) {
+			throw `err902: no intersection, lines are parallel ca1: ${this.ca} ca2: ${il.ca}`;
+		}
+		let rx = 0;
+		let ry = 0;
+		const affin1 = this.getAffine();
+		const affin2 = il.getAffine();
+		if (affin1.quasiVertical) {
+			if (affin2.quasiVertical) {
+				// x = va1 * y + vb1; x = va2 * y + vb2
+				// y = (vb1 - vb2) / (va2 - va1)
+				ry = (affin1.vb - affin2.vb) / (affin2.va - affin1.va);
+				rx = affin1.va * ry + affin1.vb;
+			} else {
+				// x = va1 * y + vb1; y = ha2 * x + hb2
+				// x = va1 * (ha2 * x + hb2) + vb1; x = ((va1 * hb2) + vb1) / (1 - va1 * ha2)
+				rx = (affin1.va * affin2.hb + affin1.vb) / (1 - affin1.va * affin2.ha);
+				ry = affin2.ha * rx + affin2.hb;
+			}
+		} else {
+			if (affin2.quasiVertical) {
+				// y = ha1 * x + hb1; x = va2 * y + vb2
+				// y = ha1 * (va2 * y + vb2) + hb1; y = ((ha1 * vb2) + hb1) / (1 - ha1 * va2)
+				ry = (affin1.ha * affin2.vb + affin1.hb) / (1 - affin1.ha * affin2.va);
+				rx = affin2.va * ry + affin2.vb;
+			} else {
+				// y = ha1 * x + hb1; y = ha2 * x + hb2
+				// y = (hb1 - hb2) / (ha2 - ha1)
+				rx = (affin1.hb - affin2.hb) / (affin2.ha - affin1.ha);
+				ry = affin1.ha * rx + affin1.hb;
+			}
+		}
+		const rp = point(rx, ry);
+		return rp;
+	}
+	getAxisXIntersection(): number {
+		const c_axisX = new Line(0, 0, 0);
+		const rp = this.intersection(c_axisX);
+		return rp.cx;
+	}
+	getAxisYIntersection(): number {
+		const c_axisY = new Line(0, 0, Math.PI / 2);
+		const rp = this.intersection(c_axisY);
+		return rp.cy;
+	}
+	getAxisXIntersecTri(): number {
 		let rX = Infinity;
 		if (roundZero(withinHPiHPi(this.ca)) !== 0) {
 			const p1 = new Point(this.cx, this.cy);
@@ -81,7 +164,7 @@ class Line {
 		}
 		return rX;
 	}
-	getAxisYIntersection() {
+	getAxisYIntersecTri(): number {
 		let rY = Infinity;
 		if (roundZero(withinHPiHPi(this.ca - Math.PI / 2)) !== 0) {
 			const p1 = new Point(this.cx, this.cy);
@@ -208,42 +291,49 @@ class Line {
 		const rb = roundZero(dist) === 0 && this.isParallel(il);
 		return rb;
 	}
-	// intersection
-	intersection(il: Line): Point {
-		if (this.isParallel(il)) {
-			throw `err902: no intersection, lines are parallel ca1: ${this.ca} ca2: ${il.ca}`;
-		}
-		const p1 = point(this.cx, this.cy);
-		const p2 = point(il.cx, il.cy);
-		let rp = point(0, 0);
-		if (p1.isEqual(p2)) {
-			rp = p1;
-		} else {
-			const lp1p2 = p1.distanceToPoint(p2);
-			const ap1p2 = p1.angleToPoint(p2);
-			const a1 = withinZeroPi(this.ca - ap1p2);
-			const a2 = withinZeroPi(il.ca - ap1p2);
-		}
-		return rp;
-	}
+	// bisector
 	bisector(il: Line, ip: Point): Line {
-		return line(ip.cx, ip.cy, il.ca);
+		const pInter = this.intersection(il);
+		const a12 = withinZeroPi(il.ca - this.ca) / 2;
+		const a0 = this.ca + a12;
+		const c_arbitrary = 10;
+		let dist1 = Infinity;
+		let idx = 0;
+		for (let i = 0; i < 4; i++) {
+			const pi = pInter.translatePolar(a0 + (i * Math.PI) / 2, c_arbitrary);
+			const dist2 = ip.distanceToPoint(pi);
+			if (dist2 < dist1) {
+				dist1 = dist2;
+				idx = 0;
+			}
+		}
+		const ca = a0 + (idx * Math.PI) / 2;
+		return line(pInter.cx, pInter.cy, ca);
 	}
 }
 
-function line(ix: number, iy: number, ia: number) {
+function line(ix: number, iy: number, ia: number): Line {
 	return new Line(ix, iy, ia);
 }
 
-function bisector(ip1: Point, ip2: Point) {
+function bisector(ip1: Point, ip2: Point): Line {
 	if (ip1.isEqual(ip2)) {
 		throw `err546: no bisector with two same points cx: ${ip1.cx} cy: ${ip1.cy}`;
 	}
 	const pbi = ip1.middlePoint(ip2);
 	const abi = withinZeroPi(ip1.angleToPoint(ip2) + Math.PI / 2);
-	return new Line(pbi.cx, pbi.cy, abi);
+	return line(pbi.cx, pbi.cy, abi);
+}
+function circleCenter(ip1: Point, ip2: Point, ip3: Point): Point {
+	if (ip1.isEqual(ip2) || ip2.isEqual(ip3) || ip1.isEqual(ip3)) {
+		throw `err833: no bisector with two same points cx: ${ip1.cx} cy: ${ip1.cy}`;
+	}
+	const bisec1 = bisector(ip1, ip2);
+	const bisec2 = bisector(ip2, ip3);
+	const rp = bisec1.intersection(bisec2);
+	return rp;
 }
 
 /* export */
 
-export { Line, line, bisector };
+export { Line, line, bisector, circleCenter };
