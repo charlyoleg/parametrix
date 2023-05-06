@@ -294,19 +294,24 @@ class Line {
 	// bisector
 	bisector(il: Line, ip: Point): Line {
 		const pInter = this.intersection(il);
-		const a12 = withinZeroPi(il.ca - this.ca) / 2;
-		const a0 = this.ca + a12;
-		const c_arbitrary = 10;
-		let dist1 = Infinity;
+		const a1t = withinZeroPi(this.ca);
+		const a2t = withinZeroPi(il.ca);
+		const a1 = Math.min(a1t, a2t);
+		const a2 = Math.max(a1t, a2t);
+		const aList = [a1, a2, a1 + Math.PI, a2 + Math.PI, a1];
+		const aRef = pInter.angleToPoint(ip);
 		let idx = 0;
 		for (let i = 0; i < 4; i++) {
-			const pi = pInter.translatePolar(a0 + (i * Math.PI) / 2, c_arbitrary);
-			const dist2 = ip.distanceToPoint(pi);
-			if (dist2 < dist1) {
-				dist1 = dist2;
-				idx = 0;
+			const aDiff1 = withinPiPi(aList[i] - aRef);
+			const aDiff2 = withinPiPi(aList[i + 1] - aRef);
+			if (aDiff1 === 0 || aDiff2 === 0) {
+				throw `err419: bad reference point for bisecor ${ip.cx} ${ip.cy}`;
+			}
+			if (aDiff1 < 0 && aDiff2 > 0) {
+				idx = i;
 			}
 		}
+		const a0 = withinZeroPi((a1 + a2) / 2);
 		const ca = a0 + (idx * Math.PI) / 2;
 		return line(pInter.cx, pInter.cy, ca);
 	}

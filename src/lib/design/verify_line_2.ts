@@ -2,16 +2,17 @@
 
 import { point, line, Figure } from '$lib/geom/figure';
 import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
+import { degToRad } from '$lib/geom/angle_utils';
 
 const pDef: tParamDef = {
 	page: 'verify_line_2',
 	params: [
-		{ name: 'l1cx', unit: 'mm', init: 30, min: -200, max: 200, step: 1 },
-		{ name: 'l1cy', unit: 'mm', init: 50, min: -200, max: 200, step: 1 },
+		{ name: 'l1cx', unit: 'mm', init: 10, min: -200, max: 200, step: 1 },
+		{ name: 'l1cy', unit: 'mm', init: 20, min: -200, max: 200, step: 1 },
 		{ name: 'l1ca', unit: 'degree', init: 15, min: -200, max: 200, step: 1 },
 		{ name: 'l2cx', unit: 'mm', init: 30, min: -200, max: 200, step: 1 },
 		{ name: 'l2cy', unit: 'mm', init: 50, min: -200, max: 200, step: 1 },
-		{ name: 'l2ca', unit: 'degree', init: 15, min: -200, max: 200, step: 1 },
+		{ name: 'l2ca', unit: 'degree', init: 35, min: -200, max: 200, step: 1 },
 		{ name: 'p3x', unit: 'mm', init: -30, min: -200, max: 200, step: 1 },
 		{ name: 'p3y', unit: 'mm', init: 30, min: -200, max: 200, step: 1 }
 	],
@@ -42,8 +43,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rGeome.fig.addPoint(p1);
 		rGeome.fig.addPoint(p2);
 		rGeome.fig.addPoint(p3);
-		const l1 = line(param['l1cx'], param['l1cy'] + t, param['l1ca']);
-		const l2 = line(param['l2cx'], param['l2cy'], param['l2ca']);
+		const l1 = line(param['l1cx'], param['l1cy'] + t, degToRad(param['l1ca']));
+		const l2 = line(param['l2cx'], param['l2cy'], degToRad(param['l2ca']));
 		rGeome.fig.addLine(l1);
 		rGeome.fig.addLine(l2);
 		rGeome.fig.addPoint(l1.intersection(l2));
