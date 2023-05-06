@@ -5,6 +5,7 @@ import { pageDef as rectangleDef } from '$lib/design/rectangle';
 import { pageDef as verifyPointDef } from '$lib/design/verify_point';
 import { pageDef as verifyPoint2Def } from '$lib/design/verify_point_2';
 import { pageDef as verifyLineDef } from '$lib/design/verify_line';
+import { pageDef as verifyLine2Def } from '$lib/design/verify_line_2';
 import type { tParamVal, tPageDef } from '$lib/design/aaParamGeom';
 import type { tStorePVal } from '$lib/storePVal';
 import { storePV } from '$lib/storePVal';
@@ -17,7 +18,8 @@ const designDefs: tAllPageDef = {
 	rectangle: rectangleDef,
 	verify_point: verifyPointDef,
 	verify_point_2: verifyPoint2Def,
-	verify_line: verifyLineDef
+	verify_line: verifyLineDef,
+	verify_line_2: verifyLine2Def
 };
 
 /* Create the Header Menu and Index Menu */
@@ -28,7 +30,7 @@ const mAbout = ['about'];
 const mLabel = [
 	['gears/circles'],
 	['architecture/rectangle'],
-	['dev/verify_point', 'dev/verify_point_2', 'dev/verify_line'],
+	['dev/verify_point', 'dev/verify_point_2', 'dev/verify_line', 'dev/verify_line_2'],
 	['docs/ui', 'docs/geom', 'docs/gears']
 ];
 const mIcon: tIcon = {
@@ -38,6 +40,7 @@ const mIcon: tIcon = {
 	verify_point: 'page_verify_point.svg',
 	verify_point_2: 'page_verify_point.svg',
 	verify_line: 'page_verify_line.svg',
+	verify_line_2: 'page_verify_line.svg',
 	ui: 'page_ui.svg',
 	geom: 'page_geom.svg',
 	gears: 'page_gears.svg',
