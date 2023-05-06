@@ -63,6 +63,9 @@ class Point {
 	translate(ix: number, iy: number): Point {
 		return new Point(this.cx + ix, this.cy + iy);
 	}
+	translatePolar(ia: number, il: number): Point {
+		return new Point(this.cx + il * Math.cos(ia), this.cy + il * Math.sin(ia));
+	}
 	rotateOrig(ia: number): Point {
 		// rotation with the origin as center
 		const polar = this.getPolar();
@@ -109,14 +112,17 @@ class Point {
 	}
 	equidistantPoint(p2: Point, dist: number, p3: Point): Point {
 		const lp1p2h = this.distanceToPoint(p2) / 2;
+		if (this.isEqual(p2)) {
+			throw `err633: no equidistance because identical point ${this.cx} ${this.cy}`;
+		}
 		if (dist < lp1p2h) {
 			throw `err392: equidistance ${dist} smaller than lp1p2h ${lp1p2h}`;
 		}
 		const pbi = this.middlePoint(p2);
 		const abi = this.angleToPoint(p2) + Math.PI / 2;
 		const oppos = Math.sqrt(dist ** 2 - lp1p2h ** 2);
-		const rp1 = this.setPolar(abi, oppos).translate(pbi.cx, pbi.cy);
-		const rp2 = this.setPolar(abi + Math.PI, oppos).translate(pbi.cx, pbi.cy);
+		const rp1 = pbi.translatePolar(abi, oppos);
+		const rp2 = pbi.translatePolar(abi + Math.PI, oppos);
 		const dp1 = p3.distanceToPoint(rp1);
 		const dp2 = p3.distanceToPoint(rp2);
 		if (oppos !== 0 && dp1 === dp2) {

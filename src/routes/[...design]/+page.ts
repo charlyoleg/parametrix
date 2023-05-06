@@ -10,6 +10,10 @@ export function load({ params }) {
 	//const re2 = new RegExp(`/*${short}/*`);
 	//const category = params.design.replace(re2, '');
 	if (Object.keys(designDefs).includes(short)) {
+		const pDef_page = designDefs[short].pDef.page;
+		if (pDef_page !== short) {
+			throw error(500, `pDef.page ${pDef_page} does not fit with short ${short}`);
+		}
 		return {
 			pageDef: designDefs[short]
 			//category: category
