@@ -16,14 +16,14 @@ const pDef: tParamDef = {
 		{ name: 'v2l', unit: 'mm', init: 60, min: 0, max: 200, step: 1 }
 	],
 	paramSvg: {
-		p1x: 'verify_point_p1x.svg',
-		p1y: 'verify_point_p1x.svg',
-		p2x: 'verify_point_p1x.svg',
-		p2y: 'verify_point_p1x.svg',
-		v1a: 'verify_point_p1x.svg',
-		v1l: 'verify_point_p1x.svg',
-		v2a: 'verify_point_p1x.svg',
-		v2l: 'verify_point_p1x.svg'
+		p1x: 'verify_vector_p1x.svg',
+		p1y: 'verify_vector_p1x.svg',
+		p2x: 'verify_vector_p1x.svg',
+		p2y: 'verify_vector_p1x.svg',
+		v1a: 'verify_vector_p1x.svg',
+		v1l: 'verify_vector_p1x.svg',
+		v2a: 'verify_vector_p1x.svg',
+		v2l: 'verify_vector_p1x.svg'
 	},
 	sim: {
 		tMax: 10,
