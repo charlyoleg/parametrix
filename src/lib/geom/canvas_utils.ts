@@ -5,6 +5,7 @@
 const colors = {
 	point: 'grey',
 	line: 'grey',
+	vector: 'DarkTurquoise',
 	origin: 'red',
 	reference: 'blue',
 	mouse: 'yellow'

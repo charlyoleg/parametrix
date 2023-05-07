@@ -39,7 +39,7 @@ class Vector {
 		this.cl = il;
 		this.drawPoint = iDrawPoint;
 	}
-	draw(ctx: CanvasRenderingContext2D, cAdjust: tCanvasAdjust, color: string = colors.point) {
+	draw(ctx: CanvasRenderingContext2D, cAdjust: tCanvasAdjust, color: string = colors.vector) {
 		const radius = ctx.canvas.width * (0.7 / 100);
 		const [cx2, cy2] = point2canvas(this.drawPoint.cx, this.drawPoint.cy, cAdjust);
 		const [cx3, cy3] = canvasTranslatePolar(cx2, cy2, this.ca + Math.PI / 2, radius);
@@ -54,7 +54,7 @@ class Vector {
 		ctx.moveTo(cx2, cy2);
 		ctx.lineTo(cx5, cy5);
 		ctx.lineTo(cx6, cy6);
-		ctx.moveTo(cx2, cy2);
+		ctx.moveTo(cx5, cy5);
 		ctx.lineTo(cx7, cy7);
 		ctx.strokeStyle = color;
 		ctx.stroke();
