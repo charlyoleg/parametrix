@@ -63,7 +63,7 @@ class Vector {
 		return [this.cl * Math.cos(this.ca), this.cl * Math.sin(this.ca)];
 	}
 	setCartesian(ix: number, iy: number): Vector {
-		return new Vector(Math.atan2(ix, iy), Math.sqrt(ix ** 2 + iy ** 2), this.drawPoint);
+		return new Vector(Math.atan2(iy, ix), Math.sqrt(ix ** 2 + iy ** 2), this.drawPoint);
 	}
 	translatePoint(ip: Point): Point {
 		const [x1, y1] = this.getCartesian();
