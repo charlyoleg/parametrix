@@ -9,6 +9,7 @@ import { colors, adjustZero, adjustInit } from './canvas_utils';
 import { degToRad, radToDeg, roundZero } from './angle_utils';
 import { Point, point } from './point';
 import { Line, line, bisector, circleCenter } from './line';
+import { Vector, vector } from './vector';
 
 type tLayers = {
 	points: boolean;
@@ -25,7 +26,7 @@ type tLayers = {
 class Figure {
 	pointList: Array<Point>;
 	lineList: Array<Line>;
-	vectorList: Array<Line>;
+	vectorList: Array<Vector>;
 	mainList: Array<Line>;
 	mainBList: Array<Line>;
 	secondList: Array<Line>;
@@ -55,9 +56,13 @@ class Figure {
 	addLine(iline: Line) {
 		this.lineList.push(iline);
 	}
+	addVector(ivector: Vector) {
+		this.vectorList.push(ivector);
+	}
 	clear() {
 		this.pointList = [];
 		this.lineList = [];
+		this.vectorList = [];
 	}
 	getMinMax() {
 		if (this.pointList.length > 0) {
@@ -213,6 +218,8 @@ export {
 	line,
 	bisector,
 	circleCenter,
+	Vector,
+	vector,
 	Figure,
 	figure,
 	initLayers
