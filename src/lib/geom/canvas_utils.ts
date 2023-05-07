@@ -36,7 +36,7 @@ function canvas2point(cx: number, cy: number, iAdjust: tCanvasAdjust): [number, 
 
 function canvasTranslatePolar(cx: number, cy: number, ia: number, il: number): [number, number] {
 	const cx2 = cx + il * Math.cos(ia);
-	const cy2 = cy + il * Math.sin(ia);
+	const cy2 = cy - il * Math.sin(ia);
 	return [cx2, cy2];
 }
 

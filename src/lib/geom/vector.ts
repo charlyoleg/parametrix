@@ -42,12 +42,12 @@ class Vector {
 	draw(ctx: CanvasRenderingContext2D, cAdjust: tCanvasAdjust, color: string = colors.vector) {
 		const radius = ctx.canvas.width * (0.7 / 100);
 		const [cx2, cy2] = point2canvas(this.drawPoint.cx, this.drawPoint.cy, cAdjust);
-		const [cx3, cy3] = canvasTranslatePolar(cx2, cy2, this.ca + Math.PI / 2, radius);
-		const [cx4, cy4] = canvasTranslatePolar(cx2, cy2, this.ca - Math.PI / 2, radius);
+		const [cx3, cy3] = canvasTranslatePolar(cx2, cy2, this.ca + Math.PI / 2, 2 * radius);
+		const [cx4, cy4] = canvasTranslatePolar(cx2, cy2, this.ca - Math.PI / 2, 2 * radius);
 		const p3 = this.drawPoint.translatePolar(this.ca, this.cl);
 		const [cx5, cy5] = point2canvas(p3.cx, p3.cy, cAdjust);
-		const [cx6, cy6] = canvasTranslatePolar(cx5, cy5, this.ca + (3 * Math.PI) / 4, 2 * radius);
-		const [cx7, cy7] = canvasTranslatePolar(cx5, cy5, this.ca - (3 * Math.PI) / 4, 2 * radius);
+		const [cx6, cy6] = canvasTranslatePolar(cx5, cy5, this.ca + (3 * Math.PI) / 4, 4 * radius);
+		const [cx7, cy7] = canvasTranslatePolar(cx5, cy5, this.ca + (5 * Math.PI) / 4, 4 * radius);
 		ctx.beginPath();
 		ctx.moveTo(cx3, cy3);
 		ctx.lineTo(cx4, cy4);
