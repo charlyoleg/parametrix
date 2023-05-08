@@ -27,7 +27,7 @@ const pDef: tParamDef = {
 		p3y: 'verify_line_2_l1cx.svg'
 	},
 	sim: {
-		tMax: 10,
+		tMax: 100,
 		tStep: 0.1,
 		tUpdate: 500 // every 0.5 second
 	}
@@ -37,13 +37,13 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	const rGeome: tGeom = { fig: new Figure(), logstr: '', calcErr: true };
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
-		const p1 = point(param['l1cx'], param['l1cy'] + t);
+		const p1 = point(param['l1cx'], param['l1cy']);
 		const p2 = point(param['l2cx'], param['l2cy']);
 		const p3 = point(param['p3x'], param['p3y']);
 		rGeome.fig.addPoint(p1);
 		rGeome.fig.addPoint(p2);
 		rGeome.fig.addPoint(p3);
-		const l1 = line(param['l1cx'], param['l1cy'] + t, degToRad(param['l1ca']));
+		const l1 = line(param['l1cx'], param['l1cy'], degToRad(param['l1ca'] + t));
 		const l2 = line(param['l2cx'], param['l2cy'], degToRad(param['l2ca']));
 		rGeome.fig.addLine(l1);
 		rGeome.fig.addLine(l2);
