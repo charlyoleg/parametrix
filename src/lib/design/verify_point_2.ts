@@ -1,6 +1,6 @@
 // verify_point_2.ts
 
-import { point, Figure } from '$lib/geom/figure';
+import { point, figure } from '$lib/geom/figure';
 import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
 
 const pDef: tParamDef = {
@@ -31,7 +31,7 @@ const pDef: tParamDef = {
 };
 
 function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome: tGeom = { fig: new Figure(), logstr: '', calcErr: true };
+	const rGeome: tGeom = { fig: figure(), logstr: '', calcErr: true };
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const p1 = point(param['p1x'], param['p1y'] + t);

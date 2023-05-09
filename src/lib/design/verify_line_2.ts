@@ -1,6 +1,6 @@
 // verify_line_2.ts
 
-import { point, line, Figure } from '$lib/geom/figure';
+import { point, line, figure } from '$lib/geom/figure';
 import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
 import { degToRad } from '$lib/geom/angle_utils';
 
@@ -34,7 +34,7 @@ const pDef: tParamDef = {
 };
 
 function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome: tGeom = { fig: new Figure(), logstr: '', calcErr: true };
+	const rGeome: tGeom = { fig: figure(), logstr: '', calcErr: true };
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const p1 = point(param['l1cx'], param['l1cy']);
