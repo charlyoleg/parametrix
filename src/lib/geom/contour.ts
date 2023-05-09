@@ -1,7 +1,7 @@
 // contour.ts
 // contour.ts deals with open and closed path composed of segments and arcs
 // contour.ts depends on point.ts, line.ts and vector.ts
-// contour.ts is used by assemblage.ts and figure.ts
+// contour.ts is used by figure.ts
 
 import type { tCanvasAdjust } from './canvas_utils';
 //import type { tPolar } from './point';

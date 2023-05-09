@@ -1,6 +1,6 @@
 // figure.ts
 // a minimalistic 2D euclid geometry calculation library
-// figure.ts deals with points, lines, vectors, segments, contours
+// figure.ts deals with points, lines, vectors, contours
 // figure.ts gather all other modules of geom
 
 import type { tCanvasAdjust } from './canvas_utils';

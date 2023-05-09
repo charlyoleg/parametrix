@@ -1,6 +1,6 @@
 // canvas_utils.ts
 // helper interfaces and functions to work with HtmlCanvas
-// used by figure.ts, segment.ts, contour.ts and assemblage.ts
+// used by point.ts, line.ts, vector.ts, contour.ts and figure.ts
 
 const colors = {
 	point: 'grey',
