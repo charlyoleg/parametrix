@@ -64,21 +64,6 @@ class Segment {
 	}
 }
 
-function stroke(ix: number, iy: number) {
-	return new Segment(SegEnum.eStroke, ix, iy, 0);
-}
-function arc(ix: number, iy: number, iRadius: number, iLarge: boolean, iCcw: boolean) {
-	return new Segment(SegEnum.eArc, ix, iy, iRadius, iLarge, iCcw);
-}
-function pointed() {
-	return new Segment(SegEnum.ePointed, 0, 0, 0);
-}
-function rounded(iRadius: number) {
-	return new Segment(SegEnum.eRounded, 0, 0, iRadius);
-}
-function widened(iRadius: number) {
-	return new Segment(SegEnum.eWidened, 0, 0, iRadius);
-}
 
 /* Contour class */
 
@@ -90,10 +75,35 @@ class Contour {
 	add(iSeg: Segment) {
 		this.segments.push(iSeg);
 	}
-	close(iSeg: Segment) {
-		iSeg.px = this.segments[0].px;
-		iSeg.py = this.segments[0].py;
-		this.segments.push(iSeg);
+	addSegStroke(ix: number, iy: number) {
+		const seg = new Segment(SegEnum.eStroke, ix, iy, 0);
+		this.add(seg);
+	}
+	addSegArc(ix: number, iy: number, iRadius: number, iLarge: boolean, iCcw: boolean) {
+		const seg = new Segment(SegEnum.eArc, ix, iy, iRadius, iLarge, iCcw);
+		this.add(seg);
+	}
+	addCornerPointed() {
+		const seg = new Segment(SegEnum.ePointed, 0, 0, 0);
+		this.add(seg);
+	}
+	addCornerRounded(iRadius: number) {
+		const seg = new Segment(SegEnum.eRounded, 0, 0, iRadius);
+		this.add(seg);
+	}
+	addCornerWidened(iRadius: number) {
+		const seg = new Segment(SegEnum.eWidened, 0, 0, iRadius);
+		this.add(seg);
+	}
+	closeSegStroke() {
+		const px = this.segments[0].px;
+		const py = this.segments[0].py;
+		this.addSegStroke(px, py);
+	}
+	closeSegArc(iRadius: number, iLarge: boolean, iCcw: boolean) {
+		const px = this.segments[0].px;
+		const py = this.segments[0].py;
+		this.addSegArc(px, py, iRadius, iLarge, iCcw);
 	}
 	draw(ctx: CanvasRenderingContext2D, cAdjust: tCanvasAdjust, color: string = colors.contour) {
 		let px1 = 0;
@@ -160,4 +170,4 @@ function contour(ix: number, iy: number) {
 	return new Contour(ix, iy);
 }
 
-export { stroke, arc, pointed, rounded, widened, Contour, contour };
+export { Contour, contour };
