@@ -7,27 +7,27 @@ import type { tCanvasAdjust } from './canvas_utils';
 //import type { tPolar } from './point';
 //import { colorCanvasPoint } from '$lib/style/colors.scss';
 import { colors, point2canvas } from './canvas_utils';
-import {
-	//degToRad,
-	//radToDeg,
-	roundZero,
-	//withinZero2Pi,
-	withinPiPi,
-	withinZeroPi,
-	withinHPiHPi
-} from './angle_utils';
-import {
-	//rightTriLaFromLbLc,
-	//rightTriLbFromLaLc,
-	//lcFromLaLbAc,
-	//aCFromLaLbLc,
-	//aCFromAaAb
-	lbFromLaAaAb
-	//aBFromLaLbAa
-} from './triangle_utils';
+//import {
+//	//degToRad,
+//	//radToDeg,
+//	roundZero,
+//	//withinZero2Pi,
+//	withinPiPi,
+//	withinZeroPi,
+//	withinHPiHPi
+//} from './angle_utils';
+//import {
+//	//rightTriLaFromLbLc,
+//	//rightTriLbFromLaLc,
+//	//lcFromLaLbAc,
+//	//aCFromLaLbLc,
+//	//aCFromAaAb
+//	lbFromLaAaAb
+//	//aBFromLaLbAa
+//} from './triangle_utils';
 import { point, Point } from './point';
-import { line, Line } from './line';
-import { vector, Vector } from './vector';
+//import { line, Line } from './line';
+//import { vector, Vector } from './vector';
 
 enum SegEnum {
 	eStroke,
@@ -64,6 +64,23 @@ class Segment {
 	}
 }
 
+function toCanvasArc(
+	px1: number,
+	py1: number,
+	px2: number,
+	py2: number,
+	radius: number,
+	arcLarge: boolean,
+	arcCcw: boolean
+) {
+	const px3 = px1;
+	const py3 = py1;
+	const a1 = px2;
+	const a2 = py2;
+	// TODO
+	console.log(`todo ${radius} ${arcLarge} ${arcCcw}`);
+	return [px3, py3, a1, a2];
+}
 
 /* Contour class */
 
@@ -119,13 +136,18 @@ class Contour {
 				ctx.stroke();
 			}
 			if (seg.sType === SegEnum.eArc) {
-				const [cx, cy] = point2canvas(px1, py1, cAdjust);
-				const radius = seg.radius;
-				const a1 = 0;
-				const a2 = Math.PI;
-				const ccw = seg.arcCcw;
+				const [px3, py3, a1, a2] = toCanvasArc(
+					px1,
+					py1,
+					seg.px,
+					seg.py,
+					seg.radius,
+					seg.arcLarge,
+					seg.arcCcw
+				);
+				const [cx3, cy3] = point2canvas(px3, py3, cAdjust);
 				ctx.beginPath();
-				ctx.arc(cx, cy, radius, a1, a2, ccw);
+				ctx.arc(cx3, cy3, seg.radius, a1, a2, seg.arcCcw);
 				ctx.strokeStyle = color;
 				ctx.stroke();
 			}
@@ -149,7 +171,12 @@ class Contour {
 		}
 		return rContour;
 	}
-	extractPoints(): Array<Point> {
+	generateContour(): Contour {
+		const rContour = this.extractSkeleton(); // TODO
+		return rContour;
+	}
+	generatePoints(): Array<Point> {
+		// TODO
 		const rPoints = [];
 		const seg0 = this.segments[0];
 		rPoints.push(point(seg0.px, seg0.py));
@@ -166,8 +193,51 @@ class Contour {
 	}
 }
 
+/* ContourCircle class */
+
+class ContourCircle {
+	px: number;
+	py: number;
+	radius: number;
+	constructor(ix: number, iy: number, iRadius: number) {
+		this.px = ix;
+		this.py = iy;
+		this.radius = iRadius;
+	}
+	draw(ctx: CanvasRenderingContext2D, cAdjust: tCanvasAdjust, color: string = colors.contour) {
+		const [cx3, cy3] = point2canvas(this.px, this.py, cAdjust);
+		const cRadius = point2canvas(this.radius, 0, cAdjust)[0];
+		ctx.beginPath();
+		ctx.arc(cx3, cy3, cRadius, 0, 2 * Math.PI, true);
+		ctx.strokeStyle = color;
+		ctx.stroke();
+	}
+	extractSkeleton(): ContourCircle {
+		const rContour = new ContourCircle(this.px, this.py, this.radius);
+		return rContour;
+	}
+	generateContour(): ContourCircle {
+		const rContour = new ContourCircle(this.px, this.py, this.radius);
+		return rContour;
+	}
+	generatePoints(): Array<Point> {
+		const rPoints = [];
+		const p1 = point(this.px, this.py);
+		rPoints.push(p1);
+		for (let i = 0; i < 4; i++) {
+			const p2 = p1.translatePolar((i * Math.PI) / 2, this.radius);
+			rPoints.push(p2);
+		}
+		return rPoints;
+	}
+}
+
 function contour(ix: number, iy: number) {
 	return new Contour(ix, iy);
 }
 
-export { Contour, contour };
+function contourCircle(ix: number, iy: number, iRadius: number) {
+	return new ContourCircle(ix, iy, iRadius);
+}
+
+export { Contour, ContourCircle, contour, contourCircle };
