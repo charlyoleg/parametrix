@@ -218,15 +218,15 @@ function figure() {
 
 function initLayers(): tLayers {
 	const layers: tLayers = {
-		points: true,
-		lines: true,
-		vectors: true,
+		points: false,
+		lines: false,
+		vectors: false,
 		main: true,
-		mainB: true,
+		mainB: false,
 		second: true,
-		secondB: true,
-		dynamics: true,
-		frame: true
+		secondB: false,
+		dynamics: false,
+		frame: false
 	};
 	return layers;
 }

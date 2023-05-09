@@ -2,14 +2,16 @@
 // helper interfaces and functions to work with HtmlCanvas
 // used by point.ts, line.ts, vector.ts, contour.ts and figure.ts
 
+import { roundZero } from './angle_utils';
+
 const colors = {
 	point: 'grey',
 	line: 'grey',
 	vector: 'DarkTurquoise',
 	contour: 'green',
-	main: 'Violet',
+	main: 'SteelBlue',
 	mainB: 'SlateGrey',
-	second: 'SteelBlue',
+	second: 'Violet',
 	secondB: 'SlateGrey',
 	dynamics: 'Tomato',
 	origin: 'red',
@@ -33,17 +35,22 @@ function point2canvas(px: number, py: number, iAdjust: tCanvasAdjust): [number, 
 	const cy2 = iAdjust.shiftY + (py - iAdjust.yMin) * iAdjust.scaleY;
 	return [cx2, cy2];
 }
-
 function canvas2point(cx: number, cy: number, iAdjust: tCanvasAdjust): [number, number] {
 	const px2 = (cx - iAdjust.shiftX) / iAdjust.scaleX + iAdjust.xMin;
 	const py2 = (cy - iAdjust.shiftY) / iAdjust.scaleY + iAdjust.yMin;
 	return [px2, py2];
 }
-
 function canvasTranslatePolar(cx: number, cy: number, ia: number, il: number): [number, number] {
 	const cx2 = cx + il * Math.cos(ia);
 	const cy2 = cy - il * Math.sin(ia);
 	return [cx2, cy2];
+}
+function radius2canvas(iRadius: number, iAdjust: tCanvasAdjust): number {
+	if (roundZero(iAdjust.scaleX - Math.abs(iAdjust.scaleY)) !== 0) {
+		throw `err683: iAdjust.scaleX and scaleY differ ${iAdjust.scaleX} ${iAdjust.scaleY}`;
+	}
+	const rRadius = iRadius * iAdjust.scaleX;
+	return rRadius;
 }
 
 function adjustZero(): tCanvasAdjust {
@@ -141,6 +148,7 @@ export {
 	point2canvas,
 	canvas2point,
 	canvasTranslatePolar,
+	radius2canvas,
 	adjustZero,
 	adjustInit,
 	adjustCenter,

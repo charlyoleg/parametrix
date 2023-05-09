@@ -32,7 +32,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const d1 = param['d1'];
 		const w1 = param['w1'];
 		const r2 = param['r2'];
-		const h1 = 3 * r1 + 4 * d1;
+		const h1 = 6 * r1 + 4 * d1;
 		const w12 = w1 / 2;
 		const c1 = d1 + r1;
 		const c12 = 2 * r1 + d1;
@@ -45,7 +45,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		ctr1.closeSegStroke();
 		rGeome.fig.addMain(ctr1);
 		rGeome.fig.addMain(contourCircle(w12, c1, r1));
-		rGeome.fig.addMain(contourCircle(w12, c2, r1));
+		rGeome.fig.addMain(contourCircle(w12, c2, r1 + t));
 		rGeome.fig.addMain(contourCircle(w12, c3, r1));
 		const ctr2 = contourCircle(w1 + r2, 3 * c1, r2);
 		rGeome.fig.addSecond(ctr2);

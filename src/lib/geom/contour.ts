@@ -6,7 +6,7 @@
 import type { tCanvasAdjust } from './canvas_utils';
 //import type { tPolar } from './point';
 //import { colorCanvasPoint } from '$lib/style/colors.scss';
-import { colors, point2canvas } from './canvas_utils';
+import { colors, point2canvas, radius2canvas } from './canvas_utils';
 //import {
 //	//degToRad,
 //	//radToDeg,
@@ -217,7 +217,7 @@ class ContourCircle extends AContour {
 	}
 	draw(ctx: CanvasRenderingContext2D, cAdjust: tCanvasAdjust, color: string = colors.contour) {
 		const [cx3, cy3] = point2canvas(this.px, this.py, cAdjust);
-		const cRadius = point2canvas(this.radius, 0, cAdjust)[0];
+		const cRadius = radius2canvas(this.radius, cAdjust);
 		ctx.beginPath();
 		ctx.arc(cx3, cy3, cRadius, 0, 2 * Math.PI, true);
 		ctx.strokeStyle = color;
