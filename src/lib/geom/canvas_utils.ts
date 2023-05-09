@@ -7,6 +7,11 @@ const colors = {
 	line: 'grey',
 	vector: 'DarkTurquoise',
 	contour: 'green',
+	main: 'Violet',
+	mainB: 'SlateGrey',
+	second: 'SteelBlue',
+	secondB: 'SlateGrey',
+	dynamics: 'Tomato',
 	origin: 'red',
 	reference: 'blue',
 	mouse: 'yellow'

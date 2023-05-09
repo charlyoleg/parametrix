@@ -10,6 +10,8 @@ import { degToRad, radToDeg, roundZero } from './angle_utils';
 import { Point, point } from './point';
 import { Line, line, bisector, circleCenter } from './line';
 import { Vector, vector } from './vector';
+import type { tContour } from './contour';
+import { Contour, ContourCircle, contour, contourCircle } from './contour';
 
 type tLayers = {
 	points: boolean;
@@ -27,11 +29,11 @@ class Figure {
 	pointList: Array<Point>;
 	lineList: Array<Line>;
 	vectorList: Array<Vector>;
-	mainList: Array<Line>;
-	mainBList: Array<Line>;
-	secondList: Array<Line>;
-	secondBList: Array<Line>;
-	dynamicsList: Array<Line>;
+	mainList: Array<tContour>;
+	mainBList: Array<tContour>;
+	secondList: Array<tContour>;
+	secondBList: Array<tContour>;
+	dynamicsList: Array<tContour>;
 	xMin: number;
 	xMax: number;
 	yMin: number;
@@ -53,16 +55,40 @@ class Figure {
 	addPoint(ipoint: Point) {
 		this.pointList.push(ipoint);
 	}
+	addPoints(ipoints: Array<Point>) {
+		for (const ipt of ipoints) {
+			this.pointList.push(ipt);
+		}
+	}
 	addLine(iline: Line) {
 		this.lineList.push(iline);
 	}
 	addVector(ivector: Vector) {
 		this.vectorList.push(ivector);
 	}
+	addMain(icontour: tContour) {
+		this.addPoints(icontour.generatePoints());
+		this.mainList.push(icontour.generateContour());
+		this.mainBList.push(icontour.extractSkeleton());
+	}
+	addSecond(icontour: tContour) {
+		this.addPoints(icontour.generatePoints());
+		this.secondList.push(icontour.generateContour());
+		this.secondBList.push(icontour.extractSkeleton());
+	}
+	addDynamics(icontour: tContour) {
+		this.addPoints(icontour.generatePoints());
+		this.dynamicsList.push(icontour);
+	}
 	clear() {
 		this.pointList = [];
 		this.lineList = [];
 		this.vectorList = [];
+		this.mainList = [];
+		this.mainBList = [];
+		this.secondList = [];
+		this.secondBList = [];
+		this.dynamicsList = [];
 	}
 	getMinMax() {
 		if (this.pointList.length > 0) {
@@ -151,27 +177,27 @@ class Figure {
 		}
 		if (layers.main) {
 			for (const li of this.mainList) {
-				li.draw(ctx, adjust);
+				li.draw(ctx, adjust, colors.main);
 			}
 		}
 		if (layers.mainB) {
 			for (const li of this.mainBList) {
-				li.draw(ctx, adjust);
+				li.draw(ctx, adjust, colors.mainB);
 			}
 		}
 		if (layers.second) {
 			for (const li of this.secondList) {
-				li.draw(ctx, adjust);
+				li.draw(ctx, adjust, colors.second);
 			}
 		}
 		if (layers.secondB) {
 			for (const li of this.secondList) {
-				li.draw(ctx, adjust);
+				li.draw(ctx, adjust, colors.secondB);
 			}
 		}
 		if (layers.dynamics) {
 			for (const li of this.dynamicsList) {
-				li.draw(ctx, adjust);
+				li.draw(ctx, adjust, colors.dynamics);
 			}
 		}
 		if (layers.frame) {
@@ -220,6 +246,10 @@ export {
 	circleCenter,
 	Vector,
 	vector,
+	Contour,
+	ContourCircle,
+	contour,
+	contourCircle,
 	Figure,
 	figure,
 	initLayers

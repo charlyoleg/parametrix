@@ -82,11 +82,21 @@ function toCanvasArc(
 	return [px3, py3, a1, a2];
 }
 
+/* AContour abstract class */
+
+abstract class AContour {
+	abstract draw(ctx: CanvasRenderingContext2D, cAdjust: tCanvasAdjust, color: string): void;
+	abstract extractSkeleton(): AContour;
+	abstract generateContour(): AContour;
+	abstract generatePoints(): Array<Point>;
+}
+
 /* Contour class */
 
-class Contour {
+class Contour extends AContour {
 	segments: Array<Segment>;
 	constructor(ix: number, iy: number) {
+		super();
 		this.segments = [new Segment(SegEnum.eStart, ix, iy, 0)];
 	}
 	add(iSeg: Segment) {
@@ -195,11 +205,12 @@ class Contour {
 
 /* ContourCircle class */
 
-class ContourCircle {
+class ContourCircle extends AContour {
 	px: number;
 	py: number;
 	radius: number;
 	constructor(ix: number, iy: number, iRadius: number) {
+		super();
 		this.px = ix;
 		this.py = iy;
 		this.radius = iRadius;
@@ -232,12 +243,15 @@ class ContourCircle {
 	}
 }
 
+// instantiation functions
 function contour(ix: number, iy: number) {
 	return new Contour(ix, iy);
 }
-
 function contourCircle(ix: number, iy: number, iRadius: number) {
 	return new ContourCircle(ix, iy, iRadius);
 }
 
+type tContour = Contour | ContourCircle;
+
+export type { tContour };
 export { Contour, ContourCircle, contour, contourCircle };
