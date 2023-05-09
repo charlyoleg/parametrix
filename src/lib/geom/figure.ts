@@ -11,7 +11,7 @@ import { Point, point } from './point';
 import { Line, line, bisector, circleCenter } from './line';
 import { Vector, vector } from './vector';
 import type { tContour } from './contour';
-import { Contour, ContourCircle, contour, contourCircle } from './contour';
+import { contour, contourCircle } from './contour';
 
 type tLayers = {
 	points: boolean;
