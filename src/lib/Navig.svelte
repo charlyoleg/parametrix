@@ -53,6 +53,7 @@
 		border-radius: 0.6rem;
 		border-color: colors.$menu-border;
 		margin-top: 0.1rem;
+		margin-left: 0.1rem;
 	}
 	nav > div > a.page-active {
 		color: colors.$menu-active;

@@ -60,7 +60,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 
 const pageDef: tPageDef = {
 	pTitle: 'Verify contour 1',
-	pDescription: 'Debugging line.ts',
+	pDescription: 'Debugging contour.ts',
 	pDef: pDef,
 	pGeom: pGeom
 };
