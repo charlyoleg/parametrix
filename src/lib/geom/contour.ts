@@ -172,8 +172,9 @@ class Contour extends AContour {
 					seg.arcCcw
 				);
 				const [cx3, cy3] = point2canvas(px3, py3, cAdjust);
+				const cRadius = radius2canvas(seg.radius, cAdjust);
 				ctx.beginPath();
-				ctx.arc(cx3, cy3, seg.radius, a1, a2, seg.arcCcw);
+				ctx.arc(cx3, cy3, cRadius, a1, a2, seg.arcCcw);
 				ctx.strokeStyle = color;
 				ctx.stroke();
 			}

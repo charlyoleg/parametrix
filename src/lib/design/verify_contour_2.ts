@@ -5,7 +5,7 @@ import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
 
 const pDef: tParamDef = {
 	page: 'verify_contour_2',
-	params: [{ name: 'r1', unit: 'mm', init: 30, min: 10, max: 200, step: 1 }],
+	params: [{ name: 'r1', unit: 'mm', init: 30, min: 5, max: 200, step: 1 }],
 	paramSvg: {
 		r1: 'verify_contour_1_r1.svg'
 	},
@@ -49,11 +49,11 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rGeome.fig.addMain(ctr1);
 		const ctr2 = contour(20, -20);
 		ctr2.addSegStroke(40, -40);
-		ctr1.addSegArc(60, -60, r1, true, true);
-		ctr1.addSegArc(80, -80, r1, true, false);
-		ctr1.addSegArc(100, -100, r1, false, true);
-		ctr1.addSegArc(120, -120, r1, false, false);
-		ctr1.addSegStroke(140, -140);
+		ctr2.addSegArc(60, -60, r1, true, true);
+		ctr2.addSegArc(80, -80, r1, true, false);
+		ctr2.addSegArc(100, -100, r1, false, true);
+		ctr2.addSegArc(120, -120, r1, false, false);
+		ctr2.addSegStroke(140, -140);
 		rGeome.fig.addMain(ctr2);
 		rGeome.logstr += 'verify_contour_2 draw successfully!\n';
 		rGeome.calcErr = false;
