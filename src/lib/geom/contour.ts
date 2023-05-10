@@ -16,15 +16,15 @@ import { colors, point2canvas, radius2canvas } from './canvas_utils';
 //	withinZeroPi,
 //	withinHPiHPi
 //} from './angle_utils';
-//import {
-//	//rightTriLaFromLbLc,
-//	//rightTriLbFromLaLc,
-//	//lcFromLaLbAc,
-//	//aCFromLaLbLc,
-//	//aCFromAaAb
-//	lbFromLaAaAb
-//	//aBFromLaLbAa
-//} from './triangle_utils';
+import {
+	//rightTriLaFromLbLc,
+	rightTriLbFromLaLc
+	//lcFromLaLbAc,
+	//aCFromLaLbLc,
+	//aCFromAaAb,
+	//lbFromLaAaAb,
+	//aBFromLaLbAa
+} from './triangle_utils';
 import { point, Point } from './point';
 //import { line, Line } from './line';
 //import { vector, Vector } from './vector';
@@ -73,12 +73,28 @@ function toCanvasArc(
 	arcLarge: boolean,
 	arcCcw: boolean
 ) {
-	const px3 = px1;
-	const py3 = py1;
-	const a1 = px2;
-	const a2 = py2;
-	// TODO
-	console.log(`todo ${radius} ${arcLarge} ${arcCcw}`);
+	const p1 = point(px1, py1);
+	const p2 = point(px2, py2);
+	const lp1p2h = p1.distanceToPoint(p2) / 2;
+	if (p1.isEqual(p2)) {
+		throw `err638: no equidistance because identical point ${p1.cx} ${p2.cy}`;
+	}
+	if (radius < lp1p2h) {
+		throw `err399: radius ${radius} smaller than lp1p2h ${lp1p2h}`;
+	}
+	const pbi = p1.middlePoint(p2);
+	const abi = p1.angleToPoint(p2) + Math.PI / 2;
+	const oppos = rightTriLbFromLaLc(radius, lp1p2h);
+	const rp1 = pbi.translatePolar(abi, oppos);
+	const rp2 = pbi.translatePolar(abi + Math.PI, oppos);
+	let rp3 = rp1;
+	if ((!arcLarge && !arcCcw) || (arcLarge && arcCcw)) {
+		rp3 = rp2;
+	}
+	const px3 = rp3.cx;
+	const py3 = rp3.cy;
+	const a1 = rp3.angleToPoint(p1);
+	const a2 = rp3.angleToPoint(p2);
 	return [px3, py3, a1, a2];
 }
 
