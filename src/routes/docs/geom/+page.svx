@@ -65,6 +65,27 @@ category: documentation
 
 ## Vector
 
+## Contour
+
+A *Contour* object defines a closed path that consists of segments and arcs.
+A *ContourCircle* object defines a circle.
+
+*arc* are defined differently in *canvas-js* and in *svg-path*.
+
+![arc_definition.svg]({base}/arc_definition.svg)
+
+## Figure
+
+A *Figure* object consists in several lists:
+1. list of points
+1. list of lines
+1. list of vectors
+1. list of contours called *main*
+1. list of contours called *mainB* or *main-skeleton*
+1. list of contours called *second*
+1. list of contours called *secondB* or *second-skeleton*
+1. list of contours called *dynamics*
+
 
 <style lang="scss">
 	@use '$lib/style/colors.scss';
