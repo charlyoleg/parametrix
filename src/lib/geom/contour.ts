@@ -93,8 +93,8 @@ function toCanvasArc(
 	}
 	const px3 = rp3.cx;
 	const py3 = rp3.cy;
-	const a1 = rp3.angleToPoint(p1);
-	const a2 = rp3.angleToPoint(p2);
+	const a1 = -1 * rp3.angleToPoint(p1);
+	const a2 = -1 * rp3.angleToPoint(p2);
 	return [px3, py3, a1, a2];
 }
 
