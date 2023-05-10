@@ -233,7 +233,7 @@ function initLayers(): tLayers {
 
 /* export */
 
-export type { tLayers };
+export type { tLayers, Figure };
 export {
 	degToRad,
 	radToDeg,
@@ -245,7 +245,6 @@ export {
 	vector,
 	contour,
 	contourCircle,
-	Figure,
 	figure,
 	initLayers
 };
