@@ -5,7 +5,7 @@ import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
 
 const pDef: tParamDef = {
 	page: 'verify_contour_2',
-	params: [{ name: 'r1', unit: 'mm', init: 30, min: 5, max: 200, step: 1 }],
+	params: [{ name: 'r1', unit: 'mm', init: 20, min: 5, max: 200, step: 1 }],
 	paramSvg: {
 		r1: 'verify_contour_1_r1.svg'
 	},
@@ -20,7 +20,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	const rGeome: tGeom = { fig: figure(), logstr: '', calcErr: true };
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
-		const r1 = param['r1'];
+		const r1 = param['r1'] + t;
 		const ctr1 = contour(20, 20);
 		ctr1.addSegStroke(40, 20);
 		ctr1.addSegArc(60, 20, r1, true, true);

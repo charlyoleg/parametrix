@@ -7,15 +7,15 @@ import type { tCanvasAdjust } from './canvas_utils';
 //import type { tPolar } from './point';
 //import { colorCanvasPoint } from '$lib/style/colors.scss';
 import { colors, point2canvas, radius2canvas } from './canvas_utils';
-//import {
-//	//degToRad,
-//	//radToDeg,
-//	roundZero,
-//	//withinZero2Pi,
-//	withinPiPi,
-//	withinZeroPi,
-//	withinHPiHPi
-//} from './angle_utils';
+import {
+	//degToRad,
+	//radToDeg,
+	//roundZero,
+	//withinZero2Pi,
+	withinPiPi
+	//withinZeroPi,
+	//withinHPiHPi
+} from './angle_utils';
 import {
 	//rightTriLaFromLbLc,
 	rightTriLbFromLaLc
@@ -93,8 +93,8 @@ function toCanvasArc(
 	}
 	const px3 = rp3.cx;
 	const py3 = rp3.cy;
-	const a1 = -1 * rp3.angleToPoint(p1);
-	const a2 = -1 * rp3.angleToPoint(p2);
+	const a1 = rp3.angleToPoint(p1);
+	const a2 = rp3.angleToPoint(p2);
 	return [px3, py3, a1, a2];
 }
 
@@ -175,7 +175,7 @@ class Contour extends AContour {
 					const [cx3, cy3] = point2canvas(px3, py3, cAdjust);
 					const cRadius = radius2canvas(seg.radius, cAdjust);
 					ctx.beginPath();
-					ctx.arc(cx3, cy3, cRadius, a1, a2, seg.arcCcw);
+					ctx.arc(cx3, cy3, cRadius, -a1, -a2, seg.arcCcw);
 					ctx.strokeStyle = color;
 					ctx.stroke();
 				} catch (emsg) {
@@ -207,17 +207,46 @@ class Contour extends AContour {
 		return rContour;
 	}
 	generatePoints(): Array<Point> {
-		// TODO
 		const rPoints = [];
 		const seg0 = this.segments[0];
 		rPoints.push(point(seg0.px, seg0.py));
+		let px1 = 0;
+		let py1 = 0;
 		for (const seg of this.segments) {
+			if (seg.sType === SegEnum.eArc) {
+				try {
+					const [px3, py3, a1, a2] = toCanvasArc(
+						px1,
+						py1,
+						seg.px,
+						seg.py,
+						seg.radius,
+						seg.arcLarge,
+						seg.arcCcw
+					);
+					const p3 = point(px3, py3);
+					const a12h = withinPiPi((a2 - a1) / 2);
+					let a3 = a1 + a12h;
+					if (
+						(Math.sign(a12h) > 0 && !seg.arcCcw) ||
+						(Math.sign(a12h) < 0 && seg.arcCcw)
+					) {
+						a3 += Math.PI;
+					}
+					const p4 = p3.translatePolar(a3, seg.radius);
+					rPoints.push(p4);
+				} catch (emsg) {
+					console.log('err413: ' + emsg);
+				}
+			}
 			if (
 				seg.sType === SegEnum.eStroke ||
 				seg.sType === SegEnum.eArc ||
 				seg.sType === SegEnum.eStart
 			) {
-				rPoints.push(point(seg.px, seg.py));
+				px1 = seg.px;
+				py1 = seg.py;
+				rPoints.push(point(px1, py1));
 			}
 		}
 		return rPoints;
