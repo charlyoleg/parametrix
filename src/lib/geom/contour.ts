@@ -162,21 +162,25 @@ class Contour extends AContour {
 				ctx.stroke();
 			}
 			if (seg.sType === SegEnum.eArc) {
-				const [px3, py3, a1, a2] = toCanvasArc(
-					px1,
-					py1,
-					seg.px,
-					seg.py,
-					seg.radius,
-					seg.arcLarge,
-					seg.arcCcw
-				);
-				const [cx3, cy3] = point2canvas(px3, py3, cAdjust);
-				const cRadius = radius2canvas(seg.radius, cAdjust);
-				ctx.beginPath();
-				ctx.arc(cx3, cy3, cRadius, a1, a2, seg.arcCcw);
-				ctx.strokeStyle = color;
-				ctx.stroke();
+				try {
+					const [px3, py3, a1, a2] = toCanvasArc(
+						px1,
+						py1,
+						seg.px,
+						seg.py,
+						seg.radius,
+						seg.arcLarge,
+						seg.arcCcw
+					);
+					const [cx3, cy3] = point2canvas(px3, py3, cAdjust);
+					const cRadius = radius2canvas(seg.radius, cAdjust);
+					ctx.beginPath();
+					ctx.arc(cx3, cy3, cRadius, a1, a2, seg.arcCcw);
+					ctx.strokeStyle = color;
+					ctx.stroke();
+				} catch (emsg) {
+					console.log('err413: ' + emsg);
+				}
 			}
 			if (
 				seg.sType === SegEnum.eStroke ||
