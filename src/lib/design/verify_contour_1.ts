@@ -19,7 +19,7 @@ const pDef: tParamDef = {
 		w1: 'verify_contour_1_r1.svg',
 		r2: 'verify_contour_1_r1.svg',
 		l1: 'verify_contour_1_l1.svg',
-		l2: 'verify_contour_1_l2.svg'
+		l2: 'verify_contour_1_l1.svg'
 	},
 	sim: {
 		tMax: 10,
@@ -57,13 +57,13 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const ctr2 = contourCircle(w1 + r2, 3 * c1, r2);
 		ctr2.check();
 		rGeome.fig.addSecond(ctr2);
-		const ctr3 = contour(100 + l1, 100)
-			.addSegStrokeA(100 + l1 + l2, 100)
+		const ctr3 = contour(200 + l1, 200)
+			.addSegStrokeA(200 + l1 + l2, 200)
 			.addSegStrokeR(0, l1)
 			.addSegStrokeRP(0, l1)
 			.addSegStrokeRP(Math.PI / 2, l2)
-			.addSegStrokeAP(Math.PI / 4, 100 + Math.sqrt(2) * (2 * l1 + l2))
-			.addSegStrokeA(100 + l1 + l2, 100 + 2 * l1 + l2)
+			.addSegStrokeAP(Math.PI / 4, Math.sqrt(2) * (200 + l1 + l2))
+			.addSegStrokeA(200 + l1 + l2, 200 + 2 * l1 + l2)
 			.addSegStrokeR(-l2, 0)
 			.addSegStrokeR(0, -l1)
 			.addSegStrokeR(-l1, 0)

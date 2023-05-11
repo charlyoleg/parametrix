@@ -131,15 +131,23 @@ class Contour extends AContour {
 		return this;
 	}
 	addPointR(rx: number, ry: number): Contour {
-		const seg = this.segments[-1];
-		const p1 = point(seg.px, seg.py).translate(rx, ry);
-		this.addPointA(p1.cx, p1.cy);
+		const seg = this.segments.at(-1);
+		if (seg !== undefined) {
+			const p1 = point(seg.px, seg.py).translate(rx, ry);
+			this.addPointA(p1.cx, p1.cy);
+		} else {
+			throw `err921: addPointR last segement undefined ${rx}, ${ry}`;
+		}
 		return this;
 	}
 	addPointRP(ra: number, rl: number): Contour {
-		const seg = this.segments[-1];
-		const p1 = point(seg.px, seg.py).translatePolar(ra, rl);
-		this.addPointA(p1.cx, p1.cy);
+		const seg = this.segments.at(-1);
+		if (seg !== undefined) {
+			const p1 = point(seg.px, seg.py).translatePolar(ra, rl);
+			this.addPointA(p1.cx, p1.cy);
+		} else {
+			throw `err423: addPointRP last segement undefined ${ra}, ${rl}`;
+		}
 		return this;
 	}
 	addSeg(iSeg: Segment): Contour {
