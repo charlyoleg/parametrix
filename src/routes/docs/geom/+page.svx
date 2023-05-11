@@ -65,6 +65,11 @@ category: documentation
 
 ## Vector
 
+A vector is defined by its orientation and its length.
+
+![vector_definition.svg]({base}/vector_definition.svg)
+
+
 ## Contour
 
 A *Contour* object defines a closed path that consists of segments and arcs.
@@ -73,6 +78,15 @@ A *ContourCircle* object defines a circle.
 *arc* are defined differently in *canvas-js* and in *svg-path*.
 
 ![arc_definition.svg]({base}/arc_definition.svg)
+
+*Contour* has 3 methods to define arcs.
+
+![contour_arc_definition_options.svg]({base}/contour_arc_definition_options.svg)
+
+*Point* and *Stroke* can be define relative to the previous point or absolute, with cartesian or polar coordinates.
+
+![contour_point_absolute_relative.svg]({base}/contour_point_absolute_relative.svg)
+
 
 ## Figure
 
