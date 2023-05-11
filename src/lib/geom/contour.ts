@@ -168,11 +168,11 @@ class Contour extends AContour {
 		return this;
 	}
 	addSegStrokeR(rx: number, ry: number): Contour {
-		this.addPointA(rx, ry).addSegStroke();
+		this.addPointR(rx, ry).addSegStroke();
 		return this;
 	}
 	addSegStrokeRP(ra: number, rl: number): Contour {
-		this.addPointAP(ra, rl).addSegStroke();
+		this.addPointRP(ra, rl).addSegStroke();
 		return this;
 	}
 	addSegArc(iRadius: number, iLarge: boolean, iCcw: boolean): Contour {
