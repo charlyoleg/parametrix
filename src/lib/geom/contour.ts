@@ -175,9 +175,17 @@ class Contour extends AContour {
 		this.addPointAP(ra, rl).addSegStroke();
 		return this;
 	}
-	addSegArc(ix2: number, iy2: number, iRadius: number, iLarge: boolean, iCcw: boolean): Contour {
-		const seg = new Segment(SegEnum.eArc, ix2, iy2, iRadius, iLarge, iCcw);
-		this.addSeg(seg);
+	addSegArc(iRadius: number, iLarge: boolean, iCcw: boolean): Contour {
+		if (this.points.length !== 1) {
+			throw `err954: contour addSegArc with unexpected points.length ${this.points.length}`;
+		}
+		const p1 = this.points.pop();
+		if (p1 !== undefined) {
+			const seg = new Segment(SegEnum.eArc, p1.cx, p1.cy, iRadius, iLarge, iCcw);
+			this.addSeg(seg);
+		} else {
+			throw `err482: contour p1 is undefined`;
+		}
 		return this;
 	}
 	//addSegArc2(ix5: number, iy5: number, ix2: number, iy2: number) {
@@ -219,7 +227,7 @@ class Contour extends AContour {
 	closeSegArc(iRadius: number, iLarge: boolean, iCcw: boolean): Contour {
 		const px = this.segments[0].px;
 		const py = this.segments[0].py;
-		this.addSegArc(px, py, iRadius, iLarge, iCcw);
+		this.addPointA(px, py).addSegArc(iRadius, iLarge, iCcw);
 		return this;
 	}
 	draw(ctx: CanvasRenderingContext2D, cAdjust: tCanvasAdjust, color: string = colors.contour) {

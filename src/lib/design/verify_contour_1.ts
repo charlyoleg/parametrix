@@ -43,11 +43,13 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		ctr1.addSegStrokeA(w1, h1);
 		ctr1.addSegStrokeA(0, h1);
 		ctr1.closeSegStroke();
+		ctr1.check();
 		rGeome.fig.addMain(ctr1);
 		rGeome.fig.addMain(contourCircle(w12, c1, r1));
 		rGeome.fig.addMain(contourCircle(w12, c2, r1 + t));
 		rGeome.fig.addMain(contourCircle(w12, c3, r1));
 		const ctr2 = contourCircle(w1 + r2, 3 * c1, r2);
+		ctr2.check();
 		rGeome.fig.addSecond(ctr2);
 		rGeome.logstr += 'verify_contour_1 draw successfully!\n';
 		rGeome.calcErr = false;
