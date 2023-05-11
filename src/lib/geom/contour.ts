@@ -11,7 +11,7 @@ import {
 	//degToRad,
 	//radToDeg,
 	//roundZero,
-	withinZero2Pi,
+	//withinZero2Pi,
 	withinPiPi
 	//withinZeroPi,
 	//withinHPiHPi
@@ -207,17 +207,18 @@ class Contour extends AContour {
 			const p0 = point(seg.px, seg.py);
 			const p3 = circleCenter(p0, p1, p2);
 			const radius = p3.distanceToPoint(p0);
-			const a0 = withinZero2Pi(p3.angleToPoint(p0));
-			const a2 = withinZero2Pi(p3.angleToPoint(p2));
-			const a02 = a2 - a0;
+			const p0p2middle = p0.middlePoint(p2);
+			const a1 = withinPiPi(p0p2middle.angleToPoint(p1));
+			const a3 = withinPiPi(p0p2middle.angleToPoint(p3));
 			let large = false;
 			let ccw = false;
-			if (Math.abs(a02) > Math.PI) {
+			if (Math.sign(a3) * Math.sign(a1) > 0) {
 				large = true;
 			}
-			if (Math.sign(a02) > 0) {
+			if (Math.sign(a1) > 0) {
 				ccw = true;
 			}
+			console.log(`dbg437: ${radius.toFixed(2)} ${large} ${ccw}`);
 			this.addPointA(p2.cx, p2.cy).addSegArc(radius, large, ccw);
 		} else {
 			throw `err488: contour p1 or p2 or seg is undefined`;
