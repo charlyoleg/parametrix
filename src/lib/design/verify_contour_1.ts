@@ -39,9 +39,9 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const c2 = c1 + c12;
 		const c3 = c1 + 2 * c12;
 		const ctr1 = contour(0, 0);
-		ctr1.addSegStroke(w1, 0);
-		ctr1.addSegStroke(w1, h1);
-		ctr1.addSegStroke(0, h1);
+		ctr1.addSegStrokeA(w1, 0);
+		ctr1.addSegStrokeA(w1, h1);
+		ctr1.addSegStrokeA(0, h1);
 		ctr1.closeSegStroke();
 		rGeome.fig.addMain(ctr1);
 		rGeome.fig.addMain(contourCircle(w12, c1, r1));

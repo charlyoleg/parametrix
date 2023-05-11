@@ -4,8 +4,8 @@ import { contour, contourCircle } from './contour';
 
 describe('Contour suit', () => {
 	const ctr1 = contour(10, 10);
-	ctr1.addSegStroke(20, 20);
-	ctr1.addSegStroke(20, 0);
+	ctr1.addPointA(20, 20).addSegStroke();
+	ctr1.addPointA(20, 0).addSegStroke();
 	ctr1.closeSegStroke();
 	it('extractPoints', () => {
 		expect(ctr1.generatePoints()[0].isEqual(point(10, 10))).toBeTruthy();
