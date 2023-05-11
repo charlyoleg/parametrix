@@ -11,7 +11,7 @@ import {
 	//degToRad,
 	//radToDeg,
 	//roundZero,
-	//withinZero2Pi,
+	withinZero2Pi,
 	withinPiPi
 	//withinZeroPi,
 	//withinHPiHPi
@@ -26,7 +26,7 @@ import {
 	//aBFromLaLbAa
 } from './triangle_utils';
 import { point, Point } from './point';
-//import { line, Line } from './line';
+import { circleCenter } from './line';
 //import { vector, Vector } from './vector';
 
 enum SegEnum {
@@ -196,11 +196,34 @@ class Contour extends AContour {
 		}
 		return this;
 	}
-	//addSegArc2(ix5: number, iy5: number, ix2: number, iy2: number) {
-	//	// TODO
-	//	//const seg = new Segment(SegEnum.eArc, ix, iy, iRadius, iLarge, iCcw);
-	//	//this.add(seg);
-	//}
+	addSegArc2() {
+		if (this.points.length !== 2) {
+			throw `err958: contour addSegArc2 with unexpected points.length ${this.points.length}`;
+		}
+		const p2 = this.points.pop();
+		const p1 = this.points.pop();
+		const seg = this.segments.at(-1);
+		if (p1 !== undefined && p2 !== undefined && seg !== undefined) {
+			const p0 = point(seg.px, seg.py);
+			const p3 = circleCenter(p0, p1, p2);
+			const radius = p3.distanceToPoint(p0);
+			const a0 = withinZero2Pi(p3.angleToPoint(p0));
+			const a2 = withinZero2Pi(p3.angleToPoint(p2));
+			const a02 = a2 - a0;
+			let large = false;
+			let ccw = false;
+			if (Math.abs(a02) > Math.PI) {
+				large = true;
+			}
+			if (Math.sign(a02) > 0) {
+				ccw = true;
+			}
+			this.addPointA(p2.cx, p2.cy).addSegArc(radius, large, ccw);
+		} else {
+			throw `err488: contour p1 or p2 or seg is undefined`;
+		}
+		return this;
+	}
 	//addSegArc3(ix2: number, iy2: number, iTangentAngle1: number) {
 	//	// TODO
 	//	//const seg = new Segment(SegEnum.eArc, ix, iy, iRadius, iLarge, iCcw);

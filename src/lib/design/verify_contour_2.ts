@@ -55,6 +55,30 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		ctr2.addPointA(100, -100).addSegArc(r1, false, true);
 		ctr2.addPointA(120, -120).addSegArc(r1, false, false);
 		ctr2.addSegStrokeA(140, -140);
+		ctr2.addSegStrokeR(20, 20)
+			.addPointR(20, 20)
+			.addSegArc(r1, false, false)
+			.addPointRP(Math.PI / 4, 28)
+			.addSegArc(r1, false, true)
+			.addPointRP(Math.PI / 4, 28)
+			.addSegArc(r1, true, true)
+			.addPointRP(Math.PI / 4, 28)
+			.addSegArc(r1, true, false)
+			.addSegStrokeRP(Math.PI / 4, 20)
+			.addSegStrokeRP(-Math.PI / 4, 20)
+			.addPointR(10, 20)
+			.addPointR(20, 20)
+			.addSegArc2()
+			.addPointR(20, 10)
+			.addPointR(20, 20)
+			.addSegArc2()
+			.addPointR(10, 8)
+			.addPointR(20, 20)
+			.addSegArc2()
+			.addPointR(10, 12)
+			.addPointR(20, 20)
+			.addSegArc2()
+			.addPointR(20, 20);
 		ctr2.check(); // throw an exception if any error
 		rGeome.fig.addMain(ctr2);
 		rGeome.logstr += 'verify_contour_2 draw successfully!\n';
