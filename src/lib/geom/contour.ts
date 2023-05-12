@@ -113,10 +113,12 @@ abstract class AContour {
 class Contour extends AContour {
 	segments: Array<Segment>;
 	points: Array<Point>;
+	debugPoints: Array<Point>;
 	constructor(ix: number, iy: number) {
 		super();
 		this.segments = [new Segment(SegEnum.eStart, ix, iy, 0)];
 		this.points = [];
+		this.debugPoints = [];
 	}
 	addPointA(ax: number, ay: number): Contour {
 		if (this.points.length > 2) {
@@ -191,6 +193,7 @@ class Contour extends AContour {
 		if (p1 !== undefined) {
 			const seg = new Segment(SegEnum.eArc, p1.cx, p1.cy, iRadius, iLarge, iCcw);
 			this.addSeg(seg);
+			//this.debugPoints.push(p1);
 		} else {
 			throw `err482: contour p1 is undefined`;
 		}
@@ -220,6 +223,8 @@ class Contour extends AContour {
 			}
 			console.log(`dbg437: ${radius.toFixed(2)} ${large} ${ccw}`);
 			this.addPointA(p2.cx, p2.cy).addSegArc(radius, large, ccw);
+			this.debugPoints.push(p1);
+			//this.debugPoints.push(p2);
 		} else {
 			throw `err488: contour p1 or p2 or seg is undefined`;
 		}
@@ -322,6 +327,7 @@ class Contour extends AContour {
 	}
 	generatePoints(): Array<Point> {
 		const rPoints = [];
+		rPoints.push(...this.debugPoints);
 		const seg0 = this.segments[0];
 		rPoints.push(point(seg0.px, seg0.py));
 		let px1 = 0;
