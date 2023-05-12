@@ -246,7 +246,7 @@ class Contour extends AContour {
 			if (firstNlast) {
 				pref = p0;
 			}
-			const lradial = line(pref.cx, pref.cy, iTangentAngle1);
+			const lradial = line(pref.cx, pref.cy, iTangentAngle1 + Math.PI / 2);
 			const pArcCenter = lbi.intersection(lradial);
 			const radius = pArcCenter.distanceToPoint(p0);
 			const pmid = p0.middlePoint(p1);
@@ -257,11 +257,15 @@ class Contour extends AContour {
 				large = true;
 			}
 			let ccw = false;
-			if (aref > 0) {
+			if (aref < 0) {
 				ccw = true;
 			}
+			if (!firstNlast) {
+				ccw = !ccw;
+			}
 			this.addPointA(p1.cx, p1.cy).addSegArc(radius, large, ccw);
-			//this.debugPoints.push(p1);
+			this.debugPoints.push(pmid);
+			this.debugPoints.push(pArcCenter);
 		} else {
 			throw `err282: contour p1 is undefined`;
 		}

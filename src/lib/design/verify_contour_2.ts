@@ -5,9 +5,13 @@ import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
 
 const pDef: tParamDef = {
 	page: 'verify_contour_2',
-	params: [{ name: 'r1', unit: 'mm', init: 20, min: 5, max: 200, step: 1 }],
+	params: [
+		{ name: 'r1', unit: 'mm', init: 20, min: 5, max: 200, step: 1 },
+		{ name: 'a1', unit: 'deg', init: 30, min: -200, max: 200, step: 1 }
+	],
 	paramSvg: {
-		r1: 'verify_contour_1_r1.svg'
+		r1: 'verify_contour_1_r1.svg',
+		a1: 'verify_contour_1_r1.svg'
 	},
 	sim: {
 		tMax: 10,
@@ -21,6 +25,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const r1 = param['r1'] + t;
+		const ata = param['a1'] + t;
 		const ctr1 = contour(20, 20);
 		ctr1.addSegStrokeA(40, 20);
 		ctr1.addPointA(60, 20).addSegArc(r1, true, true);
@@ -160,24 +165,65 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const ctr3 = contour(200, 200)
 			.addSegStrokeR(20, 0)
 			.addPointR(20, 0)
-			.addSegArc3(degToRad(110), true)
+			.addSegArc3(degToRad(ata), true)
+			.addSegStrokeR(20, 0)
 			.addPointR(20, 0)
-			.addSegArc3(degToRad(70), true)
-			.addPointR(20, 0)
-			.addSegArc3(degToRad(-110), true)
-			.addPointR(20, 0)
-			.addSegArc3(degToRad(-70), true)
-			.addPointR(20, 0)
-			.addSegArc3(degToRad(110), false)
-			.addPointR(20, 0)
-			.addSegArc3(degToRad(70), false)
-			.addPointR(20, 0)
-			.addSegArc3(degToRad(-110), false)
-			.addPointR(20, 0)
-			.addSegArc3(degToRad(-70), false)
-			.addPointR(20, 0);
+			.addSegArc3(degToRad(ata), false)
+			.addSegStrokeR(20, 0)
+			.addSegStrokeR(0, 20)
+			.addPointR(0, 20)
+			.addSegArc3(degToRad(ata), true)
+			.addSegStrokeR(0, 20)
+			.addPointR(0, 20)
+			.addSegArc3(degToRad(ata), false)
+			.addSegStrokeR(0, 20)
+			.addSegStrokeR(-20, 0)
+			.addPointR(-20, 0)
+			.addSegArc3(degToRad(ata), true)
+			.addSegStrokeR(-20, 0)
+			.addPointR(-20, 0)
+			.addSegArc3(degToRad(ata), false)
+			.addSegStrokeR(-20, 0)
+			.addSegStrokeR(0, -20)
+			.addPointR(0, -20)
+			.addSegArc3(degToRad(ata), true)
+			.addSegStrokeR(0, -20)
+			.addPointR(0, -20)
+			.addSegArc3(degToRad(ata), false)
+			.addSegStrokeR(0, -20);
 		ctr3.check(); // throw an exception if any error
 		rGeome.fig.addMain(ctr3);
+		const ctr4 = contour(600, 200)
+			.addSegStrokeR(20, 20)
+			.addPointR(20, 20)
+			.addSegArc3(degToRad(ata), true)
+			.addSegStrokeR(20, 20)
+			.addPointR(20, 20)
+			.addSegArc3(degToRad(ata), false)
+			.addSegStrokeR(20, 20)
+			.addSegStrokeR(-20, 20)
+			.addPointR(-20, 20)
+			.addSegArc3(degToRad(ata), true)
+			.addSegStrokeR(-20, 20)
+			.addPointR(-20, 20)
+			.addSegArc3(degToRad(ata), false)
+			.addSegStrokeR(-20, 20)
+			.addSegStrokeR(-20, -20)
+			.addPointR(-20, -20)
+			.addSegArc3(degToRad(ata), true)
+			.addSegStrokeR(-20, -20)
+			.addPointR(-20, -20)
+			.addSegArc3(degToRad(ata), false)
+			.addSegStrokeR(-20, -20)
+			.addSegStrokeR(20, -20)
+			.addPointR(20, -20)
+			.addSegArc3(degToRad(ata), true)
+			.addSegStrokeR(20, -20)
+			.addPointR(20, -20)
+			.addSegArc3(degToRad(ata), false)
+			.addSegStrokeR(20, -20);
+		ctr4.check(); // throw an exception if any error
+		rGeome.fig.addMain(ctr4);
 		rGeome.logstr += 'verify_contour_2 draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
