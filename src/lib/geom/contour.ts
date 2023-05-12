@@ -26,7 +26,7 @@ import {
 	//aBFromLaLbAa
 } from './triangle_utils';
 import { point, Point } from './point';
-import { circleCenter } from './line';
+import { line, bisector, circleCenter } from './line';
 //import { vector, Vector } from './vector';
 
 enum SegEnum {
@@ -224,7 +224,7 @@ class Contour extends AContour {
 			if (Math.sign(a01) > 0) {
 				ccw = true;
 			}
-			console.log(`dbg437: ${radius.toFixed(2)} ${large} ${ccw}`);
+			//console.log(`dbg437: ${radius.toFixed(2)} ${large} ${ccw}`);
 			this.addPointA(p2.cx, p2.cy).addSegArc(radius, large, ccw);
 			this.debugPoints.push(p1);
 			//this.debugPoints.push(p2);
@@ -233,11 +233,40 @@ class Contour extends AContour {
 		}
 		return this;
 	}
-	//addSegArc3(ix2: number, iy2: number, iTangentAngle1: number) {
-	//	// TODO
-	//	//const seg = new Segment(SegEnum.eArc, ix, iy, iRadius, iLarge, iCcw);
-	//	//this.add(seg);
-	//}
+	addSegArc3(iTangentAngle1: number, firstNlast: number) {
+		if (this.points.length !== 1) {
+			throw `err914: contour addSegArc3 with unexpected points.length ${this.points.length}`;
+		}
+		const p1 = this.points.pop();
+		const seg = this.segments.at(-1);
+		if (p1 !== undefined && seg !== undefined) {
+			const p0 = point(seg.px, seg.py);
+			const lbi = bisector(p0, p1);
+			let pref = p1;
+			if (firstNlast) {
+				pref = p0;
+			}
+			const lradial = line(pref.cx, pref.cy, iTangentAngle1);
+			const pArcCenter = lbi.intersection(lradial);
+			const radius = pArcCenter.distanceToPoint(p0);
+			const pmid = p0.middlePoint(p1);
+			const amid = pref.angleToPoint(pmid);
+			const aref = withinPiPi(iTangentAngle1 - amid);
+			let large = false;
+			if (Math.abs(aref) > Math.PI / 2) {
+				large = true;
+			}
+			let ccw = false;
+			if (aref > 0) {
+				ccw = true;
+			}
+			this.addPointA(p1.cx, p1.cy).addSegArc(radius, large, ccw);
+			//this.debugPoints.push(p1);
+		} else {
+			throw `err282: contour p1 is undefined`;
+		}
+		return this;
+	}
 	//addSeg2Arcs(ix2: number, iy2: number, ita1: number, ita2: number) {
 	//	// TODO
 	//	//const seg = new Segment(SegEnum.eArc, ix, iy, iRadius, iLarge, iCcw);
