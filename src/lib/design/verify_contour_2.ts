@@ -1,6 +1,6 @@
 // verify_contour_2.ts
 
-import { contour, figure } from '$lib/geom/figure';
+import { degToRad, contour, figure } from '$lib/geom/figure';
 import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
 
 const pDef: tParamDef = {
@@ -157,6 +157,27 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addSegStrokeR(-20, 0);
 		ctr2.check(); // throw an exception if any error
 		rGeome.fig.addMain(ctr2);
+		const ctr3 = contour(200, 200)
+			.addSegStrokeR(20, 0)
+			.addPointR(20, 0)
+			.addSegArc3(degToRad(110), true)
+			.addPointR(20, 0)
+			.addSegArc3(degToRad(70), true)
+			.addPointR(20, 0)
+			.addSegArc3(degToRad(-110), true)
+			.addPointR(20, 0)
+			.addSegArc3(degToRad(-70), true)
+			.addPointR(20, 0)
+			.addSegArc3(degToRad(110), false)
+			.addPointR(20, 0)
+			.addSegArc3(degToRad(70), false)
+			.addPointR(20, 0)
+			.addSegArc3(degToRad(-110), false)
+			.addPointR(20, 0)
+			.addSegArc3(degToRad(-70), false)
+			.addPointR(20, 0);
+		ctr3.check(); // throw an exception if any error
+		rGeome.fig.addMain(ctr3);
 		rGeome.logstr += 'verify_contour_2 draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {

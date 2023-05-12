@@ -233,7 +233,7 @@ class Contour extends AContour {
 		}
 		return this;
 	}
-	addSegArc3(iTangentAngle1: number, firstNlast: number) {
+	addSegArc3(iTangentAngle1: number, firstNlast: boolean) {
 		if (this.points.length !== 1) {
 			throw `err914: contour addSegArc3 with unexpected points.length ${this.points.length}`;
 		}
