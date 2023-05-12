@@ -211,14 +211,17 @@ class Contour extends AContour {
 			const p3 = circleCenter(p0, p1, p2);
 			const radius = p3.distanceToPoint(p0);
 			const p0p2middle = p0.middlePoint(p2);
-			const a1 = withinPiPi(p0p2middle.angleToPoint(p1));
-			const a3 = withinPiPi(p0p2middle.angleToPoint(p3));
+			const a0 = p0p2middle.angleToPoint(p0);
+			const a1 = p0p2middle.angleToPoint(p1);
+			const a3 = p0p2middle.angleToPoint(p3);
+			const a01 = withinPiPi(a1 - a0);
+			const a03 = withinPiPi(a3 - a0);
 			let large = false;
 			let ccw = false;
-			if (Math.sign(a3) * Math.sign(a1) > 0) {
+			if (Math.sign(a03) * Math.sign(a01) > 0) {
 				large = true;
 			}
-			if (Math.sign(a1) > 0) {
+			if (Math.sign(a01) > 0) {
 				ccw = true;
 			}
 			console.log(`dbg437: ${radius.toFixed(2)} ${large} ${ccw}`);
