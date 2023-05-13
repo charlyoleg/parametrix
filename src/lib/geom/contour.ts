@@ -10,7 +10,7 @@ import { colors, point2canvas, radius2canvas } from './canvas_utils';
 import {
 	//degToRad,
 	//radToDeg,
-	//roundZero,
+	roundZero,
 	//withinZero2Pi,
 	withinPiPi
 	//withinZeroPi,
@@ -271,11 +271,71 @@ class Contour extends AContour {
 		}
 		return this;
 	}
-	//addSeg2Arcs(ix2: number, iy2: number, ita1: number, ita2: number) {
-	//	// TODO
-	//	//const seg = new Segment(SegEnum.eArc, ix, iy, iRadius, iLarge, iCcw);
-	//	//this.add(seg);
-	//}
+	addSeg2Arcs(ita1: number, ita2: number) {
+		if (this.points.length !== 1) {
+			throw `err214: contour addSeg2Arcs with unexpected points.length ${this.points.length}`;
+		}
+		const p1 = this.points.pop();
+		const seg = this.segments.at(-1);
+		if (p1 !== undefined && seg !== undefined) {
+			const p0 = point(seg.px, seg.py);
+			const l01 = p0.distanceToPoint(p1);
+			const a01 = p0.angleToPoint(p1);
+			const a10 = p1.angleToPoint(p0);
+			const au = withinPiPi(ita1 - a01);
+			const av = withinPiPi(ita2 - a10);
+			if (Math.abs(au) >= Math.PI / 2) {
+				throw `err545: addSeg2Arcs with too large au ${au}`;
+			}
+			if (Math.abs(av) >= Math.PI / 2) {
+				throw `err546: addSeg2Arcs with too large av ${av}`;
+			}
+			if (roundZero(au) === 0) {
+				throw `err765: addSeg2Arcs with almost zero au ${au}`;
+			}
+			if (roundZero(av) === 0) {
+				throw `err766: addSeg2Arcs with almost zero av ${av}`;
+			}
+			if (Math.sign(au) * Math.sign(av) === 1) {
+				throw `err767: addSeg2Arcs with au/av bad orientation ${au} ${av}`;
+			}
+			// l01=BH+HC
+			// HG=BH*tan(au/2)=HC*tan(av/2)
+			// l01=HG*(1/tan(au/2)+1/tan(av/2))
+			// l01*tan(au/2)*tan(av/2)=HG*tan(av/2)+HG*tan(au/2)
+			// HG=l01*tan(au/2)*tan(av/2)/(tan(av/2)+tan(au/2))
+			// trigonometry half-angle formula: tan(a/2)=(1-cos(a))/sin(a)
+			// trigonometry tan(a+b)=(tan(a)+tan(b))/(1-tan(a)*tan(b))
+			const tanu2 = Math.tan(au / 2);
+			const tanv2 = Math.tan(av / 2);
+			//const lHG = l01*tanu2*tanv2/(tanv2+tanu2);
+			//const lBH = lHG/tanu2;
+			const lBH = (l01 * tanv2) / (tanv2 + tanu2);
+			// cos(PI/2-au)=sin(u)=lBH/lJB
+			// lJB=lBH/sin(au)
+			const lJB = lBH / Math.sin(au);
+			//const lJH = lBH / Math.cotan(au);
+			const lBG = lBH / Math.sin(au / 2);
+			const lHC = (l01 * tanu2) / (tanv2 + tanu2);
+			const lIC = lHC / Math.sin(av);
+			//const lCG = lHC / Math.sin(av / 2);
+			const p2 = p0.translatePolar(a01 + au / 2, lBG);
+			let ccw = false;
+			if (Math.sign(au) < 0) {
+				ccw = true;
+			}
+			this.addPointA(p2.cx, p2.cy).addSegArc(lJB, false, ccw);
+			this.addPointA(p1.cx, p1.cy).addSegArc(lIC, false, ccw);
+			this.debugPoints.push(p2);
+			this.debugPoints.push(p0.translatePolar(a01, lBH)); // H
+			this.debugPoints.push(p0.translatePolar(a01 + au - Math.PI / 2, lJB)); // J
+			//this.debugPoints.push(p1.translatePolar(a10, lHC)); // H
+			this.debugPoints.push(p1.translatePolar(a10 + av - Math.PI / 2, lIC)); // I
+		} else {
+			throw `err182: contour p1 is undefined`;
+		}
+		return this;
+	}
 	addCornerPointed(): Contour {
 		const seg = new Segment(SegEnum.ePointed, 0, 0, 0);
 		this.addSeg(seg);

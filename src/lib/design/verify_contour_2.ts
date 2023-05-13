@@ -7,11 +7,15 @@ const pDef: tParamDef = {
 	page: 'verify_contour_2',
 	params: [
 		{ name: 'r1', unit: 'mm', init: 20, min: 5, max: 200, step: 1 },
-		{ name: 'a1', unit: 'deg', init: 30, min: -200, max: 200, step: 1 }
+		{ name: 'a1', unit: 'deg', init: 30, min: -200, max: 200, step: 1 },
+		{ name: 'at1', unit: 'deg', init: 30, min: -200, max: 200, step: 1 },
+		{ name: 'at2', unit: 'deg', init: 150, min: -200, max: 200, step: 1 }
 	],
 	paramSvg: {
 		r1: 'verify_contour_1_r1.svg',
-		a1: 'verify_contour_1_r1.svg'
+		a1: 'verify_contour_1_r1.svg',
+		at1: 'verify_contour_1_r1.svg',
+		at2: 'verify_contour_1_r1.svg'
 	},
 	sim: {
 		tMax: 10,
@@ -26,6 +30,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	try {
 		const r1 = param['r1'] + t;
 		const ata = param['a1'] + t;
+		const at1 = param['at1'] + t;
+		const at2 = param['at2'] + t;
 		const ctr1 = contour(20, 20);
 		ctr1.addSegStrokeA(40, 20);
 		ctr1.addPointA(60, 20).addSegArc(r1, true, true);
@@ -224,6 +230,13 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addSegStrokeR(20, -20);
 		ctr4.check(); // throw an exception if any error
 		rGeome.fig.addMain(ctr4);
+		const ctr5 = contour(100, 500)
+			.addSegStrokeR(20, 0)
+			.addPointR(20, 0)
+			.addSeg2Arcs(degToRad(at1), degToRad(at2))
+			.addSegStrokeR(20, 0);
+		ctr5.check(); // throw an exception if any error
+		rGeome.fig.addMain(ctr5);
 		rGeome.logstr += 'verify_contour_2 draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
