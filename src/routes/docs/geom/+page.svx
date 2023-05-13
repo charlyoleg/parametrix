@@ -83,12 +83,12 @@ A *ContourCircle* object defines a circle.
 
 ![contour_arc_definition_options.svg]({base}/contour_arc_definition_options.svg)
 
-*Point* and *Stroke* can be define relative to the previous point or absolute, with cartesian or polar coordinates.
+*Point* and *Stroke* can be defined relative to the previous point or absolute, with cartesian or polar coordinates.
 
 ![contour_point_absolute_relative.svg]({base}/contour_point_absolute_relative.svg)
 
 
-*2-arc* define by two points and there two tangents
+*2-arc* defined by two points and there two tangents
 
 ![contour_tangential_two_arcs.svg]({base}/contour_tangential_two_arcs.svg)
 ![contour_tangential_two_arcs_impossible_case.svg]({base}/contour_tangential_two_arcs_impossible_case.svg)
