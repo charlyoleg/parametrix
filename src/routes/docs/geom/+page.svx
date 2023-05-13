@@ -88,6 +88,12 @@ A *ContourCircle* object defines a circle.
 ![contour_point_absolute_relative.svg]({base}/contour_point_absolute_relative.svg)
 
 
+*2-arc* define by two points and there two tangents
+
+![contour_tangential_two_arcs.svg]({base}/contour_tangential_two_arcs.svg)
+![contour_tangential_two_arcs_impossible_case.svg]({base}/contour_tangential_two_arcs_impossible_case.svg)
+
+
 ## Figure
 
 A *Figure* object consists in several lists:
