@@ -41,6 +41,12 @@
        width="47.566715"
        height="21.465523"
        id="rect2049-3" />
+    <rect
+       x="134.38103"
+       y="6781.707"
+       width="288.5101"
+       height="49.480438"
+       id="rect2335-0-3" />
   </defs>
   <g
      id="layer1"
@@ -52,6 +58,14 @@
        height="65.750351"
        x="16.321457"
        y="1736.5684" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.377689,-56.699631)"
+       id="text2333-6-6"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2335-0-3);display:inline"><tspan
+         x="134.38086"
+         y="6794.6836"
+         id="tspan5634">tangential two arcs : impossible case</tspan></text>
     <circle
        style="fill:none;stroke:#999999;stroke-width:0.264583"
        id="path2391"
@@ -104,7 +118,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2049);display:inline"><tspan
          x="216.30664"
          y="6744.8828"
-         id="tspan5403">a1</tspan></text>
+         id="tspan5636">a1</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-1.7758748,-8.216954)"
@@ -112,7 +126,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2061);display:inline"><tspan
          x="155.64062"
          y="6750.9434"
-         id="tspan5405">p1</tspan></text>
+         id="tspan5638">p1</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-10.722842,-13.83769)"
@@ -120,7 +134,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2067);display:inline"><tspan
          x="321.58203"
          y="6748.5098"
-         id="tspan5407">p2</tspan></text>
+         id="tspan5640">p2</tspan></text>
     <path
        style="fill:none;stroke:#ff6600;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 76.756995,1765.0442 c 0,0 1.926441,-0.1398 2.41863,0.522 0.449638,0.6046 -0.179123,2.2533 -0.179123,2.2533"
@@ -132,7 +146,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2049-3);display:inline"><tspan
          x="216.30664"
          y="6744.8828"
-         id="tspan5409">a2</tspan></text>
+         id="tspan5642">a2</tspan></text>
     <path
        style="fill:none;stroke:#803300;stroke-width:0.264582px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 67.86184,1792.8269 43.017166,1773.8765"
@@ -156,6 +170,6 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2335);display:inline"><tspan
          x="134.38086"
          y="6794.6836"
-         id="tspan5411">if (a1 == a2) {no tangential 2 arcs}</tspan></text>
+         id="tspan5644">if (a1 == a2) {no tangential 2 arcs}</tspan></text>
   </g>
 </svg>

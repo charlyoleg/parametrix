@@ -90,6 +90,7 @@ A *ContourCircle* object defines a circle.
 
 *2-arc* defined by two points and there two tangents
 
+![contour_tangential_two_arcs_requirements.svg]({base}/contour_tangential_two_arcs_requirements.svg)
 ![contour_tangential_two_arcs.svg]({base}/contour_tangential_two_arcs.svg)
 ![contour_tangential_two_arcs_impossible_case.svg]({base}/contour_tangential_two_arcs_impossible_case.svg)
 
