@@ -9,7 +9,7 @@ const pDef: tParamDef = {
 		{ name: 'r1', unit: 'mm', init: 20, min: 5, max: 200, step: 1 },
 		{ name: 'a1', unit: 'deg', init: 30, min: -200, max: 200, step: 1 },
 		{ name: 'at1', unit: 'deg', init: 30, min: -200, max: 200, step: 1 },
-		{ name: 'at2', unit: 'deg', init: 130, min: -200, max: 200, step: 1 }
+		{ name: 'at2', unit: 'deg', init: 50, min: -200, max: 200, step: 1 }
 	],
 	paramSvg: {
 		r1: 'verify_contour_1_r1.svg',
@@ -230,11 +230,18 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addSegStrokeR(20, -20);
 		ctr4.check(); // throw an exception if any error
 		rGeome.fig.addMain(ctr4);
-		const ctr5 = contour(100, 500)
-			.addSegStrokeR(20, 0)
-			.addPointR(20, 0)
-			.addSeg2Arcs(degToRad(at1), degToRad(at2))
-			.addSegStrokeR(20, 0);
+		const ctr5 = contour(100, 500);
+		for (let i = 0; i < 8; i++) {
+			const adir = i * 45;
+			const adirRad = degToRad(adir);
+			ctr5.addSegStrokeRP(adirRad, 20)
+				.addPointRP(adirRad, 20)
+				.addSeg2Arcs(degToRad(adir + at1), degToRad(180 + adir - at2))
+				.addSegStrokeRP(adirRad, 20)
+				.addPointRP(adirRad, 20)
+				.addSeg2Arcs(degToRad(adir - at1), degToRad(180 + adir + at2))
+				.addSegStrokeRP(adirRad, 20);
+		}
 		ctr5.check(); // throw an exception if any error
 		rGeome.fig.addMain(ctr5);
 		rGeome.logstr += 'verify_contour_2 draw successfully!\n';
