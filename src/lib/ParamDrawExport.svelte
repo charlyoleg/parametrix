@@ -19,7 +19,7 @@
 		//geomRedraw(simTime);
 	}
 	// export drawings
-	function dowloadExport() {
+	function downloadExport() {
 		console.log('todo020');
 	}
 </script>
@@ -37,7 +37,7 @@
 		<option value="sxf">dxf</option>
 		<option value="pax">png</option>
 	</select>
-	<button on:click={dowloadExport}>Save to File</button>
+	<button on:click={downloadExport}>Save to File</button>
 </section>
 
 <style lang="scss">

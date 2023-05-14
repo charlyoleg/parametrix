@@ -72,6 +72,8 @@ A vector is defined by its orientation and its length.
 
 ## Contour
 
+### Contour description
+
 A *Contour* object defines a closed path that consists of segments and arcs.
 A *ContourCircle* object defines a circle.
 
@@ -93,6 +95,29 @@ A *ContourCircle* object defines a circle.
 ![contour_tangential_two_arcs_requirements.svg]({base}/contour_tangential_two_arcs_requirements.svg)
 ![contour_tangential_two_arcs.svg]({base}/contour_tangential_two_arcs.svg)
 ![contour_tangential_two_arcs_impossible_case.svg]({base}/contour_tangential_two_arcs_impossible_case.svg)
+
+### Contour generation
+
+#### Corner Pointed
+
+*contour().addCornerPointed()* does not modify the corner.
+
+
+#### Corner Rounded
+
+*contour().addCornerRounded(radius)* replaces the peak with an arc within the angle/peak.
+
+![corner_rounded_stroke_stroke.svg]({base}/corner_rounded_stroke_stroke.svg)
+![corner_rounded_stroke_int_arc.svg]({base}/corner_rounded_stroke_int_arc.svg)
+![corner_rounded_stroke_ext_arc.svg]({base}/corner_rounded_stroke_ext_arc.svg)
+![corner_rounded_ext_arc_ext_arc.svg]({base}/corner_rounded_ext_arc_ext_arc.svg)
+![corner_rounded_int_arc_ext_arc.svg]({base}/corner_rounded_int_arc_ext_arc.svg)
+![corner_rounded_int_arc_int_arc.svg]({base}/corner_rounded_int_arc_int_arc.svg)
+
+
+#### Corner Widened
+
+*contour().addCornerWidened(radius)* replaces the peak with an arc around the angle/peak.
 
 
 ## Figure
