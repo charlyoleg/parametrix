@@ -9,7 +9,7 @@ const pDef: tParamDef = {
 		{ name: 'r1', unit: 'mm', init: 20, min: 5, max: 200, step: 1 },
 		{ name: 'a1', unit: 'deg', init: 30, min: -200, max: 200, step: 1 },
 		{ name: 'at1', unit: 'deg', init: 30, min: -200, max: 200, step: 1 },
-		{ name: 'at2', unit: 'deg', init: 150, min: -200, max: 200, step: 1 }
+		{ name: 'at2', unit: 'deg', init: 130, min: -200, max: 200, step: 1 }
 	],
 	paramSvg: {
 		r1: 'verify_contour_1_r1.svg',

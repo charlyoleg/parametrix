@@ -283,7 +283,8 @@ class Contour extends AContour {
 			const a01 = p0.angleToPoint(p1);
 			const a10 = p1.angleToPoint(p0);
 			const au = withinPiPi(ita1 - a01);
-			const av = withinPiPi(ita2 - a10);
+			const av = -1 * withinPiPi(ita2 - a10);
+			//console.log(`dbg998: addSeg2Arcs au ${au} av ${av}`);
 			if (Math.abs(au) >= Math.PI / 2) {
 				throw `err545: addSeg2Arcs with too large au ${au}`;
 			}
@@ -296,7 +297,7 @@ class Contour extends AContour {
 			if (roundZero(av) === 0) {
 				throw `err766: addSeg2Arcs with almost zero av ${av}`;
 			}
-			if (Math.sign(au) * Math.sign(av) === 1) {
+			if (Math.sign(au) * Math.sign(av) < 1) {
 				throw `err767: addSeg2Arcs with au/av bad orientation ${au} ${av}`;
 			}
 			// l01=BH+HC
@@ -308,29 +309,32 @@ class Contour extends AContour {
 			// trigonometry tan(a+b)=(tan(a)+tan(b))/(1-tan(a)*tan(b))
 			const tanu2 = Math.tan(au / 2);
 			const tanv2 = Math.tan(av / 2);
-			//const lHG = l01*tanu2*tanv2/(tanv2+tanu2);
+			//const lHG = (l01 * tanu2 * tanv2) / (tanv2 + tanu2); // only for console.log()
 			//const lBH = lHG/tanu2;
 			const lBH = (l01 * tanv2) / (tanv2 + tanu2);
 			// cos(PI/2-au)=sin(u)=lBH/lJB
 			// lJB=lBH/sin(au)
 			const lJB = lBH / Math.sin(au);
 			//const lJH = lBH / Math.cotan(au);
-			const lBG = lBH / Math.sin(au / 2);
+			const lBG = lBH / Math.cos(au / 2);
 			const lHC = (l01 * tanu2) / (tanv2 + tanu2);
 			const lIC = lHC / Math.sin(av);
-			//const lCG = lHC / Math.sin(av / 2);
+			//const lCG = lHC / Math.cos(av / 2); // only for console.log()
 			const p2 = p0.translatePolar(a01 + au / 2, lBG);
 			let ccw = false;
 			if (Math.sign(au) < 0) {
 				ccw = true;
 			}
+			//console.log(`dbg401: addSeg2Arcs l01 ${l01} lHG ${lHG}`);
+			//console.log(`dbg409: addSeg2Arcs lBH ${lBH} lBG ${lBG} lJB ${lJB}`);
+			//console.log(`dbg408: addSeg2Arcs lHC ${lHC} lCG ${lCG} lIC ${lIC}`);
 			this.addPointA(p2.cx, p2.cy).addSegArc(lJB, false, ccw);
 			this.addPointA(p1.cx, p1.cy).addSegArc(lIC, false, ccw);
-			this.debugPoints.push(p2);
+			//this.debugPoints.push(p2);
 			this.debugPoints.push(p0.translatePolar(a01, lBH)); // H
 			this.debugPoints.push(p0.translatePolar(a01 + au - Math.PI / 2, lJB)); // J
 			//this.debugPoints.push(p1.translatePolar(a10, lHC)); // H
-			this.debugPoints.push(p1.translatePolar(a10 + av - Math.PI / 2, lIC)); // I
+			this.debugPoints.push(p1.translatePolar(a10 - av + Math.PI / 2, lIC)); // I
 		} else {
 			throw `err182: contour p1 is undefined`;
 		}
