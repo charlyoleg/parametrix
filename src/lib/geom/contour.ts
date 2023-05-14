@@ -314,11 +314,11 @@ class Contour extends AContour {
 			const lBH = (l01 * tanv2) / (tanv2 + tanu2);
 			// cos(PI/2-au)=sin(u)=lBH/lJB
 			// lJB=lBH/sin(au)
-			const lJB = lBH / Math.sin(au);
+			const lJB = Math.abs(lBH / Math.sin(au));
 			//const lJH = lBH / Math.cotan(au);
 			const lBG = lBH / Math.cos(au / 2);
 			const lHC = (l01 * tanu2) / (tanv2 + tanu2);
-			const lIC = lHC / Math.sin(av);
+			const lIC = Math.abs(lHC / Math.sin(av));
 			//const lCG = lHC / Math.cos(av / 2); // only for console.log()
 			const p2 = p0.translatePolar(a01 + au / 2, lBG);
 			let ccw = false;
@@ -332,9 +332,9 @@ class Contour extends AContour {
 			this.addPointA(p1.cx, p1.cy).addSegArc(lIC, false, ccw);
 			//this.debugPoints.push(p2);
 			this.debugPoints.push(p0.translatePolar(a01, lBH)); // H
-			this.debugPoints.push(p0.translatePolar(a01 + au - Math.PI / 2, lJB)); // J
+			this.debugPoints.push(p0.translatePolar(a01 + au - (Math.sign(au) * Math.PI) / 2, lJB)); // J
 			//this.debugPoints.push(p1.translatePolar(a10, lHC)); // H
-			this.debugPoints.push(p1.translatePolar(a10 - av + Math.PI / 2, lIC)); // I
+			this.debugPoints.push(p1.translatePolar(a10 - av + (Math.sign(au) * Math.PI) / 2, lIC)); // I
 		} else {
 			throw `err182: contour p1 is undefined`;
 		}
