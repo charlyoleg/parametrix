@@ -165,7 +165,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addPointR(-8, -5)
 			.addPointR(-20, 0)
 			.addSegArc2()
-			.addSegStrokeR(-20, 0);
+			.addSegStrokeR(-20, 0)
+			.closeSegStroke();
 		ctr2.check(); // throw an exception if any error
 		rGeome.fig.addMain(ctr2);
 		const ctr3 = contour(200, 200)

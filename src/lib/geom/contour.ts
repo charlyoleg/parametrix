@@ -638,7 +638,7 @@ class Contour extends AContour {
 		}
 		const px0 = this.segments[0].px;
 		const py0 = this.segments[0].py;
-		if (px1 !== px0 || py1 !== py0) {
+		if (roundZero(px1 - px0) !== 0 || roundZero(py1 - py0) !== 0) {
 			throw `err414: contour check, contour is not closed px ${px0} ${px1} py ${px0} ${py0}`;
 		}
 	}
