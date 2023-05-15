@@ -38,6 +38,35 @@ enum SegEnum {
 	eStart
 }
 
+function isSeg(iSegEnum: SegEnum) {
+	let rIsSeg = false;
+	if (iSegEnum === SegEnum.eStroke || iSegEnum === SegEnum.eArc) {
+		rIsSeg = true;
+	}
+	return rIsSeg;
+}
+function isAddPoint(iSegEnum: SegEnum) {
+	let rIsOther = false;
+	if (isSeg(iSegEnum) || iSegEnum === SegEnum.eStart) {
+		rIsOther = true;
+	}
+	return rIsOther;
+}
+function isActiveCorner(iSegEnum: SegEnum) {
+	let rIsActiveCorner = false;
+	if (iSegEnum === SegEnum.eRounded || iSegEnum === SegEnum.eWidened) {
+		rIsActiveCorner = true;
+	}
+	return rIsActiveCorner;
+}
+function isCorner(iSegEnum: SegEnum) {
+	let rIsCorner = false;
+	if (iSegEnum === SegEnum.ePointed || isActiveCorner(iSegEnum)) {
+		rIsCorner = true;
+	}
+	return rIsCorner;
+}
+
 /* Segment class */
 
 class Segment {
@@ -60,6 +89,44 @@ class Segment {
 		this.py = iy;
 		this.radius = iRadius;
 		this.arcLarge = iArcLarge;
+		this.arcCcw = iArcCcw;
+	}
+}
+class Segment2 {
+	sType: SegEnum;
+	p1x: number;
+	p1y: number;
+	p2x: number;
+	p2y: number;
+	pcx: number;
+	pcy: number;
+	radius: number;
+	a1: number;
+	a2: number;
+	arcCcw: boolean;
+	constructor(
+		iType: SegEnum,
+		ip1x: number,
+		ip1y: number,
+		ip2x: number,
+		ip2y: number,
+		ipcx: number,
+		ipcy: number,
+		iRadius: number,
+		ia1: number,
+		ia2: number,
+		iArcCcw = false
+	) {
+		this.sType = iType;
+		this.p1x = ip1x;
+		this.p1y = ip1y;
+		this.p2x = ip2x;
+		this.p2y = ip2y;
+		this.pcx = ipcx;
+		this.pcy = ipcy;
+		this.radius = iRadius;
+		this.a1 = ia1;
+		this.a2 = ia2;
 		this.arcCcw = iArcCcw;
 	}
 }
@@ -401,11 +468,7 @@ class Contour extends AContour {
 					console.log('err413: ' + emsg);
 				}
 			}
-			if (
-				seg.sType === SegEnum.eStroke ||
-				seg.sType === SegEnum.eArc ||
-				seg.sType === SegEnum.eStart
-			) {
+			if (isAddPoint(seg.sType)) {
 				px1 = seg.px;
 				py1 = seg.py;
 			}
@@ -415,14 +478,101 @@ class Contour extends AContour {
 		const seg0 = this.segments[0];
 		const rContour = new Contour(seg0.px, seg0.py);
 		for (const seg of this.segments) {
-			if (seg.sType === SegEnum.eStroke || seg.sType === SegEnum.eArc) {
+			if (isSeg(seg.sType)) {
 				rContour.addSeg(seg);
 			}
 		}
 		return rContour;
 	}
 	generateContour(): Contour {
-		const rContour = this.extractSkeleton(); // TODO
+		const segStack: Array<Segment2> = [];
+		const segStackEnd: Array<Segment2> = [];
+		let coType = 0;
+		let px1 = 0;
+		let py1 = 0;
+		for (const seg of this.segments) {
+			if (seg.sType === SegEnum.eStroke) {
+				segStack.push(
+					new Segment2(seg.sType, px1, py1, seg.px, seg.py, 0, 0, 0, 0, 0, false)
+				);
+				coType = 1;
+			}
+			if (seg.sType === SegEnum.eArc) {
+				const [px3, py3, a1, a2] = toCanvasArc(
+					px1,
+					py1,
+					seg.px,
+					seg.py,
+					seg.radius,
+					seg.arcLarge,
+					seg.arcCcw
+				);
+				segStack.push(
+					new Segment2(
+						seg.sType,
+						px1,
+						py1,
+						seg.px,
+						seg.py,
+						px3,
+						py3,
+						seg.radius,
+						a1,
+						a2,
+						seg.arcCcw
+					)
+				);
+				coType = 1;
+			}
+			const segz1 = segStack.at(-1);
+			const segz2 = segStack.at(-2);
+			if (segz1 !== undefined && segz2 !== undefined) {
+				if (isSeg(segz1.sType) && isCorner(segz2.sType)) {
+					console.log('todo');
+				}
+			}
+			if (isCorner(seg.sType)) {
+				if (coType === 2) {
+					throw `err419: generateContour with two consecutive corners ${seg.sType}`;
+				}
+				if (coType === 0 && isActiveCorner(seg.sType)) {
+					segStackEnd.push(
+						new Segment2(seg.sType, 0, 0, 0, 0, 0, 0, seg.radius, 0, 0, false)
+					);
+				}
+				if (coType === 1 && isActiveCorner(seg.sType)) {
+					segStackEnd.push(
+						new Segment2(seg.sType, 0, 0, 0, 0, 0, 0, seg.radius, 0, 0, false)
+					);
+				}
+				coType = 2;
+			}
+			if (isAddPoint(seg.sType)) {
+				px1 = seg.px;
+				py1 = seg.py;
+			}
+		}
+		segStack.push(...segStackEnd);
+		const segz1 = segStack.at(-1);
+		if (segz1 !== undefined) {
+			if (isCorner(segz1.sType)) {
+				console.log('todo');
+			}
+		}
+		const seg0 = segStack[0];
+		const rContour = new Contour(seg0.p1x, seg0.p1y);
+		for (const seg2 of segStack) {
+			if (seg2.sType === SegEnum.eStroke) {
+				rContour.addSegStrokeA(seg2.p2x, seg2.p2y);
+			} else if (seg2.sType === SegEnum.eArc) {
+				console.log('todo');
+				const large = false;
+				const ccw = false;
+				rContour.addPointA(seg2.p2x, seg2.p2y).addSegArc(seg2.radius, large, ccw);
+			} else {
+				throw `err986: contour generateContour unexpected in seg2 Enum ${seg2.sType}`;
+			}
+		}
 		return rContour;
 	}
 	generatePoints(): Array<Point> {
@@ -459,11 +609,7 @@ class Contour extends AContour {
 					console.log('err413: ' + emsg);
 				}
 			}
-			if (
-				seg.sType === SegEnum.eStroke ||
-				seg.sType === SegEnum.eArc ||
-				seg.sType === SegEnum.eStart
-			) {
+			if (isAddPoint(seg.sType)) {
 				px1 = seg.px;
 				py1 = seg.py;
 				rPoints.push(point(px1, py1));
@@ -472,6 +618,9 @@ class Contour extends AContour {
 		return rPoints;
 	}
 	check() {
+		if (this.segments[0].sType !== SegEnum.eStart) {
+			throw `err412: contour check first seg is not eStart ${this.segments[0].sType}`;
+		}
 		let px1 = 0;
 		let py1 = 0;
 		for (const seg of this.segments) {
@@ -482,14 +631,15 @@ class Contour extends AContour {
 					throw `err778: ${emsg}`;
 				}
 			}
-			if (
-				seg.sType === SegEnum.eStroke ||
-				seg.sType === SegEnum.eArc ||
-				seg.sType === SegEnum.eStart
-			) {
+			if (isAddPoint(seg.sType)) {
 				px1 = seg.px;
 				py1 = seg.py;
 			}
+		}
+		const px0 = this.segments[0].px;
+		const py0 = this.segments[0].py;
+		if (px1 !== px0 || py1 !== py0) {
+			throw `err414: contour check, contour is not closed px ${px0} ${px1} py ${px0} ${py0}`;
 		}
 	}
 }
