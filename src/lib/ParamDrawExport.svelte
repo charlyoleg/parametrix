@@ -11,13 +11,18 @@
 	// log and paramChange
 	let logValue = 'Dummy initial\nWill be replaced during onMount\n';
 	let calcErr = false;
-	function paramChange() {
-		logValue = 'Geometry computed at ' + new Date().toLocaleTimeString() + '\n';
+	function paramChange2(iPageName: string) {
+		const mydate = new Date().toLocaleTimeString();
+		logValue = `Geometry ${iPageName} computed at ${mydate}\n`;
 		const geome = geom(simTime, $storePV[pDef.page]);
 		logValue += geome.logstr;
 		calcErr = geome.calcErr;
 		//geomRedraw(simTime);
 	}
+	function paramChange() {
+		paramChange2(pDef.page);
+	}
+	$: paramChange2(pDef.page); // for reactivity on page change
 	// export drawings
 	function downloadExport() {
 		console.log('todo020');
