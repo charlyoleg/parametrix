@@ -105,7 +105,7 @@ A *ContourCircle* object defines a circle.
 
 #### Corner Rounded
 
-*contour().addCornerRounded(radius)* replaces the peak with an arc within the angle/peak.
+*contour().addCornerRounded(radius)* replaces the peak with an arc within the angle/peak. There is one optimal solution for the problematic.
 
 ![corner_rounded_stroke_stroke.svg]({base}/corner_rounded_stroke_stroke.svg)
 ![corner_rounded_stroke_int_arc.svg]({base}/corner_rounded_stroke_int_arc.svg)
@@ -117,7 +117,15 @@ A *ContourCircle* object defines a circle.
 
 #### Corner Widened
 
-*contour().addCornerWidened(radius)* replaces the peak with an arc around the angle/peak.
+*contour().addCornerWidened(radius)* replaces the peak with an arc around the angle/peak. There are many possibilities to fulfil the problematic. The selected solution is to have the center of the arc on the bisector of the peak-angle.
+
+#### Corner summary
+
+| Corner options     | jutting corner  | recess corner   |
+|--------------------|-----------------|-----------------|
+| *corner pointed*   | no change       | no change       |
+| *corner rounded*   | remove material | add material    |
+| *corner widened*   | add material    | remove material |
 
 
 ## Figure
@@ -138,5 +146,13 @@ A *Figure* object consists in several lists:
 
 	h1 {
 		margin: 1rem;
+	}
+	table {
+		border-collapse: collapse;
+	}
+	table > thead > tr > th,
+	table > tbody > tr > td {
+		padding: 0.1rem 1rem;
+		border: 1px solid purple;
 	}
 </style>
