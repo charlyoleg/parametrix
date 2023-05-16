@@ -192,49 +192,75 @@ function arcSeg2To1(iSeg2: Segment2) {
 	return rSeg1;
 }
 
-function roundStrokeStroke(p1: Point, p2: Point, p3: Point, radius: number) {
-	const a21 = p2.angleToPoint(p1);
-	const a23 = p2.angleToPoint(p3);
+type tPrepare = {
+	s1: Segment2;
+	s2: Segment2;
+	s3: Segment2;
+	ra: number;
+	p1: Point;
+	p2: Point;
+	p3: Point;
+	p4: Point;
+	p5: Point;
+};
+function prepare(s1: Segment2, s2: Segment2, s3: Segment2): tPrepare {
+	const p2 = point(s1.p2x, s1.p2y);
+	const p2b = point(s2.p1x, s2.p1y);
+	if (!p2.isEqual(p2b)) {
+		throw `err309: makeCorner p2 and p2b differ px ${p2.cx} ${p2b.cx} py ${p2.cy} ${p2b.cy}`;
+	}
+	const rPre: tPrepare = {
+		s1: s1,
+		s2: s2,
+		s3: s3,
+		ra: s2.radius,
+		p1: point(s1.p1x, s1.p1y),
+		p2: p2,
+		p3: point(s2.p2x, s2.p2y),
+		p4: point(s1.pcx, s1.pcy),
+		p5: point(s2.pcx, s2.pcy)
+	};
+	return rPre;
+}
+function roundStrokeStroke(arg: tPrepare) {
+	const a21 = arg.p2.angleToPoint(arg.p1);
+	const a23 = arg.p2.angleToPoint(arg.p3);
 	const a6h = (a23 - a21) / 2;
 	if (Math.abs(a6h) > Math.PI / 2) {
 		throw `err902: roundStrokeStroke too large angle a6h ${a6h}`;
 	}
 	const a6b = Math.PI / 2 - Math.abs(a6h);
-	const l6 = radius / Math.sin(a6h);
+	const l6 = arg.ra / Math.sin(a6h);
 	const a26 = a21 + a6h;
-	const p6 = p2.translatePolar(a26, l6);
+	const p6 = arg.p2.translatePolar(a26, l6);
 	const a62 = a26 + Math.PI;
 	const a67 = a62 + a6b;
 	const a68 = a62 - a6b;
-	const p7 = p6.translatePolar(a67, radius);
-	const p8 = p6.translatePolar(a68, radius);
+	const p7 = p6.translatePolar(a67, arg.ra);
+	const p8 = p6.translatePolar(a68, arg.ra);
 	let ccw = false;
 	if (Math.sign(a6h) < 0) {
 		ccw = true;
 	}
 	const rsegs: Array<Segment2> = [];
-	rsegs.push(new Segment2(SegEnum.eStroke, p1.cx, p1.cy, p7.cx, p7.cy, 0, 0, 0, 0, 0, false));
 	rsegs.push(
-		new Segment2(SegEnum.eArc, p7.cx, p7.cy, p8.cx, p8.cy, p6.cx, p6.cy, radius, a67, a68, ccw)
+		new Segment2(SegEnum.eStroke, arg.p1.cx, arg.p1.cy, p7.cx, p7.cy, 0, 0, 0, 0, 0, false)
 	);
-	rsegs.push(new Segment2(SegEnum.eStroke, p8.cx, p8.cy, p2.cx, p2.cy, 0, 0, 0, 0, 0, false));
+	rsegs.push(
+		new Segment2(SegEnum.eArc, p7.cx, p7.cy, p8.cx, p8.cy, p6.cx, p6.cy, arg.ra, a67, a68, ccw)
+	);
+	rsegs.push(
+		new Segment2(SegEnum.eStroke, p8.cx, p8.cy, arg.p2.cx, arg.p2.cy, 0, 0, 0, 0, 0, false)
+	);
 	return rsegs;
 }
 function makeCorner(s1: Segment2, s2: Segment2, s3: Segment2): Array<Segment2> {
-	const p1 = point(s1.p1x, s1.p1y);
-	const p2 = point(s1.p2x, s1.p2y);
-	const p2b = point(s2.p1x, s2.p1y);
-	const p3 = point(s2.p2x, s2.p2y);
-	//const p4 = point(s1.pcx, s1.pcy);
-	//const p5 = point(s2.pcx, s2.pcy);
-	if (!p2.isEqual(p2b)) {
-		throw `err309: makeCorner p2 and p2b differ px ${p2.cx} ${p2b.cx} py ${p2.cy} ${p2b.cy}`;
-	}
+	const preArg = prepare(s1, s2, s3);
 	// TODO
 	const rsegs: Array<Segment2> = [];
 	if (s2.sType === SegEnum.eRounded) {
 		if (s1.sType === SegEnum.eStroke && s3.sType === SegEnum.eStroke) {
-			rsegs.push(...roundStrokeStroke(p1, p2, p3, s2.radius));
+			rsegs.push(...roundStrokeStroke(preArg));
 		} else if (s1.sType === SegEnum.eStroke && s3.sType === SegEnum.eArc) {
 			rsegs.push(s1);
 			rsegs.push(s3);
