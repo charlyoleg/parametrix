@@ -25,7 +25,7 @@ import {
 	//lbFromLaAaAb,
 	//aBFromLaLbAa
 } from './triangle_utils';
-import { point } from './point';
+import { point, Point } from './point';
 //import { line, bisector, circleCenter } from './line';
 //import { vector, Vector } from './vector';
 
@@ -192,20 +192,61 @@ function arcSeg2To1(iSeg2: Segment2) {
 	return rSeg1;
 }
 
+function roundStrokeStroke(p1: Point, p2: Point, p3: Point, radius: number) {
+	const a21 = p2.angleToPoint(p1);
+	const a23 = p2.angleToPoint(p3);
+	const a6h = (a23 - a21) / 2;
+	if (Math.abs(a6h) > Math.PI / 2) {
+		throw `err902: roundStrokeStroke too large angle a6h ${a6h}`;
+	}
+	const a6b = Math.PI / 2 - Math.abs(a6h);
+	const l6 = radius / Math.sin(a6h);
+	const a26 = a21 + a6h;
+	const p6 = p2.translatePolar(a26, l6);
+	const a62 = a26 + Math.PI;
+	const a67 = a62 + a6b;
+	const a68 = a62 - a6b;
+	const p7 = p6.translatePolar(a67, radius);
+	const p8 = p6.translatePolar(a68, radius);
+	let ccw = false;
+	if (Math.sign(a6h) < 0) {
+		ccw = true;
+	}
+	const rsegs: Array<Segment2> = [];
+	rsegs.push(new Segment2(SegEnum.eStroke, p1.cx, p1.cy, p7.cx, p7.cy, 0, 0, 0, 0, 0, false));
+	rsegs.push(
+		new Segment2(SegEnum.eArc, p7.cx, p7.cy, p8.cx, p8.cy, p6.cx, p6.cy, radius, a67, a68, ccw)
+	);
+	rsegs.push(new Segment2(SegEnum.eStroke, p8.cx, p8.cy, p2.cx, p2.cy, 0, 0, 0, 0, 0, false));
+	return rsegs;
+}
 function makeCorner(s1: Segment2, s2: Segment2, s3: Segment2): Array<Segment2> {
-	//const p1 = point(s1.p1x, s1.p1y);
+	const p1 = point(s1.p1x, s1.p1y);
 	const p2 = point(s1.p2x, s1.p2y);
 	const p2b = point(s2.p1x, s2.p1y);
-	//const p3 = point(s2.p2x, s2.p2y);
+	const p3 = point(s2.p2x, s2.p2y);
 	//const p4 = point(s1.pcx, s1.pcy);
 	//const p5 = point(s2.pcx, s2.pcy);
 	if (!p2.isEqual(p2b)) {
 		throw `err309: makeCorner p2 and p2b differ px ${p2.cx} ${p2b.cx} py ${p2.cy} ${p2b.cy}`;
 	}
-	const rsegs: Array<Segment2> = [];
 	// TODO
-	rsegs.push(s1);
-	rsegs.push(s3);
+	const rsegs: Array<Segment2> = [];
+	if (s2.sType === SegEnum.eRounded) {
+		if (s1.sType === SegEnum.eStroke && s3.sType === SegEnum.eStroke) {
+			rsegs.push(...roundStrokeStroke(p1, p2, p3, s2.radius));
+		} else if (s1.sType === SegEnum.eStroke && s3.sType === SegEnum.eArc) {
+			rsegs.push(s1);
+			rsegs.push(s3);
+		} else {
+			throw `err123: makeCorner unexpected s1s3.sType ${s1.sType} ${s3.sType}`;
+		}
+	} else if (s2.sType === SegEnum.eWidened) {
+		rsegs.push(s1);
+		rsegs.push(s3);
+	} else {
+		throw `err723: makeCorner unexpected s2.sType ${s2.sType}`;
+	}
 	return rsegs;
 }
 
