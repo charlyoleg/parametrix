@@ -254,6 +254,13 @@ function roundStrokeStroke(arg: tPrepare) {
 	);
 	return rsegs;
 }
+function roundStrokeArc(arg: tPrepare) {
+	// TODO
+	const rsegs: Array<Segment2> = [];
+	rsegs.push(arg.s1);
+	rsegs.push(arg.s3);
+	return rsegs;
+}
 function makeCorner(s1: Segment2, s2: Segment2, s3: Segment2): Array<Segment2> {
 	const preArg = prepare(s1, s2, s3);
 	// TODO
@@ -262,8 +269,7 @@ function makeCorner(s1: Segment2, s2: Segment2, s3: Segment2): Array<Segment2> {
 		if (s1.sType === SegEnum.eStroke && s3.sType === SegEnum.eStroke) {
 			rsegs.push(...roundStrokeStroke(preArg));
 		} else if (s1.sType === SegEnum.eStroke && s3.sType === SegEnum.eArc) {
-			rsegs.push(s1);
-			rsegs.push(s3);
+			rsegs.push(...roundStrokeArc(preArg));
 		} else {
 			throw `err123: makeCorner unexpected s1s3.sType ${s1.sType} ${s3.sType}`;
 		}
