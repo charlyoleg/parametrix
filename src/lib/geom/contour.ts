@@ -493,13 +493,13 @@ class Contour extends AContour {
 		}
 		return rPoints;
 	}
-	check() {
-		if (this.segments[0].sType !== segLib.SegEnum.eStart) {
-			throw `err412: contour check first seg is not eStart ${this.segments[0].sType}`;
+	checkContour(ctr: Contour) {
+		if (ctr.segments[0].sType !== segLib.SegEnum.eStart) {
+			throw `err412: contour check first seg is not eStart ${ctr.segments[0].sType}`;
 		}
 		let px1 = 0;
 		let py1 = 0;
-		for (const seg of this.segments) {
+		for (const seg of ctr.segments) {
 			if (seg.sType === segLib.SegEnum.eArc) {
 				try {
 					segLib.arcSeg1To2(px1, py1, seg);
@@ -512,11 +512,16 @@ class Contour extends AContour {
 				py1 = seg.py;
 			}
 		}
-		const px0 = this.segments[0].px;
-		const py0 = this.segments[0].py;
+		const px0 = ctr.segments[0].px;
+		const py0 = ctr.segments[0].py;
 		if (roundZero(px1 - px0) !== 0 || roundZero(py1 - py0) !== 0) {
 			throw `err414: contour check, contour is not closed px ${px0} ${px1} py ${px0} ${py0}`;
 		}
+	}
+	check() {
+		this.checkContour(this);
+		const ctrG = this.generateContour();
+		this.checkContour(ctrG);
 	}
 }
 
