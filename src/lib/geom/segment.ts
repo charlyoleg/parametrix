@@ -133,6 +133,7 @@ function arcSeg1To2(px1: number, py1: number, iSeg1: Segment1): Segment2 {
 		throw `err638: no equidistance because identical point ${p1.cx} ${p2.cy}`;
 	}
 	if (iSeg1.radius < lp1p2h) {
+		//console.log(`dbg398: ${p1.cx} ${p1.cy} ${iSeg1.px} ${iSeg1.py}`);
 		throw `err399: radius ${iSeg1.radius} smaller than lp1p2h ${lp1p2h}`;
 	}
 	const pbi = p1.middlePoint(p2);
@@ -219,14 +220,22 @@ function prepare(s1: Segment2, s2: Segment2, s3: Segment2): tPrepare {
 	return rPre;
 }
 function roundStrokeStroke(ag: tPrepare): Array<Segment2> {
-	const l6 = Math.abs(ag.ra / Math.sin(ag.aph));
-	const p7 = ag.p2.translatePolar(ag.abi, l6);
+	const l7 = Math.abs(ag.ra / Math.sin(ag.aph));
+	const l7b = l7 * Math.cos(ag.aph);
+	const l21 = ag.p2.distanceToPoint(ag.p1);
+	const l23 = ag.p2.distanceToPoint(ag.p3);
+	if (l7b > l21 || l7b > l23) {
+		throw `err227: roundStrokeStroke too short stroke ${l7b} ${l21} ${l23}`;
+	}
+	const p7 = ag.p2.translatePolar(ag.abi, l7);
 	const a7b = Math.sign(ag.aph) * (Math.PI / 2 - Math.abs(ag.aph));
 	const a72 = ag.abi + Math.PI;
 	const a78 = a72 + a7b;
 	const a79 = a72 - a7b;
-	const p8 = p7.translatePolar(a78, ag.ra);
-	const p9 = p7.translatePolar(a79, ag.ra);
+	//const p8 = p7.translatePolar(a78, ag.ra);
+	//const p9 = p7.translatePolar(a79, ag.ra);
+	const p8 = ag.p2.translatePolar(ag.at1, l7b);
+	const p9 = ag.p2.translatePolar(ag.at3, l7b);
 	let ccw = false;
 	if (Math.sign(ag.aph) < 0) {
 		ccw = true;

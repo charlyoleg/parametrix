@@ -5,7 +5,7 @@ import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
 
 const pDef: tParamDef = {
 	page: 'verify_contour_3',
-	params: [{ name: 'r1', unit: 'mm', init: 30, min: 1, max: 200, step: 1 }],
+	params: [{ name: 'r1', unit: 'mm', init: 10, min: 1, max: 200, step: 1 }],
 	paramSvg: {
 		r1: 'verify_contour_1_r1.svg'
 	},
@@ -25,19 +25,19 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addSegStrokeR(20, 100)
 			.addCornerRounded(r1)
 			.addSegStrokeR(100, 20)
-			//.addCornerRounded(r1)
+			.addCornerRounded(r1)
 			.addSegStrokeR(-100, 20)
-			//.addCornerRounded(r1)
+			.addCornerRounded(r1)
 			.addSegStrokeR(-20, 100)
-			//.addCornerRounded(r1)
+			.addCornerRounded(r1)
 			.addSegStrokeR(-20, -100)
-			//.addCornerRounded(r1)
+			.addCornerRounded(r1)
 			.addSegStrokeR(-100, -20)
-			//.addCornerRounded(r1)
+			.addCornerRounded(r1)
 			.addSegStrokeR(100, -20)
-			//.addCornerRounded(r1)
-			.closeSegStroke();
-		//.addCornerRounded(r1);
+			.addCornerRounded(r1)
+			.closeSegStroke()
+			.addCornerRounded(r1);
 		ctr1.check();
 		rGeome.fig.addMain(ctr1);
 		rGeome.logstr += 'verify_contour_3 draw successfully!\n';
