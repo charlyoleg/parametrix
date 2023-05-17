@@ -191,9 +191,6 @@ function prepare(s1: Segment2, s2: Segment2, s3: Segment2): tPrepare {
 	const p2b = s3.p1;
 	const p3 = s3.p2;
 	if (!p2.isEqual(p2b)) {
-		console.log(s1);
-		console.log(s2);
-		console.log(s3);
 		throw `err309: makeCorner-prepare p2 and p2b differ px ${p2.cx} ${p2b.cx} py ${p2.cy} ${p2b.cy}`;
 	}
 	const aTangent1 = p2.angleToPoint(p1);
@@ -268,10 +265,10 @@ function makeCorner(s1: Segment2, s2: Segment2, s3: Segment2): Array<Segment2> {
 	} else {
 		throw `err723: makeCorner unexpected s2.sType ${s2.sType}`;
 	}
-	console.log('dbg901: end of makeCorner');
-	for (const seg of rsegs) {
-		console.log(seg);
-	}
+	//console.log('dbg901: end of makeCorner');
+	//for (const seg of rsegs) {
+	//	console.log(seg);
+	//}
 	return rsegs;
 }
 
