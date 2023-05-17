@@ -64,24 +64,35 @@ class Contour extends AContour {
 		this.addPointA(p1.cx, p1.cy);
 		return this;
 	}
-	addPointR(rx: number, ry: number): Contour {
-		const seg = this.segments.at(-1);
-		if (seg !== undefined) {
-			const p1 = point(seg.px, seg.py).translate(rx, ry);
-			this.addPointA(p1.cx, p1.cy);
-		} else {
-			throw `err921: addPointR last segement undefined ${rx}, ${ry}`;
+	getLastRefSegment(): segLib.Segment1 {
+		let idx = this.segments.length - 1;
+		let stop = false;
+		let rseg = this.segments[0];
+		while (!stop && idx > 0) {
+			const seg = this.segments.at(idx);
+			if (seg !== undefined) {
+				if (segLib.isAddPoint(seg.sType)) {
+					stop = true;
+					rseg = seg;
+				} else {
+					idx -= 1;
+				}
+			} else {
+				throw `err782: getLastRefSegment ${idx}`;
+			}
 		}
+		return rseg;
+	}
+	addPointR(rx: number, ry: number): Contour {
+		const seg = this.getLastRefSegment();
+		const p1 = point(seg.px, seg.py).translate(rx, ry);
+		this.addPointA(p1.cx, p1.cy);
 		return this;
 	}
 	addPointRP(ra: number, rl: number): Contour {
-		const seg = this.segments.at(-1);
-		if (seg !== undefined) {
-			const p1 = point(seg.px, seg.py).translatePolar(ra, rl);
-			this.addPointA(p1.cx, p1.cy);
-		} else {
-			throw `err423: addPointRP last segement undefined ${ra}, ${rl}`;
-		}
+		const seg = this.getLastRefSegment();
+		const p1 = point(seg.px, seg.py).translatePolar(ra, rl);
+		this.addPointA(p1.cx, p1.cy);
 		return this;
 	}
 	addSeg(iSeg: segLib.Segment1): Contour {
@@ -138,13 +149,13 @@ class Contour extends AContour {
 		}
 		return this;
 	}
-	addSegArc2() {
+	addSegArc2(): Contour {
 		if (this.points.length !== 2) {
 			throw `err958: contour addSegArc2 with unexpected points.length ${this.points.length}`;
 		}
 		const p2 = this.points.pop();
 		const p1 = this.points.pop();
-		const seg = this.segments.at(-1);
+		const seg = this.getLastRefSegment();
 		if (p1 !== undefined && p2 !== undefined && seg !== undefined) {
 			const p0 = point(seg.px, seg.py);
 			const p3 = circleCenter(p0, p1, p2);
@@ -172,12 +183,12 @@ class Contour extends AContour {
 		}
 		return this;
 	}
-	addSegArc3(iTangentAngle1: number, firstNlast: boolean) {
+	addSegArc3(iTangentAngle1: number, firstNlast: boolean): Contour {
 		if (this.points.length !== 1) {
 			throw `err914: contour addSegArc3 with unexpected points.length ${this.points.length}`;
 		}
 		const p1 = this.points.pop();
-		const seg = this.segments.at(-1);
+		const seg = this.getLastRefSegment();
 		if (p1 !== undefined && seg !== undefined) {
 			const p0 = point(seg.px, seg.py);
 			const lbi = bisector(p0, p1);
@@ -210,12 +221,12 @@ class Contour extends AContour {
 		}
 		return this;
 	}
-	addSeg2Arcs(ita1: number, ita2: number) {
+	addSeg2Arcs(ita1: number, ita2: number): Contour {
 		if (this.points.length !== 1) {
 			throw `err214: contour addSeg2Arcs with unexpected points.length ${this.points.length}`;
 		}
 		const p1 = this.points.pop();
-		const seg = this.segments.at(-1);
+		const seg = this.getLastRefSegment();
 		if (p1 !== undefined && seg !== undefined) {
 			const p0 = point(seg.px, seg.py);
 			const l01 = p0.distanceToPoint(p1);
@@ -358,8 +369,8 @@ class Contour extends AContour {
 			if (seg.sType === segLib.SegEnum.eStroke) {
 				const p1 = point(px1, py1);
 				const p2 = point(seg.px, seg.py);
-				const pc = point(0, 0);
-				segStack.push(new segLib.Segment2(seg.sType, p1, p2, pc, 0, 0, 0, false));
+				const p0 = point(0, 0);
+				segStack.push(new segLib.Segment2(seg.sType, p1, p2, p0, 0, 0, 0, false));
 				coType = 1;
 			}
 			if (seg.sType === segLib.SegEnum.eArc) {
@@ -471,7 +482,7 @@ class Contour extends AContour {
 					const p4 = p3.translatePolar(a3, seg.radius);
 					rPoints.push(p4);
 				} catch (emsg) {
-					console.log('err413: ' + emsg);
+					console.log('err453: ' + emsg);
 				}
 			}
 			if (segLib.isAddPoint(seg.sType)) {
@@ -553,10 +564,10 @@ class ContourCircle extends AContour {
 }
 
 // instantiation functions
-function contour(ix: number, iy: number) {
+function contour(ix: number, iy: number): Contour {
 	return new Contour(ix, iy);
 }
-function contourCircle(ix: number, iy: number, iRadius: number) {
+function contourCircle(ix: number, iy: number, iRadius: number): ContourCircle {
 	return new ContourCircle(ix, iy, iRadius);
 }
 

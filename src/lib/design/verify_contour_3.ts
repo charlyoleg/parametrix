@@ -25,19 +25,19 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addSegStrokeR(20, 100)
 			.addCornerRounded(r1)
 			.addSegStrokeR(100, 20)
-			.addCornerRounded(r1)
+			//.addCornerRounded(r1)
 			.addSegStrokeR(-100, 20)
-			.addCornerRounded(r1)
+			//.addCornerRounded(r1)
 			.addSegStrokeR(-20, 100)
-			.addCornerRounded(r1)
+			//.addCornerRounded(r1)
 			.addSegStrokeR(-20, -100)
-			.addCornerRounded(r1)
+			//.addCornerRounded(r1)
 			.addSegStrokeR(-100, -20)
-			.addCornerRounded(r1)
+			//.addCornerRounded(r1)
 			.addSegStrokeR(100, -20)
-			.addCornerRounded(r1)
-			.closeSegStroke()
-			.addCornerRounded(r1);
+			//.addCornerRounded(r1)
+			.closeSegStroke();
+		//.addCornerRounded(r1);
 		ctr1.check();
 		rGeome.fig.addMain(ctr1);
 		rGeome.logstr += 'verify_contour_3 draw successfully!\n';

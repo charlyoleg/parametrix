@@ -191,10 +191,13 @@ function prepare(s1: Segment2, s2: Segment2, s3: Segment2): tPrepare {
 	const p2b = s3.p1;
 	const p3 = s3.p2;
 	if (!p2.isEqual(p2b)) {
-		throw `err309: makeCorner p2 and p2b differ px ${p2.cx} ${p2b.cx} py ${p2.cy} ${p2b.cy}`;
+		console.log(s1);
+		console.log(s2);
+		console.log(s3);
+		throw `err309: makeCorner-prepare p2 and p2b differ px ${p2.cx} ${p2b.cx} py ${p2.cy} ${p2b.cy}`;
 	}
 	const aTangent1 = p2.angleToPoint(p1);
-	const aTangent3 = p2.angleToPoint(p2);
+	const aTangent3 = p2.angleToPoint(p3);
 	const a123 = aTangent3 - aTangent1;
 	const a123b = withinPiPi(a123); // the sign might change
 	const aPeakHalf = a123b / 2;
@@ -221,21 +224,23 @@ function prepare(s1: Segment2, s2: Segment2, s3: Segment2): tPrepare {
 function roundStrokeStroke(ag: tPrepare): Array<Segment2> {
 	const l6 = Math.abs(ag.ra / Math.sin(ag.aph));
 	const p7 = ag.p2.translatePolar(ag.abi, l6);
-	const a6b = Math.sign(ag.aph) * (Math.PI / 2 - Math.abs(ag.aph));
-	const a62 = ag.abi + Math.PI;
-	const a68 = a62 + a6b;
-	const a69 = a62 - a6b;
-	const p8 = ag.p6.translatePolar(a68, ag.ra);
-	const p9 = ag.p6.translatePolar(a69, ag.ra);
+	const a7b = Math.sign(ag.aph) * (Math.PI / 2 - Math.abs(ag.aph));
+	const a72 = ag.abi + Math.PI;
+	const a78 = a72 + a7b;
+	const a79 = a72 - a7b;
+	const p8 = p7.translatePolar(a78, ag.ra);
+	const p9 = p7.translatePolar(a79, ag.ra);
 	let ccw = false;
 	if (Math.sign(ag.aph) < 0) {
 		ccw = true;
 	}
 	const rsegs: Array<Segment2> = [];
 	const p0 = point(0, 0);
-	rsegs.push(new Segment2(SegEnum.eStroke, ag.p1, p8, p0, 0, 0, 0, false));
-	rsegs.push(new Segment2(SegEnum.eArc, p8, p9, p7, ag.ra, a68, a69, ccw));
-	rsegs.push(new Segment2(SegEnum.eStroke, p9, ag.p2, p0, 0, 0, 0, false));
+	const p1 = point(ag.p1.cx, ag.p1.cy);
+	const p3 = point(ag.p3.cx, ag.p3.cy);
+	rsegs.push(new Segment2(SegEnum.eStroke, p1, p8, p0, 0, 0, 0, false));
+	rsegs.push(new Segment2(SegEnum.eArc, p8, p9, p7, ag.ra, a78, a79, ccw));
+	rsegs.push(new Segment2(SegEnum.eStroke, p9, p3, p0, 0, 0, 0, false));
 	return rsegs;
 }
 function roundStrokeArc(ag: tPrepare): Array<Segment2> {
@@ -262,6 +267,10 @@ function makeCorner(s1: Segment2, s2: Segment2, s3: Segment2): Array<Segment2> {
 		rsegs.push(s3);
 	} else {
 		throw `err723: makeCorner unexpected s2.sType ${s2.sType}`;
+	}
+	console.log('dbg901: end of makeCorner');
+	for (const seg of rsegs) {
+		console.log(seg);
 	}
 	return rsegs;
 }
