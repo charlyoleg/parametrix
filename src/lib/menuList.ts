@@ -10,6 +10,7 @@ import { pageDef as verifyLine3Def } from '$lib/design/verify_line_3';
 import { pageDef as verifyVectorDef } from '$lib/design/verify_vector';
 import { pageDef as verifyContour1Def } from '$lib/design/verify_contour_1';
 import { pageDef as verifyContour2Def } from '$lib/design/verify_contour_2';
+import { pageDef as verifyContour3Def } from '$lib/design/verify_contour_3';
 import type { tParamVal, tPageDef } from '$lib/design/aaParamGeom';
 import type { tStorePVal } from '$lib/storePVal';
 import { storePV } from '$lib/storePVal';
@@ -27,7 +28,8 @@ const designDefs: tAllPageDef = {
 	verify_line_3: verifyLine3Def,
 	verify_vector: verifyVectorDef,
 	verify_contour_1: verifyContour1Def,
-	verify_contour_2: verifyContour2Def
+	verify_contour_2: verifyContour2Def,
+	verify_contour_3: verifyContour3Def
 };
 
 /* Create the Header Menu and Index Menu */
@@ -46,7 +48,8 @@ const mLabel = [
 		'dev/verify_line_3',
 		'dev/verify_vector',
 		'dev/verify_contour_1',
-		'dev/verify_contour_2'
+		'dev/verify_contour_2',
+		'dev/verify_contour_3'
 	],
 	['docs/ui', 'docs/geom', 'docs/gears']
 ];
@@ -62,6 +65,7 @@ const mIcon: tIcon = {
 	verify_vector: 'page_verify_line.svg',
 	verify_contour_1: 'page_verify_line.svg',
 	verify_contour_2: 'page_verify_line.svg',
+	verify_contour_3: 'page_verify_line.svg',
 	ui: 'page_ui.svg',
 	geom: 'page_geom.svg',
 	gears: 'page_gears.svg',

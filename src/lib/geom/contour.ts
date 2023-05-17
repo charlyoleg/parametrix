@@ -394,7 +394,7 @@ class Contour extends AContour {
 				}
 				if (coType === 1 && segLib.isActiveCorner(seg.sType)) {
 					const p0 = point(0, 0);
-					segStackEnd.push(
+					segStack.push(
 						new segLib.Segment2(seg.sType, p0, p0, p0, seg.radius, 0, 0, false)
 					);
 				}
