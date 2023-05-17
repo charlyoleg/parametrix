@@ -10,8 +10,8 @@ import {
 	//degToRad,
 	//radToDeg,
 	//roundZero,
-	withinZero2Pi
-	//withinPiPi,
+	withinZero2Pi,
+	withinPiPi
 	//withinZeroPi,
 	//withinHPiHPi
 } from './angle_utils';
@@ -94,36 +94,27 @@ class Segment1 {
 }
 class Segment2 {
 	sType: SegEnum;
-	p1x: number;
-	p1y: number;
-	p2x: number;
-	p2y: number;
-	pcx: number;
-	pcy: number;
+	p1: Point;
+	p2: Point;
+	pc: Point;
 	radius: number;
 	a1: number;
 	a2: number;
 	arcCcw: boolean;
 	constructor(
 		iType: SegEnum,
-		ip1x: number,
-		ip1y: number,
-		ip2x: number,
-		ip2y: number,
-		ipcx: number,
-		ipcy: number,
+		ip1: Point,
+		ip2: Point,
+		ipc: Point,
 		iRadius: number,
 		ia1: number,
 		ia2: number,
 		iArcCcw = false
 	) {
 		this.sType = iType;
-		this.p1x = ip1x;
-		this.p1y = ip1y;
-		this.p2x = ip2x;
-		this.p2y = ip2y;
-		this.pcx = ipcx;
-		this.pcy = ipcy;
+		this.p1 = ip1;
+		this.p2 = ip2;
+		this.pc = ipc;
 		this.radius = iRadius;
 		this.a1 = ia1;
 		this.a2 = ia2;
@@ -131,7 +122,7 @@ class Segment2 {
 	}
 }
 
-function arcSeg1To2(px1: number, py1: number, iSeg1: Segment1) {
+function arcSeg1To2(px1: number, py1: number, iSeg1: Segment1): Segment2 {
 	if (iSeg1.sType !== SegEnum.eArc) {
 		throw `err202: arcSeg1To2 has unexpected type ${iSeg1.sType}`;
 	}
@@ -153,26 +144,12 @@ function arcSeg1To2(px1: number, py1: number, iSeg1: Segment1) {
 	if ((!iSeg1.arcLarge && !iSeg1.arcCcw) || (iSeg1.arcLarge && iSeg1.arcCcw)) {
 		rp3 = rp2;
 	}
-	const px3 = rp3.cx;
-	const py3 = rp3.cy;
 	const a1 = rp3.angleToPoint(p1);
 	const a2 = rp3.angleToPoint(p2);
-	const rSeg2 = new Segment2(
-		SegEnum.eArc,
-		px1,
-		py1,
-		iSeg1.px,
-		iSeg1.py,
-		px3,
-		py3,
-		iSeg1.radius,
-		a1,
-		a2,
-		iSeg1.arcCcw
-	);
+	const rSeg2 = new Segment2(SegEnum.eArc, p1, p2, rp3, iSeg1.radius, a1, a2, iSeg1.arcCcw);
 	return rSeg2;
 }
-function arcSeg2To1(iSeg2: Segment2) {
+function arcSeg2To1(iSeg2: Segment2): Segment1 {
 	let a12 = withinZero2Pi(iSeg2.a2 - iSeg2.a1);
 	if (!iSeg2.arcCcw) {
 		a12 = 2 * Math.PI - a12;
@@ -183,8 +160,8 @@ function arcSeg2To1(iSeg2: Segment2) {
 	}
 	const rSeg1 = new Segment1(
 		SegEnum.eArc,
-		iSeg2.p2x,
-		iSeg2.p2y,
+		iSeg2.p2.cx,
+		iSeg2.p2.cy,
 		iSeg2.radius,
 		large,
 		iSeg2.arcCcw
@@ -202,63 +179,70 @@ type tPrepare = {
 	p3: Point;
 	p4: Point;
 	p5: Point;
+	p6: Point;
+	at1: number;
+	at3: number;
+	abi: number;
+	aph: number;
 };
 function prepare(s1: Segment2, s2: Segment2, s3: Segment2): tPrepare {
-	const p2 = point(s1.p2x, s1.p2y);
-	const p2b = point(s2.p1x, s2.p1y);
+	const p1 = s1.p1;
+	const p2 = s1.p2;
+	const p2b = s3.p1;
+	const p3 = s3.p2;
 	if (!p2.isEqual(p2b)) {
 		throw `err309: makeCorner p2 and p2b differ px ${p2.cx} ${p2b.cx} py ${p2.cy} ${p2b.cy}`;
 	}
+	const aTangent1 = p2.angleToPoint(p1);
+	const aTangent3 = p2.angleToPoint(p2);
+	const a123 = aTangent3 - aTangent1;
+	const a123b = withinPiPi(a123); // the sign might change
+	const aPeakHalf = a123b / 2;
+	const aBisector = aTangent1 + aPeakHalf;
+	const p6 = p2.translatePolar(aBisector, s2.radius);
 	const rPre: tPrepare = {
 		s1: s1,
 		s2: s2,
 		s3: s3,
 		ra: s2.radius,
-		p1: point(s1.p1x, s1.p1y),
+		p1: p1,
 		p2: p2,
-		p3: point(s2.p2x, s2.p2y),
-		p4: point(s1.pcx, s1.pcy),
-		p5: point(s2.pcx, s2.pcy)
+		p3: p3,
+		p4: s1.pc,
+		p5: s2.pc,
+		p6: p6,
+		at1: aTangent1,
+		at3: aTangent3,
+		abi: aBisector,
+		aph: aPeakHalf
 	};
 	return rPre;
 }
-function roundStrokeStroke(arg: tPrepare) {
-	const a21 = arg.p2.angleToPoint(arg.p1);
-	const a23 = arg.p2.angleToPoint(arg.p3);
-	const a6h = (a23 - a21) / 2;
-	if (Math.abs(a6h) > Math.PI / 2) {
-		throw `err902: roundStrokeStroke too large angle a6h ${a6h}`;
-	}
-	const a6b = Math.PI / 2 - Math.abs(a6h);
-	const l6 = arg.ra / Math.sin(a6h);
-	const a26 = a21 + a6h;
-	const p6 = arg.p2.translatePolar(a26, l6);
-	const a62 = a26 + Math.PI;
-	const a67 = a62 + a6b;
-	const a68 = a62 - a6b;
-	const p7 = p6.translatePolar(a67, arg.ra);
-	const p8 = p6.translatePolar(a68, arg.ra);
+function roundStrokeStroke(ag: tPrepare): Array<Segment2> {
+	const l6 = Math.abs(ag.ra / Math.sin(ag.aph));
+	const p7 = ag.p2.translatePolar(ag.abi, l6);
+	const a6b = Math.sign(ag.aph) * (Math.PI / 2 - Math.abs(ag.aph));
+	const a62 = ag.abi + Math.PI;
+	const a68 = a62 + a6b;
+	const a69 = a62 - a6b;
+	const p8 = ag.p6.translatePolar(a68, ag.ra);
+	const p9 = ag.p6.translatePolar(a69, ag.ra);
 	let ccw = false;
-	if (Math.sign(a6h) < 0) {
+	if (Math.sign(ag.aph) < 0) {
 		ccw = true;
 	}
 	const rsegs: Array<Segment2> = [];
-	rsegs.push(
-		new Segment2(SegEnum.eStroke, arg.p1.cx, arg.p1.cy, p7.cx, p7.cy, 0, 0, 0, 0, 0, false)
-	);
-	rsegs.push(
-		new Segment2(SegEnum.eArc, p7.cx, p7.cy, p8.cx, p8.cy, p6.cx, p6.cy, arg.ra, a67, a68, ccw)
-	);
-	rsegs.push(
-		new Segment2(SegEnum.eStroke, p8.cx, p8.cy, arg.p2.cx, arg.p2.cy, 0, 0, 0, 0, 0, false)
-	);
+	const p0 = point(0, 0);
+	rsegs.push(new Segment2(SegEnum.eStroke, ag.p1, p8, p0, 0, 0, 0, false));
+	rsegs.push(new Segment2(SegEnum.eArc, p8, p9, p7, ag.ra, a68, a69, ccw));
+	rsegs.push(new Segment2(SegEnum.eStroke, p9, ag.p2, p0, 0, 0, 0, false));
 	return rsegs;
 }
-function roundStrokeArc(arg: tPrepare) {
+function roundStrokeArc(ag: tPrepare): Array<Segment2> {
 	// TODO
 	const rsegs: Array<Segment2> = [];
-	rsegs.push(arg.s1);
-	rsegs.push(arg.s3);
+	rsegs.push(ag.s1);
+	rsegs.push(ag.s3);
 	return rsegs;
 }
 function makeCorner(s1: Segment2, s2: Segment2, s3: Segment2): Array<Segment2> {

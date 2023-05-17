@@ -322,7 +322,7 @@ class Contour extends AContour {
 			if (seg.sType === segLib.SegEnum.eArc) {
 				try {
 					const seg2 = segLib.arcSeg1To2(px1, py1, seg);
-					const [cx3, cy3] = point2canvas(seg2.pcx, seg2.pcy, cAdjust);
+					const [cx3, cy3] = point2canvas(seg2.pc.cx, seg2.pc.cy, cAdjust);
 					const cRadius = radius2canvas(seg.radius, cAdjust);
 					ctx.beginPath();
 					ctx.arc(cx3, cy3, cRadius, -seg2.a1, -seg2.a2, seg.arcCcw);
@@ -356,9 +356,10 @@ class Contour extends AContour {
 		let py1 = 0;
 		for (const seg of this.segments) {
 			if (seg.sType === segLib.SegEnum.eStroke) {
-				segStack.push(
-					new segLib.Segment2(seg.sType, px1, py1, seg.px, seg.py, 0, 0, 0, 0, 0, false)
-				);
+				const p1 = point(px1, py1);
+				const p2 = point(seg.px, seg.py);
+				const pc = point(0, 0);
+				segStack.push(new segLib.Segment2(seg.sType, p1, p2, pc, 0, 0, 0, false));
 				coType = 1;
 			}
 			if (seg.sType === segLib.SegEnum.eArc) {
@@ -386,13 +387,15 @@ class Contour extends AContour {
 					throw `err419: generateContour with two consecutive corners ${seg.sType}`;
 				}
 				if (coType === 0 && segLib.isActiveCorner(seg.sType)) {
+					const p0 = point(0, 0);
 					segStackEnd.push(
-						new segLib.Segment2(seg.sType, 0, 0, 0, 0, 0, 0, seg.radius, 0, 0, false)
+						new segLib.Segment2(seg.sType, p0, p0, p0, seg.radius, 0, 0, false)
 					);
 				}
 				if (coType === 1 && segLib.isActiveCorner(seg.sType)) {
+					const p0 = point(0, 0);
 					segStackEnd.push(
-						new segLib.Segment2(seg.sType, 0, 0, 0, 0, 0, 0, seg.radius, 0, 0, false)
+						new segLib.Segment2(seg.sType, p0, p0, p0, seg.radius, 0, 0, false)
 					);
 				}
 				coType = 2;
@@ -430,14 +433,14 @@ class Contour extends AContour {
 			}
 		}
 		const seg0 = segStack[0];
-		const rContour = new Contour(seg0.p1x, seg0.p1y);
+		const rContour = new Contour(seg0.p1.cx, seg0.p1.cy);
 		for (const seg2 of segStack) {
 			if (seg2.sType === segLib.SegEnum.eStroke) {
-				rContour.addSegStrokeA(seg2.p2x, seg2.p2y);
+				rContour.addSegStrokeA(seg2.p2.cx, seg2.p2.cy);
 			} else if (seg2.sType === segLib.SegEnum.eArc) {
 				const seg1 = segLib.arcSeg2To1(seg2);
 				rContour
-					.addPointA(seg2.p2x, seg2.p2y)
+					.addPointA(seg2.p2.cx, seg2.p2.cy)
 					.addSegArc(seg1.radius, seg1.arcLarge, seg1.arcCcw);
 			} else {
 				throw `err986: contour generateContour unexpected in seg2 Enum ${seg2.sType}`;
@@ -456,7 +459,7 @@ class Contour extends AContour {
 			if (seg.sType === segLib.SegEnum.eArc) {
 				try {
 					const seg2 = segLib.arcSeg1To2(px1, py1, seg);
-					const p3 = point(seg2.pcx, seg2.pcy);
+					const p3 = point(seg2.pc.cx, seg2.pc.cy);
 					const a12h = withinPiPi((seg2.a2 - seg2.a1) / 2);
 					let a3 = seg2.a1 + a12h;
 					if (

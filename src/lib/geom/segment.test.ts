@@ -20,7 +20,7 @@ describe('Segment suit', () => {
 	it('arcSeg1To2', () => {
 		expect(() => segLib.arcSeg1To2(0, 0, s1)).toThrowError(/err202/);
 		const sb2 = segLib.arcSeg1To2(0, 0, s2);
-		expect(sb2.pcx).toBeCloseTo(50, 5);
-		expect(sb2.pcy).toBeCloseTo(0, 0);
+		expect(sb2.pc.cx).toBeCloseTo(50, 5);
+		expect(sb2.pc.cy).toBeCloseTo(0, 0);
 	});
 });
