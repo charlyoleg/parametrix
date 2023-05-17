@@ -194,8 +194,16 @@ function prepare(s1: Segment2, s2: Segment2, s3: Segment2): tPrepare {
 	if (!p2.isEqual(p2b)) {
 		throw `err309: makeCorner-prepare p2 and p2b differ px ${p2.cx} ${p2b.cx} py ${p2.cy} ${p2b.cy}`;
 	}
-	const aTangent1 = p2.angleToPoint(p1);
-	const aTangent3 = p2.angleToPoint(p3);
+	let aTangent1 = p2.angleToPoint(p1);
+	if (s1.sType === SegEnum.eArc) {
+		const sign = s1.arcCcw ? 1 : -1;
+		aTangent1 = s1.a2 + (sign * Math.PI) / 2;
+	}
+	let aTangent3 = p2.angleToPoint(p3);
+	if (s3.sType === SegEnum.eArc) {
+		const sign = s3.arcCcw ? 1 : -1;
+		aTangent3 = s3.a1 + (sign * Math.PI) / 2;
+	}
 	const a123 = aTangent3 - aTangent1;
 	const a123b = withinPiPi(a123); // the sign might change
 	const aPeakHalf = a123b / 2;
