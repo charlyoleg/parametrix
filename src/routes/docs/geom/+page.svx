@@ -85,7 +85,7 @@ A *ContourCircle* object defines a circle.
 
 ![contour_arc_definition_options.svg]({base}/contour_arc_definition_options.svg)
 
-*Point* and *Stroke* can be defined relative to the previous point or absolute, with cartesian or polar coordinates.
+*Point* and *Stroke* can be defined relative to the previous point or absolute, with cartesian or polar coordinates. Relative coordines are referring to the extremity of the last segment (stroke or arc). For example, in case of two consecutive points, the second point, if defined with relative coordinates, refers to the previous segment and not to the previous point.
 
 ![contour_point_absolute_relative.svg]({base}/contour_point_absolute_relative.svg)
 
