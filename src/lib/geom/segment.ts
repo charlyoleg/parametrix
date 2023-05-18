@@ -277,10 +277,12 @@ function roundStrokeArc(ag: tPrepare): Array<Segment2> {
 	let p1p3 = ag.p3;
 	let pArcC = ag.p4;
 	let sarc = ag.s1;
+	let arcFirst = -1;
 	if (ag.s1.sType === SegEnum.eStroke) {
 		p1p3 = ag.p1;
 		pArcC = ag.p5;
 		sarc = ag.s3;
+		arcFirst = 1;
 	}
 	const lStroke = line(0, 0, 0).setFromPoints(p1p3, ag.p2);
 	const lStrokep = lStroke.lineParallelDistance(ag.ra, ag.p6);
@@ -293,7 +295,7 @@ function roundStrokeArc(ag: tPrepare): Array<Segment2> {
 	const a7 = Math.asin(sin7);
 	const a4 = Math.PI - Math.abs(aA) - Math.abs(a7);
 	const sign4 = sarc.arcCcw ? 1 : -1;
-	const a47 = pArcC.angleToPoint(ag.p2) + sign4 * a4;
+	const a47 = pArcC.angleToPoint(ag.p2) + arcFirst * sign4 * a4;
 	const p7 = pArcC.translatePolar(a47, ml);
 	const pArcT = pArcC.translatePolar(a47, sarc.radius);
 	const a127 = ag.p2.angleFromToPoints(p1p3, p7);
