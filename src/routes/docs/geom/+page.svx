@@ -98,12 +98,14 @@ A *ContourCircle* object defines a circle.
 
 ### Contour generation
 
-#### Corner Pointed
+#### Pointed Corner
 
 *contour().addCornerPointed()* does not modify the corner.
 
 
-#### Corner Rounded
+#### Rounded Corner
+
+##### Defintion of Rounded Corner
 
 *contour().addCornerRounded(radius)* replaces the peak with an arc within the angle/peak. There is one optimal solution for the problematic.
 
@@ -114,8 +116,12 @@ A *ContourCircle* object defines a circle.
 ![corner_rounded_int_arc_ext_arc.svg]({base}/corner_rounded_int_arc_ext_arc.svg)
 ![corner_rounded_int_arc_int_arc.svg]({base}/corner_rounded_int_arc_int_arc.svg)
 
+##### Construction of Rounded Corner
 
-#### Corner Widened
+![construct_corner_rounded_stroke_stroke.svg]({base}/construct_corner_rounded_stroke_stroke.svg)
+![construct_corner_rounded_stroke_ext_arc.svg]({base}/construct_corner_rounded_stroke_ext_arc.svg)
+
+#### Widened Corner
 
 *contour().addCornerWidened(radius)* replaces the peak with an arc around the angle/peak. There are many possibilities to fulfil the problematic. The selected solution is to have the center of the arc on the bisector of the peak-angle.
 
