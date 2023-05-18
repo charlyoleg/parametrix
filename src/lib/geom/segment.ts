@@ -219,7 +219,7 @@ function prepare(s1: Segment2, s2: Segment2, s3: Segment2): tPrepare {
 		p2: p2,
 		p3: p3,
 		p4: s1.pc,
-		p5: s2.pc,
+		p5: s3.pc,
 		p6: p6,
 		at1: aTangent1,
 		at3: aTangent3,
@@ -271,6 +271,9 @@ function roundStrokeStroke(ag: tPrepare): Array<Segment2> {
 	return rsegs;
 }
 function roundStrokeArc(ag: tPrepare): Array<Segment2> {
+	if (ag.s1.sType !== SegEnum.eArc && ag.s3.sType !== SegEnum.eArc) {
+		throw `err209: roundStrokeArc unexpected sType ${ag.s1.sType} ${ag.s3.sType}`;
+	}
 	let p1p3 = ag.p3;
 	let pArcC = ag.p4;
 	let sarc = ag.s1;
@@ -316,12 +319,19 @@ function roundStrokeArc(ag: tPrepare): Array<Segment2> {
 	if (ag.s1.sType === SegEnum.eStroke) {
 		rsegs.push(new Segment2(SegEnum.eStroke, p1, p8, p0, 0, 0, 0, false));
 		rsegs.push(new Segment2(SegEnum.eArc, p8, p9, p7, ag.ra, a78, a79, ccw));
-		rsegs.push(new Segment2(SegEnum.eArc, p9, p3, pc, sarc.radius, am, sarc.a2, false));
+		rsegs.push(new Segment2(SegEnum.eArc, p9, p3, pc, sarc.radius, am, sarc.a2, sarc.arcCcw));
 	} else {
-		rsegs.push(new Segment2(SegEnum.eArc, p1, p8, pc, sarc.radius, sarc.a1, am, false));
+		rsegs.push(new Segment2(SegEnum.eArc, p1, p8, pc, sarc.radius, sarc.a1, am, sarc.arcCcw));
 		rsegs.push(new Segment2(SegEnum.eArc, p8, p9, p7, ag.ra, a78, a79, ccw));
 		rsegs.push(new Segment2(SegEnum.eStroke, p9, p3, p0, 0, 0, 0, false));
 	}
+	//console.log('dbg535');
+	//console.log(pc);
+	//console.log(p7);
+	//console.log(p1);
+	//console.log(p8);
+	//console.log(p9);
+	//console.log(p3);
 	return rsegs;
 }
 function roundArcArc(ag: tPrepare): Array<Segment2> {
