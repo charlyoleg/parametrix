@@ -7,11 +7,13 @@ const pDef: tParamDef = {
 	page: 'verify_contour_3',
 	params: [
 		{ name: 'r1', unit: 'mm', init: 10, min: 0, max: 200, step: 1 },
-		{ name: 'r2', unit: 'mm', init: 10, min: 0, max: 200, step: 1 }
+		{ name: 'r2', unit: 'mm', init: 10, min: 0, max: 200, step: 1 },
+		{ name: 'r3', unit: 'mm', init: 10, min: 0, max: 200, step: 1 }
 	],
 	paramSvg: {
 		r1: 'verify_contour_1_r1.svg',
-		r2: 'verify_contour_1_r1.svg'
+		r2: 'verify_contour_1_r1.svg',
+		r3: 'verify_contour_1_r1.svg'
 	},
 	sim: {
 		tMax: 10,
@@ -26,6 +28,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	try {
 		const r1 = param['r1'] + t;
 		const r2 = param['r2'] + t;
+		const r3 = param['r3'] + t;
 		const ctr1 = contour(100, 0)
 			.addSegStrokeR(30, 200)
 			.addCornerRounded(r1)
@@ -60,6 +63,26 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		}
 		ctr2.check();
 		rGeome.fig.addMain(ctr2);
+		const l3 = 100;
+		const ra3 = 70;
+		const ctr3 = contour(0, 600).addSegStrokeR(l3, l3);
+		for (let i = 0; i < 4; i++) {
+			const large = (i & 0x1) === 0 ? true : false;
+			const ccw = i < 2 ? true : false;
+			//rGeome.logstr += `large ${large} ccw ${ccw}\n`;
+			ctr3.addSegStrokeR(l3, 0)
+				.addCornerRounded(r3)
+				.addSegStrokeR(l3, l3)
+				//.addCornerRounded(r3)
+				.addPointR(l3, 0)
+				.addSegArc(ra3, large, ccw)
+				//.addCornerRounded(r3)
+				.addSegStrokeR(l3, -l3)
+				.addCornerRounded(r3);
+		}
+		ctr3.addSegStrokeR(0, -l3).closeSegStroke();
+		ctr3.check();
+		rGeome.fig.addMain(ctr3);
 		rGeome.logstr += 'verify_contour_3 draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
