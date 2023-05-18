@@ -73,7 +73,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			ctr3.addSegStrokeR(l3, 0)
 				.addCornerRounded(r3)
 				.addSegStrokeR(l3, l3)
-				//.addCornerRounded(r3)
+				.addCornerRounded(r3)
 				.addPointR(l3, 0)
 				.addSegArc(ra3, large, ccw)
 				//.addCornerRounded(r3)

@@ -230,7 +230,7 @@ function prepare(s1: Segment2, s2: Segment2, s3: Segment2): tPrepare {
 }
 function modifRadius(iaph: number, iseg: Segment2, iradius: number): number {
 	if (iseg.sType !== SegEnum.eArc) {
-		throw `err510: modifRadius with wron type ${iseg.sType}`;
+		throw `err510: modifRadius with wrong type ${iseg.sType}`;
 	}
 	const bisector = iaph > 0 ? 1 : -1;
 	const arcCcw = iseg.arcCcw ? 1 : -1;
@@ -273,11 +273,11 @@ function roundStrokeStroke(ag: tPrepare): Array<Segment2> {
 function roundStrokeArc(ag: tPrepare): Array<Segment2> {
 	let p1p3 = ag.p3;
 	let pArcC = ag.p4;
-	let sarc = ag.s3;
+	let sarc = ag.s1;
 	if (ag.s1.sType === SegEnum.eStroke) {
 		p1p3 = ag.p1;
 		pArcC = ag.p5;
-		sarc = ag.s1;
+		sarc = ag.s3;
 	}
 	const lStroke = line(0, 0, 0).setFromPoints(p1p3, ag.p2);
 	const lStrokep = lStroke.lineParallelDistance(ag.ra, ag.p6);
