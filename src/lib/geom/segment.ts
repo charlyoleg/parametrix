@@ -27,6 +27,7 @@ import {
 } from './triangle_utils';
 import { point, Point } from './point';
 //import { line, bisector, circleCenter } from './line';
+import { line } from './line';
 //import { vector, Vector } from './vector';
 
 enum SegEnum {
@@ -258,6 +259,36 @@ function roundStrokeStroke(ag: tPrepare): Array<Segment2> {
 	return rsegs;
 }
 function roundStrokeArc(ag: tPrepare): Array<Segment2> {
+	const l12 = line(0, 0, 0).setFromPoints(ag.p1, ag.p2);
+
+	// TODO
+	const rsegs: Array<Segment2> = [];
+	rsegs.push(ag.s1);
+	rsegs.push(ag.s3);
+	return rsegs;
+}
+function roundArcArc(ag: tPrepare): Array<Segment2> {
+	// TODO
+	const rsegs: Array<Segment2> = [];
+	rsegs.push(ag.s1);
+	rsegs.push(ag.s3);
+	return rsegs;
+}
+function widenStrokeStroke(ag: tPrepare): Array<Segment2> {
+	// TODO
+	const rsegs: Array<Segment2> = [];
+	rsegs.push(ag.s1);
+	rsegs.push(ag.s3);
+	return rsegs;
+}
+function widenStrokeArc(ag: tPrepare): Array<Segment2> {
+	// TODO
+	const rsegs: Array<Segment2> = [];
+	rsegs.push(ag.s1);
+	rsegs.push(ag.s3);
+	return rsegs;
+}
+function widenArcArc(ag: tPrepare): Array<Segment2> {
 	// TODO
 	const rsegs: Array<Segment2> = [];
 	rsegs.push(ag.s1);
@@ -266,19 +297,27 @@ function roundStrokeArc(ag: tPrepare): Array<Segment2> {
 }
 function makeCorner(s1: Segment2, s2: Segment2, s3: Segment2): Array<Segment2> {
 	const preArg = prepare(s1, s2, s3);
-	// TODO
 	const rsegs: Array<Segment2> = [];
 	if (s2.sType === SegEnum.eRounded) {
 		if (s1.sType === SegEnum.eStroke && s3.sType === SegEnum.eStroke) {
 			rsegs.push(...roundStrokeStroke(preArg));
-		} else if (s1.sType === SegEnum.eStroke && s3.sType === SegEnum.eArc) {
+		} else if (s1.sType === SegEnum.eStroke || s3.sType === SegEnum.eStroke) {
 			rsegs.push(...roundStrokeArc(preArg));
+		} else if (s1.sType === SegEnum.eArc && s3.sType === SegEnum.eArc) {
+			rsegs.push(...roundArcArc(preArg));
 		} else {
 			throw `err123: makeCorner unexpected s1s3.sType ${s1.sType} ${s3.sType}`;
 		}
 	} else if (s2.sType === SegEnum.eWidened) {
-		rsegs.push(s1);
-		rsegs.push(s3);
+		if (s1.sType === SegEnum.eStroke && s3.sType === SegEnum.eStroke) {
+			rsegs.push(...widenStrokeStroke(preArg));
+		} else if (s1.sType === SegEnum.eStroke || s3.sType === SegEnum.eStroke) {
+			rsegs.push(...widenStrokeArc(preArg));
+		} else if (s1.sType === SegEnum.eArc && s3.sType === SegEnum.eArc) {
+			rsegs.push(...widenArcArc(preArg));
+		} else {
+			throw `err127: makeCorner unexpected s1s3.sType ${s1.sType} ${s3.sType}`;
+		}
 	} else {
 		throw `err723: makeCorner unexpected s2.sType ${s2.sType}`;
 	}

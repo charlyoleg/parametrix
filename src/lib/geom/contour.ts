@@ -46,11 +46,19 @@ class Contour extends AContour {
 	segments: Array<segLib.Segment1>;
 	points: Array<Point>;
 	debugPoints: Array<Point>;
+	lastPoint: Point;
 	constructor(ix: number, iy: number) {
 		super();
 		this.segments = [new segLib.Segment1(segLib.SegEnum.eStart, ix, iy, 0)];
 		this.points = [];
 		this.debugPoints = [];
+		this.lastPoint = point(ix, iy);
+	}
+	setLastPoint(ix: number, iy: number) {
+		this.lastPoint = point(ix, iy);
+	}
+	getLastPoint(): Point {
+		return this.lastPoint;
 	}
 	addPointA(ax: number, ay: number): Contour {
 		if (this.points.length > 2) {
@@ -64,34 +72,15 @@ class Contour extends AContour {
 		this.addPointA(p1.cx, p1.cy);
 		return this;
 	}
-	getLastRefSegment(): segLib.Segment1 {
-		let idx = this.segments.length - 1;
-		let stop = false;
-		let rseg = this.segments[0];
-		while (!stop && idx > 0) {
-			const seg = this.segments.at(idx);
-			if (seg !== undefined) {
-				if (segLib.isAddPoint(seg.sType)) {
-					stop = true;
-					rseg = seg;
-				} else {
-					idx -= 1;
-				}
-			} else {
-				throw `err782: getLastRefSegment ${idx}`;
-			}
-		}
-		return rseg;
-	}
 	addPointR(rx: number, ry: number): Contour {
-		const seg = this.getLastRefSegment();
-		const p1 = point(seg.px, seg.py).translate(rx, ry);
+		const plast = this.getLastPoint();
+		const p1 = plast.translate(rx, ry);
 		this.addPointA(p1.cx, p1.cy);
 		return this;
 	}
 	addPointRP(ra: number, rl: number): Contour {
-		const seg = this.getLastRefSegment();
-		const p1 = point(seg.px, seg.py).translatePolar(ra, rl);
+		const plast = this.getLastPoint();
+		const p1 = plast.translatePolar(ra, rl);
 		this.addPointA(p1.cx, p1.cy);
 		return this;
 	}
@@ -107,6 +96,7 @@ class Contour extends AContour {
 		if (p1 !== undefined) {
 			const seg = new segLib.Segment1(segLib.SegEnum.eStroke, p1.cx, p1.cy, 0);
 			this.addSeg(seg);
+			this.setLastPoint(p1.cx, p1.cy);
 		} else {
 			throw `err284: contour p1 is undefined`;
 		}
@@ -143,6 +133,7 @@ class Contour extends AContour {
 				iCcw
 			);
 			this.addSeg(seg);
+			this.setLastPoint(p1.cx, p1.cy);
 			//this.debugPoints.push(p1);
 		} else {
 			throw `err482: contour p1 is undefined`;
@@ -155,9 +146,8 @@ class Contour extends AContour {
 		}
 		const p2 = this.points.pop();
 		const p1 = this.points.pop();
-		const seg = this.getLastRefSegment();
-		if (p1 !== undefined && p2 !== undefined && seg !== undefined) {
-			const p0 = point(seg.px, seg.py);
+		if (p1 !== undefined && p2 !== undefined) {
+			const p0 = this.getLastPoint();
 			const p3 = circleCenter(p0, p1, p2);
 			const radius = p3.distanceToPoint(p0);
 			const p0p2middle = p0.middlePoint(p2);
@@ -188,9 +178,8 @@ class Contour extends AContour {
 			throw `err914: contour addSegArc3 with unexpected points.length ${this.points.length}`;
 		}
 		const p1 = this.points.pop();
-		const seg = this.getLastRefSegment();
-		if (p1 !== undefined && seg !== undefined) {
-			const p0 = point(seg.px, seg.py);
+		if (p1 !== undefined) {
+			const p0 = this.getLastPoint();
 			const lbi = bisector(p0, p1);
 			let pref = p1;
 			if (firstNlast) {
@@ -226,9 +215,8 @@ class Contour extends AContour {
 			throw `err214: contour addSeg2Arcs with unexpected points.length ${this.points.length}`;
 		}
 		const p1 = this.points.pop();
-		const seg = this.getLastRefSegment();
-		if (p1 !== undefined && seg !== undefined) {
-			const p0 = point(seg.px, seg.py);
+		if (p1 !== undefined) {
+			const p0 = this.getLastPoint();
 			const l01 = p0.distanceToPoint(p1);
 			const a01 = p0.angleToPoint(p1);
 			const a10 = p1.angleToPoint(p0);

@@ -238,10 +238,10 @@ class Line {
 	// end of methods from point
 	// line creation
 	lineOrthogonal(ic: Point): Line {
-		return line(ic.cx, ic.cy, this.ca + Math.PI / 2);
+		return new Line(ic.cx, ic.cy, this.ca + Math.PI / 2);
 	}
 	lineParallel(ic: Point): Line {
-		return line(ic.cx, ic.cy, this.ca);
+		return new Line(ic.cx, ic.cy, this.ca);
 	}
 	// orthogonal projection
 	angleToPoint(ic: Point): number {
@@ -313,7 +313,18 @@ class Line {
 		}
 		const a0 = withinZeroPi((a1 + a2) / 2);
 		const ca = a0 + (idx * Math.PI) / 2;
-		return line(pInter.cx, pInter.cy, ca);
+		return new Line(pInter.cx, pInter.cy, ca);
+	}
+	// parallel distance
+	lineParallelDistance(iDist: number, ipMagnet: Point): Line {
+		const p1 = point(this.cx, this.cy);
+		const p2a = p1.translatePolar(this.ca + Math.PI / 2, iDist);
+		const p2b = p1.translatePolar(this.ca - Math.PI / 2, iDist);
+		let p2 = p2b;
+		if (ipMagnet.distanceToPoint(p2a) < ipMagnet.distanceToPoint(p2b)) {
+			p2 = p2a;
+		}
+		return new Line(p2.cx, p2.cy, this.ca);
 	}
 }
 
