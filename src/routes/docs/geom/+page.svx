@@ -119,7 +119,12 @@ A *ContourCircle* object defines a circle.
 ##### Construction of Rounded Corner
 
 ![construct_corner_rounded_stroke_stroke.svg]({base}/construct_corner_rounded_stroke_stroke.svg)
+![construct_corner_rounded_stroke_int_arc.svg]({base}/construct_corner_rounded_stroke_int_arc.svg)
 ![construct_corner_rounded_stroke_ext_arc.svg]({base}/construct_corner_rounded_stroke_ext_arc.svg)
+![construct_corner_rounded_ext_arc_ext_arc.svg]({base}/construct_corner_rounded_ext_arc_ext_arc.svg)
+![construct_corner_rounded_int_arc_ext_arc.svg]({base}/construct_corner_rounded_int_arc_ext_arc.svg)
+![construct_corner_rounded_int_arc_int_arc.svg]({base}/construct_corner_rounded_int_arc_int_arc.svg)
+
 
 #### Widened Corner
 
