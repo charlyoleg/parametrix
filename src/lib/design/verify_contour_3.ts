@@ -1,13 +1,17 @@
 // verify_contour_3.ts
 
-import { contour, figure } from '$lib/geom/figure';
+import { degToRad, contour, figure } from '$lib/geom/figure';
 import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
 
 const pDef: tParamDef = {
 	page: 'verify_contour_3',
-	params: [{ name: 'r1', unit: 'mm', init: 10, min: 1, max: 200, step: 1 }],
+	params: [
+		{ name: 'r1', unit: 'mm', init: 10, min: 0, max: 200, step: 1 },
+		{ name: 'r2', unit: 'mm', init: 10, min: 0, max: 200, step: 1 }
+	],
 	paramSvg: {
-		r1: 'verify_contour_1_r1.svg'
+		r1: 'verify_contour_1_r1.svg',
+		r2: 'verify_contour_1_r1.svg'
 	},
 	sim: {
 		tMax: 10,
@@ -21,25 +25,41 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const r1 = param['r1'] + t;
+		const r2 = param['r2'] + t;
 		const ctr1 = contour(100, 0)
-			.addSegStrokeR(20, 100)
+			.addSegStrokeR(30, 200)
 			.addCornerRounded(r1)
-			.addSegStrokeR(100, 20)
+			.addSegStrokeR(200, 30)
 			.addCornerRounded(r1)
-			.addSegStrokeR(-100, 20)
+			.addSegStrokeR(-200, 30)
 			.addCornerRounded(r1)
-			.addSegStrokeR(-20, 100)
+			.addSegStrokeR(-30, 200)
 			.addCornerRounded(r1)
-			.addSegStrokeR(-20, -100)
+			.addSegStrokeR(-30, -200)
 			.addCornerRounded(r1)
-			.addSegStrokeR(-100, -20)
+			.addSegStrokeR(-200, -30)
 			.addCornerRounded(r1)
-			.addSegStrokeR(100, -20)
+			.addSegStrokeR(200, -30)
 			.addCornerRounded(r1)
 			.closeSegStroke()
 			.addCornerRounded(r1);
 		ctr1.check();
 		rGeome.fig.addMain(ctr1);
+		const l2 = 100;
+		const ctr2 = contour(300, 0);
+		for (let i = 0; i < 4; i++) {
+			const angle = 90 * (1 - i); // turning CW
+			ctr2.addSegStrokeRP(degToRad(angle), l2)
+				.addCornerRounded(r2)
+				.addSegStrokeRP(degToRad(angle - 45), l2)
+				.addCornerRounded(r2)
+				.addSegStrokeRP(degToRad(angle + 45), l2)
+				.addCornerRounded(r2)
+				.addSegStrokeRP(degToRad(angle), l2)
+				.addCornerRounded(r2);
+		}
+		ctr2.check();
+		rGeome.fig.addMain(ctr2);
 		rGeome.logstr += 'verify_contour_3 draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {

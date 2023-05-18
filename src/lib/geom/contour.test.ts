@@ -16,6 +16,18 @@ describe('Contour suit', () => {
 	});
 });
 
+describe('Contour suit 2', () => {
+	const ctr1 = contour(10, 10);
+	ctr1.addSegStrokeR(30, 30);
+	ctr1.addCornerPointed();
+	ctr1.addCornerPointed();
+	ctr1.addSegStrokeR(30, -30);
+	ctr1.closeSegStroke();
+	it('generateContour', () => {
+		expect(() => ctr1.generateContour()).toThrowError(/err419/);
+	});
+});
+
 describe('ContourCircle suit', () => {
 	const ctr3 = contourCircle(50, 50, 20);
 	it('extractPoints', () => {

@@ -397,13 +397,13 @@ class Contour extends AContour {
 				if (coType === 2) {
 					throw `err419: generateContour with two consecutive corners ${seg.sType}`;
 				}
-				if (coType === 0 && segLib.isActiveCorner(seg.sType)) {
+				if (coType === 0 && segLib.isActiveCorner(seg.sType) && seg.radius > 0) {
 					const p0 = point(0, 0);
 					segStackEnd.push(
 						new segLib.Segment2(seg.sType, p0, p0, p0, seg.radius, 0, 0, false)
 					);
 				}
-				if (coType === 1 && segLib.isActiveCorner(seg.sType)) {
+				if (coType === 1 && segLib.isActiveCorner(seg.sType) && seg.radius > 0) {
 					const p0 = point(0, 0);
 					segStack.push(
 						new segLib.Segment2(seg.sType, p0, p0, p0, seg.radius, 0, 0, false)
