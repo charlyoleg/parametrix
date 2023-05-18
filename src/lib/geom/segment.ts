@@ -228,6 +228,18 @@ function prepare(s1: Segment2, s2: Segment2, s3: Segment2): tPrepare {
 	};
 	return rPre;
 }
+function modifRadius(iaph: number, iseg: Segment2, iradius: number): number {
+	if (iseg.sType !== SegEnum.eArc) {
+		throw `err510: modifRadius with wron type ${iseg.sType}`;
+	}
+	const bisector = iaph > 0 ? 1 : -1;
+	const arcCcw = iseg.arcCcw ? 1 : -1;
+	const rmr = iseg.radius + bisector * arcCcw * iradius;
+	if (rmr <= 0) {
+		throw `err621: modifRadius with negative modified lenght ${rmr}`;
+	}
+	return rmr;
+}
 function roundStrokeStroke(ag: tPrepare): Array<Segment2> {
 	const l7 = Math.abs(ag.ra / Math.sin(ag.aph));
 	const l7b = l7 * Math.cos(ag.aph);
@@ -261,20 +273,55 @@ function roundStrokeStroke(ag: tPrepare): Array<Segment2> {
 function roundStrokeArc(ag: tPrepare): Array<Segment2> {
 	let p1p3 = ag.p3;
 	let pArcC = ag.p4;
+	let sarc = ag.s3;
 	if (ag.s1.sType === SegEnum.eStroke) {
 		p1p3 = ag.p1;
 		pArcC = ag.p5;
+		sarc = ag.s1;
 	}
 	const lStroke = line(0, 0, 0).setFromPoints(p1p3, ag.p2);
 	const lStrokep = lStroke.lineParallelDistance(ag.ra, ag.p6);
 	const lRadial = line(0, 0, 0).setFromPoints(ag.p2, pArcC);
 	const pA = lStrokep.intersection(lRadial);
 	const lA4 = pA.distanceToPoint(pArcC);
-
-	// TODO
+	const aA = pA.angleFromToPoints(p1p3, pArcC);
+	const ml = modifRadius(ag.aph, sarc, ag.ra);
+	const sin7 = (lA4 * Math.sin(aA)) / ml; // law of sinus
+	const a7 = Math.asin(sin7);
+	const a4 = Math.PI - Math.abs(aA) - Math.abs(a7);
+	const sign4 = sarc.arcCcw ? 1 : -1;
+	const a47 = pArcC.angleToPoint(ag.p2) + sign4 * a4;
+	const p7 = pArcC.translatePolar(a47, ml);
+	const pArcT = pArcC.translatePolar(a47, sarc.radius);
+	const a127 = ag.p2.angleFromToPoints(p1p3, p7);
+	const l27 = Math.abs(ag.ra / Math.sin(a127));
+	const lStrokeT = l27 * Math.cos(a127);
+	const aStrokeT = ag.p2.angleToPoint(p1p3);
+	const pStrokeT = ag.p2.translatePolar(aStrokeT, lStrokeT);
+	let p8 = pArcT;
+	let p9 = pStrokeT;
+	if (ag.s1.sType === SegEnum.eStroke) {
+		p8 = pStrokeT;
+		p9 = pArcT;
+	}
+	const a78 = p7.angleToPoint(p8);
+	const a79 = p7.angleToPoint(p9);
+	const am = a47; //pArcC.angleToPoint(pArcT);
+	const ccw = Math.sign(ag.aph) < 0 ? true : false;
 	const rsegs: Array<Segment2> = [];
-	rsegs.push(ag.s1);
-	rsegs.push(ag.s3);
+	const p0 = point(0, 0);
+	const p1 = point(ag.p1.cx, ag.p1.cy);
+	const p3 = point(ag.p3.cx, ag.p3.cy);
+	const pc = point(sarc.pc.cx, sarc.pc.cy);
+	if (ag.s1.sType === SegEnum.eStroke) {
+		rsegs.push(new Segment2(SegEnum.eStroke, p1, p8, p0, 0, 0, 0, false));
+		rsegs.push(new Segment2(SegEnum.eArc, p8, p9, p7, ag.ra, a78, a79, ccw));
+		rsegs.push(new Segment2(SegEnum.eArc, p9, p3, pc, sarc.radius, am, sarc.a2, false));
+	} else {
+		rsegs.push(new Segment2(SegEnum.eArc, p1, p8, pc, sarc.radius, sarc.a1, am, false));
+		rsegs.push(new Segment2(SegEnum.eArc, p8, p9, p7, ag.ra, a78, a79, ccw));
+		rsegs.push(new Segment2(SegEnum.eStroke, p9, p3, p0, 0, 0, 0, false));
+	}
 	return rsegs;
 }
 function roundArcArc(ag: tPrepare): Array<Segment2> {

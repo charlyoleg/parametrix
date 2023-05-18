@@ -5,7 +5,7 @@
 import type { tCanvasAdjust } from './canvas_utils';
 //import { colorCanvasPoint } from '$lib/style/colors.scss';
 import { colors, point2canvas } from './canvas_utils';
-import { roundZero } from './angle_utils';
+import { roundZero, withinPiPi } from './angle_utils';
 
 type tPolar = [number, number]; // angle, distance
 
@@ -102,6 +102,12 @@ class Point {
 			throw `err434: no angle because points identical ${this.cx} ${p2.cx} ${this.cy} ${p2.cy}`;
 		}
 		const ra = Math.atan2(p2.cy - this.cy, p2.cx - this.cx);
+		return ra;
+	}
+	angleFromToPoints(p2: Point, p3: Point): number {
+		const ap2 = this.angleToPoint(p2);
+		const ap3 = this.angleToPoint(p3);
+		const ra = withinPiPi(ap3 - ap2);
 		return ra;
 	}
 	// from 2 points create a new point
