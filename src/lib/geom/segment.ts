@@ -198,7 +198,7 @@ function prepare(s1: Segment2, s2: Segment2, s3: Segment2): tPrepare {
 	let aTangent1 = p2.angleToPoint(p1);
 	if (s1.sType === SegEnum.eArc) {
 		const sign = s1.arcCcw ? 1 : -1;
-		aTangent1 = s1.a2 + (sign * Math.PI) / 2;
+		aTangent1 = s1.a2 - (sign * Math.PI) / 2;
 	}
 	let aTangent3 = p2.angleToPoint(p3);
 	if (s3.sType === SegEnum.eArc) {
@@ -259,7 +259,17 @@ function roundStrokeStroke(ag: tPrepare): Array<Segment2> {
 	return rsegs;
 }
 function roundStrokeArc(ag: tPrepare): Array<Segment2> {
-	const l12 = line(0, 0, 0).setFromPoints(ag.p1, ag.p2);
+	let p1p3 = ag.p3;
+	let pArcC = ag.p4;
+	if (ag.s1.sType === SegEnum.eStroke) {
+		p1p3 = ag.p1;
+		pArcC = ag.p5;
+	}
+	const lStroke = line(0, 0, 0).setFromPoints(p1p3, ag.p2);
+	const lStrokep = lStroke.lineParallelDistance(ag.ra, ag.p6);
+	const lRadial = line(0, 0, 0).setFromPoints(ag.p2, pArcC);
+	const pA = lStrokep.intersection(lRadial);
+	const lA4 = pA.distanceToPoint(pArcC);
 
 	// TODO
 	const rsegs: Array<Segment2> = [];
