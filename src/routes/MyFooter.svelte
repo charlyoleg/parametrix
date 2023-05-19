@@ -62,6 +62,7 @@
 		<li><a href="http://docs.ros.org/">ROS</a></li>
 		<li><a href="https://micro.ros.org/">micro-ROS</a></li>
 		<li><a href="https://github.com/mROS-base/mros2">mROS</a></li>
+		<li><a href="https://github.com/simplefoc">Field Oriented Control</a></li>
 	</ul>
 	<Garland />
 </footer>
