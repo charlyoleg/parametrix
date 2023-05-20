@@ -97,7 +97,7 @@ native app characteristics
 
 ![javascript_timeline.svg]({base}/javascript_timeline.svg)
 
-Web-apps are emerging in 2023 because the eco-system is mature.
+In 2023 the eco-system for developing web-apps is mature.
 - [nodejs](https://nodejs.org) V18 is the first LTS with official support for [ESM][ESM-link].
 - [SvelteKit](https://kit.svelte.dev/) is the first frontend framework that support [ESM][ESM-link].
 
