@@ -24,9 +24,9 @@
      inkscape:document-units="px"
      showgrid="false"
      units="px"
-     inkscape:zoom="0.37059484"
-     inkscape:cx="175.3937"
-     inkscape:cy="5443.9506"
+     inkscape:zoom="0.74118968"
+     inkscape:cx="476.93594"
+     inkscape:cy="6533.4153"
      inkscape:window-width="1366"
      inkscape:window-height="836"
      inkscape:window-x="0"
@@ -295,13 +295,13 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1389);display:inline"><tspan
          x="233.01758"
          y="4028.5469"
-         id="tspan7648"><tspan
+         id="tspan9513"><tspan
    style="font-weight:bold;-inkscape-font-specification:'sans-serif Bold'"
-   id="tspan7646">Geometrix</tspan>
+   id="tspan9511">Geometrix</tspan>
 </tspan><tspan
          x="233.01758"
          y="4046.8804"
-         id="tspan7650">geometry engine</tspan></text>
+         id="tspan9515">geometry engine</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,2.988742,-11.876889)"
@@ -309,13 +309,13 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1395);display:inline"><tspan
          x="66.929688"
          y="4129.9903"
-         id="tspan7654"><tspan
+         id="tspan9519"><tspan
    style="font-weight:bold;-inkscape-font-specification:'sans-serif Bold'"
-   id="tspan7652">Designix</tspan>
+   id="tspan9517">Designix</tspan>
 </tspan><tspan
          x="66.929688"
          y="4148.3238"
-         id="tspan7656">serie of 2D designs</tspan></text>
+         id="tspan9521">serie of 2D designs</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,-1.6908275,-12.922051)"
@@ -323,41 +323,18 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1401);display:inline"><tspan
          x="246.50586"
          y="4205.1621"
-         id="tspan7660"><tspan
+         id="tspan9525"><tspan
    style="font-weight:bold;-inkscape-font-specification:'sans-serif Bold'"
-   id="tspan7658">Parametrix</tspan>
+   id="tspan9523">Parametrix</tspan>
 </tspan><tspan
          x="246.50586"
          y="4223.4956"
-         id="tspan7662">UI for Designix</tspan></text>
-    <text
-       xml:space="preserve"
-       transform="matrix(0.26458334,0,0,0.26458334,44.97944,-104.80276)"
-       id="text1405"
-       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1407);display:inline"><tspan
-         x="226.94531"
-         y="4315.5469"
-         id="tspan7666"><tspan
-   style="-inkscape-font-specification:sans-serif"
-   id="tspan7664">Parametrix developer</tspan>
-</tspan><tspan
-         x="226.94531"
-         y="4333.8804"
-         id="tspan7670"><tspan
-           style="font-size:12px;-inkscape-font-specification:sans-serif"
-           id="tspan7668">competences:
-</tspan></tspan><tspan
-         x="226.94531"
-         y="4352.2139"
-         id="tspan7674"><tspan
-           style="font-size:12px;-inkscape-font-specification:sans-serif"
-           id="tspan7672">- math
-</tspan></tspan><tspan
-         x="226.94531"
-         y="4370.5474"
-         id="tspan7678"><tspan
-           style="font-size:12px;-inkscape-font-specification:sans-serif"
-           id="tspan7676">- programing</tspan></tspan></text>
+         id="tspan9527">UI for Designix</tspan></text>
+    <path
+       style="fill:#cccccc;stroke:#cccccc;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 51.532817,1059.3292 -14.802494,-0.1725 c 0,0 -0.201741,-2.2655 0.444569,-3.0347 1.035128,-1.232 4.522162,-1.3691 4.522162,-1.3691 l 2.322049,-2.3697 c 0,0 -2.736798,0.14 -3.799648,-0.6074 -0.986864,-0.6937 -1.592996,-1.9835 -1.827497,-3.2015 -0.429602,-2.2315 -0.42465,-4.9672 0.917156,-6.7608 1.468252,-1.9626 4.266246,-2.481 6.630639,-2.8069 1.855504,-0.2558 3.973153,-0.257 5.572616,0.7173 1.205004,0.734 1.911634,2.1611 2.405955,3.4827 0.543846,1.454 0.847106,3.1113 0.517345,4.6282 -0.298168,1.3716 -1.079205,2.7209 -2.162915,3.6129 -0.842656,0.6936 -3.080162,1.1104 -3.080162,1.1104 l 1.289017,3.0546 c 0,0 3.834193,-0.059 5.019746,1.2425 0.66822,0.7331 0.530149,2.9856 0.530149,2.9856 z"
+       id="path1513-6"
+       sodipodi:nodetypes="ccaccaaaaaaaaccacc" />
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,4.715119,-102.47086)"
@@ -365,25 +342,25 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1413);display:inline"><tspan
          x="39.685547"
          y="4309.25"
-         id="tspan7680">Designix developer
+         id="tspan9529">Designix developer
 </tspan><tspan
          x="39.685547"
          y="4327.5835"
-         id="tspan7684"><tspan
+         id="tspan9533"><tspan
            style="font-size:12px"
-           id="tspan7682">competences:
+           id="tspan9531">competences:
 </tspan></tspan><tspan
          x="39.685547"
          y="4345.917"
-         id="tspan7688"><tspan
+         id="tspan9537"><tspan
            style="font-size:12px"
-           id="tspan7686">- mechanics
+           id="tspan9535">- mechanics
 </tspan></tspan><tspan
          x="39.685547"
          y="4364.2505"
-         id="tspan7692"><tspan
+         id="tspan9541"><tspan
            style="font-size:12px"
-           id="tspan7690">- programing</tspan></tspan></text>
+           id="tspan9539">- programming</tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,-17.672948,-31.609763)"
@@ -391,25 +368,25 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1419);display:inline"><tspan
          x="114.02148"
          y="4353.9766"
-         id="tspan7694">Parametrix user
+         id="tspan9543">Parametrix user
 </tspan><tspan
          x="114.02148"
          y="4372.3101"
-         id="tspan7698"><tspan
+         id="tspan9547"><tspan
            style="font-size:12px"
-           id="tspan7696">competences:
+           id="tspan9545">competences:
 </tspan></tspan><tspan
          x="114.02148"
          y="4390.6436"
-         id="tspan7702"><tspan
+         id="tspan9551"><tspan
            style="font-size:12px"
-           id="tspan7700">- mechanics
+           id="tspan9549">- mechanics
 </tspan></tspan><tspan
          x="114.02148"
          y="4408.9771"
-         id="tspan7706"><tspan
+         id="tspan9555"><tspan
    style="font-size:12px"
-   id="tspan7704">- CAM</tspan>
+   id="tspan9553">- CAM</tspan>
 </tspan></text>
     <text
        xml:space="preserve"
@@ -418,7 +395,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1449);display:inline"><tspan
          x="317.51562"
          y="4334.0196"
-         id="tspan7708">FreeCAD</tspan></text>
+         id="tspan9557">FreeCAD</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,4.4509842,-21.984404)"
@@ -426,15 +403,10 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1455);display:inline"><tspan
          x="304.00977"
          y="4402.0938"
-         id="tspan7710">CAM tools</tspan></text>
+         id="tspan9559">CAM tools</tspan></text>
     <path
        style="fill:#cccccc;stroke:#cccccc;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 49.945316,1060.3876 -14.802494,-0.1725 c 0,0 -0.201741,-2.2655 0.444569,-3.0347 1.035128,-1.232 4.522162,-1.3691 4.522162,-1.3691 l 2.322049,-2.3697 c 0,0 -2.736798,0.14 -3.799648,-0.6074 -0.986864,-0.6937 -1.592996,-1.9835 -1.827497,-3.2015 -0.429602,-2.2315 -0.42465,-4.9672 0.917156,-6.7608 1.468252,-1.9626 4.266246,-2.481 6.630639,-2.8069 1.855504,-0.2558 3.973153,-0.257 5.572616,0.7173 1.205004,0.734 1.911634,2.1611 2.405955,3.4827 0.543846,1.454 0.847106,3.1113 0.517345,4.6282 -0.298168,1.3716 -1.079205,2.7209 -2.162915,3.6129 -0.842656,0.6936 -3.080162,1.1104 -3.080162,1.1104 l 1.289017,3.0546 c 0,0 3.834193,-0.059 5.019746,1.2425 0.66822,0.7331 0.530149,2.9856 0.530149,2.9856 z"
-       id="path1513-6"
-       sodipodi:nodetypes="ccaccaaaaaaaaccacc" />
-    <path
-       style="fill:#cccccc;stroke:#cccccc;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 140.2967,1060.3373 -14.8025,-0.1725 c 0,0 -0.24123,-2.2765 0.44457,-3.0347 1.28044,-1.4157 5.55451,-1.3928 5.55451,-1.3928 l 1.2897,-2.346 c 0,0 -2.73679,0.14 -3.79964,-0.6074 -0.98687,-0.6937 -1.593,-1.9835 -1.8275,-3.2015 -0.4296,-2.2315 -0.42465,-4.9672 0.91716,-6.7608 1.46825,-1.9626 4.24464,-2.5471 6.63063,-2.8069 1.8393,-0.2003 3.87275,0.058 5.45726,1.0131 1.16006,0.6993 2.00593,1.9342 2.52132,3.1869 0.59064,1.4356 0.8471,3.1113 0.51734,4.6282 -0.29817,1.3716 -1.0792,2.7209 -2.16291,3.6129 -0.84266,0.6936 -3.08017,1.1104 -3.08017,1.1104 l 0.52339,2.7435 c 0,0 4.43589,0.082 5.78538,1.5536 0.68311,0.745 0.53015,2.9856 0.53015,2.9856 z"
+       d="m 141.35504,1058.2205 -14.8025,-0.1725 c 0,0 -0.24123,-2.2765 0.44457,-3.0347 1.28044,-1.4157 5.55451,-1.3928 5.55451,-1.3928 l 1.2897,-2.346 c 0,0 -2.73679,0.14 -3.79964,-0.6074 -0.98687,-0.6937 -1.593,-1.9835 -1.8275,-3.2015 -0.4296,-2.2315 -0.42465,-4.9672 0.91716,-6.7608 1.46825,-1.9626 4.24464,-2.5471 6.63063,-2.8069 1.8393,-0.2003 3.87275,0.058 5.45726,1.0131 1.16006,0.6993 2.00593,1.9342 2.52132,3.1869 0.59064,1.4356 0.8471,3.1113 0.51734,4.6282 -0.29817,1.3716 -1.0792,2.7209 -2.16291,3.6129 -0.84266,0.6936 -3.08017,1.1104 -3.08017,1.1104 l 0.52339,2.7435 c 0,0 4.43589,0.082 5.78538,1.5536 0.68311,0.745 0.53015,2.9856 0.53015,2.9856 z"
        id="path1513-6-7"
        sodipodi:nodetypes="ccaccaaaaaaaaccacc" />
     <rect
@@ -475,7 +447,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;white-space:pre;shape-inside:url(#rect2906);display:inline"><tspan
          x="459.91797"
          y="4373.8867"
-         id="tspan7712">uses</tspan></text>
+         id="tspan9561">uses</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,9.8246997,-57.646155)"
@@ -483,7 +455,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2912);display:inline"><tspan
          x="435.44141"
          y="4259.7637"
-         id="tspan7714">develops</tspan></text>
+         id="tspan9563">develops</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,-91.815006,-60.800731)"
@@ -491,7 +463,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2912-6);display:inline"><tspan
          x="435.44141"
          y="4259.7637"
-         id="tspan7716">develops</tspan></text>
+         id="tspan9565">develops</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend-09-7)"
        d="m 51.962813,1130.2121 22.7461,-22.5598"
@@ -514,7 +486,7 @@
        style="font-size:12px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect4687);display:inline"><tspan
          x="208.22852"
          y="4449.0352"
-         id="tspan7718">dependencies</tspan></text>
+         id="tspan9567">dependencies</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,3.1356564,-21.681701)"
@@ -522,6 +494,34 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect4801);display:inline"><tspan
          x="27.365234"
          y="4470.0196"
-         id="tspan7720">users around Parametrix</tspan></text>
+         id="tspan9569">users around Parametrix</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458334,0,0,0.26458334,44.97944,-104.80276)"
+       id="text1405"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1407);display:inline"><tspan
+         x="226.94531"
+         y="4315.5469"
+         id="tspan9573"><tspan
+   style="-inkscape-font-specification:sans-serif"
+   id="tspan9571">Parametrix developer</tspan>
+</tspan><tspan
+         x="226.94531"
+         y="4333.8804"
+         id="tspan9577"><tspan
+           style="font-size:12px;-inkscape-font-specification:sans-serif"
+           id="tspan9575">competences:
+</tspan></tspan><tspan
+         x="226.94531"
+         y="4352.2139"
+         id="tspan9581"><tspan
+           style="font-size:12px;-inkscape-font-specification:sans-serif"
+           id="tspan9579">- math
+</tspan></tspan><tspan
+         x="226.94531"
+         y="4370.5474"
+         id="tspan9585"><tspan
+           style="font-size:12px;-inkscape-font-specification:sans-serif"
+           id="tspan9583">- programming</tspan></tspan></text>
   </g>
 </svg>
