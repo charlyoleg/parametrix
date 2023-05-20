@@ -1,0 +1,29 @@
+---
+title: Parametrix concepts
+category: documentation
+---
+
+<script lang="ts">
+	import { base } from '$app/paths';
+</script>
+
+
+# {title}
+
+## Drawings
+
+![classification_of_electrical_motors.svg]({base}/classification_of_electrical_motors.svg)
+![comparison_of_cad_flows.svg]({base}/comparison_of_cad_flows.svg)
+![javascript_timeline.svg]({base}/javascript_timeline.svg)
+![parametrix_galaxi.svg]({base}/parametrix_galaxi.svg)
+![software_stack.svg]({base}/software_stack.svg)
+![users_around_parametrix.svg]({base}/users_around_parametrix.svg)
+
+
+<style lang="scss">
+	@use '$lib/style/colors.scss';
+
+	h1 {
+		margin: 1rem;
+	}
+</style>

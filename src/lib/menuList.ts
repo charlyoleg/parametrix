@@ -51,7 +51,7 @@ const mLabel = [
 		'dev/verify_contour_2',
 		'dev/verify_contour_3'
 	],
-	['docs/ui', 'docs/geom', 'docs/gears']
+	['docs/concept', 'docs/ui', 'docs/geom', 'docs/gears']
 ];
 const mIcon: tIcon = {
 	index: 'page_index.svg',
@@ -66,6 +66,7 @@ const mIcon: tIcon = {
 	verify_contour_1: 'page_verify_line.svg',
 	verify_contour_2: 'page_verify_line.svg',
 	verify_contour_3: 'page_verify_line.svg',
+	concept: 'page_concept.svg',
 	ui: 'page_ui.svg',
 	geom: 'page_geom.svg',
 	gears: 'page_gears.svg',
