@@ -12,14 +12,20 @@ category: documentation
 
 ## Parametrix presentation
 
-Parametrix
+Parametrix is a web-app to generate 2D design.
+
+### Overview
+
+![users_around_parametrix.svg]({base}/users_around_parametrix.svg)
+
+The user of Parametrix gets:
 - 2D
 - web app
 - programmatic
 - parametrizable
 - simulation included
 
-Parametrix design API
+The programmer of Parametrix design (a.k.a. Designix) gets an API with:
 - circle, stroke and arc
 - corner widening or rounding
 - export to DXF, SVG
@@ -28,14 +34,13 @@ Parametrix design API
 
 ![corner_options.svg]({base}/corner_options.svg)
 
-rounded and widened outlines for:
+The API provides options for rounding or widening corners of outlines. It's useful for:
 - good looking parts
 - manufacturabilty
 - improve mechanical strength
 
+### CAD flow comparsion
 
-
-![parametrix_galaxi.svg]({base}/parametrix_galaxi.svg)
 ![comparison_of_cad_flows.svg]({base}/comparison_of_cad_flows.svg)
 
 Low-tech CAD
@@ -51,14 +56,15 @@ cons:
 ![high_tech_path.svg]({base}/high_tech_path.svg)
 
 
-The constraints of part manufacturing and low-tech CAD shaping concept are similar.
-Conclusion:
+The constraints of part manufacturing and low-tech CAD shaping concept are similar. As consequences:
 - low-tech CAD is good enough for mechanical parts
 - too restrictive for esthetic/design parts
 
 Extruded-2D-design is good enough for 90% of technical parts
 
-![users_around_parametrix.svg]({base}/users_around_parametrix.svg)
+### Future tools around Parametrix
+
+![parametrix_galaxi.svg]({base}/parametrix_galaxi.svg)
 
 
 ## Web app
