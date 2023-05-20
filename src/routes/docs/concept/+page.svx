@@ -12,7 +12,7 @@ category: documentation
 
 ## Parametrix presentation
 
-Parametrix is a web-app to generate 2D design.
+Parametrix is a web-app to generate 2D designs.
 
 ### Overview
 
@@ -72,36 +72,44 @@ Extruded-2D-design is good enough for 90% of technical parts
 ![software_stack.svg]({base}/software_stack.svg)
 
 web app characteristics
-+ security
-+ ubiquity
-+ no installation
-+ OS agnostic
-+ browser agnostic (web standards)
-- no file access
-+ could be installed locally for offline usage
-+ fast development of GUI
-- restricted to web protocols
-- restricted hardware access
+- [+] security
+- [+] ubiquity
+- [+] no installation
+- [+] OS agnostic
+- [+] browser agnostic (web standards)
+- [-] no file access
+- [+] could be installed locally for offline usage
+- [+] fast development of GUI
+- [-] restricted to web protocols
+- [-] restricted hardware access
 
 native app characteristics
-+ performance
-+ multi-threading
-+ many programming languages
-+ compiled or interpreted
-+ run with internet-off
-- OS dependent
-- complex development of GUI
-+ any network protocol
-+ access to hardware
+- [+] performance
+- [+] multi-threading
+- [+] many programming languages
+- [+] compiled or interpreted
+- [+] run with internet-off
+- [-] OS dependent
+- [-] complex development of GUI
+- [+] any network protocol
+- [+] access to hardware
 
 
 ![javascript_timeline.svg]({base}/javascript_timeline.svg)
+
+Web-apps are emerging in 2023 because the eco-system is mature.
+- [nodejs](https://nodejs.org) V18 is the first LTS with official support for [ESM][ESM-link].
+- [SvelteKit](https://kit.svelte.dev/) is the first frontend framework that support [ESM][ESM-link].
+
+[ESM-link]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules
+
 
 ## Electrical motors
 
 ### Types of electrical motors
 
 ![classification_of_electrical_motors.svg]({base}/classification_of_electrical_motors.svg)
+
 
 ### Controller of electrical motors
 
@@ -114,9 +122,10 @@ An optimal BLDC motor control enables:
 
 The project [SimpleFOC](https://simplefoc.com/) (Field Orientation Control) provides a solution for this problematic.
 
+
 ### Embedded electronics
 
-Embedded timeline:
+Embedded key technologies:
 - Powerful microcontroller like STM32
 - ROS2 maturity
 - mROS: micro-ROS without agent
@@ -128,6 +137,7 @@ Enable motor synchronization for:
 - CNC
 - robot
 - mechanical joint with multi-motors
+
 
 ### multi-motor joint
 
@@ -146,15 +156,24 @@ advantages of mechanical join with multi-motors
 + distributed power
 + improve split between small standard high-tech and large low cost
 
+
 ### Gimbal
 
-Advantages of heliostats (aka solar tracker)
+Gimbal is a two axis mechanism for controlling pan and tilt orientation. It is used to stabilize and orientate camera (100g), as articulation of arm-bot (5kg) or to orientate solar panel (2000kg).
+
+Advantages of heliostats (aka solar tracker):
 - optimized radiation quantity
 - ensure ray perpendicular to the panel
 - enable more efficient photovoltaic micro-lense technology
 - enable concentrators for solar thermic panel
 
 
+## Roadmap
+
+- Parametrix
+- gears
+- gimbal
+- heliostat
 
 
 
