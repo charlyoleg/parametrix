@@ -144,17 +144,17 @@ Enable motor synchronization for:
 ![multi_motor_joint.svg]({base}/multi_motor_joint.svg)
 
 advantages of mechanical join with multi-motors
-+ distributed efforts
-+ spread thermic, better cooling
-+ scalable
-+ use standard high-tech/mid-range components
-+ easier maintenance
-+ easier manufacturing standardization
-+ smoother control
-+ no backlash
-- complex motor driver
-+ distributed power
-+ improve split between small standard high-tech and large low cost
+- [+] distributed efforts
+- [+] spread thermic, better cooling
+- [+] scalable
+- [+] use standard high-tech/mid-range components
+- [+] easier maintenance
+- [+] easier manufacturing standardization
+- [+] smoother control
+- [+] no backlash
+- [-] complex motor driver
+- [+] distributed power
+- [+] improve split between small standard high-tech and large low cost
 
 
 ### Gimbal
