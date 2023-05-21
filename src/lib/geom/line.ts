@@ -244,36 +244,27 @@ class Line {
 		return new Line(ic.cx, ic.cy, this.ca);
 	}
 	// orthogonal projection
-	angleToPoint(ic: Point): number {
-		// compute direction, i.e. top-side or bottom-side
-		const p1 = new Point(this.cx, this.cy);
-		const aC = p1.angleToPoint(ic);
-		const l1ca = withinHPiHPi(this.ca);
-		const aB = -1 * withinPiPi(l1ca - aC);
-		let direction = 0;
-		if (aB > 0) {
-			direction = -Math.PI;
-		}
-		// end of direction calculation
-		const ra = withinZeroPi(Math.PI / 2 + this.ca) + direction;
-		return ra;
-	}
 	distanceToPoint(ic: Point): number {
 		let rd = 0;
 		const p1 = new Point(this.cx, this.cy);
-		if (!ic.isEqual(p1)) {
-			const a1 = this.angleToPoint(ic);
-			const a2 = p1.angleToPoint(ic);
-			const la = p1.distanceToPoint(ic);
-			const a12 = withinHPiHPi(a2 - a1);
-			rd = la * Math.cos(a12);
+		const lp1ic = p1.distanceToPoint(ic);
+		if (roundZero(lp1ic) !== 0) {
+			const aC = p1.angleToPoint(ic);
+			const aB = withinHPiHPi(aC - this.ca);
+			rd = lp1ic * Math.abs(Math.sin(aB));
 		}
 		return rd;
 	}
 	projectPoint(ic: Point): Point {
-		const pa = this.angleToPoint(ic);
-		const pl = this.distanceToPoint(ic);
-		const rp = point(0, 0).setPolar(pa, pl).translate(ic.cx, ic.cy);
+		let rd = 0;
+		const p1 = new Point(this.cx, this.cy);
+		const lp1ic = p1.distanceToPoint(ic);
+		if (roundZero(lp1ic) !== 0) {
+			const aC = p1.angleToPoint(ic);
+			const aB = withinPiPi(aC - this.ca);
+			rd = lp1ic * Math.cos(aB);
+		}
+		const rp = p1.translatePolar(this.ca, rd);
 		return rp;
 	}
 	// line comparison

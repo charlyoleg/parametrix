@@ -253,20 +253,19 @@ function roundStrokeStroke(ag: tPrepare): Array<Segment2> {
 	const a72 = ag.abi + Math.PI;
 	const a78 = a72 + a7b;
 	const a79 = a72 - a7b;
+	const p8 = line(0, 0, 0).setFromPoints(ag.p1, ag.p2).projectPoint(p7);
+	const p9 = line(0, 0, 0).setFromPoints(ag.p2, ag.p3).projectPoint(p7);
 	//const p8 = p7.translatePolar(a78, ag.ra);
 	//const p9 = p7.translatePolar(a79, ag.ra);
-	const p8 = ag.p2.translatePolar(ag.at1, l7b);
-	const p9 = ag.p2.translatePolar(ag.at3, l7b);
-	let ccw = false;
-	if (Math.sign(ag.aph) < 0) {
-		ccw = true;
-	}
+	//const p8 = ag.p2.translatePolar(ag.at1, l7b);
+	//const p9 = ag.p2.translatePolar(ag.at3, l7b);
+	const ccw2 = ag.aph > 0 ? false : true;
 	const rsegs: Array<Segment2> = [];
 	const p0 = point(0, 0);
 	const p1 = ag.p1.clone();
 	const p3 = ag.p3.clone();
 	rsegs.push(new Segment2(SegEnum.eStroke, p1, p8, p0, 0, 0, 0, false));
-	rsegs.push(new Segment2(SegEnum.eArc, p8, p9, p7, ag.ra, a78, a79, ccw));
+	rsegs.push(new Segment2(SegEnum.eArc, p8, p9, p7, ag.ra, a78, a79, ccw2));
 	rsegs.push(new Segment2(SegEnum.eStroke, p9, p3, p0, 0, 0, 0, false));
 	return rsegs;
 }
@@ -312,7 +311,7 @@ function roundStrokeArc(ag: tPrepare): Array<Segment2> {
 	const a78 = p7.angleToPoint(p8);
 	const a79 = p7.angleToPoint(p9);
 	const am = a47; //pArcC.angleToPoint(pArcT);
-	const ccw = Math.sign(ag.aph) < 0 ? true : false;
+	const ccw2 = ag.aph > 0 ? false : true;
 	const rsegs: Array<Segment2> = [];
 	const p0 = point(0, 0);
 	const p1 = ag.p1.clone();
@@ -320,11 +319,11 @@ function roundStrokeArc(ag: tPrepare): Array<Segment2> {
 	const pc = sarc.pc.clone();
 	if (ag.s1.sType === SegEnum.eStroke) {
 		rsegs.push(new Segment2(SegEnum.eStroke, p1, p8, p0, 0, 0, 0, false));
-		rsegs.push(new Segment2(SegEnum.eArc, p8, p9, p7, ag.ra, a78, a79, ccw));
+		rsegs.push(new Segment2(SegEnum.eArc, p8, p9, p7, ag.ra, a78, a79, ccw2));
 		rsegs.push(new Segment2(SegEnum.eArc, p9, p3, pc, sarc.radius, am, sarc.a2, sarc.arcCcw));
 	} else {
 		rsegs.push(new Segment2(SegEnum.eArc, p1, p8, pc, sarc.radius, sarc.a1, am, sarc.arcCcw));
-		rsegs.push(new Segment2(SegEnum.eArc, p8, p9, p7, ag.ra, a78, a79, ccw));
+		rsegs.push(new Segment2(SegEnum.eArc, p8, p9, p7, ag.ra, a78, a79, ccw2));
 		rsegs.push(new Segment2(SegEnum.eStroke, p9, p3, p0, 0, 0, 0, false));
 	}
 	//console.log('dbg535');
