@@ -229,6 +229,7 @@ function prepare(s1: Segment2, s2: Segment2, s3: Segment2): tPrepare {
 	};
 	return rPre;
 }
+
 function modifRadius(iaph: number, iseg: Segment2, iradius: number): number {
 	if (iseg.sType !== SegEnum.eArc) {
 		throw `err510: modifRadius with wrong type ${iseg.sType}`;
@@ -240,6 +241,40 @@ function modifRadius(iaph: number, iseg: Segment2, iradius: number): number {
 		throw `err621: modifRadius with negative modified lenght ${rmr}`;
 	}
 	return rmr;
+}
+function newArcFirst(iseg: Segment2, ip: Point): Segment2 {
+	if (iseg.sType !== SegEnum.eArc) {
+		throw `err203: newArcFirst unexpected sType ${iseg.sType}`;
+	}
+	const p1 = iseg.p1.clone();
+	const p4 = iseg.pc.clone();
+	const p8 = ip.clone();
+	const a48 = p4.angleToPoint(p8);
+	// check arc angleq are properly reduced
+	const a4orig = within2Pi2Pi(iseg.a2 - iseg.a1);
+	const a4new = within2Pi2Pi(a48 - iseg.a1);
+	if (Math.sign(a4orig) * Math.sign(a4new) < 0 || Math.abs(a4new) > Math.abs(a4orig)) {
+		throw `err908: newArcFirst a4new out of a4orig ${a4new} ${a4orig}`;
+	}
+	const rNewSeg = new Segment2(SegEnum.eArc, p1, p8, p4, iseg.radius, iseg.a1, a48, iseg.arcCcw);
+	return rNewSeg;
+}
+function newArcSecond(iseg: Segment2, ip: Point): Segment2 {
+	if (iseg.sType !== SegEnum.eArc) {
+		throw `err204: newArcSecond unexpected sType ${iseg.sType}`;
+	}
+	const p3 = iseg.p2.clone();
+	const p5 = iseg.pc.clone();
+	const p9 = ip.clone();
+	const a59 = p5.angleToPoint(p9);
+	// check arc angleq are properly reduced
+	const a5orig = within2Pi2Pi(iseg.a1 - iseg.a2);
+	const a5new = within2Pi2Pi(a59 - iseg.a2);
+	if (Math.sign(a5orig) * Math.sign(a5new) < 0 || Math.abs(a5new) > Math.abs(a5orig)) {
+		throw `err907: newArcSecond a5new out of a5orig ${a5new} ${a5orig}`;
+	}
+	const rNewSeg = new Segment2(SegEnum.eArc, p9, p3, p5, iseg.radius, a59, iseg.a2, iseg.arcCcw);
+	return rNewSeg;
 }
 function roundStrokeStroke(ag: tPrepare): Array<Segment2> {
 	const l7 = Math.abs(ag.ra / Math.sin(ag.aph));
@@ -349,30 +384,13 @@ function roundArcArc(ag: tPrepare): Array<Segment2> {
 		throw `err909: roundArcArc p7 anf p7b differ ${p7.cx} ${p7b.cx} ${p7.cy} ${p7b.cy}`;
 	}
 	const p9 = ag.p5.translatePolar(a57, ag.s3.radius);
-	const a48 = ag.p4.angleToPoint(p8);
 	const a78 = p7.angleToPoint(p8);
 	const a79 = p7.angleToPoint(p9);
-	const a59 = ag.p5.angleToPoint(p9);
-	// check arc angleq are properly reduced
-	const a4orig = within2Pi2Pi(ag.s1.a2 - ag.s1.a1);
-	const a4new = within2Pi2Pi(a48 - ag.s1.a1);
-	if (Math.sign(a4orig) * Math.sign(a4new) < 0 || Math.abs(a4new) > Math.abs(a4orig)) {
-		throw `err908: roundArcArc a4new out of a4orig ${a4new} ${a4orig}`;
-	}
-	const a5orig = within2Pi2Pi(ag.s3.a1 - ag.s3.a2);
-	const a5new = within2Pi2Pi(a59 - ag.s3.a2);
-	if (Math.sign(a5orig) * Math.sign(a5new) < 0 || Math.abs(a5new) > Math.abs(a5orig)) {
-		throw `err907: roundArcArc a5new out of a5orig ${a5new} ${a5orig}`;
-	}
 	const ccw2 = ag.aph > 0 ? false : true;
-	const p1 = ag.p1.clone();
-	const p3 = ag.p3.clone();
-	const p4 = ag.p4.clone();
-	const p5 = ag.p5.clone();
 	const rsegs: Array<Segment2> = [];
-	rsegs.push(new Segment2(SegEnum.eArc, p1, p8, p4, ag.s1.radius, ag.s1.a1, a48, ag.s1.arcCcw));
+	rsegs.push(newArcFirst(ag.s1, p8));
 	rsegs.push(new Segment2(SegEnum.eArc, p8, p9, p7, ag.ra, a78, a79, ccw2));
-	rsegs.push(new Segment2(SegEnum.eArc, p9, p3, p5, ag.s3.radius, a59, ag.s3.a2, ag.s3.arcCcw));
+	rsegs.push(newArcSecond(ag.s3, p9));
 	return rsegs;
 }
 function widenStrokeStroke(ag: tPrepare): Array<Segment2> {
