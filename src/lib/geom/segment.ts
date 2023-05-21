@@ -253,12 +253,12 @@ function roundStrokeStroke(ag: tPrepare): Array<Segment2> {
 	const a72 = ag.abi + Math.PI;
 	const a78 = a72 + a7b;
 	const a79 = a72 - a7b;
-	const p8 = line(0, 0, 0).setFromPoints(ag.p1, ag.p2).projectPoint(p7);
-	const p9 = line(0, 0, 0).setFromPoints(ag.p2, ag.p3).projectPoint(p7);
+	//const p8 = line(0, 0, 0).setFromPoints(ag.p1, ag.p2).projectPoint(p7);
+	//const p9 = line(0, 0, 0).setFromPoints(ag.p2, ag.p3).projectPoint(p7);
 	//const p8 = p7.translatePolar(a78, ag.ra);
 	//const p9 = p7.translatePolar(a79, ag.ra);
-	//const p8 = ag.p2.translatePolar(ag.at1, l7b);
-	//const p9 = ag.p2.translatePolar(ag.at3, l7b);
+	const p8 = ag.p2.translatePolar(ag.at1, l7b);
+	const p9 = ag.p2.translatePolar(ag.at3, l7b);
 	const ccw2 = ag.aph > 0 ? false : true;
 	const rsegs: Array<Segment2> = [];
 	const p0 = point(0, 0);
@@ -326,13 +326,6 @@ function roundStrokeArc(ag: tPrepare): Array<Segment2> {
 		rsegs.push(new Segment2(SegEnum.eArc, p8, p9, p7, ag.ra, a78, a79, ccw2));
 		rsegs.push(new Segment2(SegEnum.eStroke, p9, p3, p0, 0, 0, 0, false));
 	}
-	//console.log('dbg535');
-	//console.log(pc);
-	//console.log(p7);
-	//console.log(p1);
-	//console.log(p8);
-	//console.log(p9);
-	//console.log(p3);
 	return rsegs;
 }
 function roundArcArc(ag: tPrepare): Array<Segment2> {
@@ -417,10 +410,6 @@ function makeCorner(s1: Segment2, s2: Segment2, s3: Segment2): Array<Segment2> {
 	} else {
 		throw `err723: makeCorner unexpected s2.sType ${s2.sType}`;
 	}
-	//console.log('dbg901: end of makeCorner');
-	//for (const seg of rsegs) {
-	//	console.log(seg);
-	//}
 	return rsegs;
 }
 
