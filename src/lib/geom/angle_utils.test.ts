@@ -6,7 +6,8 @@ import {
 	withinZero2Pi,
 	withinPiPi,
 	withinZeroPi,
-	withinHPiHPi
+	withinHPiHPi,
+	within2Pi2Pi
 } from './angle_utils';
 
 describe('angle suit', () => {
@@ -79,5 +80,18 @@ describe('angle suit', () => {
 	});
 	it('withinHPiHPi 4', () => {
 		expect(withinHPiHPi((17 * Math.PI) / 9)).toBeCloseTo(-Math.PI / 9, 5);
+	});
+	// within2Pi2Pi
+	it('within2Pi2Pi 1', () => {
+		expect(within2Pi2Pi(1.9 * Math.PI)).toBeCloseTo(1.9 * Math.PI, 5);
+	});
+	it('within2Pi2Pi 2', () => {
+		expect(within2Pi2Pi(2.1 * Math.PI)).toBeCloseTo(0.1 * Math.PI, 5);
+	});
+	it('within2Pi2Pi 3', () => {
+		expect(within2Pi2Pi(-0.1 * Math.PI)).toBeCloseTo(-0.1 * Math.PI, 5);
+	});
+	it('within2Pi2Pi 4', () => {
+		expect(within2Pi2Pi(-2.1 * Math.PI)).toBeCloseTo(-0.1 * Math.PI, 5);
 	});
 });

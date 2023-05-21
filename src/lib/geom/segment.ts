@@ -11,9 +11,10 @@ import {
 	//radToDeg,
 	//roundZero,
 	withinZero2Pi,
-	withinPiPi
+	withinPiPi,
 	//withinZeroPi,
-	//withinHPiHPi
+	//withinHPiHPi,
+	within2Pi2Pi
 } from './angle_utils';
 //import { colors, point2canvas, radius2canvas } from './canvas_utils';
 import {
@@ -352,6 +353,17 @@ function roundArcArc(ag: tPrepare): Array<Segment2> {
 	const a78 = p7.angleToPoint(p8);
 	const a79 = p7.angleToPoint(p9);
 	const a59 = ag.p5.angleToPoint(p9);
+	// check arc angleq are properly reduced
+	const a4orig = within2Pi2Pi(ag.s1.a2 - ag.s1.a1);
+	const a4new = within2Pi2Pi(a48 - ag.s1.a1);
+	if (Math.sign(a4orig) * Math.sign(a4new) < 0 || Math.abs(a4new) > Math.abs(a4orig)) {
+		throw `err908: roundArcArc a4new out of a4orig ${a4new} ${a4orig}`;
+	}
+	const a5orig = within2Pi2Pi(ag.s3.a1 - ag.s3.a2);
+	const a5new = within2Pi2Pi(a59 - ag.s3.a2);
+	if (Math.sign(a5orig) * Math.sign(a5new) < 0 || Math.abs(a5new) > Math.abs(a5orig)) {
+		throw `err907: roundArcArc a5new out of a5orig ${a5new} ${a5orig}`;
+	}
 	const ccw2 = ag.aph > 0 ? false : true;
 	const p1 = ag.p1.clone();
 	const p3 = ag.p3.clone();
