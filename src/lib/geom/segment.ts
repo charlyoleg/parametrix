@@ -18,12 +18,12 @@ import {
 //import { colors, point2canvas, radius2canvas } from './canvas_utils';
 import {
 	//rightTriLaFromLbLc,
-	rightTriLbFromLaLc
+	rightTriLbFromLaLc,
 	//lcFromLaLbAc,
-	//aCFromLaLbLc,
+	aCFromLaLbLc,
 	//aCFromAaAb,
 	//lbFromLaAaAb,
-	//aBFromLaLbAa
+	aBFromLaLbAa
 } from './triangle_utils';
 import { point, Point } from './point';
 //import { line, bisector, circleCenter } from './line';
@@ -263,8 +263,8 @@ function roundStrokeStroke(ag: tPrepare): Array<Segment2> {
 	}
 	const rsegs: Array<Segment2> = [];
 	const p0 = point(0, 0);
-	const p1 = point(ag.p1.cx, ag.p1.cy);
-	const p3 = point(ag.p3.cx, ag.p3.cy);
+	const p1 = ag.p1.clone();
+	const p3 = ag.p3.clone();
 	rsegs.push(new Segment2(SegEnum.eStroke, p1, p8, p0, 0, 0, 0, false));
 	rsegs.push(new Segment2(SegEnum.eArc, p8, p9, p7, ag.ra, a78, a79, ccw));
 	rsegs.push(new Segment2(SegEnum.eStroke, p9, p3, p0, 0, 0, 0, false));
@@ -315,9 +315,9 @@ function roundStrokeArc(ag: tPrepare): Array<Segment2> {
 	const ccw = Math.sign(ag.aph) < 0 ? true : false;
 	const rsegs: Array<Segment2> = [];
 	const p0 = point(0, 0);
-	const p1 = point(ag.p1.cx, ag.p1.cy);
-	const p3 = point(ag.p3.cx, ag.p3.cy);
-	const pc = point(sarc.pc.cx, sarc.pc.cy);
+	const p1 = ag.p1.clone();
+	const p3 = ag.p3.clone();
+	const pc = sarc.pc.clone();
 	if (ag.s1.sType === SegEnum.eStroke) {
 		rsegs.push(new Segment2(SegEnum.eStroke, p1, p8, p0, 0, 0, 0, false));
 		rsegs.push(new Segment2(SegEnum.eArc, p8, p9, p7, ag.ra, a78, a79, ccw));
@@ -337,10 +337,38 @@ function roundStrokeArc(ag: tPrepare): Array<Segment2> {
 	return rsegs;
 }
 function roundArcArc(ag: tPrepare): Array<Segment2> {
-	// TODO
+	const mr1 = modifRadius(ag.aph, ag.s1, ag.ra);
+	const mr3 = modifRadius(ag.aph, ag.s3, ag.ra);
+	const lp4p5 = ag.p4.distanceToPoint(ag.p5);
+	const a45 = ag.p4.angleToPoint(ag.p5);
+	const a547 = aCFromLaLbLc(lp4p5, mr1, mr3);
+	const sign1 = 1;
+	const a47 = a45 + sign1 * a547;
+	const p7 = ag.p4.translatePolar(a47, mr1);
+	const p8 = ag.p4.translatePolar(a47, ag.s1.radius);
+	const a54 = Math.PI + a45;
+	//const a457 = aCFromLaLbLc(lp4p5, mr3, mr1);
+	const a457 = aBFromLaLbAa(mr3, mr1, a547);
+	const sign2 = -1;
+	const a57 = a54 + sign2 * a457;
+	const p7b = ag.p5.translatePolar(a57, mr3);
+	if (!p7b.isEqual(p7)) {
+		throw `err909: roundArcArc p7 anf p7b differ ${p7.cx} ${p7b.cx} ${p7.cy} ${p7b.cy}`;
+	}
+	const p9 = ag.p5.translatePolar(a57, ag.s3.radius);
+	const a48 = ag.p4.angleToPoint(p8);
+	const a78 = p7.angleToPoint(p8);
+	const a79 = p7.angleToPoint(p9);
+	const a59 = ag.p5.angleToPoint(p9);
+	const ccw2 = ag.aph > 0 ? false : true;
+	const p1 = ag.p1.clone();
+	const p3 = ag.p3.clone();
+	const p4 = ag.p4.clone();
+	const p5 = ag.p5.clone();
 	const rsegs: Array<Segment2> = [];
-	rsegs.push(ag.s1);
-	rsegs.push(ag.s3);
+	rsegs.push(new Segment2(SegEnum.eArc, p1, p8, p4, ag.s1.radius, ag.s1.a1, a48, ag.s1.arcCcw));
+	rsegs.push(new Segment2(SegEnum.eArc, p8, p9, p7, ag.ra, a78, a79, ccw2));
+	rsegs.push(new Segment2(SegEnum.eArc, p9, p3, p5, ag.s3.radius, a59, ag.s3.a2, ag.s3.arcCcw));
 	return rsegs;
 }
 function widenStrokeStroke(ag: tPrepare): Array<Segment2> {

@@ -66,6 +66,9 @@ class Point {
 	translatePolar(ia: number, il: number): Point {
 		return new Point(this.cx + il * Math.cos(ia), this.cy + il * Math.sin(ia));
 	}
+	clone(): Point {
+		return new Point(this.cx, this.cy);
+	}
 	rotateOrig(ia: number): Point {
 		// rotation with the origin as center
 		const polar = this.getPolar();

@@ -8,12 +8,14 @@ const pDef: tParamDef = {
 	params: [
 		{ name: 'r1', unit: 'mm', init: 10, min: 0, max: 200, step: 1 },
 		{ name: 'r2', unit: 'mm', init: 10, min: 0, max: 200, step: 1 },
-		{ name: 'r3', unit: 'mm', init: 9, min: 0, max: 200, step: 1 }
+		{ name: 'r3', unit: 'mm', init: 9, min: 0, max: 200, step: 1 },
+		{ name: 'r4', unit: 'mm', init: 10, min: 0, max: 200, step: 1 }
 	],
 	paramSvg: {
 		r1: 'verify_contour_1_r1.svg',
 		r2: 'verify_contour_1_r1.svg',
-		r3: 'verify_contour_1_r1.svg'
+		r3: 'verify_contour_1_r1.svg',
+		r4: 'verify_contour_1_r1.svg'
 	},
 	sim: {
 		tMax: 10,
@@ -29,6 +31,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const r1 = param['r1'] + t;
 		const r2 = param['r2'] + t;
 		const r3 = param['r3'] + t;
+		const r4 = param['r4'] + t;
 		const ctr1 = contour(100, 0)
 			.addSegStrokeR(30, 200)
 			.addCornerRounded(r1)
@@ -85,6 +88,18 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		ctr3.addSegStrokeR(l3, 0).addSegStrokeR(l3, -l3).closeSegStroke();
 		ctr3.check();
 		rGeome.fig.addMain(ctr3);
+		const l4 = 200;
+		const ra4 = 180;
+		const ctr4 = contour(0, 1000)
+			.addPointR(l4, 0)
+			.addSegArc(ra4, false, true)
+			.addCornerRounded(r4)
+			.addPointR(0, l4)
+			.addSegArc(ra4, false, true)
+			.addPointR(-l4, -l4)
+			.addSegArc(1.4 * ra4, false, true);
+		ctr4.check();
+		rGeome.fig.addMain(ctr4);
 		rGeome.logstr += 'verify_contour_3 draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
