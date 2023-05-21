@@ -9,7 +9,7 @@
 import {
 	//degToRad,
 	//radToDeg,
-	//roundZero,
+	roundZero,
 	withinZero2Pi,
 	withinPiPi,
 	//withinZeroPi,
@@ -242,6 +242,60 @@ function modifRadius(iaph: number, iseg: Segment2, iradius: number): number {
 	}
 	return rmr;
 }
+function newStrokeFirst(iseg: Segment2, ip: Point): Segment2 {
+	const p8 = ip.clone();
+	const p1 = iseg.p1.clone();
+	const p2 = iseg.p2;
+	// few checks
+	if (iseg.sType !== SegEnum.eStroke) {
+		throw `err103: newStrokeFirst unexpected sType ${iseg.sType}`;
+	}
+	const distLine = line(0, 0, 0).setFromPoints(p1, p2).distanceToPoint(p8);
+	if (roundZero(distLine) !== 0) {
+		throw `err104: newStrokeFirst new point not aligned ${distLine} ${p8.cx} ${p8.cy}`;
+	}
+	const a2 = p1.angleToPoint(p2);
+	const a8 = p1.angleToPoint(p8);
+	if (roundZero(withinPiPi(a8 - a2)) !== 0) {
+		throw `err105: newStrokeFirst new point miss aligned ${a2} ${a8} ${p8.cx} ${p8.cy}`;
+	}
+	const l18 = p1.distanceToPoint(p8);
+	const l12 = p1.distanceToPoint(p2);
+	if (l12 < l18) {
+		throw `err106: newStrokeFirst new point out of scope ${l12} ${l18} ${p8.cx} ${p8.cy}`;
+	}
+	// end of few checks
+	const p0 = point(0, 0);
+	const rNewSeg = new Segment2(SegEnum.eStroke, p1, p8, p0, 0, 0, 0, false);
+	return rNewSeg;
+}
+function newStrokeSecond(iseg: Segment2, ip: Point): Segment2 {
+	const p9 = ip.clone();
+	const p3 = iseg.p2.clone();
+	const p2 = iseg.p1;
+	// few checks
+	if (iseg.sType !== SegEnum.eStroke) {
+		throw `err203: newStrokeSecond unexpected sType ${iseg.sType}`;
+	}
+	const distLine = line(0, 0, 0).setFromPoints(p3, p2).distanceToPoint(p9);
+	if (roundZero(distLine) !== 0) {
+		throw `err204: newStrokeSecond new point not aligned ${distLine} ${p9.cx} ${p9.cy}`;
+	}
+	const a2 = p3.angleToPoint(p2);
+	const a9 = p3.angleToPoint(p9);
+	if (roundZero(withinPiPi(a9 - a2)) !== 0) {
+		throw `err205: newStrokeSecond new point miss aligned ${a2} ${a9} ${p9.cx} ${p9.cy}`;
+	}
+	const l39 = p3.distanceToPoint(p9);
+	const l32 = p3.distanceToPoint(p2);
+	if (l32 < l39) {
+		throw `err206: newStrokeSecond new point out of scope ${l32} ${l39} ${p9.cx} ${p9.cy}`;
+	}
+	// end of few checks
+	const p0 = point(0, 0);
+	const rNewSeg = new Segment2(SegEnum.eStroke, p9, p3, p0, 0, 0, 0, false);
+	return rNewSeg;
+}
 function newArcFirst(iseg: Segment2, ip: Point): Segment2 {
 	if (iseg.sType !== SegEnum.eArc) {
 		throw `err203: newArcFirst unexpected sType ${iseg.sType}`;
@@ -276,33 +330,42 @@ function newArcSecond(iseg: Segment2, ip: Point): Segment2 {
 	const rNewSeg = new Segment2(SegEnum.eArc, p9, p3, p5, iseg.radius, a59, iseg.a2, iseg.arcCcw);
 	return rNewSeg;
 }
+function newRounded(ip8: Point, ip9: Point, ip7: Point, ra: number, aph: number, abi: number) {
+	const p8 = ip8.clone();
+	const p9 = ip9.clone();
+	const p7 = ip7.clone();
+	// few checks
+	const l78 = p7.distanceToPoint(p8);
+	const l79 = p7.distanceToPoint(p9);
+	if (roundZero(l78 - ra) !== 0 || roundZero(l79 - ra) !== 0) {
+		throw `err610: newRounded not on circle ${ra} ${l78} ${l79}`;
+	}
+	const a78 = p7.angleToPoint(p8);
+	const a79 = p7.angleToPoint(p9);
+	const a873 = withinPiPi(a78 - abi + Math.PI);
+	const a973 = withinPiPi(a79 - abi + Math.PI);
+	if (Math.abs(a873) > Math.PI / 2 || Math.abs(a973) > Math.PI / 2) {
+		throw `warn882: newRounded a873 or a972 larger than PI/2 ${a873} ${a973}`;
+	}
+	// end of few checks
+	const ccw2 = aph > 0 ? false : true;
+	const rNewSeg = new Segment2(SegEnum.eArc, p8, p9, p7, ra, a78, a79, ccw2);
+	return rNewSeg;
+}
 function roundStrokeStroke(ag: tPrepare): Array<Segment2> {
 	const l7 = Math.abs(ag.ra / Math.sin(ag.aph));
 	const l7b = l7 * Math.cos(ag.aph);
-	const l21 = ag.p2.distanceToPoint(ag.p1);
-	const l23 = ag.p2.distanceToPoint(ag.p3);
-	if (l7b > l21 || l7b > l23) {
-		throw `err227: roundStrokeStroke too short stroke ${l7b} ${l21} ${l23}`;
-	}
 	const p7 = ag.p2.translatePolar(ag.abi, l7);
-	const a7b = Math.sign(ag.aph) * (Math.PI / 2 - Math.abs(ag.aph));
-	const a72 = ag.abi + Math.PI;
-	const a78 = a72 + a7b;
-	const a79 = a72 - a7b;
 	//const p8 = line(0, 0, 0).setFromPoints(ag.p1, ag.p2).projectPoint(p7);
 	//const p9 = line(0, 0, 0).setFromPoints(ag.p2, ag.p3).projectPoint(p7);
 	//const p8 = p7.translatePolar(a78, ag.ra);
 	//const p9 = p7.translatePolar(a79, ag.ra);
 	const p8 = ag.p2.translatePolar(ag.at1, l7b);
 	const p9 = ag.p2.translatePolar(ag.at3, l7b);
-	const ccw2 = ag.aph > 0 ? false : true;
 	const rsegs: Array<Segment2> = [];
-	const p0 = point(0, 0);
-	const p1 = ag.p1.clone();
-	const p3 = ag.p3.clone();
-	rsegs.push(new Segment2(SegEnum.eStroke, p1, p8, p0, 0, 0, 0, false));
-	rsegs.push(new Segment2(SegEnum.eArc, p8, p9, p7, ag.ra, a78, a79, ccw2));
-	rsegs.push(new Segment2(SegEnum.eStroke, p9, p3, p0, 0, 0, 0, false));
+	rsegs.push(newStrokeFirst(ag.s1, p8));
+	rsegs.push(newRounded(p8, p9, p7, ag.ra, ag.aph, ag.abi));
+	rsegs.push(newStrokeSecond(ag.s3, p9));
 	return rsegs;
 }
 function roundStrokeArc(ag: tPrepare): Array<Segment2> {
