@@ -447,12 +447,9 @@ function roundArcArc(ag: tPrepare): Array<Segment2> {
 		throw `err909: roundArcArc p7 anf p7b differ ${p7.cx} ${p7b.cx} ${p7.cy} ${p7b.cy}`;
 	}
 	const p9 = ag.p5.translatePolar(a57, ag.s3.radius);
-	const a78 = p7.angleToPoint(p8);
-	const a79 = p7.angleToPoint(p9);
-	const ccw2 = ag.aph > 0 ? false : true;
 	const rsegs: Array<Segment2> = [];
 	rsegs.push(newArcFirst(ag.s1, p8));
-	rsegs.push(new Segment2(SegEnum.eArc, p8, p9, p7, ag.ra, a78, a79, ccw2));
+	rsegs.push(newRounded(p8, p9, p7, ag.ra, ag.aph, ag.abi));
 	rsegs.push(newArcSecond(ag.s3, p9));
 	return rsegs;
 }
