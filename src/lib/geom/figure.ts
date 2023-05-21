@@ -67,12 +67,14 @@ class Figure {
 		this.vectorList.push(ivector);
 	}
 	addMain(icontour: tContour) {
-		this.addPoints(icontour.generatePoints());
+		this.addPoints(icontour.generateContour().generatePoints());
+		//this.addPoints(icontour.generatePoints()); // points of the skeleton
 		this.mainList.push(icontour.generateContour());
 		this.mainBList.push(icontour.extractSkeleton());
 	}
 	addSecond(icontour: tContour) {
-		this.addPoints(icontour.generatePoints());
+		this.addPoints(icontour.generateContour().generatePoints());
+		//this.addPoints(icontour.generatePoints()); // points of the skeleton
 		this.secondList.push(icontour.generateContour());
 		this.secondBList.push(icontour.extractSkeleton());
 	}
