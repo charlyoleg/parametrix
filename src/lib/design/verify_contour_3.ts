@@ -69,10 +69,10 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const l3 = 100;
 		const ra3 = 70;
 		const ctr3 = contour(0, 600).addSegStrokeR(l3, l3);
-		for (let i = 0; i < 4; i++) {
-			//const large = (i & 0x1) === 0 ? true : false;
+		for (let i = 0; i < 3; i++) {
+			//const large = (i & 0x1) === 0 ? false : true;
 			const large = false;
-			//const ccw = i < 2 ? true : false;
+			//const ccw = i < 2 ? false : true;
 			const ccw = true;
 			//rGeome.logstr += `large ${large} ccw ${ccw}\n`;
 			ctr3.addSegStrokeR(l3, 0)
