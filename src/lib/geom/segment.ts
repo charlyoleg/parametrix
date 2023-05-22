@@ -124,6 +124,23 @@ class Segment2 {
 	}
 }
 
+class SegDbgPts {
+	debugPoints: Array<Point>;
+	constructor() {
+		this.debugPoints = [];
+	}
+	add(ip: Point) {
+		this.debugPoints.push(ip);
+	}
+	getDbgPts(): Array<Point> {
+		return this.debugPoints;
+	}
+	clearDbgPts() {
+		this.debugPoints = [];
+	}
+}
+const gSegDbgPts = new SegDbgPts();
+
 function arcSeg1To2(px1: number, py1: number, iSeg1: Segment1): Segment2 {
 	if (iSeg1.sType !== SegEnum.eArc) {
 		throw `err202: arcSeg1To2 has unexpected type ${iSeg1.sType}`;
@@ -330,7 +347,14 @@ function newArcSecond(iseg: Segment2, ip: Point): Segment2 {
 	const rNewSeg = new Segment2(SegEnum.eArc, p9, p3, p5, iseg.radius, a59, iseg.a2, iseg.arcCcw);
 	return rNewSeg;
 }
-function newRounded(ip8: Point, ip9: Point, ip7: Point, ra: number, aph: number, abi: number) {
+function newRounded(
+	ip8: Point,
+	ip9: Point,
+	ip7: Point,
+	ra: number,
+	aph: number,
+	abi: number
+): Segment2 {
 	const p8 = ip8.clone();
 	const p9 = ip9.clone();
 	const p7 = ip7.clone();
@@ -373,6 +397,9 @@ function roundStrokeArc(ag: tPrepare): Array<Segment2> {
 	const lStrokep = lStroke.lineParallelDistance(ag.ra, ag.p6);
 	const lRadial = line(0, 0, 0).setFromPoints(ag.p2, ag.p5);
 	const pA = lStrokep.intersection(lRadial);
+	gSegDbgPts.add(ag.p6);
+	gSegDbgPts.add(ag.p5);
+	gSegDbgPts.add(pA);
 	const lA4 = pA.distanceToPoint(ag.p5);
 	const aA = ag.p2.angleFromToPoints(ag.p1, ag.p5);
 	const ml = modifRadius(ag.aph, ag.s3, ag.ra);
@@ -387,10 +414,14 @@ function roundStrokeArc(ag: tPrepare): Array<Segment2> {
 	const l28 = l27 * Math.cos(a127);
 	const a28 = ag.p2.angleToPoint(ag.p1);
 	const p8 = ag.p2.translatePolar(a28, l28);
+	gSegDbgPts.add(p7);
+	gSegDbgPts.add(p8);
+	gSegDbgPts.add(p9);
 	const rsegs: Array<Segment2> = [];
 	rsegs.push(newStrokeFirst(ag.s1, p8));
-	rsegs.push(newRounded(p8, p9, p7, ag.ra, ag.aph, ag.abi));
-	rsegs.push(newArcSecond(ag.s3, p9));
+	//rsegs.push(newRounded(p8, p9, p7, ag.ra, ag.aph, ag.abi));
+	//rsegs.push(newArcSecond(ag.s3, p9));
+	rsegs.push(newArcSecond(ag.s3, ag.p2));
 	return rsegs;
 }
 function roundArcStroke(ag: tPrepare): Array<Segment2> {
@@ -504,6 +535,7 @@ export {
 	isCorner,
 	Segment1,
 	Segment2,
+	gSegDbgPts,
 	arcSeg1To2,
 	arcSeg2To1,
 	makeCorner
