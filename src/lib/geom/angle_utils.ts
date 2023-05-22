@@ -55,12 +55,4 @@ function withinHPiHPi(ia: number) {
 
 /* export */
 
-export {
-	degToRad,
-	radToDeg,
-	roundZero,
-	withinZero2Pi,
-	withinPiPi,
-	withinZeroPi,
-	withinHPiHPi
-};
+export { degToRad, radToDeg, roundZero, withinZero2Pi, withinPiPi, withinZeroPi, withinHPiHPi };

@@ -11,7 +11,7 @@ import {
 	//radToDeg,
 	roundZero,
 	withinZero2Pi,
-	withinPiPi,
+	withinPiPi
 	//withinZeroPi,
 	//withinHPiHPi
 } from './angle_utils';

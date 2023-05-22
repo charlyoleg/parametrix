@@ -96,12 +96,12 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			const sign = (i & 0x1) === 0 ? 1 : -1;
 			const ccw = i < 2 ? false : true;
 			//rGeome.logstr += `large ${large} ccw ${ccw}\n`;
-			ctr3.addSegStrokeR(2 * l3, -sign * l3 / 4)
+			ctr3.addSegStrokeR(2 * l3, (-sign * l3) / 4)
 				//.addCornerRounded(r3)
-				.addPointR(l3 / 2, sign * l3 / 2)
+				.addPointR(l3 / 2, (sign * l3) / 2)
 				.addSegArc(ra3, false, ccw)
 				//.addCornerRounded(r3)
-				.addSegStrokeR(2 * l3, -sign * l3 / 4);
+				.addSegStrokeR(2 * l3, (-sign * l3) / 4);
 		}
 		ctr3.addSegStrokeR(l3, 0).addSegStrokeR(l3, -l3).closeSegStroke();
 		ctr3.check();
