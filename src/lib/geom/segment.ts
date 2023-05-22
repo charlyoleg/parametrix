@@ -401,12 +401,15 @@ function roundStrokeArc(ag: tPrepare): Array<Segment2> {
 	gSegDbgPts.add(ag.p5);
 	gSegDbgPts.add(pA);
 	const lA4 = pA.distanceToPoint(ag.p5);
-	const aA = ag.p2.angleFromToPoints(ag.p1, ag.p5);
+	const aA = Math.PI - ag.p2.angleFromToPoints(ag.p1, ag.p5);
 	const ml = modifRadius(ag.aph, ag.s3, ag.ra);
+	console.log(`dbg343 ${ag.ra} ${ag.s3.radius} ${ml}`);
 	const a7 = Math.asin((lA4 * Math.sin(aA)) / ml); // law of sinus
 	const a5 = Math.PI - Math.abs(aA) - Math.abs(a7);
 	const sign5 = ag.s3.arcCcw ? 1 : -1;
-	const a47 = ag.p5.angleToPoint(ag.p2) + sign5 * a5;
+	//const a47 = ag.p5.angleToPoint(ag.p2) + sign5 * a5;
+	const a47 = ag.s3.a1 + sign5 * a5;
+	console.log(`dbg821: ${ag.s3.a1} ${aA} ${a7} ${a5} ${a47}`);
 	const p7 = ag.p5.translatePolar(a47, ml);
 	const p9 = ag.p5.translatePolar(a47, ag.s3.radius);
 	const a127 = ag.p2.angleFromToPoints(ag.p1, p7);
@@ -415,13 +418,13 @@ function roundStrokeArc(ag: tPrepare): Array<Segment2> {
 	const a28 = ag.p2.angleToPoint(ag.p1);
 	const p8 = ag.p2.translatePolar(a28, l28);
 	gSegDbgPts.add(p7);
-	gSegDbgPts.add(p8);
-	gSegDbgPts.add(p9);
+	//gSegDbgPts.add(p8);
+	//gSegDbgPts.add(p9);
 	const rsegs: Array<Segment2> = [];
 	rsegs.push(newStrokeFirst(ag.s1, p8));
-	//rsegs.push(newRounded(p8, p9, p7, ag.ra, ag.aph, ag.abi));
-	//rsegs.push(newArcSecond(ag.s3, p9));
-	rsegs.push(newArcSecond(ag.s3, ag.p2));
+	rsegs.push(newRounded(p8, p9, p7, ag.ra, ag.aph, ag.abi));
+	rsegs.push(newArcSecond(ag.s3, p9));
+	//rsegs.push(newArcSecond(ag.s3, ag.p2));
 	return rsegs;
 }
 function roundArcStroke(ag: tPrepare): Array<Segment2> {

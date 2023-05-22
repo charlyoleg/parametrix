@@ -434,7 +434,7 @@ class Contour extends AContour {
 		const seg0 = segStack[0];
 		const rContour = new Contour(seg0.p1.cx, seg0.p1.cy);
 		rContour.debugPoints.push(...segLib.gSegDbgPts.getDbgPts());
-		console.log(`dbg290: ${segLib.gSegDbgPts.debugPoints.length}`);
+		//console.log(`dbg290: ${segLib.gSegDbgPts.debugPoints.length}`);
 		segLib.gSegDbgPts.clearDbgPts();
 		for (const seg2 of segStack) {
 			if (seg2.sType === segLib.SegEnum.eStroke) {
