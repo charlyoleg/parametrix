@@ -53,11 +53,6 @@ function withinHPiHPi(ia: number) {
 	return ra;
 }
 
-function within2Pi2Pi(ia: number) {
-	const ra = Math.sign(ia) * withinZero2Pi(Math.abs(ia));
-	return ra;
-}
-
 /* export */
 
 export {
@@ -67,6 +62,5 @@ export {
 	withinZero2Pi,
 	withinPiPi,
 	withinZeroPi,
-	withinHPiHPi,
-	within2Pi2Pi
+	withinHPiHPi
 };

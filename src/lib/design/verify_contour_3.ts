@@ -70,20 +70,38 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const ra3 = 70;
 		const ctr3 = contour(0, 600).addSegStrokeR(l3, l3);
 		for (let i = 0; i < 3; i++) {
-			//const large = (i & 0x1) === 0 ? false : true;
-			const large = false;
-			//const ccw = i < 2 ? false : true;
-			const ccw = false;
+			const large = (i & 0x1) === 0 ? false : true;
+			const ccw = i < 2 ? false : true;
 			//rGeome.logstr += `large ${large} ccw ${ccw}\n`;
 			ctr3.addSegStrokeR(l3, 0)
-				//.addCornerRounded(r3)
 				.addSegStrokeR(0, l3)
 				.addCornerRounded(r3)
 				.addPointR(l3, 0)
 				.addSegArc(ra3, large, ccw)
-				//.addCornerRounded(r3)
+				.addCornerRounded(r3)
 				.addSegStrokeR(0, -l3);
-			//.addCornerRounded(r3);
+		}
+		for (let i = 0; i < 4; i++) {
+			const large = (i & 0x1) === 0 ? false : true;
+			const ccw = i < 2 ? false : true;
+			//rGeome.logstr += `large ${large} ccw ${ccw}\n`;
+			ctr3.addSegStrokeR(l3, 0)
+				//.addCornerRounded(r3)
+				.addPointR(l3, 0)
+				.addSegArc(ra3, large, ccw)
+				//.addCornerRounded(r3)
+				.addSegStrokeR(l3, 0);
+		}
+		for (let i = 0; i < 4; i++) {
+			const sign = (i & 0x1) === 0 ? 1 : -1;
+			const ccw = i < 2 ? false : true;
+			//rGeome.logstr += `large ${large} ccw ${ccw}\n`;
+			ctr3.addSegStrokeR(2 * l3, -sign * l3 / 4)
+				//.addCornerRounded(r3)
+				.addPointR(l3 / 2, sign * l3 / 2)
+				.addSegArc(ra3, false, ccw)
+				//.addCornerRounded(r3)
+				.addSegStrokeR(2 * l3, -sign * l3 / 4);
 		}
 		ctr3.addSegStrokeR(l3, 0).addSegStrokeR(l3, -l3).closeSegStroke();
 		ctr3.check();

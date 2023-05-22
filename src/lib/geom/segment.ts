@@ -13,8 +13,7 @@ import {
 	withinZero2Pi,
 	withinPiPi,
 	//withinZeroPi,
-	//withinHPiHPi,
-	within2Pi2Pi
+	//withinHPiHPi
 } from './angle_utils';
 //import { colors, point2canvas, radius2canvas } from './canvas_utils';
 import {
@@ -321,11 +320,13 @@ function newArcFirst(iseg: Segment2, ip: Point): Segment2 {
 	const p4 = iseg.pc.clone();
 	const p8 = ip.clone();
 	const a48 = p4.angleToPoint(p8);
-	// check arc angleq are properly reduced
-	const a4orig = within2Pi2Pi(iseg.a2 - iseg.a1);
-	const a4new = within2Pi2Pi(a48 - iseg.a1);
-	if (Math.sign(a4orig) * Math.sign(a4new) < 0 || Math.abs(a4new) > Math.abs(a4orig)) {
-		throw `err908: newArcFirst a4new out of a4orig ${a4new} ${a4orig}`;
+	// check arc angle are properly reduced
+	const a4orig = withinPiPi(iseg.a2) - withinPiPi(iseg.a1);
+	const a4new = withinPiPi(a48) - withinPiPi(iseg.a1);
+	const a4orig2 = iseg.arcCcw ? withinZero2Pi(a4orig) : withinZero2Pi(a4orig) - 2 * Math.PI;
+	const a4new2 = iseg.arcCcw ? withinZero2Pi(a4new) : withinZero2Pi(a4new) - 2 * Math.PI;
+	if (Math.sign(a4orig2) * Math.sign(a4new2) < 0 || Math.abs(a4new2) > Math.abs(a4orig2)) {
+		throw `err908: newArcFirst a4new out of a4orig ${a4new2} ${a4orig2}`;
 	}
 	const rNewSeg = new Segment2(SegEnum.eArc, p1, p8, p4, iseg.radius, iseg.a1, a48, iseg.arcCcw);
 	return rNewSeg;
@@ -338,11 +339,13 @@ function newArcSecond(iseg: Segment2, ip: Point): Segment2 {
 	const p5 = iseg.pc.clone();
 	const p9 = ip.clone();
 	const a59 = p5.angleToPoint(p9);
-	// check arc angleq are properly reduced
-	const a5orig = within2Pi2Pi(iseg.a1 - iseg.a2);
-	const a5new = within2Pi2Pi(a59 - iseg.a2);
-	if (Math.sign(a5orig) * Math.sign(a5new) < 0 || Math.abs(a5new) > Math.abs(a5orig)) {
-		throw `err907: newArcSecond a5new out of a5orig ${a5new} ${a5orig}`;
+	// check arc angle are properly reduced
+	const a5orig = withinPiPi(iseg.a2) - withinPiPi(iseg.a1);
+	const a5new = withinPiPi(iseg.a2) - withinPiPi(a59);
+	const a5orig2 = iseg.arcCcw ? withinZero2Pi(a5orig) : withinZero2Pi(a5orig) - 2 * Math.PI;
+	const a5new2 = iseg.arcCcw ? withinZero2Pi(a5new) : withinZero2Pi(a5new) - 2 * Math.PI;
+	if (Math.sign(a5orig2) * Math.sign(a5new2) < 0 || Math.abs(a5new2) > Math.abs(a5orig2)) {
+		throw `err907: newArcSecond a5new out of a5orig ${a5new2} ${a5orig2}`;
 	}
 	const rNewSeg = new Segment2(SegEnum.eArc, p9, p3, p5, iseg.radius, a59, iseg.a2, iseg.arcCcw);
 	return rNewSeg;
@@ -397,34 +400,37 @@ function roundStrokeArc(ag: tPrepare): Array<Segment2> {
 	const lStrokep = lStroke.lineParallelDistance(ag.ra, ag.p6);
 	const lRadial = line(0, 0, 0).setFromPoints(ag.p2, ag.p5);
 	const pA = lStrokep.intersection(lRadial);
-	gSegDbgPts.add(ag.p6);
-	gSegDbgPts.add(ag.p5);
-	gSegDbgPts.add(pA);
-	const lA4 = pA.distanceToPoint(ag.p5);
-	const aA = Math.PI - ag.p2.angleFromToPoints(ag.p1, ag.p5);
+	//gSegDbgPts.add(ag.p6);
+	//gSegDbgPts.add(ag.p5);
+	//gSegDbgPts.add(pA);
+	const lA5 = pA.distanceToPoint(ag.p5);
+	const aApre = ag.p2.angleFromToPoints(ag.p1, ag.p5);
+	const aAObtuse = 4 * Math.abs(ag.aph) > Math.PI ? 1 : -1;
+	const aphS = ag.aph > 0 ? 1 : -1;
+	const aA = aphS * aAObtuse > 0 ? Math.PI - Math.abs(aApre) : Math.abs(aApre);
+	//console.log(`dbg340 ${ag.aph} ${aApre} ${aA}`);
 	const ml = modifRadius(ag.aph, ag.s3, ag.ra);
-	console.log(`dbg343 ${ag.ra} ${ag.s3.radius} ${ml}`);
-	const a7 = Math.asin((lA4 * Math.sin(aA)) / ml); // law of sinus
+	//console.log(`dbg343 ${ag.ra} ${ag.s3.radius} ${ml}`);
+	const a7 = Math.asin((lA5 * Math.sin(aA)) / ml); // law of sinus
 	const a5 = Math.PI - Math.abs(aA) - Math.abs(a7);
-	const sign5 = ag.s3.arcCcw ? 1 : -1;
-	//const a47 = ag.p5.angleToPoint(ag.p2) + sign5 * a5;
-	const a47 = ag.s3.a1 + sign5 * a5;
-	console.log(`dbg821: ${ag.s3.a1} ${aA} ${a7} ${a5} ${a47}`);
-	const p7 = ag.p5.translatePolar(a47, ml);
-	const p9 = ag.p5.translatePolar(a47, ag.s3.radius);
+	const sign5 = ag.s3.arcCcw ? aphS : -aphS;
+	//const a57 = ag.p5.angleToPoint(ag.p2) + sign5 * a5;
+	const a57 = ag.s3.a1 + sign5 * a5;
+	//console.log(`dbg821: ${ag.s3.a1} ${aA} ${a7} ${a5} ${a57}`);
+	const p7 = ag.p5.translatePolar(a57, ml);
+	const p9 = ag.p5.translatePolar(a57, ag.s3.radius);
 	const a127 = ag.p2.angleFromToPoints(ag.p1, p7);
 	const l27 = Math.abs(ag.ra / Math.sin(a127));
 	const l28 = l27 * Math.cos(a127);
 	const a28 = ag.p2.angleToPoint(ag.p1);
 	const p8 = ag.p2.translatePolar(a28, l28);
 	gSegDbgPts.add(p7);
-	//gSegDbgPts.add(p8);
-	//gSegDbgPts.add(p9);
+	gSegDbgPts.add(p8);
+	gSegDbgPts.add(p9);
 	const rsegs: Array<Segment2> = [];
 	rsegs.push(newStrokeFirst(ag.s1, p8));
 	rsegs.push(newRounded(p8, p9, p7, ag.ra, ag.aph, ag.abi));
 	rsegs.push(newArcSecond(ag.s3, p9));
-	//rsegs.push(newArcSecond(ag.s3, ag.p2));
 	return rsegs;
 }
 function roundArcStroke(ag: tPrepare): Array<Segment2> {
@@ -433,12 +439,15 @@ function roundArcStroke(ag: tPrepare): Array<Segment2> {
 	const lRadial = line(0, 0, 0).setFromPoints(ag.p2, ag.p4);
 	const pA = lStrokep.intersection(lRadial);
 	const lA4 = pA.distanceToPoint(ag.p4);
-	const aA = ag.p2.angleFromToPoints(ag.p3, ag.p4);
+	const aApre = ag.p2.angleFromToPoints(ag.p3, ag.p4);
+	const aAObtuse = 4 * Math.abs(ag.aph) > Math.PI ? 1 : -1;
+	const aphS = ag.aph > 0 ? 1 : -1;
+	const aA = aphS * aAObtuse > 0 ? Math.PI - Math.abs(aApre) : Math.abs(aApre);
 	const ml = modifRadius(ag.aph, ag.s1, ag.ra);
 	const a7 = Math.asin((lA4 * Math.sin(aA)) / ml); // law of sinus
 	const a4 = Math.PI - Math.abs(aA) - Math.abs(a7);
-	const sign4 = ag.s1.arcCcw ? -1 : 1;
-	const a47 = ag.p4.angleToPoint(ag.p2) + sign4 * a4;
+	const sign4 = ag.s1.arcCcw ? -aphS : aphS;
+	const a47 = ag.s1.a2 + sign4 * a4;
 	const p7 = ag.p4.translatePolar(a47, ml);
 	const p8 = ag.p4.translatePolar(a47, ag.s1.radius);
 	const a327 = ag.p2.angleFromToPoints(ag.p3, p7);
@@ -446,10 +455,15 @@ function roundArcStroke(ag: tPrepare): Array<Segment2> {
 	const l29 = l27 * Math.cos(a327);
 	const a29 = ag.p2.angleToPoint(ag.p3);
 	const p9 = ag.p2.translatePolar(a29, l29);
+	gSegDbgPts.add(p7);
+	gSegDbgPts.add(p8);
+	gSegDbgPts.add(p9);
 	const rsegs: Array<Segment2> = [];
 	rsegs.push(newArcFirst(ag.s1, p8));
 	rsegs.push(newRounded(p8, p9, p7, ag.ra, ag.aph, ag.abi));
 	rsegs.push(newStrokeSecond(ag.s3, p9));
+	//rsegs.push(newArcFirst(ag.s1, ag.p2));
+	//rsegs.push(newStrokeSecond(ag.s3, ag.p2));
 	return rsegs;
 }
 function roundArcArc(ag: tPrepare): Array<Segment2> {
