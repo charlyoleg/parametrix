@@ -8,7 +8,7 @@ const pDef: tParamDef = {
 	params: [
 		{ name: 'r1', unit: 'mm', init: 10, min: 0, max: 200, step: 1 },
 		{ name: 'r2', unit: 'mm', init: 10, min: 0, max: 200, step: 1 },
-		{ name: 'r3', unit: 'mm', init: 9, min: 0, max: 200, step: 1 },
+		{ name: 'r3', unit: 'mm', init: 10, min: 0, max: 200, step: 1 },
 		{ name: 'r4', unit: 'mm', init: 10, min: 0, max: 200, step: 1 }
 	],
 	paramSvg: {
@@ -71,32 +71,32 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const ctr3 = contour(0, 600).addSegStrokeR(l3, l3);
 		for (let i = 0; i < 3; i++) {
 			const large = (i & 0x1) === 0 ? false : true;
-			const ccw = i < 2 ? false : true;
+			const ccw = (i & 0x2) === 0 ? false : true;
 			//rGeome.logstr += `large ${large} ccw ${ccw}\n`;
 			ctr3.addSegStrokeR(l3, 0)
 				.addSegStrokeR(0, l3)
-				//.addCornerRounded(r3)
+				.addCornerRounded(r3)
 				.addPointR(l3, 0)
 				.addSegArc(ra3, large, ccw)
-				//.addCornerRounded(r3)
+				.addCornerRounded(r3)
 				.addSegStrokeR(0, -l3);
 		}
-		for (let i = 0; i < 1; i++) {
-			const sign = 1; //(i & 0x4) === 0 ? 1 : -1;
-			const large = false; //(i & 0x2) === 0 ? false : true;
-			const ccw = false; //(i & 0x1) === 0 ? false : true;
+		for (let i = 0; i < 8; i++) {
+			const sign = (i & 0x4) === 0 ? 1 : -1;
+			const large = (i & 0x2) === 0 ? false : true;
+			const ccw = (i & 0x1) === 0 ? false : true;
 			//rGeome.logstr += `large ${large} ccw ${ccw}\n`;
 			ctr3.addSegStrokeR(l3, 0)
 				.addCornerRounded(r3)
 				.addPointR(l3, 0)
 				.addSegArc(ra3, large, ccw)
-				//.addCornerRounded(r3)
+				.addCornerRounded(r3)
 				.addSegStrokeR(l3, 0);
 			ctr3.addSegStrokeR(l3, (-sign * l3) / 8)
-				//.addCornerRounded(r3)
+				.addCornerRounded(r3)
 				.addPointR(l3, (sign * l3) / 4 - 3 * t)
 				.addSegArc(ra3, large, ccw)
-				//.addCornerRounded(r3)
+				.addCornerRounded(r3)
 				.addSegStrokeR(l3, (-sign * l3) / 8);
 		}
 		ctr3.addSegStrokeR(l3, 0).addSegStrokeR(l3, -l3).closeSegStroke();
