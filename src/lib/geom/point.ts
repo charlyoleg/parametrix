@@ -38,6 +38,7 @@ class Point {
 	) {
 		if (isFinite(this.cx) && isFinite(this.cy)) {
 			const radius = ctx.canvas.width * (0.7 / 100);
+			const radius2 = 2 * radius;
 			const [cx2, cy2] = point2canvas(this.cx, this.cy, cAdjust);
 			//console.log(`dbg493: ${cx2} ${cy2}`);
 			let shape = ishape;
@@ -47,44 +48,44 @@ class Point {
 			ctx.beginPath();
 			switch (shape) {
 				case ShapePoint.eCross:
-					ctx.moveTo(cx2 - radius, cy2);
-					ctx.lineTo(cx2 + radius, cy2);
-					ctx.moveTo(cx2, cy2 - radius);
-					ctx.lineTo(cx2, cy2 + radius);
+					ctx.moveTo(cx2 - radius2, cy2);
+					ctx.lineTo(cx2 + radius2, cy2);
+					ctx.moveTo(cx2, cy2 - radius2);
+					ctx.lineTo(cx2, cy2 + radius2);
 					break;
 				case ShapePoint.eSquare:
 					ctx.rect(cx2 - radius, cy2 - radius, 2 * radius, 2 * radius);
 					break;
 				case ShapePoint.eTwoTri:
-					ctx.moveTo(cx2 - radius, cy2);
-					ctx.lineTo(cx2 + radius, cy2);
-					ctx.lineTo(cx2, cy2 + radius);
-					ctx.lineTo(cx2, cy2 - radius);
-					ctx.lineTo(cx2 - radius, cy2);
+					ctx.moveTo(cx2 - radius2, cy2);
+					ctx.lineTo(cx2 + radius2, cy2);
+					ctx.lineTo(cx2, cy2 + radius2);
+					ctx.lineTo(cx2, cy2 - radius2);
+					ctx.lineTo(cx2 - radius2, cy2);
 					break;
 				case ShapePoint.eTri1:
-					ctx.moveTo(cx2 - radius, cy2);
-					ctx.lineTo(cx2 + radius, cy2);
-					ctx.lineTo(cx2, cy2 - radius);
-					ctx.lineTo(cx2, cy2 + radius);
+					ctx.moveTo(cx2 - radius2, cy2);
+					ctx.lineTo(cx2 + radius2, cy2);
+					ctx.lineTo(cx2, cy2 - radius2);
+					ctx.lineTo(cx2, cy2 + radius2);
 					break;
 				case ShapePoint.eTri2:
-					ctx.moveTo(cx2 + radius, cy2);
-					ctx.lineTo(cx2 - radius, cy2);
-					ctx.lineTo(cx2, cy2 - radius);
-					ctx.lineTo(cx2, cy2 + radius);
+					ctx.moveTo(cx2 + radius2, cy2);
+					ctx.lineTo(cx2 - radius2, cy2);
+					ctx.lineTo(cx2, cy2 - radius2);
+					ctx.lineTo(cx2, cy2 + radius2);
 					break;
 				case ShapePoint.eTri3:
-					ctx.moveTo(cx2 + radius, cy2);
-					ctx.lineTo(cx2 - radius, cy2);
-					ctx.lineTo(cx2, cy2 + radius);
-					ctx.lineTo(cx2, cy2 - radius);
+					ctx.moveTo(cx2 + radius2, cy2);
+					ctx.lineTo(cx2 - radius2, cy2);
+					ctx.lineTo(cx2, cy2 + radius2);
+					ctx.lineTo(cx2, cy2 - radius2);
 					break;
 				case ShapePoint.eTri4:
-					ctx.moveTo(cx2 - radius, cy2);
-					ctx.lineTo(cx2 + radius, cy2);
-					ctx.lineTo(cx2, cy2 + radius);
-					ctx.lineTo(cx2, cy2 - radius);
+					ctx.moveTo(cx2 - radius2, cy2);
+					ctx.lineTo(cx2 + radius2, cy2);
+					ctx.lineTo(cx2, cy2 + radius2);
+					ctx.lineTo(cx2, cy2 - radius2);
 					break;
 				case ShapePoint.eCircle:
 				default:
