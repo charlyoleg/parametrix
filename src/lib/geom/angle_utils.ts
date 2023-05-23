@@ -2,6 +2,9 @@
 // some useful functions manipulating angles
 // angle_utils.ts has no dependency
 
+
+const tolerance = 10 ** -4;
+
 /* utils for angles */
 
 function degToRad(degrees: number): number {
@@ -14,7 +17,7 @@ function radToDeg(rad: number): number {
 
 function roundZero(ix: number): number {
 	let rx = ix;
-	if (Math.abs(rx) < 10 ** -4) {
+	if (Math.abs(rx) < tolerance) {
 		rx = 0;
 	}
 	return rx;
@@ -60,11 +63,17 @@ function orientedArc(aStart: number, aStop: number, ccw: boolean) {
 }
 
 function isWithin(aNew: number, aStart: number, aStop: number, ccw: boolean) {
-	const arcOrig = orientedArc(aStart, aStop, ccw);
-	const arcNew = orientedArc(aStart, aNew, ccw);
-	let rYes = true;
-	if (Math.abs(arcNew) > Math.abs(arcOrig)) {
-		rYes = false;
+	let rYes = false;
+	if (roundZero(withinPiPi(aNew - aStart)) === 0) {
+		rYes = true;
+	} else if (roundZero(withinPiPi(aNew - aStop)) === 0) {
+		rYes = true;
+	} else {
+		const arcOrig = orientedArc(aStart, aStop, ccw);
+		const arcNew = orientedArc(aStart, aNew, ccw);
+		if (Math.abs(arcNew) < Math.abs(arcOrig)) {
+			rYes = true;
+		}
 	}
 	return rYes;
 }

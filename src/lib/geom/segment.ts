@@ -322,7 +322,7 @@ function newArcFirst(iseg: Segment2, ip: Point): Segment2 {
 	const p8 = ip.clone();
 	const a48 = p4.angleToPoint(p8);
 	// check arc angle are properly reduced
-	if (isWithin(a48, iseg.a1, iseg.a2, iseg.arcCcw)) {
+	if (!isWithin(a48, iseg.a1, iseg.a2, iseg.arcCcw)) {
 		throw `err908: newArcFirst a48 out of scope ${a48} ${iseg.a1} ${iseg.a2} ${iseg.arcCcw}`;
 	}
 	const rNewSeg = new Segment2(SegEnum.eArc, p1, p8, p4, iseg.radius, iseg.a1, a48, iseg.arcCcw);
@@ -337,7 +337,7 @@ function newArcSecond(iseg: Segment2, ip: Point): Segment2 {
 	const p9 = ip.clone();
 	const a59 = p5.angleToPoint(p9);
 	// check arc angle are properly reduced
-	if (isWithin(a59, iseg.a1, iseg.a2, iseg.arcCcw)) {
+	if (!isWithin(a59, iseg.a1, iseg.a2, iseg.arcCcw)) {
 		throw `err907: newArcSecond a59 out of scope ${a59} ${iseg.a1} ${iseg.a2} ${iseg.arcCcw}`;
 	}
 	const rNewSeg = new Segment2(SegEnum.eArc, p9, p3, p5, iseg.radius, a59, iseg.a2, iseg.arcCcw);
