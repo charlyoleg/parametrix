@@ -7,7 +7,7 @@ import type { tCanvasAdjust } from './canvas_utils';
 //import { colorCanvasPoint } from '$lib/style/colors.scss';
 import { colors, adjustZero, adjustInit } from './canvas_utils';
 import { degToRad, radToDeg, roundZero } from './angle_utils';
-import { Point, point } from './point';
+import { ShapePoint, Point, point } from './point';
 import { Line, line, bisector, circleCenter } from './line';
 import { Vector, vector } from './vector';
 import type { tContour } from './contour';
@@ -204,12 +204,12 @@ class Figure {
 		}
 		if (layers.frame) {
 			for (const i of [10, 100, 200]) {
-				point(i, 0).draw(ctx, adjust, colors.reference, 'cross');
-				point(-i, 0).draw(ctx, adjust, colors.reference, 'cross');
-				point(0, i).draw(ctx, adjust, colors.reference, 'cross');
-				point(0, -i).draw(ctx, adjust, colors.reference, 'cross');
+				point(i, 0).draw(ctx, adjust, colors.reference, ShapePoint.eCross);
+				point(-i, 0).draw(ctx, adjust, colors.reference, ShapePoint.eCross);
+				point(0, i).draw(ctx, adjust, colors.reference, ShapePoint.eCross);
+				point(0, -i).draw(ctx, adjust, colors.reference, ShapePoint.eCross);
 			}
-			point(0, 0).draw(ctx, adjust, colors.origin, 'cross');
+			point(0, 0).draw(ctx, adjust, colors.origin, ShapePoint.eCross);
 		}
 	}
 }
@@ -237,6 +237,7 @@ function initLayers(): tLayers {
 
 export type { tLayers, Figure };
 export {
+	ShapePoint,
 	degToRad,
 	radToDeg,
 	roundZero,

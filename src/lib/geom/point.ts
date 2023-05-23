@@ -8,37 +8,49 @@ import { colors, point2canvas } from './canvas_utils';
 import { roundZero, withinPiPi } from './angle_utils';
 
 type tPolar = [number, number]; // angle, distance
+enum ShapePoint {
+	eDefault,
+	eCircle,
+	eCross,
+	eSquare
+}
 
 /* Base classes */
 class Point {
 	cx: number;
 	cy: number;
-	constructor(ix: number, iy: number) {
+	shape: ShapePoint;
+	constructor(ix: number, iy: number, ishape = ShapePoint.eDefault) {
 		this.cx = ix;
 		this.cy = iy;
+		this.shape = ishape;
 	}
 	draw(
 		ctx: CanvasRenderingContext2D,
 		cAdjust: tCanvasAdjust,
 		color: string = colors.point,
-		shape = 'circle'
+		ishape = ShapePoint.eDefault
 	) {
 		if (isFinite(this.cx) && isFinite(this.cy)) {
 			const radius = ctx.canvas.width * (0.7 / 100);
 			const [cx2, cy2] = point2canvas(this.cx, this.cy, cAdjust);
 			//console.log(`dbg493: ${cx2} ${cy2}`);
+			let shape = ishape;
+			if (shape === ShapePoint.eDefault) {
+				shape = this.shape;
+			}
 			ctx.beginPath();
 			switch (shape) {
-				case 'cross':
+				case ShapePoint.eCross:
 					ctx.moveTo(cx2 - radius, cy2);
 					ctx.lineTo(cx2 + radius, cy2);
 					ctx.moveTo(cx2, cy2 - radius);
 					ctx.lineTo(cx2, cy2 + radius);
 					break;
-				case 'rectangle':
+				case ShapePoint.eSquare:
 					ctx.rect(cx2 - radius, cy2 - radius, 2 * radius, 2 * radius);
 					break;
-				case 'circle':
+				case ShapePoint.eCircle:
 				default:
 					ctx.arc(cx2, cy2, radius, 0, 2 * Math.PI);
 			}
@@ -66,8 +78,8 @@ class Point {
 	translatePolar(ia: number, il: number): Point {
 		return new Point(this.cx + il * Math.cos(ia), this.cy + il * Math.sin(ia));
 	}
-	clone(): Point {
-		return new Point(this.cx, this.cy);
+	clone(ishape = ShapePoint.eDefault): Point {
+		return new Point(this.cx, this.cy, ishape);
 	}
 	rotateOrig(ia: number): Point {
 		// rotation with the origin as center
@@ -152,4 +164,4 @@ function point(ix: number, iy: number) {
 /* export */
 
 export type { tPolar };
-export { Point, point };
+export { ShapePoint, Point, point };

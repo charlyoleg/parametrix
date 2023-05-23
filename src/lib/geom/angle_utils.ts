@@ -2,7 +2,6 @@
 // some useful functions manipulating angles
 // angle_utils.ts has no dependency
 
-
 const tolerance = 10 ** -4;
 
 /* utils for angles */

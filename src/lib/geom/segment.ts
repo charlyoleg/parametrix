@@ -26,7 +26,7 @@ import {
 	//lbFromLaAaAb,
 	aBFromLaLbAa
 } from './triangle_utils';
-import { point, Point } from './point';
+import { ShapePoint, point, Point } from './point';
 //import { line, bisector, circleCenter } from './line';
 import { line } from './line';
 //import { vector, Vector } from './vector';
@@ -393,23 +393,23 @@ function roundStrokeArc(ag: tPrepare): Array<Segment2> {
 	const lStrokep = lStroke.lineParallelDistance(ag.ra, ag.p6);
 	const lRadial = line(0, 0, 0).setFromPoints(ag.p2, ag.p5);
 	const pA = lStrokep.intersection(lRadial);
-	gSegDbgPts.add(ag.p6);
-	gSegDbgPts.add(ag.p5);
-	gSegDbgPts.add(pA);
+	gSegDbgPts.add(ag.p6.clone(ShapePoint.eSquare));
+	gSegDbgPts.add(ag.p5.clone(ShapePoint.eSquare));
+	gSegDbgPts.add(pA.clone(ShapePoint.eSquare));
 	const lA5 = pA.distanceToPoint(ag.p5);
 	const aApre = ag.p2.angleFromToPoints(ag.p1, ag.p5);
 	const aAObtuse = 4 * Math.abs(ag.aph) > Math.PI ? 1 : -1;
 	const aphS = ag.aph > 0 ? 1 : -1;
 	const aA = aphS * aAObtuse > 0 ? Math.PI - Math.abs(aApre) : Math.abs(aApre);
-	//console.log(`dbg340 ${ag.aph} ${aApre} ${aA}`);
+	console.log(`dbg340 ${ag.aph} ${aApre} ${aA}`);
 	const ml = modifRadius(ag.aph, ag.s3, ag.ra);
-	//console.log(`dbg343 ${ag.ra} ${ag.s3.radius} ${ml}`);
+	console.log(`dbg343 ${ag.ra} ${ag.s3.radius} ${ml}`);
 	const a7 = Math.asin((lA5 * Math.sin(aA)) / ml); // law of sinus
 	const a5 = Math.PI - Math.abs(aA) - Math.abs(a7);
 	const sign5 = ag.s3.arcCcw ? aphS : -aphS;
 	//const a57 = ag.p5.angleToPoint(ag.p2) + sign5 * a5;
 	const a57 = ag.s3.a1 + sign5 * a5;
-	//console.log(`dbg821: ${ag.s3.a1} ${aA} ${a7} ${a5} ${a57}`);
+	console.log(`dbg821: ${ag.s3.a1} ${aA} ${a7} ${a5} ${a57}`);
 	const p7 = ag.p5.translatePolar(a57, ml);
 	const p9 = ag.p5.translatePolar(a57, ag.s3.radius);
 	const a127 = ag.p2.angleFromToPoints(ag.p1, p7);
@@ -417,9 +417,9 @@ function roundStrokeArc(ag: tPrepare): Array<Segment2> {
 	const l28 = l27 * Math.cos(a127);
 	const a28 = ag.p2.angleToPoint(ag.p1);
 	const p8 = ag.p2.translatePolar(a28, l28);
-	gSegDbgPts.add(p7);
-	gSegDbgPts.add(p8);
-	gSegDbgPts.add(p9);
+	gSegDbgPts.add(p7.clone(ShapePoint.eCross));
+	gSegDbgPts.add(p8.clone(ShapePoint.eCross));
+	gSegDbgPts.add(p9.clone(ShapePoint.eCross));
 	const rsegs: Array<Segment2> = [];
 	//rsegs.push(newStrokeFirst(ag.s1, p8));
 	//rsegs.push(newRounded(p8, p9, p7, ag.ra, ag.aph, ag.abi));
