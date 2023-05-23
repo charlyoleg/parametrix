@@ -227,7 +227,17 @@ function prepare(s1: Segment2, s2: Segment2, s3: Segment2): tPrepare {
 	}
 	const a123 = aTangent3 - aTangent1;
 	const a123b = withinPiPi(a123); // the sign might change
-	const aPeakHalf = a123b / 2;
+	let aPeakHalf = a123b / 2;
+	if (roundZero(aPeakHalf) === 0) {
+		const tolerance2 = tolerance * 10 ** -2;
+		if (s1.sType === SegEnum.eStroke && s3.sType === SegEnum.eArc) {
+			aPeakHalf = s3.arcCcw ? tolerance2 : -tolerance2;
+		} else if (s1.sType === SegEnum.eArc && s3.sType === SegEnum.eStroke) {
+			aPeakHalf = s1.arcCcw ? tolerance2 : -tolerance2;
+		} else {
+			throw `err402: prepare aPeakHalf too closed to zero ${aPeakHalf}`;
+		}
+	}
 	const aBisector = aTangent1 + aPeakHalf;
 	const p6 = p2.translatePolar(aBisector, s2.radius);
 	const rPre: tPrepare = {
