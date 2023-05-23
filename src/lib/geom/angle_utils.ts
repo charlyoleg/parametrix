@@ -53,6 +53,22 @@ function withinHPiHPi(ia: number) {
 	return ra;
 }
 
+function orientedArc(aStart: number, aStop: number, ccw: boolean) {
+	const arc = withinPiPi(aStop) - withinPiPi(aStart);
+	const arc2 = ccw ? withinZero2Pi(arc) : withinZero2Pi(arc) - 2 * Math.PI;
+	return arc2;
+}
+
+function isWithin(aNew: number, aStart: number, aStop: number, ccw: boolean) {
+	const arcOrig = orientedArc(aStart, aStop, ccw);
+	const arcNew = orientedArc(aStart, aNew, ccw);
+	let rYes = true;
+	if (Math.abs(arcNew) > Math.abs(arcOrig)) {
+		rYes = false;
+	}
+	return rYes;
+}
+
 /* export */
 
-export { degToRad, radToDeg, roundZero, withinZero2Pi, withinPiPi, withinZeroPi, withinHPiHPi };
+export { degToRad, radToDeg, roundZero, withinZero2Pi, withinPiPi, withinZeroPi, withinHPiHPi, orientedArc, isWithin };
