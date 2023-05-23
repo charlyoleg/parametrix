@@ -393,9 +393,9 @@ function roundStrokeArc(ag: tPrepare): Array<Segment2> {
 	const lStrokep = lStroke.lineParallelDistance(ag.ra, ag.p6);
 	const lRadial = line(0, 0, 0).setFromPoints(ag.p2, ag.p5);
 	const pA = lStrokep.intersection(lRadial);
-	gSegDbgPts.add(ag.p6.clone(ShapePoint.eSquare));
-	gSegDbgPts.add(ag.p5.clone(ShapePoint.eSquare));
-	gSegDbgPts.add(pA.clone(ShapePoint.eSquare));
+	gSegDbgPts.add(ag.p6.clone(ShapePoint.eTwoTri));
+	gSegDbgPts.add(ag.p5.clone(ShapePoint.eTri1));
+	gSegDbgPts.add(pA.clone(ShapePoint.eTri2));
 	const lA5 = pA.distanceToPoint(ag.p5);
 	const aApre = ag.p2.angleFromToPoints(ag.p1, ag.p5);
 	const aAObtuse = 4 * Math.abs(ag.aph) > Math.PI ? 1 : -1;
@@ -417,8 +417,8 @@ function roundStrokeArc(ag: tPrepare): Array<Segment2> {
 	const l28 = l27 * Math.cos(a127);
 	const a28 = ag.p2.angleToPoint(ag.p1);
 	const p8 = ag.p2.translatePolar(a28, l28);
-	gSegDbgPts.add(p7.clone(ShapePoint.eCross));
-	gSegDbgPts.add(p8.clone(ShapePoint.eCross));
+	gSegDbgPts.add(p7.clone(ShapePoint.eTri3));
+	gSegDbgPts.add(p8.clone(ShapePoint.eTri4));
 	gSegDbgPts.add(p9.clone(ShapePoint.eCross));
 	const rsegs: Array<Segment2> = [];
 	//rsegs.push(newStrokeFirst(ag.s1, p8));

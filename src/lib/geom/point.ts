@@ -12,7 +12,12 @@ enum ShapePoint {
 	eDefault,
 	eCircle,
 	eCross,
-	eSquare
+	eSquare,
+	eTwoTri,
+	eTri1,
+	eTri2,
+	eTri3,
+	eTri4
 }
 
 /* Base classes */
@@ -49,6 +54,37 @@ class Point {
 					break;
 				case ShapePoint.eSquare:
 					ctx.rect(cx2 - radius, cy2 - radius, 2 * radius, 2 * radius);
+					break;
+				case ShapePoint.eTwoTri:
+					ctx.moveTo(cx2 - radius, cy2);
+					ctx.lineTo(cx2 + radius, cy2);
+					ctx.lineTo(cx2, cy2 + radius);
+					ctx.lineTo(cx2, cy2 - radius);
+					ctx.lineTo(cx2 - radius, cy2);
+					break;
+				case ShapePoint.eTri1:
+					ctx.moveTo(cx2 - radius, cy2);
+					ctx.lineTo(cx2 + radius, cy2);
+					ctx.lineTo(cx2, cy2 - radius);
+					ctx.lineTo(cx2, cy2 + radius);
+					break;
+				case ShapePoint.eTri2:
+					ctx.moveTo(cx2 + radius, cy2);
+					ctx.lineTo(cx2 - radius, cy2);
+					ctx.lineTo(cx2, cy2 - radius);
+					ctx.lineTo(cx2, cy2 + radius);
+					break;
+				case ShapePoint.eTri3:
+					ctx.moveTo(cx2 + radius, cy2);
+					ctx.lineTo(cx2 - radius, cy2);
+					ctx.lineTo(cx2, cy2 + radius);
+					ctx.lineTo(cx2, cy2 - radius);
+					break;
+				case ShapePoint.eTri4:
+					ctx.moveTo(cx2 - radius, cy2);
+					ctx.lineTo(cx2 + radius, cy2);
+					ctx.lineTo(cx2, cy2 + radius);
+					ctx.lineTo(cx2, cy2 - radius);
 					break;
 				case ShapePoint.eCircle:
 				default:
