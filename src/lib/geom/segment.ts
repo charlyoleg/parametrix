@@ -7,6 +7,7 @@
 //import type { tPolar } from './point';
 //import { colorCanvasPoint } from '$lib/style/colors.scss';
 import {
+	tolerance,
 	//degToRad,
 	//radToDeg,
 	roundZero,
@@ -26,7 +27,8 @@ import {
 	//lbFromLaAaAb,
 	aBFromLaLbAa
 } from './triangle_utils';
-import { ShapePoint, point, Point } from './point';
+//import { ShapePoint, point, Point } from './point';
+import { point, Point } from './point';
 //import { line, bisector, circleCenter } from './line';
 import { line } from './line';
 //import { vector, Vector } from './vector';
@@ -253,7 +255,8 @@ function modifRadius(iaph: number, iseg: Segment2, iradius: number): number {
 	}
 	const bisector = iaph > 0 ? 1 : -1;
 	const arcCcw = iseg.arcCcw ? 1 : -1;
-	const rmr = iseg.radius + bisector * arcCcw * iradius;
+	const sign = roundZero(iaph) === 0 ? 1 : bisector * arcCcw;
+	const rmr = iseg.radius + sign * iradius;
 	if (rmr <= 0) {
 		throw `err621: modifRadius with negative modified lenght ${rmr}`;
 	}
@@ -372,7 +375,7 @@ function newRounded(
 	const a79 = p7.angleToPoint(p9);
 	const a873 = withinPiPi(a78 - abi + Math.PI);
 	const a973 = withinPiPi(a79 - abi + Math.PI);
-	if (Math.abs(a873) > Math.PI / 2 || Math.abs(a973) > Math.PI / 2) {
+	if (Math.abs(a873) > Math.PI / 2 + tolerance || Math.abs(a973) > Math.PI / 2 + tolerance) {
 		throw `warn882: newRounded a873 or a972 larger than PI/2 ${a873} ${a973}`;
 	}
 	// end of few checks
@@ -398,7 +401,7 @@ function roundStrokeStroke(ag: tPrepare): Array<Segment2> {
 }
 function roundStrokeArc(ag: tPrepare): Array<Segment2> {
 	const lStroke = line(0, 0, 0).setFromPoints(ag.p1, ag.p2);
-	const lStrokep = lStroke.lineParallelDistance(ag.ra, ag.p6);
+	const lStrokep = lStroke.lineParallelDistance(ag.ra, ag.p6, ag.p5);
 	const pB = lStrokep.projectPoint(ag.p5);
 	//gSegDbgPts.add(ag.p6.clone(ShapePoint.eTwoTri));
 	//gSegDbgPts.add(ag.p5.clone(ShapePoint.eTri1));
@@ -406,6 +409,7 @@ function roundStrokeArc(ag: tPrepare): Array<Segment2> {
 	const lB5 = pB.distanceToPoint(ag.p5);
 	const ml = modifRadius(ag.aph, ag.s3, ag.ra);
 	const lB7 = rightTriLbFromLaLc(ml, lB5);
+	//console.log(`dbg678: ${lB5} ${ml} ${lB7}`);
 	const p7 = closestPoint(lStrokep.ca, lB7, pB, ag.p6);
 	const a57 = ag.p5.angleToPoint(p7);
 	const p9 = ag.p5.translatePolar(a57, ag.s3.radius);
@@ -427,7 +431,7 @@ function roundStrokeArc(ag: tPrepare): Array<Segment2> {
 }
 function roundArcStroke(ag: tPrepare): Array<Segment2> {
 	const lStroke = line(0, 0, 0).setFromPoints(ag.p3, ag.p2);
-	const lStrokep = lStroke.lineParallelDistance(ag.ra, ag.p6);
+	const lStrokep = lStroke.lineParallelDistance(ag.ra, ag.p6, ag.p4);
 	const pB = lStrokep.projectPoint(ag.p4);
 	const lB4 = pB.distanceToPoint(ag.p4);
 	const ml = modifRadius(ag.aph, ag.s1, ag.ra);

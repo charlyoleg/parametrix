@@ -307,12 +307,16 @@ class Line {
 		return new Line(pInter.cx, pInter.cy, ca);
 	}
 	// parallel distance
-	lineParallelDistance(iDist: number, ipMagnet: Point): Line {
+	lineParallelDistance(iDist: number, ipMagnet: Point, ipMagnet2: Point): Line {
 		const p1 = point(this.cx, this.cy);
 		const p2a = p1.translatePolar(this.ca + Math.PI / 2, iDist);
 		const p2b = p1.translatePolar(this.ca - Math.PI / 2, iDist);
 		let p2 = p2b;
-		if (ipMagnet.distanceToPoint(p2a) < ipMagnet.distanceToPoint(p2b)) {
+		let pMagnet = ipMagnet;
+		if (roundZero(this.distanceToPoint(pMagnet)) === 0) {
+			pMagnet = ipMagnet2;
+		}
+		if (pMagnet.distanceToPoint(p2a) < pMagnet.distanceToPoint(p2b)) {
 			p2 = p2a;
 		}
 		return new Line(p2.cx, p2.cy, this.ca);

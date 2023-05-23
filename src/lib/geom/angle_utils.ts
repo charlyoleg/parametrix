@@ -80,6 +80,7 @@ function isWithin(aNew: number, aStart: number, aStop: number, ccw: boolean) {
 /* export */
 
 export {
+	tolerance,
 	degToRad,
 	radToDeg,
 	roundZero,
