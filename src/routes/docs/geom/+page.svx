@@ -118,6 +118,10 @@ A *ContourCircle* object defines a circle.
 
 ##### Construction of Rounded Corner
 
+###### method-1
+
+The method-1 is not recommended because the line intersection can generate point very far and then deals with very big numbers.
+
 ![construct_corner_rounded_stroke_stroke.svg]({base}/construct_corner_rounded_stroke_stroke.svg)
 ![construct_corner_rounded_stroke_int_arc.svg]({base}/construct_corner_rounded_stroke_int_arc.svg)
 ![construct_corner_rounded_stroke_int_arc.svg]({base}/construct_corner_rounded_stroke_int_arc_obtuse.svg)
@@ -126,6 +130,13 @@ A *ContourCircle* object defines a circle.
 ![construct_corner_rounded_ext_arc_ext_arc.svg]({base}/construct_corner_rounded_ext_arc_ext_arc.svg)
 ![construct_corner_rounded_int_arc_ext_arc.svg]({base}/construct_corner_rounded_int_arc_ext_arc.svg)
 ![construct_corner_rounded_int_arc_int_arc.svg]({base}/construct_corner_rounded_int_arc_int_arc.svg)
+
+###### method-2
+
+The method-2 is more stable because of the orthogonal projection.
+
+![construct_corner_rounded_stroke_int_arc_method2.svg]({base}/construct_corner_rounded_stroke_int_arc_obtuse_method2.svg)
+![construct_corner_rounded_stroke_ext_arc_method2.svg]({base}/construct_corner_rounded_stroke_ext_arc_obtuse_method2.svg)
 
 
 #### Widened Corner

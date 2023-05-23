@@ -20,9 +20,9 @@ import {
 import {
 	//rightTriLaFromLbLc,
 	rightTriLbFromLaLc,
-	//lcFromLaLbAc,
+	lcFromLaLbAc,
 	aCFromLaLbLc,
-	//aCFromAaAb,
+	aCFromAaAb,
 	//lbFromLaAaAb,
 	aBFromLaLbAa
 } from './triangle_utils';
@@ -401,13 +401,18 @@ function roundStrokeArc(ag: tPrepare): Array<Segment2> {
 	const aAObtuse = 4 * Math.abs(ag.aph) > Math.PI ? 1 : -1;
 	const aphS = ag.aph > 0 ? 1 : -1;
 	const aA = aphS * aAObtuse > 0 ? Math.PI - Math.abs(aApre) : Math.abs(aApre);
-	console.log(`dbg340 ${ag.aph} ${aApre} ${aA}`);
+	//console.log(`dbg340 ${ag.aph} ${aApre} ${aA}`);
 	const ml = modifRadius(ag.aph, ag.s3, ag.ra);
-	console.log(`dbg343 ${ag.ra} ${ag.s3.radius} ${ml}`);
-	const a7 = Math.asin((lA5 * Math.sin(aA)) / ml); // law of sinus
+	//console.log(`dbg343 ${lA5} ${ag.ra} ${ag.s3.radius} ${ml} ${aA}`);
+	//const a7 = Math.asin((lA5 * Math.sin(aA)) / ml); // law of sinus
+	const a7 = aBFromLaLbAa(ml, lA5, aA);
 	const a5 = Math.PI - Math.abs(aA) - Math.abs(a7);
+	//const a5 = aCFromAaAb(aA, a7);
+	const lA7 = lcFromLaLbAc(ml, lA5, a5);
+	console.log(`dbg820: ${ml} ${lA5} ${lA7} ${aA} ${a7} ${a5}`);
 	const sign5 = ag.s3.arcCcw ? aphS : -aphS;
 	//const a57 = ag.p5.angleToPoint(ag.p2) + sign5 * a5;
+	//const a57 = ag.s3.a1 + sign5 * a5;
 	const a57 = ag.s3.a1 + sign5 * a5;
 	console.log(`dbg821: ${ag.s3.a1} ${aA} ${a7} ${a5} ${a57}`);
 	const p7 = ag.p5.translatePolar(a57, ml);

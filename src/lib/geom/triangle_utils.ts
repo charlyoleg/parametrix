@@ -71,7 +71,7 @@ function lbFromLaAaAb(ila: number, iaA: number, iaB: number) {
 	let rlb = 0;
 	const args = [ila, iaA, iaB];
 	for (let i = 0; i < args.length; i++) {
-		if ((roundZero(args[i]) === 0) || (args[i] < 0)) {
+		if (roundZero(args[i]) === 0 || args[i] < 0) {
 			throw `err329: negative or zero triangle-args ${i} : ${args[i]}`;
 		}
 	}

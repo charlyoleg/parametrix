@@ -84,17 +84,17 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		for (let i = 0; i < 1; i++) {
 			const sign = 1; //(i & 0x4) === 0 ? 1 : -1;
 			const large = false; //(i & 0x2) === 0 ? false : true;
-			const ccw = true; //(i & 0x1) === 0 ? false : true;
+			const ccw = false; //(i & 0x1) === 0 ? false : true;
 			//rGeome.logstr += `large ${large} ccw ${ccw}\n`;
 			ctr3.addSegStrokeR(l3, 0)
-				//.addCornerRounded(r3)
+				.addCornerRounded(r3)
 				.addPointR(l3, 0)
 				.addSegArc(ra3, large, ccw)
 				//.addCornerRounded(r3)
 				.addSegStrokeR(l3, 0);
 			ctr3.addSegStrokeR(l3, (-sign * l3) / 8)
-				.addCornerRounded(r3)
-				.addPointR(l3, (sign * l3) / 4)
+				//.addCornerRounded(r3)
+				.addPointR(l3, (sign * l3) / 4 - 3 * t)
 				.addSegArc(ra3, large, ccw)
 				//.addCornerRounded(r3)
 				.addSegStrokeR(l3, (-sign * l3) / 8);
