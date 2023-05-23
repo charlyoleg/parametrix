@@ -71,4 +71,14 @@ function isWithin(aNew: number, aStart: number, aStop: number, ccw: boolean) {
 
 /* export */
 
-export { degToRad, radToDeg, roundZero, withinZero2Pi, withinPiPi, withinZeroPi, withinHPiHPi, orientedArc, isWithin };
+export {
+	degToRad,
+	radToDeg,
+	roundZero,
+	withinZero2Pi,
+	withinPiPi,
+	withinZeroPi,
+	withinHPiHPi,
+	orientedArc,
+	isWithin
+};
