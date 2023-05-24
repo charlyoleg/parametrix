@@ -398,7 +398,7 @@ function newRounded(
 	const a873 = withinPiPi(a78 - abi + Math.PI);
 	const a973 = withinPiPi(a79 - abi + Math.PI);
 	if (Math.abs(a873) > Math.PI / 2 + tolerance || Math.abs(a973) > Math.PI / 2 + tolerance) {
-		gSegDbg.addMsg(`warn882: newRounded a873 or a972 larger than PI/2 ${a873} ${a973}`);
+		gSegDbg.addMsg(`warn882: newRounded a873 or a972 larger than PI/2 ${a873} ${a973}\n`);
 	}
 	// end of few checks
 	const ccw2 = aph > 0 ? false : true;
