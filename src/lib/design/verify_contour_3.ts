@@ -102,7 +102,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		ctr3.addSegStrokeR(l3, 0).addSegStrokeR(l3, -l3).closeSegStroke();
 		rGeome.logstr += ctr3.check();
 		rGeome.fig.addMain(ctr3);
-		const ctr3b = contour(0, 1000)
+		const ctr3b = contour(0, 900)
 			.addCornerRounded(r3)
 			.addPointR(l3, l3)
 			.addSegArc(l3, false, true)
@@ -126,7 +126,14 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addCornerRounded(r3)
 			.addPointR(-l3, -l3)
 			.addSegArc(l3, false, false)
-			.addSegStrokeR(-3 * l3, 0)
+			.addPointR(-l3, l3)
+			.addSegArc(l3, false, false)
+			.addCornerRounded(r3)
+			.addSegStrokeR(0, -3 * l3)
+			.addCornerRounded(r3)
+			.addPointR(-l3, l3)
+			.addSegArc(l3, false, true)
+			.addSegStrokeR(-l3, 0)
 			.closeSegStroke();
 		rGeome.logstr += ctr3b.check();
 		rGeome.fig.addMain(ctr3b);
