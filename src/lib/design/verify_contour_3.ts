@@ -145,10 +145,24 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addCornerRounded(r4)
 			.addPointR(0, l4)
 			.addSegArc(ra4, false, true)
+			.addCornerRounded(r4)
 			.addPointR(-l4, -l4)
-			.addSegArc(1.4 * ra4, false, true);
+			.addSegArc(1.4 * ra4, false, true)
+			.addCornerRounded(r4);
 		rGeome.logstr += ctr4.check();
 		rGeome.fig.addMain(ctr4);
+		const ctr4b = contour(400, 2000)
+			.addPointR(0, 1.7 * l4)
+			.addSegArc(2.3 * ra4, false, false)
+			.addCornerRounded(r4)
+			.addPointR(l4, -0.7 * l4)
+			.addSegArc(ra4, false, false)
+			.addCornerRounded(r4)
+			.addPointR(-l4, -l4)
+			.addSegArc(1.4 * ra4, false, false)
+			.addCornerRounded(r4);
+		rGeome.logstr += ctr4b.check();
+		rGeome.fig.addMain(ctr4b);
 		rGeome.logstr += 'verify_contour_3 draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {

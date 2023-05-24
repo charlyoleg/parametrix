@@ -86,6 +86,7 @@ function lbFromLaAaAb(ila: number, iaA: number, iaB: number) {
 	return rlb;
 }
 
+// the following doesn't seem to work in a certain range!
 function aBFromLaLbAa(ila: number, ilb: number, iaA: number) {
 	let rab = 0;
 	const args = [ila, ilb, iaA];

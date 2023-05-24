@@ -22,13 +22,12 @@ import {
 	//rightTriLaFromLbLc,
 	rightTriLbFromLaLc,
 	//lcFromLaLbAc,
-	aCFromLaLbLc,
+	aCFromLaLbLc
 	//aCFromAaAb,
 	//lbFromLaAaAb,
-	aBFromLaLbAa
+	//aBFromLaLbAa
 } from './triangle_utils';
-//import { ShapePoint, point, Point } from './point';
-import { point, Point } from './point';
+import { ShapePoint, point, Point } from './point';
 //import { line, bisector, circleCenter } from './line';
 import { line } from './line';
 //import { vector, Vector } from './vector';
@@ -466,9 +465,9 @@ function roundArcStroke(ag: tPrepare): Array<Segment2> {
 	const l29 = l27 * Math.cos(a327);
 	const a29 = ag.p2.angleToPoint(ag.p3);
 	const p9 = ag.p2.translatePolar(a29, l29);
-	//gSegDbg.addPoint(p7);
-	//gSegDbg.addPoint(p8);
-	//gSegDbg.addPoint(p9);
+	//gSegDbg.addPoint(p7.clone(ShapePoint.eTri3));
+	//gSegDbg.addPoint(p8.clone(ShapePoint.eTri4));
+	//gSegDbg.addPoint(p9.clone(ShapePoint.eCross));
 	const rsegs: Array<Segment2> = [];
 	rsegs.push(newArcFirst(ag.s1, p8));
 	rsegs.push(newRounded(p8, p9, p7, ag.ra, ag.aph, ag.abi));
@@ -483,24 +482,33 @@ function roundArcArc(ag: tPrepare): Array<Segment2> {
 	const lp4p5 = ag.p4.distanceToPoint(ag.p5);
 	const a45 = ag.p4.angleToPoint(ag.p5);
 	const a547 = aCFromLaLbLc(lp4p5, mr1, mr3);
-	const sign1 = 1;
+	const sign1 = ag.aph < 0 ? 1 : -1;
 	const a47 = a45 + sign1 * a547;
 	const p7 = ag.p4.translatePolar(a47, mr1);
 	const p8 = ag.p4.translatePolar(a47, ag.s1.radius);
 	const a54 = Math.PI + a45;
-	//const a457 = aCFromLaLbLc(lp4p5, mr3, mr1);
-	const a457 = aBFromLaLbAa(mr3, mr1, a547);
-	const sign2 = -1;
+	const a457 = aCFromLaLbLc(lp4p5, mr3, mr1);
+	//const a457b = aBFromLaLbAa(mr3, mr1, a547); // this alternative does not work for unknown reason
+	//if (roundZero(a457 - a457b) !== 0) {
+	//	gSegDbg.addMsg(`dbg356: ${a457b} ${a457} ${mr3} ${mr1} ${a547}\n`);
+	//}
+	const sign2 = -sign1;
 	const a57 = a54 + sign2 * a457;
 	const p7b = ag.p5.translatePolar(a57, mr3);
 	if (!p7b.isEqual(p7)) {
-		throw `err909: roundArcArc p7 anf p7b differ ${p7.cx} ${p7b.cx} ${p7.cy} ${p7b.cy}`;
+		throw `err909: roundArcArc p7 anf p7b differ ${p7.cx} ${p7b.cx} ${p7.cy} ${p7b.cy} ${ShapePoint.eDefault}`;
 	}
 	const p9 = ag.p5.translatePolar(a57, ag.s3.radius);
+	//gSegDbg.addPoint(p7.clone(ShapePoint.eTri1));
+	//gSegDbg.addPoint(p7b.clone(ShapePoint.eSquare));
+	//gSegDbg.addPoint(p8.clone(ShapePoint.eTri3));
+	//gSegDbg.addPoint(p9.clone(ShapePoint.eTri4));
 	const rsegs: Array<Segment2> = [];
 	rsegs.push(newArcFirst(ag.s1, p8));
 	rsegs.push(newRounded(p8, p9, p7, ag.ra, ag.aph, ag.abi));
 	rsegs.push(newArcSecond(ag.s3, p9));
+	//rsegs.push(newArcFirst(ag.s1, ag.p2));
+	//rsegs.push(newArcSecond(ag.s3, ag.p2));
 	return rsegs;
 }
 function widenStrokeStroke(ag: tPrepare): Array<Segment2> {
