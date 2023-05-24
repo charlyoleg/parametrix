@@ -163,6 +163,58 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addCornerRounded(r4);
 		rGeome.logstr += ctr4b.check();
 		rGeome.fig.addMain(ctr4b);
+		const ctr4c = contour(1000, 2000)
+			.addPointR(l4, 0)
+			.addSegArc(0.6 * ra4, true, true)
+			.addCornerRounded(r4)
+			.addPointR(0, l4)
+			.addSegArc(ra4, true, true)
+			.addCornerRounded(r4)
+			.addPointR(-l4, -l4)
+			.addSegArc(1.4 * ra4, true, true)
+			.addCornerRounded(r4);
+		rGeome.logstr += ctr4c.check();
+		rGeome.fig.addMain(ctr4c);
+		const ctr4d = contour(3000, 2000)
+			.addPointR(0, 1.7 * l4)
+			.addSegArc(2.3 * ra4, true, false)
+			.addCornerRounded(r4)
+			.addPointR(l4, -0.7 * l4)
+			.addSegArc(ra4, true, false)
+			.addCornerRounded(r4)
+			.addPointR(-l4, -l4)
+			.addSegArc(1.1 * ra4, true, false)
+			.addCornerRounded(r4);
+		rGeome.logstr += ctr4d.check();
+		rGeome.fig.addMain(ctr4d);
+		const ctr4e = contour(4000, 2000)
+			.addPointR(l4, 0)
+			.addSegArc(ra4, false, false)
+			.addCornerRounded(r4)
+			.addPointR(0, l4)
+			.addSegArc(ra4, false, false)
+			.addCornerRounded(r4)
+			.addPointR(-l4, 0)
+			.addSegArc(ra4, false, false)
+			.addCornerRounded(r4)
+			.addPointR(0, -l4)
+			.addSegArc(ra4, false, false)
+			.addCornerRounded(r4);
+		rGeome.logstr += ctr4e.check();
+		rGeome.fig.addMain(ctr4e);
+		const ctr4f = contour(4500, 2000)
+			.addPointR(l4, l4)
+			.addSegArc(l4, false, false)
+			.addPointR(l4, -l4)
+			.addSegArc(l4, false, false)
+			.addCornerRounded(r4)
+			.addPointR(-l4, 1.6 * l4)
+			.addSegArc(1.1 * ra4, false, true)
+			.addPointR(-l4, -1.6 * l4)
+			.addSegArc(1.2 * ra4, false, true)
+			.addCornerRounded(r4);
+		rGeome.logstr += ctr4f.check();
+		rGeome.fig.addMain(ctr4f);
 		rGeome.logstr += 'verify_contour_3 draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
