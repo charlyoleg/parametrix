@@ -126,22 +126,33 @@ class Segment2 {
 	}
 }
 
-class SegDbgPts {
+class SegDbg {
 	debugPoints: Array<Point>;
+	logMessage: string;
 	constructor() {
 		this.debugPoints = [];
+		this.logMessage = '';
 	}
-	add(ip: Point) {
+	addPoint(ip: Point) {
 		this.debugPoints.push(ip);
 	}
-	getDbgPts(): Array<Point> {
+	getPoints(): Array<Point> {
 		return this.debugPoints;
 	}
-	clearDbgPts() {
+	clearPoints() {
 		this.debugPoints = [];
 	}
+	addMsg(iMsg: string) {
+		this.logMessage += iMsg;
+	}
+	getMsg(): string {
+		return this.logMessage;
+	}
+	clearMsg() {
+		this.logMessage = '';
+	}
 }
-const gSegDbgPts = new SegDbgPts();
+const gSegDbg = new SegDbg();
 
 function arcSeg1To2(px1: number, py1: number, iSeg1: Segment1): Segment2 {
 	if (iSeg1.sType !== SegEnum.eArc) {
@@ -234,9 +245,10 @@ function prepare(s1: Segment2, s2: Segment2, s3: Segment2): tPrepare {
 			aPeakHalf = s3.arcCcw ? tolerance2 : -tolerance2;
 		} else if (s1.sType === SegEnum.eArc && s3.sType === SegEnum.eStroke) {
 			aPeakHalf = s1.arcCcw ? tolerance2 : -tolerance2;
-		} else {
+		} else if (s1.sType === SegEnum.eStroke && s3.sType === SegEnum.eStroke) {
 			throw `err402: prepare aPeakHalf too closed to zero ${aPeakHalf}`;
 		}
+		// eArc && eArc : nothing special
 	}
 	const aBisector = aTangent1 + aPeakHalf;
 	const p6 = p2.translatePolar(aBisector, s2.radius);
@@ -386,7 +398,7 @@ function newRounded(
 	const a873 = withinPiPi(a78 - abi + Math.PI);
 	const a973 = withinPiPi(a79 - abi + Math.PI);
 	if (Math.abs(a873) > Math.PI / 2 + tolerance || Math.abs(a973) > Math.PI / 2 + tolerance) {
-		throw `warn882: newRounded a873 or a972 larger than PI/2 ${a873} ${a973}`;
+		gSegDbg.addMsg(`warn882: newRounded a873 or a972 larger than PI/2 ${a873} ${a973}`);
 	}
 	// end of few checks
 	const ccw2 = aph > 0 ? false : true;
@@ -413,9 +425,9 @@ function roundStrokeArc(ag: tPrepare): Array<Segment2> {
 	const lStroke = line(0, 0, 0).setFromPoints(ag.p1, ag.p2);
 	const lStrokep = lStroke.lineParallelDistance(ag.ra, ag.p6, ag.p5);
 	const pB = lStrokep.projectPoint(ag.p5);
-	//gSegDbgPts.add(ag.p6.clone(ShapePoint.eTwoTri));
-	//gSegDbgPts.add(ag.p5.clone(ShapePoint.eTri1));
-	//gSegDbgPts.add(pB.clone(ShapePoint.eTri2));
+	//gSegDbg.addPoint(ag.p6.clone(ShapePoint.eTwoTri));
+	//gSegDbg.addPoint(ag.p5.clone(ShapePoint.eTri1));
+	//gSegDbg.addPoint(pB.clone(ShapePoint.eTri2));
 	const lB5 = pB.distanceToPoint(ag.p5);
 	const ml = modifRadius(ag.aph, ag.s3, ag.ra);
 	const lB7 = rightTriLbFromLaLc(ml, lB5);
@@ -428,9 +440,9 @@ function roundStrokeArc(ag: tPrepare): Array<Segment2> {
 	const l28 = l27 * Math.cos(a127);
 	const a28 = ag.p2.angleToPoint(ag.p1);
 	const p8 = ag.p2.translatePolar(a28, l28);
-	//gSegDbgPts.add(p7.clone(ShapePoint.eTri3));
-	//gSegDbgPts.add(p8.clone(ShapePoint.eTri4));
-	//gSegDbgPts.add(p9.clone(ShapePoint.eCross));
+	//gSegDbg.addPoint(p7.clone(ShapePoint.eTri3));
+	//gSegDbg.addPoint(p8.clone(ShapePoint.eTri4));
+	//gSegDbg.addPoint(p9.clone(ShapePoint.eCross));
 	const rsegs: Array<Segment2> = [];
 	rsegs.push(newStrokeFirst(ag.s1, p8));
 	rsegs.push(newRounded(p8, p9, p7, ag.ra, ag.aph, ag.abi));
@@ -454,9 +466,9 @@ function roundArcStroke(ag: tPrepare): Array<Segment2> {
 	const l29 = l27 * Math.cos(a327);
 	const a29 = ag.p2.angleToPoint(ag.p3);
 	const p9 = ag.p2.translatePolar(a29, l29);
-	//gSegDbgPts.add(p7);
-	//gSegDbgPts.add(p8);
-	//gSegDbgPts.add(p9);
+	//gSegDbg.addPoint(p7);
+	//gSegDbg.addPoint(p8);
+	//gSegDbg.addPoint(p9);
 	const rsegs: Array<Segment2> = [];
 	rsegs.push(newArcFirst(ag.s1, p8));
 	rsegs.push(newRounded(p8, p9, p7, ag.ra, ag.aph, ag.abi));
@@ -551,7 +563,7 @@ export {
 	isCorner,
 	Segment1,
 	Segment2,
-	gSegDbgPts,
+	gSegDbg,
 	arcSeg1To2,
 	arcSeg2To1,
 	makeCorner

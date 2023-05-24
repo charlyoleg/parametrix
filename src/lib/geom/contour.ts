@@ -348,6 +348,7 @@ class Contour extends AContour {
 		return rContour;
 	}
 	generateContour(): Contour {
+		segLib.gSegDbg.clearPoints();
 		const segStack: Array<segLib.Segment2> = [];
 		const segStackEnd: Array<segLib.Segment2> = [];
 		let coType = 0;
@@ -433,9 +434,8 @@ class Contour extends AContour {
 		}
 		const seg0 = segStack[0];
 		const rContour = new Contour(seg0.p1.cx, seg0.p1.cy);
-		rContour.debugPoints.push(...segLib.gSegDbgPts.getDbgPts());
-		//console.log(`dbg290: ${segLib.gSegDbgPts.debugPoints.length}`);
-		segLib.gSegDbgPts.clearDbgPts();
+		rContour.debugPoints.push(...segLib.gSegDbg.getPoints());
+		//console.log(`dbg290: ${segLib.gSegDbg.debugPoints.length}`);
 		for (const seg2 of segStack) {
 			if (seg2.sType === segLib.SegEnum.eStroke) {
 				rContour.addSegStrokeA(seg2.p2.cx, seg2.p2.cy);
@@ -509,10 +509,12 @@ class Contour extends AContour {
 			throw `err414: contour check, contour is not closed px ${px0} ${px1} py ${px0} ${py0}`;
 		}
 	}
-	check() {
+	check(): string {
+		segLib.gSegDbg.clearMsg();
 		this.checkContour(this);
 		const ctrG = this.generateContour();
 		this.checkContour(ctrG);
+		return segLib.gSegDbg.getMsg();
 	}
 }
 
