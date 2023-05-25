@@ -38,6 +38,7 @@ enum SegEnum {
 	ePointed,
 	eRounded,
 	eWidened,
+	eWideAcc, // Widened Access
 	eStart
 }
 
@@ -57,7 +58,7 @@ function isAddPoint(iSegEnum: SegEnum) {
 }
 function isActiveCorner(iSegEnum: SegEnum) {
 	let rIsActiveCorner = false;
-	if (iSegEnum === SegEnum.eRounded || iSegEnum === SegEnum.eWidened) {
+	if (iSegEnum === SegEnum.eRounded || iSegEnum === SegEnum.eWidened || iSegEnum === SegEnum.eWideAcc) {
 		rIsActiveCorner = true;
 	}
 	return rIsActiveCorner;
@@ -519,21 +520,14 @@ function roundArcArc(ag: tPrepare): Array<Segment2> {
 	//rsegs.push(newArcSecond(ag.s3, ag.p2));
 	return rsegs;
 }
-function widenStrokeStroke(ag: tPrepare): Array<Segment2> {
+function widenCorner(ag: tPrepare): Array<Segment2> {
 	// TODO
 	const rsegs: Array<Segment2> = [];
 	rsegs.push(ag.s1);
 	rsegs.push(ag.s3);
 	return rsegs;
 }
-function widenStrokeArc(ag: tPrepare): Array<Segment2> {
-	// TODO
-	const rsegs: Array<Segment2> = [];
-	rsegs.push(ag.s1);
-	rsegs.push(ag.s3);
-	return rsegs;
-}
-function widenArcArc(ag: tPrepare): Array<Segment2> {
+function wideAccessCorner(ag: tPrepare): Array<Segment2> {
 	// TODO
 	const rsegs: Array<Segment2> = [];
 	rsegs.push(ag.s1);
@@ -556,15 +550,9 @@ function makeCorner(s1: Segment2, s2: Segment2, s3: Segment2): Array<Segment2> {
 			throw `err123: makeCorner unexpected s1s3.sType ${s1.sType} ${s3.sType}`;
 		}
 	} else if (s2.sType === SegEnum.eWidened) {
-		if (s1.sType === SegEnum.eStroke && s3.sType === SegEnum.eStroke) {
-			rsegs.push(...widenStrokeStroke(preArg));
-		} else if (s1.sType === SegEnum.eStroke || s3.sType === SegEnum.eStroke) {
-			rsegs.push(...widenStrokeArc(preArg));
-		} else if (s1.sType === SegEnum.eArc && s3.sType === SegEnum.eArc) {
-			rsegs.push(...widenArcArc(preArg));
-		} else {
-			throw `err127: makeCorner unexpected s1s3.sType ${s1.sType} ${s3.sType}`;
-		}
+		rsegs.push(...widenCorner(preArg));
+	} else if (s2.sType === SegEnum.eWideAcc) {
+		rsegs.push(...widenAccessCorner(preArg));
 	} else {
 		throw `err723: makeCorner unexpected s2.sType ${s2.sType}`;
 	}

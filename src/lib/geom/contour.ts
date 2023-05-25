@@ -293,6 +293,11 @@ class Contour extends AContour {
 		this.addSeg(seg);
 		return this;
 	}
+	addCornerWideAcc(iRadius: number): Contour {
+		const seg = new segLib.Segment1(segLib.SegEnum.eWideAcc, 0, 0, iRadius);
+		this.addSeg(seg);
+		return this;
+	}
 	closeSegStroke(): Contour {
 		const px = this.segments[0].px;
 		const py = this.segments[0].py;
