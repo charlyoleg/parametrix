@@ -9,13 +9,15 @@ const pDef: tParamDef = {
 		{ name: 'r1', unit: 'mm', init: 10, min: 0, max: 200, step: 1 },
 		{ name: 'r2', unit: 'mm', init: 10, min: 0, max: 200, step: 1 },
 		{ name: 'r3', unit: 'mm', init: 10, min: 0, max: 200, step: 1 },
-		{ name: 'r4', unit: 'mm', init: 10, min: 0, max: 200, step: 1 }
+		{ name: 'r4', unit: 'mm', init: 10, min: 0, max: 200, step: 1 },
+		{ name: 'r5', unit: 'mm', init: 10, min: 0, max: 200, step: 1 }
 	],
 	paramSvg: {
 		r1: 'verify_contour_1_r1.svg',
 		r2: 'verify_contour_1_r1.svg',
 		r3: 'verify_contour_1_r1.svg',
-		r4: 'verify_contour_1_r1.svg'
+		r4: 'verify_contour_1_r1.svg',
+		r5: 'verify_contour_1_r1.svg'
 	},
 	sim: {
 		tMax: 10,
@@ -32,6 +34,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const r2 = param['r2'] + t;
 		const r3 = param['r3'] + t;
 		const r4 = param['r4'] + t;
+		const r5 = param['r5'] + t;
 		const ctr1 = contour(100, 0)
 			.addSegStrokeR(30, 200)
 			.addCornerRounded(r1)
@@ -250,28 +253,71 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addCornerRounded(r4);
 		rGeome.logstr += ctr4h.check();
 		rGeome.fig.addMain(ctr4h);
+		const l5 = 200;
+		const ra5 = 180;
 		const ctr5 = contour(0, 3000)
-			.addSegStrokeR(l4, 0)
-			.addCornerWidened(r4)
-			.addSegStrokeR(0, l4)
-			.addCornerWidened(r4)
+			.addSegStrokeR(l5, 0)
+			.addCornerWidened(r5)
+			.addSegStrokeR(0, l5)
+			.addCornerWidened(r5)
 			.closeSegStroke()
-			.addCornerWidened(r4);
+			.addCornerWidened(r5);
 		rGeome.logstr += ctr5.check();
 		rGeome.fig.addMain(ctr5);
 		const ctr5b = contour(400, 3000)
-			.addSegStrokeR(l4, 0)
-			.addCornerWidened(r4)
-			.addPointR(0, l4)
-			.addSegArc(ra4, false, true)
-			.addCornerWidened(r4)
-			.addPointR(-l4, 0)
-			.addSegArc(ra4, false, false)
-			.addCornerWidened(r4)
+			.addSegStrokeR(l5, 0)
+			.addCornerWidened(r5)
+			.addPointR(0, l5)
+			.addSegArc(ra5, false, true)
+			.addCornerWidened(r5)
+			.addPointR(-l5, 0)
+			.addSegArc(ra5, false, false)
+			.addCornerWidened(r5)
 			.closeSegStroke()
-			.addCornerWidened(r4);
+			.addCornerWidened(r5);
 		rGeome.logstr += ctr5b.check();
 		rGeome.fig.addMain(ctr5b);
+		const ctr5d = contour(3000, 3000)
+			.addPointR(0, 1.7 * l5)
+			.addSegArc(2.3 * ra5, true, false)
+			.addCornerWidened(r5)
+			.addPointR(l5, -0.7 * l5)
+			.addSegArc(ra5, true, false)
+			.addCornerWidened(r5)
+			.addPointR(-l5, -l5)
+			.addSegArc(1.1 * ra5, true, false)
+			.addCornerWidened(r5);
+		rGeome.logstr += ctr5d.check();
+		rGeome.fig.addMain(ctr5d);
+		const ctr5e = contour(3800, 3000)
+			.addPointR(l5, 0)
+			.addSegArc(ra5, false, false)
+			.addCornerWidened(r5)
+			.addPointR(0, l5)
+			.addSegArc(ra5, false, false)
+			.addCornerWidened(r5)
+			.addPointR(-l5, 0)
+			.addSegArc(ra5, false, false)
+			.addCornerWidened(r5)
+			.addPointR(0, -l5)
+			.addSegArc(ra5, false, false)
+			.addCornerWidened(r5);
+		rGeome.logstr += ctr5e.check();
+		rGeome.fig.addMain(ctr5e);
+		const ctr5f = contour(4500, 3000)
+			.addPointR(l5, l5)
+			.addSegArc(l5, false, false)
+			.addPointR(l5, -l5)
+			.addSegArc(l5, false, false)
+			.addCornerWidened(r5)
+			.addPointR(-l5, 1.6 * l5)
+			.addSegArc(1.1 * ra5, false, true)
+			.addCornerWidened(r5)
+			.addPointR(-l5, -1.6 * l5)
+			.addSegArc(1.2 * ra5, false, true)
+			.addCornerWidened(r5);
+		rGeome.logstr += ctr5f.check();
+		rGeome.fig.addMain(ctr5f);
 		rGeome.logstr += 'verify_contour_3 draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {

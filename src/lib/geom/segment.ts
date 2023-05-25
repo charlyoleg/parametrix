@@ -532,18 +532,18 @@ function widenCorner(ag: tPrepare): Array<Segment2> {
 	if (ag.s1.sType === SegEnum.eArc) {
 		const a246 = ag.p4.angleFromToPoints(ag.p2, ag.p6);
 		const a42 = ag.p4.angleToPoint(ag.p2);
-		const a46 = a42 + a246;
+		const a46 = a42 + 2 * a246;
 		p8 = ag.p4.translatePolar(a46, ag.s1.radius);
 	}
 	if (ag.s3.sType === SegEnum.eArc) {
 		const a256 = ag.p5.angleFromToPoints(ag.p2, ag.p6);
 		const a52 = ag.p5.angleToPoint(ag.p2);
-		const a56 = a52 + a256;
+		const a56 = a52 + 2 * a256;
 		p9 = ag.p5.translatePolar(a56, ag.s3.radius);
 	}
 	const ccw2 = ag.aph > 0 ? false : true;
 	const segCorner = new Segment2(SegEnum.eArc, p8, p9, ag.p6, ag.ra, a68, a69, ccw2);
-	gSegDbg.addPoint(ag.p6.clone(ShapePoint.eTwoTri));
+	//gSegDbg.addPoint(ag.p6.clone(ShapePoint.eTwoTri));
 	const rsegs: Array<Segment2> = [];
 	if (ag.s1.sType === SegEnum.eStroke) {
 		rsegs.push(newStrokeFirst(ag.s1, p8));
