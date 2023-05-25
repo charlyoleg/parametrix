@@ -496,7 +496,7 @@ function roundArcArc(ag: tPrepare): Array<Segment2> {
 	const p8 = ag.p4.translatePolar(a47, ag.s1.radius);
 	const a54 = Math.PI + a45;
 	const a457 = aCFromLaLbLc(lp4p5, mr3, mr1);
-	//const a457b = aBFromLaLbAa(mr3, mr1, a547); // this alternative does not work for unknown reason
+	//const a457b = aBFromLaLbAa(mr3, mr1, a547); // a bad alternative using arcsinus!
 	//if (roundZero(a457 - a457b) !== 0) {
 	//	gSegDbg.addMsg(`dbg356: ${a457b} ${a457} ${mr3} ${mr1} ${a547}\n`);
 	//}
