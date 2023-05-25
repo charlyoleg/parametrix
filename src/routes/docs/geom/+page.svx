@@ -143,13 +143,24 @@ The method-2 is more stable because of the orthogonal projection.
 
 ##### Defintion of Widened Corner
 
-*contour().addCornerWidened(radius, access)* replaces the peak with an arc around the angle/peak. There are many possibilities to fulfil the problematic. The selected solution is to have the center of the arc on the bisector of the peak-angle. If you want to widen the corner in an other way, wou have to design it yourself with strokes and arcs.
-
-The second argument *access* is a boolean. If *true*, an access of width *2 x radius* is created up to the corner. Use this option, if you widen the corner to provide an access to the cutter-tool.
+*contour().addCornerWidened(radius)* replaces the peak with an arc around the angle/peak. There are many possibilities to fulfil the problematic. The selected solution is to have the center of the arc on the bisector of the peak-angle. If you want to widen the corner in an other way, you have to design it yourself with strokes and arcs.
 
 ##### Construction of Widened Corner
 
 ![construct_corner_widened.svg]({base}/construct_corner_widened.svg)
+
+
+#### Wide-Access Corner
+
+##### Defintion of Wide-Access Corner
+
+*contour().addCornerWideacc(radius)* is similar to the previous *Widended* but *strokes* might be added to provide an access of wide *2 x radius* up to the corner. Use this corner-type, if you widen the corner to provide an access to the cutter-tool.
+
+
+##### Construction of Wide-Access Corner
+
+![construct_corner_wideacc.svg]({base}/construct_corner_wideacc.svg)
+
 
 #### Corner summary
 

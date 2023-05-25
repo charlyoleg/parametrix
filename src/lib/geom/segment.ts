@@ -58,7 +58,11 @@ function isAddPoint(iSegEnum: SegEnum) {
 }
 function isActiveCorner(iSegEnum: SegEnum) {
 	let rIsActiveCorner = false;
-	if (iSegEnum === SegEnum.eRounded || iSegEnum === SegEnum.eWidened || iSegEnum === SegEnum.eWideAcc) {
+	if (
+		iSegEnum === SegEnum.eRounded ||
+		iSegEnum === SegEnum.eWidened ||
+		iSegEnum === SegEnum.eWideAcc
+	) {
 		rIsActiveCorner = true;
 	}
 	return rIsActiveCorner;
@@ -552,7 +556,7 @@ function makeCorner(s1: Segment2, s2: Segment2, s3: Segment2): Array<Segment2> {
 	} else if (s2.sType === SegEnum.eWidened) {
 		rsegs.push(...widenCorner(preArg));
 	} else if (s2.sType === SegEnum.eWideAcc) {
-		rsegs.push(...widenAccessCorner(preArg));
+		rsegs.push(...wideAccessCorner(preArg));
 	} else {
 		throw `err723: makeCorner unexpected s2.sType ${s2.sType}`;
 	}
