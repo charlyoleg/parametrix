@@ -168,13 +168,17 @@ function arcSeg1To2(px1: number, py1: number, iSeg1: Segment1): Segment2 {
 	if (p1.isEqual(p2)) {
 		throw `err638: no equidistance because identical point ${p1.cx} ${p2.cy}`;
 	}
-	if (iSeg1.radius < lp1p2h) {
+	let oppos = 0;
+	if (roundZero(iSeg1.radius - lp1p2h) === 0) {
+		oppos = 0;
+	} else if (iSeg1.radius < lp1p2h) {
 		//console.log(`dbg398: ${p1.cx} ${p1.cy} ${iSeg1.px} ${iSeg1.py}`);
 		throw `err399: radius ${iSeg1.radius} smaller than lp1p2h ${lp1p2h}`;
+	} else {
+		oppos = rightTriLbFromLaLc(iSeg1.radius, lp1p2h);
 	}
 	const pbi = p1.middlePoint(p2);
 	const abi = p1.angleToPoint(p2) + Math.PI / 2;
-	const oppos = rightTriLbFromLaLc(iSeg1.radius, lp1p2h);
 	const rp1 = pbi.translatePolar(abi, oppos);
 	const rp2 = pbi.translatePolar(abi + Math.PI, oppos);
 	let rp3 = rp1;
