@@ -291,6 +291,14 @@ function closestPoint(ica: number, dist: number, pB: Point, p6: Point): Point {
 	const rp7 = d67a < d67b ? p7a : p7b;
 	return rp7;
 }
+function closestPoint2(p4: Point, a45: number, a547: number, dist: number, p6: Point): number {
+	const p7a = p4.translatePolar(a45 - a547, dist);
+	const p7b = p4.translatePolar(a45 + a547, dist);
+	const d67a = p6.distanceToPoint(p7a);
+	const d67b = p6.distanceToPoint(p7b);
+	const sign = d67a < d67b ? -1 : 1;
+	return sign;
+}
 function newStrokeFirst(iseg: Segment2, ip: Point): Segment2 {
 	const p8 = ip.clone();
 	const p1 = iseg.p1.clone();
@@ -396,7 +404,7 @@ function newRounded(
 	const a79 = p7.angleToPoint(p9);
 	const a873 = withinPiPi(a78 - abi + Math.PI);
 	const a973 = withinPiPi(a79 - abi + Math.PI);
-	if (Math.abs(a873) > Math.PI / 2 + tolerance || Math.abs(a973) > Math.PI / 2 + tolerance) {
+	if (Math.abs(a973 - a873)  > Math.PI + tolerance) {
 		gSegDbg.addMsg(`warn882: newRounded a873 or a972 larger than PI/2 ${a873} ${a973}\n`);
 	}
 	// end of few checks
@@ -482,7 +490,7 @@ function roundArcArc(ag: tPrepare): Array<Segment2> {
 	const lp4p5 = ag.p4.distanceToPoint(ag.p5);
 	const a45 = ag.p4.angleToPoint(ag.p5);
 	const a547 = aCFromLaLbLc(lp4p5, mr1, mr3);
-	const sign1 = ag.aph < 0 ? 1 : -1;
+	const sign1 = closestPoint2(ag.p4, a45, a547, mr1, ag.p6);
 	const a47 = a45 + sign1 * a547;
 	const p7 = ag.p4.translatePolar(a47, mr1);
 	const p8 = ag.p4.translatePolar(a47, ag.s1.radius);
@@ -492,7 +500,7 @@ function roundArcArc(ag: tPrepare): Array<Segment2> {
 	//if (roundZero(a457 - a457b) !== 0) {
 	//	gSegDbg.addMsg(`dbg356: ${a457b} ${a457} ${mr3} ${mr1} ${a547}\n`);
 	//}
-	const sign2 = -sign1;
+	const sign2 = closestPoint2(ag.p5, a54, a457, mr3, ag.p6);
 	const a57 = a54 + sign2 * a457;
 	const p7b = ag.p5.translatePolar(a57, mr3);
 	if (!p7b.isEqual(p7)) {

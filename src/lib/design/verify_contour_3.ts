@@ -187,18 +187,20 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addCornerRounded(r4);
 		rGeome.logstr += ctr4d.check();
 		rGeome.fig.addMain(ctr4d);
-		const ctr4e = contour(4000, 2000)
-			.addPointR(l4, 0)
-			.addSegArc(ra4, false, false)
+		const l4b = 3 * l4;
+		const ra4b = 3 * ra4;
+		const ctr4e = contour(3800, 2000)
+			.addPointR(l4b, 0)
+			.addSegArc(ra4b, false, false)
 			.addCornerRounded(r4)
-			.addPointR(0, l4)
-			.addSegArc(ra4, false, false)
+			.addPointR(0, l4b)
+			.addSegArc(ra4b, false, false)
 			.addCornerRounded(r4)
-			.addPointR(-l4, 0)
-			.addSegArc(ra4, false, false)
+			.addPointR(-l4b, 0)
+			.addSegArc(ra4b, false, false)
 			.addCornerRounded(r4)
-			.addPointR(0, -l4)
-			.addSegArc(ra4, false, false)
+			.addPointR(0, -l4b)
+			.addSegArc(ra4b, false, false)
 			.addCornerRounded(r4);
 		rGeome.logstr += ctr4e.check();
 		rGeome.fig.addMain(ctr4e);
@@ -210,11 +212,44 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addCornerRounded(r4)
 			.addPointR(-l4, 1.6 * l4)
 			.addSegArc(1.1 * ra4, false, true)
+			.addCornerRounded(r4)
 			.addPointR(-l4, -1.6 * l4)
 			.addSegArc(1.2 * ra4, false, true)
 			.addCornerRounded(r4);
 		rGeome.logstr += ctr4f.check();
 		rGeome.fig.addMain(ctr4f);
+		const ctr4g = contour(5200, 2000)
+			.addPointR(l4, 0)
+			.addSegArc(0.9 * l4, false, false)
+			.addCornerRounded(r4)
+			.addPointR(l4, 0)
+			.addSegArc(0.9 * l4, false, false)
+			.addCornerRounded(r4)
+			.addPointR(-2 * l4, 0)
+			.addSegArc(1.3 * l4, true, true)
+			.addCornerRounded(r4);
+		rGeome.logstr += ctr4g.check();
+		rGeome.fig.addMain(ctr4g);
+		const c099 = 0.999;
+		const ctr4h = contour(6000, 2000)
+			.addPointR(2 * l4, 2 * l4)
+			.addSegArc(1.5 * l4, false, false)
+			.addCornerRounded(r4)
+			.addPointR(2 * l4, -2 * l4)
+			.addSegArc(1.5 * l4, false, false)
+			.addCornerRounded(r4)
+			.addPointR(-l4, l4)
+			.addSegArc(l4, false, true)
+			.addPointR(-l4, -c099 * l4)
+			.addSegArc(l4, false, true)
+			.addCornerRounded(r4)
+			.addPointR(-l4, c099 * l4)
+			.addSegArc(l4, false, true)
+			.addPointR(-l4, -l4)
+			.addSegArc(l4, false, true)
+			.addCornerRounded(r4);
+		rGeome.logstr += ctr4h.check();
+		rGeome.fig.addMain(ctr4h);
 		rGeome.logstr += 'verify_contour_3 draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
