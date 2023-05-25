@@ -250,6 +250,28 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addCornerRounded(r4);
 		rGeome.logstr += ctr4h.check();
 		rGeome.fig.addMain(ctr4h);
+		const ctr5 = contour(0, 3000)
+			.addSegStrokeR(l4, 0)
+			.addCornerWidened(r4)
+			.addSegStrokeR(0, l4)
+			.addCornerWidened(r4)
+			.closeSegStroke()
+			.addCornerWidened(r4);
+		rGeome.logstr += ctr5.check();
+		rGeome.fig.addMain(ctr5);
+		const ctr5b = contour(400, 3000)
+			.addSegStrokeR(l4, 0)
+			.addCornerWidened(r4)
+			.addPointR(0, l4)
+			.addSegArc(ra4, false, true)
+			.addCornerWidened(r4)
+			.addPointR(-l4, 0)
+			.addSegArc(ra4, false, false)
+			.addCornerWidened(r4)
+			.closeSegStroke()
+			.addCornerWidened(r4);
+		rGeome.logstr += ctr5b.check();
+		rGeome.fig.addMain(ctr5b);
 		rGeome.logstr += 'verify_contour_3 draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {

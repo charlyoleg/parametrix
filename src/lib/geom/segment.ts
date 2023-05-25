@@ -525,10 +525,37 @@ function roundArcArc(ag: tPrepare): Array<Segment2> {
 	return rsegs;
 }
 function widenCorner(ag: tPrepare): Array<Segment2> {
-	// TODO
+	const a68 = ag.abi - 2 * ag.aph;
+	const a69 = ag.abi + 2 * ag.aph;
+	let p8 = ag.p6.translatePolar(a68, ag.ra);
+	let p9 = ag.p6.translatePolar(a69, ag.ra);
+	if (ag.s1.sType === SegEnum.eArc) {
+		const a246 = ag.p4.angleFromToPoints(ag.p2, ag.p6);
+		const a42 = ag.p4.angleToPoint(ag.p2);
+		const a46 = a42 + a246;
+		p8 = ag.p4.translatePolar(a46, ag.s1.radius);
+	}
+	if (ag.s3.sType === SegEnum.eArc) {
+		const a256 = ag.p5.angleFromToPoints(ag.p2, ag.p6);
+		const a52 = ag.p5.angleToPoint(ag.p2);
+		const a56 = a52 + a256;
+		p9 = ag.p5.translatePolar(a56, ag.s3.radius);
+	}
+	const ccw2 = ag.aph > 0 ? false : true;
+	const segCorner = new Segment2(SegEnum.eArc, p8, p9, ag.p6, ag.ra, a68, a69, ccw2);
+	gSegDbg.addPoint(ag.p6.clone(ShapePoint.eTwoTri));
 	const rsegs: Array<Segment2> = [];
-	rsegs.push(ag.s1);
-	rsegs.push(ag.s3);
+	if (ag.s1.sType === SegEnum.eStroke) {
+		rsegs.push(newStrokeFirst(ag.s1, p8));
+	} else if (ag.s1.sType === SegEnum.eArc) {
+		rsegs.push(newArcFirst(ag.s1, p8));
+	}
+	rsegs.push(segCorner);
+	if (ag.s3.sType === SegEnum.eStroke) {
+		rsegs.push(newStrokeSecond(ag.s3, p9));
+	} else if (ag.s3.sType === SegEnum.eArc) {
+		rsegs.push(newArcSecond(ag.s3, p9));
+	}
 	return rsegs;
 }
 function wideAccessCorner(ag: tPrepare): Array<Segment2> {
