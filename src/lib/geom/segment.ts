@@ -404,7 +404,7 @@ function newRounded(
 	const a79 = p7.angleToPoint(p9);
 	const a873 = withinPiPi(a78 - abi + Math.PI);
 	const a973 = withinPiPi(a79 - abi + Math.PI);
-	if (Math.abs(a973 - a873)  > Math.PI + tolerance) {
+	if (Math.abs(a973 - a873) > Math.PI + tolerance) {
 		gSegDbg.addMsg(`warn882: newRounded a873 or a972 larger than PI/2 ${a873} ${a973}\n`);
 	}
 	// end of few checks
