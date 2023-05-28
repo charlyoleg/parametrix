@@ -26,7 +26,7 @@ import { colors, point2canvas, radius2canvas } from './canvas_utils';
 //	//aBFromLaLbAa
 //} from './triangle_utils';
 import { point, Point } from './point';
-import { line, bisector, circleCenter } from './line';
+import { line, Line, bisector, circleCenter } from './line';
 //import { vector, Vector } from './vector';
 import * as segLib from './segment';
 
@@ -37,6 +37,7 @@ abstract class AContour {
 	abstract extractSkeleton(): AContour;
 	abstract generateContour(): AContour;
 	abstract generatePoints(): Array<Point>;
+	abstract generateLines(): Array<Line>;
 	abstract check(): void;
 }
 
@@ -46,12 +47,14 @@ class Contour extends AContour {
 	segments: Array<segLib.Segment1>;
 	points: Array<Point>;
 	debugPoints: Array<Point>;
+	debugLines: Array<Line>;
 	lastPoint: Point;
 	constructor(ix: number, iy: number) {
 		super();
 		this.segments = [new segLib.Segment1(segLib.SegEnum.eStart, ix, iy, 0)];
 		this.points = [];
 		this.debugPoints = [];
+		this.debugLines = [];
 		this.lastPoint = point(ix, iy);
 	}
 	setLastPoint(ix: number, iy: number) {
@@ -354,6 +357,7 @@ class Contour extends AContour {
 	}
 	generateContour(): Contour {
 		segLib.gSegDbg.clearPoints();
+		segLib.gSegDbg.clearLines();
 		const segStack: Array<segLib.Segment2> = [];
 		const segStackEnd: Array<segLib.Segment2> = [];
 		let coType = 0;
@@ -440,6 +444,7 @@ class Contour extends AContour {
 		const seg0 = segStack[0];
 		const rContour = new Contour(seg0.p1.cx, seg0.p1.cy);
 		rContour.debugPoints.push(...segLib.gSegDbg.getPoints());
+		rContour.debugLines.push(...segLib.gSegDbg.getLines());
 		//console.log(`dbg290: ${segLib.gSegDbg.debugPoints.length}`);
 		for (const seg2 of segStack) {
 			if (seg2.sType === segLib.SegEnum.eStroke) {
@@ -488,6 +493,11 @@ class Contour extends AContour {
 			}
 		}
 		return rPoints;
+	}
+	generateLines(): Array<Line> {
+		const rLines = [];
+		rLines.push(...this.debugLines);
+		return rLines;
 	}
 	checkContour(ctr: Contour) {
 		if (ctr.segments[0].sType !== segLib.SegEnum.eStart) {
@@ -560,6 +570,9 @@ class ContourCircle extends AContour {
 			rPoints.push(p2);
 		}
 		return rPoints;
+	}
+	generateLines(): Array<Line> {
+		return [];
 	}
 	check() {
 		true;

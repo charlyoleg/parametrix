@@ -29,7 +29,7 @@ import {
 } from './triangle_utils';
 import { ShapePoint, point, Point } from './point';
 //import { line, linePP, bisector, circleCenter } from './line';
-import { line, linePP } from './line';
+import { line, linePP, Line } from './line';
 //import { vector, Vector } from './vector';
 
 enum SegEnum {
@@ -132,9 +132,11 @@ class Segment2 {
 
 class SegDbg {
 	debugPoints: Array<Point>;
+	debugLines: Array<Line>;
 	logMessage: string;
 	constructor() {
 		this.debugPoints = [];
+		this.debugLines = [];
 		this.logMessage = '';
 	}
 	addPoint(ip: Point) {
@@ -145,6 +147,15 @@ class SegDbg {
 	}
 	clearPoints() {
 		this.debugPoints = [];
+	}
+	addLine(il: Line) {
+		this.debugLines.push(il);
+	}
+	getLines(): Array<Line> {
+		return this.debugLines;
+	}
+	clearLines() {
+		this.debugLines = [];
 	}
 	addMsg(iMsg: string) {
 		this.logMessage += iMsg;
@@ -568,15 +579,26 @@ function wideAccessSide(sign: number, one: Segment2, p8one: Point, ag: tPrepare)
 	const a268 = ag.p6.angleFromToPoints(ag.p2, p8one);
 	if (Math.abs(a268) > Math.PI / 2) {
 		p8b = ag.p6.translatePolar(ag.abi + (sign * Math.PI) / 2, ag.ra);
+		//gSegDbg.addPoint(p8b.clone(ShapePoint.eSquare));
 		const l2 = line(p8b.cx, p8b.cy, ag.abi);
+		//gSegDbg.addLine(l2);
 		if (one.sType === SegEnum.eStroke) {
 			const l1 = linePP(one.p1, one.p2);
 			p8a = l1.intersection(l2);
 		} else if (one.sType === SegEnum.eArc) {
 			const ph = l2.projectPoint(one.pc);
+			//gSegDbg.addPoint(ph.clone(ShapePoint.eSquare));
+			//gSegDbg.addPoint(one.pc.clone(ShapePoint.eSquare));
+			//gSegDbg.addLine(linePP(one.pc, ph));
 			const lh4 = ph.distanceToPoint(one.pc);
-			const lh8a = rightTriLbFromLaLc(one.radius, lh4);
-			p8a = closestPoint(ag.abi, lh8a, ph, p8one);
+			if (lh4 < one.radius) {
+				const lh8a = rightTriLbFromLaLc(one.radius, lh4);
+				p8a = closestPoint(ag.abi, lh8a, ph, p8one);
+			} else {
+				gSegDbg.addMsg(`warn222: wideAccess not possible on arc ${one.radius} ${lh4}\n`);
+				p8a = p8one;
+				p8b = p8one;
+			}
 		}
 	}
 	return [p8a, p8b];
@@ -586,14 +608,11 @@ function wideAccessCorner(ag: tPrepare): Array<Segment2> {
 	const sign1 = ones[1].arcCcw ? 1 : -1;
 	const [p8a, p8b] = wideAccessSide(sign1, ag.s1, ones[1].p1, ag);
 	const [p9a, p9b] = wideAccessSide(-sign1, ag.s3, ones[1].p2, ag);
-	gSegDbg.addPoint(p8a.clone(ShapePoint.eTri1));
-	gSegDbg.addPoint(p8b.clone(ShapePoint.eTri2));
-	gSegDbg.addPoint(p9b.clone(ShapePoint.eTri3));
-	gSegDbg.addPoint(p9a.clone(ShapePoint.eTri4));
+	//gSegDbg.addPoint(p8a.clone(ShapePoint.eTri1));
+	//gSegDbg.addPoint(p8b.clone(ShapePoint.eTri2));
+	//gSegDbg.addPoint(p9b.clone(ShapePoint.eTri3));
+	//gSegDbg.addPoint(p9a.clone(ShapePoint.eTri4));
 	const rsegs: Array<Segment2> = [];
-	//rsegs.push(ones[0]);
-	//rsegs.push(ones[1]);
-	//rsegs.push(ones[2]);
 	if (p8a.isEqual(p8b)) {
 		rsegs.push(ones[0]);
 	} else {
@@ -619,6 +638,9 @@ function wideAccessCorner(ag: tPrepare): Array<Segment2> {
 			rsegs.push(newArcSecond(ag.s3, p9a));
 		}
 	}
+	//rsegs.push(ones[0]);
+	//rsegs.push(ones[1]);
+	//rsegs.push(ones[2]);
 	return rsegs;
 }
 function makeCorner(s1: Segment2, s2: Segment2, s3: Segment2): Array<Segment2> {

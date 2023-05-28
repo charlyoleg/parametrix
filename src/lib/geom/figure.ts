@@ -63,23 +63,33 @@ class Figure {
 	addLine(iline: Line) {
 		this.lineList.push(iline);
 	}
+	addLines(ilines: Array<Line>) {
+		for (const iline of ilines) {
+			this.lineList.push(iline);
+		}
+	}
 	addVector(ivector: Vector) {
 		this.vectorList.push(ivector);
 	}
 	addMain(icontour: tContour) {
-		this.addPoints(icontour.generateContour().generatePoints());
+		const roundedContour = icontour.generateContour();
+		this.addPoints(roundedContour.generatePoints());
 		//this.addPoints(icontour.generatePoints()); // points of the skeleton
-		this.mainList.push(icontour.generateContour());
+		this.addLines(roundedContour.generateLines());
+		this.mainList.push(roundedContour);
 		this.mainBList.push(icontour.extractSkeleton());
 	}
 	addSecond(icontour: tContour) {
-		this.addPoints(icontour.generateContour().generatePoints());
+		const roundedContour = icontour.generateContour();
+		this.addPoints(roundedContour.generatePoints());
 		//this.addPoints(icontour.generatePoints()); // points of the skeleton
-		this.secondList.push(icontour.generateContour());
+		this.addLines(roundedContour.generateLines());
+		this.secondList.push(roundedContour);
 		this.secondBList.push(icontour.extractSkeleton());
 	}
 	addDynamics(icontour: tContour) {
 		this.addPoints(icontour.generatePoints());
+		this.addLines(icontour.generateLines());
 		this.dynamicsList.push(icontour);
 	}
 	clear() {
