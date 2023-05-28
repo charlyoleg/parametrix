@@ -10,14 +10,16 @@ const pDef: tParamDef = {
 		{ name: 'r2', unit: 'mm', init: 10, min: 0, max: 200, step: 1 },
 		{ name: 'r3', unit: 'mm', init: 10, min: 0, max: 200, step: 1 },
 		{ name: 'r4', unit: 'mm', init: 10, min: 0, max: 200, step: 1 },
-		{ name: 'r5', unit: 'mm', init: 10, min: 0, max: 200, step: 1 }
+		{ name: 'r5', unit: 'mm', init: 10, min: 0, max: 200, step: 1 },
+		{ name: 'r6', unit: 'mm', init: 10, min: 0, max: 200, step: 1 }
 	],
 	paramSvg: {
 		r1: 'verify_contour_1_r1.svg',
 		r2: 'verify_contour_1_r1.svg',
 		r3: 'verify_contour_1_r1.svg',
 		r4: 'verify_contour_1_r1.svg',
-		r5: 'verify_contour_1_r1.svg'
+		r5: 'verify_contour_1_r1.svg',
+		r6: 'verify_contour_1_r1.svg'
 	},
 	sim: {
 		tMax: 10,
@@ -35,6 +37,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const r3 = param['r3'] + t;
 		const r4 = param['r4'] + t;
 		const r5 = param['r5'] + t;
+		const r6 = param['r6'] + t;
 		const ctr1 = contour(100, 0)
 			.addSegStrokeR(30, 200)
 			.addCornerRounded(r1)
@@ -318,6 +321,71 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addCornerWidened(r5);
 		rGeome.logstr += ctr5f.check();
 		rGeome.fig.addMain(ctr5f);
+		const l6 = 200;
+		const ra6 = 180;
+		const ctr6 = contour(0, 4000)
+			.addSegStrokeR(l6, 0)
+			.addCornerWideAcc(r6)
+			.addSegStrokeR(0, l6)
+			.addCornerWideAcc(r6)
+			.closeSegStroke()
+			.addCornerWideAcc(r6);
+		rGeome.logstr += ctr6.check();
+		rGeome.fig.addMain(ctr6);
+		const ctr6b = contour(400, 4000)
+			.addSegStrokeR(l6, 0)
+			.addCornerWideAcc(r6)
+			.addPointR(0, l6)
+			.addSegArc(ra6, false, true)
+			.addCornerWideAcc(r6)
+			.addPointR(-l6, 0)
+			.addSegArc(ra6, false, false)
+			.addCornerWideAcc(r6)
+			.closeSegStroke()
+			.addCornerWideAcc(r6);
+		rGeome.logstr += ctr6b.check();
+		rGeome.fig.addMain(ctr6b);
+		const ctr6d = contour(3000, 4000)
+			.addPointR(0, 1.7 * l6)
+			.addSegArc(2.3 * ra6, true, false)
+			.addCornerWideAcc(r6)
+			.addPointR(l6, -0.7 * l6)
+			.addSegArc(ra6, true, false)
+			.addCornerWideAcc(r6)
+			.addPointR(-l6, -l6)
+			.addSegArc(1.1 * ra6, true, false)
+			.addCornerWideAcc(r6);
+		rGeome.logstr += ctr6d.check();
+		rGeome.fig.addMain(ctr6d);
+		const ctr6e = contour(3800, 4000)
+			.addPointR(l6, 0)
+			.addSegArc(ra6, false, false)
+			.addCornerWideAcc(r6)
+			.addPointR(0, l6)
+			.addSegArc(ra6, false, false)
+			.addCornerWideAcc(r6)
+			.addPointR(-l6, 0)
+			.addSegArc(ra6, false, false)
+			.addCornerWideAcc(r6)
+			.addPointR(0, -l6)
+			.addSegArc(ra6, false, false)
+			.addCornerWideAcc(r6);
+		rGeome.logstr += ctr6e.check();
+		rGeome.fig.addMain(ctr6e);
+		const ctr6f = contour(4500, 4000)
+			.addPointR(l6, l6)
+			.addSegArc(l6, false, false)
+			.addPointR(l6, -l6)
+			.addSegArc(l6, false, false)
+			.addCornerWideAcc(r6)
+			.addPointR(-l6, 1.6 * l6)
+			.addSegArc(1.1 * ra6, false, true)
+			.addCornerWideAcc(r6)
+			.addPointR(-l6, -1.6 * l6)
+			.addSegArc(1.2 * ra6, false, true)
+			.addCornerWideAcc(r6);
+		rGeome.logstr += ctr6f.check();
+		rGeome.fig.addMain(ctr6f);
 		rGeome.logstr += 'verify_contour_3 draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
