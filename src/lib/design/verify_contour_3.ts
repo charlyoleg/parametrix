@@ -384,8 +384,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addPointR(-l6, -1.6 * l6)
 			.addSegArc(1.2 * ra6, false, true)
 			.addCornerWideAcc(r6);
-		rGeome.logstr += ctr6f.check();
-		rGeome.fig.addMain(ctr6f);
+		//rGeome.logstr += ctr6f.check();
+		//rGeome.fig.addMain(ctr6f);
 		rGeome.logstr += 'verify_contour_3 draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {

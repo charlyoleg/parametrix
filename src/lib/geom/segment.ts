@@ -569,24 +569,31 @@ function wideAccessSide(sign: number, one: Segment2, p8one: Point, ag: tPrepare)
 	if (Math.abs(a268) > Math.PI / 2) {
 		p8b = ag.p6.translatePolar(ag.abi + (sign * Math.PI) / 2, ag.ra);
 		const l2 = line(p8b.cx, p8b.cy, ag.abi);
-		if (ag.s1.sType === SegEnum.eStroke) {
+		if (one.sType === SegEnum.eStroke) {
 			const l1 = linePP(one.p1, one.p2);
 			p8a = l1.intersection(l2);
-		} else if (ag.s1.sType === SegEnum.eArc) {
-			const ph = l2.projectPoint(ag.p4);
+		} else if (one.sType === SegEnum.eArc) {
+			const ph = l2.projectPoint(one.pc);
 			const lh4 = ph.distanceToPoint(one.pc);
 			const lh8a = rightTriLbFromLaLc(one.radius, lh4);
-			p8a = ph.translatePolar(ag.abi, lh8a);
+			p8a = closestPoint(ag.abi, lh8a, ph, p8one);
 		}
 	}
 	return [p8a, p8b];
 }
 function wideAccessCorner(ag: tPrepare): Array<Segment2> {
 	const ones = widenCorner(ag);
-	const sign1 = ag.aph > 0 ? 1 : -1;
+	const sign1 = ones[1].arcCcw ? 1 : -1;
 	const [p8a, p8b] = wideAccessSide(sign1, ag.s1, ones[1].p1, ag);
 	const [p9a, p9b] = wideAccessSide(-sign1, ag.s3, ones[1].p2, ag);
+	gSegDbg.addPoint(p8a.clone(ShapePoint.eTri1));
+	gSegDbg.addPoint(p8b.clone(ShapePoint.eTri2));
+	gSegDbg.addPoint(p9b.clone(ShapePoint.eTri3));
+	gSegDbg.addPoint(p9a.clone(ShapePoint.eTri4));
 	const rsegs: Array<Segment2> = [];
+	//rsegs.push(ones[0]);
+	//rsegs.push(ones[1]);
+	//rsegs.push(ones[2]);
 	if (p8a.isEqual(p8b)) {
 		rsegs.push(ones[0]);
 	} else {

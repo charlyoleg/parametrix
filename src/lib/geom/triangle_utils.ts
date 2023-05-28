@@ -17,7 +17,7 @@ function rightTriLaFromLbLc(ilb: number, ilc: number): number {
 function rightTriLbFromLaLc(ila: number, ilc: number): number {
 	let rlb = 0;
 	if (ilc > ila) {
-		throw `err539: ilc:${ilc} > ila${ila}`;
+		throw `err539: ila < ilc ${ila} ${ilc}`;
 	} else {
 		rlb = Math.sqrt(ila ** 2 - ilc ** 2);
 	}
