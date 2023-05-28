@@ -313,6 +313,67 @@ class Contour extends AContour {
 		this.addPointA(px, py).addSegArc(iRadius, iLarge, iCcw);
 		return this;
 	}
+	translate(ix: number, iy: number): Contour {
+		const rctr = new Contour(this.segments[0].px + ix, this.segments[0].py + iy);
+		for (const seg of this.segments) {
+			const nseg = seg.clone();
+			if (segLib.isSeg(seg.sType)) {
+				nseg.px += ix;
+				nseg.py += iy;
+			}
+			rctr.addSeg(nseg);
+		}
+		return rctr;
+	}
+	translatePolar(ia: number, il: number): Contour {
+		return this.translate(il * Math.cos(ia), il * Math.sin(ia));
+	}
+	rotate(ic: Point, ia: number): Contour {
+		const pStart = point(this.segments[0].px, this.segments[0].py);
+		const pStartRot = pStart.rotate(ic, ia);
+		const rctr = new Contour(pStartRot.cx, pStartRot.cy);
+		for (const seg of this.segments) {
+			const nseg = seg.clone();
+			if (segLib.isSeg(seg.sType)) {
+				const pt = point(nseg.px, nseg.py);
+				const ptRot = pt.rotate(ic, ia);
+				nseg.px = ptRot.cx;
+				nseg.py = ptRot.cy;
+			}
+			rctr.addSeg(nseg);
+		}
+		return rctr;
+	}
+	scale(ic: Point, ir: number): Contour {
+		const pStart = point(this.segments[0].px, this.segments[0].py);
+		const pStartScale = pStart.scale(ic, ir);
+		const rctr = new Contour(pStartScale.cx, pStartScale.cy);
+		for (const seg of this.segments) {
+			const nseg = seg.clone();
+			if (segLib.isSeg(seg.sType)) {
+				const pt = point(nseg.px, nseg.py);
+				const ptScale = pt.scale(ic, ir);
+				nseg.px = ptScale.cx;
+				nseg.py = ptScale.cy;
+			}
+			rctr.addSeg(nseg);
+		}
+		return rctr;
+	}
+	addPartial(iContour: Contour): Contour {
+		if (this.points.length > 0) {
+			throw `err911: addPartial, points should be used ${this.points.length}`;
+		}
+		for (const seg of iContour.segments) {
+			if (seg.sType !== segLib.SegEnum.eStart) {
+				this.addSeg(seg);
+				if (segLib.isSeg(seg.sType)) {
+					this.setLastPoint(seg.px, seg.py);
+				}
+			}
+		}
+		return this;
+	}
 	draw(ctx: CanvasRenderingContext2D, cAdjust: tCanvasAdjust, color: string = colors.contour) {
 		let px1 = 0;
 		let py1 = 0;

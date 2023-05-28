@@ -99,6 +99,17 @@ class Segment1 {
 		this.arcLarge = iArcLarge;
 		this.arcCcw = iArcCcw;
 	}
+	clone(): Segment1 {
+		const rseg1 = new Segment1(
+			this.sType,
+			this.px,
+			this.py,
+			this.radius,
+			this.arcLarge,
+			this.arcCcw
+		);
+		return rseg1;
+	}
 }
 class Segment2 {
 	sType: SegEnum;
