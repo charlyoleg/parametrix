@@ -355,6 +355,9 @@ class Contour extends AContour {
 				const ptScale = pt.scale(ic, ir);
 				nseg.px = ptScale.cx;
 				nseg.py = ptScale.cy;
+				if (seg.sType === segLib.SegEnum.eArc) {
+					nseg.radius *= ir;
+				}
 			}
 			rctr.addSeg(nseg);
 		}
