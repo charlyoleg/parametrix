@@ -327,6 +327,11 @@ function line(ix: number, iy: number, ia: number): Line {
 	return new Line(ix, iy, ia);
 }
 
+function linePP(ip1: Point, ip2: Point): Line {
+	const rline = line(0, 0, 0).setFromPoints(ip1, ip2);
+	return rline;
+}
+
 function bisector(ip1: Point, ip2: Point): Line {
 	if (ip1.isEqual(ip2)) {
 		throw `err546: no bisector with two same points cx: ${ip1.cx} cy: ${ip1.cy}`;
@@ -347,4 +352,4 @@ function circleCenter(ip1: Point, ip2: Point, ip3: Point): Point {
 
 /* export */
 
-export { Line, line, bisector, circleCenter };
+export { Line, line, linePP, bisector, circleCenter };

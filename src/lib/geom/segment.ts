@@ -28,8 +28,8 @@ import {
 	//aBFromLaLbAa
 } from './triangle_utils';
 import { ShapePoint, point, Point } from './point';
-//import { line, bisector, circleCenter } from './line';
-import { line } from './line';
+//import { line, linePP, bisector, circleCenter } from './line';
+import { line, linePP } from './line';
 //import { vector, Vector } from './vector';
 
 enum SegEnum {
@@ -316,7 +316,7 @@ function newStrokeFirst(iseg: Segment2, ip: Point): Segment2 {
 	if (iseg.sType !== SegEnum.eStroke) {
 		throw `err103: newStrokeFirst unexpected sType ${iseg.sType}`;
 	}
-	const distLine = line(0, 0, 0).setFromPoints(p1, p2).distanceToPoint(p8);
+	const distLine = linePP(p1, p2).distanceToPoint(p8);
 	if (roundZero(distLine) !== 0) {
 		throw `err104: newStrokeFirst new point not aligned ${distLine} ${p8.cx} ${p8.cy}`;
 	}
@@ -343,7 +343,7 @@ function newStrokeSecond(iseg: Segment2, ip: Point): Segment2 {
 	if (iseg.sType !== SegEnum.eStroke) {
 		throw `err203: newStrokeSecond unexpected sType ${iseg.sType}`;
 	}
-	const distLine = line(0, 0, 0).setFromPoints(p3, p2).distanceToPoint(p9);
+	const distLine = linePP(p3, p2).distanceToPoint(p9);
 	if (roundZero(distLine) !== 0) {
 		throw `err204: newStrokeSecond new point not aligned ${distLine} ${p9.cx} ${p9.cy}`;
 	}
@@ -425,8 +425,8 @@ function roundStrokeStroke(ag: tPrepare): Array<Segment2> {
 	const l7 = Math.abs(ag.ra / Math.sin(ag.aph));
 	const l7b = l7 * Math.cos(ag.aph);
 	const p7 = ag.p2.translatePolar(ag.abi, l7);
-	//const p8 = line(0, 0, 0).setFromPoints(ag.p1, ag.p2).projectPoint(p7);
-	//const p9 = line(0, 0, 0).setFromPoints(ag.p2, ag.p3).projectPoint(p7);
+	//const p8 = linePP(ag.p1, ag.p2).projectPoint(p7);
+	//const p9 = linePP(ag.p2, ag.p3).projectPoint(p7);
 	//const p8 = p7.translatePolar(a78, ag.ra);
 	//const p9 = p7.translatePolar(a79, ag.ra);
 	const p8 = ag.p2.translatePolar(ag.at1, l7b);
@@ -438,7 +438,7 @@ function roundStrokeStroke(ag: tPrepare): Array<Segment2> {
 	return rsegs;
 }
 function roundStrokeArc(ag: tPrepare): Array<Segment2> {
-	const lStroke = line(0, 0, 0).setFromPoints(ag.p1, ag.p2);
+	const lStroke = linePP(ag.p1, ag.p2);
 	const lStrokep = lStroke.lineParallelDistance(ag.ra, ag.p6, ag.p5);
 	const pB = lStrokep.projectPoint(ag.p5);
 	//gSegDbg.addPoint(ag.p6.clone(ShapePoint.eTwoTri));
@@ -468,7 +468,7 @@ function roundStrokeArc(ag: tPrepare): Array<Segment2> {
 	return rsegs;
 }
 function roundArcStroke(ag: tPrepare): Array<Segment2> {
-	const lStroke = line(0, 0, 0).setFromPoints(ag.p3, ag.p2);
+	const lStroke = linePP(ag.p3, ag.p2);
 	const lStrokep = lStroke.lineParallelDistance(ag.ra, ag.p6, ag.p4);
 	const pB = lStrokep.projectPoint(ag.p4);
 	const lB4 = pB.distanceToPoint(ag.p4);
@@ -563,7 +563,30 @@ function widenCorner(ag: tPrepare): Array<Segment2> {
 	return rsegs;
 }
 function wideAccessCorner(ag: tPrepare): Array<Segment2> {
-	// TODO
+	const ones = widenCorner(ag);
+	const p8one = ones[1].p1;
+	const p9one = ones[1].p2;
+	const a268 = ag.p6.angleFromToPoints(ag.p2, p8one);
+	const a269 = ag.p6.angleFromToPoints(ag.p2, p9one);
+	let p8a = p8one;
+	let p8b = p8one;
+	if (a268 > Math.PI / 2) {
+		const sign1 = ag.aph > 0 ? 1 : -1;
+		p8b = ag.p6.translatePolar(ag.ra, ag.abi + (sign1 * Math.PI) / 2);
+		if (ag.s1.sType === SegEnum.eStroke) {
+			const l1 = linePP(ones[0].p1, ones[0].p2);
+			const l2 = line(p8one.cx, p8one.cy, ag.abi);
+			p8a = l1.intersection(l2);
+		} else if (ag.s1.sType === SegEnum.eArc) {
+			const l8b4 = p8b.distanceToPoint(ag.p4);
+			const aB4 = p8b.angleToPoint(ag.p4);
+			const a4BA = ag.abi - aB4;
+			const aBA4 = aBFromLaLbAa(ones[0].radius, l8b4, a4BA);
+			const aB4A = Math.PI - a4BA - aBA4;
+			const a4A = aB4 + Math.PI + aB4A
+			p8a = ag.p4.translatePolar(a4A, ones[0].radius);
+		}
+	}
 	const rsegs: Array<Segment2> = [];
 	rsegs.push(ag.s1);
 	rsegs.push(ag.s3);

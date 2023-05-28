@@ -8,7 +8,7 @@ import type { tCanvasAdjust } from './canvas_utils';
 import { colors, adjustZero, adjustInit } from './canvas_utils';
 import { degToRad, radToDeg, roundZero } from './angle_utils';
 import { ShapePoint, Point, point } from './point';
-import { Line, line, bisector, circleCenter } from './line';
+import { Line, line, linePP, bisector, circleCenter } from './line';
 import { Vector, vector } from './vector';
 import type { tContour } from './contour';
 import { contour, contourCircle } from './contour';
@@ -243,6 +243,7 @@ export {
 	roundZero,
 	point,
 	line,
+	linePP,
 	bisector,
 	circleCenter,
 	vector,

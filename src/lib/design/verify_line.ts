@@ -1,6 +1,6 @@
 // verify_line.ts
 
-import { point, line, figure } from '$lib/geom/figure';
+import { point, line, linePP, figure } from '$lib/geom/figure';
 import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
 
 const pDef: tParamDef = {
@@ -38,7 +38,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rGeome.fig.addPoint(p1);
 		rGeome.fig.addPoint(p2);
 		rGeome.fig.addPoint(p3);
-		const l1 = line(0, 0, 0).setFromPoints(p1, p2);
+		const l1 = linePP(p1, p2);
 		rGeome.fig.addLine(l1);
 		//rGeome.fig.addLine(l2);
 		rGeome.fig.addPoint(point(l1.getAxisXIntersection(), 0));
@@ -47,7 +47,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rGeome.fig.addPoint(p4);
 		const p0 = point(0, 0);
 		if (!p0.isEqual(p4)) {
-			const l2 = line(0, 0, 0).setFromPoints(p0, p4);
+			const l2 = linePP(p0, p4);
 			rGeome.fig.addLine(l2);
 		}
 		rGeome.fig.addLine(l1.lineOrthogonal(p3));
