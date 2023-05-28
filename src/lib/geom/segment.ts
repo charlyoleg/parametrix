@@ -562,34 +562,56 @@ function widenCorner(ag: tPrepare): Array<Segment2> {
 	}
 	return rsegs;
 }
-function wideAccessCorner(ag: tPrepare): Array<Segment2> {
-	const ones = widenCorner(ag);
-	const p8one = ones[1].p1;
-	const p9one = ones[1].p2;
-	const a268 = ag.p6.angleFromToPoints(ag.p2, p8one);
-	const a269 = ag.p6.angleFromToPoints(ag.p2, p9one);
+function wideAccessSide(sign: number, one: Segment2, p8one: Point, ag: tPrepare): Array<Point> {
 	let p8a = p8one;
 	let p8b = p8one;
-	if (a268 > Math.PI / 2) {
-		const sign1 = ag.aph > 0 ? 1 : -1;
-		p8b = ag.p6.translatePolar(ag.ra, ag.abi + (sign1 * Math.PI) / 2);
+	const a268 = ag.p6.angleFromToPoints(ag.p2, p8one);
+	if (Math.abs(a268) > Math.PI / 2) {
+		p8b = ag.p6.translatePolar(ag.abi + (sign * Math.PI) / 2, ag.ra);
+		const l2 = line(p8b.cx, p8b.cy, ag.abi);
 		if (ag.s1.sType === SegEnum.eStroke) {
-			const l1 = linePP(ones[0].p1, ones[0].p2);
-			const l2 = line(p8one.cx, p8one.cy, ag.abi);
+			const l1 = linePP(one.p1, one.p2);
 			p8a = l1.intersection(l2);
 		} else if (ag.s1.sType === SegEnum.eArc) {
-			const l8b4 = p8b.distanceToPoint(ag.p4);
-			const aB4 = p8b.angleToPoint(ag.p4);
-			const a4BA = ag.abi - aB4;
-			const aBA4 = aBFromLaLbAa(ones[0].radius, l8b4, a4BA);
-			const aB4A = Math.PI - a4BA - aBA4;
-			const a4A = aB4 + Math.PI + aB4A
-			p8a = ag.p4.translatePolar(a4A, ones[0].radius);
+			const ph = l2.projectPoint(ag.p4);
+			const lh4 = ph.distanceToPoint(one.pc);
+			const lh8a = rightTriLbFromLaLc(one.radius, lh4);
+			p8a = ph.translatePolar(ag.abi, lh8a);
 		}
 	}
+	return [p8a, p8b];
+}
+function wideAccessCorner(ag: tPrepare): Array<Segment2> {
+	const ones = widenCorner(ag);
+	const sign1 = ag.aph > 0 ? 1 : -1;
+	const [p8a, p8b] = wideAccessSide(sign1, ag.s1, ones[1].p1, ag);
+	const [p9a, p9b] = wideAccessSide(-sign1, ag.s3, ones[1].p2, ag);
 	const rsegs: Array<Segment2> = [];
-	rsegs.push(ag.s1);
-	rsegs.push(ag.s3);
+	if (p8a.isEqual(p8b)) {
+		rsegs.push(ones[0]);
+	} else {
+		if (ag.s1.sType === SegEnum.eStroke) {
+			rsegs.push(newStrokeFirst(ag.s1, p8a));
+		} else if (ag.s1.sType === SegEnum.eArc) {
+			rsegs.push(newArcFirst(ag.s1, p8a));
+		}
+		const p0 = point(0, 0);
+		const newStroke = new Segment2(SegEnum.eStroke, p8a, p8b, p0, 0, 0, 0, false);
+		rsegs.push(newStroke);
+	}
+	rsegs.push(newRounded(p8b, p9b, ag.p6, ag.ra, ag.aph, ag.abi));
+	if (p9a.isEqual(p9b)) {
+		rsegs.push(ones[2]);
+	} else {
+		const p0 = point(0, 0);
+		const newStroke = new Segment2(SegEnum.eStroke, p9b, p9a, p0, 0, 0, 0, false);
+		rsegs.push(newStroke);
+		if (ag.s3.sType === SegEnum.eStroke) {
+			rsegs.push(newStrokeSecond(ag.s3, p9a));
+		} else if (ag.s3.sType === SegEnum.eArc) {
+			rsegs.push(newArcSecond(ag.s3, p9a));
+		}
+	}
 	return rsegs;
 }
 function makeCorner(s1: Segment2, s2: Segment2, s3: Segment2): Array<Segment2> {

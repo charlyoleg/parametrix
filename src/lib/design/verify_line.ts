@@ -38,7 +38,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rGeome.fig.addPoint(p1);
 		rGeome.fig.addPoint(p2);
 		rGeome.fig.addPoint(p3);
-		const l1 = linePP(p1, p2);
+		const l1 = line(0, 0, 0).setFromPoints(p1, p2);
 		rGeome.fig.addLine(l1);
 		//rGeome.fig.addLine(l2);
 		rGeome.fig.addPoint(point(l1.getAxisXIntersection(), 0));
