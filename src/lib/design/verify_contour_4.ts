@@ -32,22 +32,34 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const l1 = 50 + t;
 		const as = (2 * Math.PI) / (n2 * 3);
 		const p0 = point(0, 0);
-		const ctr1 = contour(l1, 0);
-		const ctr1b = contour(l1, 0)
+		const ctr2b = contour(l1, 0)
 			.addSegStrokeAP(as, 1.5 * l1)
 			.addCornerRounded(r1)
 			.addPointAP(2 * as, l1)
 			.addSegArc(0.45 * l1, false, true)
 			.addCornerWidened(r1)
-			.addSegStrokeAP(3 * as, 1.1 * l1)
-			.addCornerRounded(r1);
-		for (let i = 1; i < n1; i++) {
-			const ctr1c = ctr1b.rotate(p0, i * 3 * as).scale(p0, i * 1.1);
+			.addSegStrokeAP(3 * as, 1.2 * l1);
+		const ctr1 = contour(l1, 0);
+		const ctr1b = ctr2b.clone().addCornerRounded(r1);
+		for (let i = 0; i < n1; i++) {
+			const ctr1c = ctr1b.rotate(p0, i * 3 * as).scale(p0, i * 1.05, true);
 			ctr1.addPartial(ctr1c);
 		}
 		ctr1.closeSegStroke();
 		rGeome.logstr += ctr1.check();
 		rGeome.fig.addMain(ctr1);
+		const ctr2c = ctr2b.generateContour();
+		const ctr2 = ctr2c.clone();
+		for (let i = 1; i < n1; i++) {
+			ctr2.addPartial(ctr2c.rotate(p0, i * 3 * as).scale(p0, i * 1.05));
+		}
+		ctr2.closeSegStroke();
+		const ctr3 = ctr2.translate(100 * l1, 0);
+		rGeome.logstr += ctr3.check();
+		rGeome.fig.addMain(ctr3);
+		const ctr4 = ctr2.translatePolar(Math.PI / 3, 100 * l1);
+		rGeome.logstr += ctr4.check();
+		rGeome.fig.addMain(ctr4);
 		rGeome.logstr += 'verify_contour_4 draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {

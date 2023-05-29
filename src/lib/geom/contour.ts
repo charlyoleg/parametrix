@@ -313,15 +313,35 @@ class Contour extends AContour {
 		this.addPointA(px, py).addSegArc(iRadius, iLarge, iCcw);
 		return this;
 	}
+	clone(): Contour {
+		const rctr = new Contour(this.segments[0].px, this.segments[0].py);
+		for (const seg of this.segments) {
+			const nseg = seg.clone();
+			if (nseg.sType !== segLib.SegEnum.eStart) {
+				rctr.addSeg(nseg);
+				if (segLib.isSeg(nseg.sType)) {
+					rctr.setLastPoint(nseg.px, nseg.py);
+				}
+			}
+		}
+		return rctr;
+	}
 	translate(ix: number, iy: number): Contour {
-		const rctr = new Contour(this.segments[0].px + ix, this.segments[0].py + iy);
+		const p0x = this.segments[0].px + ix;
+		const p0y = this.segments[0].py + iy;
+		const rctr = new Contour(p0x, p0y);
 		for (const seg of this.segments) {
 			const nseg = seg.clone();
 			if (segLib.isSeg(seg.sType)) {
 				nseg.px += ix;
 				nseg.py += iy;
 			}
-			rctr.addSeg(nseg);
+			if (nseg.sType !== segLib.SegEnum.eStart) {
+				rctr.addSeg(nseg);
+				if (segLib.isSeg(nseg.sType)) {
+					rctr.setLastPoint(nseg.px, nseg.py);
+				}
+			}
 		}
 		return rctr;
 	}
@@ -340,7 +360,12 @@ class Contour extends AContour {
 				nseg.px = ptRot.cx;
 				nseg.py = ptRot.cy;
 			}
-			rctr.addSeg(nseg);
+			if (nseg.sType !== segLib.SegEnum.eStart) {
+				rctr.addSeg(nseg);
+				if (segLib.isSeg(nseg.sType)) {
+					rctr.setLastPoint(nseg.px, nseg.py);
+				}
+			}
 		}
 		return rctr;
 	}
@@ -362,7 +387,12 @@ class Contour extends AContour {
 					nseg.radius *= ir;
 				}
 			}
-			rctr.addSeg(nseg);
+			if (nseg.sType !== segLib.SegEnum.eStart) {
+				rctr.addSeg(nseg);
+				if (segLib.isSeg(nseg.sType)) {
+					rctr.setLastPoint(nseg.px, nseg.py);
+				}
+			}
 		}
 		return rctr;
 	}
