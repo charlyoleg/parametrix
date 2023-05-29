@@ -8,7 +8,7 @@
    version="1.1"
    id="svg5"
    inkscape:version="1.2.2 (1:1.2.2+202305151914+b0a8486541)"
-   sodipodi:docname="geom-user.svg"
+   sodipodi:docname="geom_user.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -24,9 +24,9 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      showgrid="false"
-     inkscape:zoom="0.5946522"
-     inkscape:cx="395.18899"
-     inkscape:cy="163.96139"
+     inkscape:zoom="1.1893044"
+     inkscape:cx="394.34816"
+     inkscape:cy="166.90428"
      inkscape:window-width="1366"
      inkscape:window-height="836"
      inkscape:window-x="0"
@@ -53,6 +53,6 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect113)"><tspan
          x="23.228516"
          y="34.345733"
-         id="tspan140">geom-user.svg</tspan></text>
+         id="tspan168">geom_user.svg</tspan></text>
   </g>
 </svg>
