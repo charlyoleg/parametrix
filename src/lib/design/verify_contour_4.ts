@@ -6,9 +6,9 @@ import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
 const pDef: tParamDef = {
 	page: 'verify_contour_4',
 	params: [
-		{ name: 'n1', unit: 'scalar', init: 12, min: 1, max: 50, step: 1 },
+		{ name: 'n1', unit: 'scalar', init: 16, min: 1, max: 50, step: 1 },
 		{ name: 'n2', unit: 'scalar', init: 6, min: 3, max: 50, step: 1 },
-		{ name: 'r1', unit: 'mm', init: 10, min: 0, max: 20, step: 1 }
+		{ name: 'r1', unit: 'mm', init: 5, min: 0, max: 20, step: 1 }
 	],
 	paramSvg: {
 		n1: 'verify_contour_1_r1.svg',
@@ -42,22 +42,32 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const ctr1 = contour(l1, 0);
 		const ctr1b = ctr2b.clone().addCornerRounded(r1);
 		for (let i = 0; i < n1; i++) {
-			const ctr1c = ctr1b.rotate(p0, i * 3 * as).scale(p0, i * 1.05, true);
+			const ctr1c = ctr1b.rotate(p0, i * 3 * as).scale(p0, 1 + i * 0.2, true);
 			ctr1.addPartial(ctr1c);
 		}
 		ctr1.closeSegStroke();
+		//for (let i = 0; i < ctr1.segments.length; i++) {
+		//	console.log(`dbg212: ${i} ${ctr1.segments[i].sType} ${ctr1.segments[i].radius} ${ctr1.segments[i].px} ${ctr1.segments[i].py}`);
+		//}
 		rGeome.logstr += ctr1.check();
 		rGeome.fig.addMain(ctr1);
+		const ctr5 = contour(l1, 0);
+		for (let i = 0; i < n1; i++) {
+			ctr5.addPartial(ctr1b.rotate(p0, i * 3 * as).scale(p0, 1 + i * 0.2, false));
+		}
+		ctr5.closeSegStroke();
+		rGeome.logstr += ctr5.check();
+		rGeome.fig.addMain(ctr5.translate(-10 * l1, 0));
 		const ctr2c = ctr2b.generateContour();
 		const ctr2 = ctr2c.clone();
 		for (let i = 1; i < n1; i++) {
-			ctr2.addPartial(ctr2c.rotate(p0, i * 3 * as).scale(p0, i * 1.05));
+			ctr2.addPartial(ctr2c.rotate(p0, i * 3 * as).scale(p0, 1 + i * 0.2));
 		}
 		ctr2.closeSegStroke();
-		const ctr3 = ctr2.translate(100 * l1, 0);
+		const ctr3 = ctr2.translate(10 * l1, 0);
 		rGeome.logstr += ctr3.check();
 		rGeome.fig.addMain(ctr3);
-		const ctr4 = ctr2.translatePolar(Math.PI / 3, 100 * l1);
+		const ctr4 = ctr2.translatePolar(Math.PI / 3, 10 * l1);
 		rGeome.logstr += ctr4.check();
 		rGeome.fig.addMain(ctr4);
 		rGeome.logstr += 'verify_contour_4 draw successfully!\n';

@@ -380,12 +380,12 @@ class Contour extends AContour {
 				const ptScale = pt.scale(ic, ir);
 				nseg.px = ptScale.cx;
 				nseg.py = ptScale.cy;
-				if (seg.sType === segLib.SegEnum.eArc) {
-					nseg.radius *= ir;
-				}
-				if (segLib.isActiveCorner(seg.sType) && scaleCorner) {
-					nseg.radius *= ir;
-				}
+			}
+			if (seg.sType === segLib.SegEnum.eArc) {
+				nseg.radius *= ir;
+			}
+			if (segLib.isActiveCorner(seg.sType) && scaleCorner) {
+				nseg.radius *= ir;
 			}
 			if (nseg.sType !== segLib.SegEnum.eStart) {
 				rctr.addSeg(nseg);
