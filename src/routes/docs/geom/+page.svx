@@ -169,6 +169,7 @@ The method-2 is more stable because of the orthogonal projection.
 | *corner pointed*   | no change       | no change       |
 | *corner rounded*   | remove material | add material    |
 | *corner widened*   | add material    | remove material |
+| *corner wideAcc*   | add material    | remove material |
 
 
 ## Figure
