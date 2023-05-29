@@ -190,6 +190,7 @@ A *Figure* object consists in several lists:
 The typescript library *Geom* dependes only the standard library *Math* and the standard *canvas* primitives.
 
 Internally, *Geom* consists of several modules organised with the following dependencies:
+
 ![geom_modules.svg]({base}/geom_modules.svg)
 
 
