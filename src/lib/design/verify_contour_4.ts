@@ -29,24 +29,24 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const n1 = param['n1'];
 		const n2 = param['n2'];
 		const r1 = param['r1'];
-		const l1 = 50;
+		const l1 = 50 + t;
 		const as = (2 * Math.PI) / (n2 * 3);
+		const p0 = point(0, 0);
 		const ctr1 = contour(l1, 0);
 		const ctr1b = contour(l1, 0)
 			.addSegStrokeAP(as, 1.5 * l1)
-			//.addCornerRounded(r1)
+			.addCornerRounded(r1)
 			.addPointAP(2 * as, l1)
-			.addSegStroke()
-			//.addSegArc(0.45 * l1, false, true)
-			//.addCornerWidened(r1)
-			.addSegStrokeAP(3 * as, 1.1 * l1);
+			.addSegArc(0.45 * l1, false, true)
+			.addCornerWidened(r1)
+			.addSegStrokeAP(3 * as, 1.1 * l1)
+			.addCornerRounded(r1);
 		for (let i = 1; i < n1; i++) {
-			const p0 = point(0, 0);
-			const ctr1c = ctr1b.rotate(p0, 3 * as).scale(p0, 1.1);
+			const ctr1c = ctr1b.rotate(p0, i * 3 * as).scale(p0, i * 1.1);
 			ctr1.addPartial(ctr1c);
 		}
-		//ctr1.closeSegStroke();
-		//rGeome.logstr += ctr1.check();
+		ctr1.closeSegStroke();
+		rGeome.logstr += ctr1.check();
 		rGeome.fig.addMain(ctr1);
 		rGeome.logstr += 'verify_contour_4 draw successfully!\n';
 		rGeome.calcErr = false;

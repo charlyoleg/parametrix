@@ -344,7 +344,7 @@ class Contour extends AContour {
 		}
 		return rctr;
 	}
-	scale(ic: Point, ir: number): Contour {
+	scale(ic: Point, ir: number, scaleCorner = false): Contour {
 		const pStart = point(this.segments[0].px, this.segments[0].py);
 		const pStartScale = pStart.scale(ic, ir);
 		const rctr = new Contour(pStartScale.cx, pStartScale.cy);
@@ -356,6 +356,9 @@ class Contour extends AContour {
 				nseg.px = ptScale.cx;
 				nseg.py = ptScale.cy;
 				if (seg.sType === segLib.SegEnum.eArc) {
+					nseg.radius *= ir;
+				}
+				if (segLib.isActiveCorner(seg.sType) && scaleCorner) {
 					nseg.radius *= ir;
 				}
 			}
