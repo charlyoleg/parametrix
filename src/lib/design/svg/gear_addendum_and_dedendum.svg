@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="408.52563"
+   height="284.27762"
+   viewBox="0 0 108.08907 75.21512"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (1:1.2.2+202305151914+b0a8486541)"
+   sodipodi:docname="gears.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:zoom="1.1893044"
+     inkscape:cx="334.6494"
+     inkscape:cy="326.66153"
+     inkscape:window-width="1366"
+     inkscape:window-height="836"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <rect
+       x="75.861488"
+       y="1251.5566"
+       width="277.96835"
+       height="31.994486"
+       id="rect3049" />
+    <rect
+       x="422.8082"
+       y="1075.9572"
+       width="65.876877"
+       height="20.65447"
+       id="rect3041" />
+    <rect
+       x="425.802"
+       y="1087.4463"
+       width="45.196129"
+       height="19.416222"
+       id="rect3035" />
+    <rect
+       x="415.52158"
+       y="1086.8962"
+       width="42.305782"
+       height="20.754648"
+       id="rect3027" />
+    <rect
+       x="418.09167"
+       y="1077.2119"
+       width="38.820946"
+       height="32.481895"
+       id="rect3021" />
+    <rect
+       x="67.825706"
+       y="1358.3907"
+       width="52.190773"
+       height="24.399977"
+       id="rect3007" />
+    <rect
+       x="211.67084"
+       y="1334.2137"
+       width="83.302719"
+       height="48.307587"
+       id="rect3001" />
+    <rect
+       x="257.86963"
+       y="1223.868"
+       width="173.45676"
+       height="35.180927"
+       id="rect2983" />
+    <rect
+       x="331.33206"
+       y="843.46179"
+       width="163.35704"
+       height="40.192219"
+       id="rect2268-1" />
+    <rect
+       x="293.50467"
+       y="726.83801"
+       width="149.02356"
+       height="26.215099"
+       id="rect2362-7" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-16.096376,-261.51611)">
+    <rect
+       style="fill:#ffffff;stroke:#ffffff;stroke-width:0.264583"
+       id="rect3059"
+       width="107.82449"
+       height="74.950516"
+       x="16.228668"
+       y="261.64841" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,12.292693,117.30806)"
+       id="text2360-9"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2362-7);display:inline;fill:#0000ff"><tspan
+         x="293.50391"
+         y="739.81448"
+         id="tspan3362">addendum circle</tspan></text>
+    <circle
+       style="fill:none;stroke:#800000;stroke-width:0.264583"
+       id="path2237-3"
+       cx="46.063362"
+       cy="296.6694"
+       r="23.860231" />
+    <circle
+       style="fill:none;stroke:#0000ff;stroke-width:0.264583"
+       id="path2237-6-6"
+       cx="46.063362"
+       cy="296.6694"
+       r="28.572924" />
+    <circle
+       style="fill:none;stroke:#800000;stroke-width:0.264583"
+       id="path2237-9-0"
+       cx="80.054466"
+       cy="283.72333"
+       r="12.41958" />
+    <circle
+       style="fill:none;stroke:#0000ff;stroke-width:0.264582"
+       id="path2237-6-1-6"
+       cx="80.054466"
+       cy="283.72333"
+       r="20.666595" />
+    <circle
+       style="fill:none;stroke:#008000;stroke-width:0.264583"
+       id="path2237-9-0-2"
+       cx="80.054466"
+       cy="283.72333"
+       r="7.9018531" />
+    <circle
+       style="fill:none;stroke:#008000;stroke-width:0.264584"
+       id="path2237-9-0-2-6"
+       cx="46.063362"
+       cy="296.6694"
+       r="15.774741" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-8.2506874,92.880283)"
+       id="text2266-8"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2268-1);display:inline;fill:#800000"><tspan
+         x="331.33203"
+         y="856.43753"
+         id="tspan3364">primitive circle</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text2981"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2983);fill:#008000"><tspan
+         x="257.86914"
+         y="1236.8438"
+         id="tspan3366">dedendum circle</tspan></text>
+    <path
+       style="fill:none;stroke:#008000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 55.997202,311.27951 11.704796,13.80757"
+       id="path2987" />
+    <path
+       style="fill:none;stroke:#008000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 79.496512,292.53881 -8.213268,31.92886"
+       id="path2989" />
+    <path
+       style="fill:none;stroke:#aa0000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 66.191584,312.10414 12.003437,5.95196"
+       id="path2991" />
+    <path
+       style="fill:none;stroke:#aa0000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 82.176915,296.70872 -0.170829,19.8468"
+       id="path2993" />
+    <path
+       style="fill:none;stroke:#0000ff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 74.074255,307.55079 15.007063,4.08144"
+       id="path2995" />
+    <path
+       style="fill:none;stroke:#0000ff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 90.923559,302.9372 0.965978,7.52996"
+       id="path2997" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,22.844263,-71.200903)"
+       id="text2999"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect3001)"><tspan
+         x="211.66992"
+         y="1347.1895"
+         id="tspan3368">1</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,27.558627,-63.748374)"
+       id="text3005"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect3007)"><tspan
+         x="67.826172"
+         y="1371.3672"
+         id="tspan3370">2</tspan></text>
+    <path
+       style="fill:none;stroke:#0000ff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 89.638051,275.62516 6.29648,-4.94255"
+       id="path3011" />
+    <path
+       style="fill:none;stroke:#008000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 42.917829,281.37154 -1.33047,-8.02148"
+       id="path3015" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-24.096606,-16.253271)"
+       id="text3019"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect3021);fill:#0000ff"><tspan
+         x="418.0918"
+         y="1090.1875"
+         id="tspan3372">ah1</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-35.282189,-15.53546)"
+       id="text3025"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect3027);fill:#008000"><tspan
+         x="415.52148"
+         y="1099.8731"
+         id="tspan3374">dh1</tspan></text>
+    <path
+       style="fill:none;stroke:#008000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 82.595081,276.41814 1.675906,-4.2808"
+       id="path3031" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-69.716215,-11.535799)"
+       id="text3033"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect3035);fill:#008000"><tspan
+         x="425.80273"
+         y="1100.4219"
+         id="tspan3376">dh2</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-66.887992,-16.122483)"
+       id="text3039"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect3041);fill:#0000ff"><tspan
+         x="422.80859"
+         y="1088.9336"
+         id="tspan3378">ah2</tspan></text>
+    <path
+       style="fill:none;stroke:#0000ff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 44.484237,273.03851 -0.330219,-4.76395"
+       id="path3045"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text3047"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect3049)"><tspan
+         x="75.861328"
+         y="1264.5332"
+         id="tspan3380">gear addendum and dedendum</tspan></text>
+  </g>
+</svg>

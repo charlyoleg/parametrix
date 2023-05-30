@@ -4,7 +4,7 @@ category: documentation
 ---
 
 <script lang="ts">
-	//import { base } from '$app/paths';
+	import { base } from '$app/paths';
 </script>
 
 
@@ -12,6 +12,12 @@ category: documentation
 
 Many gears
 
+![gears_motion_transmission_via_adherence.svg]({base}/gears_motion_transmission_via_adherence.svg)
+![gear_adherence_replaced_by_teeth.svg]({base}/gear_adherence_replaced_by_teeth.svg)
+![gear_addendum_and_dedendum.svg]({base}/gear_addendum_and_dedendum.svg)
+![gear_module_and_tooth_thickness.svg]({base}/gear_module_and_tooth_thickness.svg)
+![gear_base_circle_for_involute.svg]({base}/gear_base_circle_for_involute.svg)
+![gear_wheel_circles.svg]({base}/gear_wheel_circles.svg)
 
 
 <style lang="scss">
