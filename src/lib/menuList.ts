@@ -12,6 +12,7 @@ import { pageDef as verifyContour1Def } from '$lib/design/verify_contour_1';
 import { pageDef as verifyContour2Def } from '$lib/design/verify_contour_2';
 import { pageDef as verifyContour3Def } from '$lib/design/verify_contour_3';
 import { pageDef as verifyContour4Def } from '$lib/design/verify_contour_4';
+import { pageDef as gearProfileWheelWheel } from '$lib/design/gear_profile_wheel_wheel';
 import type { tParamVal, tPageDef } from '$lib/design/aaParamGeom';
 import type { tStorePVal } from '$lib/storePVal';
 import { storePV } from '$lib/storePVal';
@@ -20,6 +21,7 @@ import { get, writable } from 'svelte/store';
 type tAllPageDef = { [index: string]: tPageDef };
 type tIcon = { [inedx: string]: string };
 const designDefs: tAllPageDef = {
+	gear_profile_wheel_wheel: gearProfileWheelWheel,
 	circles: circlesDef,
 	rectangle: rectangleDef,
 	verify_point: verifyPointDef,
@@ -40,8 +42,8 @@ const mDocs = ['readme'];
 const mAbout = ['about'];
 // to be updated when new pages are created
 const mLabel = [
-	['gears/circles'],
-	['architecture/rectangle'],
+	['gear/gear_profile_wheel_wheel'],
+	['junk/circles', 'junk/rectangle'],
 	[
 		'dev/verify_point',
 		'dev/verify_point_2',
@@ -58,6 +60,7 @@ const mLabel = [
 ];
 const mIcon: tIcon = {
 	index: 'page_index.svg',
+	gear_profile_wheel_wheel: 'page_gears.svg',
 	circles: 'page_circles.svg',
 	rectangle: 'page_rectangle.svg',
 	verify_point: 'page_verify_point.svg',
