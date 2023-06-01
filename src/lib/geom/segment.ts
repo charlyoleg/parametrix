@@ -15,7 +15,8 @@ import {
 	withinPiPi,
 	//withinZeroPi,
 	//withinHPiHPi,
-	isWithin
+	isWithin,
+	ffix
 } from './angle_utils';
 //import { colors, point2canvas, radius2canvas } from './canvas_utils';
 import {
@@ -436,7 +437,10 @@ function newRounded(
 	const a873 = withinPiPi(a78 - abi + Math.PI);
 	const a973 = withinPiPi(a79 - abi + Math.PI);
 	if (Math.abs(a973 - a873) > Math.PI + tolerance) {
-		gSegDbg.addMsg(`warn882: newRounded a873 or a972 larger than PI/2 ${a873} ${a973}\n`);
+		gSegDbg.addMsg(
+			`warn882: newRounded a873 or a972 larger than PI/2 ` +
+				`${ffix(a873)} ${ffix(a973)} at ${ffix(p7.cx)} ${ffix(p7.cy)}\n`
+		);
 	}
 	// end of few checks
 	const ccw2 = aph > 0 ? false : true;
@@ -606,7 +610,10 @@ function wideAccessSide(sign: number, one: Segment2, p8one: Point, ag: tPrepare)
 				const lh8a = rightTriLbFromLaLc(one.radius, lh4);
 				p8a = closestPoint(ag.abi, lh8a, ph, p8one);
 			} else {
-				gSegDbg.addMsg(`warn222: wideAccess not possible on arc ${one.radius} ${lh4}\n`);
+				gSegDbg.addMsg(
+					`warn222: wideAccess not possible on arc ` +
+						`${ffix(one.radius)} ${ffix(lh4)} at ${ffix(p8one.cx)} ${ffix(p8one.cy)}\n`
+				);
 				p8a = p8one;
 				p8b = p8one;
 			}

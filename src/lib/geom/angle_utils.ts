@@ -22,7 +22,7 @@ function roundZero(ix: number): number {
 	return rx;
 }
 
-function withinZero2Pi(ia: number) {
+function withinZero2Pi(ia: number): number {
 	let ra = ia % (2 * Math.PI);
 	if (ra < 0) {
 		//console.log(`dbg026: ${ra}`);
@@ -31,7 +31,7 @@ function withinZero2Pi(ia: number) {
 	return ra;
 }
 
-function withinPiPi(ia: number) {
+function withinPiPi(ia: number): number {
 	let ra = withinZero2Pi(ia);
 	if (ra > Math.PI) {
 		ra -= 2 * Math.PI;
@@ -39,7 +39,7 @@ function withinPiPi(ia: number) {
 	return ra;
 }
 
-function withinZeroPi(ia: number) {
+function withinZeroPi(ia: number): number {
 	let ra = ia % Math.PI;
 	if (ra < 0) {
 		ra += Math.PI;
@@ -47,7 +47,7 @@ function withinZeroPi(ia: number) {
 	return ra;
 }
 
-function withinHPiHPi(ia: number) {
+function withinHPiHPi(ia: number): number {
 	let ra = withinZeroPi(ia);
 	if (ra > Math.PI / 2) {
 		ra -= Math.PI;
@@ -55,13 +55,13 @@ function withinHPiHPi(ia: number) {
 	return ra;
 }
 
-function orientedArc(aStart: number, aStop: number, ccw: boolean) {
+function orientedArc(aStart: number, aStop: number, ccw: boolean): number {
 	const arc = withinPiPi(aStop) - withinPiPi(aStart);
 	const arc2 = ccw ? withinZero2Pi(arc) : withinZero2Pi(arc) - 2 * Math.PI;
 	return arc2;
 }
 
-function isWithin(aNew: number, aStart: number, aStop: number, ccw: boolean) {
+function isWithin(aNew: number, aStart: number, aStop: number, ccw: boolean): boolean {
 	let rYes = false;
 	if (roundZero(withinPiPi(aNew - aStart)) === 0) {
 		rYes = true;
@@ -77,6 +77,10 @@ function isWithin(aNew: number, aStart: number, aStop: number, ccw: boolean) {
 	return rYes;
 }
 
+function ffix(ifloat: number): string {
+	return ifloat.toFixed(2);
+}
+
 /* export */
 
 export {
@@ -89,5 +93,6 @@ export {
 	withinZeroPi,
 	withinHPiHPi,
 	orientedArc,
-	isWithin
+	isWithin,
+	ffix
 };
