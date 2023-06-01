@@ -38,7 +38,7 @@ abstract class AContour {
 	abstract generateContour(): AContour;
 	abstract generatePoints(): Array<Point>;
 	abstract generateLines(): Array<Line>;
-	abstract check(): void;
+	abstract check(): string;
 }
 
 /* Contour class */
@@ -671,8 +671,8 @@ class ContourCircle extends AContour {
 	generateLines(): Array<Line> {
 		return [];
 	}
-	check() {
-		true;
+	check(): string {
+		return '';
 	}
 }
 
