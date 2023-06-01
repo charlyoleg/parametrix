@@ -10,14 +10,110 @@ category: documentation
 
 # {title}
 
-Many gears
+## The problematic
 
 ![gears_motion_transmission_via_adherence.svg]({base}/gears_motion_transmission_via_adherence.svg)
+
+*Adherence* can not transfer large effort because the tangential force is limited by the radial pressure.
+
+## The solution
+
 ![gear_adherence_replaced_by_teeth.svg]({base}/gear_adherence_replaced_by_teeth.svg)
+
+The adherent surface of wheels is replaced by teeth. Those teeth can apply higher pressure and forces.
+
+## The solution details
+
 ![gear_addendum_and_dedendum.svg]({base}/gear_addendum_and_dedendum.svg)
+
+The teeth consist of jutting above the original circle, called *addendum*, and recess below the original circle called *dedendum*. The original circle becomes the reference circle and is called *primitive circle* or *pitch circle*. The primitive circle is an abstract circle not directly noticeable.
+
+The *addendum circle* sets the highest point of the teeth. The *dedendum circle* sets the lowest point of the teeth. So the teeth are shaped between the dedendum circle and the addendum circle.
+
+The height of the dedendum of the first wheel must be equal or larger than the addendum of the second wheel. Also, the height of the dedendum of the second wheel must be equal or larger than the addendem of the first wheel.
+
 ![gear_module_and_tooth_thickness.svg]({base}/gear_module_and_tooth_thickness.svg)
+
+A wheel is divided in N teeth with equal size and shape. The thickness of a tooth consists of the thickness of the tooth-addendum and the thickness of the tooth-dedendum. The thickness of the teeth of wheel-1 is equal to the thickness of the teeth of wheel-2.
+
+```
+pr1: radius of the primitive circle of wheel-1
+pr2: radius of the primitive circle of wheel-2
+N1: number of teeth of wheel-1
+N2: number of teeth of wheel-2
+Circumference of wheel-1: 2*pr1*PI
+Thickness of one tooth of wheel-1: 2*pr1*PI/N1
+Circumference of wheel-1: 2*pr2*PI
+Thickness of one tooth of wheel-2: 2*pr2*PI/N2
+As the thickness of teeth of wheel-1 and wheel-2 are equal: 2*pr1*PI/N1=2*pr2*PI/N2
+So: pr2/N2=pr1/N1
+Let's define the gear module as following: m=2*pr1/N1=2*pr2/N2
+The thickness of a teeth (thickness of addendum + thickness of dedendum) is m*PI
+```
+
+
+The thickness of the tooth-dedendun of the wheel-1 is equal or larger than the thickness of the tooth-addendum of the wheel-2. Also, the thickness of the tooth-dedendum of the wheel-2 is equal or larger than the thickness of the tooth-addendum of the wheel-1. The thickness of tooth-addendum and tooth-dedendum can be measured at any height (i.e. circle) and in particular at the primitive circle.
+
+## The tooth profile
+
 ![gear_base_circle_for_involute.svg]({base}/gear_base_circle_for_involute.svg)
+
+The pressure angle is defined as the angle between the perpendicular of the inter-axis line and the action line. In the industrie, this pressure angle is standardized to the values 14.5 degree or 20 degree.
+
+A small angle of pressure leads to a more efficient gear but more fragile teeth. To reduce the friction and therefore increase the efficiency, the gear must have more teeth and a smaller angle of pressure.
+
+The profile of a tooth is an *involute of circle*. An involute of circle is defined by its *base circle*. The left-side profile of a tooth can be different from the right-side profile of a tooth and therefore have different base circles.
+
+If wheel-1 is driving and rotation in the clock-wise direction, then the right side of its teeth push the right side of the teeth of the wheel-2. In this case, the wheel-2 rotate in the counter-clock-wise direction and the angle of pressue makes a positive angle.
+
+
+| direction-1 | drive-1 | tooth-side-1 | base-circle-1 | direction-2 | drive-2 | tooth-side-2 | base-circle-2 | angle-of-pressure |
+|-------------|---------|--------------|---------------|-------------|---------|--------------|---------------|-------------------|
+| CW          | driving | right        | right         | CCW         | driven  | right        | right         | positive          |
+| CCW         | driving | left         | left          | CW          | driven  | left         | left          | negative          |
+| CW          | driven  | left         | left          | CCW         | driving | left         | left          | negative          |
+| CCW         | driven  | right        | right         | CW          | driving | right        | right         | positive          |
+
+
+```
+Let's define:
+brr1: radius of base circle of wheel-1 right
+blr1: radius of base circle of wheel-1 left
+brr2: radius of base circle of wheel-2 right
+blr2: radius of base circle of wheel-2 left
+N1: number of teeth of wheel-1
+N2: number of teeth of wheel-2
+pr1: radius of the primitive circle of wheel-1
+pr2: radius of the primitive circle of wheel-2
+We have:
+brr1/brr2 = blr1/blr2 = N1/N2 = pr1/pr2
+Note:
+brr1 and blr1 can be different as long as they respect the previous constraint
+```
+
+## Summary of the circles of a gear-wheel
+
 ![gear_wheel_circles.svg]({base}/gear_wheel_circles.svg)
+
+## The inter-axis distance
+
+![gear_inter_axis_minimum_distance.svg]({base}/gear_inter_axis_minimum_distance.svg)
+![gear_inter_axis_maximum_distance.svg]({base}/gear_inter_axis_maximum_distance.svg)
+
+## The base circle
+
+### The largest possible base circles
+
+![gear_large_base_radius.svg]({base}/gear_large_base_radius.svg)
+
+### The smallest possible base circles
+
+![gear_small_base_radius.svg]({base}/gear_small_base_radius.svg)
+
+### The optimum size for base circles
+
+![gear_optimum_base_radius.svg]({base}/gear_optimum_base_radius.svg)
+![gear_optimum_base_radius_with_longer_inter_axis.svg]({base}/gear_optimum_base_radius_with_longer_inter_axis.svg)
 
 
 <style lang="scss">
@@ -25,5 +121,13 @@ Many gears
 
 	h1 {
 		margin: 1rem;
+	}
+	table {
+		border-collapse: collapse;
+	}
+	table > thead > tr > th,
+	table > tbody > tr > td {
+		padding: 0.1rem 1rem;
+		border: 1px solid purple;
 	}
 </style>
