@@ -30,6 +30,8 @@ The teeth consist of jutting above the original circle, called *addendum*, and r
 
 The *addendum circle* sets the highest point of the teeth. The *dedendum circle* sets the lowest point of the teeth. So the teeth are shaped between the dedendum circle and the addendum circle.
 
+![gear_addendeum_dedendum_sizes.svg]({base}/gear_addendeum_dedendum_sizes.svg)
+
 The height of the dedendum of the first wheel must be equal or larger than the addendum of the second wheel. Also, the height of the dedendum of the second wheel must be equal or larger than the addendem of the first wheel.
 
 ![gear_module_and_tooth_thickness.svg]({base}/gear_module_and_tooth_thickness.svg)
@@ -62,7 +64,12 @@ The pressure angle is defined as the angle between the perpendicular of the inte
 
 A small angle of pressure leads to a more efficient gear but more fragile teeth. To reduce the friction and therefore increase the efficiency, the gear must have more teeth and a smaller angle of pressure.
 
+![gear_base_right_circle_for_involute.svg]({base}/gear_base_right_circle_for_involute.svg)
+![gear_base_left_circle_for_involute.svg]({base}/gear_base_left_circle_for_involute.svg)
+
 The profile of a tooth is an *involute of circle*. An involute of circle is defined by its *base circle*. The left-side profile of a tooth can be different from the right-side profile of a tooth and therefore have different base circles.
+
+![gear_right_left_base_circles.svg]({base}/gear_right_left_base_circles.svg)
 
 If wheel-1 is driving and rotation in the clock-wise direction, then the right side of its teeth push the right side of the teeth of the wheel-2. In this case, the wheel-2 rotate in the counter-clock-wise direction and the angle of pressue makes a positive angle.
 
@@ -114,6 +121,9 @@ brr1 and blr1 can be different as long as they respect the previous constraint
 
 ![gear_optimum_base_radius.svg]({base}/gear_optimum_base_radius.svg)
 ![gear_optimum_base_radius_with_longer_inter_axis.svg]({base}/gear_optimum_base_radius_with_longer_inter_axis.svg)
+
+
+
 
 
 <style lang="scss">
