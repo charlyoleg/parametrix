@@ -22,6 +22,10 @@
 				<a href="https://github.com/VVS1864/SAMoCAD">SAMoCAD</a>
 				<small>An unmaintained python2/OpenGL tool</small>
 			</li>
+			<li>
+				<a href="https://github.com/zecruel/CadZinho">CadZinho</a>
+				<small>A minimalist 2D CAD. Run also in the browser</small>
+			</li>
 		</MyUl>
 	</li>
 	<li>
