@@ -38,7 +38,6 @@ const designDefs: tAllPageDef = {
 
 /* Create the Header Menu and Index Menu */
 const mIndex = ['index'];
-const mDocs = ['readme'];
 const mAbout = ['about'];
 // to be updated when new pages are created
 const mLabel = [
@@ -57,6 +56,7 @@ const mLabel = [
 		'dev/verify_contour_4'
 	],
 	[
+		'readme',
 		'docs/concept',
 		'docs/ui',
 		'docs/geom_dev',
@@ -138,12 +138,8 @@ class genMenu {
 	}
 	makeMenuMenu() {
 		const labelMenu: Array<tArrayLabel> = [];
-		for (const [idx, iMenu] of this.memMenu.entries()) {
-			if (idx === 0) {
-				labelMenu.push(mIndex.concat(iMenu, mDocs, mAbout));
-			} else {
-				labelMenu.push(mIndex.concat(iMenu, mAbout));
-			}
+		for (const iMenu of this.memMenu) {
+			labelMenu.push(mIndex.concat(iMenu, mAbout));
 		}
 		const rMenuMenu: Array<tMenu> = [];
 		for (const arr1 of labelMenu) {
@@ -157,7 +153,7 @@ class genMenu {
 		for (const iMenu of this.memMenu) {
 			labelMenu.push(iMenu);
 		}
-		labelMenu.push(mDocs.concat(mAbout));
+		labelMenu.push(mAbout);
 		const rIndexMenu: Array<tMenu> = [];
 		for (const arr1 of labelMenu) {
 			rIndexMenu.push(arr1.map((menu: string) => oneMenu(menu)));
