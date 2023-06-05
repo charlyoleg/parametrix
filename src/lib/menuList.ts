@@ -136,7 +136,7 @@ class genMenu {
 	push(iMenu: tArrayLabel) {
 		this.memMenu.push(iMenu);
 	}
-	makeMenuMenu() {
+	makeMenuMenu(): Array<tMenu> {
 		const labelMenu: Array<tArrayLabel> = [];
 		for (const iMenu of this.memMenu) {
 			labelMenu.push(mIndex.concat(iMenu, mAbout));
@@ -147,7 +147,7 @@ class genMenu {
 		}
 		return rMenuMenu;
 	}
-	makeIndexMenu() {
+	makeIndexMenu(): Array<tMenu> {
 		const labelMenu: Array<tArrayLabel> = [];
 		labelMenu.push(mIndex);
 		for (const iMenu of this.memMenu) {
@@ -171,7 +171,7 @@ for (let i = 1; i < mLabel.length; i++) {
 const menuMenu: Array<tMenu> = oMenu.makeMenuMenu();
 const indexMenu: Array<tMenu> = oMenu.makeIndexMenu();
 
-/* Managing thr Header Menu */
+/* Managing the Header Menu */
 // the variable to store the active menu
 const storeMenu = writable(0);
 function setMenu(iMenu: number): void {
@@ -198,7 +198,7 @@ function getMenuPath(iMenu: tMenu): Array<string> {
 	}
 	return rPath;
 }
-function findMenuMenu(iPath: string) {
+function findMenuMenu(iPath: string): tMenu {
 	const univMenu = getLabelPath(mIndex.concat(mAbout)); // list of universal menus
 	if (!univMenu.includes(iPath)) {
 		for (const [lidx, lmenu] of menuMenu.entries()) {
