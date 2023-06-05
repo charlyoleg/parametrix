@@ -56,7 +56,7 @@ const mLabel = [
 		'dev/verify_contour_4'
 	],
 	[
-		'readme',
+		'docs/readme',
 		'docs/concept',
 		'docs/ui',
 		'docs/geom_dev',
