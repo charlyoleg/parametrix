@@ -30,6 +30,7 @@
 	</ul>
 </article>
 <article>
+	Discover further <i>Parametrix</i> with those following links:
 	<ul>
 		<li><a href="https://github.com/charlyoleg/parametrix">Source code</a></li>
 		<li><a href="https://charlyoleg.github.io/parametrix/">Public instance</a></li>
