@@ -18,9 +18,7 @@
 						src="{base}/{menuItem.svg}"
 						alt={menuItem.label}
 					/>
-					<a href="{base}{menuItem.path}"
-						>{listIdx + 1}.{itemIdx + 1} - {menuItem.label}</a
-					>
+					<a href="{base}{menuItem.path}">{listIdx}.{itemIdx + 1} - {menuItem.label}</a>
 				</li>
 			{/each}
 		</ul>
