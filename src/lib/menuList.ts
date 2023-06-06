@@ -67,6 +67,7 @@ const mLabel = [
 			'docs/geom_dev',
 			'docs/geom_user',
 			'docs/gears',
+			'docs/involute',
 			'docs/cad_ecosystem'
 		]
 	}
@@ -91,6 +92,7 @@ const mIcon: tIcon = {
 	geom_dev: 'page_geom.svg',
 	geom_user: 'page_geom.svg',
 	gears: 'page_gears.svg',
+	involute: 'page_gears.svg',
 	cad_ecosystem: 'page_concept.svg',
 	readme: 'page_readme.svg',
 	about: 'page_about.svg'

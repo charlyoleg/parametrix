@@ -1,0 +1,27 @@
+---
+title: Involute of circle
+category: documentation
+---
+
+<script lang="ts">
+	import { base } from '$app/paths';
+</script>
+
+
+# {title}
+
+![involute_of_circle_R0.svg]({base}/involute_of_circle_R0.svg)
+
+An *involute of circle* is the curve drawn by the extremity of a string rolled out from a based circle. The shape of an involute depends only on the size of the base circle (i.e. its radius). An *involute of circle* is completely defined with the radius of the *base circle* and the angle of the start position.
+
+![involute_of_circle_Ri1_u0.svg]({base}/involute_of_circle_Ri1_u0.svg)
+![involute_of_circle_Ri2_u2.svg]({base}/involute_of_circle_Ri2_u2.svg)
+
+
+<style lang="scss">
+	@use '$lib/style/colors.scss';
+
+	h1 {
+		margin: 1rem;
+	}
+</style>
