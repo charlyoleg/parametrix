@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { tMenu } from '$lib/menuList';
+	import type { tMenuFull } from '$lib/menuList';
 	//import type { HTMLAttributes } from 'svelte/elements';
 	//interface $$Props extends HTMLAttributes<HTMLElement> {
 	//	menuList: tMenu;
@@ -7,13 +7,12 @@
 
 	import { base } from '$app/paths';
 
-	export let menuList: tMenu;
+	export let menuList: tMenuFull;
 	export let menuSelected: string;
-	export let category: string;
 </script>
 
 <nav>
-	{#each menuList as menuItem}
+	{#each menuList.menu as menuItem}
 		<div class="oneMenu">
 			<a href="{base}{menuItem.path}" class:page-active={menuSelected === menuItem.path}
 				>{menuItem.label}</a
@@ -21,8 +20,8 @@
 			<div class="arrow" class:arrow-active={menuSelected === menuItem.path} />
 		</div>
 	{/each}
-	{#if category}
-		<span>[{category}]</span>
+	{#if menuList.category}
+		<span>[{menuList.category}]</span>
 	{/if}
 </nav>
 

@@ -41,29 +41,35 @@ const mIndex = ['index'];
 const mAbout = ['about'];
 // to be updated when new pages are created
 const mLabel = [
-	['gear/gear_profile_wheel_wheel'],
-	['junk/circles', 'junk/rectangle'],
-	[
-		'dev/verify_point',
-		'dev/verify_point_2',
-		'dev/verify_line',
-		'dev/verify_line_2',
-		'dev/verify_line_3',
-		'dev/verify_vector',
-		'dev/verify_contour_1',
-		'dev/verify_contour_2',
-		'dev/verify_contour_3',
-		'dev/verify_contour_4'
-	],
-	[
-		'docs/readme',
-		'docs/concept',
-		'docs/ui',
-		'docs/geom_dev',
-		'docs/geom_user',
-		'docs/gears',
-		'docs/cad_ecosystem'
-	]
+	{ category: 'Gears', pages: ['gear/gear_profile_wheel_wheel'] },
+	{ category: 'Junk designs', pages: ['junk/circles', 'junk/rectangle'] },
+	{
+		category: 'Geometrix verification',
+		pages: [
+			'dev/verify_point',
+			'dev/verify_point_2',
+			'dev/verify_line',
+			'dev/verify_line_2',
+			'dev/verify_line_3',
+			'dev/verify_vector',
+			'dev/verify_contour_1',
+			'dev/verify_contour_2',
+			'dev/verify_contour_3',
+			'dev/verify_contour_4'
+		]
+	},
+	{
+		category: 'Docs',
+		pages: [
+			'docs/readme',
+			'docs/concept',
+			'docs/ui',
+			'docs/geom_dev',
+			'docs/geom_user',
+			'docs/gears',
+			'docs/cad_ecosystem'
+		]
+	}
 ];
 const mIcon: tIcon = {
 	index: 'page_index.svg',
@@ -103,13 +109,22 @@ for (const design of Object.keys(designDefs)) {
 storePV.set(iniPV);
 /* end of initialization storePV */
 
-type tArrayLabel = Array<string>;
+type tPageList = Array<string>;
+type tArrayLabel = {
+	category: string;
+	pages: tPageList;
+};
 type tMenuElem = {
 	path: string;
 	label: string;
 	svg: string;
 };
 type tMenu = Array<tMenuElem>;
+type tMenuFull = {
+	menu: tMenu;
+	category: string;
+};
+type tMenuFullList = Array<tMenuFull>;
 
 function oneMenu(menuName: string): tMenuElem {
 	const re = /^.*\//g;
@@ -129,34 +144,49 @@ function oneMenu(menuName: string): tMenuElem {
 	return rMenu;
 }
 class genMenu {
-	memMenu: Array<tArrayLabel> = [];
+	memMenu: Array<tPageList>;
+	memCategory: Array<string>;
 	constructor(firstMenu: tArrayLabel) {
-		this.memMenu.push(firstMenu);
+		this.memMenu = [];
+		this.memMenu.push(firstMenu.pages);
+		this.memCategory = [];
+		this.memCategory.push(firstMenu.category);
 	}
 	push(iMenu: tArrayLabel) {
-		this.memMenu.push(iMenu);
+		this.memMenu.push(iMenu.pages);
+		this.memCategory.push(iMenu.category);
 	}
-	makeMenuMenu(): Array<tMenu> {
-		const labelMenu: Array<tArrayLabel> = [];
+	makeMenuMenu(): tMenuFullList {
+		const labelMenu: Array<tPageList> = [];
 		for (const iMenu of this.memMenu) {
 			labelMenu.push(mIndex.concat(iMenu, mAbout));
 		}
-		const rMenuMenu: Array<tMenu> = [];
-		for (const arr1 of labelMenu) {
-			rMenuMenu.push(arr1.map((menu: string) => oneMenu(menu)));
+		const rMenuMenu: tMenuFullList = [];
+		for (const [idx, arr1] of labelMenu.entries()) {
+			rMenuMenu.push({
+				category: this.memCategory[idx],
+				menu: arr1.map((menu: string) => oneMenu(menu))
+			});
 		}
 		return rMenuMenu;
 	}
-	makeIndexMenu(): Array<tMenu> {
-		const labelMenu: Array<tArrayLabel> = [];
+	makeIndexMenu(): tMenuFullList {
+		const labelMenu: Array<tPageList> = [];
 		labelMenu.push(mIndex);
 		for (const iMenu of this.memMenu) {
 			labelMenu.push(iMenu);
 		}
 		labelMenu.push(mAbout);
-		const rIndexMenu: Array<tMenu> = [];
-		for (const arr1 of labelMenu) {
-			rIndexMenu.push(arr1.map((menu: string) => oneMenu(menu)));
+		const rIndexMenu: tMenuFullList = [];
+		for (const [idx, arr1] of labelMenu.entries()) {
+			let category = '';
+			if (idx > 0 && idx - 1 < this.memCategory.length) {
+				category = this.memCategory[idx - 1];
+			}
+			rIndexMenu.push({
+				category: category,
+				menu: arr1.map((menu: string) => oneMenu(menu))
+			});
 		}
 		return rIndexMenu;
 	}
@@ -168,8 +198,8 @@ for (let i = 1; i < mLabel.length; i++) {
 }
 
 /* The Header Menu and Index Menu */
-const menuMenu: Array<tMenu> = oMenu.makeMenuMenu();
-const indexMenu: Array<tMenu> = oMenu.makeIndexMenu();
+const menuMenu: tMenuFullList = oMenu.makeMenuMenu();
+const indexMenu: tMenuFullList = oMenu.makeIndexMenu();
 
 /* Managing the Header Menu */
 // the variable to store the active menu
@@ -177,14 +207,14 @@ const storeMenu = writable(0);
 function setMenu(iMenu: number): void {
 	storeMenu.set(iMenu);
 }
-function getMenuMenu(): tMenu {
+function getMenuMenu(): tMenuFull {
 	const rMenuMenu = menuMenu[get(storeMenu)];
 	//for (const menu of rMenuMenu) {
 	//	console.log(`dbg065: ${menu.path}`);
 	//}
 	return rMenuMenu;
 }
-function getLabelPath(iMenu: tArrayLabel): Array<string> {
+function getLabelPath(iMenu: tPageList): Array<string> {
 	const rPath: Array<string> = [];
 	for (const lItem of iMenu) {
 		rPath.push(oneMenu(lItem).path);
@@ -198,11 +228,11 @@ function getMenuPath(iMenu: tMenu): Array<string> {
 	}
 	return rPath;
 }
-function findMenuMenu(iPath: string): tMenu {
+function findMenuMenu(iPath: string): tMenuFull {
 	const univMenu = getLabelPath(mIndex.concat(mAbout)); // list of universal menus
 	if (!univMenu.includes(iPath)) {
 		for (const [lidx, lmenu] of menuMenu.entries()) {
-			if (getMenuPath(lmenu).includes(iPath)) {
+			if (getMenuPath(lmenu.menu).includes(iPath)) {
 				setMenu(lidx);
 				//console.log(`dbg080: ${lidx}`);
 				break;
@@ -219,5 +249,5 @@ function checkEmptyPath(iPath: string): string {
 	return rPath;
 }
 
-export type { tMenu };
+export type { tMenuFull };
 export { checkEmptyPath, findMenuMenu, indexMenu, designDefs };

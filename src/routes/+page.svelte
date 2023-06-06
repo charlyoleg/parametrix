@@ -5,10 +5,13 @@
 
 <h1>Parametrix index</h1>
 <article>
-	{#each indexMenu as menuLi, listIdx}
+	{#each indexMenu as menuCategory, listIdx}
 		<div class="separation" />
+		{#if menuCategory.category !== ''}
+			<h2>{listIdx} - {menuCategory.category}</h2>
+		{/if}
 		<ul>
-			{#each menuLi as menuItem, itemIdx}
+			{#each menuCategory.menu as menuItem, itemIdx}
 				<li>
 					<img
 						class:alter={(listIdx + itemIdx) % 2 === 1}
