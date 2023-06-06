@@ -29,6 +29,18 @@
 		<li>Rework of cornes (rounded, widened and wide-access)</li>
 	</ul>
 </article>
+<article>
+	<ul>
+		<li><a href="https://github.com/charlyoleg/parametrix">Source code</a></li>
+		<li><a href="https://charlyoleg.github.io/parametrix/">Public instance</a></li>
+		<li>
+			<a href="https://charlyoleg.github.io/parametrix/docs/readme"
+				>Installation instructions</a
+			>
+		</li>
+		<li><a href="https://charlyoleg.github.io/parametrix/docs/concept">Documentation</a></li>
+	</ul>
+</article>
 
 <style lang="scss">
 	@use '$lib/style/colors.scss';

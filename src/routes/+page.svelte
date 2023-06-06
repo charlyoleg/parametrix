@@ -18,7 +18,13 @@
 						src="{base}/{menuItem.svg}"
 						alt={menuItem.label}
 					/>
-					<a href="{base}{menuItem.path}">{listIdx}.{itemIdx + 1} - {menuItem.label}</a>
+					{#if menuCategory.category !== ''}
+						<a href="{base}{menuItem.path}"
+							>{listIdx}.{itemIdx + 1} - {menuItem.label}</a
+						>
+					{:else}
+						<a href="{base}{menuItem.path}" class="noindex">{menuItem.label}</a>
+					{/if}
 				</li>
 			{/each}
 		</ul>
@@ -34,12 +40,11 @@
 	}
 	article {
 		margin: 0rem;
-		column-count: 1;
-		/*column-width: 16rem;*/
+		column-width: 30rem;
 		column-gap: 2rem;
 	}
 	article > div.separation {
-		width: 13rem;
+		width: 28rem;
 		height: 0.5rem;
 		border-radius: 0.3rem;
 		margin: 1rem;
@@ -75,5 +80,8 @@
 	article > ul > li > a {
 		text-decoration: none;
 		margin-left: 0.1rem;
+	}
+	article > ul > li > a.noindex {
+		margin-left: 3rem;
 	}
 </style>
