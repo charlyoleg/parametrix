@@ -24,9 +24,9 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      showgrid="false"
-     inkscape:zoom="1.1893044"
-     inkscape:cx="303.95919"
-     inkscape:cy="739.5079"
+     inkscape:zoom="1.6819304"
+     inkscape:cx="101.96617"
+     inkscape:cy="1547.9237"
      inkscape:window-width="1366"
      inkscape:window-height="836"
      inkscape:window-x="0"
@@ -35,6 +35,12 @@
      inkscape:current-layer="layer1" />
   <defs
      id="defs2">
+    <rect
+       x="249.08832"
+       y="465.56903"
+       width="254.70872"
+       height="49.752171"
+       id="rect501" />
     <marker
        style="overflow:visible"
        id="Arrow1L-5-9"
@@ -176,7 +182,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1409-9-1);display:inline"><tspan
          x="297.44727"
          y="275.55081"
-         id="tspan12530">i1</tspan></text>
+         id="tspan1957">i1</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L-7-2)"
        d="m 104.84602,159.08871 c 0,0 -1.3291,-0.2713 -1.91702,-0.0503 -0.58571,0.22019 -1.27957,1.2491 -1.27957,1.2491"
@@ -194,7 +200,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1409-7-2);display:inline"><tspan
          x="297.44727"
          y="275.55081"
-         id="tspan12532">i1</tspan></text>
+         id="tspan1959">i1</tspan></text>
     <circle
        style="fill:none;stroke:#808080;stroke-width:0.264583"
        id="path244-2"
@@ -221,7 +227,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1409-9);display:inline"><tspan
          x="297.44727"
          y="275.55081"
-         id="tspan12534">i1</tspan></text>
+         id="tspan1961">i1</tspan></text>
     <path
        style="fill:none;stroke:#ff0000;stroke-width:0.264581px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 55.513417,140.96466 68.844253,31.34922"
@@ -233,7 +239,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1503-3);display:inline"><tspan
          x="134.53516"
          y="191.25198"
-         id="tspan12536">R</tspan></text>
+         id="tspan1963">R</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-1.5205565,103.15282)"
@@ -241,7 +247,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1529-0);display:inline"><tspan
          x="165.53711"
          y="240.91214"
-         id="tspan12538">O</tspan></text>
+         id="tspan1965">O</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-26.818184,77.4519)"
@@ -249,7 +255,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1541-6);display:inline"><tspan
          x="277.39062"
          y="240.36722"
-         id="tspan12540">ABC</tspan></text>
+         id="tspan1967">ABC</tspan></text>
     <path
        style="fill:none;stroke:#ff00ff;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker1720-7)"
        d="m 55.603725,140.838 c 0,0 0.837945,-1.57557 0.946517,-2.44173 0.332167,-2.64937 -0.05967,-5.43928 -0.961759,-7.95239 -0.6741,-1.87797 -1.867327,-3.58056 -3.224631,-5.04305 -2.030638,-2.18802 -4.625622,-3.80283 -7.164391,-5.37303 -2.288797,-1.4156 -7.21876,-3.61556 -7.21876,-3.61556"
@@ -262,7 +268,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2254-0);display:inline"><tspan
          x="62.585938"
          y="341.46097"
-         id="tspan12542">involute of circle (R, i1) at u=0</tspan></text>
+         id="tspan1969">involute of circle (R, i1)</tspan></text>
     <path
        style="fill:none;stroke:#008080;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker1720-7)"
        d="m 55.595977,140.99952 4.47393,-9.98793"
@@ -279,5 +285,13 @@
        style="fill:none;stroke:#cccccc;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 104.97537,171.84457 c 0,-0.81514 0,-17.01888 0,-17.01888"
        id="path4963" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,0.31830558,-8.7822845)"
+       id="text499"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect501)"><tspan
+         x="249.08789"
+         y="478.54495"
+         id="tspan1971">C: point of the involute at u=0</tspan></text>
   </g>
 </svg>
