@@ -10,14 +10,50 @@ category: documentation
 
 # {title}
 
+An *involute of circle* is the curve drawn by the extremity of a string rolled out from a *base circle*. The shape of an involute depends only on the size of the *base circle* (i.e. its radius). An *involute of circle* is completely defined with the radius of the *base circle* and the angle of the start position.
+
 ![involute_of_circle_R0.svg]({base}/involute_of_circle_R0.svg)
 ![negative_involute_of_circle_R0.svg]({base}/negative_involute_of_circle_R0.svg)
 
-An *involute of circle* is the curve drawn by the extremity of a string rolled out from a based circle. The shape of an involute depends only on the size of the base circle (i.e. its radius). An *involute of circle* is completely defined with the radius of the *base circle* and the angle of the start position.
+```
+OB=R
+BC=arc(BA)=u*R
+L=OC=sqrt(R**2+(u*R)**2)=R*sqrt(1+u**2)
+u=v+w
+v=atan(u*R/R)=atan(u) if u<PI/2
+w=u-v=u-atan(u)
+u=sqrt((L/R)**2-1)
+u=f(w)? [I don't know how to calculate analytically u from w]
+```
+
+So we can calculate directly (with a formula):
+- With u, we get L and w
+- With L, we get u and then w
+- With w, we can not get u directly. We can only approximate it iteratively
+
+The curve of the *involute of circle* can be described with *polar coordinates* as a *parametric function*:
+```
+u -> [L: R*sqrt(1+u**2), w: u-atan(u)]
+```
 
 ![involute_of_circle_Ri1_u0.svg]({base}/involute_of_circle_Ri1_u0.svg)
 ![involute_of_circle_Ri2_u2.svg]({base}/involute_of_circle_Ri2_u2.svg)
 
+```
+if we choose u2=-j=i1-i2, then
+- C is on BF
+- BC = R*u2 = -j*R = R*i1-R*i2
+- dBC/dt = -R*di2/dt = R*dj/dt
+- inclination of tangent in C = i1
+```
+
+For any initial angle i1 of an *involute of circle*, we construct the line called *line of action* or *line of pressure* going through B, the first point of the involute at the initial position i1 and the angle of inclination i1 - PI / 2. With those definitions we have those results:
+- The angle of inclination of the tangent of B is i1
+- For any rotation of angle j, it exists a point C at the intersection of the involute and the *line of action*
+- The angle of inclination of the tangent of C is i1
+- The distance BC is R*j
+
+Conclusion, if we have a plan with an inclination angle i3, it will be pushed by an *involute of circle* with initial angle i3. The pressure of the involute on the plan is always along the line of inclination angle i3 - PI / 2. This line is called *line of pressure* or *line of action*. If the *base circle* of the involute rotates at a constanst *angular speed* J, then the plan is pushed at the *linear speed* RJ with R the radius of the *base circle*.
 
 <style lang="scss">
 	@use '$lib/style/colors.scss';
