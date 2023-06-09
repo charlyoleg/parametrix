@@ -83,7 +83,7 @@ class Involute {
 	// sJ: angular speed of rotations (rad/s)
 	// return
 	// x,y of point C
-	// vax, vay of speed vector of point C in line of action reference
+	// vpx, vpy of speed vector of point C in line of pressure reference
 	laptc(acc: number, ap: number, aj: number, sJ: number): Array<number> {
 		if (Math.sign(ap) * this.angleSign() < 0) {
 			throw `err904: Invole.laptc angle-of-pressure ${ap} not compatible with right_nleft ${this.right_nleft}`;
@@ -96,7 +96,9 @@ class Involute {
 		const C2x = C0x + Math.cos(C2a) * lBC;
 		const C2y = C0y + Math.sin(C2a) * lBC;
 		const lL = this.lFromU(aj);
-		return [C0x, C0y];
+		const vpx = Math.cos(aj) * lL * sJ;
+		const vpy = Math.sin(aj) * lL * sJ;
+		return [C2x, C2y, vpx, vpy];
 	}
 }
 
