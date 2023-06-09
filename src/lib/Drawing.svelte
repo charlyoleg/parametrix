@@ -32,17 +32,7 @@
 	let aFigure: Figure;
 	let cAdjust: tCanvasAdjust;
 	let zAdjust: tCanvasAdjust;
-	$: {
-		layers.points = dLayers.points;
-		layers.lines = dLayers.lines;
-		layers.vectors = dLayers.vectors;
-		layers.main = dLayers.main;
-		layers.mainB = dLayers.mainB;
-		layers.second = dLayers.second;
-		layers.secondB = dLayers.secondB;
-		layers.dynamics = dLayers.dynamics;
-		layers.refframe = dLayers.refframe;
-	}
+	$: layers = $dLayers;
 	function canvasRedrawFull(iLayers: tLayers) {
 		const ctx1 = canvasFull.getContext('2d') as CanvasRenderingContext2D;
 		ctx1.clearRect(0, 0, ctx1.canvas.width, ctx1.canvas.height);

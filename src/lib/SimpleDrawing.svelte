@@ -17,7 +17,7 @@
 
 	let layers = initLayers();
 	$: {
-		layers = dLayers;
+		layers = $dLayers;
 	}
 	// Canavas Figures
 	let aFigure: Figure;
