@@ -15,6 +15,7 @@
 	import { initLayers } from '$lib/geom/figure';
 	import type { tParamDef, tParamVal, tGeomFunc } from '$lib/design/aaParamGeom';
 	import { storePV } from '$lib/storePVal';
+	import { dLayers } from '$lib/drawingLayers';
 	import { onMount } from 'svelte';
 
 	export let pDef: tParamDef;
@@ -27,29 +28,20 @@
 	const canvas_size_min = 400;
 
 	// Canavas Figures
-	let lc_points: boolean;
-	let lc_lines: boolean;
-	let lc_vectors: boolean;
-	let lc_main: boolean;
-	let lc_mainB: boolean;
-	let lc_second: boolean;
-	let lc_secondB: boolean;
-	let lc_dynamics: boolean;
-	let lc_frame: boolean;
 	let layers = initLayers();
 	let aFigure: Figure;
 	let cAdjust: tCanvasAdjust;
 	let zAdjust: tCanvasAdjust;
 	$: {
-		layers.points = lc_points;
-		layers.lines = lc_lines;
-		layers.vectors = lc_vectors;
-		layers.main = lc_main;
-		layers.mainB = lc_mainB;
-		layers.second = lc_second;
-		layers.secondB = lc_secondB;
-		layers.dynamics = lc_dynamics;
-		layers.frame = lc_frame;
+		layers.points = dLayers.points;
+		layers.lines = dLayers.lines;
+		layers.vectors = dLayers.vectors;
+		layers.main = dLayers.main;
+		layers.mainB = dLayers.mainB;
+		layers.second = dLayers.second;
+		layers.secondB = dLayers.secondB;
+		layers.dynamics = dLayers.dynamics;
+		layers.refframe = dLayers.refframe;
 	}
 	function canvasRedrawFull(iLayers: tLayers) {
 		const ctx1 = canvasFull.getContext('2d') as CanvasRenderingContext2D;
@@ -251,17 +243,7 @@
 <svelte:window bind:innerWidth={windowWidth} on:resize={canvasResize} />
 <section>
 	<h2>Drawing</h2>
-	<LabelCheckbox
-		bind:lc_points
-		bind:lc_lines
-		bind:lc_vectors
-		bind:lc_main
-		bind:lc_mainB
-		bind:lc_second
-		bind:lc_secondB
-		bind:lc_dynamics
-		bind:lc_frame
-	/>
+	<LabelCheckbox />
 	<div class="rack">
 		<TimeControl
 			tMax={pDef.sim.tMax}

@@ -22,7 +22,7 @@ type tLayers = {
 	second: boolean;
 	secondB: boolean;
 	dynamics: boolean;
-	frame: boolean;
+	refframe: boolean;
 };
 
 class Figure {
@@ -212,7 +212,7 @@ class Figure {
 				li.draw(ctx, adjust, colors.dynamics);
 			}
 		}
-		if (layers.frame) {
+		if (layers.refframe) {
 			for (const i of [10, 100, 200]) {
 				point(i, 0).draw(ctx, adjust, colors.reference, ShapePoint.eCross);
 				point(-i, 0).draw(ctx, adjust, colors.reference, ShapePoint.eCross);
@@ -238,7 +238,7 @@ function initLayers(): tLayers {
 		second: true,
 		secondB: false,
 		dynamics: false,
-		frame: false
+		refframe: false
 	};
 	return layers;
 }
