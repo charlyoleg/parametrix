@@ -10,6 +10,8 @@ category: documentation
 
 # {title}
 
+## Definition of an involute of circle
+
 An *involute of circle* is the curve drawn by the extremity of a string rolled out from a *base circle*. The shape of an involute depends only on the size of the *base circle* (i.e. its radius). An *involute of circle* is completely defined with the radius of the *base circle* and the angle of the start position.
 
 ![involute_of_circle_R0.svg]({base}/involute_of_circle_R0.svg)
@@ -36,6 +38,8 @@ The curve of the *involute of circle* can be described with *polar coordinates* 
 u -> [L: R*sqrt(1+u**2), w: u-atan(u)]
 ```
 
+## Properties of an involute of circle
+
 ![involute_of_circle_Ri1_u0.svg]({base}/involute_of_circle_Ri1_u0.svg)
 ![involute_of_circle_Ri2_u2.svg]({base}/involute_of_circle_Ri2_u2.svg)
 
@@ -54,6 +58,14 @@ For any initial angle i1 of an *involute of circle*, we construct the line calle
 - The distance BC is R*j
 
 Conclusion, if we have a plan with an inclination angle i3, it will be pushed by an *involute of circle* with initial angle i3. The pressure of the involute on the plan is always along the line of inclination angle i3 - PI / 2. This line is called *line of pressure* or *line of action*. If the *base circle* of the involute rotates at a constanst *angular speed* J, then the plan is pushed at the *linear speed* RJ with R the radius of the *base circle*.
+
+## Contact point
+
+What are the *position* and *instant speed* of the contact point C of an *involute of circle* with the virtual plan perpendicular to the *line of action*?
+
+![point_c_position_and_speed_positive.svg]({base}/point_c_position_and_speed_positive.svg)
+![point_c_position_and_speed_negative.svg]({base}/point_c_position_and_speed_negative.svg)
+
 
 <style lang="scss">
 	@use '$lib/style/colors.scss';
