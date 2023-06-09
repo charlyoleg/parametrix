@@ -2,7 +2,7 @@
 	import type { tCanvasAdjust } from '$lib/geom/canvas_utils';
 	//import { colors } from '$lib/geom/canvas_utils';
 	import type { tLayers, Figure } from '$lib/geom/figure';
-	import { initLayers } from '$lib/geom/figure';
+	//import { initLayers } from '$lib/geom/figure';
 	import type { tParamVal, tGeomFunc } from '$lib/design/aaParamGeom';
 	import { storePV } from '$lib/storePVal';
 	import { dLayers } from '$lib/drawingLayers';
@@ -15,10 +15,6 @@
 	let canvasMini: HTMLCanvasElement;
 	const canvas_size_mini = 200;
 
-	let layers = initLayers();
-	$: {
-		layers = $dLayers;
-	}
 	// Canavas Figures
 	let aFigure: Figure;
 	let mAdjust: tCanvasAdjust;
@@ -44,13 +40,13 @@
 	}
 	onMount(() => {
 		// initial drawing
-		geomRedraw(simTime, $storePV[pageName], layers);
+		geomRedraw(simTime, $storePV[pageName], $dLayers);
 		//paramChange();
 	});
 	// reactivity on simTime and $storePV
 	$: {
 		if (domInit === 1) {
-			geomRedraw(simTime, $storePV[pageName], layers);
+			geomRedraw(simTime, $storePV[pageName], $dLayers);
 		}
 	}
 </script>

@@ -6,7 +6,7 @@ import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
 const pDef: tParamDef = {
 	page: 'gear_profile_wheel_wheel',
 	params: [
-		{ name: 'module', unit: 'mm', init: 1, min: 0.01, max: 1000, step: 0.01 },
+		{ name: 'module', unit: 'mm', init: 10, min: 0.01, max: 1000, step: 0.01 },
 		{ name: 'N1', unit: 'scalar', init: 23, min: 3, max: 1000, step: 1 },
 		{ name: 'N2', unit: 'scalar', init: 19, min: 3, max: 1000, step: 1 },
 		{ name: 'angleCenterCenter', unit: 'degree', init: 0, min: -180, max: 180, step: 1 },

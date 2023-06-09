@@ -12,7 +12,7 @@
 	import ZoomControl from '$lib/ZoomControl.svelte';
 	import LabelCheckbox from '$lib/LabelCheckbox.svelte';
 	import type { tLayers, Figure } from '$lib/geom/figure';
-	import { initLayers } from '$lib/geom/figure';
+	//import { initLayers } from '$lib/geom/figure';
 	import type { tParamDef, tParamVal, tGeomFunc } from '$lib/design/aaParamGeom';
 	import { storePV } from '$lib/storePVal';
 	import { dLayers } from '$lib/drawingLayers';
@@ -28,11 +28,9 @@
 	const canvas_size_min = 400;
 
 	// Canavas Figures
-	let layers = initLayers();
 	let aFigure: Figure;
 	let cAdjust: tCanvasAdjust;
 	let zAdjust: tCanvasAdjust;
-	$: layers = $dLayers;
 	function canvasRedrawFull(iLayers: tLayers) {
 		const ctx1 = canvasFull.getContext('2d') as CanvasRenderingContext2D;
 		ctx1.clearRect(0, 0, ctx1.canvas.width, ctx1.canvas.height);
@@ -70,8 +68,8 @@
 	}
 	function canvasResize() {
 		canvasSetSize();
-		canvasRedrawFull(layers);
-		canvasRedrawZoom(layers);
+		canvasRedrawFull($dLayers);
+		canvasRedrawZoom($dLayers);
 	}
 	let domInit = 0;
 	function geomRedrawSub(iSimTime: number, pVal: tParamVal, iLayers: tLayers) {
@@ -81,7 +79,7 @@
 		domInit = 1;
 	}
 	function geomRedraw(iSimTime: number) {
-		geomRedrawSub(iSimTime, $storePV[pDef.page], layers);
+		geomRedrawSub(iSimTime, $storePV[pDef.page], $dLayers);
 	}
 	onMount(() => {
 		// initial drawing
@@ -92,7 +90,7 @@
 	// reactivity on simTime, $storePV and layers
 	$: {
 		if (domInit === 1) {
-			geomRedrawSub(simTime, $storePV[pDef.page], layers);
+			geomRedrawSub(simTime, $storePV[pDef.page], $dLayers);
 		}
 	}
 	// Zoom stories
@@ -123,7 +121,7 @@
 			default:
 				console.log(`ERR423: ${event.detail.action} has no case!`);
 		}
-		canvasRedrawZoom(layers);
+		canvasRedrawZoom($dLayers);
 	}
 	// zoom functions on the canvasFull
 	type tMouse = {
@@ -186,7 +184,7 @@
 		if (eve.buttons === 1) {
 			const diffX = eve.offsetX - mouseF.offsetX;
 			const diffY = eve.offsetY - mouseF.offsetY;
-			canvasRedrawFull(layers);
+			canvasRedrawFull($dLayers);
 			const ctx1 = canvasFull.getContext('2d') as CanvasRenderingContext2D;
 			ctx1.beginPath();
 			ctx1.rect(mouseF.offsetX, mouseF.offsetY, diffX, diffY);
@@ -217,7 +215,7 @@
 		if (eve.buttons === 1) {
 			const [p2x, p2y] = canvas2point(eve.offsetX, eve.offsetY, mouseZadjust);
 			zAdjust = adjustTranslate(mouseZx, mouseZy, p2x, p2y, mouseZadjust);
-			canvasRedrawZoom(layers);
+			canvasRedrawZoom($dLayers);
 		}
 	}
 	function cZoomWheel(eve: WheelEvent) {
@@ -226,7 +224,7 @@
 		} else {
 			zAdjust = adjustScale(1.3, zAdjust);
 		}
-		canvasRedrawZoom(layers);
+		canvasRedrawZoom($dLayers);
 	}
 </script>
 
