@@ -110,18 +110,12 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const rightLeftCenter = param['rightLeftCenter'];
 		gp2.set6Angles(0, acc + Math.PI);
 		// construction lines and circles
-		rGeome.fig.addDynamics(contourCircle(gp1.cx, gp1.cy, gp1.ar));
-		rGeome.fig.addDynamics(contourCircle(gp1.cx, gp1.cy, gp1.pr));
-		rGeome.fig.addDynamics(contourCircle(gp1.cx, gp1.cy, gp1.dr));
-		rGeome.fig.addDynamics(contourCircle(gp1.cx, gp1.cy, gp1.br));
-		rGeome.fig.addDynamics(contourCircle(gp1.cx, gp1.cy, gp1.brr));
-		rGeome.fig.addDynamics(contourCircle(gp1.cx, gp1.cy, gp1.blr));
-		rGeome.fig.addDynamics(contourCircle(gp2.cx, gp2.cy, gp2.ar));
-		rGeome.fig.addDynamics(contourCircle(gp2.cx, gp2.cy, gp2.pr));
-		rGeome.fig.addDynamics(contourCircle(gp2.cx, gp2.cy, gp2.dr));
-		rGeome.fig.addDynamics(contourCircle(gp2.cx, gp2.cy, gp2.br));
-		rGeome.fig.addDynamics(contourCircle(gp2.cx, gp2.cy, gp2.brr));
-		rGeome.fig.addDynamics(contourCircle(gp2.cx, gp2.cy, gp2.blr));
+		for (const refCircle of gp1.getRefCircles()) {
+			rGeome.fig.addDynamics(refCircle);
+		}
+		for (const refCircle of gp2.getRefCircles()) {
+			rGeome.fig.addDynamics(refCircle);
+		}
 		// gearwheel-1
 		const gp1p = gp1.getProfile();
 		rGeome.logstr += gp1p.check();

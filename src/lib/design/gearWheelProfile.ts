@@ -64,6 +64,17 @@ class GearWheelProfile {
 		this.initAngle = initAng;
 		this.axisAngle = axisAng;
 	}
+	getRefCircles() {
+		const rRefCircles = [
+			contourCircle(this.cx, this.cy, this.ar),
+			contourCircle(this.cx, this.cy, this.pr),
+			contourCircle(this.cx, this.cy, this.dr),
+			contourCircle(this.cx, this.cy, this.br),
+			contourCircle(this.cx, this.cy, this.brr),
+			contourCircle(this.cx, this.cy, this.blr)
+		];
+		return rRefCircles;
+	}
 	getInvoluteAngles() {
 		this.involuteR = involute(this.cx, this.cy, this.brr, 0, true);
 		if (this.dr > this.brr) {
