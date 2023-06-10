@@ -1,7 +1,9 @@
 // gear_profile_wheel_wheel.ts
 
-import { contour, contourCircle, figure, degToRad } from '$lib/geom/figure';
+import { contour, contourCircle, figure, degToRad, point } from '$lib/geom/figure';
 import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
+//import type { Involute } from './involute';
+import { involute } from './involute';
 
 const pDef: tParamDef = {
 	page: 'gear_profile_wheel_wheel',
@@ -22,9 +24,7 @@ const pDef: tParamDef = {
 		{ name: 'bh2', unit: 'scalar', init: 0.25, min: 0.1, max: 2, step: 0.05 },
 		{ name: 'bhr2', unit: 'mm', init: 0.1, min: 0.02, max: 50, step: 0.01 },
 		{ name: 'at1', unit: '%', init: 50, min: 10, max: 90, step: 0.5 },
-		{ name: 'dt1', unit: '%', init: 50, min: 10, max: 90, step: 0.5 },
 		{ name: 'at2', unit: '%', init: 50, min: 10, max: 90, step: 0.5 },
-		{ name: 'dt2', unit: '%', init: 50, min: 10, max: 90, step: 0.5 },
 		{ name: 'optimalPressureAngle', unit: 'checkbox', init: 1, min: 0, max: 1, step: 1 },
 		{ name: 'brr1', unit: 'mm', init: 50, min: 10, max: 2000, step: 0.01 },
 		{ name: 'functioningPressureAngle', unit: 'checkbox', init: 1, min: 0, max: 1, step: 1 },
@@ -32,6 +32,7 @@ const pDef: tParamDef = {
 		{ name: 'symetricPressureAngle', unit: 'checkbox', init: 1, min: 0, max: 1, step: 1 },
 		{ name: 'blr1', unit: 'mm', init: 50, min: 10, max: 2000, step: 0.01 },
 		{ name: 'blr2', unit: 'mm', init: 50, min: 10, max: 2000, step: 0.01 },
+		{ name: 'initAngle', unit: 'degree', init: 0, min: -180, max: 180, step: 1 },
 		{ name: 'rightLeftCenter', unit: 'dropdown', init: 0, min: 0, max: 2, step: 1 }
 	],
 	paramSvg: {
@@ -51,9 +52,7 @@ const pDef: tParamDef = {
 		bh2: 'default_param_blank.svg',
 		bhr2: 'default_param_blank.svg',
 		at1: 'default_param_blank.svg',
-		dt1: 'default_param_blank.svg',
 		at2: 'default_param_blank.svg',
-		dt2: 'default_param_blank.svg',
 		optimalPressureAngle: 'default_param_blank.svg',
 		brr1: 'default_param_blank.svg',
 		functioningPressureAngle: 'default_param_blank.svg',
@@ -61,6 +60,7 @@ const pDef: tParamDef = {
 		symetricPressureAngle: 'default_param_blank.svg',
 		blr1: 'default_param_blank.svg',
 		blr2: 'default_param_blank.svg',
+		initAngle: 'default_param_blank.svg',
 		rightLeftCenter: 'default_param_blank.svg'
 	},
 	sim: {
@@ -70,67 +70,188 @@ const pDef: tParamDef = {
 	}
 };
 
+class GearProfile {
+	mod = 1;
+	TN = 23;
+	as = 1;
+	cx = 0;
+	cy = 0;
+	brr = 50;
+	blr = 50;
+	ar = 54;
+	pr = 53;
+	dr = 52;
+	br = 51;
+	bhr = 1;
+	adt = 0.5;
+	initAngle = 0;
+	axisAngle = 0;
+	involuteR = involute(0, 0, 50, 0, true);
+	involuteL = involute(0, 0, 50, 0, false);
+	rud = 0;
+	rup = 0;
+	rua = 0;
+	rwd = 0;
+	rwp = 0;
+	rwa = 0;
+	lud = 0;
+	lup = 0;
+	lua = 0;
+	lwd = 0;
+	lwp = 0;
+	lwa = 0;
+	construct() {
+		this.mod = 1;
+	}
+	setModuleToothNumber(iMod: number, iTN: number) {
+		this.mod = iMod;
+		this.TN = iTN;
+		this.pr = (this.mod * this.TN) / 2;
+		this.as = (2 * Math.PI) / this.TN;
+	}
+	setCenterPosition(icx: number, icy: number) {
+		this.cx = icx;
+		this.cy = icy;
+	}
+	setCircleRadius(iah: number, idh: number, ibh: number, ibhr: number) {
+		this.ar = this.pr + this.mod * iah;
+		this.dr = this.pr - this.mod * idh;
+		this.br = this.dr - this.mod * ibh;
+		this.bhr = ibhr;
+	}
+	setBaseCircles(baseRight: number, baseLeft: number) {
+		this.brr = baseRight;
+		this.blr = baseLeft;
+	}
+	setToothThickness(iat: number) {
+		this.adt = iat / 100;
+	}
+	setAngles(initAng: number, axisAng: number) {
+		this.initAngle = initAng;
+		this.axisAngle = axisAng;
+	}
+	getInvoluteAngles() {
+		this.involuteR = involute(this.cx, this.cy, this.brr, 0, true);
+		if (this.dr > this.brr) {
+			this.rud = this.involuteR.uFromL(this.dr);
+		} else {
+			this.rud = 0;
+		}
+		this.rup = this.involuteR.uFromL(this.pr);
+		this.rua = this.involuteR.uFromL(this.ar);
+		this.rwd = this.involuteR.wFromU(this.rud);
+		this.rwp = this.involuteR.wFromU(this.rup);
+		this.rwa = this.involuteR.wFromU(this.rua);
+		this.involuteL = involute(this.cx, this.cy, this.blr, 0, false);
+		if (this.dr > this.blr) {
+			this.lud = this.involuteL.uFromL(this.dr);
+		} else {
+			this.rud = 0;
+		}
+		this.lup = this.involuteL.uFromL(this.pr);
+		this.lua = this.involuteL.uFromL(this.ar);
+		this.lwd = this.involuteL.wFromU(this.lud);
+		this.lwp = this.involuteL.wFromU(this.lup);
+		this.lwa = this.involuteL.wFromU(this.lua);
+	}
+	getProfile() {
+		this.getInvoluteAngles();
+		const aDiffRd = this.rwd - this.rwp;
+		const aDiffRa = this.rwa - this.rwp;
+		const aDiffLd = this.lwd - this.lwp;
+		const aDiffLa = this.lwa - this.lwp;
+		const erdr = this.dr > this.brr ? this.dr : this.brr;
+		const eldr = this.dr > this.blr ? this.dr : this.blr;
+		const center = point(this.cx, this.cy);
+		const first = center.translatePolar(this.initAngle + aDiffRd, this.br);
+		const rProfile = contour(first.cx, first.cy);
+		for (let i = 0; i < this.TN; i++) {
+			const refA = this.initAngle + i * this.as;
+			const ptrb = center.translatePolar(refA + aDiffRd, this.br);
+			rProfile.addSegStrokeA(ptrb.cx, ptrb.cy);
+			const ptrd = center.translatePolar(refA + aDiffRd, erdr);
+			rProfile.addSegStrokeA(ptrd.cx, ptrd.cy);
+			const ptrp = center.translatePolar(refA, this.pr);
+			rProfile.addSegStrokeA(ptrp.cx, ptrp.cy);
+			const ptra = center.translatePolar(refA + aDiffRa, this.ar);
+			rProfile.addSegStrokeA(ptra.cx, ptra.cy);
+			const refAl = refA + this.as * this.adt;
+			const ptla = center.translatePolar(refAl + aDiffLa, this.ar);
+			rProfile.addSegStrokeA(ptla.cx, ptla.cy);
+			const ptlp = center.translatePolar(refAl, this.pr);
+			rProfile.addSegStrokeA(ptlp.cx, ptlp.cy);
+			const ptld = center.translatePolar(refAl + aDiffLd, eldr);
+			rProfile.addSegStrokeA(ptld.cx, ptld.cy);
+			const ptlb = center.translatePolar(refAl + aDiffLd, this.br);
+			rProfile.addSegStrokeA(ptlb.cx, ptlb.cy);
+		}
+		rProfile.closeSegStroke();
+		return rProfile;
+	}
+}
+
 function pGeom(t: number, param: tParamVal): tGeom {
 	const rGeome: tGeom = { fig: figure(), logstr: '', calcErr: true };
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
-		// re-assign parameters
-		const mod = param['module'];
-		const N1 = param['N1'];
-		const N2 = param['N2'];
+		// re-arrange parameters
+		const gp1 = new GearProfile();
+		const gp2 = new GearProfile();
+		gp1.setModuleToothNumber(param['module'], param['N1']);
+		gp2.setModuleToothNumber(param['module'], param['N2']);
 		const angleCenterCenter = degToRad(param['angleCenterCenter']);
-		const addInterAxis = param['addInterAxis'];
-		const c1x = param['c1x'];
-		const c1y = param['c1y'];
-		const ah1 = param['ah1'];
-		const dh1 = param['dh1'];
-		const bh1 = param['bh1'];
-		const bhr1 = param['bhr1'];
-		const ah2 = param['ah2'];
-		const dh2 = param['dh2'];
-		const bh2 = param['bh2'];
-		const bhr2 = param['bhr2'];
-		const at1 = param['at1'];
-		const dt1 = param['dt1'];
-		const at2 = param['at2'];
-		const dt2 = param['dt2'];
-		const optimalPressureAngle = param['optimalPressureAngle'];
-		const brr1 = param['brr1'];
+		const interAxis = gp1.pr + gp2.pr + param['addInterAxis'];
+		const c2x = param['c1x'] + interAxis * Math.cos(angleCenterCenter);
+		const c2y = param['c1y'] + interAxis * Math.sin(angleCenterCenter);
+		gp1.setCenterPosition(param['c1x'], param['c1y']);
+		gp2.setCenterPosition(c2x, c2y);
+		gp1.setCircleRadius(param['ah1'], param['dh1'], param['bh1'], param['bhr1']);
+		gp2.setCircleRadius(param['ah2'], param['dh2'], param['bh2'], param['bhr2']);
+		// base circles
 		const functioningPressureAngle = param['functioningPressureAngle'];
-		const brr2 = param['brr2'];
 		const symetricPressureAngle = param['symetricPressureAngle'];
-		const blr1 = param['blr1'];
-		const blr2 = param['blr2'];
+		let brr1 = param['brr1'];
+		let brr2 = param['brr2'];
+		let blr1 = param['blr1'];
+		let blr2 = param['blr2'];
+		if (param['optimalPressureAngle'] === 1) {
+			if (gp2.TN > gp1.TN) {
+				brr1 = gp1.dr;
+				brr2 = (brr1 * gp2.TN) / gp1.TN;
+			} else {
+				brr2 = gp2.dr;
+				brr1 = (brr2 * gp1.TN) / gp2.TN;
+			}
+			blr1 = brr1;
+			blr2 = brr2;
+		}
+		gp1.setBaseCircles(brr1, blr1);
+		gp2.setBaseCircles(brr2, blr2);
+		gp1.setToothThickness(param['at1']);
+		gp2.setToothThickness(param['at2']);
+		gp1.setAngles(degToRad(param['initAngle']), angleCenterCenter);
 		const rightLeftCenter = param['rightLeftCenter'];
+		gp2.setAngles(0, angleCenterCenter + Math.PI);
 		// construction lines and circles
-		const pr1 = (mod * N1) / 2;
-		const circle_primitive_1 = contourCircle(c1x, c1y, pr1);
-		rGeome.fig.addDynamics(circle_primitive_1);
-		const circle_addendum_1 = contourCircle(c1x, c1y, pr1 + mod * ah1);
-		rGeome.fig.addDynamics(circle_addendum_1);
-		const circle_dedendum_1 = contourCircle(c1x, c1y, pr1 - mod * dh1);
-		rGeome.fig.addDynamics(circle_dedendum_1);
-		const circle_bottom_1 = contourCircle(c1x, c1y, pr1 - mod * (dh1 + bh1));
-		rGeome.fig.addDynamics(circle_bottom_1);
-		const pr2 = (mod * N2) / 2;
-		const interAxis = pr1 + pr2 + addInterAxis;
-		const c2x = c1x + interAxis * Math.cos(angleCenterCenter);
-		const c2y = c1y + interAxis * Math.sin(angleCenterCenter);
-		const circle_primitive_2 = contourCircle(c2x, c2y, pr2);
-		rGeome.fig.addDynamics(circle_primitive_2);
-		const circle_addendum_2 = contourCircle(c2x, c2y, pr2 + mod * ah2);
-		rGeome.fig.addDynamics(circle_addendum_2);
-		const circle_dedendum_2 = contourCircle(c2x, c2y, pr2 - mod * dh2);
-		rGeome.fig.addDynamics(circle_dedendum_2);
-		const circle_bottom_2 = contourCircle(c2x, c2y, pr2 - mod * (dh2 + bh2));
-		rGeome.fig.addDynamics(circle_bottom_2);
+		rGeome.fig.addDynamics(contourCircle(gp1.cx, gp1.cy, gp1.ar));
+		rGeome.fig.addDynamics(contourCircle(gp1.cx, gp1.cy, gp1.pr));
+		rGeome.fig.addDynamics(contourCircle(gp1.cx, gp1.cy, gp1.dr));
+		rGeome.fig.addDynamics(contourCircle(gp1.cx, gp1.cy, gp1.br));
+		rGeome.fig.addDynamics(contourCircle(gp1.cx, gp1.cy, gp1.brr));
+		rGeome.fig.addDynamics(contourCircle(gp1.cx, gp1.cy, gp1.blr));
+		rGeome.fig.addDynamics(contourCircle(gp2.cx, gp2.cy, gp2.ar));
+		rGeome.fig.addDynamics(contourCircle(gp2.cx, gp2.cy, gp2.pr));
+		rGeome.fig.addDynamics(contourCircle(gp2.cx, gp2.cy, gp2.dr));
+		rGeome.fig.addDynamics(contourCircle(gp2.cx, gp2.cy, gp2.br));
+		rGeome.fig.addDynamics(contourCircle(gp2.cx, gp2.cy, gp2.brr));
+		rGeome.fig.addDynamics(contourCircle(gp2.cx, gp2.cy, gp2.blr));
 		// gearwheel-1
-		const ctrZ = contour(0, 0)
-			.addSegStrokeR((2 * mod) / N1, 0)
-			.addSegStrokeR(0, (2 * mod) / N2)
-			.closeSegStroke();
-		rGeome.logstr += ctrZ.check();
-		rGeome.fig.addMain(ctrZ);
+		const gp1p = gp1.getProfile();
+		rGeome.logstr += gp1p.check();
+		rGeome.fig.addMain(gp1p);
+		const gp2p = gp2.getProfile();
+		rGeome.logstr += gp2p.check();
+		rGeome.fig.addSecond(gp2p);
 		rGeome.logstr += 'gear_profile_wheel_wheel draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {

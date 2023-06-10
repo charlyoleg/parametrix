@@ -107,4 +107,5 @@ function involute(cx: number, cy: number, br: number, ia: number, rnl: boolean):
 	return rinvolute;
 }
 
+export type { Involute };
 export { involute };
