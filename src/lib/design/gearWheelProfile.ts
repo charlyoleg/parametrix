@@ -137,12 +137,20 @@ class GearWheelProfile {
 	}
 }
 
-function gearWheelProfile() {
+function gwProfile() {
 	const rgwp = new GearWheelProfile();
 	return rgwp;
 }
 
-const gearWheelHelper = {
+enum EInvolOpt {
+	Optimum = 0,
+	BaseCircle1,
+	BaseCircle2,
+	PressionAngle,
+	DisfunctioningTwoCircles
+}
+
+const gwHelper = {
 	gw2center: (
 		gw1: GearWheelProfile,
 		gw2: GearWheelProfile,
@@ -153,7 +161,48 @@ const gearWheelHelper = {
 		const c2x = gw1.cx + interAxis * Math.cos(angleCenterCenter);
 		const c2y = gw1.cy + interAxis * Math.sin(angleCenterCenter);
 		return [c2x, c2y];
+	},
+	baseCircles: (
+		gw1: GearWheelProfile,
+		gw2: GearWheelProfile,
+		ibrr1: number,
+		iblr1: number,
+		ibrr2: number,
+		iblr2: number,
+		involSym: number,
+		involROpt: number,
+		involLOpt: number
+	) => {
+		let brr1 = ibrr1;
+		let brr2 = ibrr2;
+		let blr1 = iblr1;
+		let blr2 = iblr2;
+		const involROpt2: EInvolOpt = involROpt as EInvolOpt;
+		const involLOpt2: EInvolOpt = involLOpt as EInvolOpt;
+		if (involROpt2 === EInvolOpt.Optimum) {
+			if (gw2.TN > gw1.TN) {
+				brr1 = gw1.dr;
+				brr2 = (brr1 * gw2.TN) / gw1.TN;
+			} else {
+				brr2 = gw2.dr;
+				brr1 = (brr2 * gw1.TN) / gw2.TN;
+			}
+		}
+		if (involLOpt2 === EInvolOpt.Optimum) {
+			if (gw2.TN > gw1.TN) {
+				blr1 = gw1.dr;
+				blr2 = (blr1 * gw2.TN) / gw1.TN;
+			} else {
+				blr2 = gw2.dr;
+				blr1 = (blr2 * gw1.TN) / gw2.TN;
+			}
+		}
+		if (involSym === 1) {
+			blr1 = brr1;
+			blr2 = brr2;
+		}
+		return [brr1, blr1, brr2, blr2];
 	}
 };
 
-export { gearWheelProfile, gearWheelHelper };
+export { gwProfile, gwHelper };

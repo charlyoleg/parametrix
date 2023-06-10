@@ -2,7 +2,7 @@
 
 import { contour, contourCircle, figure, degToRad } from '$lib/geom/figure';
 import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
-import { gearWheelProfile, gearWheelHelper } from './gearWheelProfile';
+import { gwProfile, gwHelper } from './gearWheelProfile';
 
 const pDef: tParamDef = {
 	page: 'gear_wheel_wheel',
@@ -24,11 +24,11 @@ const pDef: tParamDef = {
 		{ name: 'bhr2', unit: 'mm', init: 0.1, min: 0.02, max: 50, step: 0.01 },
 		{ name: 'at1', unit: '%', init: 50, min: 10, max: 90, step: 0.5 },
 		{ name: 'at2', unit: '%', init: 50, min: 10, max: 90, step: 0.5 },
-		{ name: 'optimalPressureAngle', unit: 'checkbox', init: 1, min: 0, max: 1, step: 1 },
+		{ name: 'involSym', unit: 'checkbox', init: 1, min: 0, max: 1, step: 1 },
+		{ name: 'involROpt', unit: 'dropdown', init: 0, min: 0, max: 4, step: 1 },
+		{ name: 'involLOpt', unit: 'dropdown', init: 0, min: 0, max: 4, step: 1 },
 		{ name: 'brr1', unit: 'mm', init: 50, min: 10, max: 2000, step: 0.01 },
-		{ name: 'functioningPressureAngle', unit: 'checkbox', init: 1, min: 0, max: 1, step: 1 },
 		{ name: 'brr2', unit: 'mm', init: 50, min: 10, max: 2000, step: 0.01 },
-		{ name: 'symetricPressureAngle', unit: 'checkbox', init: 1, min: 0, max: 1, step: 1 },
 		{ name: 'blr1', unit: 'mm', init: 50, min: 10, max: 2000, step: 0.01 },
 		{ name: 'blr2', unit: 'mm', init: 50, min: 10, max: 2000, step: 0.01 },
 		{ name: 'initAngle', unit: 'degree', init: 0, min: -180, max: 180, step: 1 },
@@ -52,11 +52,11 @@ const pDef: tParamDef = {
 		bhr2: 'default_param_blank.svg',
 		at1: 'default_param_blank.svg',
 		at2: 'default_param_blank.svg',
-		optimalPressureAngle: 'default_param_blank.svg',
+		involSym: 'default_param_blank.svg',
+		involROpt: 'default_param_blank.svg',
+		involLOpt: 'default_param_blank.svg',
 		brr1: 'default_param_blank.svg',
-		functioningPressureAngle: 'default_param_blank.svg',
 		brr2: 'default_param_blank.svg',
-		symetricPressureAngle: 'default_param_blank.svg',
 		blr1: 'default_param_blank.svg',
 		blr2: 'default_param_blank.svg',
 		initAngle: 'default_param_blank.svg',
@@ -74,34 +74,28 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		// re-arrange parameters
-		const gp1 = gearWheelProfile();
-		const gp2 = gearWheelProfile();
+		const gp1 = gwProfile();
+		const gp2 = gwProfile();
 		gp1.set1ModuleToothNumber(param['module'], param['N1']);
 		gp2.set1ModuleToothNumber(param['module'], param['N2']);
 		gp1.set2CenterPosition(param['c1x'], param['c1y']);
 		const acc = degToRad(param['angleCenterCenter']);
-		const [c2x, c2y] = gearWheelHelper.gw2center(gp1, gp2, acc, param['addInterAxis']);
+		const [c2x, c2y] = gwHelper.gw2center(gp1, gp2, acc, param['addInterAxis']);
 		gp2.set2CenterPosition(c2x, c2y);
 		gp1.set3CircleRadius(param['ah1'], param['dh1'], param['bh1'], param['bhr1']);
 		gp2.set3CircleRadius(param['ah2'], param['dh2'], param['bh2'], param['bhr2']);
 		// base circles
-		const functioningPressureAngle = param['functioningPressureAngle'];
-		const symetricPressureAngle = param['symetricPressureAngle'];
-		let brr1 = param['brr1'];
-		let brr2 = param['brr2'];
-		let blr1 = param['blr1'];
-		let blr2 = param['blr2'];
-		if (param['optimalPressureAngle'] === 1) {
-			if (gp2.TN > gp1.TN) {
-				brr1 = gp1.dr;
-				brr2 = (brr1 * gp2.TN) / gp1.TN;
-			} else {
-				brr2 = gp2.dr;
-				brr1 = (brr2 * gp1.TN) / gp2.TN;
-			}
-			blr1 = brr1;
-			blr2 = brr2;
-		}
+		const [brr1, blr1, brr2, blr2] = gwHelper.baseCircles(
+			gp1,
+			gp2,
+			param['brr1'],
+			param['blr1'],
+			param['brr2'],
+			param['blr2'],
+			param['involSym'],
+			param['involROpt'],
+			param['involROpt']
+		);
 		gp1.set4BaseCircles(brr1, blr1);
 		gp2.set4BaseCircles(brr2, blr2);
 		gp1.set5AddendumThickness(param['at1']);
