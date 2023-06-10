@@ -163,6 +163,8 @@ class GearProfile {
 		const erdr = this.dr > this.brr ? this.dr : this.brr;
 		const eldr = this.dr > this.blr ? this.dr : this.blr;
 		const center = point(this.cx, this.cy);
+		// this first point is equal to the first stroke of the loop.
+		// Contour will remove it because last and new points are identical
 		const first = center.translatePolar(this.initAngle + aDiffRd, this.br);
 		const rProfile = contour(first.cx, first.cy);
 		for (let i = 0; i < this.TN; i++) {

@@ -11,9 +11,10 @@ import {
 	//radToDeg,
 	roundZero,
 	//withinZero2Pi,
-	withinPiPi
+	withinPiPi,
 	//withinZeroPi,
-	//withinHPiHPi
+	//withinHPiHPi,
+	ffix
 } from './angle_utils';
 import { colors, point2canvas, radius2canvas } from './canvas_utils';
 //import {
@@ -98,8 +99,11 @@ class Contour extends AContour {
 		const p1 = this.points.pop();
 		if (p1 !== undefined) {
 			const seg = new segLib.Segment1(segLib.SegEnum.eStroke, p1.cx, p1.cy, 0);
-			this.addSeg(seg);
-			this.setLastPoint(p1.cx, p1.cy);
+			if (!p1.isEqual(this.getLastPoint())) {
+				this.addSeg(seg);
+				this.setLastPoint(p1.cx, p1.cy);
+			}
+			// else no warning in order to avoid warning in gears
 		} else {
 			throw `err284: contour p1 is undefined`;
 		}
@@ -135,8 +139,14 @@ class Contour extends AContour {
 				iLarge,
 				iCcw
 			);
-			this.addSeg(seg);
-			this.setLastPoint(p1.cx, p1.cy);
+			if (!p1.isEqual(this.getLastPoint())) {
+				this.addSeg(seg);
+				this.setLastPoint(p1.cx, p1.cy);
+			} else {
+				console.log(
+					`warn144: addSegArc last and new point identical ${ffix(p1.cx)} ${ffix(p1.cy)}`
+				);
+			}
 			//this.debugPoints.push(p1);
 		} else {
 			throw `err482: contour p1 is undefined`;
