@@ -1,4 +1,4 @@
-import { describe, it, expect, expectTypeOf } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { gearWheelProfile, gearWheelHelper } from './gearWheelProfile';
 
 function degToRad(deg: number): number {
@@ -14,7 +14,7 @@ describe('gearWheelProfile module', () => {
 	gw1.set5AddendumThickness(50);
 	gw1.set6Angles(0, 0);
 	it('gearWheelProfile', () => {
-		expectTypeOf(gw1.getInvoluteAngles()).returns.toBeVoid();
+		expect(gw1.getInvoluteAngles()).toBe(undefined);
 	});
 	it('gearWheelHelper', () => {
 		const gw2 = gearWheelProfile();
