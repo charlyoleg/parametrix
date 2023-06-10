@@ -1,4 +1,4 @@
-// gear_profile_wheel_wheel.ts
+// gear_wheel_wheel.ts
 
 import { contour, contourCircle, figure, degToRad, point } from '$lib/geom/figure';
 import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
@@ -6,7 +6,7 @@ import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
 import { involute } from './involute';
 
 const pDef: tParamDef = {
-	page: 'gear_profile_wheel_wheel',
+	page: 'gear_wheel_wheel',
 	params: [
 		{ name: 'module', unit: 'mm', init: 10, min: 0.01, max: 1000, step: 0.01 },
 		{ name: 'N1', unit: 'scalar', init: 23, min: 3, max: 1000, step: 1 },
@@ -254,7 +254,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const gp2p = gp2.getProfile();
 		rGeome.logstr += gp2p.check();
 		rGeome.fig.addSecond(gp2p);
-		rGeome.logstr += 'gear_profile_wheel_wheel draw successfully!\n';
+		rGeome.logstr += 'gear_wheel_wheel draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
 		rGeome.logstr += emsg;
@@ -264,8 +264,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 }
 
 const pageDef: tPageDef = {
-	pTitle: 'Gear-profile for wheel-wheel',
-	pDescription: 'Analysing gear-profile',
+	pTitle: 'Gearwheel-gearwheel',
+	pDescription: 'Gear-system with two wheels',
 	pDef: pDef,
 	pGeom: pGeom
 };

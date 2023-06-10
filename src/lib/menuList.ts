@@ -12,7 +12,7 @@ import { pageDef as verifyContour1Def } from '$lib/design/verify_contour_1';
 import { pageDef as verifyContour2Def } from '$lib/design/verify_contour_2';
 import { pageDef as verifyContour3Def } from '$lib/design/verify_contour_3';
 import { pageDef as verifyContour4Def } from '$lib/design/verify_contour_4';
-import { pageDef as gearProfileWheelWheel } from '$lib/design/gear_profile_wheel_wheel';
+import { pageDef as gearWheelWheel } from '$lib/design/gear_wheel_wheel';
 import type { tParamVal, tPageDef } from '$lib/design/aaParamGeom';
 import type { tStorePVal } from '$lib/storePVal';
 import { storePV } from '$lib/storePVal';
@@ -21,7 +21,7 @@ import { get, writable } from 'svelte/store';
 type tAllPageDef = { [index: string]: tPageDef };
 type tIcon = { [inedx: string]: string };
 const designDefs: tAllPageDef = {
-	gear_profile_wheel_wheel: gearProfileWheelWheel,
+	gear_wheel_wheel: gearWheelWheel,
 	circles: circlesDef,
 	rectangle: rectangleDef,
 	verify_point: verifyPointDef,
@@ -41,7 +41,7 @@ const mIndex = ['index'];
 const mAbout = ['about'];
 // to be updated when new pages are created
 const mLabel = [
-	{ category: 'Gears', pages: ['gear/gear_profile_wheel_wheel'] },
+	{ category: 'Gears', pages: ['gear/gear_wheel_wheel'] },
 	{ category: 'Junk designs', pages: ['junk/circles', 'junk/rectangle'] },
 	{
 		category: 'Geometrix verification',
@@ -74,7 +74,7 @@ const mLabel = [
 ];
 const mIcon: tIcon = {
 	index: 'page_index.svg',
-	gear_profile_wheel_wheel: 'page_gears.svg',
+	gear_wheel_wheel: 'page_gears.svg',
 	circles: 'page_circles.svg',
 	rectangle: 'page_rectangle.svg',
 	verify_point: 'page_verify_point.svg',
