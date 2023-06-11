@@ -281,6 +281,7 @@
 								max={param.max}
 								step={param.step}
 								on:change={paramChange}
+								class="input-number"
 							/>
 							<input
 								type="range"
@@ -302,7 +303,7 @@
 		</table>
 		<div class="comment">
 			<label for="inComment">Comment:</label>
-			<input type="text" id="inComment" bind:value={inputComment} maxlength="150" size="80" />
+			<input type="text" id="inComment" bind:value={inputComment} maxlength="150" size="70" />
 		</div>
 		<button on:click={dowloadParams}>Save Parameters to File</button>
 		<button on:click={openModalUrl}>Save Parameters as URL</button>
@@ -385,6 +386,9 @@
 	}
 	section > main > table > tbody > tr > td > input {
 		height: 0.8rem;
+	}
+	section > main > table > tbody > tr > td > input.input-number {
+		width: 5rem;
 	}
 	section > main > div.comment {
 		font-size: 0.8rem;
