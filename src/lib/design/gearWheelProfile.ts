@@ -214,11 +214,11 @@ const gwHelper = {
 	initAngle2: (
 		initAngle1: number,
 		angleCenterCenter: number,
-		rightLeftCenter: number
+		rightLeftCenter2: number
 	): number => {
 		let rInitAngle2 = 0;
 		// TODO
-		if (rightLeftCenter === 1) {
+		if (rightLeftCenter2 === 1) {
 			rInitAngle2 = initAngle1 + angleCenterCenter;
 		}
 		return rInitAngle2;

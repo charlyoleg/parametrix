@@ -35,8 +35,8 @@ const pDef: tParamDef = {
 		{ name: 'involArcPairs2', unit: 'scalar', init: 4, min: 1, max: 40, step: 1 },
 		{ name: 'skinThickness1', unit: 'mm', init: 0, min: -3, max: 3, step: 0.01 },
 		{ name: 'skinThickness2', unit: 'mm', init: 0, min: -3, max: 3, step: 0.01 },
-		{ name: 'initAngle', unit: 'degree', init: 0, min: -180, max: 180, step: 1 },
-		{ name: 'rightLeftCenter', unit: 'dropdown', init: 0, min: 0, max: 2, step: 1 }
+		{ name: 'initAngle1', unit: 'degree', init: 0, min: -180, max: 180, step: 1 },
+		{ name: 'rightLeftCenter2', unit: 'dropdown', init: 0, min: 0, max: 2, step: 1 }
 		//{ name: 'centralAxis', unit: 'checkbox', init: 1, min: 0, max: 1, step: 1 },
 		//{ name: 'axisRadius', unit: 'mm', init: 10, min: 0.1, max: 200, step: 0.1 },
 		//{ name: 'ribNb', unit: 'scalar', init: 3, min: 1, max: 32, step: 1 },
@@ -80,8 +80,8 @@ const pDef: tParamDef = {
 		skinThickness1: 'default_param_blank.svg',
 		involArcPairs2: 'default_param_blank.svg',
 		skinThickness2: 'default_param_blank.svg',
-		initAngle: 'default_param_blank.svg',
-		rightLeftCenter: 'default_param_blank.svg',
+		initAngle1: 'default_param_blank.svg',
+		rightLeftCenter2: 'default_param_blank.svg',
 		centralAxis: 'default_param_blank.svg',
 		axisRadius: 'default_param_blank.svg',
 		ribNb: 'default_param_blank.svg',
@@ -134,8 +134,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		gp2.set4BaseCircles(brr2, blr2);
 		gp1.set5AddendumThickness(param['at1']);
 		gp2.set5AddendumThickness(param['at2']);
-		gp1.set6Angles(degToRad(param['initAngle']), acc);
-		const initAngle2 = gwHelper.initAngle2(param['initAngle'], acc, param['rightLeftCenter']);
+		gp1.set6Angles(degToRad(param['initAngle1']), acc);
+		const initAngle2 = gwHelper.initAngle2(param['initAngle1'], acc, param['rightLeftCenter2']);
 		gp2.set6Angles(initAngle2, acc + Math.PI);
 		gp1.set7InvoluteDetails(param['involArcPairs1'], param['skinThickness1']);
 		gp2.set7InvoluteDetails(param['involArcPairs2'], param['skinThickness2']);
