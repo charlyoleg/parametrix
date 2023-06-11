@@ -17,11 +17,11 @@ const pDef: tParamDef = {
 		{ name: 'ah1', unit: 'scalar', init: 1, min: 0.1, max: 2, step: 0.05 },
 		{ name: 'dh1', unit: 'scalar', init: 1, min: 0.1, max: 2, step: 0.05 },
 		{ name: 'bh1', unit: 'scalar', init: 0.25, min: 0.1, max: 2, step: 0.05 },
-		{ name: 'bhr1', unit: 'mm', init: 0.1, min: 0.02, max: 50, step: 0.01 },
+		{ name: 'bRound1', unit: 'mm', init: 0.1, min: 0.02, max: 50, step: 0.01 },
 		{ name: 'ah2', unit: 'scalar', init: 1, min: 0.1, max: 2, step: 0.05 },
 		{ name: 'dh2', unit: 'scalar', init: 1, min: 0.1, max: 2, step: 0.05 },
 		{ name: 'bh2', unit: 'scalar', init: 0.25, min: 0.1, max: 2, step: 0.05 },
-		{ name: 'bhr2', unit: 'mm', init: 0.1, min: 0.02, max: 50, step: 0.01 },
+		{ name: 'bRound2', unit: 'mm', init: 0.1, min: 0.02, max: 50, step: 0.01 },
 		{ name: 'at1', unit: '%', init: 50, min: 10, max: 90, step: 0.5 },
 		{ name: 'at2', unit: '%', init: 50, min: 10, max: 90, step: 0.5 },
 		{ name: 'involSym', unit: 'checkbox', init: 1, min: 0, max: 1, step: 1 },
@@ -31,8 +31,25 @@ const pDef: tParamDef = {
 		{ name: 'brr2', unit: 'mm', init: 50, min: 10, max: 2000, step: 0.01 },
 		{ name: 'blr1', unit: 'mm', init: 50, min: 10, max: 2000, step: 0.01 },
 		{ name: 'blr2', unit: 'mm', init: 50, min: 10, max: 2000, step: 0.01 },
+		{ name: 'involArcPairs1', unit: 'scalar', init: 4, min: 1, max: 40, step: 1 },
+		{ name: 'involArcPairs2', unit: 'scalar', init: 4, min: 1, max: 40, step: 1 },
+		{ name: 'skinThickness1', unit: 'mm', init: 0, min: -3, max: 3, step: 0.01 },
+		{ name: 'skinThickness2', unit: 'mm', init: 0, min: -3, max: 3, step: 0.01 },
 		{ name: 'initAngle', unit: 'degree', init: 0, min: -180, max: 180, step: 1 },
 		{ name: 'rightLeftCenter', unit: 'dropdown', init: 0, min: 0, max: 2, step: 1 }
+		//{ name: 'centralAxis', unit: 'checkbox', init: 1, min: 0, max: 1, step: 1 },
+		//{ name: 'axisRadius', unit: 'mm', init: 10, min: 0.1, max: 200, step: 0.1 },
+		//{ name: 'ribNb', unit: 'scalar', init: 3, min: 1, max: 32, step: 1 },
+		//{ name: 'ribWidth', unit: 'mm', init: 2, min: 1, max: 100, step: 0.1 },
+		//{ name: 'ribHeight', unit: 'mm', init: 2, min: 1, max: 100, step: 0.1 },
+		//{ name: 'ribRound1', unit: 'mm', init: 0.5, min: 1, max: 20, step: 0.1 },
+		//{ name: 'ribRound2', unit: 'mm', init: 0.5, min: 1, max: 20, step: 0.1 },
+		//{ name: 'hollow', unit: 'checkbox', init: 1, min: 0, max: 1, step: 1 },
+		//{ name: 'materialHeightExt', unit: '%', init: 15, min: 1, max: 90, step: 0.5 },
+		//{ name: 'materialHeightInt', unit: '%', init: 15, min: 1, max: 90, step: 0.5 },
+		//{ name: 'spokeNb', unit: 'scalar', init: 5, min: 1, max: 18, step: 1 },
+		//{ name: 'spokeWidth', unit: 'mm', init: 2, min: 1, max: 200, step: 0.1 },
+		//{ name: 'spokeRound', unit: 'mm', init: 0.5, min: 1, max: 20, step: 0.1 }
 	],
 	paramSvg: {
 		module: 'default_param_blank.svg',
@@ -45,11 +62,11 @@ const pDef: tParamDef = {
 		ah1: 'default_param_blank.svg',
 		dh1: 'default_param_blank.svg',
 		bh1: 'default_param_blank.svg',
-		bhr1: 'default_param_blank.svg',
+		bRound1: 'default_param_blank.svg',
 		ah2: 'default_param_blank.svg',
 		dh2: 'default_param_blank.svg',
 		bh2: 'default_param_blank.svg',
-		bhr2: 'default_param_blank.svg',
+		bRound2: 'default_param_blank.svg',
 		at1: 'default_param_blank.svg',
 		at2: 'default_param_blank.svg',
 		involSym: 'default_param_blank.svg',
@@ -59,8 +76,25 @@ const pDef: tParamDef = {
 		brr2: 'default_param_blank.svg',
 		blr1: 'default_param_blank.svg',
 		blr2: 'default_param_blank.svg',
+		involArcPairs1: 'default_param_blank.svg',
+		skinThickness1: 'default_param_blank.svg',
+		involArcPairs2: 'default_param_blank.svg',
+		skinThickness2: 'default_param_blank.svg',
 		initAngle: 'default_param_blank.svg',
-		rightLeftCenter: 'default_param_blank.svg'
+		rightLeftCenter: 'default_param_blank.svg',
+		centralAxis: 'default_param_blank.svg',
+		axisRadius: 'default_param_blank.svg',
+		ribNb: 'default_param_blank.svg',
+		ribWidth: 'default_param_blank.svg',
+		ribHeight: 'default_param_blank.svg',
+		ribRound1: 'default_param_blank.svg',
+		ribRound2: 'default_param_blank.svg',
+		hollow: 'default_param_blank.svg',
+		materialHeightExt: 'default_param_blank.svg',
+		materialHeightInt: 'default_param_blank.svg',
+		spokeNb: 'default_param_blank.svg',
+		spokeWidth: 'default_param_blank.svg',
+		spokeRound: 'default_param_blank.svg'
 	},
 	sim: {
 		tMax: 100,
@@ -82,8 +116,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const acc = degToRad(param['angleCenterCenter']);
 		const [c2x, c2y] = gwHelper.gw2center(gp1, gp2, acc, param['addInterAxis']);
 		gp2.set2CenterPosition(c2x, c2y);
-		gp1.set3CircleRadius(param['ah1'], param['dh1'], param['bh1'], param['bhr1']);
-		gp2.set3CircleRadius(param['ah2'], param['dh2'], param['bh2'], param['bhr2']);
+		gp1.set3CircleRadius(param['ah1'], param['dh1'], param['bh1'], param['bRound1']);
+		gp2.set3CircleRadius(param['ah2'], param['dh2'], param['bh2'], param['bRound2']);
 		// base circles
 		const [brr1, blr1, brr2, blr2] = gwHelper.baseCircles(
 			gp1,
@@ -101,8 +135,10 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		gp1.set5AddendumThickness(param['at1']);
 		gp2.set5AddendumThickness(param['at2']);
 		gp1.set6Angles(degToRad(param['initAngle']), acc);
-		const rightLeftCenter = param['rightLeftCenter'];
-		gp2.set6Angles(0, acc + Math.PI);
+		const initAngle2 = gwHelper.initAngle2(param['initAngle'], acc, param['rightLeftCenter']);
+		gp2.set6Angles(initAngle2, acc + Math.PI);
+		gp1.set7InvoluteDetails(param['involArcPairs1'], param['skinThickness1']);
+		gp2.set7InvoluteDetails(param['involArcPairs2'], param['skinThickness2']);
 		// construction lines and circles
 		for (const refCircle of gp1.getRefCircles()) {
 			rGeome.fig.addDynamics(refCircle);

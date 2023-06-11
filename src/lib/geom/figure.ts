@@ -245,7 +245,7 @@ function initLayers(): tLayers {
 
 /* export */
 
-export type { tLayers, Figure };
+export type { tContour, tLayers, Figure };
 export {
 	ShapePoint,
 	degToRad,

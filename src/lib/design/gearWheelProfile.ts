@@ -1,5 +1,6 @@
 // gearWheelProfile.ts
 
+import type { tContour } from '$lib/geom/figure';
 import { contour, contourCircle, point } from '$lib/geom/figure';
 //import type { Involute } from './involute';
 import { involute } from './involute';
@@ -16,10 +17,12 @@ class GearWheelProfile {
 	pr = 53;
 	dr = 52;
 	br = 51;
-	bhr = 1;
+	bRound = 1;
 	adt = 0.5;
 	initAngle = 0;
 	axisAngle = 0;
+	involArcPairs = 1;
+	skinThickness = 0;
 	involuteR = involute(0, 0, 50, 0, true);
 	involuteL = involute(0, 0, 50, 0, false);
 	rud = 0;
@@ -47,11 +50,11 @@ class GearWheelProfile {
 		this.cx = icx;
 		this.cy = icy;
 	}
-	set3CircleRadius(iah: number, idh: number, ibh: number, ibhr: number) {
+	set3CircleRadius(iah: number, idh: number, ibh: number, ibRound: number) {
 		this.ar = this.pr + this.mod * iah;
 		this.dr = this.pr - this.mod * idh;
 		this.br = this.dr - this.mod * ibh;
-		this.bhr = ibhr;
+		this.bRound = ibRound;
 	}
 	set4BaseCircles(baseRight: number, baseLeft: number) {
 		this.brr = baseRight;
@@ -64,7 +67,11 @@ class GearWheelProfile {
 		this.initAngle = initAng;
 		this.axisAngle = axisAng;
 	}
-	getRefCircles() {
+	set7InvoluteDetails(iInvolArcPairs: number, iSkinThickness: number) {
+		this.involArcPairs = iInvolArcPairs;
+		this.skinThickness = iSkinThickness;
+	}
+	getRefCircles(): Array<tContour> {
 		const rRefCircles = [
 			contourCircle(this.cx, this.cy, this.ar),
 			contourCircle(this.cx, this.cy, this.pr),
@@ -75,7 +82,7 @@ class GearWheelProfile {
 		];
 		return rRefCircles;
 	}
-	getInvoluteAngles() {
+	calcInvoluteAngles() {
 		this.involuteR = involute(this.cx, this.cy, this.brr, 0, true);
 		if (this.dr > this.brr) {
 			this.rud = this.involuteR.uFromL(this.dr);
@@ -99,8 +106,8 @@ class GearWheelProfile {
 		this.lwp = this.involuteL.wFromU(this.lup);
 		this.lwa = this.involuteL.wFromU(this.lua);
 	}
-	getProfile() {
-		this.getInvoluteAngles();
+	getProfile(): tContour {
+		this.calcInvoluteAngles();
 		const aDiffRd = this.rwd - this.rwp;
 		const aDiffRa = this.rwa - this.rwp;
 		const aDiffLd = this.lwd - this.lwp;
@@ -113,6 +120,7 @@ class GearWheelProfile {
 		const first = center.translatePolar(this.initAngle + aDiffRd, this.br);
 		const rProfile = contour(first.cx, first.cy);
 		for (let i = 0; i < this.TN; i++) {
+			// TODO
 			const refA = this.initAngle + i * this.as;
 			const ptrb = center.translatePolar(refA + aDiffRd, this.br);
 			rProfile.addSegStrokeA(ptrb.cx, ptrb.cy);
@@ -137,7 +145,7 @@ class GearWheelProfile {
 	}
 }
 
-function gwProfile() {
+function gwProfile(): GearWheelProfile {
 	const rgwp = new GearWheelProfile();
 	return rgwp;
 }
@@ -172,7 +180,7 @@ const gwHelper = {
 		involSym: number,
 		involROpt: number,
 		involLOpt: number
-	) => {
+	): Array<number> => {
 		let brr1 = ibrr1;
 		let brr2 = ibrr2;
 		let blr1 = iblr1;
@@ -202,6 +210,18 @@ const gwHelper = {
 			blr2 = brr2;
 		}
 		return [brr1, blr1, brr2, blr2];
+	},
+	initAngle2: (
+		initAngle1: number,
+		angleCenterCenter: number,
+		rightLeftCenter: number
+	): number => {
+		let rInitAngle2 = 0;
+		// TODO
+		if (rightLeftCenter === 1) {
+			rInitAngle2 = initAngle1 + angleCenterCenter;
+		}
+		return rInitAngle2;
 	}
 };
 

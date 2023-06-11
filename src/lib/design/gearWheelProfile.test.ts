@@ -14,7 +14,7 @@ describe('gearWheelProfile module', () => {
 	gw1.set5AddendumThickness(50);
 	gw1.set6Angles(0, 0);
 	it('gwProfile', () => {
-		expect(gw1.getInvoluteAngles()).toBe(undefined);
+		expect(gw1.calcInvoluteAngles()).toBe(undefined);
 	});
 	it('gwHelper', () => {
 		const gw2 = gwProfile();
