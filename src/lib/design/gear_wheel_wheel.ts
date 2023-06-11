@@ -1,8 +1,10 @@
 // gear_wheel_wheel.ts
 
-import { contour, contourCircle, figure, degToRad } from '$lib/geom/figure';
+//import { contour, contourCircle, figure, degToRad } from '$lib/geom/figure';
+import { figure, degToRad } from '$lib/geom/figure';
 import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
 import { gwProfile, gwHelper } from './gearWheelProfile';
+import * as welem from './wheelElements';
 
 const pDef: tParamDef = {
 	page: 'gear_wheel_wheel',
@@ -36,17 +38,17 @@ const pDef: tParamDef = {
 		{ name: 'skinThickness1', unit: 'mm', init: 0, min: -3, max: 3, step: 0.01 },
 		{ name: 'skinThickness2', unit: 'mm', init: 0, min: -3, max: 3, step: 0.01 },
 		{ name: 'initAngle1', unit: 'degree', init: 0, min: -180, max: 180, step: 1 },
-		{ name: 'rightLeftCenter2', unit: 'dropdown', init: 0, min: 0, max: 2, step: 1 }
-		//{ name: 'centralAxis', unit: 'checkbox', init: 1, min: 0, max: 1, step: 1 },
-		//{ name: 'axisRadius', unit: 'mm', init: 10, min: 0.1, max: 200, step: 0.1 },
+		{ name: 'rightLeftCenter2', unit: 'dropdown', init: 0, min: 0, max: 2, step: 1 },
+		{ name: 'centralAxis', unit: 'checkbox', init: 1, min: 0, max: 1, step: 1 },
+		{ name: 'axisRadius', unit: 'mm', init: 10, min: 0.1, max: 200, step: 0.1 },
 		//{ name: 'ribNb', unit: 'scalar', init: 3, min: 1, max: 32, step: 1 },
 		//{ name: 'ribWidth', unit: 'mm', init: 2, min: 1, max: 100, step: 0.1 },
 		//{ name: 'ribHeight', unit: 'mm', init: 2, min: 1, max: 100, step: 0.1 },
 		//{ name: 'ribRound1', unit: 'mm', init: 0.5, min: 1, max: 20, step: 0.1 },
 		//{ name: 'ribRound2', unit: 'mm', init: 0.5, min: 1, max: 20, step: 0.1 },
-		//{ name: 'hollow', unit: 'checkbox', init: 1, min: 0, max: 1, step: 1 },
-		//{ name: 'materialHeightExt', unit: '%', init: 15, min: 1, max: 90, step: 0.5 },
-		//{ name: 'materialHeightInt', unit: '%', init: 15, min: 1, max: 90, step: 0.5 },
+		{ name: 'hollow', unit: 'checkbox', init: 1, min: 0, max: 1, step: 1 },
+		{ name: 'materialHeightExt', unit: '%', init: 15, min: 1, max: 90, step: 0.5 },
+		{ name: 'materialHeightInt', unit: '%', init: 15, min: 1, max: 90, step: 0.5 }
 		//{ name: 'spokeNb', unit: 'scalar', init: 5, min: 1, max: 18, step: 1 },
 		//{ name: 'spokeWidth', unit: 'mm', init: 2, min: 1, max: 200, step: 0.1 },
 		//{ name: 'spokeRound', unit: 'mm', init: 0.5, min: 1, max: 20, step: 0.1 }
@@ -150,6 +152,30 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const gp1p = gp1.getProfile();
 		rGeome.logstr += gp1p.check();
 		rGeome.fig.addMain(gp1p);
+		if (param['centralAxis'] === 1) {
+			const g1axis = welem.axisTorque(gp1.cx, gp1.cy, param['axisRadius']);
+			rGeome.logstr += g1axis.check();
+			rGeome.fig.addMain(g1axis);
+		}
+		if (param['hollow'] === 1) {
+			const materialHeightExtMax = gp1.br;
+			const materialHeightIntMin = param['axisRadius'];
+			const hollowMax = materialHeightExtMax - materialHeightIntMin;
+			const hollowMaterialExt =
+				materialHeightExtMax - (param['materialHeightExt'] * hollowMax) / 100;
+			const hollowMaterialInt =
+				materialHeightIntMin + (param['materialHeightInt'] * hollowMax) / 100;
+			const g1hollow = welem.hollowStraight(
+				gp1.cx,
+				gp1.cy,
+				hollowMaterialExt,
+				hollowMaterialInt
+			);
+			for (const g1hollowE of g1hollow) {
+				rGeome.logstr += g1hollowE.check();
+				rGeome.fig.addMain(g1hollowE);
+			}
+		}
 		const gp2p = gp2.getProfile();
 		rGeome.logstr += gp2p.check();
 		rGeome.fig.addSecond(gp2p);
