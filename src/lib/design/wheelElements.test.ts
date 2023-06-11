@@ -7,8 +7,8 @@ describe('wheelElements module', () => {
 		expectTypeOf(welem.axisTorque(0, 0, 10)).toBeObject();
 	});
 	it('hollowStraight', () => {
-		//const args = [0, 0, 20, 40];
-		expect(welem.hollowStraightArea(0, 0, 20, 40)).toBeCloseTo(60);
-		expectTypeOf(welem.hollowStraight(0, 0, 20, 40)).toBeArray();
+		const args = [0, 0, 20, 40] as const;
+		expect(welem.hollowStraightArea(...args)).toBeCloseTo(60);
+		expectTypeOf(welem.hollowStraight(...args)).toBeArray();
 	});
 });
