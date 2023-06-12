@@ -168,7 +168,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		}
 		if (param['hollow'] === 1) {
 			const materialHeightExtMax = gp1.br;
-			const materialHeightIntMin = param['axisRadius'];
+			const materialHeightIntMin = param['axisRadius'] + param['ribHeight'];
 			const hollowMax = materialHeightExtMax - materialHeightIntMin;
 			const hollowMaterialExt =
 				materialHeightExtMax - (param['materialHeightExt'] * hollowMax) / 100;
@@ -178,7 +178,10 @@ function pGeom(t: number, param: tParamVal): tGeom {
 				gp1.cx,
 				gp1.cy,
 				hollowMaterialExt,
-				hollowMaterialInt
+				hollowMaterialInt,
+				param['spokeNb'],
+				param['spokeWidth'],
+				param['spokeRound']
 			);
 			for (const g1hollowE of g1hollow) {
 				rGeome.logstr += g1hollowE.check();

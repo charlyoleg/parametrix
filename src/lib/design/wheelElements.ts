@@ -22,13 +22,24 @@ function hollowStraight(
 	cx: number,
 	cy: number,
 	hollowExt: number,
-	hollowInt: number
+	hollowInt: number,
+	spokeNb: number,
+	spokeWidth: number,
+	spokeRound: number
 ): Array<tContour> {
 	const rACtr = [contourCircle(cx, cy, hollowExt), contourCircle(cx, cy, hollowInt)];
 	return rACtr;
 }
-function hollowStraightArea(cx: number, cy: number, hollowExt: number, hollowInt: number): number {
-	const rArea = cx + cy + hollowExt + hollowInt;
+function hollowStraightArea(
+	cx: number,
+	cy: number,
+	hollowExt: number,
+	hollowInt: number,
+	spokeNb: number,
+	spokeWidth: number,
+	spokeRound: number
+): number {
+	const rArea = cx + cy + hollowExt + hollowInt + spokeNb + spokeWidth + spokeRound;
 	return rArea;
 }
 
