@@ -4,7 +4,7 @@ import * as welem from './wheelElements';
 
 describe('wheelElements module', () => {
 	it('axisTorque', () => {
-		expectTypeOf(welem.axisTorque(0, 0, 10)).toBeObject();
+		expectTypeOf(welem.axisTorque(0, 0, 10, 2, 4, 3, 1, 1)).toBeObject();
 	});
 	it('hollowStraight', () => {
 		const args = [0, 0, 20, 40] as const;

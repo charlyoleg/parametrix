@@ -41,17 +41,17 @@ const pDef: tParamDef = {
 		{ name: 'rightLeftCenter2', unit: 'dropdown', init: 0, min: 0, max: 2, step: 1 },
 		{ name: 'centralAxis', unit: 'checkbox', init: 1, min: 0, max: 1, step: 1 },
 		{ name: 'axisRadius', unit: 'mm', init: 10, min: 0.1, max: 200, step: 0.1 },
-		//{ name: 'ribNb', unit: 'scalar', init: 3, min: 1, max: 32, step: 1 },
-		//{ name: 'ribWidth', unit: 'mm', init: 2, min: 1, max: 100, step: 0.1 },
-		//{ name: 'ribHeight', unit: 'mm', init: 2, min: 1, max: 100, step: 0.1 },
-		//{ name: 'ribRound1', unit: 'mm', init: 0.5, min: 1, max: 20, step: 0.1 },
-		//{ name: 'ribRound2', unit: 'mm', init: 0.5, min: 1, max: 20, step: 0.1 },
+		{ name: 'ribNb', unit: 'scalar', init: 3, min: 1, max: 32, step: 1 },
+		{ name: 'ribWidth', unit: 'mm', init: 2, min: 1, max: 100, step: 0.1 },
+		{ name: 'ribHeight', unit: 'mm', init: 2, min: 1, max: 100, step: 0.1 },
+		{ name: 'ribRound1', unit: 'mm', init: 0.5, min: 1, max: 20, step: 0.1 },
+		{ name: 'ribRound2', unit: 'mm', init: 0.5, min: 1, max: 20, step: 0.1 },
 		{ name: 'hollow', unit: 'checkbox', init: 1, min: 0, max: 1, step: 1 },
 		{ name: 'materialHeightExt', unit: '%', init: 15, min: 1, max: 90, step: 0.5 },
-		{ name: 'materialHeightInt', unit: '%', init: 15, min: 1, max: 90, step: 0.5 }
-		//{ name: 'spokeNb', unit: 'scalar', init: 5, min: 1, max: 18, step: 1 },
-		//{ name: 'spokeWidth', unit: 'mm', init: 2, min: 1, max: 200, step: 0.1 },
-		//{ name: 'spokeRound', unit: 'mm', init: 0.5, min: 1, max: 20, step: 0.1 }
+		{ name: 'materialHeightInt', unit: '%', init: 15, min: 1, max: 90, step: 0.5 },
+		{ name: 'spokeNb', unit: 'scalar', init: 5, min: 1, max: 18, step: 1 },
+		{ name: 'spokeWidth', unit: 'mm', init: 2, min: 1, max: 200, step: 0.1 },
+		{ name: 'spokeRound', unit: 'mm', init: 0.5, min: 1, max: 20, step: 0.1 }
 	],
 	paramSvg: {
 		module: 'default_param_blank.svg',
@@ -153,7 +153,16 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rGeome.logstr += gp1p.check();
 		rGeome.fig.addMain(gp1p);
 		if (param['centralAxis'] === 1) {
-			const g1axis = welem.axisTorque(gp1.cx, gp1.cy, param['axisRadius']);
+			const g1axis = welem.axisTorque(
+				gp1.cx,
+				gp1.cy,
+				param['axisRadius'],
+				param['ribNb'],
+				param['ribWidth'],
+				param['ribHeight'],
+				param['ribRound1'],
+				param['ribRound2']
+			);
 			rGeome.logstr += g1axis.check();
 			rGeome.fig.addMain(g1axis);
 		}

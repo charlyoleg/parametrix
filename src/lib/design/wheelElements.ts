@@ -4,7 +4,16 @@ import type { tContour } from '$lib/geom/figure';
 //import { contour, contourCircle, point } from '$lib/geom/figure';
 import { contourCircle } from '$lib/geom/figure';
 
-function axisTorque(cx: number, cy: number, axisRadius: number): tContour {
+function axisTorque(
+	cx: number,
+	cy: number,
+	axisRadius: number,
+	ribNb: number,
+	ribWidth: number,
+	ribHeight: number,
+	ribRound1: number,
+	ribRound2: number
+): tContour {
 	const rCtr = contourCircle(cx, cy, axisRadius);
 	return rCtr;
 }
