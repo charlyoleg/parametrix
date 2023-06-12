@@ -39,6 +39,18 @@ The API provides options for rounding or widening corners of outlines. It's usef
 - manufacturabilty
 - improve mechanical strength
 
+
+### Programmatic CAD
+
+Instead of using *graphical tools* like [FreeCAD](https://www.freecad.org/), *Programmatic CAD* is the process of generating CAD designs from software code. Below some benefits of this approach:
+- designs managed by software development tools like [git](https://git-scm.com/)
+- lightweight. Typically you need a text-editor and a small viewer
+- complex parametrization are better solved by software
+- repeated pattern are easier to implement and maintained
+- curve from complex mathematical formula
+- can be integrated in web-backend or software automation chain
+
+
 ### CAD flow comparsion
 
 ![comparison_of_cad_flows.svg]({base}/comparison_of_cad_flows.svg)
@@ -61,6 +73,7 @@ The constraints of part manufacturing and low-tech CAD shaping concept are simil
 - too restrictive for esthetic/design parts
 
 Extruded-2D-design is good enough for 90% of technical parts
+
 
 ### Future tools around Parametrix
 
