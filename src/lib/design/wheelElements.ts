@@ -12,7 +12,8 @@ function axisTorque(
 	ribWidth: number,
 	ribHeight: number,
 	ribRound1: number,
-	ribRound2: number
+	ribRound2: number,
+	initAngle: number
 ): tContour {
 	const rCtr = contourCircle(cx, cy, axisRadius);
 	return rCtr;
@@ -25,7 +26,8 @@ function hollowStraight(
 	hollowInt: number,
 	spokeNb: number,
 	spokeWidth: number,
-	spokeRound: number
+	spokeRound: number,
+	initAngle: number
 ): Array<tContour> {
 	const rACtr = [contourCircle(cx, cy, hollowExt), contourCircle(cx, cy, hollowInt)];
 	return rACtr;

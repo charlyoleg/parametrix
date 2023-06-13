@@ -136,8 +136,9 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		gp2.set4BaseCircles(brr2, blr2);
 		gp1.set5AddendumThickness(param['at1']);
 		gp2.set5AddendumThickness(param['at2']);
-		gp1.set6Angles(degToRad(param['initAngle1']), acc);
-		const initAngle2 = gwHelper.initAngle2(param['initAngle1'], acc, param['rightLeftCenter2']);
+		const initAngle1 = degToRad(param['initAngle1']) + (t * gp1.as) / 100; // sim.tMax=100
+		gp1.set6Angles(initAngle1, acc);
+		const initAngle2 = gwHelper.initAngle2(initAngle1, acc, param['rightLeftCenter2']);
 		gp2.set6Angles(initAngle2, acc + Math.PI);
 		gp1.set7InvoluteDetails(param['involArcPairs1'], param['skinThickness1']);
 		gp2.set7InvoluteDetails(param['involArcPairs2'], param['skinThickness2']);
@@ -161,7 +162,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 				param['ribWidth'],
 				param['ribHeight'],
 				param['ribRound1'],
-				param['ribRound2']
+				param['ribRound2'],
+				initAngle1
 			);
 			rGeome.logstr += g1axis.check();
 			rGeome.fig.addMain(g1axis);
@@ -181,7 +183,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 				hollowMaterialInt,
 				param['spokeNb'],
 				param['spokeWidth'],
-				param['spokeRound']
+				param['spokeRound'],
+				initAngle1
 			);
 			for (const g1hollowE of g1hollow) {
 				rGeome.logstr += g1hollowE.check();
