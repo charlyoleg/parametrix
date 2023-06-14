@@ -8,6 +8,6 @@ describe('wheelElements module', () => {
 	});
 	it('hollowStraight', () => {
 		expect(welem.hollowStraightArea(0, 0, 20, 40, 1, 3, 1)).toBeCloseTo(65);
-		expectTypeOf(welem.hollowStraight(0, 0, 20, 40, 1, 3, 1, 0)).toBeArray();
+		expectTypeOf(welem.hollowStraight(0, 0, 40, 20, 1, 3, 1, 0)).toBeArray();
 	});
 });

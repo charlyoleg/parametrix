@@ -1,7 +1,7 @@
 // gear_wheel_wheel.ts
 
 //import { contour, contourCircle, figure, degToRad } from '$lib/geom/figure';
-import { figure, degToRad } from '$lib/geom/figure';
+import { figure, degToRad, ffix } from '$lib/geom/figure';
 import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
 import { gwProfile, gwHelper } from './gearWheelProfile';
 import * as welem from './wheelElements';
@@ -176,6 +176,11 @@ function pGeom(t: number, param: tParamVal): tGeom {
 				materialHeightExtMax - (param['materialHeightExt'] * hollowMax) / 100;
 			const hollowMaterialInt =
 				materialHeightIntMin + (param['materialHeightInt'] * hollowMax) / 100;
+			if (hollowMaterialInt > hollowMaterialExt) {
+				throw `err902: hollowMaterialInt ${ffix(
+					hollowMaterialInt
+				)} bigger than hollowMaterialExt ${ffix(hollowMaterialExt)}`;
+			}
 			const g1hollow = welem.hollowStraight(
 				gp1.cx,
 				gp1.cy,

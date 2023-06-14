@@ -43,7 +43,7 @@ function axisTorque(
 		rCtr = contour(pt0b.cx, pt0b.cy);
 		for (let i = 0; i < ribNb; i++) {
 			const ribDir1 = initAngle + i * aPeriod;
-			const ribDir2 = initAngle + (i + 1) * aPeriod;
+			const ribDir2 = ribDir1 + aPeriod;
 			const pt2 = pt0.translatePolar(ribDir1 + aRibW2, axisRadius);
 			const pt3 = pt0.translatePolar(ribDir2 - aRibW2, axisRadius);
 			const pt1z = pt0.translatePolar(ribDir1, axisRadius + ribHeight);
@@ -72,7 +72,54 @@ function hollowStraight(
 	spokeRound: number,
 	initAngle: number
 ): Array<tContour> {
-	const rACtr = [contourCircle(cx, cy, hollowExt), contourCircle(cx, cy, hollowInt)];
+	const aPeriod = (2 * Math.PI) / spokeNb;
+	const aW2Int = Math.asin(spokeWidth / (2 * hollowInt));
+	const aW2Ext = Math.asin(spokeWidth / (2 * hollowExt));
+	if (spokeWidth > 2 * hollowInt) {
+		throw `err905: hollowStraight spokeWidth ${ffix(spokeWidth)} too large for hollowInt ${ffix(
+			hollowInt
+		)}`;
+	}
+	if (hollowExt - hollowInt < 2 * spokeRound) {
+		throw `err906: hollowStraight hollowExt ${ffix(hollowExt)}, hollowInt ${ffix(
+			hollowInt
+		)} and spokeRound ${ffix(spokeRound)} do not fit`;
+	}
+	if (aPeriod - 2 * aW2Ext < 0) {
+		throw `err907: hollowStraight spokeNb ${spokeNb} or spokeWidth ${ffix(
+			spokeWidth
+		)} are too large`;
+	}
+	const dist5 = spokeWidth / (2 * Math.sin(aPeriod / 2));
+	const triangle = aPeriod - 2 * aW2Int < 0 ? true : false;
+	const arcLarge = aPeriod - 2 * aW2Ext > Math.PI ? true : false;
+	const pt0 = point(cx, cy);
+	const rACtr: Array<tContour> = [];
+	for (let i = 0; i < spokeNb; i++) {
+		const aSpoke1 = initAngle + i * aPeriod;
+		const aSpoke2 = aSpoke1 + aPeriod;
+		const aSpoke5 = aSpoke1 + aPeriod / 2;
+		const pt1 = pt0.translatePolar(aSpoke1 + aW2Ext, hollowExt);
+		const pt2 = pt0.translatePolar(aSpoke2 - aW2Ext, hollowExt);
+		const pt3 = pt0.translatePolar(aSpoke2 - aW2Int, hollowInt);
+		const pt4 = pt0.translatePolar(aSpoke1 + aW2Int, hollowInt);
+		const pt5 = pt0.translatePolar(aSpoke5, dist5);
+		const ctr = contour(pt1.cx, pt1.cy);
+		ctr.addCornerRounded(spokeRound);
+		ctr.addPointA(pt2.cx, pt2.cy)
+			.addSegArc(hollowExt, arcLarge, true)
+			.addCornerRounded(spokeRound);
+		if (triangle) {
+			ctr.addSegStrokeA(pt5.cx, pt5.cy).addCornerRounded(spokeRound);
+		} else {
+			ctr.addSegStrokeA(pt3.cx, pt3.cy).addCornerRounded(spokeRound);
+			ctr.addPointA(pt4.cx, pt4.cy)
+				.addSegArc(hollowInt, arcLarge, false)
+				.addCornerRounded(spokeRound);
+		}
+		ctr.closeSegStroke();
+		rACtr.push(ctr);
+	}
 	return rACtr;
 }
 function hollowStraightArea(
