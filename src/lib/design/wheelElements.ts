@@ -85,6 +85,7 @@ function hollowStraight(
 			hollowInt
 		)} and spokeRound ${ffix(spokeRound)} do not fit`;
 	}
+	// the formula of the following condition is approximate
 	if (aPeriod - 2 * aW2Ext < 2.5 * Math.asin(spokeRound / hollowExt)) {
 		throw `err907: hollowStraight spokeNb ${spokeNb}, spokeWidth ${ffix(
 			spokeWidth
