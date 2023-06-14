@@ -3,6 +3,8 @@
 import type { tContour } from '$lib/geom/figure';
 import { contour, contourCircle, point, ffix } from '$lib/geom/figure';
 
+const tolerance = 10 ** -4;
+
 function axisTorque(
 	cx: number,
 	cy: number,
@@ -91,7 +93,7 @@ function hollowStraight(
 		)} are too large`;
 	}
 	const dist5 = spokeWidth / (2 * Math.sin(aPeriod / 2));
-	const triangle = aPeriod - 2 * aW2Int < 0 ? true : false;
+	const triangle = aPeriod - 2 * aW2Int < tolerance ? true : false;
 	const arcLarge = aPeriod - 2 * aW2Ext > Math.PI ? true : false;
 	const pt0 = point(cx, cy);
 	const rACtr: Array<tContour> = [];

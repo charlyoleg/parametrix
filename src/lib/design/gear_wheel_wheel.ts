@@ -47,11 +47,11 @@ const pDef: tParamDef = {
 		{ name: 'ribRound1', unit: 'mm', init: 2, min: 0, max: 20, step: 0.1 },
 		{ name: 'ribRound2', unit: 'mm', init: 2, min: 0, max: 20, step: 0.1 },
 		{ name: 'hollow', unit: 'checkbox', init: 1, min: 0, max: 1, step: 1 },
-		{ name: 'materialHeightExt', unit: '%', init: 15, min: 1, max: 90, step: 0.5 },
+		{ name: 'materialHeightExt', unit: '%', init: 20, min: 1, max: 90, step: 0.5 },
 		{ name: 'materialHeightInt', unit: '%', init: 15, min: 1, max: 90, step: 0.5 },
 		{ name: 'spokeNb', unit: 'scalar', init: 5, min: 1, max: 18, step: 1 },
-		{ name: 'spokeWidth', unit: 'mm', init: 2, min: 1, max: 200, step: 0.1 },
-		{ name: 'spokeRound', unit: 'mm', init: 0.5, min: 0, max: 20, step: 0.1 }
+		{ name: 'spokeWidth', unit: 'mm', init: 15, min: 1, max: 200, step: 0.1 },
+		{ name: 'spokeRound', unit: 'mm', init: 10, min: 0, max: 20, step: 0.1 }
 	],
 	paramSvg: {
 		module: 'default_param_blank.svg',
