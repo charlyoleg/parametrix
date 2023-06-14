@@ -216,7 +216,7 @@ const gwHelper = {
 		gw2: GearWheelProfile,
 		initAngle1: number,
 		angleCenterCenter: number,
-		d12: number,
+		interAxis: number,
 		rightLeftCenter2: number
 	): number => {
 		let rInitAngle2 = 0;
