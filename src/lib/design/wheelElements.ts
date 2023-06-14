@@ -3,8 +3,6 @@
 import type { tContour } from '$lib/geom/figure';
 import { contour, contourCircle, point, ffix } from '$lib/geom/figure';
 
-const tolerance = 10 ** -4;
-
 function axisTorque(
 	cx: number,
 	cy: number,
@@ -82,19 +80,20 @@ function hollowStraight(
 			hollowInt
 		)}`;
 	}
-	if (hollowExt - hollowInt < 2 * spokeRound) {
+	if (hollowExt - hollowInt < 2.1 * spokeRound) {
 		throw `err906: hollowStraight hollowExt ${ffix(hollowExt)}, hollowInt ${ffix(
 			hollowInt
 		)} and spokeRound ${ffix(spokeRound)} do not fit`;
 	}
-	if (aPeriod - 2 * aW2Ext < 0) {
-		throw `err907: hollowStraight spokeNb ${spokeNb} or spokeWidth ${ffix(
+	if (aPeriod - 2 * aW2Ext < 2.5 * Math.asin(spokeRound / hollowExt)) {
+		throw `err907: hollowStraight spokeNb ${spokeNb}, spokeWidth ${ffix(
 			spokeWidth
-		)} are too large`;
+		)} or spokeRound ${ffix(spokeRound)} are too large`;
 	}
 	const dist5 = spokeWidth / (2 * Math.sin(aPeriod / 2));
-	const triangle = aPeriod - 2 * aW2Int < tolerance ? true : false;
+	const triangle = aPeriod - 2 * aW2Int < 2.1 * Math.asin(spokeRound / hollowInt) ? true : false;
 	const arcLarge = aPeriod - 2 * aW2Ext > Math.PI ? true : false;
+	//console.log(`dbg908: triangle ${triangle}`);
 	const pt0 = point(cx, cy);
 	const rACtr: Array<tContour> = [];
 	for (let i = 0; i < spokeNb; i++) {
