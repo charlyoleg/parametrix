@@ -19,11 +19,11 @@ const pDef: tParamDef = {
 		{ name: 'ah1', unit: 'scalar', init: 1, min: 0.1, max: 2, step: 0.05 },
 		{ name: 'dh1', unit: 'scalar', init: 1, min: 0.1, max: 2, step: 0.05 },
 		{ name: 'bh1', unit: 'scalar', init: 0.25, min: 0.1, max: 2, step: 0.05 },
-		{ name: 'bRound1', unit: 'mm', init: 0.1, min: 0, max: 50, step: 0.01 },
+		{ name: 'bRound1', unit: 'mm', init: 2, min: 0, max: 50, step: 0.1 },
 		{ name: 'ah2', unit: 'scalar', init: 1, min: 0.1, max: 2, step: 0.05 },
 		{ name: 'dh2', unit: 'scalar', init: 1, min: 0.1, max: 2, step: 0.05 },
 		{ name: 'bh2', unit: 'scalar', init: 0.25, min: 0.1, max: 2, step: 0.05 },
-		{ name: 'bRound2', unit: 'mm', init: 0.1, min: 0, max: 50, step: 0.01 },
+		{ name: 'bRound2', unit: 'mm', init: 2, min: 0, max: 50, step: 0.1 },
 		{ name: 'at1', unit: '%', init: 50, min: 10, max: 90, step: 0.5 },
 		{ name: 'at2', unit: '%', init: 50, min: 10, max: 90, step: 0.5 },
 		{ name: 'involSym', unit: 'checkbox', init: 1, min: 0, max: 1, step: 1 },
@@ -116,7 +116,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		gp2.set1ModuleToothNumber(param['module'], param['N2']);
 		gp1.set2CenterPosition(param['c1x'], param['c1y']);
 		const acc = degToRad(param['angleCenterCenter']);
-		const [c2x, c2y] = gwHelper.gw2center(gp1, gp2, acc, param['addInterAxis']);
+		const [c2x, c2y, d12] = gwHelper.gw2center(gp1, gp2, acc, param['addInterAxis']);
 		gp2.set2CenterPosition(c2x, c2y);
 		gp1.set3CircleRadius(param['ah1'], param['dh1'], param['bh1'], param['bRound1']);
 		gp2.set3CircleRadius(param['ah2'], param['dh2'], param['bh2'], param['bRound2']);
@@ -138,7 +138,14 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		gp2.set5AddendumThickness(param['at2']);
 		const initAngle1 = degToRad(param['initAngle1']) + (t * gp1.as) / 100; // sim.tMax=100
 		gp1.set6Angles(initAngle1, acc);
-		const initAngle2 = gwHelper.initAngle2(initAngle1, acc, param['rightLeftCenter2']);
+		const initAngle2 = gwHelper.initAngle2(
+			gp1,
+			gp2,
+			initAngle1,
+			acc,
+			d12,
+			param['rightLeftCenter2']
+		);
 		gp2.set6Angles(initAngle2, acc + Math.PI);
 		gp1.set7InvoluteDetails(param['involArcPairs1'], param['skinThickness1']);
 		gp2.set7InvoluteDetails(param['involArcPairs2'], param['skinThickness2']);

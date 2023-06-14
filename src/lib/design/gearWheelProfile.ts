@@ -1,7 +1,7 @@
 // gearWheelProfile.ts
 
 import type { tContour } from '$lib/geom/figure';
-import { contour, contourCircle, point } from '$lib/geom/figure';
+import { contour, contourCircle, point, withinPiPi } from '$lib/geom/figure';
 //import type { Involute } from './involute';
 import { involute } from './involute';
 
@@ -123,7 +123,7 @@ class GearWheelProfile {
 			// TODO
 			const refA = this.initAngle + i * this.as;
 			const ptrb = center.translatePolar(refA + aDiffRd, this.br);
-			rProfile.addSegStrokeA(ptrb.cx, ptrb.cy);
+			rProfile.addSegStrokeA(ptrb.cx, ptrb.cy).addCornerRounded(this.bRound);
 			const ptrd = center.translatePolar(refA + aDiffRd, erdr);
 			rProfile.addSegStrokeA(ptrd.cx, ptrd.cy);
 			const ptrp = center.translatePolar(refA, this.pr);
@@ -138,7 +138,7 @@ class GearWheelProfile {
 			const ptld = center.translatePolar(refAl + aDiffLd, eldr);
 			rProfile.addSegStrokeA(ptld.cx, ptld.cy);
 			const ptlb = center.translatePolar(refAl + aDiffLd, this.br);
-			rProfile.addSegStrokeA(ptlb.cx, ptlb.cy);
+			rProfile.addSegStrokeA(ptlb.cx, ptlb.cy).addCornerRounded(this.bRound);
 		}
 		rProfile.closeSegStroke();
 		return rProfile;
@@ -168,7 +168,7 @@ const gwHelper = {
 		const interAxis = gw1.pr + gw2.pr + addInterAxis;
 		const c2x = gw1.cx + interAxis * Math.cos(angleCenterCenter);
 		const c2y = gw1.cy + interAxis * Math.sin(angleCenterCenter);
-		return [c2x, c2y];
+		return [c2x, c2y, interAxis];
 	},
 	baseCircles: (
 		gw1: GearWheelProfile,
@@ -212,16 +212,29 @@ const gwHelper = {
 		return [brr1, blr1, brr2, blr2];
 	},
 	initAngle2: (
+		gw1: GearWheelProfile,
+		gw2: GearWheelProfile,
 		initAngle1: number,
 		angleCenterCenter: number,
+		d12: number,
 		rightLeftCenter2: number
 	): number => {
 		let rInitAngle2 = 0;
-		// TODO
-		if (rightLeftCenter2 === 1) {
-			rInitAngle2 = initAngle1 + angleCenterCenter;
+		let initAngle1b = initAngle1;
+		while (Math.abs(initAngle1b - angleCenterCenter) < gw1.as / 2) {
+			initAngle1b += gw1.as;
 		}
-		return rInitAngle2;
+		// TODO
+		if (rightLeftCenter2 === 0) {
+			rInitAngle2 = angleCenterCenter + Math.PI - initAngle1b;
+		} else if (rightLeftCenter2 === 1) {
+			rInitAngle2 = initAngle1 + angleCenterCenter;
+		} else if (rightLeftCenter2 === 2) {
+			rInitAngle2 = initAngle1 + angleCenterCenter;
+		} else {
+			throw `err221: initAngle2 rightLeftCenter2 ${rightLeftCenter2} has an unkown value`;
+		}
+		return withinPiPi(rInitAngle2);
 	}
 };
 
