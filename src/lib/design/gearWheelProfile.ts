@@ -129,10 +129,10 @@ class GearWheelProfile {
 		this.lwa = this.involuteL.wFromU(this.lua);
 	}
 	getToothRef(): tContour {
-		this.checkInitStep(7, 'getProfile');
-		this.calcInvoluteAngles();
 		const ptnb = 6 * this.involArcPairs;
 		const toothID = 0;
+		this.checkInitStep(7, 'getProfile');
+		this.calcInvoluteAngles();
 		const uPeriodR = (this.rua - this.rud) / ptnb;
 		const uPeriodL = (this.lua - this.lud) / ptnb;
 		const refA = this.initAngle + toothID * this.as;
@@ -156,7 +156,7 @@ class GearWheelProfile {
 		this.checkInitStep(7, 'getProfile');
 		this.calcInvoluteAngles();
 		const aDiffRd = this.rwd - this.rwp;
-		const aDiffRa = this.rwa - this.rwp;
+		//const aDiffRa = this.rwa - this.rwp;
 		const aDiffLd = this.lwd - this.lwp;
 		const aDiffLa = this.lwa - this.lwp;
 		const erdr = this.dr > this.brr ? this.dr : this.brr;
@@ -191,8 +191,12 @@ class GearWheelProfile {
 			//rProfile.addSegStrokeA(ptra.cx, ptra.cy);
 			const invoR = involute(this.cx, this.cy, this.brr, refA - this.rwp, true);
 			for (let j = 0; j < this.involArcPairs; j++) {
-				const [px, py] = invoR.ptc(this.rud + (j + 1) * uPeriodR);
-				rProfile.addSegStrokeA(px, py);
+				const uu1 = this.rud + j * uPeriodR;
+				const [px, py] = invoR.ptc(uu1 + uPeriodR);
+				const ta1 = invoR.ptcta(uu1);
+				const ta2 = invoR.ptcta(uu1 + uPeriodR) + Math.PI;
+				//rProfile.addSegStrokeA(px, py);
+				rProfile.addPointA(px, py).addSeg2Arcs(ta1, ta2);
 			}
 			const refAl = refA + this.as * this.adt;
 			const ptla = center.translatePolar(refAl + aDiffLa, this.ar);
@@ -203,8 +207,12 @@ class GearWheelProfile {
 			//rProfile.addSegStrokeA(ptld.cx, ptld.cy);
 			const invoL = involute(this.cx, this.cy, this.blr, refAl - this.lwp, false);
 			for (let j = 0; j < this.involArcPairs; j++) {
-				const [px, py] = invoL.ptc(this.lud + (this.involArcPairs - j - 1) * uPeriodL);
+				const uu1 = this.lud + (this.involArcPairs - j) * uPeriodL;
+				const [px, py] = invoL.ptc(uu1 - uPeriodL);
+				const ta1 = invoL.ptcta(uu1) + Math.PI;
+				const ta2 = invoL.ptcta(uu1 - uPeriodL);
 				rProfile.addSegStrokeA(px, py);
+				//rProfile.addPointA(px, py).addSeg2Arcs(ta1, ta2);
 			}
 			const ptlb = center.translatePolar(refAl + aDiffLd, this.br);
 			rProfile.addSegStrokeA(ptlb.cx, ptlb.cy).addCornerRounded(this.bRound);
