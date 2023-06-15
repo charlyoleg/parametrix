@@ -156,6 +156,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		for (const refCircle of gp2.getRefCircles()) {
 			rGeome.fig.addDynamics(refCircle);
 		}
+		rGeome.fig.addDynamics(gp1.getToothRef());
+		rGeome.fig.addDynamics(gp2.getToothRef());
 		// gearwheel-1
 		const gp1p = gp1.getProfile();
 		rGeome.logstr += gp1p.check();

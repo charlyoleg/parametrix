@@ -131,8 +131,25 @@ class GearWheelProfile {
 	getToothRef(): tContour {
 		this.checkInitStep(7, 'getProfile');
 		this.calcInvoluteAngles();
-		// TODO
-		const rCtr = contourCircle(this.cx, this.cy, 1.2 * this.ar);
+		const ptnb = 6 * this.involArcPairs;
+		const toothID = 0;
+		const uPeriodR = (this.rua - this.rud) / ptnb;
+		const uPeriodL = (this.lua - this.lud) / ptnb;
+		const refA = this.initAngle + toothID * this.as;
+		const invoR = involute(this.cx, this.cy, this.brr, refA - this.rwp, true);
+		const [p1x, p1y] = invoR.ptc(this.rud + 0 * uPeriodR);
+		const rCtr = contour(p1x, p1y);
+		for (let j = 0; j < ptnb; j++) {
+			const [px, py] = invoR.ptc(this.rud + (j + 1) * uPeriodR);
+			rCtr.addSegStrokeA(px, py);
+		}
+		const refAl = refA + this.as * this.adt;
+		const invoL = involute(this.cx, this.cy, this.blr, refAl - this.lwp, false);
+		for (let j = 0; j < ptnb + 1; j++) {
+			const [px, py] = invoL.ptc(this.lud + (ptnb - j) * uPeriodL);
+			rCtr.addSegStrokeA(px, py);
+		}
+		rCtr.closeSegStroke();
 		return rCtr;
 	}
 	getProfile(): tContour {
