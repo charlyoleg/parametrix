@@ -179,7 +179,6 @@ class GearWheelProfile {
 		const first = center.translatePolar(this.initAngle + aDiffRd, this.br);
 		const rProfile = contour(first.cx, first.cy);
 		for (let i = 0; i < this.TN; i++) {
-			// TODO
 			const refA = this.initAngle + i * this.as;
 			const ptrb = center.translatePolar(refA + aDiffRd, this.br);
 			rProfile.addSegStrokeA(ptrb.cx, ptrb.cy).addCornerRounded(this.bRound);
@@ -211,8 +210,8 @@ class GearWheelProfile {
 				const [px, py] = invoL.ptc(uu1 - uPeriodL);
 				const ta1 = invoL.ptcta(uu1) + Math.PI;
 				const ta2 = invoL.ptcta(uu1 - uPeriodL);
-				rProfile.addSegStrokeA(px, py);
-				//rProfile.addPointA(px, py).addSeg2Arcs(ta1, ta2);
+				//rProfile.addSegStrokeA(px, py);
+				rProfile.addPointA(px, py).addSeg2Arcs(ta1, ta2);
 			}
 			const ptlb = center.translatePolar(refAl + aDiffLd, this.br);
 			rProfile.addSegStrokeA(ptlb.cx, ptlb.cy).addCornerRounded(this.bRound);

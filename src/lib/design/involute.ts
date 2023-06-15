@@ -48,7 +48,7 @@ class Involute {
 	}
 	// angle of the tangent inclination of the Point C of the involute
 	ptcta(au: number): number {
-		const rta = this.initial_angle + au;
+		const rta = this.initial_angle + this.angleSign() * au;
 		return rta;
 	}
 	// get u from L
