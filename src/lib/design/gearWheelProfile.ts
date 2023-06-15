@@ -1,7 +1,7 @@
 // gearWheelProfile.ts
 
 import type { tContour } from '$lib/geom/figure';
-import { contour, contourCircle, point, withinPiPi } from '$lib/geom/figure';
+import { contour, contourCircle, point, withinPiPi, ffix } from '$lib/geom/figure';
 //import type { Involute } from './involute';
 import { involute } from './involute';
 
@@ -37,41 +37,62 @@ class GearWheelProfile {
 	lwd = 0;
 	lwp = 0;
 	lwa = 0;
+	initStep = 0;
 	construct() {
 		this.mod = 1;
+		this.initStep = 0;
+	}
+	incInitStep(target: number) {
+		if (this.initStep + 1 !== target) {
+			throw `err834: incInitStep initStep ${this.initStep} and target ${target} are not compatible`;
+		}
+		this.initStep = target;
+	}
+	checkInitStep(targetMin: number, msg: string) {
+		if (this.initStep < targetMin) {
+			throw `err835: checkInitStep for ${msg} initStep ${this.initStep} is too small compare to targetMin ${targetMin}`;
+		}
 	}
 	set1ModuleToothNumber(iMod: number, iTN: number) {
+		this.incInitStep(1);
 		this.mod = iMod;
 		this.TN = iTN;
 		this.pr = (this.mod * this.TN) / 2;
 		this.as = (2 * Math.PI) / this.TN;
 	}
 	set2CenterPosition(icx: number, icy: number) {
+		this.incInitStep(2);
 		this.cx = icx;
 		this.cy = icy;
 	}
 	set3CircleRadius(iah: number, idh: number, ibh: number, ibRound: number) {
+		this.incInitStep(3);
 		this.ar = this.pr + this.mod * iah;
 		this.dr = this.pr - this.mod * idh;
 		this.br = this.dr - this.mod * ibh;
 		this.bRound = ibRound;
 	}
 	set4BaseCircles(baseRight: number, baseLeft: number) {
+		this.incInitStep(4);
 		this.brr = baseRight;
 		this.blr = baseLeft;
 	}
 	set5AddendumThickness(iat: number) {
+		this.incInitStep(5);
 		this.adt = iat / 100;
 	}
 	set6Angles(initAng: number, axisAng: number) {
+		this.incInitStep(6);
 		this.initAngle = initAng;
 		this.axisAngle = axisAng;
 	}
 	set7InvoluteDetails(iInvolArcPairs: number, iSkinThickness: number) {
+		this.incInitStep(7);
 		this.involArcPairs = iInvolArcPairs;
 		this.skinThickness = iSkinThickness;
 	}
 	getRefCircles(): Array<tContour> {
+		this.checkInitStep(4, 'getRefCircles');
 		const rRefCircles = [
 			contourCircle(this.cx, this.cy, this.ar),
 			contourCircle(this.cx, this.cy, this.pr),
@@ -83,6 +104,7 @@ class GearWheelProfile {
 		return rRefCircles;
 	}
 	calcInvoluteAngles() {
+		this.checkInitStep(4, 'calcInvoluteAngles');
 		this.involuteR = involute(this.cx, this.cy, this.brr, 0, true);
 		if (this.dr > this.brr) {
 			this.rud = this.involuteR.uFromL(this.dr);
@@ -106,7 +128,15 @@ class GearWheelProfile {
 		this.lwp = this.involuteL.wFromU(this.lup);
 		this.lwa = this.involuteL.wFromU(this.lua);
 	}
+	getToothRef(): tContour {
+		this.checkInitStep(7, 'getProfile');
+		this.calcInvoluteAngles();
+		// TODO
+		const rCtr = contourCircle(this.cx, this.cy, 1.2 * this.ar);
+		return rCtr;
+	}
 	getProfile(): tContour {
+		this.checkInitStep(7, 'getProfile');
 		this.calcInvoluteAngles();
 		const aDiffRd = this.rwd - this.rwp;
 		const aDiffRa = this.rwa - this.rwp;
@@ -114,6 +144,18 @@ class GearWheelProfile {
 		const aDiffLa = this.lwa - this.lwp;
 		const erdr = this.dr > this.brr ? this.dr : this.brr;
 		const eldr = this.dr > this.blr ? this.dr : this.blr;
+		if (this.bRound > erdr - this.br) {
+			throw `err409: getProfile bRound ${ffix(this.bRound)} too large for erdr ${ffix(
+				erdr
+			)} and br ${ffix(this.br)}`;
+		}
+		if (this.bRound > eldr - this.br) {
+			throw `err408: getProfile bRound ${ffix(this.bRound)} too large for eldr ${ffix(
+				eldr
+			)} and br ${ffix(this.br)}`;
+		}
+		const uPeriodR = (this.rua - this.rud) / this.involArcPairs;
+		const uPeriodL = (this.lua - this.lud) / this.involArcPairs;
 		const center = point(this.cx, this.cy);
 		// this first point is equal to the first stroke of the loop.
 		// Contour will remove it because last and new points are identical
@@ -126,17 +168,27 @@ class GearWheelProfile {
 			rProfile.addSegStrokeA(ptrb.cx, ptrb.cy).addCornerRounded(this.bRound);
 			const ptrd = center.translatePolar(refA + aDiffRd, erdr);
 			rProfile.addSegStrokeA(ptrd.cx, ptrd.cy);
-			const ptrp = center.translatePolar(refA, this.pr);
-			rProfile.addSegStrokeA(ptrp.cx, ptrp.cy);
-			const ptra = center.translatePolar(refA + aDiffRa, this.ar);
-			rProfile.addSegStrokeA(ptra.cx, ptra.cy);
+			//const ptrp = center.translatePolar(refA, this.pr);
+			//rProfile.addSegStrokeA(ptrp.cx, ptrp.cy);
+			//const ptra = center.translatePolar(refA + aDiffRa, this.ar);
+			//rProfile.addSegStrokeA(ptra.cx, ptra.cy);
+			const invoR = involute(this.cx, this.cy, this.brr, refA - this.rwp, true);
+			for (let j = 0; j < this.involArcPairs; j++) {
+				const [px, py] = invoR.ptc(this.rud + (j + 1) * uPeriodR);
+				rProfile.addSegStrokeA(px, py);
+			}
 			const refAl = refA + this.as * this.adt;
 			const ptla = center.translatePolar(refAl + aDiffLa, this.ar);
 			rProfile.addSegStrokeA(ptla.cx, ptla.cy);
-			const ptlp = center.translatePolar(refAl, this.pr);
-			rProfile.addSegStrokeA(ptlp.cx, ptlp.cy);
-			const ptld = center.translatePolar(refAl + aDiffLd, eldr);
-			rProfile.addSegStrokeA(ptld.cx, ptld.cy);
+			//const ptlp = center.translatePolar(refAl, this.pr);
+			//rProfile.addSegStrokeA(ptlp.cx, ptlp.cy);
+			//const ptld = center.translatePolar(refAl + aDiffLd, eldr);
+			//rProfile.addSegStrokeA(ptld.cx, ptld.cy);
+			const invoL = involute(this.cx, this.cy, this.blr, refAl - this.lwp, false);
+			for (let j = 0; j < this.involArcPairs; j++) {
+				const [px, py] = invoL.ptc(this.lud + (this.involArcPairs - j - 1) * uPeriodL);
+				rProfile.addSegStrokeA(px, py);
+			}
 			const ptlb = center.translatePolar(refAl + aDiffLd, this.br);
 			rProfile.addSegStrokeA(ptlb.cx, ptlb.cy).addCornerRounded(this.bRound);
 		}
@@ -165,6 +217,8 @@ const gwHelper = {
 		angleCenterCenter: number,
 		addInterAxis: number
 	): Array<number> => {
+		gw1.checkInitStep(1, 'helper.gw2center-1');
+		gw2.checkInitStep(1, 'helper.gw2center-2');
 		const interAxis = gw1.pr + gw2.pr + addInterAxis;
 		const c2x = gw1.cx + interAxis * Math.cos(angleCenterCenter);
 		const c2y = gw1.cy + interAxis * Math.sin(angleCenterCenter);
@@ -181,6 +235,8 @@ const gwHelper = {
 		involROpt: number,
 		involLOpt: number
 	): Array<number> => {
+		gw1.checkInitStep(3, 'helper.baseCircles-1');
+		gw2.checkInitStep(3, 'helper.baseCircles-2');
 		let brr1 = ibrr1;
 		let brr2 = ibrr2;
 		let blr1 = iblr1;
@@ -219,6 +275,8 @@ const gwHelper = {
 		interAxis: number,
 		rightLeftCenter2: number
 	): number => {
+		gw1.checkInitStep(4, 'helper.initAngle2-1');
+		gw2.checkInitStep(4, 'helper.initAngle2-2');
 		let rInitAngle2 = 0;
 		let initAngle1b = initAngle1;
 		while (Math.abs(initAngle1b - angleCenterCenter) < gw1.as / 2) {
