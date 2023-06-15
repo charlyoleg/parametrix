@@ -1,7 +1,15 @@
 // gearWheelProfile.ts
 
 import type { tContour } from '$lib/geom/figure';
-import { contour, contourCircle, point, withinPiPi, ffix } from '$lib/geom/figure';
+import {
+	contour,
+	contourCircle,
+	point,
+	withinPiPi,
+	radToDeg,
+	roundZero,
+	ffix
+} from '$lib/geom/figure';
 //import type { Involute } from './involute';
 import { involute } from './involute';
 
@@ -298,10 +306,35 @@ const gwHelper = {
 		angleCenterCenter: number,
 		interAxis: number,
 		rightLeftCenter2: number
-	): number => {
+	): [number, string] => {
 		gw1.checkInitStep(4, 'helper.initAngle2-1');
 		gw2.checkInitStep(4, 'helper.initAngle2-2');
 		let rInitAngle2 = 0;
+		let rMsg = '';
+		if (interAxis > gw1.ar + gw2.ar) {
+			rMsg += `warn333: initAngle2 interAxis ${ffix(
+				interAxis
+			)} is too large compare to gw1.ar ${ffix(gw1.ar)} and gw2.ar ${ffix(gw2.ar)}\n`;
+		}
+		//const dOFr = (interAxis * gw1.brr) / (gw1.brr + gw2.brr);
+		//const dOFl = (interAxis * gw1.blr) / (gw1.blr + gw2.blr);
+		//const apr = Math.acos(gw1.brr / dOFr);
+		//const apl = Math.acos(gw1.blr / dOFl);
+		const apr = Math.acos((gw1.brr + gw2.brr) / interAxis);
+		const apl = Math.acos((gw1.blr + gw2.blr) / interAxis);
+		rMsg += `Pressure angular: right: ${ffix(radToDeg(apr))} left: ${ffix(
+			radToDeg(apl)
+		)} degree\n`;
+		if (roundZero(gw1.brr * gw2.TN - gw2.brr * gw1.TN) !== 0) {
+			rMsg += `warn407: right ratios differ N1/N2 = ${gw1.TN} / ${gw2.TN} = ${ffix(
+				gw1.TN / gw2.TN
+			)} and brr1/brr2 = ${ffix(gw1.brr)}/${ffix(gw2.brr)} = ${ffix(gw1.brr / gw2.brr)}\n`;
+		}
+		if (roundZero(gw1.blr * gw2.TN - gw2.blr * gw1.TN) !== 0) {
+			rMsg += `warn408: left ratios differ N1/N2 = ${gw1.TN} / ${gw2.TN} = ${ffix(
+				gw1.TN / gw2.TN
+			)} and blr1/blr2 = ${ffix(gw1.blr)}/${ffix(gw2.blr)} = ${ffix(gw1.blr / gw2.blr)}\n`;
+		}
 		let initAngle1b = initAngle1;
 		while (Math.abs(initAngle1b - angleCenterCenter) < gw1.as / 2) {
 			initAngle1b += gw1.as;
@@ -316,7 +349,7 @@ const gwHelper = {
 		} else {
 			throw `err221: initAngle2 rightLeftCenter2 ${rightLeftCenter2} has an unkown value`;
 		}
-		return withinPiPi(rInitAngle2);
+		return [withinPiPi(rInitAngle2), rMsg];
 	}
 };
 
