@@ -84,8 +84,13 @@ Finaly we have `J2/J1 = br1/br2 = N1/N2`.
 
 Recipe to calculate the initAngle2 for the right side:
 - Starting from *initAngle1*, the angle position of the primary point of the first tooth
-- substract the angle *W-primary* to get the starting of the *involute of circle*
-- In a loop, substract the tooth angle period to get the smallest
+- substract the angle *W-primary-1* to get the starting of the *involute of circle*
+- In a loop, substract the tooth angle period to get the first angle aBP for start of *involute of circle*
+- Compute the length lBD of the action line
+- Compute the length on the action line between two contact points: `2*PI/N1*brr1 = 2*PI/N2*brr2`
+- Get the first start of *involute of circle* in the second gearwheel coordinate `lBD-aBP*brr1`
+- Get the first start of *involute of circle* of the second gearwheel
+- Get the angle position of the primary point of the *arbitrary* first tooth of the second gearwheel by adding the angle *W-primary-2*
 
 
 <style lang="scss">
