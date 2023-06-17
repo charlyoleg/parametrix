@@ -90,7 +90,7 @@ Recipe to calculate the initAngle2 for the right side:
 - Compute the length on the action line between two contact points: `2*PI/N1*brr1 = 2*PI/N2*brr2`
 - Get the first start of *involute of circle* in the second gearwheel coordinate `lBD-aBP*brr1`
 - Get the first start of *involute of circle* of the second gearwheel
-- Get the angle position of the primary point of the *arbitrary* first tooth of the second gearwheel by adding the angle *W-primary-2*
+- Get the angle position of the primary point *initAngle2* of the *arbitrary* first tooth of the second gearwheel by adding the angle *W-primary-2*
 
 
 <style lang="scss">
