@@ -138,7 +138,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		gp2.set5AddendumThickness(param['at2']);
 		const initAngle1 = degToRad(param['initAngle1']) + (t * gp1.as) / 100; // sim.tMax=100
 		gp1.set6Angles(initAngle1, acc);
-		const [initAngle2, ia2Msg] = gwHelper.initAngle2(
+		const gearAL = gwHelper.actionLine(
 			gp1,
 			gp2,
 			initAngle1,
@@ -146,8 +146,9 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			d12,
 			param['rightLeftCenter2']
 		);
-		rGeome.logstr += ia2Msg;
-		gp2.set6Angles(initAngle2, acc + Math.PI);
+		gearAL.check1();
+		rGeome.logstr += gearAL.getMsg();
+		gp2.set6Angles(gearAL.getInitAngle2(), acc + Math.PI);
 		gp1.set7InvoluteDetails(param['involArcPairs1'], param['skinThickness1']);
 		gp2.set7InvoluteDetails(param['involArcPairs2'], param['skinThickness2']);
 		// construction lines and circles

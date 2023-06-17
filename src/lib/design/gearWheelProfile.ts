@@ -46,7 +46,7 @@ class GearWheelProfile {
 	lwp = 0;
 	lwa = 0;
 	initStep = 0;
-	construct() {
+	constructor() {
 		this.mod = 1;
 		this.initStep = 0;
 	}
@@ -299,55 +299,111 @@ function baseCircles(
 	}
 	return [brr1, blr1, brr2, blr2];
 }
-function initAngle2(
+
+class ActionLine {
+	gw1: GearWheelProfile;
+	gw2: GearWheelProfile;
+	initAngle1: number;
+	angleCenterCenter: number;
+	interAxis: number;
+	rightLeftCenter2: number;
+	msg: string;
+	apr: number; // angle pressure right
+	apl: number; // angle pressure left
+	constructor(
+		gw1: GearWheelProfile,
+		gw2: GearWheelProfile,
+		initAngle1: number,
+		angleCenterCenter: number,
+		interAxis: number,
+		rightLeftCenter2: number
+	) {
+		// initialized members
+		this.gw1 = gw1;
+		this.gw2 = gw2;
+		this.initAngle1 = initAngle1;
+		this.angleCenterCenter = angleCenterCenter;
+		this.interAxis = interAxis;
+		this.rightLeftCenter2 = rightLeftCenter2;
+		// computed members
+		this.msg = '';
+		this.apr = 0;
+		this.apl = 0;
+	}
+	check1() {
+		this.gw1.checkInitStep(4, 'helper.initAngle2-1');
+		this.gw2.checkInitStep(4, 'helper.initAngle2-2');
+		if (this.interAxis > this.gw1.ar + this.gw2.ar) {
+			this.msg += `warn333: initAngle2 interAxis ${ffix(
+				this.interAxis
+			)} is too large compare to gw1.ar ${ffix(this.gw1.ar)} and gw2.ar ${ffix(
+				this.gw2.ar
+			)}\n`;
+		}
+		//const dOFr = (interAxis * gw1.brr) / (gw1.brr + gw2.brr);
+		//const dOFl = (interAxis * gw1.blr) / (gw1.blr + gw2.blr);
+		//const apr = Math.acos(gw1.brr / dOFr);
+		//const apl = Math.acos(gw1.blr / dOFl);
+		this.apr = Math.acos((this.gw1.brr + this.gw2.brr) / this.interAxis);
+		this.apl = Math.acos((this.gw1.blr + this.gw2.blr) / this.interAxis);
+		this.msg += `Pressure angular: right: ${ffix(radToDeg(this.apr))} left: ${ffix(
+			radToDeg(this.apl)
+		)} degree\n`;
+		if (roundZero(this.gw1.brr * this.gw2.TN - this.gw2.brr * this.gw1.TN) !== 0) {
+			this.msg += `warn407: right ratios differ N1/N2 = ${this.gw1.TN} / ${
+				this.gw2.TN
+			} = ${ffix(this.gw1.TN / this.gw2.TN)} and brr1/brr2 = ${ffix(this.gw1.brr)}/${ffix(
+				this.gw2.brr
+			)} = ${ffix(this.gw1.brr / this.gw2.brr)}\n`;
+		}
+		if (roundZero(this.gw1.blr * this.gw2.TN - this.gw2.blr * this.gw1.TN) !== 0) {
+			this.msg += `warn408: left ratios differ N1/N2 = ${this.gw1.TN} / ${
+				this.gw2.TN
+			} = ${ffix(this.gw1.TN / this.gw2.TN)} and blr1/blr2 = ${ffix(this.gw1.blr)}/${ffix(
+				this.gw2.blr
+			)} = ${ffix(this.gw1.blr / this.gw2.blr)}\n`;
+		}
+	}
+	getMsg(): string {
+		return this.msg;
+	}
+	getInitAngle2() {
+		let rInitAngle2 = 0;
+		let initAngle1b = this.initAngle1;
+		while (Math.abs(initAngle1b - this.angleCenterCenter) < this.gw1.as / 2) {
+			initAngle1b += this.gw1.as;
+		}
+		// TODO
+		if (this.rightLeftCenter2 === 0) {
+			rInitAngle2 = this.angleCenterCenter + Math.PI - initAngle1b;
+		} else if (this.rightLeftCenter2 === 1) {
+			rInitAngle2 = this.initAngle1 + this.angleCenterCenter;
+		} else if (this.rightLeftCenter2 === 2) {
+			rInitAngle2 = this.initAngle1 + this.angleCenterCenter;
+		} else {
+			throw `err221: initAngle2 rightLeftCenter2 ${this.rightLeftCenter2} has an unkown value`;
+		}
+		return withinPiPi(rInitAngle2);
+	}
+}
+
+function actionLine(
 	gw1: GearWheelProfile,
 	gw2: GearWheelProfile,
 	initAngle1: number,
 	angleCenterCenter: number,
 	interAxis: number,
 	rightLeftCenter2: number
-): [number, string] {
-	gw1.checkInitStep(4, 'helper.initAngle2-1');
-	gw2.checkInitStep(4, 'helper.initAngle2-2');
-	let rInitAngle2 = 0;
-	let rMsg = '';
-	if (interAxis > gw1.ar + gw2.ar) {
-		rMsg += `warn333: initAngle2 interAxis ${ffix(
-			interAxis
-		)} is too large compare to gw1.ar ${ffix(gw1.ar)} and gw2.ar ${ffix(gw2.ar)}\n`;
-	}
-	//const dOFr = (interAxis * gw1.brr) / (gw1.brr + gw2.brr);
-	//const dOFl = (interAxis * gw1.blr) / (gw1.blr + gw2.blr);
-	//const apr = Math.acos(gw1.brr / dOFr);
-	//const apl = Math.acos(gw1.blr / dOFl);
-	const apr = Math.acos((gw1.brr + gw2.brr) / interAxis);
-	const apl = Math.acos((gw1.blr + gw2.blr) / interAxis);
-	rMsg += `Pressure angular: right: ${ffix(radToDeg(apr))} left: ${ffix(radToDeg(apl))} degree\n`;
-	if (roundZero(gw1.brr * gw2.TN - gw2.brr * gw1.TN) !== 0) {
-		rMsg += `warn407: right ratios differ N1/N2 = ${gw1.TN} / ${gw2.TN} = ${ffix(
-			gw1.TN / gw2.TN
-		)} and brr1/brr2 = ${ffix(gw1.brr)}/${ffix(gw2.brr)} = ${ffix(gw1.brr / gw2.brr)}\n`;
-	}
-	if (roundZero(gw1.blr * gw2.TN - gw2.blr * gw1.TN) !== 0) {
-		rMsg += `warn408: left ratios differ N1/N2 = ${gw1.TN} / ${gw2.TN} = ${ffix(
-			gw1.TN / gw2.TN
-		)} and blr1/blr2 = ${ffix(gw1.blr)}/${ffix(gw2.blr)} = ${ffix(gw1.blr / gw2.blr)}\n`;
-	}
-	let initAngle1b = initAngle1;
-	while (Math.abs(initAngle1b - angleCenterCenter) < gw1.as / 2) {
-		initAngle1b += gw1.as;
-	}
-	// TODO
-	if (rightLeftCenter2 === 0) {
-		rInitAngle2 = angleCenterCenter + Math.PI - initAngle1b;
-	} else if (rightLeftCenter2 === 1) {
-		rInitAngle2 = initAngle1 + angleCenterCenter;
-	} else if (rightLeftCenter2 === 2) {
-		rInitAngle2 = initAngle1 + angleCenterCenter;
-	} else {
-		throw `err221: initAngle2 rightLeftCenter2 ${rightLeftCenter2} has an unkown value`;
-	}
-	return [withinPiPi(rInitAngle2), rMsg];
+): ActionLine {
+	const rAL = new ActionLine(
+		gw1,
+		gw2,
+		initAngle1,
+		angleCenterCenter,
+		interAxis,
+		rightLeftCenter2
+	);
+	return rAL;
 }
 
-export { gwProfile, gw2center, baseCircles, initAngle2 };
+export { gwProfile, gw2center, baseCircles, actionLine };
