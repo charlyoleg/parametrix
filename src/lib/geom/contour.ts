@@ -50,13 +50,15 @@ class Contour extends AContour {
 	debugPoints: Array<Point>;
 	debugLines: Array<Line>;
 	lastPoint: Point;
-	constructor(ix: number, iy: number) {
+	imposedColor: string;
+	constructor(ix: number, iy: number, icolor = '') {
 		super();
 		this.segments = [new segLib.Segment1(segLib.SegEnum.eStart, ix, iy, 0)];
 		this.points = [];
 		this.debugPoints = [];
 		this.debugLines = [];
 		this.lastPoint = point(ix, iy);
+		this.imposedColor = icolor;
 	}
 	setLastPoint(ix: number, iy: number) {
 		this.lastPoint = point(ix, iy);
@@ -421,6 +423,7 @@ class Contour extends AContour {
 		return this;
 	}
 	draw(ctx: CanvasRenderingContext2D, cAdjust: tCanvasAdjust, color: string = colors.contour) {
+		const theColor = this.imposedColor === '' ? color : this.imposedColor;
 		let px1 = 0;
 		let py1 = 0;
 		for (const seg of this.segments) {
@@ -430,7 +433,7 @@ class Contour extends AContour {
 				ctx.beginPath();
 				ctx.moveTo(cx1, cy1);
 				ctx.lineTo(cx2, cy2);
-				ctx.strokeStyle = color;
+				ctx.strokeStyle = theColor;
 				ctx.stroke();
 			}
 			if (seg.sType === segLib.SegEnum.eArc) {
@@ -440,7 +443,7 @@ class Contour extends AContour {
 					const cRadius = radius2canvas(seg.radius, cAdjust);
 					ctx.beginPath();
 					ctx.arc(cx3, cy3, cRadius, -seg2.a1, -seg2.a2, seg.arcCcw);
-					ctx.strokeStyle = color;
+					ctx.strokeStyle = theColor;
 					ctx.stroke();
 				} catch (emsg) {
 					console.log('err413: ' + emsg);
@@ -646,18 +649,21 @@ class ContourCircle extends AContour {
 	px: number;
 	py: number;
 	radius: number;
-	constructor(ix: number, iy: number, iRadius: number) {
+	imposedColor: string;
+	constructor(ix: number, iy: number, iRadius: number, icolor = '') {
 		super();
 		this.px = ix;
 		this.py = iy;
 		this.radius = iRadius;
+		this.imposedColor = icolor;
 	}
 	draw(ctx: CanvasRenderingContext2D, cAdjust: tCanvasAdjust, color: string = colors.contour) {
 		const [cx3, cy3] = point2canvas(this.px, this.py, cAdjust);
 		const cRadius = radius2canvas(this.radius, cAdjust);
+		const theColor = this.imposedColor === '' ? color : this.imposedColor;
 		ctx.beginPath();
 		ctx.arc(cx3, cy3, cRadius, 0, 2 * Math.PI, true);
-		ctx.strokeStyle = color;
+		ctx.strokeStyle = theColor;
 		ctx.stroke();
 	}
 	extractSkeleton(): ContourCircle {
@@ -687,11 +693,11 @@ class ContourCircle extends AContour {
 }
 
 // instantiation functions
-function contour(ix: number, iy: number): Contour {
-	return new Contour(ix, iy);
+function contour(ix: number, iy: number, icolor = ''): Contour {
+	return new Contour(ix, iy, icolor);
 }
-function contourCircle(ix: number, iy: number, iRadius: number): ContourCircle {
-	return new ContourCircle(ix, iy, iRadius);
+function contourCircle(ix: number, iy: number, iRadius: number, icolor = ''): ContourCircle {
+	return new ContourCircle(ix, iy, iRadius, icolor);
 }
 
 type tContour = Contour | ContourCircle;

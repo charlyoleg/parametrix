@@ -104,12 +104,12 @@ class GearWheelProfile {
 	getRefCircles(): Array<tContour> {
 		this.checkInitStep(4, 'getRefCircles');
 		const rRefCircles = [
-			contourCircle(this.cx, this.cy, this.ar),
-			contourCircle(this.cx, this.cy, this.pr),
-			contourCircle(this.cx, this.cy, this.dr),
-			contourCircle(this.cx, this.cy, this.br),
-			contourCircle(this.cx, this.cy, this.brr),
-			contourCircle(this.cx, this.cy, this.blr)
+			contourCircle(this.cx, this.cy, this.ar, 'Azure'),
+			contourCircle(this.cx, this.cy, this.pr, 'Azure'),
+			contourCircle(this.cx, this.cy, this.dr, 'Azure'),
+			contourCircle(this.cx, this.cy, this.br, 'Azure'),
+			contourCircle(this.cx, this.cy, this.brr, 'CornFlowerBlue'),
+			contourCircle(this.cx, this.cy, this.blr, 'Crimson')
 		];
 		return rRefCircles;
 	}
@@ -148,7 +148,7 @@ class GearWheelProfile {
 		const refA = this.initAngle + toothID * this.as;
 		const invoR = involute(this.cx, this.cy, this.brr, refA - this.rwp, true);
 		const [p1x, p1y] = invoR.ptc(this.rud + 0 * uPeriodR);
-		const rCtr = contour(p1x, p1y);
+		const rCtr = contour(p1x, p1y, 'Gold');
 		for (let j = 0; j < ptnb; j++) {
 			const [px, py] = invoR.ptc(this.rud + (j + 1) * uPeriodR);
 			rCtr.addSegStrokeA(px, py);
