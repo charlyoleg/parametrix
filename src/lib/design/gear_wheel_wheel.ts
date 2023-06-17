@@ -3,7 +3,7 @@
 //import { contour, contourCircle, figure, degToRad } from '$lib/geom/figure';
 import { figure, degToRad, ffix } from '$lib/geom/figure';
 import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
-import { gwProfile, gwHelper } from './gearWheelProfile';
+import * as gwHelper from './gearWheelProfile';
 import * as welem from './wheelElements';
 
 const pDef: tParamDef = {
@@ -110,8 +110,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		// re-arrange parameters
-		const gp1 = gwProfile();
-		const gp2 = gwProfile();
+		const gp1 = gwHelper.gwProfile();
+		const gp2 = gwHelper.gwProfile();
 		gp1.set1ModuleToothNumber(param['module'], param['N1']);
 		gp2.set1ModuleToothNumber(param['module'], param['N2']);
 		gp1.set2CenterPosition(param['c1x'], param['c1y']);

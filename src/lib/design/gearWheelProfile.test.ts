@@ -1,12 +1,12 @@
 import { describe, it, expect } from 'vitest';
-import { gwProfile, gwHelper } from './gearWheelProfile';
+import * as gwHelper from './gearWheelProfile';
 
 function degToRad(deg: number): number {
 	return (deg / 180) * Math.PI;
 }
 
 describe('gearWheelProfile module', () => {
-	const gw1 = gwProfile();
+	const gw1 = gwHelper.gwProfile();
 	gw1.set1ModuleToothNumber(10, 23);
 	gw1.set2CenterPosition(0, 0);
 	gw1.set3CircleRadius(1, 1, 1, 2);
@@ -17,7 +17,7 @@ describe('gearWheelProfile module', () => {
 		expect(gw1.calcInvoluteAngles()).toBe(undefined);
 	});
 	it('gwHelper', () => {
-		const gw2 = gwProfile();
+		const gw2 = gwHelper.gwProfile();
 		gw2.set1ModuleToothNumber(10, 29);
 		expect(gwHelper.gw2center(gw1, gw2, degToRad(0), 2)[0]).toBeCloseTo(262);
 		expect(gwHelper.gw2center(gw1, gw2, degToRad(0), 2)[1]).toBeCloseTo(0);
