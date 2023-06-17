@@ -7,6 +7,7 @@ import type { tCanvasAdjust } from './canvas_utils';
 //import { colorCanvasPoint } from '$lib/style/colors.scss';
 import { colors, adjustZero, adjustInit } from './canvas_utils';
 import { withinPiPi, degToRad, radToDeg, roundZero, ffix } from './angle_utils';
+import { lcFromLaLbAc, aCFromLaLbLc, lbFromLaAaAb, aBFromLaLbAa } from './triangle_utils';
 import { ShapePoint, Point, point } from './point';
 import { Line, line, linePP, bisector, circleCenter } from './line';
 import { Vector, vector } from './vector';
@@ -253,6 +254,10 @@ export {
 	radToDeg,
 	roundZero,
 	ffix,
+	lcFromLaLbAc,
+	aCFromLaLbLc,
+	lbFromLaAaAb,
+	aBFromLaLbAa,
 	point,
 	line,
 	linePP,

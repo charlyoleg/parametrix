@@ -21,6 +21,7 @@ category: documentation
 
 ![any_triangle.svg]({base}/any_triangle.svg)
 
+Arcsin returns only values within [-PI/2, PI/2]. If you use the *law of sinus* to get an angle, make sure this angle is acute.
 
 ## Point
 

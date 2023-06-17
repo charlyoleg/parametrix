@@ -5,6 +5,8 @@ import {
 	contour,
 	contourCircle,
 	point,
+	lcFromLaLbAc,
+	aBFromLaLbAa,
 	withinPiPi,
 	radToDeg,
 	roundZero,
@@ -340,15 +342,6 @@ class ActionLine {
 				this.gw2.ar
 			)}\n`;
 		}
-		//const dOFr = (interAxis * gw1.brr) / (gw1.brr + gw2.brr);
-		//const dOFl = (interAxis * gw1.blr) / (gw1.blr + gw2.blr);
-		//const apr = Math.acos(gw1.brr / dOFr);
-		//const apl = Math.acos(gw1.blr / dOFl);
-		this.apr = Math.acos((this.gw1.brr + this.gw2.brr) / this.interAxis);
-		this.apl = Math.acos((this.gw1.blr + this.gw2.blr) / this.interAxis);
-		this.msg += `Pressure angular: right: ${ffix(radToDeg(this.apr))} left: ${ffix(
-			radToDeg(this.apl)
-		)} degree\n`;
 		if (roundZero(this.gw1.brr * this.gw2.TN - this.gw2.brr * this.gw1.TN) !== 0) {
 			this.msg += `warn407: right ratios differ N1/N2 = ${this.gw1.TN} / ${
 				this.gw2.TN
@@ -363,6 +356,57 @@ class ActionLine {
 				this.gw2.blr
 			)} = ${ffix(this.gw1.blr / this.gw2.blr)}\n`;
 		}
+	}
+	calcActionLine() {
+		const dOFr1 = (this.interAxis * this.gw1.brr) / (this.gw1.brr + this.gw2.brr);
+		const dOFl1 = (this.interAxis * this.gw1.blr) / (this.gw1.blr + this.gw2.blr);
+		const dOFr2 = this.interAxis - dOFr1;
+		const dOFl2 = this.interAxis - dOFl1;
+		//const apr = Math.acos(gw1.brr / dOFr);
+		//const apl = Math.acos(gw1.blr / dOFl);
+		this.apr = Math.acos((this.gw1.brr + this.gw2.brr) / this.interAxis);
+		this.apl = Math.acos((this.gw1.blr + this.gw2.blr) / this.interAxis);
+		this.msg += `Pressure angular: right: ${ffix(radToDeg(this.apr))} left: ${ffix(
+			radToDeg(this.apl)
+		)} degree\n`;
+		const lBDr = this.interAxis * Math.sin(this.apr);
+		const lBDl = this.interAxis * Math.sin(this.apl);
+		this.msg += `Line of Action Maximum length: right: ${ffix(lBDr)} left: ${ffix(lBDl)} mm\n`;
+		const aOFDr1 = Math.PI / 2 + this.apr;
+		const aFDOr1 = aBFromLaLbAa(this.gw1.ar, dOFr1, aOFDr1);
+		const aFODr1 = Math.PI - aOFDr1 - aFDOr1;
+		const lDFr1 = lcFromLaLbAc(dOFr1, this.gw1.ar, aFODr1);
+		const aOFDr2 = aOFDr1;
+		const aFDOr2 = aBFromLaLbAa(this.gw2.ar, dOFr2, aOFDr2);
+		const aFODr2 = Math.PI - aOFDr2 - aFDOr2;
+		const lDFr2 = lcFromLaLbAc(dOFr2, this.gw2.ar, aFODr2);
+		const lalr = lDFr1 + lDFr2;
+		const aOFDl1 = Math.PI / 2 + this.apl;
+		const aFDOl1 = aBFromLaLbAa(this.gw1.ar, dOFl1, aOFDl1);
+		const aFODl1 = Math.PI - aOFDl1 - aFDOl1;
+		const lDFl1 = lcFromLaLbAc(dOFl1, this.gw1.ar, aFODl1);
+		const aOFDl2 = aOFDr1;
+		const aFDOl2 = aBFromLaLbAa(this.gw2.ar, dOFl2, aOFDl2);
+		const aFODl2 = Math.PI - aOFDl2 - aFDOl2;
+		const lDFl2 = lcFromLaLbAc(dOFl2, this.gw2.ar, aFODl2);
+		const lall = lDFl1 + lDFl2;
+		this.msg += `Line of Action Effective length: right: ${ffix(lalr)} left: ${ffix(lall)}\n`;
+		const lasr1 = ((2 * Math.PI) / this.gw1.TN) * this.gw1.brr;
+		const lasr2 = ((2 * Math.PI) / this.gw2.TN) * this.gw2.brr;
+		this.msg += `Line of Action right: step length: 1: ${ffix(lasr1)} 2: ${ffix(lasr2)} mm\n`;
+		this.msg += `Line of Action right: nb of contact point: 1: ${ffix(lalr / lasr1)} 2: ${ffix(
+			lalr / lasr2
+		)}\n`;
+		const lasl1 = ((2 * Math.PI) / this.gw1.TN) * this.gw1.blr;
+		const lasl2 = ((2 * Math.PI) / this.gw2.TN) * this.gw2.blr;
+		this.msg += `Line of Action left: step length: 1: ${ffix(lasl1)} 2: ${ffix(lasl2)} mm\n`;
+		this.msg += `Line of Action left: nb of contact point: 1: ${ffix(lall / lasl1)} 2: ${ffix(
+			lall / lasl2
+		)}\n`;
+	}
+	prepare() {
+		this.check1();
+		this.calcActionLine();
 	}
 	getMsg(): string {
 		return this.msg;
