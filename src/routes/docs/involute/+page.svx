@@ -63,7 +63,7 @@ Conclusion, if we have a plan with an inclination angle i3, it will be pushed by
 
 ## Contact point
 
-What are the *position* and *instant speed* of the contact point C of an *involute of circle* with the virtual plan perpendicular to the *line of action*?
+The *position* and *instant speed* of the contact point C of an *involute of circle* with the virtual plan perpendicular to the *line of action*.
 
 ![point_c_position_and_speed_positive.svg]({base}/point_c_position_and_speed_positive.svg)
 ![point_c_position_and_speed_negative.svg]({base}/point_c_position_and_speed_negative.svg)
@@ -76,6 +76,16 @@ If the first base circle rotates at the angular speed J1, the point of contact C
 In order to switch smoothly from one tooth to an other, this ratio must also be equal to `N1/N2`.
 
 Finaly we have `J2/J1 = br1/br2 = N1/N2`.
+
+
+## Calculation of initAngle2
+
+![calculation_of_initAngle2.svg]({base}/calculation_of_initAngle2.svg)
+
+Recipe to calculate the initAngle2 for the right side:
+- Starting from *initAngle1*, the angle position of the primary point of the first tooth
+- substract the angle *W-primary* to get the starting of the *involute of circle*
+- In a loop, substract the tooth angle period to get the smallest
 
 
 <style lang="scss">
