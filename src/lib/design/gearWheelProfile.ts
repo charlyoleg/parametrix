@@ -312,6 +312,10 @@ class ActionLine {
 	msg: string;
 	apr: number; // angle pressure right
 	apl: number; // angle pressure left
+	laStartRr1 = 0;
+	laStartRr2 = 0;
+	laStartRl1 = 0;
+	laStartRl2 = 0;
 	constructor(
 		gw1: GearWheelProfile,
 		gw2: GearWheelProfile,
@@ -333,8 +337,8 @@ class ActionLine {
 		this.apl = 0;
 	}
 	check1() {
-		this.gw1.checkInitStep(4, 'helper.initAngle2-1');
-		this.gw2.checkInitStep(4, 'helper.initAngle2-2');
+		this.gw1.checkInitStep(4, 'ActionLine.check1-1');
+		this.gw2.checkInitStep(4, 'ActionLine.check1-2');
 		if (this.interAxis > this.gw1.ar + this.gw2.ar) {
 			this.msg += `warn333: initAngle2 interAxis ${ffix(
 				this.interAxis
@@ -358,6 +362,10 @@ class ActionLine {
 		}
 	}
 	calcActionLine() {
+		this.gw1.checkInitStep(4, 'ActionLine.calcActionLine-1');
+		this.gw2.checkInitStep(4, 'ActionLine.calcActionLine-2');
+		this.gw1.calcInvoluteAngles();
+		this.gw2.calcInvoluteAngles();
 		const dOFr1 = (this.interAxis * this.gw1.brr) / (this.gw1.brr + this.gw2.brr);
 		const dOFl1 = (this.interAxis * this.gw1.blr) / (this.gw1.blr + this.gw2.blr);
 		const dOFr2 = this.interAxis - dOFr1;
@@ -372,25 +380,68 @@ class ActionLine {
 		const lBDr = this.interAxis * Math.sin(this.apr);
 		const lBDl = this.interAxis * Math.sin(this.apl);
 		this.msg += `Line of Action Maximum length: right: ${ffix(lBDr)} left: ${ffix(lBDl)} mm\n`;
+		// effective line of action right
 		const aOFDr1 = Math.PI / 2 + this.apr;
 		const aFDOr1 = aBFromLaLbAa(this.gw1.ar, dOFr1, aOFDr1);
 		const aFODr1 = Math.PI - aOFDr1 - aFDOr1;
+		//const aBODr1 = this.gw1.involuteR.uFromL(this.gw1.ar); // this.gw1.rua
+		const aFODr1Alt = this.gw1.rua - this.apr;
+		if (roundZero(aFODr1 - aFODr1Alt) !== 0) {
+			//throw `dbg378: aFODr1 ${aFODr1} and aFODr1Alt ${aFODr1Alt} differ`;
+		}
 		const lDFr1 = lcFromLaLbAc(dOFr1, this.gw1.ar, aFODr1);
 		const aOFDr2 = aOFDr1;
 		const aFDOr2 = aBFromLaLbAa(this.gw2.ar, dOFr2, aOFDr2);
 		const aFODr2 = Math.PI - aOFDr2 - aFDOr2;
+		const aFODr2Alt = this.gw2.rua - this.apr;
+		if (roundZero(aFODr2 - aFODr2Alt) !== 0) {
+			//throw `dbg379: aFODr2 ${aFODr2} and aFODr2Alt ${aFODr2Alt} differ`;
+		}
 		const lDFr2 = lcFromLaLbAc(dOFr2, this.gw2.ar, aFODr2);
 		const lalr = lDFr1 + lDFr2;
+		const laUr1 = lalr / this.gw1.brr;
+		const laUr2 = lalr / this.gw2.brr;
+		const laStartUr1 = this.gw1.rua - laUr1;
+		const laStartUr2 = this.gw2.rua - laUr2;
+		this.laStartRr1 = this.gw1.involuteR.lFromU(laStartUr1);
+		this.laStartRr2 = this.gw2.involuteR.lFromU(laStartUr2);
+		// effective line of action left
 		const aOFDl1 = Math.PI / 2 + this.apl;
 		const aFDOl1 = aBFromLaLbAa(this.gw1.ar, dOFl1, aOFDl1);
 		const aFODl1 = Math.PI - aOFDl1 - aFDOl1;
+		const aFODl1Alt = this.gw1.lua - this.apl;
+		if (roundZero(aFODl1 - aFODl1Alt) !== 0) {
+			//throw `dbg388: aFODl1 ${aFODl1} and aFODl1Alt ${aFODl1Alt} differ`;
+		}
 		const lDFl1 = lcFromLaLbAc(dOFl1, this.gw1.ar, aFODl1);
 		const aOFDl2 = aOFDr1;
 		const aFDOl2 = aBFromLaLbAa(this.gw2.ar, dOFl2, aOFDl2);
 		const aFODl2 = Math.PI - aOFDl2 - aFDOl2;
+		const aFODl2Alt = this.gw2.lua - this.apl;
+		if (roundZero(aFODl2 - aFODl2Alt) !== 0) {
+			//throw `dbg389: aFODl2 ${aFODl2} and aFODl2Alt ${aFODl2Alt} differ`;
+		}
 		const lDFl2 = lcFromLaLbAc(dOFl2, this.gw2.ar, aFODl2);
 		const lall = lDFl1 + lDFl2;
-		this.msg += `Line of Action Effective length: right: ${ffix(lalr)} left: ${ffix(lall)}\n`;
+		const laUl1 = lall / this.gw1.blr;
+		const laUl2 = lall / this.gw2.blr;
+		const laStartUl1 = this.gw1.lua - laUl1;
+		const laStartUl2 = this.gw2.lua - laUl2;
+		this.laStartRl1 = this.gw1.involuteL.lFromU(laStartUl1);
+		this.laStartRl2 = this.gw2.involuteL.lFromU(laStartUl2);
+		this.msg += `Line of Action Effective length: right: ${ffix(lalr)} left: ${ffix(
+			lall
+		)} mm\n`;
+		this.msg += `Line of Action Effective rotation angle: right-1: ${ffix(
+			radToDeg(laUr1)
+		)} right-2: ${ffix(radToDeg(laUr2))} left-1: ${ffix(radToDeg(laUl1))} left-1: ${ffix(
+			radToDeg(laUl1)
+		)} degree\n`;
+		this.msg += `Line of Action Effective height: right-1: ${ffix(
+			this.gw1.ar - this.laStartRr1
+		)} right-2: ${ffix(this.gw2.ar - this.laStartRr2)} left-1: ${ffix(
+			this.gw1.ar - this.laStartRl1
+		)} left-2: ${ffix(this.gw2.ar - this.laStartRl2)} mm\n`;
 		const lasr1 = ((2 * Math.PI) / this.gw1.TN) * this.gw1.brr;
 		const lasr2 = ((2 * Math.PI) / this.gw2.TN) * this.gw2.brr;
 		this.msg += `Line of Action right: step length: 1: ${ffix(lasr1)} 2: ${ffix(lasr2)} mm\n`;
@@ -408,10 +459,32 @@ class ActionLine {
 		this.check1();
 		this.calcActionLine();
 	}
+	getContours(): Array<tContour> {
+		const rACtr: Array<tContour> = [];
+		rACtr.push(contourCircle(this.gw1.cx, this.gw1.cy, this.laStartRr1, 'SkyBlue'));
+		rACtr.push(contourCircle(this.gw1.cx, this.gw1.cy, this.laStartRl1, 'SlateBlue'));
+		rACtr.push(contourCircle(this.gw2.cx, this.gw2.cy, this.laStartRr2, 'SkyBlue'));
+		rACtr.push(contourCircle(this.gw2.cx, this.gw2.cy, this.laStartRl2, 'SlateBlue'));
+		const c1 = point(this.gw1.cx, this.gw1.cy);
+		const c2 = point(this.gw2.cx, this.gw2.cy);
+		const pr1 = c1.translatePolar(this.angleCenterCenter + this.apr, this.gw1.brr);
+		const pr4 = c2.translatePolar(this.angleCenterCenter + Math.PI + this.apr, this.gw2.brr);
+		const ctrLaFr = contour(pr1.cx, pr1.cy, 'YellowGreen');
+		ctrLaFr.addSegStrokeA(pr4.cx, pr4.cy);
+		ctrLaFr.closeSegStroke();
+		rACtr.push(ctrLaFr);
+		const pl1 = c1.translatePolar(this.angleCenterCenter - this.apl, this.gw1.blr);
+		const pl4 = c2.translatePolar(this.angleCenterCenter + Math.PI - this.apl, this.gw2.blr);
+		const ctrLaFl = contour(pl1.cx, pl1.cy, 'YellowGreen');
+		ctrLaFl.addSegStrokeA(pl4.cx, pl4.cy);
+		ctrLaFl.closeSegStroke();
+		rACtr.push(ctrLaFl);
+		return rACtr;
+	}
 	getMsg(): string {
 		return this.msg;
 	}
-	getInitAngle2() {
+	getInitAngle2(): number {
 		let rInitAngle2 = 0;
 		let initAngle1b = this.initAngle1;
 		while (Math.abs(initAngle1b - this.angleCenterCenter) < this.gw1.as / 2) {

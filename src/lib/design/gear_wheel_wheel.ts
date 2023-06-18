@@ -147,6 +147,9 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			param['rightLeftCenter2']
 		);
 		gearAL.prepare();
+		for (const laCtr of gearAL.getContours()) {
+			rGeome.fig.addDynamics(laCtr);
+		}
 		rGeome.logstr += gearAL.getMsg();
 		gp2.set6Angles(gearAL.getInitAngle2(), acc + Math.PI);
 		gp1.set7InvoluteDetails(param['involArcPairs1'], param['skinThickness1']);
