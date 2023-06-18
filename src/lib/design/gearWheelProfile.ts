@@ -481,7 +481,9 @@ class ActionLine {
 	}
 	calcContactPoint1() {
 		this.gw1.checkInitStep(5, 'ActionLine.calcContactPoint1');
-		this.firstToothUr1 = withinZero2Pi(this.apr - (this.initAngle1 - this.angleCenterCenter) + this.gw1.rwp);
+		this.firstToothUr1 = withinZero2Pi(
+			this.apr - (this.initAngle1 - this.angleCenterCenter) + this.gw1.rwp
+		);
 		//this.msg += `dbg625: apr ${ffix(this.apr)} initAngle1 ${ffix(this.initAngle1)} rwp ${ffix(this.gw1.rwp)} rad\n`;
 		//this.msg += `dbg626: firstToothUr1 ${ffix(this.firstToothUr1)} as ${ffix(this.gw1.as)} rad\n`;
 		while (this.firstToothUr1 - this.gw1.as >= 0) {
@@ -489,7 +491,10 @@ class ActionLine {
 		}
 		//this.msg += `dbg627: firstToothUr1 ${ffix(this.firstToothUr1)} rad\n`;
 		this.firstToothUl1 = withinZero2Pi(
-			this.apl + (this.initAngle1 - this.angleCenterCenter) + this.gw1.as * this.gw1.adt - this.gw1.lwp
+			this.apl +
+				(this.initAngle1 - this.angleCenterCenter) +
+				this.gw1.as * this.gw1.adt -
+				this.gw1.lwp
 		);
 		while (this.firstToothUl1 - this.gw1.as >= 0) {
 			this.firstToothUl1 -= this.gw1.as;
