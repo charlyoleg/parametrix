@@ -390,6 +390,7 @@ class ActionLine {
 		this.aFODr1 = Math.PI - aOFDr1 - aFDOr1;
 		//const aBODr1 = this.gw1.involuteR.uFromL(this.gw1.ar); // this.gw1.rua
 		const aFODr1Alt = this.gw1.rua - this.apr;
+		//this.aFODr1 = aFODr1Alt;
 		if (roundZero(this.aFODr1 - aFODr1Alt) !== 0) {
 			//throw `dbg378: aFODr1 ${this.aFODr1} and aFODr1Alt ${aFODr1Alt} differ`;
 		}
@@ -398,6 +399,7 @@ class ActionLine {
 		const aFDOr2 = aBFromLaLbAa(this.gw2.ar, dOFr2, aOFDr2);
 		this.aFODr2 = Math.PI - aOFDr2 - aFDOr2;
 		const aFODr2Alt = this.gw2.rua - this.apr;
+		//this.aFODr2 = aFODr2Alt;
 		if (roundZero(this.aFODr2 - aFODr2Alt) !== 0) {
 			//throw `dbg379: aFODr2 ${this.aFODr2} and aFODr2Alt ${aFODr2Alt} differ`;
 		}
@@ -414,6 +416,7 @@ class ActionLine {
 		const aFDOl1 = aBFromLaLbAa(this.gw1.ar, dOFl1, aOFDl1);
 		this.aFODl1 = Math.PI - aOFDl1 - aFDOl1;
 		const aFODl1Alt = this.gw1.lua - this.apl;
+		//this.aFODl1 = aFODl1Alt;
 		if (roundZero(this.aFODl1 - aFODl1Alt) !== 0) {
 			//throw `dbg388: aFODl1 ${this.aFODl1} and aFODl1Alt ${aFODl1Alt} differ`;
 		}
@@ -422,6 +425,7 @@ class ActionLine {
 		const aFDOl2 = aBFromLaLbAa(this.gw2.ar, dOFl2, aOFDl2);
 		this.aFODl2 = Math.PI - aOFDl2 - aFDOl2;
 		const aFODl2Alt = this.gw2.lua - this.apl;
+		//this.aFODl2 = aFODl2Alt;
 		if (roundZero(this.aFODl2 - aFODl2Alt) !== 0) {
 			//throw `dbg389: aFODl2 ${this.aFODl2} and aFODl2Alt ${aFODl2Alt} differ`;
 		}
@@ -477,10 +481,10 @@ class ActionLine {
 		ctrLaFullR.addSegStrokeA(pr4.cx, pr4.cy);
 		ctrLaFullR.closeSegStroke();
 		rACtr.push(ctrLaFullR);
-		const pr2 = c1.translatePolar(this.angleCenterCenter + this.aFODr1, this.laStartRr1);
+		const pr2 = c1.translatePolar(this.angleCenterCenter - this.aFODr1, this.gw1.ar);
 		const pr3 = c2.translatePolar(
 			this.angleCenterCenter + Math.PI - this.aFODr2,
-			this.laStartRr2
+			this.gw2.ar
 		);
 		const ctrLaEffectiveR = contour(pr2.cx, pr2.cy, 'Yellow');
 		ctrLaEffectiveR.addSegStrokeA(pr3.cx, pr3.cy);
@@ -492,10 +496,10 @@ class ActionLine {
 		ctrLaFullL.addSegStrokeA(pl4.cx, pl4.cy);
 		ctrLaFullL.closeSegStroke();
 		rACtr.push(ctrLaFullL);
-		const pl2 = c1.translatePolar(this.angleCenterCenter + this.aFODl1, this.laStartRl1);
+		const pl2 = c1.translatePolar(this.angleCenterCenter + this.aFODl1, this.gw1.ar);
 		const pl3 = c2.translatePolar(
-			this.angleCenterCenter + Math.PI - this.aFODl2,
-			this.laStartRl2
+			this.angleCenterCenter + Math.PI + this.aFODl2,
+			this.gw2.ar
 		);
 		const ctrLaEffectiveL = contour(pl2.cx, pl2.cy, 'Yellow');
 		ctrLaEffectiveL.addSegStrokeA(pl3.cx, pl3.cy);
