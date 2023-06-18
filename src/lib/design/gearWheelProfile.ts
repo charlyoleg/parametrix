@@ -434,8 +434,8 @@ class ActionLine {
 		)} mm\n`;
 		this.msg += `Line of Action Effective rotation angle: right-1: ${ffix(
 			radToDeg(laUr1)
-		)} right-2: ${ffix(radToDeg(laUr2))} left-1: ${ffix(radToDeg(laUl1))} left-1: ${ffix(
-			radToDeg(laUl1)
+		)} right-2: ${ffix(radToDeg(laUr2))} left-1: ${ffix(radToDeg(laUl1))} left-2: ${ffix(
+			radToDeg(laUl2)
 		)} degree\n`;
 		this.msg += `Line of Action Effective height: right-1: ${ffix(
 			this.gw1.ar - this.laStartRr1
