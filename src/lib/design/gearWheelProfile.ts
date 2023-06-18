@@ -330,6 +330,8 @@ class ActionLine {
 	lasl2 = 0;
 	firstToothUr1 = 0;
 	firstToothUl1 = 0;
+	ftdr1 = 0;
+	ftdl1 = 0;
 	constructor(
 		gw1: GearWheelProfile,
 		gw2: GearWheelProfile,
@@ -499,6 +501,9 @@ class ActionLine {
 		while (this.firstToothUl1 - this.gw1.as >= 0) {
 			this.firstToothUl1 -= this.gw1.as;
 		}
+		this.ftdr1 = this.gw1.brr * this.firstToothUr1;
+		this.ftdl1 = this.gw1.blr * this.firstToothUl1;
+		this.msg += `dbg112: right: ${ffix(this.ftdr1)} left: ${ffix(this.ftdl1)} mm\n`;
 	}
 	prepare() {
 		this.check1();
@@ -548,22 +553,17 @@ class ActionLine {
 		rApt.push(point(cop1l0.cx, cop1l0.cy, ShapePoint.eBigSquare));
 		const cop1ra = this.angleCenterCenter + this.apr - Math.PI / 2;
 		const cop1la = this.angleCenterCenter - this.apl + Math.PI / 2;
-		const cop1rd1 = this.gw1.brr * this.firstToothUr1;
-		const cop1ld1 = this.gw1.blr * this.firstToothUl1;
-		this.msg += `First contact point length: right: ${ffix(cop1rd1)} left: ${ffix(
-			cop1ld1
-		)} mm\n`;
-		const cop1r1 = cop1r0.translatePolar(cop1ra, cop1rd1);
-		const cop1l1 = cop1l0.translatePolar(cop1la, cop1ld1);
+		const cop1r1 = cop1r0.translatePolar(cop1ra, this.ftdr1);
+		const cop1l1 = cop1l0.translatePolar(cop1la, this.ftdl1);
 		rApt.push(point(cop1r1.cx, cop1r1.cy, ShapePoint.eBigSquare));
 		rApt.push(point(cop1l1.cx, cop1l1.cy, ShapePoint.eBigSquare));
-		let cop1rdn = cop1rd1;
+		let cop1rdn = this.ftdr1;
 		while (cop1rdn + this.lasr1 < this.lBDr) {
 			cop1rdn += this.lasr1;
 			const cop1rn = cop1r0.translatePolar(cop1ra, cop1rdn);
 			rApt.push(point(cop1rn.cx, cop1rn.cy, ShapePoint.eBigSquare));
 		}
-		let cop1ldn = cop1ld1;
+		let cop1ldn = this.ftdl1;
 		while (cop1ldn + this.lasl1 < this.lBDl) {
 			cop1ldn += this.lasl1;
 			const cop1ln = cop1l0.translatePolar(cop1la, cop1ldn);
@@ -575,18 +575,26 @@ class ActionLine {
 		return this.msg;
 	}
 	getInitAngle2(): number {
-		let rInitAngle2 = 0;
-		let initAngle1b = this.initAngle1;
-		while (Math.abs(initAngle1b - this.angleCenterCenter) < this.gw1.as / 2) {
-			initAngle1b += this.gw1.as;
+		let ftdr2 = this.lBDr - this.ftdr1;
+		while (ftdr2 - this.lasr2 >= 0) {
+			ftdr2 -= this.lasr2;
 		}
-		// TODO
+		let ftdl2 = this.lBDl - this.ftdl1;
+		while (ftdl2 - this.lasl2 >= 0) {
+			ftdl2 -= this.lasl2;
+		}
+		const ftur2 = ftdr2 / this.gw2.brr;
+		const ftul2 = ftdl2 / this.gw2.blr;
+		const ftar2 = this.angleCenterCenter + Math.PI + this.apr - ftur2 + this.gw2.rwp;
+		const ftal2 = this.angleCenterCenter + Math.PI - this.apl + ftul2 + this.gw2.lwp;
+		const ftal2b = ftal2 - this.gw2.as * this.gw2.adt;
+		let rInitAngle2 = 0;
 		if (this.rightLeftCenter2 === 0) {
-			rInitAngle2 = this.angleCenterCenter + Math.PI - initAngle1b;
+			rInitAngle2 = ftar2;
 		} else if (this.rightLeftCenter2 === 1) {
-			rInitAngle2 = this.initAngle1 + this.angleCenterCenter;
+			rInitAngle2 = ftal2b;
 		} else if (this.rightLeftCenter2 === 2) {
-			rInitAngle2 = this.initAngle1 + this.angleCenterCenter;
+			rInitAngle2 = (ftar2 + ftal2b) / 2;
 		} else {
 			throw `err221: initAngle2 rightLeftCenter2 ${this.rightLeftCenter2} has an unkown value`;
 		}
