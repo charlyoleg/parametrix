@@ -57,9 +57,10 @@ class Figure {
 		this.pointList.push(ipoint);
 	}
 	addPoints(ipoints: Array<Point>) {
-		for (const ipt of ipoints) {
-			this.pointList.push(ipt);
-		}
+		//for (const ipt of ipoints) {
+		//	this.pointList.push(ipt);
+		//}
+		this.pointList.push(...ipoints);
 	}
 	addLine(iline: Line) {
 		this.lineList.push(iline);
@@ -246,7 +247,7 @@ function initLayers(): tLayers {
 
 /* export */
 
-export type { tContour, tLayers, Figure };
+export type { Point, tContour, tLayers, Figure };
 export {
 	ShapePoint,
 	withinPiPi,

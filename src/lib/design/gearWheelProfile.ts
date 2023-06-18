@@ -1,10 +1,11 @@
 // gearWheelProfile.ts
 
-import type { tContour } from '$lib/geom/figure';
+import type { Point, tContour } from '$lib/geom/figure';
 import {
 	contour,
 	contourCircle,
 	point,
+	ShapePoint,
 	lcFromLaLbAc,
 	aBFromLaLbAa,
 	withinPiPi,
@@ -320,6 +321,12 @@ class ActionLine {
 	aFODr2 = 0;
 	aFODl1 = 0;
 	aFODl2 = 0;
+	lasr1 = 0;
+	lasr2 = 0;
+	lasl1 = 0;
+	lasl2 = 0;
+	firstToothUr1 = 0;
+	firstToothUl1 = 0;
 	constructor(
 		gw1: GearWheelProfile,
 		gw2: GearWheelProfile,
@@ -450,22 +457,38 @@ class ActionLine {
 		)} right-2: ${ffix(this.gw2.ar - this.laStartRr2)} left-1: ${ffix(
 			this.gw1.ar - this.laStartRl1
 		)} left-2: ${ffix(this.gw2.ar - this.laStartRl2)} mm\n`;
-		const lasr1 = ((2 * Math.PI) / this.gw1.TN) * this.gw1.brr;
-		const lasr2 = ((2 * Math.PI) / this.gw2.TN) * this.gw2.brr;
-		this.msg += `Line of Action right: step length: 1: ${ffix(lasr1)} 2: ${ffix(lasr2)} mm\n`;
-		this.msg += `Line of Action right: nb of contact point: 1: ${ffix(lalr / lasr1)} 2: ${ffix(
-			lalr / lasr2
-		)}\n`;
-		const lasl1 = ((2 * Math.PI) / this.gw1.TN) * this.gw1.blr;
-		const lasl2 = ((2 * Math.PI) / this.gw2.TN) * this.gw2.blr;
-		this.msg += `Line of Action left: step length: 1: ${ffix(lasl1)} 2: ${ffix(lasl2)} mm\n`;
-		this.msg += `Line of Action left: nb of contact point: 1: ${ffix(lall / lasl1)} 2: ${ffix(
-			lall / lasl2
-		)}\n`;
+		this.lasr1 = ((2 * Math.PI) / this.gw1.TN) * this.gw1.brr;
+		this.lasr2 = ((2 * Math.PI) / this.gw2.TN) * this.gw2.brr;
+		this.msg += `Line of Action right: step length: 1: ${ffix(this.lasr1)} 2: ${ffix(
+			this.lasr2
+		)} mm\n`;
+		this.msg += `Line of Action right: nb of contact point: 1: ${ffix(
+			lalr / this.lasr1
+		)} 2: ${ffix(lalr / this.lasr2)}\n`;
+		this.lasl1 = ((2 * Math.PI) / this.gw1.TN) * this.gw1.blr;
+		this.lasl2 = ((2 * Math.PI) / this.gw2.TN) * this.gw2.blr;
+		this.msg += `Line of Action left: step length: 1: ${ffix(this.lasl1)} 2: ${ffix(
+			this.lasl2
+		)} mm\n`;
+		this.msg += `Line of Action left: nb of contact point: 1: ${ffix(
+			lall / this.lasl1
+		)} 2: ${ffix(lall / this.lasl2)}\n`;
+	}
+	calcContactPoint1() {
+		this.gw1.checkInitStep(5, 'ActionLine.calcContactPoint1');
+		this.firstToothUr1 = this.initAngle1 + this.gw1.rwa;
+		while (this.firstToothUr1 - this.gw1.as >= 0) {
+			this.firstToothUr1 -= this.gw1.as;
+		}
+		this.firstToothUl1 = this.initAngle1 - this.gw1.as * this.gw1.adt + this.gw1.lwa;
+		while (this.firstToothUl1 - this.gw1.as >= 0) {
+			this.firstToothUl1 -= this.gw1.as;
+		}
 	}
 	prepare() {
 		this.check1();
 		this.calcActionLine();
+		this.calcContactPoint1();
 	}
 	getContours(): Array<tContour> {
 		const rACtr: Array<tContour> = [];
@@ -482,10 +505,7 @@ class ActionLine {
 		ctrLaFullR.closeSegStroke();
 		rACtr.push(ctrLaFullR);
 		const pr2 = c1.translatePolar(this.angleCenterCenter - this.aFODr1, this.gw1.ar);
-		const pr3 = c2.translatePolar(
-			this.angleCenterCenter + Math.PI - this.aFODr2,
-			this.gw2.ar
-		);
+		const pr3 = c2.translatePolar(this.angleCenterCenter + Math.PI - this.aFODr2, this.gw2.ar);
 		const ctrLaEffectiveR = contour(pr2.cx, pr2.cy, 'Yellow');
 		ctrLaEffectiveR.addSegStrokeA(pr3.cx, pr3.cy);
 		ctrLaEffectiveR.closeSegStroke();
@@ -497,15 +517,21 @@ class ActionLine {
 		ctrLaFullL.closeSegStroke();
 		rACtr.push(ctrLaFullL);
 		const pl2 = c1.translatePolar(this.angleCenterCenter + this.aFODl1, this.gw1.ar);
-		const pl3 = c2.translatePolar(
-			this.angleCenterCenter + Math.PI + this.aFODl2,
-			this.gw2.ar
-		);
+		const pl3 = c2.translatePolar(this.angleCenterCenter + Math.PI + this.aFODl2, this.gw2.ar);
 		const ctrLaEffectiveL = contour(pl2.cx, pl2.cy, 'Yellow');
 		ctrLaEffectiveL.addSegStrokeA(pl3.cx, pl3.cy);
 		ctrLaEffectiveL.closeSegStroke();
 		rACtr.push(ctrLaEffectiveL);
 		return rACtr;
+	}
+	getContactPoint(): Array<Point> {
+		const rApt: Array<Point> = [];
+		const c1 = point(this.gw1.cx, this.gw1.cy);
+		const cop1r0 = c1.translatePolar(this.angleCenterCenter + this.apr, this.gw1.brr);
+		const cop1l0 = c1.translatePolar(this.angleCenterCenter - this.apl, this.gw1.blr);
+		rApt.push(point(cop1r0.cx, cop1r0.cy, ShapePoint.eSquare));
+		rApt.push(point(cop1l0.cx, cop1l0.cy, ShapePoint.eSquare));
+		return rApt;
 	}
 	getMsg(): string {
 		return this.msg;

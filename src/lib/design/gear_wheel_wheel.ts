@@ -150,6 +150,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		for (const laCtr of gearAL.getContours()) {
 			rGeome.fig.addDynamics(laCtr);
 		}
+		rGeome.fig.addPoints(gearAL.getContactPoint());
 		rGeome.logstr += gearAL.getMsg();
 		gp2.set6Angles(gearAL.getInitAngle2(), acc + Math.PI);
 		gp1.set7InvoluteDetails(param['involArcPairs1'], param['skinThickness1']);
