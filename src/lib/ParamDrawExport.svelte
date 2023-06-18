@@ -53,7 +53,7 @@
 		@include styling.mix-h2;
 	}
 	section > textarea {
-		resize: horizontal;
+		/*resize: horizontal;*/
 		margin-left: 0.5rem;
 	}
 	section > textarea.colorWarn {
