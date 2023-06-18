@@ -316,6 +316,10 @@ class ActionLine {
 	laStartRr2 = 0;
 	laStartRl1 = 0;
 	laStartRl2 = 0;
+	aFODr1 = 0;
+	aFODr2 = 0;
+	aFODl1 = 0;
+	aFODl2 = 0;
 	constructor(
 		gw1: GearWheelProfile,
 		gw2: GearWheelProfile,
@@ -383,21 +387,21 @@ class ActionLine {
 		// effective line of action right
 		const aOFDr1 = Math.PI / 2 + this.apr;
 		const aFDOr1 = aBFromLaLbAa(this.gw1.ar, dOFr1, aOFDr1);
-		const aFODr1 = Math.PI - aOFDr1 - aFDOr1;
+		this.aFODr1 = Math.PI - aOFDr1 - aFDOr1;
 		//const aBODr1 = this.gw1.involuteR.uFromL(this.gw1.ar); // this.gw1.rua
 		const aFODr1Alt = this.gw1.rua - this.apr;
-		if (roundZero(aFODr1 - aFODr1Alt) !== 0) {
-			//throw `dbg378: aFODr1 ${aFODr1} and aFODr1Alt ${aFODr1Alt} differ`;
+		if (roundZero(this.aFODr1 - aFODr1Alt) !== 0) {
+			//throw `dbg378: aFODr1 ${this.aFODr1} and aFODr1Alt ${aFODr1Alt} differ`;
 		}
-		const lDFr1 = lcFromLaLbAc(dOFr1, this.gw1.ar, aFODr1);
+		const lDFr1 = lcFromLaLbAc(dOFr1, this.gw1.ar, this.aFODr1);
 		const aOFDr2 = aOFDr1;
 		const aFDOr2 = aBFromLaLbAa(this.gw2.ar, dOFr2, aOFDr2);
-		const aFODr2 = Math.PI - aOFDr2 - aFDOr2;
+		this.aFODr2 = Math.PI - aOFDr2 - aFDOr2;
 		const aFODr2Alt = this.gw2.rua - this.apr;
-		if (roundZero(aFODr2 - aFODr2Alt) !== 0) {
-			//throw `dbg379: aFODr2 ${aFODr2} and aFODr2Alt ${aFODr2Alt} differ`;
+		if (roundZero(this.aFODr2 - aFODr2Alt) !== 0) {
+			//throw `dbg379: aFODr2 ${this.aFODr2} and aFODr2Alt ${aFODr2Alt} differ`;
 		}
-		const lDFr2 = lcFromLaLbAc(dOFr2, this.gw2.ar, aFODr2);
+		const lDFr2 = lcFromLaLbAc(dOFr2, this.gw2.ar, this.aFODr2);
 		const lalr = lDFr1 + lDFr2;
 		const laUr1 = lalr / this.gw1.brr;
 		const laUr2 = lalr / this.gw2.brr;
@@ -408,20 +412,20 @@ class ActionLine {
 		// effective line of action left
 		const aOFDl1 = Math.PI / 2 + this.apl;
 		const aFDOl1 = aBFromLaLbAa(this.gw1.ar, dOFl1, aOFDl1);
-		const aFODl1 = Math.PI - aOFDl1 - aFDOl1;
+		this.aFODl1 = Math.PI - aOFDl1 - aFDOl1;
 		const aFODl1Alt = this.gw1.lua - this.apl;
-		if (roundZero(aFODl1 - aFODl1Alt) !== 0) {
-			//throw `dbg388: aFODl1 ${aFODl1} and aFODl1Alt ${aFODl1Alt} differ`;
+		if (roundZero(this.aFODl1 - aFODl1Alt) !== 0) {
+			//throw `dbg388: aFODl1 ${this.aFODl1} and aFODl1Alt ${aFODl1Alt} differ`;
 		}
-		const lDFl1 = lcFromLaLbAc(dOFl1, this.gw1.ar, aFODl1);
+		const lDFl1 = lcFromLaLbAc(dOFl1, this.gw1.ar, this.aFODl1);
 		const aOFDl2 = aOFDr1;
 		const aFDOl2 = aBFromLaLbAa(this.gw2.ar, dOFl2, aOFDl2);
-		const aFODl2 = Math.PI - aOFDl2 - aFDOl2;
+		this.aFODl2 = Math.PI - aOFDl2 - aFDOl2;
 		const aFODl2Alt = this.gw2.lua - this.apl;
-		if (roundZero(aFODl2 - aFODl2Alt) !== 0) {
-			//throw `dbg389: aFODl2 ${aFODl2} and aFODl2Alt ${aFODl2Alt} differ`;
+		if (roundZero(this.aFODl2 - aFODl2Alt) !== 0) {
+			//throw `dbg389: aFODl2 ${this.aFODl2} and aFODl2Alt ${aFODl2Alt} differ`;
 		}
-		const lDFl2 = lcFromLaLbAc(dOFl2, this.gw2.ar, aFODl2);
+		const lDFl2 = lcFromLaLbAc(dOFl2, this.gw2.ar, this.aFODl2);
 		const lall = lDFl1 + lDFl2;
 		const laUl1 = lall / this.gw1.blr;
 		const laUl2 = lall / this.gw2.blr;
@@ -469,16 +473,34 @@ class ActionLine {
 		const c2 = point(this.gw2.cx, this.gw2.cy);
 		const pr1 = c1.translatePolar(this.angleCenterCenter + this.apr, this.gw1.brr);
 		const pr4 = c2.translatePolar(this.angleCenterCenter + Math.PI + this.apr, this.gw2.brr);
-		const ctrLaFr = contour(pr1.cx, pr1.cy, 'YellowGreen');
-		ctrLaFr.addSegStrokeA(pr4.cx, pr4.cy);
-		ctrLaFr.closeSegStroke();
-		rACtr.push(ctrLaFr);
+		const ctrLaFullR = contour(pr1.cx, pr1.cy, 'YellowGreen');
+		ctrLaFullR.addSegStrokeA(pr4.cx, pr4.cy);
+		ctrLaFullR.closeSegStroke();
+		rACtr.push(ctrLaFullR);
+		const pr2 = c1.translatePolar(this.angleCenterCenter + this.aFODr1, this.laStartRr1);
+		const pr3 = c2.translatePolar(
+			this.angleCenterCenter + Math.PI - this.aFODr2,
+			this.laStartRr2
+		);
+		const ctrLaEffectiveR = contour(pr2.cx, pr2.cy, 'Yellow');
+		ctrLaEffectiveR.addSegStrokeA(pr3.cx, pr3.cy);
+		ctrLaEffectiveR.closeSegStroke();
+		rACtr.push(ctrLaEffectiveR);
 		const pl1 = c1.translatePolar(this.angleCenterCenter - this.apl, this.gw1.blr);
 		const pl4 = c2.translatePolar(this.angleCenterCenter + Math.PI - this.apl, this.gw2.blr);
-		const ctrLaFl = contour(pl1.cx, pl1.cy, 'YellowGreen');
-		ctrLaFl.addSegStrokeA(pl4.cx, pl4.cy);
-		ctrLaFl.closeSegStroke();
-		rACtr.push(ctrLaFl);
+		const ctrLaFullL = contour(pl1.cx, pl1.cy, 'YellowGreen');
+		ctrLaFullL.addSegStrokeA(pl4.cx, pl4.cy);
+		ctrLaFullL.closeSegStroke();
+		rACtr.push(ctrLaFullL);
+		const pl2 = c1.translatePolar(this.angleCenterCenter + this.aFODl1, this.laStartRl1);
+		const pl3 = c2.translatePolar(
+			this.angleCenterCenter + Math.PI - this.aFODl2,
+			this.laStartRl2
+		);
+		const ctrLaEffectiveL = contour(pl2.cx, pl2.cy, 'Yellow');
+		ctrLaEffectiveL.addSegStrokeA(pl3.cx, pl3.cy);
+		ctrLaEffectiveL.closeSegStroke();
+		rACtr.push(ctrLaEffectiveL);
 		return rACtr;
 	}
 	getMsg(): string {
