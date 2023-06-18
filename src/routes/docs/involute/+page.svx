@@ -93,6 +93,12 @@ Recipe to calculate the initAngle2 for the right side:
 - Get the angle position of the primary point *initAngle2* of the *arbitrary* first tooth of the second gearwheel by adding the angle *W-primary-2*
 
 
+## Angle kitchen
+
+![right_side_angle_kitchen.svg]({base}/right_side_angle_kitchen.svg)
+![left_side_angle_kitchen.svg]({base}/left_side_angle_kitchen.svg)
+
+
 <style lang="scss">
 	@use '$lib/style/colors.scss';
 
