@@ -488,7 +488,7 @@ class ActionLine {
 		);
 		//this.msg += `dbg625: apr ${ffix(this.apr)} initAngle1 ${ffix(this.initAngle1)} rwp ${ffix(this.gw1.rwp)} rad\n`;
 		//this.msg += `dbg626: firstToothUr1 ${ffix(this.firstToothUr1)} as ${ffix(this.gw1.as)} rad\n`;
-		while (this.firstToothUr1 - this.gw1.as >= 0) {
+		while (roundZero(this.firstToothUr1 - this.gw1.as) > 0) {
 			this.firstToothUr1 -= this.gw1.as;
 		}
 		//this.msg += `dbg627: firstToothUr1 ${ffix(this.firstToothUr1)} rad\n`;
@@ -498,7 +498,7 @@ class ActionLine {
 				this.gw1.as * this.gw1.adt -
 				this.gw1.lwp
 		);
-		while (this.firstToothUl1 - this.gw1.as >= 0) {
+		while (roundZero(this.firstToothUl1 - this.gw1.as) > 0) {
 			this.firstToothUl1 -= this.gw1.as;
 		}
 		this.ftdr1 = this.gw1.brr * this.firstToothUr1;
@@ -576,11 +576,11 @@ class ActionLine {
 	}
 	getInitAngle2(): number {
 		let ftdr2 = this.lBDr - this.ftdr1;
-		while (ftdr2 - this.lasr2 >= 0) {
+		while (roundZero(ftdr2 - this.lasr2) > 0) {
 			ftdr2 -= this.lasr2;
 		}
 		let ftdl2 = this.lBDl - this.ftdl1;
-		while (ftdl2 - this.lasl2 >= 0) {
+		while (roundZero(ftdl2 - this.lasl2) > 0) {
 			ftdl2 -= this.lasl2;
 		}
 		const ftur2 = ftdr2 / this.gw2.brr;
@@ -588,13 +588,26 @@ class ActionLine {
 		const ftar2 = this.angleCenterCenter + Math.PI + this.apr - ftur2 + this.gw2.rwp;
 		const ftal2 = this.angleCenterCenter + Math.PI - this.apl + ftul2 + this.gw2.lwp;
 		const ftal2b = ftal2 - this.gw2.as * this.gw2.adt;
+		let angleDiff2 = withinZero2Pi(ftar2 - ftal2b);
+		while (roundZero(angleDiff2 - this.gw2.as) > 0) {
+			angleDiff2 -= this.gw2.as;
+		}
+		const angleDiff1 = (angleDiff2 * this.gw2.brr) / this.gw1.brr;
+		const laDiffr2 = angleDiff2 * this.gw2.brr;
+		const laDiffl2 = angleDiff2 * this.gw2.blr;
+		this.msg += `slack angle: 1: ${ffix(radToDeg(angleDiff1))} 2: ${ffix(
+			radToDeg(angleDiff2)
+		)} degree\n`;
+		this.msg += `slack on action line: right-2: ${ffix(laDiffr2)} left-2: ${ffix(
+			laDiffl2
+		)} mm\n`;
 		let rInitAngle2 = 0;
 		if (this.rightLeftCenter2 === 0) {
 			rInitAngle2 = ftar2;
 		} else if (this.rightLeftCenter2 === 1) {
 			rInitAngle2 = ftal2b;
 		} else if (this.rightLeftCenter2 === 2) {
-			rInitAngle2 = (ftar2 + ftal2b) / 2;
+			rInitAngle2 = ftar2 + angleDiff2 / 2;
 		} else {
 			throw `err221: initAngle2 rightLeftCenter2 ${this.rightLeftCenter2} has an unkown value`;
 		}
