@@ -389,19 +389,19 @@ class ActionLine {
 		const aFDOr1 = aBFromLaLbAa(this.gw1.ar, dOFr1, aOFDr1);
 		this.aFODr1 = Math.PI - aOFDr1 - aFDOr1;
 		//const aBODr1 = this.gw1.involuteR.uFromL(this.gw1.ar); // this.gw1.rua
-		const aFODr1Alt = this.gw1.rua - this.apr;
+		const aFODr1Alt = this.gw1.rua - this.apr - this.gw1.rwa;
 		//this.aFODr1 = aFODr1Alt;
 		if (roundZero(this.aFODr1 - aFODr1Alt) !== 0) {
-			//throw `dbg378: aFODr1 ${this.aFODr1} and aFODr1Alt ${aFODr1Alt} differ`;
+			throw `dbg378: aFODr1 ${this.aFODr1} and aFODr1Alt ${aFODr1Alt} differ`;
 		}
 		const lDFr1 = lcFromLaLbAc(dOFr1, this.gw1.ar, this.aFODr1);
 		const aOFDr2 = aOFDr1;
 		const aFDOr2 = aBFromLaLbAa(this.gw2.ar, dOFr2, aOFDr2);
 		this.aFODr2 = Math.PI - aOFDr2 - aFDOr2;
-		const aFODr2Alt = this.gw2.rua - this.apr;
+		const aFODr2Alt = this.gw2.rua - this.apr - this.gw2.rwa;
 		//this.aFODr2 = aFODr2Alt;
 		if (roundZero(this.aFODr2 - aFODr2Alt) !== 0) {
-			//throw `dbg379: aFODr2 ${this.aFODr2} and aFODr2Alt ${aFODr2Alt} differ`;
+			throw `dbg379: aFODr2 ${this.aFODr2} and aFODr2Alt ${aFODr2Alt} differ`;
 		}
 		const lDFr2 = lcFromLaLbAc(dOFr2, this.gw2.ar, this.aFODr2);
 		const lalr = lDFr1 + lDFr2;
@@ -415,19 +415,19 @@ class ActionLine {
 		const aOFDl1 = Math.PI / 2 + this.apl;
 		const aFDOl1 = aBFromLaLbAa(this.gw1.ar, dOFl1, aOFDl1);
 		this.aFODl1 = Math.PI - aOFDl1 - aFDOl1;
-		const aFODl1Alt = this.gw1.lua - this.apl;
+		const aFODl1Alt = this.gw1.lua - this.apl + this.gw1.lwa;
 		//this.aFODl1 = aFODl1Alt;
 		if (roundZero(this.aFODl1 - aFODl1Alt) !== 0) {
-			//throw `dbg388: aFODl1 ${this.aFODl1} and aFODl1Alt ${aFODl1Alt} differ`;
+			throw `dbg388: aFODl1 ${this.aFODl1} and aFODl1Alt ${aFODl1Alt} differ`;
 		}
 		const lDFl1 = lcFromLaLbAc(dOFl1, this.gw1.ar, this.aFODl1);
 		const aOFDl2 = aOFDr1;
 		const aFDOl2 = aBFromLaLbAa(this.gw2.ar, dOFl2, aOFDl2);
 		this.aFODl2 = Math.PI - aOFDl2 - aFDOl2;
-		const aFODl2Alt = this.gw2.lua - this.apl;
+		const aFODl2Alt = this.gw2.lua - this.apl + this.gw2.lwa;
 		//this.aFODl2 = aFODl2Alt;
 		if (roundZero(this.aFODl2 - aFODl2Alt) !== 0) {
-			//throw `dbg389: aFODl2 ${this.aFODl2} and aFODl2Alt ${aFODl2Alt} differ`;
+			throw `dbg389: aFODl2 ${this.aFODl2} and aFODl2Alt ${aFODl2Alt} differ`;
 		}
 		const lDFl2 = lcFromLaLbAc(dOFl2, this.gw2.ar, this.aFODl2);
 		const lall = lDFl1 + lDFl2;
