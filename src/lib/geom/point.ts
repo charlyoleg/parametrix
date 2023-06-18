@@ -13,6 +13,7 @@ enum ShapePoint {
 	eCircle,
 	eCross,
 	eSquare,
+	eBigSquare,
 	eTwoTri,
 	eTri1,
 	eTri2,
@@ -55,6 +56,9 @@ class Point {
 					break;
 				case ShapePoint.eSquare:
 					ctx.rect(cx2 - radius, cy2 - radius, 2 * radius, 2 * radius);
+					break;
+				case ShapePoint.eBigSquare:
+					ctx.rect(cx2 - 2 * radius, cy2 - 2 * radius, 4 * radius, 4 * radius);
 					break;
 				case ShapePoint.eTwoTri:
 					ctx.moveTo(cx2 - radius2, cy2);

@@ -8,6 +8,7 @@ import {
 	ShapePoint,
 	lcFromLaLbAc,
 	aBFromLaLbAa,
+	withinZero2Pi,
 	withinPiPi,
 	radToDeg,
 	roundZero,
@@ -313,6 +314,8 @@ class ActionLine {
 	msg: string;
 	apr: number; // angle pressure right
 	apl: number; // angle pressure left
+	lBDr = 0;
+	lBDl = 0;
 	laStartRr1 = 0;
 	laStartRr2 = 0;
 	laStartRl1 = 0;
@@ -388,9 +391,11 @@ class ActionLine {
 		this.msg += `Pressure angular: right: ${ffix(radToDeg(this.apr))} left: ${ffix(
 			radToDeg(this.apl)
 		)} degree\n`;
-		const lBDr = this.interAxis * Math.sin(this.apr);
-		const lBDl = this.interAxis * Math.sin(this.apl);
-		this.msg += `Line of Action Maximum length: right: ${ffix(lBDr)} left: ${ffix(lBDl)} mm\n`;
+		this.lBDr = this.interAxis * Math.sin(this.apr);
+		this.lBDl = this.interAxis * Math.sin(this.apl);
+		this.msg += `Line of Action Maximum length: right: ${ffix(this.lBDr)} left: ${ffix(
+			this.lBDl
+		)} mm\n`;
 		// effective line of action right
 		const aOFDr1 = Math.PI / 2 + this.apr;
 		const aFDOr1 = aBFromLaLbAa(this.gw1.ar, dOFr1, aOFDr1);
@@ -476,11 +481,13 @@ class ActionLine {
 	}
 	calcContactPoint1() {
 		this.gw1.checkInitStep(5, 'ActionLine.calcContactPoint1');
-		this.firstToothUr1 = this.initAngle1 + this.gw1.rwa;
+		this.firstToothUr1 = withinZero2Pi(this.apr - this.initAngle1 - this.gw1.rwa);
 		while (this.firstToothUr1 - this.gw1.as >= 0) {
 			this.firstToothUr1 -= this.gw1.as;
 		}
-		this.firstToothUl1 = this.initAngle1 - this.gw1.as * this.gw1.adt + this.gw1.lwa;
+		this.firstToothUl1 = withinZero2Pi(
+			this.apl + this.initAngle1 + this.gw1.as * this.gw1.adt - this.gw1.lwa
+		);
 		while (this.firstToothUl1 - this.gw1.as >= 0) {
 			this.firstToothUl1 -= this.gw1.as;
 		}
@@ -529,8 +536,31 @@ class ActionLine {
 		const c1 = point(this.gw1.cx, this.gw1.cy);
 		const cop1r0 = c1.translatePolar(this.angleCenterCenter + this.apr, this.gw1.brr);
 		const cop1l0 = c1.translatePolar(this.angleCenterCenter - this.apl, this.gw1.blr);
-		rApt.push(point(cop1r0.cx, cop1r0.cy, ShapePoint.eSquare));
-		rApt.push(point(cop1l0.cx, cop1l0.cy, ShapePoint.eSquare));
+		rApt.push(point(cop1r0.cx, cop1r0.cy, ShapePoint.eBigSquare));
+		rApt.push(point(cop1l0.cx, cop1l0.cy, ShapePoint.eBigSquare));
+		const cop1ra = this.angleCenterCenter + this.apr - Math.PI / 2;
+		const cop1la = this.angleCenterCenter - this.apl + Math.PI / 2;
+		const cop1rd1 = this.gw1.brr * this.firstToothUr1;
+		const cop1ld1 = this.gw1.blr * this.firstToothUl1;
+		this.msg += `First contact point length: right: ${ffix(cop1rd1)} left: ${ffix(
+			cop1ld1
+		)} mm\n`;
+		const cop1r1 = cop1r0.translatePolar(cop1ra, cop1rd1);
+		const cop1l1 = cop1l0.translatePolar(cop1la, cop1ld1);
+		rApt.push(point(cop1r1.cx, cop1r1.cy, ShapePoint.eBigSquare));
+		rApt.push(point(cop1l1.cx, cop1l1.cy, ShapePoint.eBigSquare));
+		let cop1rdn = cop1rd1;
+		while (cop1rdn + this.lasr1 < this.lBDr) {
+			cop1rdn += this.lasr1;
+			const cop1rn = cop1r0.translatePolar(cop1ra, cop1rdn);
+			rApt.push(point(cop1rn.cx, cop1rn.cy, ShapePoint.eBigSquare));
+		}
+		let cop1ldn = cop1ld1;
+		while (cop1ldn + this.lasl1 < this.lBDl) {
+			cop1ldn += this.lasl1;
+			const cop1ln = cop1l0.translatePolar(cop1la, cop1ldn);
+			rApt.push(point(cop1ln.cx, cop1ln.cy, ShapePoint.eBigSquare));
+		}
 		return rApt;
 	}
 	getMsg(): string {
