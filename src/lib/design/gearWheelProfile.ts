@@ -488,8 +488,8 @@ class ActionLine {
 		);
 		//this.msg += `dbg625: apr ${ffix(this.apr)} initAngle1 ${ffix(this.initAngle1)} rwp ${ffix(this.gw1.rwp)} rad\n`;
 		//this.msg += `dbg626: firstToothUr1 ${ffix(this.firstToothUr1)} as ${ffix(this.gw1.as)} rad\n`;
-		while (roundZero(this.firstToothUr1 - this.gw1.as) > 0) {
-			this.firstToothUr1 -= this.gw1.as;
+		while (roundZero(this.firstToothUr1 - this.gw1.as) >= 0) {
+			this.firstToothUr1 = roundZero(this.firstToothUr1 - this.gw1.as);
 		}
 		//this.msg += `dbg627: firstToothUr1 ${ffix(this.firstToothUr1)} rad\n`;
 		this.firstToothUl1 = withinZero2Pi(
@@ -498,12 +498,12 @@ class ActionLine {
 				this.gw1.as * this.gw1.adt -
 				this.gw1.lwp
 		);
-		while (roundZero(this.firstToothUl1 - this.gw1.as) > 0) {
-			this.firstToothUl1 -= this.gw1.as;
+		while (roundZero(this.firstToothUl1 - this.gw1.as) >= 0) {
+			this.firstToothUl1 = roundZero(this.firstToothUl1 - this.gw1.as);
 		}
 		this.ftdr1 = this.gw1.brr * this.firstToothUr1;
 		this.ftdl1 = this.gw1.blr * this.firstToothUl1;
-		this.msg += `dbg112: right: ${ffix(this.ftdr1)} left: ${ffix(this.ftdl1)} mm\n`;
+		//this.msg += `dbg112: right: ${ffix(this.ftdr1)} left: ${ffix(this.ftdl1)} mm\n`;
 	}
 	prepare() {
 		this.check1();
@@ -576,22 +576,23 @@ class ActionLine {
 	}
 	getInitAngle2(): number {
 		let ftdr2 = this.lBDr - this.ftdr1;
-		while (roundZero(ftdr2 - this.lasr2) > 0) {
-			ftdr2 -= this.lasr2;
+		while (roundZero(ftdr2 - this.lasr2) >= 0) {
+			ftdr2 = roundZero(ftdr2 - this.lasr2);
 		}
 		let ftdl2 = this.lBDl - this.ftdl1;
-		while (roundZero(ftdl2 - this.lasl2) > 0) {
-			ftdl2 -= this.lasl2;
+		while (roundZero(ftdl2 - this.lasl2) >= 0) {
+			ftdl2 = roundZero(ftdl2 - this.lasl2);
 		}
 		const ftur2 = ftdr2 / this.gw2.brr;
 		const ftul2 = ftdl2 / this.gw2.blr;
 		const ftar2 = this.angleCenterCenter + Math.PI + this.apr - ftur2 + this.gw2.rwp;
 		const ftal2 = this.angleCenterCenter + Math.PI - this.apl + ftul2 + this.gw2.lwp;
 		const ftal2b = ftal2 - this.gw2.as * this.gw2.adt;
-		let angleDiff2 = withinZero2Pi(ftar2 - ftal2b);
-		while (roundZero(angleDiff2 - this.gw2.as) > 0) {
-			angleDiff2 -= this.gw2.as;
+		let angleL2 = 2 * Math.PI + withinZero2Pi(ftal2b);
+		while (roundZero(angleL2 - this.gw2.as - ftar2) >= 0) {
+			angleL2 = roundZero(angleL2 - this.gw2.as);
 		}
+		const angleDiff2 = angleL2 - ftar2;
 		const angleDiff1 = (angleDiff2 * this.gw2.brr) / this.gw1.brr;
 		const laDiffr2 = angleDiff2 * this.gw2.brr;
 		const laDiffl2 = angleDiff2 * this.gw2.blr;

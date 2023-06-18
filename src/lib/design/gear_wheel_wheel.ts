@@ -136,7 +136,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		gp2.set4BaseCircles(brr2, blr2);
 		gp1.set5AddendumThickness(param['at1']);
 		gp2.set5AddendumThickness(param['at2']);
-		const initAngle1 = degToRad(param['initAngle1']) + (t * gp1.as) / 100; // sim.tMax=100
+		const initAngle1 = degToRad(param['initAngle1']) + (t * 3 * gp1.as) / 100; // sim.tMax=100
 		gp1.set6Angles(initAngle1, acc);
 		const gearAL = gwHelper.actionLine(
 			gp1,
@@ -151,8 +151,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			rGeome.fig.addDynamics(laCtr);
 		}
 		rGeome.fig.addPoints(gearAL.getContactPoint());
-		rGeome.logstr += gearAL.getMsg();
 		gp2.set6Angles(gearAL.getInitAngle2(), acc + Math.PI);
+		rGeome.logstr += gearAL.getMsg();
 		gp1.set7InvoluteDetails(param['involArcPairs1'], param['skinThickness1']);
 		gp2.set7InvoluteDetails(param['involArcPairs2'], param['skinThickness2']);
 		// construction lines and circles
