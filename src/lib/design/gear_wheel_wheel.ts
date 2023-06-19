@@ -166,6 +166,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rGeome.fig.addDynamics(gp2.getToothRef());
 		// gearwheel-1
 		const gp1p = gp1.getProfile();
+		rGeome.logstr += gp1.getMsg();
 		rGeome.logstr += gp1p.check();
 		rGeome.fig.addMain(gp1p);
 		if (param['centralAxis'] === 1) {

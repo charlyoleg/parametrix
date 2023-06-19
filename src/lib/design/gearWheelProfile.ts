@@ -49,9 +49,11 @@ class GearWheelProfile {
 	lwd = 0;
 	lwp = 0;
 	lwa = 0;
+	msg: string;
 	initStep = 0;
 	constructor() {
 		this.mod = 1;
+		this.msg = '';
 		this.initStep = 0;
 	}
 	incInitStep(target: number) {
@@ -140,6 +142,27 @@ class GearWheelProfile {
 		this.lwp = this.involuteL.wFromU(this.lup);
 		this.lwa = this.involuteL.wFromU(this.lua);
 	}
+	checkProfileConditions() {
+		const aas = this.as * this.adt;
+		const rwpa = this.rwa - this.rwp;
+		const lwpa = Math.abs(this.lwa - this.lwp);
+		//this.msg += `dbg10_: rwa ${ffix(this.rwa)} rwp ${ffix(this.rwp)}\n`;
+		//this.msg += `dbg109: lwa ${ffix(this.lwa)} lwp ${ffix(this.lwp)}\n`;
+		//this.msg += `dbg110: aas ${ffix(aas)} rwpa ${ffix(rwpa)} lwpa ${ffix(lwpa)}\n`;
+		const aAddendum = aas - rwpa - lwpa;
+		if (aAddendum < 0) {
+			throw `err554: No remaining Addendum reserve ${ffix(aAddendum)}\n`;
+		}
+		const ads = this.as * (1 - this.adt);
+		const rwpd = this.rwp - this.rwd;
+		const lwpd = Math.abs(this.lwp - this.lwd);
+		const aDedendum = ads - rwpd - lwpd;
+		if (aDedendum < 2 * Math.atan2(this.bRound, this.br)) {
+			throw `err555: No remaining Dedendum reserve ${ffix(
+				aDedendum
+			)} compare to bRound ${ffix(this.bRound)}\n`;
+		}
+	}
 	getToothRef(): tContour {
 		const ptnb = 6 * this.involArcPairs;
 		const toothID = 0;
@@ -167,6 +190,7 @@ class GearWheelProfile {
 	getProfile(): tContour {
 		this.checkInitStep(7, 'getProfile');
 		this.calcInvoluteAngles();
+		this.checkProfileConditions();
 		const aDiffRd = this.rwd - this.rwp;
 		//const aDiffRa = this.rwa - this.rwp;
 		const aDiffLd = this.lwd - this.lwp;
@@ -239,6 +263,9 @@ class GearWheelProfile {
 		}
 		rProfile.closeSegStroke();
 		return rProfile;
+	}
+	getMsg(): string {
+		return this.msg;
 	}
 }
 
