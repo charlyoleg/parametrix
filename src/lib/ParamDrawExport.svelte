@@ -7,16 +7,26 @@
 	export let pDef: tParamDef;
 	export let geom: tGeomFunc;
 
+	function checkWarn(txt: string) {
+		let rWarn = true;
+		const re = /warn/i;
+		if (txt.search(re) < 0) {
+			rWarn = false;
+		}
+		return rWarn;
+	}
 	let simTime = 0;
 	// log and paramChange
 	let logValue = 'Dummy initial\nWill be replaced during onMount\n';
 	let calcErr = false;
+	let calcWarn = false;
 	function paramChange2(iPageName: string) {
 		const mydate = new Date().toLocaleTimeString();
 		logValue = `Geometry ${iPageName} computed at ${mydate}\n`;
 		const geome = geom(simTime, $storePV[pDef.page]);
 		logValue += geome.logstr;
 		calcErr = geome.calcErr;
+		calcWarn = checkWarn(geome.logstr);
 		//geomRedraw(simTime);
 	}
 	function paramChange() {
@@ -32,7 +42,15 @@
 <InputParams {pDef} on:paramChg={paramChange} {geom} {simTime} />
 <section>
 	<h2>Log</h2>
-	<textarea rows="5" cols="94" readonly wrap="off" value={logValue} class:colorWarn={calcErr} />
+	<textarea
+		rows="5"
+		cols="94"
+		readonly
+		wrap="off"
+		value={logValue}
+		class:colorErr={calcErr}
+		class:colorWarn={calcWarn}
+	/>
 </section>
 <Drawing {pDef} {geom} bind:simTime />
 <section>
@@ -57,6 +75,9 @@
 		margin-left: 0.5rem;
 	}
 	section > textarea.colorWarn {
+		background-color: colors.$warn-calc-warning;
+	}
+	section > textarea.colorErr {
 		background-color: colors.$warn-calc-error;
 	}
 	section > button,

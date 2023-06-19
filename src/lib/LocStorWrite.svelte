@@ -70,8 +70,6 @@
 		font-size: 1rem;
 		font-weight: 400;
 		margin: 0.2rem;
-	}
-	div > p.warnMsg {
 		color: colors.$warning-message;
 	}
 </style>

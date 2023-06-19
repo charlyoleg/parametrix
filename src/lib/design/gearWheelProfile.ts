@@ -413,6 +413,15 @@ class ActionLine {
 			)} = ${ffix(this.gw1.blr / this.gw2.blr)}\n`;
 		}
 	}
+	check2() {
+		this.gw1.checkInitStep(5, 'ActionLine.check2-1');
+		this.gw2.checkInitStep(5, 'ActionLine.check2-2');
+		if (roundZero(this.gw1.adt + this.gw2.adt - 1) > 0) {
+			this.msg += `warn281: addendum thickness too large: adt1 ${ffix(
+				this.gw1.adt
+			)} adt2 ${ffix(this.gw2.adt)}\n`;
+		}
+	}
 	calcActionLine() {
 		this.gw1.checkInitStep(4, 'ActionLine.calcActionLine-1');
 		this.gw2.checkInitStep(4, 'ActionLine.calcActionLine-2');
@@ -543,6 +552,7 @@ class ActionLine {
 	}
 	prepare() {
 		this.check1();
+		this.check2();
 		this.calcActionLine();
 		this.calcContactPoint1();
 	}
