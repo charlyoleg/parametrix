@@ -526,6 +526,7 @@ class ActionLine {
 		ftd: number,
 		baser: number,
 		invo: Involute,
+		acc: number,
 		ap: number,
 		label: string,
 		color: string
@@ -534,10 +535,10 @@ class ActionLine {
 		const larStepNb = Math.floor(lBD / (2 * las));
 		const ptu = (ftd + larStepNb * las) / baser;
 		const sign = rnl ? 1 : -1;
-		const [px, py, vx, vy] = invo.laptc(this.angleCenterCenter, sign * ap, ptu, speed);
+		const [px, py, vx, vy] = invo.laptc(acc, sign * ap, ptu, speed);
 		this.msg += `speed ${label}: vx ${ffix(vx)} vy: ${ffix(vy)} m/s\n`;
 		const pt0 = point(px, py);
-		const aa = this.angleCenterCenter + sign * ap;
+		const aa = acc + sign * ap;
 		const rCtr = contour(px, py, color);
 		const pt1 = pt0.translatePolar(aa, -vy);
 		rCtr.addSegStrokeA(pt1.cx, pt1.cy);
@@ -554,6 +555,7 @@ class ActionLine {
 			this.ftdr1,
 			this.gw1.brr,
 			this.gw1.involuteR,
+			this.angleCenterCenter,
 			this.apr,
 			'R1',
 			'Black'
@@ -565,6 +567,7 @@ class ActionLine {
 			this.ftdl1,
 			this.gw1.blr,
 			this.gw1.involuteL,
+			this.angleCenterCenter,
 			this.apl,
 			'L1',
 			'Black'
