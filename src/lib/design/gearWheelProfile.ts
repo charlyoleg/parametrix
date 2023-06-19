@@ -421,6 +421,16 @@ class ActionLine {
 				this.gw1.adt
 			)} adt2 ${ffix(this.gw2.adt)}\n`;
 		}
+		const a1 = this.gw1.ar - this.gw1.pr;
+		const d1 = this.gw1.pr - this.gw1.dr;
+		const a2 = this.gw2.ar - this.gw2.pr;
+		const d2 = this.gw2.pr - this.gw2.dr;
+		if (roundZero(d2 - a1) < 0) {
+			this.msg += `warn282: addendum-1 ${ffix(a1)} larger than dedendum-2 ${ffix(d2)}\n`;
+		}
+		if (roundZero(d1 - a2) < 0) {
+			this.msg += `warn283: addendum-2 ${ffix(a2)} larger than dedendum-1 ${ffix(d1)}\n`;
+		}
 	}
 	calcActionLine() {
 		this.gw1.checkInitStep(4, 'ActionLine.calcActionLine-1');
