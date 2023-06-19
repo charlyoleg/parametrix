@@ -170,7 +170,7 @@ class GearWheelProfile {
 		const aDiffRd = this.rwd - this.rwp;
 		//const aDiffRa = this.rwa - this.rwp;
 		const aDiffLd = this.lwd - this.lwp;
-		const aDiffLa = this.lwa - this.lwp;
+		//const aDiffLa = this.lwa - this.lwp;
 		const erdr = this.dr > this.brr ? this.dr : this.brr;
 		const eldr = this.dr > this.blr ? this.dr : this.blr;
 		if (this.bRound > erdr - this.br) {
@@ -194,36 +194,45 @@ class GearWheelProfile {
 			const refA = this.initAngle + i * this.as;
 			const ptrb = center.translatePolar(refA + aDiffRd, this.br);
 			rProfile.addSegStrokeA(ptrb.cx, ptrb.cy).addCornerRounded(this.bRound);
-			const ptrd = center.translatePolar(refA + aDiffRd, erdr);
+			const invoR = involute(this.cx, this.cy, this.brr, refA - this.rwp, true);
+			//const ptrd = center.translatePolar(refA + aDiffRd, erdr);
+			const [px1, py1] = invoR.ptc(this.rud);
+			const ta11 = invoR.ptcta(this.rud);
+			const ptrd = point(px1, py1).translatePolar(ta11 - Math.PI / 2, this.skinThickness);
 			rProfile.addSegStrokeA(ptrd.cx, ptrd.cy);
 			//const ptrp = center.translatePolar(refA, this.pr);
 			//rProfile.addSegStrokeA(ptrp.cx, ptrp.cy);
 			//const ptra = center.translatePolar(refA + aDiffRa, this.ar);
 			//rProfile.addSegStrokeA(ptra.cx, ptra.cy);
-			const invoR = involute(this.cx, this.cy, this.brr, refA - this.rwp, true);
 			for (let j = 0; j < this.involArcPairs; j++) {
 				const uu1 = this.rud + j * uPeriodR;
 				const [px, py] = invoR.ptc(uu1 + uPeriodR);
 				const ta1 = invoR.ptcta(uu1);
 				const ta2 = invoR.ptcta(uu1 + uPeriodR) + Math.PI;
+				const pn = point(px, py).translatePolar(ta1 - Math.PI / 2, this.skinThickness);
 				//rProfile.addSegStrokeA(px, py);
-				rProfile.addPointA(px, py).addSeg2Arcs(ta1, ta2);
+				rProfile.addPointA(pn.cx, pn.cy).addSeg2Arcs(ta1, ta2);
 			}
 			const refAl = refA + this.as * this.adt;
-			const ptla = center.translatePolar(refAl + aDiffLa, this.ar);
+			const invoL = involute(this.cx, this.cy, this.blr, refAl - this.lwp, false);
+			//const ptla = center.translatePolar(refAl + aDiffLa, this.ar);
+			const uu2 = this.lud + this.involArcPairs * uPeriodL;
+			const [px2, py2] = invoL.ptc(uu2);
+			const ta12 = invoL.ptcta(uu2) + Math.PI;
+			const ptla = point(px2, py2).translatePolar(ta12 - Math.PI / 2, this.skinThickness);
 			rProfile.addSegStrokeA(ptla.cx, ptla.cy);
 			//const ptlp = center.translatePolar(refAl, this.pr);
 			//rProfile.addSegStrokeA(ptlp.cx, ptlp.cy);
 			//const ptld = center.translatePolar(refAl + aDiffLd, eldr);
 			//rProfile.addSegStrokeA(ptld.cx, ptld.cy);
-			const invoL = involute(this.cx, this.cy, this.blr, refAl - this.lwp, false);
 			for (let j = 0; j < this.involArcPairs; j++) {
 				const uu1 = this.lud + (this.involArcPairs - j) * uPeriodL;
 				const [px, py] = invoL.ptc(uu1 - uPeriodL);
 				const ta1 = invoL.ptcta(uu1) + Math.PI;
 				const ta2 = invoL.ptcta(uu1 - uPeriodL);
+				const pn = point(px, py).translatePolar(ta1 - Math.PI / 2, this.skinThickness);
 				//rProfile.addSegStrokeA(px, py);
-				rProfile.addPointA(px, py).addSeg2Arcs(ta1, ta2);
+				rProfile.addPointA(pn.cx, pn.cy).addSeg2Arcs(ta1, ta2);
 			}
 			const ptlb = center.translatePolar(refAl + aDiffLd, this.br);
 			rProfile.addSegStrokeA(ptlb.cx, ptlb.cy).addCornerRounded(this.bRound);
