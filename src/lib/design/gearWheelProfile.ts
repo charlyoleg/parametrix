@@ -14,7 +14,7 @@ import {
 	roundZero,
 	ffix
 } from '$lib/geom/figure';
-//import type { Involute } from './involute';
+import type { Involute } from './involute';
 import { involute } from './involute';
 
 class GearWheelProfile {
@@ -510,6 +510,75 @@ class ActionLine {
 		this.calcActionLine();
 		this.calcContactPoint1();
 	}
+	oneContactSpeed(
+		rnl: boolean,
+		lBD: number,
+		las: number,
+		ftd: number,
+		baser: number,
+		invo: Involute,
+		acc: number,
+		ap: number,
+		label: string,
+		color: string
+	): tContour {
+		const speed = 0.4;
+		const larStepNb = Math.floor(lBD / (2 * las));
+		const ptu = (ftd + larStepNb * las) / baser;
+		const [px, py, vx, vy] = invo.laptc(acc, ap, ptu, speed);
+		this.msg += `speed ${label}: vx ${ffix(vx)} vy: ${ffix(vy)} m/s\n`;
+		const pt0 = point(px, py);
+		const sign = rnl ? 1 : -1;
+		const aa = acc + sign * ap;
+		const rCtr = contour(px, py, color);
+		const pt1 = pt0.translatePolar(aa, -vy);
+		rCtr.addSegStrokeA(pt1.cx, pt1.cy);
+		const pt2 = pt1.translatePolar(aa - (sign * Math.PI) / 2, vx);
+		rCtr.addSegStrokeA(pt2.cx, pt2.cy);
+		rCtr.closeSegStroke();
+		return rCtr;
+	}
+	getContactSpeed(): Array<tContour> {
+		const speed = 0.4;
+		const larStepNb = Math.floor(this.lBDr / (2 * this.lasr1));
+		const ptur1 = (this.ftdr1 + larStepNb * this.lasr1) / this.gw1.brr;
+		const [rpx, rpy, rvx, rvy] = this.gw1.involuteR.laptc(
+			this.angleCenterCenter,
+			this.apr,
+			ptur1,
+			speed
+		);
+		this.msg += `speed r1: rvx ${ffix(rvx)} rvy: ${ffix(rvy)} m/s\n`;
+		const ptr1 = point(rpx, rpy);
+		const aar = this.angleCenterCenter + this.apr;
+		const ctrR1 = contour(rpx, rpy, 'Black');
+		const ptr1a = ptr1.translatePolar(aar, -rvy);
+		ctrR1.addSegStrokeA(ptr1a.cx, ptr1a.cy);
+		const ptr1b = ptr1a.translatePolar(aar - Math.PI / 2, rvx);
+		ctrR1.addSegStrokeA(ptr1b.cx, ptr1b.cy);
+		ctrR1.closeSegStroke();
+		const lalStepNb = Math.floor(this.lBDl / (2 * this.lasl1));
+		const ptul1 = (this.ftdl1 + lalStepNb * this.lasl1) / this.gw1.blr;
+		const [lpx, lpy, lvx, lvy] = this.gw1.involuteL.laptc(
+			this.angleCenterCenter,
+			-this.apl,
+			ptul1,
+			speed
+		);
+		this.msg += `speed l1: lvx ${ffix(lvx)} lvy: ${ffix(lvy)} m/s\n`;
+		const ptl1 = point(lpx, lpy);
+		const aal = this.angleCenterCenter - this.apl;
+		const ctrL1 = contour(lpx, lpy, 'Black');
+		const ptl1a = ptl1.translatePolar(aal, -lvy);
+		ctrL1.addSegStrokeA(ptl1a.cx, ptl1a.cy);
+		const ptl1b = ptl1a.translatePolar(aal + Math.PI / 2, lvx);
+		ctrL1.addSegStrokeA(ptl1b.cx, ptl1b.cy);
+		ctrL1.closeSegStroke();
+		const rACtr: Array<tContour> = [];
+		rACtr.push(ctrR1);
+		rACtr.push(ctrL1);
+		return rACtr;
+	}
 	getContours(): Array<tContour> {
 		const rACtr: Array<tContour> = [];
 		rACtr.push(contourCircle(this.gw1.cx, this.gw1.cy, this.laStartRr1, 'SkyBlue'));
@@ -542,6 +611,7 @@ class ActionLine {
 		ctrLaEffectiveL.addSegStrokeA(pl3.cx, pl3.cy);
 		ctrLaEffectiveL.closeSegStroke();
 		rACtr.push(ctrLaEffectiveL);
+		rACtr.push(...this.getContactSpeed());
 		return rACtr;
 	}
 	getContactPoint(): Array<Point> {

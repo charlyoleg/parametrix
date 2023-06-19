@@ -96,8 +96,10 @@ class Involute {
 		const C2x = C0x + Math.cos(C2a) * lBC;
 		const C2y = C0y + Math.sin(C2a) * lBC;
 		const lL = this.lFromU(aj);
-		const vpx = Math.cos(aj) * lL * sJ;
-		const vpy = Math.sin(aj) * lL * sJ;
+		const speed = lL * sJ;
+		const aspeed = aj;
+		const vpx = Math.cos(aspeed) * speed;
+		const vpy = Math.sin(aspeed) * speed;
 		return [C2x, C2y, vpx, vpy];
 	}
 }
