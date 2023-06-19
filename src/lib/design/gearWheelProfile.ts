@@ -517,7 +517,6 @@ class ActionLine {
 		ftd: number,
 		baser: number,
 		invo: Involute,
-		acc: number,
 		ap: number,
 		label: string,
 		color: string
@@ -525,11 +524,11 @@ class ActionLine {
 		const speed = 0.4;
 		const larStepNb = Math.floor(lBD / (2 * las));
 		const ptu = (ftd + larStepNb * las) / baser;
-		const [px, py, vx, vy] = invo.laptc(acc, ap, ptu, speed);
+		const sign = rnl ? 1 : -1;
+		const [px, py, vx, vy] = invo.laptc(this.angleCenterCenter, sign * ap, ptu, speed);
 		this.msg += `speed ${label}: vx ${ffix(vx)} vy: ${ffix(vy)} m/s\n`;
 		const pt0 = point(px, py);
-		const sign = rnl ? 1 : -1;
-		const aa = acc + sign * ap;
+		const aa = this.angleCenterCenter + sign * ap;
 		const rCtr = contour(px, py, color);
 		const pt1 = pt0.translatePolar(aa, -vy);
 		rCtr.addSegStrokeA(pt1.cx, pt1.cy);
@@ -539,41 +538,28 @@ class ActionLine {
 		return rCtr;
 	}
 	getContactSpeed(): Array<tContour> {
-		const speed = 0.4;
-		const larStepNb = Math.floor(this.lBDr / (2 * this.lasr1));
-		const ptur1 = (this.ftdr1 + larStepNb * this.lasr1) / this.gw1.brr;
-		const [rpx, rpy, rvx, rvy] = this.gw1.involuteR.laptc(
-			this.angleCenterCenter,
+		const ctrR1 = this.oneContactSpeed(
+			true,
+			this.lBDr,
+			this.lasr1,
+			this.ftdr1,
+			this.gw1.brr,
+			this.gw1.involuteR,
 			this.apr,
-			ptur1,
-			speed
+			'R1',
+			'Black'
 		);
-		this.msg += `speed r1: rvx ${ffix(rvx)} rvy: ${ffix(rvy)} m/s\n`;
-		const ptr1 = point(rpx, rpy);
-		const aar = this.angleCenterCenter + this.apr;
-		const ctrR1 = contour(rpx, rpy, 'Black');
-		const ptr1a = ptr1.translatePolar(aar, -rvy);
-		ctrR1.addSegStrokeA(ptr1a.cx, ptr1a.cy);
-		const ptr1b = ptr1a.translatePolar(aar - Math.PI / 2, rvx);
-		ctrR1.addSegStrokeA(ptr1b.cx, ptr1b.cy);
-		ctrR1.closeSegStroke();
-		const lalStepNb = Math.floor(this.lBDl / (2 * this.lasl1));
-		const ptul1 = (this.ftdl1 + lalStepNb * this.lasl1) / this.gw1.blr;
-		const [lpx, lpy, lvx, lvy] = this.gw1.involuteL.laptc(
-			this.angleCenterCenter,
-			-this.apl,
-			ptul1,
-			speed
+		const ctrL1 = this.oneContactSpeed(
+			false,
+			this.lBDl,
+			this.lasl1,
+			this.ftdl1,
+			this.gw1.blr,
+			this.gw1.involuteL,
+			this.apl,
+			'L1',
+			'Black'
 		);
-		this.msg += `speed l1: lvx ${ffix(lvx)} lvy: ${ffix(lvy)} m/s\n`;
-		const ptl1 = point(lpx, lpy);
-		const aal = this.angleCenterCenter - this.apl;
-		const ctrL1 = contour(lpx, lpy, 'Black');
-		const ptl1a = ptl1.translatePolar(aal, -lvy);
-		ctrL1.addSegStrokeA(ptl1a.cx, ptl1a.cy);
-		const ptl1b = ptl1a.translatePolar(aal + Math.PI / 2, lvx);
-		ctrL1.addSegStrokeA(ptl1b.cx, ptl1b.cy);
-		ctrL1.closeSegStroke();
 		const rACtr: Array<tContour> = [];
 		rACtr.push(ctrR1);
 		rACtr.push(ctrL1);
