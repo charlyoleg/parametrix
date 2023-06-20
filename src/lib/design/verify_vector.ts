@@ -2,18 +2,20 @@
 
 import { degToRad, point, vector, figure } from '$lib/geom/figure';
 import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
+import { pNumber } from './aaParamGeom';
 
 const pDef: tParamDef = {
 	page: 'verify_vector',
 	params: [
-		{ name: 'p1x', unit: 'mm', init: 30, min: -200, max: 200, step: 1 },
-		{ name: 'p1y', unit: 'mm', init: 50, min: -200, max: 200, step: 1 },
-		{ name: 'p2x', unit: 'mm', init: 80, min: -200, max: 200, step: 1 },
-		{ name: 'p2y', unit: 'mm', init: -30, min: -200, max: 200, step: 1 },
-		{ name: 'v1a', unit: 'degree', init: 30, min: -200, max: 200, step: 1 },
-		{ name: 'v1l', unit: 'mm', init: 60, min: 0, max: 200, step: 1 },
-		{ name: 'v2a', unit: 'degree', init: 30, min: -200, max: 200, step: 1 },
-		{ name: 'v2l', unit: 'mm', init: 60, min: 0, max: 200, step: 1 }
+		//pNumber(name, unit, init, min, max, step)
+		pNumber('p1x', 'mm', 30, -200, 200, 1),
+		pNumber('p1y', 'mm', 50, -200, 200, 1),
+		pNumber('p2x', 'mm', 80, -200, 200, 1),
+		pNumber('p2y', 'mm', -30, -200, 200, 1),
+		pNumber('v1a', 'degree', 30, -200, 200, 1),
+		pNumber('v1l', 'mm', 60, 0, 200, 1),
+		pNumber('v2a', 'degree', 30, -200, 200, 1),
+		pNumber('v2l', 'mm', 60, 0, 200, 1)
 	],
 	paramSvg: {
 		p1x: 'verify_vector_p1x.svg',

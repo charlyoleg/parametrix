@@ -3,12 +3,14 @@
 import { point, figure } from '$lib/geom/figure';
 import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
 //import { fround } from './aaParamGeom';
+import { pNumber } from './aaParamGeom';
 
 const pDef: tParamDef = {
 	page: 'rectangle',
 	params: [
-		{ name: 'width', unit: 'mm', init: 15, min: 3, max: 40, step: 0.5 },
-		{ name: 'height', unit: 'mm', init: 10, min: 3, max: 40, step: 0.5 }
+		//pNumber(name, unit, init, min, max, step)
+		pNumber('width', 'mm', 15, 3, 40, 0.5),
+		pNumber('height', 'mm', 10, 3, 40, 0.5)
 	],
 	paramSvg: {
 		width: 'rectangle_width.svg',

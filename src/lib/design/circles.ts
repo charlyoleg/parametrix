@@ -2,7 +2,8 @@
 
 import { degToRad, point, figure } from '$lib/geom/figure';
 import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
-//import { fround } from './aaParamGeom';
+//import { pNumber, fround } from './aaParamGeom';
+import { pNumber } from './aaParamGeom';
 
 //const pi12 = fround(Math.PI / 12);
 //const pi24 = fround(Math.PI / 24); // input-number min and step must be rounded to avoid UI issue
@@ -12,9 +13,10 @@ import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
 const pDef: tParamDef = {
 	page: 'circles',
 	params: [
-		{ name: 'angle', unit: 'degree', init: 15, min: 5, max: 45, step: 1 },
-		{ name: 'amplitude-offset', unit: 'mm', init: 1, min: 0.5, max: 4, step: 0.1 },
-		{ name: 'amplitude-scale', unit: 'scalar', init: 0.2, min: 0.1, max: 0.5, step: 0.01 }
+		//pNumber(name, unit, init, min, max, step)
+		pNumber('angle', 'degree', 15, 5, 45, 1),
+		pNumber('amplitude-offset', 'mm', 1, 0.5, 4, 0.1),
+		pNumber('amplitude-scale', 'scalar', 0.2, 0.1, 0.5, 0.01)
 	],
 	paramSvg: {
 		angle: 'circles_angle.svg',

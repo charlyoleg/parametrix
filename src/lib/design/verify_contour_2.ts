@@ -2,14 +2,16 @@
 
 import { degToRad, contour, figure } from '$lib/geom/figure';
 import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
+import { pNumber } from './aaParamGeom';
 
 const pDef: tParamDef = {
 	page: 'verify_contour_2',
 	params: [
-		{ name: 'r1', unit: 'mm', init: 20, min: 5, max: 200, step: 1 },
-		{ name: 'a1', unit: 'deg', init: 30, min: -200, max: 200, step: 1 },
-		{ name: 'at1', unit: 'deg', init: 30, min: -200, max: 200, step: 1 },
-		{ name: 'at2', unit: 'deg', init: 50, min: -200, max: 200, step: 1 }
+		//pNumber(name, unit, init, min, max, step)
+		pNumber('r1', 'mm', 20, 5, 200, 1),
+		pNumber('a1', 'deg', 30, -200, 200, 1),
+		pNumber('at1', 'deg', 30, -200, 200, 1),
+		pNumber('at2', 'deg', 50, -200, 200, 1)
 	],
 	paramSvg: {
 		r1: 'verify_contour_1_r1.svg',

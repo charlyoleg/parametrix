@@ -2,16 +2,18 @@
 
 import { contour, contourCircle, figure } from '$lib/geom/figure';
 import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
+import { pNumber } from './aaParamGeom';
 
 const pDef: tParamDef = {
 	page: 'verify_contour_1',
 	params: [
-		{ name: 'r1', unit: 'mm', init: 30, min: 10, max: 200, step: 1 },
-		{ name: 'd1', unit: 'mm', init: 20, min: 10, max: 200, step: 1 },
-		{ name: 'w1', unit: 'mm', init: 100, min: 10, max: 200, step: 1 },
-		{ name: 'r2', unit: 'mm', init: 60, min: 10, max: 200, step: 1 },
-		{ name: 'l1', unit: 'mm', init: 10, min: 5, max: 200, step: 1 },
-		{ name: 'l2', unit: 'mm', init: 30, min: 5, max: 200, step: 1 }
+		//pNumber(name, unit, init, min, max, step)
+		pNumber('r1', 'mm', 30, 10, 200, 1),
+		pNumber('d1', 'mm', 20, 10, 200, 1),
+		pNumber('w1', 'mm', 100, 10, 200, 1),
+		pNumber('r2', 'mm', 60, 10, 200, 1),
+		pNumber('l1', 'mm', 10, 5, 200, 1),
+		pNumber('l2', 'mm', 30, 5, 200, 1)
 	],
 	paramSvg: {
 		r1: 'verify_contour_1_r1.svg',

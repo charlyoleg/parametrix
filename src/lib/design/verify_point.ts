@@ -2,16 +2,18 @@
 
 import { degToRad, point, figure } from '$lib/geom/figure';
 import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
+import { pNumber } from './aaParamGeom';
 
 const pDef: tParamDef = {
 	page: 'verify_point',
 	params: [
-		{ name: 'p1x', unit: 'mm', init: 30, min: -200, max: 200, step: 1 },
-		{ name: 'p1y', unit: 'mm', init: 50, min: -200, max: 200, step: 1 },
-		{ name: 'p2a', unit: 'degree', init: 30, min: -200, max: 200, step: 1 },
-		{ name: 'p2l', unit: 'mm', init: 60, min: 0, max: 200, step: 1 },
-		{ name: 'rotateOrig', unit: 'degree', init: 45, min: -200, max: 200, step: 1 },
-		{ name: 'scaleOrig', unit: 'scalar', init: 1.5, min: 0.1, max: 2, step: 0.1 }
+		//pNumber(name, unit, init, min, max, step)
+		pNumber('p1x', 'mm', 30, -200, 200, 1),
+		pNumber('p1y', 'mm', 50, -200, 200, 1),
+		pNumber('p2a', 'degree', 30, -200, 200, 1),
+		pNumber('p2l', 'mm', 60, 0, 200, 1),
+		pNumber('rotateOrig', 'degree', 45, -200, 200, 1),
+		pNumber('scaleOrig', 'scalar', 1.5, 0.1, 2, 0.1)
 	],
 	paramSvg: {
 		p1x: 'verify_point_p1x.svg',

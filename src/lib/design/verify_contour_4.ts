@@ -2,13 +2,15 @@
 
 import { point, contour, figure } from '$lib/geom/figure';
 import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
+import { pNumber } from './aaParamGeom';
 
 const pDef: tParamDef = {
 	page: 'verify_contour_4',
 	params: [
-		{ name: 'n1', unit: 'scalar', init: 16, min: 1, max: 50, step: 1 },
-		{ name: 'n2', unit: 'scalar', init: 6, min: 3, max: 50, step: 1 },
-		{ name: 'r1', unit: 'mm', init: 5, min: 0, max: 20, step: 1 }
+		//pNumber(name, unit, init, min, max, step)
+		pNumber('n1', 'scalar', 16, 1, 50, 1),
+		pNumber('n2', 'scalar', 6, 3, 50, 1),
+		pNumber('r1', 'mm', 5, 0, 20, 1)
 	],
 	paramSvg: {
 		n1: 'verify_contour_1_r1.svg',

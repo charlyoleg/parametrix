@@ -2,19 +2,21 @@
 
 import { point, line, figure } from '$lib/geom/figure';
 import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
+import { pNumber } from './aaParamGeom';
 import { degToRad } from '$lib/geom/angle_utils';
 
 const pDef: tParamDef = {
 	page: 'verify_line_2',
 	params: [
-		{ name: 'l1cx', unit: 'mm', init: 10, min: -200, max: 200, step: 1 },
-		{ name: 'l1cy', unit: 'mm', init: 20, min: -200, max: 200, step: 1 },
-		{ name: 'l1ca', unit: 'degree', init: 15, min: -200, max: 200, step: 1 },
-		{ name: 'l2cx', unit: 'mm', init: 30, min: -200, max: 200, step: 1 },
-		{ name: 'l2cy', unit: 'mm', init: 50, min: -200, max: 200, step: 1 },
-		{ name: 'l2ca', unit: 'degree', init: 35, min: -200, max: 200, step: 1 },
-		{ name: 'p3x', unit: 'mm', init: -30, min: -200, max: 200, step: 1 },
-		{ name: 'p3y', unit: 'mm', init: 30, min: -200, max: 200, step: 1 }
+		//pNumber(name, unit, init, min, max, step)
+		pNumber('l1cx', 'mm', 10, -200, 200, 1),
+		pNumber('l1cy', 'mm', 20, -200, 200, 1),
+		pNumber('l1ca', 'degree', 15, -200, 200, 1),
+		pNumber('l2cx', 'mm', 30, -200, 200, 1),
+		pNumber('l2cy', 'mm', 50, -200, 200, 1),
+		pNumber('l2ca', 'degree', 35, -200, 200, 1),
+		pNumber('p3x', 'mm', -30, -200, 200, 1),
+		pNumber('p3y', 'mm', 30, -200, 200, 1)
 	],
 	paramSvg: {
 		l1cx: 'verify_line_2_l1cx.svg',

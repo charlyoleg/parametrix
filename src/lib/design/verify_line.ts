@@ -2,16 +2,18 @@
 
 import { point, line, linePP, figure } from '$lib/geom/figure';
 import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
+import { pNumber } from './aaParamGeom';
 
 const pDef: tParamDef = {
 	page: 'verify_line',
 	params: [
-		{ name: 'p1x', unit: 'mm', init: 30, min: -200, max: 200, step: 1 },
-		{ name: 'p1y', unit: 'mm', init: 50, min: -200, max: 200, step: 1 },
-		{ name: 'p2x', unit: 'mm', init: 40, min: -200, max: 200, step: 1 },
-		{ name: 'p2y', unit: 'mm', init: -20, min: -200, max: 200, step: 1 },
-		{ name: 'p3x', unit: 'mm', init: -30, min: -200, max: 200, step: 1 },
-		{ name: 'p3y', unit: 'mm', init: 30, min: -200, max: 200, step: 1 }
+		//pNumber(name, unit, init, min, max, step)
+		pNumber('p1x', 'mm', 30, -200, 200, 1),
+		pNumber('p1y', 'mm', 50, -200, 200, 1),
+		pNumber('p2x', 'mm', 40, -200, 200, 1),
+		pNumber('p2y', 'mm', -20, -200, 200, 1),
+		pNumber('p3x', 'mm', -30, -200, 200, 1),
+		pNumber('p3y', 'mm', 30, -200, 200, 1)
 	],
 	paramSvg: {
 		p1x: 'verify_line_p1x.svg',
