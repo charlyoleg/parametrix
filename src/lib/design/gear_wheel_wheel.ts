@@ -3,7 +3,7 @@
 //import { contour, contourCircle, figure, degToRad } from '$lib/geom/figure';
 import { figure, degToRad, ffix } from '$lib/geom/figure';
 import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
-import { pNumber } from './aaParamGeom';
+import { pNumber, pCheckbox, pDropdown } from './aaParamGeom';
 import * as gwHelper from './gearWheelProfile';
 import * as welem from './wheelElements';
 
@@ -28,9 +28,9 @@ const pDef: tParamDef = {
 		pNumber('bRound2', 'mm', 2, 0, 50, 0.1),
 		pNumber('at1', '%', 50, 10, 90, 0.5),
 		pNumber('at2', '%', 50, 10, 90, 0.5),
-		pNumber('involSym', 'checkbox', 1, 0, 1, 1),
-		pNumber('involROpt', 'dropdown', 0, 0, 4, 1),
-		pNumber('involLOpt', 'dropdown', 0, 0, 4, 1),
+		pCheckbox('involSym', true),
+		pDropdown('involROpt', ['Optimum', 'Base-1', 'Base-2', 'PressureAngle', 'FreeBase-12']),
+		pDropdown('involLOpt', ['Optimum', 'Base-1', 'Base-2', 'PressureAngle', 'FreeBase-12']),
 		pNumber('brr1', 'mm', 50, 10, 2000, 0.05),
 		pNumber('brr2', 'mm', 50, 10, 2000, 0.05),
 		pNumber('blr1', 'mm', 50, 10, 2000, 0.05),
@@ -40,15 +40,15 @@ const pDef: tParamDef = {
 		pNumber('skinThickness1', 'mm', 0, -3, 3, 0.01),
 		pNumber('skinThickness2', 'mm', 0, -3, 3, 0.01),
 		pNumber('initAngle1', 'degree', 0, -180, 180, 1),
-		pNumber('rightLeftCenter2', 'dropdown', 0, 0, 2, 1),
-		pNumber('centralAxis', 'checkbox', 1, 0, 1, 1),
+		pDropdown('gw2Position', ['right', 'left', 'center']),
+		pCheckbox('centralAxis', true),
 		pNumber('axisRadius', 'mm', 10, 0.1, 200, 0.1),
 		pNumber('ribNb', 'scalar', 5, 0, 32, 1),
 		pNumber('ribWidth', 'mm', 8, 1, 100, 0.1),
 		pNumber('ribHeight', 'mm', 8, 1, 100, 0.1),
 		pNumber('ribRound1', 'mm', 2, 0, 20, 0.1),
 		pNumber('ribRound2', 'mm', 2, 0, 20, 0.1),
-		pNumber('hollow', 'checkbox', 1, 0, 1, 1),
+		pCheckbox('hollow', true),
 		pNumber('materialHeightExt', 'mm', 20, 1, 200, 0.5),
 		pNumber('materialHeightInt', 'mm', 15, 1, 200, 0.5),
 		pNumber('spokeNb', 'scalar', 5, 1, 18, 1),
@@ -85,7 +85,7 @@ const pDef: tParamDef = {
 		involArcPairs2: 'default_param_blank.svg',
 		skinThickness2: 'default_param_blank.svg',
 		initAngle1: 'default_param_blank.svg',
-		rightLeftCenter2: 'default_param_blank.svg',
+		gw2Position: 'default_param_blank.svg',
 		centralAxis: 'default_param_blank.svg',
 		axisRadius: 'default_param_blank.svg',
 		ribNb: 'default_param_blank.svg',
@@ -140,14 +140,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		gp2.set5AddendumThickness(param['at2']);
 		const initAngle1 = degToRad(param['initAngle1']) + (t * 3 * gp1.as) / 100; // sim.tMax=100
 		gp1.set6Angles(initAngle1, acc);
-		const gearAL = gwHelper.actionLine(
-			gp1,
-			gp2,
-			initAngle1,
-			acc,
-			d12,
-			param['rightLeftCenter2']
-		);
+		const gearAL = gwHelper.actionLine(gp1, gp2, initAngle1, acc, d12, param['gw2Position']);
 		gearAL.prepare();
 		for (const laCtr of gearAL.getContours()) {
 			rGeome.fig.addDynamics(laCtr);

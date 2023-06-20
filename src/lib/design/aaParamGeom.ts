@@ -78,7 +78,7 @@ function pDropdown(name: string, values: Array<string>): tParam {
 		unit: 'dropdown',
 		init: 0,
 		min: 0,
-		max: values.length,
+		max: values.length - 1,
 		step: 1,
 		dropdown: values,
 		pType: PType.eDropdown
@@ -91,4 +91,4 @@ function fround(ireal: number, iprecision = 1000.0): number {
 }
 
 export type { tParamDef, tParamVal, tAllVal, tGeom, tGeomFunc, tPageDef };
-export { pNumber, pCheckbox, pDropdown, fround };
+export { PType, pNumber, pCheckbox, pDropdown, fround };

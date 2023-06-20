@@ -5,6 +5,7 @@
 	import LocStorRead from '$lib/LocStorRead.svelte';
 	import SimpleDrawing from '$lib/SimpleDrawing.svelte';
 	import type { tParamDef, tParamVal, tAllVal, tGeomFunc } from '$lib/design/aaParamGeom';
+	import { PType } from '$lib/design/aaParamGeom';
 	import { storePV } from '$lib/storePVal';
 	import { onMount, createEventDispatcher } from 'svelte';
 	import { browser } from '$app/environment';
@@ -274,15 +275,21 @@
 						<td><button on:click={() => paramPict(param.name)}>{param.name}</button></td
 						>
 						<td>
-							<input
-								type="number"
-								bind:value={$storePV[pDef.page][param.name]}
-								min={param.min}
-								max={param.max}
-								step={param.step}
-								on:change={paramChange}
-								class="input-number"
-							/>
+							{#if param.pType === PType.eNumber}
+								<input
+									type="number"
+									bind:value={$storePV[pDef.page][param.name]}
+									min={param.min}
+									max={param.max}
+									step={param.step}
+									on:change={paramChange}
+									class="input-number"
+								/>
+							{:else if param.pType === PType.eCheckbox}
+								aaa
+							{:else}
+								bbb
+							{/if}
 							<input
 								type="range"
 								bind:value={$storePV[pDef.page][param.name]}
