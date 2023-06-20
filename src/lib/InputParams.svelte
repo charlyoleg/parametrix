@@ -285,19 +285,27 @@
 									on:change={paramChange}
 									class="input-number"
 								/>
+								<input
+									type="range"
+									bind:value={$storePV[pDef.page][param.name]}
+									min={param.min}
+									max={param.max}
+									step={param.step}
+									on:change={paramChange}
+								/>
 							{:else if param.pType === PType.eCheckbox}
-								aaa
+								<select bind:value={$storePV[pDef.page][param.name]}>
+									{#each ['Off', 'On'] as one, idx}
+										<option value={idx}>{one}</option>
+									{/each}
+								</select>
 							{:else}
-								bbb
+								<select bind:value={$storePV[pDef.page][param.name]}>
+									{#each param.dropdown as one, idx}
+										<option value={idx}>{one}</option>
+									{/each}
+								</select>
 							{/if}
-							<input
-								type="range"
-								bind:value={$storePV[pDef.page][param.name]}
-								min={param.min}
-								max={param.max}
-								step={param.step}
-								on:change={paramChange}
-							/>
 						</td>
 						<td>{param.unit}</td>
 						<td>{param.init}</td>
