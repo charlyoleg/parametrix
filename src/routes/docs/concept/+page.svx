@@ -74,6 +74,8 @@ The constraints of part manufacturing and low-tech CAD shaping concept are simil
 
 Extruded-2D-design is good enough for 90% of technical parts
 
+![gui_vs_programmatic.svg]({base}/gui_vs_programmatic.svg)
+
 
 ### Future tools around Parametrix
 

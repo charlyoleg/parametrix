@@ -25,8 +25,8 @@
      showgrid="false"
      units="px"
      inkscape:zoom="1.4823794"
-     inkscape:cx="382.49318"
-     inkscape:cy="7345.2858"
+     inkscape:cx="222.27778"
+     inkscape:cy="7670.4385"
      inkscape:window-width="1366"
      inkscape:window-height="836"
      inkscape:window-x="0"
@@ -41,6 +41,54 @@
      inkscape:deskcolor="#d1d1d1" />
   <defs
      id="defs2">
+    <rect
+       x="59.345574"
+       y="7834.7937"
+       width="302.8519"
+       height="29.455389"
+       id="rect8426" />
+    <rect
+       x="105.59196"
+       y="7803.7282"
+       width="188.93822"
+       height="30.369777"
+       id="rect8176" />
+    <rect
+       x="168.59508"
+       y="7828.4219"
+       width="208.48028"
+       height="35.724344"
+       id="rect8032" />
+    <rect
+       x="244.61307"
+       y="7575.2421"
+       width="78.105"
+       height="50.589065"
+       id="rect3096" />
+    <rect
+       x="246.10718"
+       y="7644.8673"
+       width="182.45055"
+       height="64.9821"
+       id="rect2952" />
+    <rect
+       x="252.97695"
+       y="7606.1863"
+       width="182.00785"
+       height="89.607311"
+       id="rect2804" />
+    <rect
+       x="137.47693"
+       y="7743.3734"
+       width="96.005386"
+       height="26.432905"
+       id="rect1947" />
+    <rect
+       x="332.8712"
+       y="7747.8425"
+       width="87.359552"
+       height="26.372297"
+       id="rect1815" />
     <rect
        x="62.220493"
        y="7502.0887"
@@ -1022,6 +1070,43 @@
          id="arrow1L-7"
          transform="scale(-0.5)" />
     </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1L-3"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Arrow1L"
+       markerWidth="8.75"
+       markerHeight="5"
+       viewBox="0 0 8.75 5"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="arrow1L-6"
+         transform="scale(-0.5)" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Mend-75"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend"
+       inkscape:isstock="true"
+       viewBox="0 0 8.886927 5.078244"
+       markerWidth="8.8869267"
+       markerHeight="5.0782437"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path44678-35" />
+    </marker>
   </defs>
   <g
      inkscape:label="Layer 1"
@@ -1284,7 +1369,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect110552);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="76.320312"
          y="2607.9004"
-         id="tspan13036">parametrix</tspan></text>
+         id="tspan4306">parametrix</tspan></text>
     <rect
        style="fill:#ffffff;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round"
        id="rect50567"
@@ -1471,7 +1556,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect1881);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="13.492188"
          y="22.419952"
-         id="tspan13038">parametrix_concept.svg</tspan></text>
+         id="tspan4308">parametrix_concept.svg</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,-39.21651,-6.4254809)"
@@ -1479,9 +1564,9 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect5825);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="174.04492"
          y="162.73636"
-         id="tspan13042"><tspan
+         id="tspan4312"><tspan
            style="font-weight:bold;-inkscape-font-specification:'sans-serif Bold'"
-           id="tspan13040">electric motor</tspan></tspan></text>
+           id="tspan4310">electric motor</tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,1.2257999,-16.022349)"
@@ -1489,9 +1574,9 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect8955);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="72.855469"
          y="251.78128"
-         id="tspan13046"><tspan
+         id="tspan4316"><tspan
            style="font-weight:bold;-inkscape-font-specification:'sans-serif Bold'"
-           id="tspan13044">three-phase</tspan></tspan></text>
+           id="tspan4314">three-phase</tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,19.658572,-28.200722)"
@@ -1499,7 +1584,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect12869);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="40.474609"
          y="334.08206"
-         id="tspan13048">synchronous</tspan></text>
+         id="tspan4318">synchronous</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,26.797995,-31.770433)"
@@ -1507,15 +1592,15 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect17365);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="29.681641"
          y="369.16019"
-         id="tspan13050">with permanent magnet
+         id="tspan4320">with permanent magnet
 </tspan><tspan
          x="29.681641"
          y="387.49356"
-         id="tspan13052">- rotate at the power frequency
+         id="tspan4322">- rotate at the power frequency
 </tspan><tspan
          x="29.681641"
          y="405.82693"
-         id="tspan13054">- load must not exceed the limit</tspan></text>
+         id="tspan4324">- load must not exceed the limit</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,-25.676768,3.7982295)"
@@ -1523,7 +1608,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect22299);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="217.21875"
          y="311.14651"
-         id="tspan13056">asynchronous</tspan></text>
+         id="tspan4326">asynchronous</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,-34.601046,-7.9818193)"
@@ -1531,19 +1616,19 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect26007);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="268.48633"
          y="374.55667"
-         id="tspan13058">aka induction
+         id="tspan4328">aka induction
 </tspan><tspan
          x="268.48633"
          y="392.89004"
-         id="tspan13060">- less efficient
+         id="tspan4330">- less efficient
 </tspan><tspan
          x="268.48633"
          y="411.22342"
-         id="tspan13062">- slightly lower speed than power frequency
+         id="tspan4332">- slightly lower speed than power frequency
 </tspan><tspan
          x="268.48633"
          y="429.55679"
-         id="tspan13064">- load can exceed limits</tspan></text>
+         id="tspan4334">- load can exceed limits</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,-12.122885,9.0188181)"
@@ -1551,9 +1636,9 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect31263);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="121.42578"
          y="417.7305"
-         id="tspan13068"><tspan
+         id="tspan4338"><tspan
            style="font-weight:bold;-inkscape-font-specification:'sans-serif Bold'"
-           id="tspan13066">brushed DC motor</tspan></tspan></text>
+           id="tspan4336">brushed DC motor</tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,-12.122885,9.0188181)"
@@ -1561,7 +1646,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect38963);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="144.36328"
          y="440.668"
-         id="tspan13070">mechanic commutation</tspan></text>
+         id="tspan4340">mechanic commutation</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,-3.9015226,14.992789)"
@@ -1569,7 +1654,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect40443);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="147.06055"
          y="474.39651"
-         id="tspan13072">universal motor
+         id="tspan4342">universal motor
 </tspan></text>
     <text
        xml:space="preserve"
@@ -1578,9 +1663,9 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect58083);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="98.490234"
          y="632.25198"
-         id="tspan13076"><tspan
+         id="tspan4346"><tspan
    style="font-weight:bold;-inkscape-font-specification:'sans-serif Bold'"
-   id="tspan13074">brushless DC motor</tspan> </tspan></text>
+   id="tspan4344">brushless DC motor</tspan> </tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,-32.459216,-27.486779)"
@@ -1588,11 +1673,11 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect63145);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="263.08984"
          y="652.48831"
-         id="tspan13078">operate with AC or DC power
+         id="tspan4348">operate with AC or DC power
 </tspan><tspan
          x="263.08984"
          y="670.82169"
-         id="tspan13080">using diode-bridge or well-designed-winding</tspan></text>
+         id="tspan4350">using diode-bridge or well-designed-winding</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,-6.0433495,-2.4987981)"
@@ -1600,11 +1685,11 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect69055);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="110.63281"
          y="651.14065"
-         id="tspan13082">using power electronics and controler
+         id="tspan4352">using power electronics and controler
 </tspan><tspan
          x="110.63281"
          y="669.47403"
-         id="tspan13084">requires current sensors and a position sensor</tspan></text>
+         id="tspan4354">requires current sensors and a position sensor</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,1.0960752,17.2831)"
@@ -1612,7 +1697,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect76035);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="175.39453"
          y="686.21878"
-         id="tspan13086">reluctance</tspan></text>
+         id="tspan4356">reluctance</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,1.9947916,23.127648)"
@@ -1620,7 +1705,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect77933);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="172.69531"
          y="719.9473"
-         id="tspan13088">polarized (with magnet)</tspan></text>
+         id="tspan4358">polarized (with magnet)</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,1.6504017,29.595335)"
@@ -1628,7 +1713,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect80039);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="178.0918"
          y="755.02737"
-         id="tspan13090">hybrid</tspan></text>
+         id="tspan4360">hybrid</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,1.8100175,17.2831)"
@@ -1636,7 +1721,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect87525);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="183.48828"
          y="705.10745"
-         id="tspan13092">at least 3 phases, 3x Half-H bridge</tspan></text>
+         id="tspan4362">at least 3 phases, 3x Half-H bridge</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,-33.345355,19.200966)"
@@ -1644,7 +1729,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect90273);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="322.45508"
          y="748.28128"
-         id="tspan13094">at least 2 phases, 2x Full-H bridge</tspan></text>
+         id="tspan4364">at least 2 phases, 2x Full-H bridge</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,0.02516026,20.763308)"
@@ -1652,7 +1737,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect103375);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="128.17188"
          y="841.37503"
-         id="tspan13096">Performance classification</tspan></text>
+         id="tspan4366">Performance classification</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,-4.7570208,-68.999859)"
@@ -1660,7 +1745,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect106651);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="148.41016"
          y="973.59378"
-         id="tspan13098">Magnetic force classification</tspan></text>
+         id="tspan4368">Magnetic force classification</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,1.5875,7.9375004)"
@@ -1668,7 +1753,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect117055);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="169.99609"
          y="927.72269"
-         id="tspan13100">High-performance BLDC motors</tspan></text>
+         id="tspan4370">High-performance BLDC motors</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,-1.0583334,7.4083337)"
@@ -1676,19 +1761,19 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect120627);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="195.63086"
          y="947.95901"
-         id="tspan13102">- low-resistance (around 1 Ohm)
+         id="tspan4372">- low-resistance (around 1 Ohm)
 </tspan><tspan
          x="195.63086"
          y="966.29239"
-         id="tspan13104">- currents &gt; 5A
+         id="tspan4374">- currents &gt; 5A
 </tspan><tspan
          x="195.63086"
          y="984.62576"
-         id="tspan13106">- high velocity
+         id="tspan4376">- high velocity
 </tspan><tspan
          x="195.63086"
          y="1002.9591"
-         id="tspan13108">- 3 phases</tspan></text>
+         id="tspan4378">- 3 phases</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,2.2762822,10.251523)"
@@ -1696,7 +1781,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect125279);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="167.29883"
          y="1028.9102"
-         id="tspan13110">Gimbal motors</tspan></text>
+         id="tspan4380">Gimbal motors</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,4.7750804,7.3957536)"
@@ -1704,19 +1789,19 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect129207);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="186.1875"
          y="1058.5938"
-         id="tspan13112">- higher resistance (around 10 Ohm)
+         id="tspan4382">- higher resistance (around 10 Ohm)
 </tspan><tspan
          x="186.1875"
          y="1076.9272"
-         id="tspan13114">- currents &lt; 5A
+         id="tspan4384">- currents &lt; 5A
 </tspan><tspan
          x="186.1875"
          y="1095.2605"
-         id="tspan13116">- high torque at low velocity
+         id="tspan4386">- high torque at low velocity
 </tspan><tspan
          x="186.1875"
          y="1113.5939"
-         id="tspan13118">- 3 phases</tspan></text>
+         id="tspan4388">- 3 phases</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,2.6458334,9.7223563)"
@@ -1724,7 +1809,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect131831);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="165.94922"
          y="1140.8926"
-         id="tspan13120">Stepper motors</tspan></text>
+         id="tspan4390">Stepper motors</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,0.87355773,8.2944716)"
@@ -1732,23 +1817,23 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect133993);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="187.53711"
          y="1167.877"
-         id="tspan13122">- high number of pole paires (&gt;50)
+         id="tspan4392">- high number of pole paires (&gt;50)
 </tspan><tspan
          x="187.53711"
          y="1186.2104"
-         id="tspan13124">- internal resistance &gt; 5 Ohm
+         id="tspan4394">- internal resistance &gt; 5 Ohm
 </tspan><tspan
          x="187.53711"
          y="1204.5437"
-         id="tspan13126">- currents &lt; 5A
+         id="tspan4396">- currents &lt; 5A
 </tspan><tspan
          x="187.53711"
          y="1222.8771"
-         id="tspan13128">- 2 phases
+         id="tspan4398">- 2 phases
 </tspan><tspan
          x="187.53711"
          y="1241.2105"
-         id="tspan13130">- originally designed for position control in open-loop
+         id="tspan4400">- originally designed for position control in open-loop
 </tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -1818,7 +1903,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect24140);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="17.539062"
          y="1314.9375"
-         id="tspan13132">Classification of electrical motors</tspan></text>
+         id="tspan4402">Classification of electrical motors</tspan></text>
     <text
        xml:space="preserve"
        transform="scale(0.26458334)"
@@ -1826,37 +1911,37 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect4036);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="35.078125"
          y="1405.3321"
-         id="tspan13134">Optimal BLDC motor control for.
+         id="tspan4404">Optimal BLDC motor control for.
 </tspan><tspan
          x="35.078125"
          y="1423.6654"
-         id="tspan13136">- better dynamics
+         id="tspan4406">- better dynamics
 </tspan><tspan
          x="35.078125"
          y="1441.9988"
-         id="tspan13138">- no missing steps
+         id="tspan4408">- no missing steps
 </tspan><tspan
          x="35.078125"
          y="1460.3322"
-         id="tspan13140">- energy efficient
+         id="tspan4410">- energy efficient
 </tspan><tspan
          x="35.078125"
          y="1478.6656"
-         id="tspan13142">- backdrivable
+         id="tspan4412">- backdrivable
 </tspan><tspan
          x="35.078125"
          y="1496.9989"
-         id="tspan13144">- enable motor synchronization (CNC or multi-motor-joint)
+         id="tspan4414">- enable motor synchronization (CNC or multi-motor-joint)
 </tspan><tspan
          x="35.078125"
          y="1515.3323"
-         id="tspan13146">
+         id="tspan4416">
 </tspan><tspan
          x="35.078125"
          y="1533.6657"
-         id="tspan13150"><tspan
+         id="tspan4420"><tspan
            style="font-style:italic;-inkscape-font-specification:'sans-serif Italic'"
-           id="tspan13148">Look at SimpleFOC (Field Orientation Control)</tspan></tspan></text>
+           id="tspan4418">Look at SimpleFOC (Field Orientation Control)</tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,4.156988,1158.7644)"
@@ -1864,19 +1949,19 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect16668);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="45.873047"
          y="1595.5684"
-         id="tspan13152">rounded and widened outlines for:
+         id="tspan4422">rounded and widened outlines for:
 </tspan><tspan
          x="45.873047"
          y="1613.9018"
-         id="tspan13154">- good looking parts
+         id="tspan4424">- good looking parts
 </tspan><tspan
          x="45.873047"
          y="1632.2351"
-         id="tspan13156">- manufacturabilty
+         id="tspan4426">- manufacturabilty
 </tspan><tspan
          x="45.873047"
          y="1650.5685"
-         id="tspan13158">- improve mechanical strength</tspan></text>
+         id="tspan4428">- improve mechanical strength</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,15.565042,1181.328)"
@@ -1884,7 +1969,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect20498);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="70.158203"
          y="1795.2461"
-         id="tspan13160">3D design</tspan></text>
+         id="tspan4430">3D design</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,12.283624,1181.0756)"
@@ -1892,7 +1977,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect23550);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="58.015625"
          y="1846.5157"
-         id="tspan13162">parametrization</tspan></text>
+         id="tspan4432">parametrization</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,12.283624,1180.066)"
@@ -1900,7 +1985,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect25140);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="68.808594"
          y="1901.8321"
-         id="tspan13164">3D simulation</tspan></text>
+         id="tspan4434">3D simulation</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,10.42266,1167.8021)"
@@ -1908,7 +1993,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect27192);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="267.13867"
          y="1795.2461"
-         id="tspan13166">programmatic 2D design</tspan></text>
+         id="tspan4436">programmatic 2D design</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,14.897485,1172.1365)"
@@ -1916,7 +2001,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect39685);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="40.474609"
          y="1737.2325"
-         id="tspan13168">classic approach</tspan></text>
+         id="tspan4438">classic approach</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,11.414389,1173.9646)"
@@ -1924,7 +2009,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect41253);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="279.28125"
          y="1733.1836"
-         id="tspan13170">Parametrix approach</tspan></text>
+         id="tspan4440">Parametrix approach</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend)"
        d="m 105.19221,1645.2447 v 6.9673"
@@ -1947,7 +2032,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect23550-0);shape-padding:0;shape-margin:0;inline-size:0;display:inline;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000"><tspan
          x="58.015625"
          y="1846.5157"
-         id="tspan13172">parametrization</tspan></text>
+         id="tspan4442">parametrization</tspan></text>
     <rect
        style="fill:#ffd5d5;stroke:#aa0000;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round"
        id="rect43671-6"
@@ -1962,7 +2047,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect35663);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="287.375"
          y="1893.7364"
-         id="tspan13174">2D simulation</tspan></text>
+         id="tspan4444">2D simulation</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend-7)"
        d="m 105.1922,1672.0302 v 6.9672"
@@ -1985,7 +2070,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect37473);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="292.77344"
          y="1930.1641"
-         id="tspan13176">3D extrusion</tspan></text>
+         id="tspan4446">3D extrusion</tspan></text>
     <rect
        style="fill:#ffd5d5;stroke:#aa0000;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round"
        id="rect43671-4-3-5"
@@ -2000,7 +2085,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect47345);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="173.63086"
          y="2075.5586"
-         id="tspan13178">CAM tools</tspan></text>
+         id="tspan4448">CAM tools</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend-4-0)"
        d="m 74.490248,1698.8155 v 6.9673"
@@ -2019,7 +2104,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect49919);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="199.38867"
          y="2108.9492"
-         id="tspan13180">Manufacturing</tspan></text>
+         id="tspan4450">Manufacturing</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,2.439371,1152.5525)"
@@ -2027,7 +2112,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect53269);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="38.160156"
          y="2144.2481"
-         id="tspan13182">Comparison of CAD flows</tspan></text>
+         id="tspan4452">Comparison of CAD flows</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend)"
        d="m 131.2511,1668.8174 c 0,0 5.46946,0.03 6.98847,-1.8396 2.07197,-2.5501 2.48721,-7.2239 0.50483,-9.8442 -1.54567,-2.0431 -7.49329,-1.7089 -7.49329,-1.7089"
@@ -2045,7 +2130,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect58856);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="68.689453"
          y="2182.4082"
-         id="tspan13184">Extruded-2D-design is good enough for 90% of technical parts</tspan></text>
+         id="tspan4454">Extruded-2D-design is good enough for 90% of technical parts</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,21.753397,-177.1073)"
@@ -2053,7 +2138,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect75773);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="117.34375"
          y="2481.9707"
-         id="tspan13186">hardware</tspan></text>
+         id="tspan4456">hardware</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,27.811398,-176.35005)"
@@ -2061,7 +2146,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect78419);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="361.57227"
          y="2479.1075"
-         id="tspan13188">computer</tspan></text>
+         id="tspan4458">computer</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,5.5987258,-172.31138)"
@@ -2069,7 +2154,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect80085);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="76.320312"
          y="2436.1778"
-         id="tspan13190">Linux</tspan></text>
+         id="tspan4460">Linux</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,11.404311,-171.80655)"
@@ -2077,7 +2162,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect82049);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="159.32031"
          y="2434.2696"
-         id="tspan13192">Windows</tspan></text>
+         id="tspan4462">Windows</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,20.996146,-168.52513)"
@@ -2085,7 +2170,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect83771);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="259.49219"
          y="2421.8672"
-         id="tspan13194">Mac</tspan></text>
+         id="tspan4464">Mac</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,28.063815,-171.55413)"
@@ -2093,7 +2178,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect91821);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="360.61719"
          y="2433.3145"
-         id="tspan13196">OS</tspan></text>
+         id="tspan4466">OS</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,29.073482,-169.28238)"
@@ -2101,7 +2186,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect94763);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="355.84766"
          y="2392.293"
-         id="tspan13198">native apps</tspan></text>
+         id="tspan4468">native apps</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,30.22915,-168.52513)"
@@ -2109,7 +2194,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect97595);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="352.98633"
          y="2357.9473"
-         id="tspan13200">web apps</tspan></text>
+         id="tspan4470">web apps</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,19.229229,-169.02997)"
@@ -2117,7 +2202,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect100515);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="84.908203"
          y="2393.2461"
-         id="tspan13202">browser</tspan></text>
+         id="tspan4472">browser</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,19.229229,-169.02997)"
@@ -2125,7 +2210,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect105449);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="195.57422"
          y="2393.2461"
-         id="tspan13204">Firefox</tspan></text>
+         id="tspan4474">Firefox</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend)"
        d="M 121.35162,454.69177 H 112.0122"
@@ -2149,7 +2234,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect119758);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="47.701172"
          y="2398.9707"
-         id="tspan13206">software stack</tspan></text>
+         id="tspan4476">software stack</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,18.904114,-154.90387)"
@@ -2157,47 +2242,47 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect123841);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="57.240234"
          y="2491.5098"
-         id="tspan13208">web app characteristics
+         id="tspan4478">web app characteristics
 </tspan><tspan
          x="57.240234"
          y="2509.8433"
-         id="tspan13210">+ security
+         id="tspan4480">+ security
 </tspan><tspan
          x="57.240234"
          y="2528.1768"
-         id="tspan13212">+ ubiquity
+         id="tspan4482">+ ubiquity
 </tspan><tspan
          x="57.240234"
          y="2546.5103"
-         id="tspan13214">+ no installation
+         id="tspan4484">+ no installation
 </tspan><tspan
          x="57.240234"
          y="2564.8438"
-         id="tspan13216">+ OS agnostic
+         id="tspan4486">+ OS agnostic
 </tspan><tspan
          x="57.240234"
          y="2583.1773"
-         id="tspan13218">+ browser agnostic (web standards)
+         id="tspan4488">+ browser agnostic (web standards)
 </tspan><tspan
          x="57.240234"
          y="2601.5108"
-         id="tspan13220">- no file access
+         id="tspan4490">- no file access
 </tspan><tspan
          x="57.240234"
          y="2619.8443"
-         id="tspan13222">+ could be installed locally for offline usage
+         id="tspan4492">+ could be installed locally for offline usage
 </tspan><tspan
          x="57.240234"
          y="2638.1778"
-         id="tspan13224">+ fast development of GUI
+         id="tspan4494">+ fast development of GUI
 </tspan><tspan
          x="57.240234"
          y="2656.5113"
-         id="tspan13226">- restricted to web protocols
+         id="tspan4496">- restricted to web protocols
 </tspan><tspan
          x="57.240234"
          y="2674.8448"
-         id="tspan13228">- restricted hardware access</tspan></text>
+         id="tspan4498">- restricted hardware access</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,15.052052,-142.52283)"
@@ -2205,43 +2290,43 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect131963);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="63.919922"
          y="2703.3008"
-         id="tspan13230">native app characteristics
+         id="tspan4500">native app characteristics
 </tspan><tspan
          x="63.919922"
          y="2721.6343"
-         id="tspan13232">+ performance
+         id="tspan4502">+ performance
 </tspan><tspan
          x="63.919922"
          y="2739.9678"
-         id="tspan13234">+ multi-threading
+         id="tspan4504">+ multi-threading
 </tspan><tspan
          x="63.919922"
          y="2758.3013"
-         id="tspan13236">+ many programming languages
+         id="tspan4506">+ many programming languages
 </tspan><tspan
          x="63.919922"
          y="2776.6348"
-         id="tspan13238">+ compiled or interpreted
+         id="tspan4508">+ compiled or interpreted
 </tspan><tspan
          x="63.919922"
          y="2794.9683"
-         id="tspan13240">+ run with internet-off
+         id="tspan4510">+ run with internet-off
 </tspan><tspan
          x="63.919922"
          y="2813.3018"
-         id="tspan13242">- OS dependent
+         id="tspan4512">- OS dependent
 </tspan><tspan
          x="63.919922"
          y="2831.6353"
-         id="tspan13244">- complex development of GUI
+         id="tspan4514">- complex development of GUI
 </tspan><tspan
          x="63.919922"
          y="2849.9688"
-         id="tspan13246">+ any network protocol
+         id="tspan4516">+ any network protocol
 </tspan><tspan
          x="63.919922"
          y="2868.3023"
-         id="tspan13248">+ access to hardware</tspan></text>
+         id="tspan4518">+ access to hardware</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend)"
        d="M 19.880157,661.4907 H 123.03269"
@@ -2259,19 +2344,19 @@
        y="0"><tspan
          x="116.33036"
          y="3041.0235"
-         id="tspan13250">2015
+         id="tspan4520">2015
 </tspan><tspan
          x="121.03903"
          y="3059.357"
-         id="tspan13252">ES6
+         id="tspan4522">ES6
 </tspan><tspan
          x="99.006753"
          y="3077.6905"
-         id="tspan13254">js-module
+         id="tspan4524">js-module
 </tspan><tspan
          x="103.94101"
          y="3096.024"
-         id="tspan13256">aka ESM</tspan></text>
+         id="tspan4526">aka ESM</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 40.450491,659.47133 v 4.03868"
@@ -2285,11 +2370,11 @@
        y="0"><tspan
          x="155.20923"
          y="3060.1035"
-         id="tspan13258">Angular-js
+         id="tspan4528">Angular-js
 </tspan><tspan
          x="173.09501"
          y="3078.437"
-         id="tspan13260">2016</tspan></text>
+         id="tspan4530">2016</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 74.149755,659.47133 v 4.03868"
@@ -2303,15 +2388,15 @@
        y="0"><tspan
          x="253.93647"
          y="3041.9766"
-         id="tspan13262">nodejs
+         id="tspan4532">nodejs
 </tspan><tspan
          x="228.17306"
          y="3060.3101"
-         id="tspan13264">supports ESM
+         id="tspan4534">supports ESM
 </tspan><tspan
          x="259.4329"
          y="3078.6436"
-         id="tspan13266">2021</tspan></text>
+         id="tspan4536">2021</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 94.847927,659.47133 v 4.03868"
@@ -2325,11 +2410,11 @@
        y="0"><tspan
          x="331.93778"
          y="2992.3692"
-         id="tspan13268">2022
+         id="tspan4538">2022
 </tspan><tspan
          x="303.95432"
          y="3010.7027"
-         id="tspan13270">SvelteKit 1.0</tspan></text>
+         id="tspan4540">SvelteKit 1.0</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,26.975412,-115.70044)"
@@ -2337,7 +2422,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect188018);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="63.919922"
          y="3061.0586"
-         id="tspan13272">javascript timeline</tspan></text>
+         id="tspan4542">javascript timeline</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,-0.00348604,-26.301524)"
@@ -2345,51 +2430,51 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect192563);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="88.722656"
          y="3181.2637"
-         id="tspan13274">Embedded timeline:
+         id="tspan4544">Embedded timeline:
 </tspan><tspan
          x="88.722656"
          y="3199.5972"
-         id="tspan13276">- Powerful microcontroller like STM32
+         id="tspan4546">- Powerful microcontroller like STM32
 </tspan><tspan
          x="88.722656"
          y="3217.9307"
-         id="tspan13278">- ROS2 maturity
+         id="tspan4548">- ROS2 maturity
 </tspan><tspan
          x="88.722656"
          y="3236.2642"
-         id="tspan13280">- mROS: micro-ROS without agent
+         id="tspan4550">- mROS: micro-ROS without agent
 </tspan><tspan
          x="88.722656"
          y="3254.5977"
-         id="tspan13282">- Zephyr-OS, Tock-OS
+         id="tspan4552">- Zephyr-OS, Tock-OS
 </tspan><tspan
          x="88.722656"
          y="3272.9312"
-         id="tspan13284">- Ethernet 10BASE-T1S and 100BASE-T1
+         id="tspan4554">- Ethernet 10BASE-T1S and 100BASE-T1
 </tspan><tspan
          x="88.722656"
          y="3291.2647"
-         id="tspan13286">- SimpleFOC (Field Orientation Control)
+         id="tspan4556">- SimpleFOC (Field Orientation Control)
 </tspan><tspan
          x="88.722656"
          y="3309.5982"
-         id="tspan13288">
+         id="tspan4558">
 </tspan><tspan
          x="88.722656"
          y="3327.9317"
-         id="tspan13290">Enable motor synchronization for:
+         id="tspan4560">Enable motor synchronization for:
 </tspan><tspan
          x="88.722656"
          y="3346.2652"
-         id="tspan13292">- CNC
+         id="tspan4562">- CNC
 </tspan><tspan
          x="88.722656"
          y="3364.5987"
-         id="tspan13294">- robot
+         id="tspan4564">- robot
 </tspan><tspan
          x="88.722656"
          y="3382.9322"
-         id="tspan13296">- mechanical joint with multi-motors
+         id="tspan4566">- mechanical joint with multi-motors
 </tspan></text>
     <text
        xml:space="preserve"
@@ -2398,51 +2483,51 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect1700);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="94.447266"
          y="3416.9063"
-         id="tspan13298">advantages of mechanical join with multi-motors
+         id="tspan4568">advantages of mechanical join with multi-motors
 </tspan><tspan
          x="94.447266"
          y="3435.2398"
-         id="tspan13300">+ distributed efforts
+         id="tspan4570">+ distributed efforts
 </tspan><tspan
          x="94.447266"
          y="3453.5733"
-         id="tspan13302">+ spread thermic, better cooling
+         id="tspan4572">+ spread thermic, better cooling
 </tspan><tspan
          x="94.447266"
          y="3471.9068"
-         id="tspan13304">+ scalable
+         id="tspan4574">+ scalable
 </tspan><tspan
          x="94.447266"
          y="3490.2403"
-         id="tspan13306">+ use standard high-tech/mid-range components
+         id="tspan4576">+ use standard high-tech/mid-range components
 </tspan><tspan
          x="94.447266"
          y="3508.5738"
-         id="tspan13308">+ easier maintenance
+         id="tspan4578">+ easier maintenance
 </tspan><tspan
          x="94.447266"
          y="3526.9073"
-         id="tspan13310">+ easier manufacturing standardization
+         id="tspan4580">+ easier manufacturing standardization
 </tspan><tspan
          x="94.447266"
          y="3545.2408"
-         id="tspan13312">+ smoother control
+         id="tspan4582">+ smoother control
 </tspan><tspan
          x="94.447266"
          y="3563.5742"
-         id="tspan13314">+ no backlash
+         id="tspan4584">+ no backlash
 </tspan><tspan
          x="94.447266"
          y="3581.9077"
-         id="tspan13316">- complex motor driver
+         id="tspan4586">- complex motor driver
 </tspan><tspan
          x="94.447266"
          y="3600.2412"
-         id="tspan13318">+ distributed power
+         id="tspan4588">+ distributed power
 </tspan><tspan
          x="94.447266"
          y="3618.5747"
-         id="tspan13320">+ improve split between small standard high-tech and large low cost
+         id="tspan4590">+ improve split between small standard high-tech and large low cost
 </tspan></text>
     <text
        xml:space="preserve"
@@ -2451,23 +2536,23 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect21007);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="88.722656"
          y="3684.9844"
-         id="tspan13322">Advantages of heliostats (aka solar tracker)
+         id="tspan4592">Advantages of heliostats (aka solar tracker)
 </tspan><tspan
          x="88.722656"
          y="3703.3179"
-         id="tspan13324">- optimized radiation quantity
+         id="tspan4594">- optimized radiation quantity
 </tspan><tspan
          x="88.722656"
          y="3721.6514"
-         id="tspan13326">- ensure ray perpendicular to the panel
+         id="tspan4596">- ensure ray perpendicular to the panel
 </tspan><tspan
          x="88.722656"
          y="3739.9849"
-         id="tspan13328">- enable more efficient photovoltaic micro-lense technology
+         id="tspan4598">- enable more efficient photovoltaic micro-lense technology
 </tspan><tspan
          x="88.722656"
          y="3758.3184"
-         id="tspan13330">- enable concentrators for solar thermic panel</tspan></text>
+         id="tspan4600">- enable concentrators for solar thermic panel</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,0.06972093,-285.66617)"
@@ -2475,27 +2560,27 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect2249);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="49.609375"
          y="3827.1328"
-         id="tspan13332">Parametrix
+         id="tspan4602">Parametrix
 </tspan><tspan
          x="49.609375"
          y="3845.4663"
-         id="tspan13334">- 2D
+         id="tspan4604">- 2D
 </tspan><tspan
          x="49.609375"
          y="3863.7998"
-         id="tspan13336">- web app
+         id="tspan4606">- web app
 </tspan><tspan
          x="49.609375"
          y="3882.1333"
-         id="tspan13338">- programmatic
+         id="tspan4608">- programmatic
 </tspan><tspan
          x="49.609375"
          y="3900.4668"
-         id="tspan13340">- parametrizable
+         id="tspan4610">- parametrizable
 </tspan><tspan
          x="49.609375"
          y="3918.8003"
-         id="tspan13342">- simulation included</tspan></text>
+         id="tspan4612">- simulation included</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,-61.056013,-240.10494)"
@@ -2503,27 +2588,27 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect3181);shape-padding:0;shape-margin:0;inline-size:0;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="285.25"
          y="3818.5469"
-         id="tspan13344">Parametrix design API
+         id="tspan4614">Parametrix design API
 </tspan><tspan
          x="285.25"
          y="3836.8804"
-         id="tspan13346">- circle, stroke and arc
+         id="tspan4616">- circle, stroke and arc
 </tspan><tspan
          x="285.25"
          y="3855.2139"
-         id="tspan13348">- corner widening or rounding
+         id="tspan4618">- corner widening or rounding
 </tspan><tspan
          x="285.25"
          y="3873.5474"
-         id="tspan13350">- export to DXF, SVG
+         id="tspan4620">- export to DXF, SVG
 </tspan><tspan
          x="285.25"
          y="3891.8809"
-         id="tspan13352">- compatible with FreeCAD
+         id="tspan4622">- compatible with FreeCAD
 </tspan><tspan
          x="285.25"
          y="3910.2144"
-         id="tspan13354">- lines and arcs ready for CAM tools ;)</tspan></text>
+         id="tspan4624">- lines and arcs ready for CAM tools ;)</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,-36.654976,-159.47379)"
@@ -2533,11 +2618,11 @@
        y="0"><tspan
          x="512.51521"
          y="3071.7305"
-         id="tspan13356">nodejs V20
+         id="tspan4626">nodejs V20
 </tspan><tspan
          x="534.69071"
          y="3090.064"
-         id="tspan13358">2023</tspan></text>
+         id="tspan4628">2023</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 109.53593,659.47133 v 4.03868"
@@ -2549,13 +2634,13 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1389);display:inline"><tspan
          x="233.01758"
          y="4028.5469"
-         id="tspan13362"><tspan
+         id="tspan4632"><tspan
    style="font-weight:bold;-inkscape-font-specification:'sans-serif Bold'"
-   id="tspan13360">Geometrix</tspan>
+   id="tspan4630">Geometrix</tspan>
 </tspan><tspan
          x="233.01758"
          y="4046.8804"
-         id="tspan13364">geometry engine</tspan></text>
+         id="tspan4634">geometry engine</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,2.988742,-11.876889)"
@@ -2563,13 +2648,13 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1395);display:inline"><tspan
          x="66.929688"
          y="4129.9903"
-         id="tspan13368"><tspan
+         id="tspan4638"><tspan
    style="font-weight:bold;-inkscape-font-specification:'sans-serif Bold'"
-   id="tspan13366">Designix</tspan>
+   id="tspan4636">Designix</tspan>
 </tspan><tspan
          x="66.929688"
          y="4148.3238"
-         id="tspan13370">serie of 2D designs</tspan></text>
+         id="tspan4640">serie of 2D designs</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,-1.6908275,-12.922051)"
@@ -2577,13 +2662,13 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1401);display:inline"><tspan
          x="246.50586"
          y="4205.1621"
-         id="tspan13374"><tspan
+         id="tspan4644"><tspan
    style="font-weight:bold;-inkscape-font-specification:'sans-serif Bold'"
-   id="tspan13372">Parametrix</tspan>
+   id="tspan4642">Parametrix</tspan>
 </tspan><tspan
          x="246.50586"
          y="4223.4956"
-         id="tspan13376">UI for Designix</tspan></text>
+         id="tspan4646">UI for Designix</tspan></text>
     <path
        style="fill:#cccccc;stroke:#cccccc;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 51.532817,1059.3292 -14.802494,-0.1725 c 0,0 -0.201741,-2.2655 0.444569,-3.0347 1.035128,-1.232 4.522162,-1.3691 4.522162,-1.3691 l 2.322049,-2.3697 c 0,0 -2.736798,0.14 -3.799648,-0.6074 -0.986864,-0.6937 -1.592996,-1.9835 -1.827497,-3.2015 -0.429602,-2.2315 -0.42465,-4.9672 0.917156,-6.7608 1.468252,-1.9626 4.266246,-2.481 6.630639,-2.8069 1.855504,-0.2558 3.973153,-0.257 5.572616,0.7173 1.205004,0.734 1.911634,2.1611 2.405955,3.4827 0.543846,1.454 0.847106,3.1113 0.517345,4.6282 -0.298168,1.3716 -1.079205,2.7209 -2.162915,3.6129 -0.842656,0.6936 -3.080162,1.1104 -3.080162,1.1104 l 1.289017,3.0546 c 0,0 3.834193,-0.059 5.019746,1.2425 0.66822,0.7331 0.530149,2.9856 0.530149,2.9856 z"
@@ -2596,25 +2681,25 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1413);display:inline"><tspan
          x="39.685547"
          y="4309.25"
-         id="tspan13378">Designix developer
+         id="tspan4648">Designix developer
 </tspan><tspan
          x="39.685547"
          y="4327.5835"
-         id="tspan13382"><tspan
+         id="tspan4652"><tspan
            style="font-size:12px"
-           id="tspan13380">competences:
+           id="tspan4650">competences:
 </tspan></tspan><tspan
          x="39.685547"
          y="4345.917"
-         id="tspan13386"><tspan
+         id="tspan4656"><tspan
            style="font-size:12px"
-           id="tspan13384">- mechanics
+           id="tspan4654">- mechanics
 </tspan></tspan><tspan
          x="39.685547"
          y="4364.2505"
-         id="tspan13390"><tspan
+         id="tspan4660"><tspan
            style="font-size:12px"
-           id="tspan13388">- programming</tspan></tspan></text>
+           id="tspan4658">- programming</tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,-17.672948,-31.609763)"
@@ -2622,25 +2707,25 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1419);display:inline"><tspan
          x="114.02148"
          y="4353.9766"
-         id="tspan13392">Parametrix user
+         id="tspan4662">Parametrix user
 </tspan><tspan
          x="114.02148"
          y="4372.3101"
-         id="tspan13396"><tspan
+         id="tspan4666"><tspan
            style="font-size:12px"
-           id="tspan13394">competences:
+           id="tspan4664">competences:
 </tspan></tspan><tspan
          x="114.02148"
          y="4390.6436"
-         id="tspan13400"><tspan
+         id="tspan4670"><tspan
            style="font-size:12px"
-           id="tspan13398">- mechanics
+           id="tspan4668">- mechanics
 </tspan></tspan><tspan
          x="114.02148"
          y="4408.9771"
-         id="tspan13404"><tspan
+         id="tspan4674"><tspan
    style="font-size:12px"
-   id="tspan13402">- CAM</tspan>
+   id="tspan4672">- CAM</tspan>
 </tspan></text>
     <text
        xml:space="preserve"
@@ -2649,7 +2734,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1449);display:inline"><tspan
          x="317.51562"
          y="4334.0196"
-         id="tspan13406">FreeCAD</tspan></text>
+         id="tspan4676">FreeCAD</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,4.4509842,-21.984404)"
@@ -2657,7 +2742,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1455);display:inline"><tspan
          x="304.00977"
          y="4402.0938"
-         id="tspan13408">CAM tools</tspan></text>
+         id="tspan4678">CAM tools</tspan></text>
     <path
        style="fill:#cccccc;stroke:#cccccc;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 141.35504,1058.2205 -14.8025,-0.1725 c 0,0 -0.24123,-2.2765 0.44457,-3.0347 1.28044,-1.4157 5.55451,-1.3928 5.55451,-1.3928 l 1.2897,-2.346 c 0,0 -2.73679,0.14 -3.79964,-0.6074 -0.98687,-0.6937 -1.593,-1.9835 -1.8275,-3.2015 -0.4296,-2.2315 -0.42465,-4.9672 0.91716,-6.7608 1.46825,-1.9626 4.24464,-2.5471 6.63063,-2.8069 1.8393,-0.2003 3.87275,0.058 5.45726,1.0131 1.16006,0.6993 2.00593,1.9342 2.52132,3.1869 0.59064,1.4356 0.8471,3.1113 0.51734,4.6282 -0.29817,1.3716 -1.0792,2.7209 -2.16291,3.6129 -0.84266,0.6936 -3.08017,1.1104 -3.08017,1.1104 l 0.52339,2.7435 c 0,0 4.43589,0.082 5.78538,1.5536 0.68311,0.745 0.53015,2.9856 0.53015,2.9856 z"
@@ -2701,7 +2786,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;white-space:pre;shape-inside:url(#rect2906);display:inline"><tspan
          x="459.91797"
          y="4373.8867"
-         id="tspan13410">uses</tspan></text>
+         id="tspan4680">uses</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,9.8246997,-57.646155)"
@@ -2709,7 +2794,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2912);display:inline"><tspan
          x="435.44141"
          y="4259.7637"
-         id="tspan13412">develops</tspan></text>
+         id="tspan4682">develops</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,-91.815006,-60.800731)"
@@ -2717,7 +2802,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2912-6);display:inline"><tspan
          x="435.44141"
          y="4259.7637"
-         id="tspan13414">develops</tspan></text>
+         id="tspan4684">develops</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend-09-7)"
        d="m 51.962813,1130.2121 22.7461,-22.5598"
@@ -2740,7 +2825,7 @@
        style="font-size:12px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect4687);display:inline"><tspan
          x="208.22852"
          y="4449.0352"
-         id="tspan13416">dependencies</tspan></text>
+         id="tspan4686">dependencies</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,3.1356564,-21.681701)"
@@ -2748,7 +2833,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect4801);display:inline"><tspan
          x="27.365234"
          y="4470.0196"
-         id="tspan13418">users around Parametrix</tspan></text>
+         id="tspan4688">users around Parametrix</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,-8.864319,33.940149)"
@@ -2756,7 +2841,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect6988);display:inline"><tspan
          x="72.160156"
          y="4964.3125"
-         id="tspan13420">Parametrix galaxi</tspan></text>
+         id="tspan4690">Parametrix galaxi</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,-14.573069,-0.93983814)"
@@ -2764,17 +2849,17 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect6994);display:inline"><tspan
          x="121.52734"
          y="4674.3965"
-         id="tspan13424"><tspan
+         id="tspan4694"><tspan
    style="font-weight:bold;-inkscape-font-specification:'sans-serif Bold'"
-   id="tspan13422">Parametrix</tspan>
+   id="tspan4692">Parametrix</tspan>
 </tspan><tspan
          x="121.52734"
          y="4692.73"
-         id="tspan13426">parametrization
+         id="tspan4696">parametrization
 </tspan><tspan
          x="121.52734"
          y="4711.0635"
-         id="tspan13428">&amp; visualization</tspan></text>
+         id="tspan4698">&amp; visualization</tspan></text>
     <text
        xml:space="preserve"
        transform="scale(0.26458334)"
@@ -2782,7 +2867,7 @@
        style="font-size:17.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect7000);display:inline"><tspan
          x="217.86719"
          y="4782.5508"
-         id="tspan13430">.dxf, .svg, .pax.json</tspan></text>
+         id="tspan4700">.dxf, .svg, .pax.json</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,85.293797,-50.752654)"
@@ -2790,17 +2875,17 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect7006);display:inline"><tspan
          x="84.576172"
          y="4862.2598"
-         id="tspan13434"><tspan
+         id="tspan4704"><tspan
    style="font-weight:bold;-inkscape-font-specification:'sans-serif Bold'"
-   id="tspan13432">Vizpax</tspan>
+   id="tspan4702">Vizpax</tspan>
 </tspan><tspan
          x="84.576172"
          y="4880.5933"
-         id="tspan13436">visualization
+         id="tspan4706">visualization
 </tspan><tspan
          x="84.576172"
          y="4898.9268"
-         id="tspan13438">&amp; conversion</tspan></text>
+         id="tspan4708">&amp; conversion</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:3.88056px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
@@ -2819,7 +2904,7 @@
        style="font-size:17.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect7020);display:inline"><tspan
          x="307.0918"
          y="4963.8828"
-         id="tspan13440">.step, .brep, .stl</tspan></text>
+         id="tspan4710">.step, .brep, .stl</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,-21.850538,6.9037666)"
@@ -2827,17 +2912,17 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect7026);display:inline"><tspan
          x="295.9082"
          y="4865.6895"
-         id="tspan13444"><tspan
+         id="tspan4714"><tspan
    style="font-weight:bold;-inkscape-font-specification:'sans-serif Bold'"
-   id="tspan13442">Volumetrix</tspan>
+   id="tspan4712">Volumetrix</tspan>
 </tspan><tspan
          x="295.9082"
          y="4884.023"
-         id="tspan13446">Extrusion based
+         id="tspan4716">Extrusion based
 </tspan><tspan
          x="295.9082"
          y="4902.3565"
-         id="tspan13448">on openJsCAD</tspan></text>
+         id="tspan4718">on openJsCAD</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,8.8057542,50.761021)"
@@ -2845,17 +2930,17 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect7034);display:inline"><tspan
          x="363.63672"
          y="4678.6856"
-         id="tspan13452"><tspan
+         id="tspan4722"><tspan
    style="font-weight:bold;-inkscape-font-specification:'sans-serif Bold'"
-   id="tspan13450">Extrudix</tspan>
+   id="tspan4720">Extrudix</tspan>
 </tspan><tspan
          x="363.63672"
          y="4697.0191"
-         id="tspan13454">Extrusion based
+         id="tspan4724">Extrusion based
 </tspan><tspan
          x="363.63672"
          y="4715.3526"
-         id="tspan13456">on OpenCascade.js</tspan></text>
+         id="tspan4726">on OpenCascade.js</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,8.1406158,5.1091498)"
@@ -2863,11 +2948,11 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect7042);display:inline"><tspan
          x="20.101562"
          y="4850.0899"
-         id="tspan13458">FreeCAD
+         id="tspan4728">FreeCAD
 </tspan><tspan
          x="20.101562"
          y="4868.4234"
-         id="tspan13460">py-scripts</tspan></text>
+         id="tspan4730">py-scripts</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,16.350953,-4.3993907)"
@@ -2875,7 +2960,7 @@
        style="font-size:17.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect7048);display:inline"><tspan
          x="175.11523"
          y="4614.4179"
-         id="tspan13462">.param.json</tspan></text>
+         id="tspan4732">.param.json</tspan></text>
     <rect
        style="fill:none;stroke:#cccccc;stroke-width:0.264584"
        id="rect1717-3-8-9-7-6"
@@ -2946,7 +3031,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect11447);display:inline"><tspan
          x="43.273438"
          y="5214.1446"
-         id="tspan13464">high-tech path</tspan></text>
+         id="tspan4734">high-tech path</tspan></text>
     <text
        xml:space="preserve"
        transform="scale(0.26458334)"
@@ -2954,7 +3039,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect11453);display:inline"><tspan
          x="50.923828"
          y="5268.4414"
-         id="tspan13466">3D drawing &gt; Parametrization &gt; Recompute &gt; 3D display</tspan></text>
+         id="tspan4736">3D drawing &gt; Parametrization &gt; Recompute &gt; 3D display</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,18.327821,-50.312767)"
@@ -2962,11 +3047,11 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect11459);display:inline"><tspan
          x="258.99609"
          y="5392.0508"
-         id="tspan13468">computing
+         id="tspan4738">computing
 </tspan><tspan
          x="258.99609"
          y="5410.3843"
-         id="tspan13470">demanding</tspan></text>
+         id="tspan4740">demanding</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,0.21001861,-12.946217)"
@@ -2974,11 +3059,11 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect11465);display:inline"><tspan
          x="58.654297"
          y="5371.5684"
-         id="tspan13472">might be wrongly
+         id="tspan4742">might be wrongly
 </tspan><tspan
          x="58.654297"
          y="5389.9019"
-         id="tspan13474">defined</tspan></text>
+         id="tspan4744">defined</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
        d="m 26.879424,1404.7858 -0.949521,-8.6531"
@@ -2994,7 +3079,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect12209);display:inline"><tspan
          x="48.908203"
          y="5412.7657"
-         id="tspan13476">low-tech path</tspan></text>
+         id="tspan4746">low-tech path</tspan></text>
     <text
        xml:space="preserve"
        transform="scale(0.26458334)"
@@ -3002,11 +3087,11 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect12335);display:inline"><tspan
          x="49.203125"
          y="5454.1367"
-         id="tspan13478">2D programmatic design &gt; Parametrization &gt; 2D display
+         id="tspan4748">2D programmatic design &gt; Parametrization &gt; 2D display
 </tspan><tspan
          x="49.203125"
          y="5472.4702"
-         id="tspan13480">then Extrusion + intersection &gt; 3D display</tspan></text>
+         id="tspan4750">then Extrusion + intersection &gt; 3D display</tspan></text>
     <text
        xml:space="preserve"
        transform="scale(0.26458334)"
@@ -3019,11 +3104,11 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect11459-1);display:inline"><tspan
          x="258.99609"
          y="5392.0508"
-         id="tspan13482">computing
+         id="tspan4752">computing
 </tspan><tspan
          x="258.99609"
          y="5410.3843"
-         id="tspan13484">demanding</tspan></text>
+         id="tspan4754">demanding</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L-4)"
        d="m 54.296089,1457.8543 -0.87163,-6.8517"
@@ -3035,31 +3120,31 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect15392);display:inline"><tspan
          x="45.453125"
          y="5674.793"
-         id="tspan13486">low-tech CAD
+         id="tspan4756">low-tech CAD
 </tspan><tspan
          x="45.453125"
          y="5693.1265"
-         id="tspan13488">pros:
+         id="tspan4758">pros:
 </tspan><tspan
          x="45.453125"
          y="5711.46"
-         id="tspan13490">- less computer demanding
+         id="tspan4760">- less computer demanding
 </tspan><tspan
          x="45.453125"
          y="5729.7935"
-         id="tspan13492">- scalability of established designs
+         id="tspan4762">- scalability of established designs
 </tspan><tspan
          x="45.453125"
          y="5748.127"
-         id="tspan13494">cons:
+         id="tspan4764">cons:
 </tspan><tspan
          x="45.453125"
          y="5766.4605"
-         id="tspan13496">- restricted to subset of 3D shapes
+         id="tspan4766">- restricted to subset of 3D shapes
 </tspan><tspan
          x="45.453125"
          y="5784.794"
-         id="tspan13498">- complex 2D programmatic design</tspan></text>
+         id="tspan4768">- complex 2D programmatic design</tspan></text>
     <text
        xml:space="preserve"
        transform="scale(0.26458334)"
@@ -3067,22 +3152,22 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect15524);display:inline"><tspan
          x="50.517578"
          y="5835.6114"
-         id="tspan13500">The constraints of part manufacturing and low-tech CAD </tspan><tspan
+         id="tspan4770">The constraints of part manufacturing and low-tech CAD </tspan><tspan
          x="50.517578"
          y="5853.9449"
-         id="tspan13502">shaping concept are similar.
+         id="tspan4772">shaping concept are similar.
 </tspan><tspan
          x="50.517578"
          y="5872.2784"
-         id="tspan13504">Conclusion:
+         id="tspan4774">Conclusion:
 </tspan><tspan
          x="50.517578"
          y="5890.6118"
-         id="tspan13506">- low-tech CAD is good enough for mechanical parts
+         id="tspan4776">- low-tech CAD is good enough for mechanical parts
 </tspan><tspan
          x="50.517578"
          y="5908.9453"
-         id="tspan13508">- too restrictive for esthetic/design parts</tspan></text>
+         id="tspan4778">- too restrictive for esthetic/design parts</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,44.97944,-104.80276)"
@@ -3090,31 +3175,41 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1407);display:inline"><tspan
          x="226.94531"
          y="4315.5469"
-         id="tspan13512"><tspan
+         id="tspan4782"><tspan
    style="-inkscape-font-specification:sans-serif"
-   id="tspan13510">Parametrix developer</tspan>
+   id="tspan4780">Parametrix developer</tspan>
 </tspan><tspan
          x="226.94531"
          y="4333.8804"
-         id="tspan13516"><tspan
+         id="tspan4786"><tspan
            style="font-size:12px;-inkscape-font-specification:sans-serif"
-           id="tspan13514">competences:
+           id="tspan4784">competences:
 </tspan></tspan><tspan
          x="226.94531"
          y="4352.2139"
-         id="tspan13520"><tspan
+         id="tspan4790"><tspan
            style="font-size:12px;-inkscape-font-specification:sans-serif"
-           id="tspan13518">- math
+           id="tspan4788">- math
 </tspan></tspan><tspan
          x="226.94531"
          y="4370.5474"
-         id="tspan13524"><tspan
+         id="tspan4794"><tspan
            style="font-size:12px;-inkscape-font-specification:sans-serif"
-           id="tspan13522">- programming</tspan></tspan></text>
+           id="tspan4792">- programming</tspan></tspan></text>
     <g
        inkscape:label="Rendered Gears"
        transform="translate(34.238184,1845.4481)"
        id="g4669">
+      <rect
+         style="fill:#ffffff;stroke:#ffffff;stroke-width:0.264583"
+         id="rect8370"
+         width="100.46507"
+         height="79.067024"
+         x="-5.0690398"
+         y="145.20152"
+         inkscape:export-filename="gui_vs_programmatic.svg"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
       <rect
          style="fill:#ffffff;stroke:#ffffff;stroke-width:0.264583"
          id="rect10940"
@@ -3203,7 +3298,7 @@
          style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect7114);display:inline"><tspan
            x="79.78125"
            y="7083.1192"
-           id="tspan13526">multi-motor joint</tspan></text>
+           id="tspan4796">multi-motor joint</tspan></text>
       <path
          style="fill:#d7e3f4;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
          d="M -8.595523,81.603544 24.680184,117.38849 79.676054,88.935383 45.054035,57.462673 Z"
@@ -3228,38 +3323,38 @@
          xml:space="preserve"
          transform="matrix(0.26458334,0,0,0.26458334,-72.020654,-1914.8002)"
          id="text9975"
-         style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect9977)"><tspan
+         style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect9977);display:inline"><tspan
            x="252.94727"
            y="7458.7227"
-           id="tspan13528">pointed corner
+           id="tspan4798">pointed corner
 </tspan><tspan
            x="252.94727"
            y="7477.0562"
-           id="tspan13530">a.k.a. unchanged</tspan></text>
+           id="tspan4800">a.k.a. unchanged</tspan></text>
       <text
          xml:space="preserve"
          transform="matrix(0.26458334,0,0,0.26458334,-52.841819,-1866.1196)"
          id="text9981"
-         style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect9983)"><tspan
+         style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect9983);display:inline"><tspan
            x="144.6543"
            y="7481.1563"
-           id="tspan13532">widened corner
+           id="tspan4802">widened corner
 </tspan><tspan
            x="144.6543"
            y="7499.4898"
-           id="tspan13534">a.k.a. enlarged</tspan></text>
+           id="tspan4804">a.k.a. enlarged</tspan></text>
       <text
          xml:space="preserve"
          transform="matrix(0.26458334,0,0,0.26458334,-39.092155,-1862.6371)"
          id="text9987"
-         style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect9989)"><tspan
+         style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect9989);display:inline"><tspan
            x="342.78125"
            y="7462.4766"
-           id="tspan13536">rounded corner
+           id="tspan4806">rounded corner
 </tspan><tspan
            x="342.78125"
            y="7480.8101"
-           id="tspan13538">a.k.a. smoothed</tspan></text>
+           id="tspan4808">a.k.a. smoothed</tspan></text>
       <path
          style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
          d="M 1.4177971,109.47935 9.4601067,95.664849"
@@ -3276,10 +3371,113 @@
          xml:space="preserve"
          transform="matrix(0.26458334,0,0,0.26458334,-30.089789,-1858.373)"
          id="text10994"
-         style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect10996)"><tspan
+         style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect10996);display:inline"><tspan
            x="62.220703"
            y="7515.0664"
-           id="tspan13540">corner options</tspan></text>
+           id="tspan4810">corner options</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458334,0,0,0.26458334,-88.481765,-1859.0813)"
+         id="text1813"
+         style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1815);display:inline"><tspan
+           x="332.87109"
+           y="7760.8184"
+           id="tspan4812">difficulty</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458334,0,0,0.26458334,-38.628511,-1897.7074)"
+         id="text1945"
+         style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1947);display:inline"><tspan
+           x="137.47656"
+           y="7756.3496"
+           id="tspan4814">simplicity</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Arrow1L);marker-end:url(#Arrow1Mend)"
+         d="M 20.033283,198.70813 H 88.639372"
+         id="path2185" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Arrow1L-3);marker-end:url(#Arrow1Mend-75)"
+         d="M 17.532377,195.65708 V 150.95417"
+         id="path2185-6" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458334,0,0,0.26458334,-6.2110682,-1813.1987)"
+         id="text2802"
+         style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;text-align:center;white-space:pre;shape-inside:url(#rect2804);display:inline"
+         x="25.978251"
+         y="0"><tspan
+           x="325.39644"
+           y="7619.1641"
+           id="tspan4816">large
+</tspan><tspan
+           x="316.97455"
+           y="7637.4976"
+           id="tspan4818">custom
+</tspan><tspan
+           x="319.65294"
+           y="7655.8311"
+           id="tspan4820">design</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458334,0,0,0.26458334,-62.319682,-1822.1704)"
+         id="text2950"
+         style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;text-align:center;white-space:pre;shape-inside:url(#rect2952);display:inline"
+         x="23.418022"
+         y="0"><tspan
+           x="313.12722"
+           y="7657.8438"
+           id="tspan4822">simple
+</tspan><tspan
+           x="313.00548"
+           y="7676.1773"
+           id="tspan4824">design</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458334,0,0,0.26458334,-20.825272,-1804.3838)"
+         id="text3094"
+         style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;text-align:center;white-space:pre;shape-inside:url(#rect3096);display:inline"
+         x="25.978251"
+         y="0"><tspan
+           x="256.66009"
+           y="7588.2188"
+           id="tspan4826">custom
+</tspan><tspan
+           x="259.33849"
+           y="7606.5523"
+           id="tspan4828">design</tspan></text>
+      <path
+         style="fill:none;stroke:#008000;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 20.385373,154.04478 12.903252,1.79686 14.723666,31.77003 40.81254,5.6821"
+         id="path7930"
+         sodipodi:nodetypes="cccc" />
+      <path
+         style="fill:none;stroke:#d40000;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 19.904998,160.16825 52.231431,7.76412 4.181166,26.21786 12.746379,2.24083"
+         id="path8028" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458334,0,0,0.26458334,-24.1161,-1895.6381)"
+         id="text8030"
+         style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8032);display:inline;fill:#008000"><tspan
+           x="168.5957"
+           y="7841.3985"
+           id="tspan4830">Parametrix</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458334,0,0,0.26458334,31.678073,-1903.4252)"
+         id="text8174"
+         style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8176);display:inline;fill:#d40000"><tspan
+           x="105.5918"
+           y="7816.7051"
+           id="tspan4832">FreeCAD</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458334,0,0,0.26458334,-19.872884,-1853.4409)"
+         id="text8424"
+         style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8426);display:inline"><tspan
+           x="59.345703"
+           y="7847.7696"
+           id="tspan4834">GUI-CAD versus programmatic-CAD</tspan></text>
     </g>
     <g
        inkscape:label="Rendered Gears"
