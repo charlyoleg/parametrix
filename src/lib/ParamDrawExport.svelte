@@ -3,6 +3,7 @@
 	import InputParams from '$lib/InputParams.svelte';
 	import Drawing from '$lib/Drawing.svelte';
 	import { storePV } from '$lib/storePVal';
+	import * as zip from '@zip.js/zip.js';
 
 	export let pDef: tParamDef;
 	export let geom: tGeomFunc;
@@ -34,8 +35,24 @@
 	}
 	$: paramChange2(pDef.page); // for reactivity on page change
 	// export drawings
-	function downloadExport() {
+	function download_zipfile(file_name: string, blob: Blob) {
+		//create temporary an invisible element
+		const elem_a_download = document.createElement('a');
+		elem_a_download.setAttribute('href', URL.createObjectURL(blob));
+		elem_a_download.setAttribute('download', file_name);
+		//document.body.appendChild(elem_a_download); // it does not seem required to append the element to the DOM to use it
+		elem_a_download.click();
+		//document.body.removeChild(elem_a_download);
+		elem_a_download.remove(); // Is this really required?
+	}
+	async function downloadExport() {
 		console.log('todo020');
+		const zipFileWriter = new zip.BlobWriter();
+		const helloWorldReader = new zip.TextReader('Hello world!');
+		const zipWriter = new zip.ZipWriter(zipFileWriter);
+		await zipWriter.add('hello.txt', helloWorldReader);
+		const zipFileBlob = await zipWriter.close();
+		download_zipfile('abc.zip', zipFileBlob);
 	}
 </script>
 
@@ -60,7 +77,7 @@
 		<option value="sxf">dxf</option>
 		<option value="pax">png</option>
 	</select>
-	<button on:click={downloadExport}>Save to File</button>
+	<button on:click={async () => await downloadExport()}>Save to File</button>
 </section>
 
 <style lang="scss">
