@@ -35,6 +35,14 @@
 	}
 	$: paramChange2(pDef.page); // for reactivity on page change
 	// export drawings
+	enum EFormat {
+		eSVG,
+		eDXF,
+		ePNG,
+		ePAX,
+		eZIP
+	}
+	let exportFormat: EFormat;
 	function download_zipfile(file_name: string, blob: Blob) {
 		//create temporary an invisible element
 		const elem_a_download = document.createElement('a');
@@ -48,13 +56,26 @@
 		URL.revokeObjectURL(objectURL);
 	}
 	async function downloadExport() {
-		console.log('todo020');
-		const zipFileWriter = new zip.BlobWriter();
-		const helloWorldReader = new zip.TextReader('Hello world!');
-		const zipWriter = new zip.ZipWriter(zipFileWriter);
-		await zipWriter.add('hello.txt', helloWorldReader);
-		const zipFileBlob = await zipWriter.close();
-		download_zipfile('abc.zip', zipFileBlob);
+		console.log(`exportFormat ${exportFormat}`);
+		if (exportFormat === EFormat.eSVG) {
+			console.log('TODO1');
+		} else if (exportFormat === EFormat.eDXF) {
+			console.log('TODO2');
+		} else if (exportFormat === EFormat.ePNG) {
+			console.log('TODO3');
+		} else if (exportFormat === EFormat.ePAX) {
+			console.log('TODO4');
+		} else if (exportFormat === EFormat.eZIP) {
+			console.log('TODO5');
+			const zipFileWriter = new zip.BlobWriter();
+			const helloWorldReader = new zip.TextReader('Hello world!');
+			const zipWriter = new zip.ZipWriter(zipFileWriter);
+			await zipWriter.add('hello.txt', helloWorldReader);
+			const zipFileBlob = await zipWriter.close();
+			download_zipfile('abc.zip', zipFileBlob);
+		} else {
+			console.log(`err902: unknown exportFormat ${exportFormat}`);
+		}
 	}
 </script>
 
@@ -74,10 +95,12 @@
 <Drawing {pDef} {geom} bind:simTime />
 <section>
 	<h2>Export</h2>
-	<select>
-		<option value="svg">svg</option>
-		<option value="sxf">dxf</option>
-		<option value="pax">png</option>
+	<select bind:value={exportFormat}>
+		<option value={EFormat.eSVG}>current face as svg</option>
+		<option value={EFormat.eDXF}>current face as dxf</option>
+		<option value={EFormat.ePNG}>current face as png</option>
+		<option value={EFormat.ePAX}>all faces as pax.json</option>
+		<option value={EFormat.eZIP}>all as zip</option>
 	</select>
 	<button on:click={downloadExport}>Save to File</button>
 </section>
