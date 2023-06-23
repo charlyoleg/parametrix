@@ -8,7 +8,7 @@ import type { tCanvasAdjust } from './canvas_utils';
 import { colors, adjustZero, adjustInit } from './canvas_utils';
 import { withinZero2Pi, withinPiPi, degToRad, radToDeg, roundZero, ffix } from './angle_utils';
 import { lcFromLaLbAc, aCFromLaLbLc, lbFromLaAaAb, aBFromLaLbAa } from './triangle_utils';
-import { ShapePoint, Point, point } from './point';
+import { ShapePoint, Point, point, pointMinMax } from './point';
 import { Line, line, linePP, bisector, circleCenter } from './line';
 import { Vector, vector } from './vector';
 import type { tContour } from './contour';
@@ -105,36 +105,7 @@ class Figure {
 		this.dynamicsList = [];
 	}
 	getMinMax() {
-		if (this.pointList.length > 0) {
-			// the first point of the list should not contain infinity
-			const p0 = this.pointList[0];
-			if (
-				p0.cx === Number.NEGATIVE_INFINITY ||
-				p0.cx === Number.POSITIVE_INFINITY ||
-				p0.cy === Number.NEGATIVE_INFINITY ||
-				p0.cy === Number.POSITIVE_INFINITY
-			) {
-				throw `err392: first point with infinity: ${p0.cx} ${p0.cy}`;
-			}
-			this.xMin = this.pointList[0].cx;
-			this.xMax = this.pointList[0].cx;
-			this.yMin = this.pointList[0].cy;
-			this.yMax = this.pointList[0].cy;
-			for (const p of this.pointList) {
-				if (p.cx !== Number.NEGATIVE_INFINITY) {
-					this.xMin = Math.min(this.xMin, p.cx);
-				}
-				if (p.cx !== Number.POSITIVE_INFINITY) {
-					this.xMax = Math.max(this.xMax, p.cx);
-				}
-				if (p.cy !== Number.NEGATIVE_INFINITY) {
-					this.yMin = Math.min(this.yMin, p.cy);
-				}
-				if (p.cy !== Number.POSITIVE_INFINITY) {
-					this.yMax = Math.max(this.yMax, p.cy);
-				}
-			}
-		}
+		[this.xMin, this.xMax, this.yMin, this.yMax] = pointMinMax(this.pointList);
 		//console.log(`dbg137: ${this.xMin}, ${this.xMax}, ${this.yMin}, ${this.yMax}`);
 	}
 	getAdjustFull(iCanvasWidth: number, iCanvasHeight: number): tCanvasAdjust {
@@ -230,6 +201,25 @@ function figure() {
 	return new Figure();
 }
 
+function figureToSvg(aCtr: Array<tContour>): string {
+	const pts: Array<Point> = [];
+	for (const ctr of aCtr) {
+		pts.push(...ctr.generatePoints());
+	}
+	const [Xmin, Xmax, Ymin, Ymax] = pointMinMax(pts);
+	const Xdelta = Math.round((Xmax - Xmin) * 1.1) + 10;
+	const Ydelta = Math.round((Ymax - Ymin) * 1.1) + 10;
+	const Xmin2 = Math.round(Xmin - Xdelta * 0.05);
+	const Ymin2 = Math.round(Ymin - Ydelta * 0.05);
+	const viewBoxValues = `${Xmin2} ${Ymin2} ${Xdelta} ${Ydelta}`;
+	let rSvg = `<svg width="${Xdelta}" height="${Ydelta}" viewBox="${viewBoxValues}" xmlns="http://www.w3.org/2000/svg">`;
+	for (const ctr of aCtr) {
+		rSvg += ctr.toSvg();
+	}
+	rSvg += '</svg>';
+	return rSvg;
+}
+
 function initLayers(): tLayers {
 	const layers: tLayers = {
 		points: false,
@@ -269,5 +259,6 @@ export {
 	contour,
 	contourCircle,
 	figure,
+	figureToSvg,
 	initLayers
 };

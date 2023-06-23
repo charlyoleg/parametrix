@@ -3,7 +3,14 @@
 	import InputParams from '$lib/InputParams.svelte';
 	import Drawing from '$lib/Drawing.svelte';
 	import { storePV } from '$lib/storePVal';
-	import * as zip from '@zip.js/zip.js';
+	import {
+		EFormat,
+		fileBinContent,
+		fileTextContent,
+		fileSuffix,
+		fileMime,
+		fileBin
+	} from '$lib/exportFile';
 
 	export let pDef: tParamDef;
 	export let geom: tGeomFunc;
@@ -35,46 +42,53 @@
 	}
 	$: paramChange2(pDef.page); // for reactivity on page change
 	// export drawings
-	enum EFormat {
-		eSVG,
-		eDXF,
-		ePNG,
-		ePAX,
-		eZIP
-	}
 	let exportFormat: EFormat;
-	function download_zipfile(file_name: string, blob: Blob) {
+	function download_binFile(fName: string, fContent: Blob) {
 		//create temporary an invisible element
 		const elem_a_download = document.createElement('a');
-		const objectURL = URL.createObjectURL(blob);
-		elem_a_download.setAttribute('href', objectURL);
-		elem_a_download.setAttribute('download', file_name);
+		//const payload = 'data:' + fMime + ';base64,' + fContent;
+		const payload = URL.createObjectURL(fContent);
+		elem_a_download.setAttribute('href', payload);
+		elem_a_download.setAttribute('download', fName);
 		//document.body.appendChild(elem_a_download); // it does not seem required to append the element to the DOM to use it
 		elem_a_download.click();
 		//document.body.removeChild(elem_a_download);
 		elem_a_download.remove(); // Is this really required?
-		URL.revokeObjectURL(objectURL);
+		URL.revokeObjectURL(payload);
+	}
+	function download_textFile(fName: string, fContent: string, fMime: string) {
+		//create temporary an invisible element
+		const elem_a_download = document.createElement('a');
+		const payload = 'data:' + fMime + ';utf-8,' + encodeURIComponent(fContent);
+		elem_a_download.setAttribute('href', payload);
+		elem_a_download.setAttribute('download', fName);
+		//document.body.appendChild(elem_a_download); // it does not seem required to append the element to the DOM to use it
+		elem_a_download.click();
+		//document.body.removeChild(elem_a_download);
+		elem_a_download.remove(); // Is this really required?
+	}
+	function dateString(): string {
+		const re1 = /[-:]/g;
+		const re2 = /\..*$/;
+		const rDateStr = new Date()
+			.toISOString()
+			.replace(re1, '')
+			.replace(re2, '')
+			.replace('T', '_');
+		return rDateStr;
 	}
 	async function downloadExport() {
-		console.log(`exportFormat ${exportFormat}`);
-		if (exportFormat === EFormat.eSVG) {
-			console.log('TODO1');
-		} else if (exportFormat === EFormat.eDXF) {
-			console.log('TODO2');
-		} else if (exportFormat === EFormat.ePNG) {
-			console.log('TODO3');
-		} else if (exportFormat === EFormat.ePAX) {
-			console.log('TODO4');
-		} else if (exportFormat === EFormat.eZIP) {
-			console.log('TODO5');
-			const zipFileWriter = new zip.BlobWriter();
-			const helloWorldReader = new zip.TextReader('Hello world!');
-			const zipWriter = new zip.ZipWriter(zipFileWriter);
-			await zipWriter.add('hello.txt', helloWorldReader);
-			const zipFileBlob = await zipWriter.close();
-			download_zipfile('abc.zip', zipFileBlob);
+		//console.log(`exportFormat ${exportFormat}`);
+		const fSuffix = fileSuffix(exportFormat);
+		const fMime = fileMime(exportFormat);
+		const fBin = fileBin(exportFormat);
+		const fName = pDef.page + '_' + dateString() + '.' + fSuffix;
+		if (fBin) {
+			const fContent = await fileBinContent(geom, simTime, $storePV[pDef.page], exportFormat);
+			download_binFile(fName, fContent);
 		} else {
-			console.log(`err902: unknown exportFormat ${exportFormat}`);
+			const fContent = await fileTextContent(geom, $storePV[pDef.page], exportFormat);
+			download_textFile(fName, fContent, fMime);
 		}
 	}
 </script>

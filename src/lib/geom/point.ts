@@ -202,7 +202,45 @@ function point(ix: number, iy: number, ishape = ShapePoint.eDefault) {
 	return new Point(ix, iy, ishape);
 }
 
+function pointMinMax(aPoint: Array<Point>): [number, number, number, number] {
+	let xMin = 0;
+	let xMax = 0;
+	let yMin = 0;
+	let yMax = 0;
+	if (aPoint.length > 0) {
+		// the first point of the list should not contain infinity
+		const p0 = aPoint[0];
+		if (
+			p0.cx === Number.NEGATIVE_INFINITY ||
+			p0.cx === Number.POSITIVE_INFINITY ||
+			p0.cy === Number.NEGATIVE_INFINITY ||
+			p0.cy === Number.POSITIVE_INFINITY
+		) {
+			throw `err292: pointMinMax first point with infinity: ${p0.cx} ${p0.cy}`;
+		}
+		xMin = aPoint[0].cx;
+		xMax = aPoint[0].cx;
+		yMin = aPoint[0].cy;
+		yMax = aPoint[0].cy;
+		for (const p of aPoint) {
+			if (p.cx !== Number.NEGATIVE_INFINITY) {
+				xMin = Math.min(xMin, p.cx);
+			}
+			if (p.cx !== Number.POSITIVE_INFINITY) {
+				xMax = Math.max(xMax, p.cx);
+			}
+			if (p.cy !== Number.NEGATIVE_INFINITY) {
+				yMin = Math.min(yMin, p.cy);
+			}
+			if (p.cy !== Number.POSITIVE_INFINITY) {
+				yMax = Math.max(yMax, p.cy);
+			}
+		}
+	}
+	return [xMin, xMax, yMin, yMax];
+}
+
 /* export */
 
 export type { tPolar };
-export { ShapePoint, Point, point };
+export { ShapePoint, Point, point, pointMinMax };

@@ -31,6 +31,10 @@ import { line, Line, bisector, circleCenter } from './line';
 //import { vector, Vector } from './vector';
 import * as segLib from './segment';
 
+function ff(ifloat: number): string {
+	return ifloat.toFixed(4);
+}
+
 /* AContour abstract class */
 
 abstract class AContour {
@@ -40,6 +44,7 @@ abstract class AContour {
 	abstract generatePoints(): Array<Point>;
 	abstract generateLines(): Array<Line>;
 	abstract check(): string;
+	abstract toSvg(): string;
 }
 
 /* Contour class */
@@ -641,6 +646,25 @@ class Contour extends AContour {
 		this.checkContour(ctrG);
 		return segLib.gSegDbg.getMsg();
 	}
+	toSvg(): string {
+		let pathD = '';
+		for (const seg of this.segments) {
+			if (seg.sType === segLib.SegEnum.eStart) {
+				pathD = `M ${ff(seg.px)} ${ff(seg.py)}`;
+			} else if (seg.sType === segLib.SegEnum.eStroke) {
+				pathD += ` L ${ff(seg.px)} ${ff(seg.py)}`;
+			} else if (seg.sType === segLib.SegEnum.eArc) {
+				const radius = ff(seg.radius);
+				const large = seg.arcLarge ? 1 : 0;
+				const ccw = seg.arcCcw ? 1 : 0;
+				pathD += ` A ${radius} ${radius} 0 ${large} ${ccw} ${ff(seg.px)} ${ff(seg.py)}`;
+			} else {
+				console.log(`err631: contour.toSvg has unknown segment type ${seg.sType}`);
+			}
+		}
+		const rSvg = `<path d="${pathD}" stroke="black" stroke-width="1" fill="none" />`;
+		return rSvg;
+	}
 }
 
 /* ContourCircle class */
@@ -689,6 +713,12 @@ class ContourCircle extends AContour {
 	}
 	check(): string {
 		return '';
+	}
+	toSvg(): string {
+		const rSvg = `<circle cx=${ff(this.px)} cy=${ff(this.py)} r=${ff(
+			this.radius
+		)} stroke="black" stroke-width="1" fill="none" />`;
+		return rSvg;
 	}
 }
 
