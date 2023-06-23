@@ -10,7 +10,7 @@ import {
 	//degToRad,
 	//radToDeg,
 	roundZero,
-	//withinZero2Pi,
+	withinZero2Pi,
 	withinPiPi,
 	//withinZeroPi,
 	//withinHPiHPi,
@@ -58,7 +58,7 @@ class DxfSeg {
 		this.p1x = p1x;
 		this.p1y = p1y;
 		this.radius = radius;
-		this.a1 = a2;
+		this.a1 = a1;
 		this.a2 = a2;
 		this.p2x = p2x;
 		this.p2y = p2y;
@@ -722,9 +722,13 @@ class Contour extends AContour {
 			if (seg.sType === segLib.SegEnum.eArc) {
 				try {
 					const seg2 = segLib.arcSeg1To2(px1, py1, seg);
-					const a1 = seg.arcCcw ? seg2.a1 : seg2.a2;
-					const a2 = seg.arcCcw ? seg2.a2 : seg2.a1;
-					rDxfSeg.push(dxfSeg(true, seg2.pc.cx, seg2.pc.cy, seg.radius, a1, a2, 0, 0));
+					//const a1 = seg2.a1;
+					//const a2 = seg2.a2;
+					const a1 = seg2.arcCcw ? seg2.a1 : seg2.a2;
+					const a2 = seg2.arcCcw ? seg2.a2 : seg2.a1;
+					const b1 = withinZero2Pi(a1);
+					const b2 = withinZero2Pi(a2);
+					rDxfSeg.push(dxfSeg(true, seg2.pc.cx, seg2.pc.cy, seg.radius, b1, b2, 0, 0));
 				} catch (emsg) {
 					console.log('err413: ' + emsg);
 				}
