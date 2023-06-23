@@ -13,6 +13,7 @@ import { Line, line, linePP, bisector, circleCenter } from './line';
 import { Vector, vector } from './vector';
 import type { tContour } from './contour';
 import { contour, contourCircle } from './contour';
+import { DxfWriter, point3d } from '@tarikjabiri/dxf';
 
 type tLayers = {
 	points: boolean;
@@ -220,7 +221,23 @@ function figureToSvg(aCtr: Array<tContour>): string {
 	return rSvg;
 }
 function figureToDxf(aCtr: Array<tContour>): string {
-	const rDxf = `${aCtr.length}`;
+	const dxf = new DxfWriter();
+	//const firstDxfLayer = dxf.addLayer('first');
+	for (const ctr of aCtr) {
+		if (ctr.circle) {
+			const seg = ctr.toDxfSeg()[0];
+			dxf.addCircle(point3d(seg.p1x, seg.p1y), seg.radius);
+		} else {
+			for (const seg of ctr.toDxfSeg()) {
+				if (seg.arc) {
+					dxf.addArc(point3d(seg.p1x, seg.p1y), seg.radius, seg.a1, seg.a2);
+				} else {
+					dxf.addLine(point3d(seg.p1x, seg.p1y), point3d(seg.p2x, seg.p2y));
+				}
+			}
+		}
+	}
+	const rDxf = dxf.stringify();
 	return rDxf;
 }
 function figureToJson(aCtr: Array<tContour>): string {

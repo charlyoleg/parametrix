@@ -35,9 +35,53 @@ function ff(ifloat: number): string {
 	return ifloat.toFixed(4);
 }
 
+class DxfSeg {
+	arc: boolean;
+	p1x: number;
+	p1y: number;
+	radius: number;
+	a1: number;
+	a2: number;
+	p2x: number;
+	p2y: number;
+	constructor(
+		arc: boolean,
+		p1x: number,
+		p1y: number,
+		radius: number,
+		a1: number,
+		a2: number,
+		p2x: number,
+		p2y: number
+	) {
+		this.arc = arc;
+		this.p1x = p1x;
+		this.p1y = p1y;
+		this.radius = radius;
+		this.a1 = a2;
+		this.a2 = a2;
+		this.p2x = p2x;
+		this.p2y = p2y;
+	}
+}
+function dxfSeg(
+	arc: boolean,
+	p1x: number,
+	p1y: number,
+	radius: number,
+	a1: number,
+	a2: number,
+	p2x: number,
+	p2y: number
+) {
+	const rDxfSeg = new DxfSeg(arc, p1x, p1y, radius, a1, a2, p2x, p2y);
+	return rDxfSeg;
+}
+
 /* AContour abstract class */
 
 abstract class AContour {
+	abstract circle: boolean;
 	abstract draw(ctx: CanvasRenderingContext2D, cAdjust: tCanvasAdjust, color: string): void;
 	abstract extractSkeleton(): AContour;
 	abstract generateContour(): AContour;
@@ -45,11 +89,13 @@ abstract class AContour {
 	abstract generateLines(): Array<Line>;
 	abstract check(): string;
 	abstract toSvg(): string;
+	abstract toDxfSeg(): Array<DxfSeg>;
 }
 
 /* Contour class */
 
 class Contour extends AContour {
+	circle = false;
 	segments: Array<segLib.Segment1>;
 	points: Array<Point>;
 	debugPoints: Array<Point>;
@@ -665,11 +711,37 @@ class Contour extends AContour {
 		const rSvg = `<path d="${pathD}" stroke="black" stroke-width="1" fill="none" />`;
 		return rSvg;
 	}
+	toDxfSeg(): Array<DxfSeg> {
+		const rDxfSeg: Array<DxfSeg> = [];
+		let px1 = 0;
+		let py1 = 0;
+		for (const seg of this.segments) {
+			if (seg.sType === segLib.SegEnum.eStroke) {
+				rDxfSeg.push(dxfSeg(false, px1, py1, 0, 0, 0, seg.px, seg.py));
+			}
+			if (seg.sType === segLib.SegEnum.eArc) {
+				try {
+					const seg2 = segLib.arcSeg1To2(px1, py1, seg);
+					const a1 = seg.arcCcw ? seg2.a1 : seg2.a2;
+					const a2 = seg.arcCcw ? seg2.a2 : seg2.a1;
+					rDxfSeg.push(dxfSeg(true, seg2.pc.cx, seg2.pc.cy, seg.radius, a1, a2, 0, 0));
+				} catch (emsg) {
+					console.log('err413: ' + emsg);
+				}
+			}
+			if (segLib.isAddPoint(seg.sType)) {
+				px1 = seg.px;
+				py1 = seg.py;
+			}
+		}
+		return rDxfSeg;
+	}
 }
 
 /* ContourCircle class */
 
 class ContourCircle extends AContour {
+	circle = true;
 	px: number;
 	py: number;
 	radius: number;
@@ -719,6 +791,11 @@ class ContourCircle extends AContour {
 			this.radius
 		)} stroke="black" stroke-width="1" fill="none" />`;
 		return rSvg;
+	}
+	toDxfSeg(): Array<DxfSeg> {
+		const rDxfSeg: Array<DxfSeg> = [];
+		rDxfSeg.push(dxfSeg(false, this.px, this.py, this.radius, 0, 0, 0, 0));
+		return rDxfSeg;
 	}
 }
 
