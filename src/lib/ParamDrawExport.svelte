@@ -87,7 +87,7 @@
 			const fContent = await fileBinContent(geom, simTime, $storePV[pDef.page], exportFormat);
 			download_binFile(fName, fContent);
 		} else {
-			const fContent = await fileTextContent(geom, $storePV[pDef.page], exportFormat);
+			const fContent = fileTextContent(geom, $storePV[pDef.page], exportFormat);
 			download_textFile(fName, fContent, fMime);
 		}
 	}
@@ -112,7 +112,6 @@
 	<select bind:value={exportFormat}>
 		<option value={EFormat.eSVG}>current face as svg</option>
 		<option value={EFormat.eDXF}>current face as dxf</option>
-		<option value={EFormat.ePNG}>current face as png</option>
 		<option value={EFormat.ePAX}>all faces as pax.json</option>
 		<option value={EFormat.eZIP}>all as zip</option>
 	</select>

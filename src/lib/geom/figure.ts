@@ -219,6 +219,14 @@ function figureToSvg(aCtr: Array<tContour>): string {
 	rSvg += '</svg>';
 	return rSvg;
 }
+function figureToDxf(aCtr: Array<tContour>): string {
+	const rDxf = `${aCtr.length}`;
+	return rDxf;
+}
+function figureToJson(aCtr: Array<tContour>): string {
+	const rJson = JSON.stringify({ aaa: aCtr.length });
+	return rJson;
+}
 
 function initLayers(): tLayers {
 	const layers: tLayers = {
@@ -260,5 +268,7 @@ export {
 	contourCircle,
 	figure,
 	figureToSvg,
+	figureToDxf,
+	figureToJson,
 	initLayers
 };

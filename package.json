@@ -45,5 +45,8 @@
 		"vite": "^4.3.9",
 		"vitest": "^0.32.2"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"@tarikjabiri/dxf": "^2.8.6"
+	}
 }

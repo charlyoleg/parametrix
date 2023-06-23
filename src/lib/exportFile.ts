@@ -1,13 +1,12 @@
 // exportFile.ts
 
 import type { tGeomFunc, tParamVal } from '$lib/design/aaParamGeom';
-import { figureToSvg } from '$lib/geom/figure';
+import { figureToSvg, figureToDxf, figureToJson } from '$lib/geom/figure';
 import * as zip from '@zip.js/zip.js';
 
 enum EFormat {
 	eSVG,
 	eDXF,
-	ePNG,
 	ePAX,
 	eZIP
 }
@@ -19,17 +18,14 @@ function fileTextContent(geom: tGeomFunc, paramVal: tParamVal, exportFormat: EFo
 		if (exportFormat === EFormat.eSVG) {
 			rFileContent = figureToSvg(geome0.fig.mainList);
 		} else if (exportFormat === EFormat.eDXF) {
-			rFileContent = 'blabla dxf';
+			rFileContent = figureToDxf(geome0.fig.mainList);
 		} else if (exportFormat === EFormat.ePAX) {
-			rFileContent = JSON.stringify(
-				{
-					params: paramVal,
-					figure: geome0.fig.mainList,
-					log: geome0.logstr
-				},
-				null,
-				2
-			);
+			const paxJson = {
+				params: paramVal,
+				figure: figureToJson(geome0.fig.mainList),
+				log: geome0.logstr
+			};
+			rFileContent = JSON.stringify(paxJson, null, 2);
 		} else {
 			console.log(`err912: unknown exportFormat ${exportFormat}`);
 		}
@@ -49,9 +45,7 @@ async function fileBinContent(
 	const geome1 = geom(tSim, paramVal);
 	let rFileContent = new Blob();
 	if (!geome0.calcErr && !geome1.calcErr) {
-		if (exportFormat === EFormat.ePNG) {
-			rFileContent = new Blob(['blabla png']);
-		} else if (exportFormat === EFormat.eZIP) {
+		if (exportFormat === EFormat.eZIP) {
 			//const zipFileWriter = new zip.BlobWriter('application/zip');
 			const zipFileWriter = new zip.BlobWriter();
 			const helloWorldReader = new zip.TextReader('Hello world!');
@@ -79,8 +73,6 @@ function fileMime(exportFormat: EFormat): string {
 	} else if (exportFormat === EFormat.ePAX) {
 		rMime = 'application/json';
 		//rMime = 'text/plain';
-	} else if (exportFormat === EFormat.ePNG) {
-		rMime = 'image/png';
 	} else if (exportFormat === EFormat.eZIP) {
 		rMime = 'application/zip';
 	} else {
@@ -97,8 +89,6 @@ function fileSuffix(exportFormat: EFormat): string {
 		rSuffix = 'dxf';
 	} else if (exportFormat === EFormat.ePAX) {
 		rSuffix = 'pax.json';
-	} else if (exportFormat === EFormat.ePNG) {
-		rSuffix = 'png';
 	} else if (exportFormat === EFormat.eZIP) {
 		rSuffix = 'zip';
 	} else {
@@ -109,7 +99,7 @@ function fileSuffix(exportFormat: EFormat): string {
 
 function fileBin(exportFormat: EFormat): boolean {
 	let rBin = false;
-	if (exportFormat === EFormat.ePNG || exportFormat === EFormat.eZIP) {
+	if (exportFormat === EFormat.eZIP) {
 		rBin = true;
 	}
 	return rBin;
