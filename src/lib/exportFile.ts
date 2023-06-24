@@ -1,8 +1,8 @@
 // exportFile.ts
 
 import type { tGeomFunc, tParamVal } from '$lib/design/aaParamGeom';
-import { figureToSvg, figureToDxf, figureToJson } from '$lib/geom/figure';
-import * as zip from '@zip.js/zip.js';
+import { makePax, makeZip } from '$lib/design/aaExport';
+import { figureToSvg, figureToDxf } from '$lib/geom/figure';
 
 enum EFormat {
 	eSVG,
@@ -20,12 +20,7 @@ function fileTextContent(geom: tGeomFunc, paramVal: tParamVal, exportFormat: EFo
 		} else if (exportFormat === EFormat.eDXF) {
 			rFileContent = figureToDxf(geome0.fig.mainList);
 		} else if (exportFormat === EFormat.ePAX) {
-			const paxJson = {
-				params: paramVal,
-				figure: figureToJson(geome0.fig.mainList),
-				log: geome0.logstr
-			};
-			rFileContent = JSON.stringify(paxJson, null, 2);
+			rFileContent = makePax(paramVal, geome0);
 		} else {
 			console.log(`err912: unknown exportFormat ${exportFormat}`);
 		}
@@ -46,15 +41,7 @@ async function fileBinContent(
 	let rFileContent = new Blob();
 	if (!geome0.calcErr && !geome1.calcErr) {
 		if (exportFormat === EFormat.eZIP) {
-			//const zipFileWriter = new zip.BlobWriter('application/zip');
-			const zipFileWriter = new zip.BlobWriter();
-			const helloWorldReader = new zip.TextReader('Hello world!');
-			const logReader = new zip.TextReader(geome0.logstr);
-			const zipWriter = new zip.ZipWriter(zipFileWriter);
-			await zipWriter.add('hello.txt', helloWorldReader);
-			await zipWriter.add('geom_log.txt', logReader);
-			await zipWriter.close();
-			rFileContent = await zipFileWriter.getData();
+			rFileContent = await makeZip(geome0);
 		} else {
 			console.log(`err913: unknown exportFormat ${exportFormat}`);
 		}
