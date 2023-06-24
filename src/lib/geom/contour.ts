@@ -30,10 +30,7 @@ import { point, Point } from './point';
 import { line, Line, bisector, circleCenter } from './line';
 //import { vector, Vector } from './vector';
 import * as segLib from './segment';
-
-function ff(ifloat: number): string {
-	return ifloat.toFixed(4);
-}
+import { svgPath, svgCircleString } from './svg';
 
 class DxfSeg {
 	arc: boolean;
@@ -693,22 +690,19 @@ class Contour extends AContour {
 		return segLib.gSegDbg.getMsg();
 	}
 	toSvg(): string {
-		let pathD = '';
+		const sPath = svgPath();
 		for (const seg of this.segments) {
 			if (seg.sType === segLib.SegEnum.eStart) {
-				pathD = `M ${ff(seg.px)} ${ff(seg.py)}`;
+				sPath.addStart(seg.px, seg.py);
 			} else if (seg.sType === segLib.SegEnum.eStroke) {
-				pathD += ` L ${ff(seg.px)} ${ff(seg.py)}`;
+				sPath.addStroke(seg.px, seg.py);
 			} else if (seg.sType === segLib.SegEnum.eArc) {
-				const radius = ff(seg.radius);
-				const large = seg.arcLarge ? 1 : 0;
-				const ccw = seg.arcCcw ? 1 : 0;
-				pathD += ` A ${radius} ${radius} 0 ${large} ${ccw} ${ff(seg.px)} ${ff(seg.py)}`;
+				sPath.addArc(seg.px, seg.py, seg.radius, seg.arcLarge, seg.arcCcw);
 			} else {
 				console.log(`err631: contour.toSvg has unknown segment type ${seg.sType}`);
 			}
 		}
-		const rSvg = `<path d="${pathD}" stroke="black" stroke-width="1" fill="none" />`;
+		const rSvg = sPath.stringify();
 		return rSvg;
 	}
 	toDxfSeg(): Array<DxfSeg> {
@@ -792,9 +786,7 @@ class ContourCircle extends AContour {
 		return '';
 	}
 	toSvg(): string {
-		const rSvg = `<circle cx=${ff(this.px)} cy=${ff(this.py)} r=${ff(
-			this.radius
-		)} stroke="black" stroke-width="1" fill="none" />`;
+		const rSvg = svgCircleString(this.px, this.py, this.radius);
 		return rSvg;
 	}
 	toDxfSeg(): Array<DxfSeg> {

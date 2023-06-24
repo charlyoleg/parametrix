@@ -13,6 +13,7 @@ import { Line, line, linePP, bisector, circleCenter } from './line';
 import { Vector, vector } from './vector';
 import type { tContour } from './contour';
 import { contour, contourCircle } from './contour';
+import { svgWriter } from './svg';
 import { dxfWriter } from './dxf';
 
 type tLayers = {
@@ -212,12 +213,11 @@ function figureToSvg(aCtr: Array<tContour>): string {
 	const Ydelta = Math.round((Ymax - Ymin) * 1.1) + 10;
 	const Xmin2 = Math.round(Xmin - Xdelta * 0.05);
 	const Ymin2 = Math.round(Ymin - Ydelta * 0.05);
-	const viewBoxValues = `${Xmin2} ${Ymin2} ${Xdelta} ${Ydelta}`;
-	let rSvg = `<svg width="${Xdelta}" height="${Ydelta}" viewBox="${viewBoxValues}" xmlns="http://www.w3.org/2000/svg">`;
+	const svg = svgWriter(Xmin2, Xdelta, Ymin2, Ydelta);
 	for (const ctr of aCtr) {
-		rSvg += ctr.toSvg();
+		svg.addSvgString(ctr.toSvg());
 	}
-	rSvg += '</svg>';
+	const rSvg = svg.stringify();
 	return rSvg;
 }
 function figureToDxf(aCtr: Array<tContour>): string {
