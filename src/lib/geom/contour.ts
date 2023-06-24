@@ -8,7 +8,7 @@ import type { tCanvasAdjust } from './canvas_utils';
 //import { colorCanvasPoint } from '$lib/style/colors.scss';
 import {
 	//degToRad,
-	//radToDeg,
+	radToDeg,
 	roundZero,
 	withinZero2Pi,
 	withinPiPi,
@@ -726,8 +726,9 @@ class Contour extends AContour {
 					//const a2 = seg2.a2;
 					const a1 = seg2.arcCcw ? seg2.a1 : seg2.a2;
 					const a2 = seg2.arcCcw ? seg2.a2 : seg2.a1;
-					const b1 = withinZero2Pi(a1);
-					const b2 = withinZero2Pi(a2);
+					// DXF angles are in degree and preferably positive
+					const b1 = radToDeg(withinZero2Pi(a1));
+					const b2 = radToDeg(withinZero2Pi(a2));
 					rDxfSeg.push(dxfSeg(true, seg2.pc.cx, seg2.pc.cy, seg.radius, b1, b2, 0, 0));
 				} catch (emsg) {
 					console.log('err413: ' + emsg);
