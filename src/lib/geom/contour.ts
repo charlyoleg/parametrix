@@ -31,49 +31,8 @@ import { line, Line, bisector, circleCenter } from './line';
 //import { vector, Vector } from './vector';
 import * as segLib from './segment';
 import { svgPath, svgCircleString } from './svg';
-
-class DxfSeg {
-	arc: boolean;
-	p1x: number;
-	p1y: number;
-	radius: number;
-	a1: number;
-	a2: number;
-	p2x: number;
-	p2y: number;
-	constructor(
-		arc: boolean,
-		p1x: number,
-		p1y: number,
-		radius: number,
-		a1: number,
-		a2: number,
-		p2x: number,
-		p2y: number
-	) {
-		this.arc = arc;
-		this.p1x = p1x;
-		this.p1y = p1y;
-		this.radius = radius;
-		this.a1 = a1;
-		this.a2 = a2;
-		this.p2x = p2x;
-		this.p2y = p2y;
-	}
-}
-function dxfSeg(
-	arc: boolean,
-	p1x: number,
-	p1y: number,
-	radius: number,
-	a1: number,
-	a2: number,
-	p2x: number,
-	p2y: number
-) {
-	const rDxfSeg = new DxfSeg(arc, p1x, p1y, radius, a1, a2, p2x, p2y);
-	return rDxfSeg;
-}
+import type { DxfSeg } from './dxf';
+import { dxfSeg } from './dxf';
 
 /* AContour abstract class */
 
