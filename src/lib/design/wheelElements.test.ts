@@ -1,5 +1,5 @@
 import { describe, it, expect, expectTypeOf } from 'vitest';
-//import type { tContour } from '$lib/geom/figure';
+//import type { tContour } from '$lib/geom/geom';
 import * as welem from './wheelElements';
 
 describe('wheelElements module', () => {

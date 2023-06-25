@@ -1,9 +1,8 @@
 <script lang="ts">
 	import type { tCanvasAdjust } from '$lib/geom/canvas_utils';
 	//import { colors } from '$lib/geom/canvas_utils';
-	import type { tLayers, Figure } from '$lib/geom/figure';
-	//import { initLayers } from '$lib/geom/figure';
-	import type { tParamVal, tGeomFunc } from '$lib/design/aaParamGeom';
+	//import { initLayers } from '$lib/geom/geom';
+	import type { tLayers, Figure, tParamVal, tGeomFunc } from '$lib/geom/geom';
 	import { storePV } from '$lib/storePVal';
 	import { dLayers } from '$lib/drawingLayers';
 	import { onMount } from 'svelte';

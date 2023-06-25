@@ -1,6 +1,6 @@
 // storePVal.ts
 
-import type { tParamVal } from '$lib/design/aaParamGeom';
+import type { tParamVal } from '$lib/geom/geom';
 import { writable } from 'svelte/store';
 
 type tStorePVal = { [index: string]: tParamVal };

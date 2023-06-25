@@ -1,8 +1,7 @@
 // verify_line.ts
 
-import { point, line, linePP, figure } from '$lib/geom/figure';
-import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
-import { pNumber } from './aaParamGeom';
+import type { tParamDef, tParamVal, tGeom, tPageDef } from '$lib/geom/geom';
+import { point, line, linePP, figure, pNumber } from '$lib/geom/geom';
 
 const pDef: tParamDef = {
 	page: 'verify_line',

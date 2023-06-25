@@ -13,7 +13,7 @@ import { pageDef as verifyContour2Def } from '$lib/design/verify_contour_2';
 import { pageDef as verifyContour3Def } from '$lib/design/verify_contour_3';
 import { pageDef as verifyContour4Def } from '$lib/design/verify_contour_4';
 import { pageDef as gearWheelWheel } from '$lib/design/gear_wheel_wheel';
-import type { tParamVal, tPageDef } from '$lib/design/aaParamGeom';
+import type { tParamVal, tPageDef } from '$lib/geom/geom';
 import type { tStorePVal } from '$lib/storePVal';
 import { storePV } from '$lib/storePVal';
 import { get, writable } from 'svelte/store';

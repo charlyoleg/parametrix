@@ -1,8 +1,5 @@
 <script lang="ts">
-	import type { tParamDef, tGeomFunc } from '$lib/design/aaParamGeom';
-	import InputParams from '$lib/InputParams.svelte';
-	import Drawing from '$lib/Drawing.svelte';
-	import { storePV } from '$lib/storePVal';
+	import type { tParamDef, tGeomFunc } from '$lib/geom/geom';
 	import {
 		EFormat,
 		fileBinContent,
@@ -10,7 +7,10 @@
 		fileSuffix,
 		fileMime,
 		fileBin
-	} from '$lib/design/aaExportFile';
+	} from '$lib/geom/geom';
+	import InputParams from '$lib/InputParams.svelte';
+	import Drawing from '$lib/Drawing.svelte';
+	import { storePV } from '$lib/storePVal';
 
 	export let pDef: tParamDef;
 	export let geom: tGeomFunc;

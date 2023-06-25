@@ -4,8 +4,8 @@
 	import LocStorWrite from '$lib/LocStorWrite.svelte';
 	import LocStorRead from '$lib/LocStorRead.svelte';
 	import SimpleDrawing from '$lib/SimpleDrawing.svelte';
-	import type { tParamDef, tParamVal, tAllVal, tGeomFunc } from '$lib/design/aaParamGeom';
-	import { PType } from '$lib/design/aaParamGeom';
+	import type { tParamDef, tParamVal, tAllVal, tGeomFunc } from '$lib/geom/geom';
+	import { PType } from '$lib/geom/geom';
 	import { storePV } from '$lib/storePVal';
 	import { onMount, createEventDispatcher } from 'svelte';
 	import { browser } from '$app/environment';

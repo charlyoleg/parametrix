@@ -1,8 +1,7 @@
 // verify_contour_4.ts
 
-import { point, contour, figure } from '$lib/geom/figure';
-import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
-import { pNumber } from './aaParamGeom';
+import type { tParamDef, tParamVal, tGeom, tPageDef } from '$lib/geom/geom';
+import { point, contour, figure, pNumber } from '$lib/geom/geom';
 
 const pDef: tParamDef = {
 	page: 'verify_contour_4',

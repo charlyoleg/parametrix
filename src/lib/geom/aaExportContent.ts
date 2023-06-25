@@ -1,7 +1,7 @@
 // aaExportContent.ts
 
-import type { tGeom, tParamVal } from '$lib/design/aaParamGeom';
-import { figureToJson } from '$lib/geom/figure';
+import type { tGeom, tParamVal } from './aaParamGeom';
+import { figureToJson } from './figure';
 import * as zip from '@zip.js/zip.js';
 
 function makePax(paramVal: tParamVal, geome0: tGeom): string {

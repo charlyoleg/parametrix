@@ -1,9 +1,7 @@
 // verify_line_2.ts
 
-import { point, line, figure } from '$lib/geom/figure';
-import type { tParamDef, tParamVal, tGeom, tPageDef } from './aaParamGeom';
-import { pNumber } from './aaParamGeom';
-import { degToRad } from '$lib/geom/angle_utils';
+import type { tParamDef, tParamVal, tGeom, tPageDef } from '$lib/geom/geom';
+import { degToRad, point, line, figure, pNumber } from '$lib/geom/geom';
 
 const pDef: tParamDef = {
 	page: 'verify_line_2',

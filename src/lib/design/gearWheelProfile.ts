@@ -1,6 +1,6 @@
 // gearWheelProfile.ts
 
-import type { Point, tContour } from '$lib/geom/figure';
+import type { Point, tContour } from '$lib/geom/geom';
 import {
 	contour,
 	contourCircle,
@@ -13,7 +13,7 @@ import {
 	radToDeg,
 	roundZero,
 	ffix
-} from '$lib/geom/figure';
+} from '$lib/geom/geom';
 import type { Involute } from './involute';
 import { involute } from './involute';
 

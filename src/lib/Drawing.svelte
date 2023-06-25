@@ -11,9 +11,8 @@
 	import TimeControl from '$lib/TimeControl.svelte';
 	import ZoomControl from '$lib/ZoomControl.svelte';
 	import LabelCheckbox from '$lib/LabelCheckbox.svelte';
-	import type { tLayers, Figure } from '$lib/geom/figure';
-	//import { initLayers } from '$lib/geom/figure';
-	import type { tParamDef, tParamVal, tGeomFunc } from '$lib/design/aaParamGeom';
+	//import { initLayers } from '$lib/geom/geom';
+	import type { tLayers, Figure, tParamDef, tParamVal, tGeomFunc } from '$lib/geom/geom';
 	import { storePV } from '$lib/storePVal';
 	import { dLayers } from '$lib/drawingLayers';
 	import { onMount } from 'svelte';

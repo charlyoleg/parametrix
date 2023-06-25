@@ -1,6 +1,6 @@
 // aaParamGeom.ts
 
-import type { Figure } from '$lib/geom/figure';
+import type { Figure } from './figure';
 
 enum PType {
 	eNumber,
