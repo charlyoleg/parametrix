@@ -15,6 +15,8 @@ import type { tContour } from './contour';
 import { contour, contourCircle } from './contour';
 import { svgWriter } from './svg';
 import { dxfWriter } from './dxf';
+import type { tPaxContour } from './pax';
+import { paxWriter } from './pax';
 
 type tLayers = {
 	points: boolean;
@@ -240,9 +242,13 @@ function figureToDxf(aCtr: Array<tContour>): string {
 	const rDxf = dxf.stringify();
 	return rDxf;
 }
-function figureToJson(aCtr: Array<tContour>): string {
-	const rJson = JSON.stringify({ aaa: aCtr.length });
-	return rJson;
+function figureToPaxF(aCtr: Array<tContour>): Array<tPaxContour> {
+	const pax = paxWriter();
+	for (const ctr of aCtr) {
+		pax.addContour(ctr.toPax());
+	}
+	const rPaxF = pax.getFigure();
+	return rPaxF;
 }
 
 function initLayers(): tLayers {
@@ -286,6 +292,6 @@ export {
 	figure,
 	figureToSvg,
 	figureToDxf,
-	figureToJson,
+	figureToPaxF,
 	initLayers
 };

@@ -1,13 +1,13 @@
 // aaExportContent.ts
 
 import type { tGeom, tParamVal } from './aaParamGeom';
-import { figureToJson } from './figure';
+import { figureToPaxF } from './figure';
 import * as zip from '@zip.js/zip.js';
 
 function makePax(paramVal: tParamVal, geome0: tGeom): string {
 	const paxJson = {
 		params: paramVal,
-		figure: figureToJson(geome0.fig.mainList),
+		figure: figureToPaxF(geome0.fig.mainList),
 		log: geome0.logstr
 	};
 	const rStr = JSON.stringify(paxJson, null, 2);

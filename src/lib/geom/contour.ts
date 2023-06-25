@@ -33,6 +33,8 @@ import * as segLib from './segment';
 import { svgPath, svgCircleString } from './svg';
 import type { DxfSeg } from './dxf';
 import { dxfSegLine, dxfSegArc, dxfSegCircle } from './dxf';
+import type { tPaxContourPath, tPaxContourCircle, tPaxContour } from './pax';
+import { paxPath, paxCircle } from './pax';
 
 /* AContour abstract class */
 
@@ -46,6 +48,7 @@ abstract class AContour {
 	abstract check(): string;
 	abstract toSvg(): string;
 	abstract toDxfSeg(): Array<DxfSeg>;
+	abstract toPax(): tPaxContour;
 }
 
 /* Contour class */
@@ -689,6 +692,22 @@ class Contour extends AContour {
 		}
 		return rDxfSeg;
 	}
+	toPax(): tPaxContourPath {
+		const pPath = paxPath();
+		for (const seg of this.segments) {
+			if (seg.sType === segLib.SegEnum.eStart) {
+				pPath.addStart(seg.px, seg.py);
+			} else if (seg.sType === segLib.SegEnum.eStroke) {
+				pPath.addStroke(seg.px, seg.py);
+			} else if (seg.sType === segLib.SegEnum.eArc) {
+				pPath.addArc(seg.px, seg.py, seg.radius, seg.arcLarge, seg.arcCcw);
+			} else {
+				console.log(`err631: contour.toSvg has unknown segment type ${seg.sType}`);
+			}
+		}
+		const rPaxC = pPath.toJson();
+		return rPaxC;
+	}
 }
 
 /* ContourCircle class */
@@ -747,6 +766,10 @@ class ContourCircle extends AContour {
 		const rDxfSeg: Array<DxfSeg> = [];
 		rDxfSeg.push(dxfSegCircle(this.px, this.py, this.radius));
 		return rDxfSeg;
+	}
+	toPax(): tPaxContourCircle {
+		const rPaxC = paxCircle(this.px, this.py, this.radius);
+		return rPaxC;
 	}
 }
 
