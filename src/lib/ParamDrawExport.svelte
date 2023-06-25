@@ -110,10 +110,10 @@
 <section>
 	<h2>Export</h2>
 	<select bind:value={exportFormat}>
-		<option value={EFormat.eSVG}>current face as svg</option>
-		<option value={EFormat.eDXF}>current face as dxf</option>
+		<option value={EFormat.eSVG}>face one as svg</option>
+		<option value={EFormat.eDXF}>face one as dxf</option>
 		<option value={EFormat.ePAX}>all faces as pax.json</option>
-		<option value={EFormat.eZIP}>all as zip</option>
+		<option value={EFormat.eZIP}>all faces and more as zip</option>
 	</select>
 	<button on:click={downloadExport}>Save to File</button>
 </section>
