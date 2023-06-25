@@ -225,19 +225,20 @@
 		}
 		canvasRedrawZoom($dLayers);
 	}
+	let face = 'one';
 </script>
 
 <svelte:window bind:innerWidth={windowWidth} on:resize={canvasResize} />
 <section>
-	<h2>Drawing</h2>
+	<h2>
+		Drawing
+		<select bind:value={face}>
+			<option value="one">One</option>
+			<option value="ParametrixAll">All faces merged</option>
+		</select>
+	</h2>
 	<LabelCheckbox />
 	<div class="rack">
-		<TimeControl
-			tMax={pDef.sim.tMax}
-			tStep={pDef.sim.tStep}
-			tUpdate={pDef.sim.tUpdate}
-			bind:simTime
-		/>
 		<canvas
 			class="full"
 			width={canvas_size_min}
@@ -246,6 +247,12 @@
 			on:mousedown={cFullMouseDn}
 			on:mouseup={cFullMouseUp}
 			on:mousemove={cFullMouseMove}
+		/>
+		<TimeControl
+			tMax={pDef.sim.tMax}
+			tStep={pDef.sim.tStep}
+			tUpdate={pDef.sim.tUpdate}
+			bind:simTime
 		/>
 	</div>
 	<div class="rack">
@@ -278,8 +285,5 @@
 		//display: block;
 		background-color: colors.$pde-canvas;
 		margin: 0.2rem;
-	}
-	section > div.rack > canvas.full {
-		margin-bottom: 2.8rem;
 	}
 </style>
