@@ -10,7 +10,7 @@
 		fileSuffix,
 		fileMime,
 		fileBin
-	} from '$lib/exportFile';
+	} from '$lib/design/aaExportFile';
 
 	export let pDef: tParamDef;
 	export let geom: tGeomFunc;

@@ -1,5 +1,7 @@
 // dxf.ts
 
+import { radToDeg, withinZero2Pi } from './angle_utils';
+
 // floating precision for dxf export
 function ff(ifloat: number): string {
 	return ifloat.toFixed(4);
@@ -34,17 +36,30 @@ class DxfSeg {
 		this.p2y = p2y;
 	}
 }
-function dxfSeg(
-	arc: boolean,
+function dxfSegLine(p1x: number, p1y: number, p2x: number, p2y: number) {
+	const rDxfSeg = new DxfSeg(false, p1x, p1y, 0, 0, 0, p2x, p2y);
+	return rDxfSeg;
+}
+function dxfSegArc(
 	p1x: number,
 	p1y: number,
 	radius: number,
-	a1: number,
-	a2: number,
-	p2x: number,
-	p2y: number
+	aa1: number,
+	aa2: number,
+	arcCcw: boolean
 ) {
-	const rDxfSeg = new DxfSeg(arc, p1x, p1y, radius, a1, a2, p2x, p2y);
+	//const a1 = aa1;
+	//const a2 = aa2;
+	const a1 = arcCcw ? aa1 : aa2;
+	const a2 = arcCcw ? aa2 : aa1;
+	// DXF angles are in degree and preferably positive
+	const b1 = radToDeg(withinZero2Pi(a1));
+	const b2 = radToDeg(withinZero2Pi(a2));
+	const rDxfSeg = new DxfSeg(true, p1x, p1y, radius, b1, b2, 0, 0);
+	return rDxfSeg;
+}
+function dxfSegCircle(p1x: number, p1y: number, radius: number) {
+	const rDxfSeg = new DxfSeg(false, p1x, p1y, radius, 0, 0, 0, 0);
 	return rDxfSeg;
 }
 
@@ -82,4 +97,4 @@ function dxfWriter() {
 }
 
 export type { DxfSeg };
-export { dxfSeg, dxfWriter };
+export { dxfSegLine, dxfSegArc, dxfSegCircle, dxfWriter };

@@ -1,4 +1,4 @@
-// aaExport.ts
+// aaExportContent.ts
 
 import type { tGeom, tParamVal } from '$lib/design/aaParamGeom';
 import { figureToJson } from '$lib/geom/figure';

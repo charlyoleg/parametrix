@@ -8,9 +8,9 @@ import type { tCanvasAdjust } from './canvas_utils';
 //import { colorCanvasPoint } from '$lib/style/colors.scss';
 import {
 	//degToRad,
-	radToDeg,
+	//radToDeg,
 	roundZero,
-	withinZero2Pi,
+	//withinZero2Pi,
 	withinPiPi,
 	//withinZeroPi,
 	//withinHPiHPi,
@@ -32,7 +32,7 @@ import { line, Line, bisector, circleCenter } from './line';
 import * as segLib from './segment';
 import { svgPath, svgCircleString } from './svg';
 import type { DxfSeg } from './dxf';
-import { dxfSeg } from './dxf';
+import { dxfSegLine, dxfSegArc, dxfSegCircle } from './dxf';
 
 /* AContour abstract class */
 
@@ -670,19 +670,14 @@ class Contour extends AContour {
 		let py1 = 0;
 		for (const seg of this.segments) {
 			if (seg.sType === segLib.SegEnum.eStroke) {
-				rDxfSeg.push(dxfSeg(false, px1, py1, 0, 0, 0, seg.px, seg.py));
+				rDxfSeg.push(dxfSegLine(px1, py1, seg.px, seg.py));
 			}
 			if (seg.sType === segLib.SegEnum.eArc) {
 				try {
 					const seg2 = segLib.arcSeg1To2(px1, py1, seg);
-					//const a1 = seg2.a1;
-					//const a2 = seg2.a2;
-					const a1 = seg2.arcCcw ? seg2.a1 : seg2.a2;
-					const a2 = seg2.arcCcw ? seg2.a2 : seg2.a1;
-					// DXF angles are in degree and preferably positive
-					const b1 = radToDeg(withinZero2Pi(a1));
-					const b2 = radToDeg(withinZero2Pi(a2));
-					rDxfSeg.push(dxfSeg(true, seg2.pc.cx, seg2.pc.cy, seg.radius, b1, b2, 0, 0));
+					rDxfSeg.push(
+						dxfSegArc(seg2.pc.cx, seg2.pc.cy, seg.radius, seg2.a1, seg2.a2, seg2.arcCcw)
+					);
 				} catch (emsg) {
 					console.log('err413: ' + emsg);
 				}
@@ -750,7 +745,7 @@ class ContourCircle extends AContour {
 	}
 	toDxfSeg(): Array<DxfSeg> {
 		const rDxfSeg: Array<DxfSeg> = [];
-		rDxfSeg.push(dxfSeg(false, this.px, this.py, this.radius, 0, 0, 0, 0));
+		rDxfSeg.push(dxfSegCircle(this.px, this.py, this.radius));
 		return rDxfSeg;
 	}
 }
