@@ -6,9 +6,9 @@ function ff(ifloat: number): string {
 }
 
 function svgCircleString(cx: number, cy: number, radius: number) {
-	const rSvg = `<circle cx=${ff(cx)} cy=${ff(cy)} r=${ff(
+	const rSvg = `<circle cx="${ff(cx)}" cy="${ff(cy)}" r="${ff(
 		radius
-	)} stroke="black" stroke-width="1" fill="none" />`;
+	)}" stroke="black" stroke-width="1" fill="none" />`;
 	return rSvg;
 }
 
@@ -59,12 +59,14 @@ class SvgWriter {
 		if (this.groupActive) {
 			throw `err321: group must be closed before opening a new one`;
 		}
-		this.payloadStr += `<g id=${groupId}>`;
+		this.groupActive = true;
+		this.payloadStr += `<g id="${groupId}">`;
 	}
 	closeGroup() {
 		if (!this.groupActive) {
 			throw `err331: group is not active so can not be closed`;
 		}
+		this.groupActive = false;
 		this.payloadStr += `</g>`;
 	}
 	closeSvg() {
