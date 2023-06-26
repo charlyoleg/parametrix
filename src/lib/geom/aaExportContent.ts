@@ -1,8 +1,61 @@
 // aaExportContent.ts
 
 import type { tGeom, tParamVal } from './aaParamGeom';
-import { figureToPaxF } from './figure';
+import { Point, pointMinMax } from './point';
+import type { tContour } from './contour';
+import { svgWriter } from './svg';
+import { dxfWriter } from './dxf';
+import type { tPaxContour } from './pax';
+import { paxWriter } from './pax';
 import * as zip from '@zip.js/zip.js';
+
+function figureToSvg(aCtr: Array<tContour>): string {
+	const pts: Array<Point> = [];
+	for (const ctr of aCtr) {
+		pts.push(...ctr.generatePoints());
+	}
+	const [Xmin, Xmax, Ymin, Ymax] = pointMinMax(pts);
+	const Xdelta = Math.round((Xmax - Xmin) * 1.1) + 10;
+	const Ydelta = Math.round((Ymax - Ymin) * 1.1) + 10;
+	const Xmin2 = Math.round(Xmin - Xdelta * 0.05);
+	const Ymin2 = Math.round(Ymin - Ydelta * 0.05);
+	const svg = svgWriter(Xmin2, Xdelta, Ymin2, Ydelta);
+	for (const ctr of aCtr) {
+		svg.addSvgString(ctr.toSvg());
+	}
+	const rSvg = svg.stringify();
+	return rSvg;
+}
+
+function figureToDxf(aCtr: Array<tContour>): string {
+	const dxf = dxfWriter();
+	//const firstDxfLayer = dxf.addLayer('first');
+	for (const ctr of aCtr) {
+		if (ctr.circle) {
+			const seg = ctr.toDxfSeg()[0];
+			dxf.addCircle(seg.p1x, seg.p1y, seg.radius);
+		} else {
+			for (const seg of ctr.toDxfSeg()) {
+				if (seg.arc) {
+					dxf.addArc(seg.p1x, seg.p1y, seg.radius, seg.a1, seg.a2);
+				} else {
+					dxf.addLine(seg.p1x, seg.p1y, seg.p2x, seg.p2y);
+				}
+			}
+		}
+	}
+	const rDxf = dxf.stringify();
+	return rDxf;
+}
+
+function figureToPaxF(aCtr: Array<tContour>): Array<tPaxContour> {
+	const pax = paxWriter();
+	for (const ctr of aCtr) {
+		pax.addContour(ctr.toPax());
+	}
+	const rPaxF = pax.getFigure();
+	return rPaxF;
+}
 
 function makePax(paramVal: tParamVal, geome0: tGeom, designName: string): string {
 	const paxJson = {
@@ -40,4 +93,4 @@ async function makeZip(
 	return rFileContent;
 }
 
-export { makePax, makeZip };
+export { figureToSvg, figureToDxf, makePax, makeZip };

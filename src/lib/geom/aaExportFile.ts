@@ -1,8 +1,7 @@
 // aaExportFile.ts
 
 import type { tGeomFunc, tParamVal } from './aaParamGeom';
-import { makePax, makeZip } from './aaExportContent';
-import { figureToSvg, figureToDxf } from './figure';
+import { figureToSvg, figureToDxf, makePax, makeZip } from './aaExportContent';
 
 enum EFormat {
 	eSVG,
