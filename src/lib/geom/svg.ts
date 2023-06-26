@@ -39,26 +39,53 @@ function svgPath(): SvgPath {
 	return rSvgPath;
 }
 
-class SvgWrite {
+class SvgWriter {
 	svgStr: string;
-	constructor(xMin: number, xWidth: number, yMin: number, yHeight: number) {
+	payloadStr: string;
+	groupActive: boolean;
+	constructor() {
+		this.payloadStr = '';
+		this.svgStr = '';
+		this.groupActive = false;
+	}
+	addHeader(xMin: number, xWidth: number, yMin: number, yHeight: number) {
 		const viewBoxValues = `${xMin} ${yMin} ${xWidth} ${yHeight}`;
 		this.svgStr = `<svg width="${xWidth}" height="${yHeight}" viewBox="${viewBoxValues}" xmlns="http://www.w3.org/2000/svg">`;
 	}
 	addSvgString(svgString: string) {
-		this.svgStr += svgString;
+		this.payloadStr += svgString;
 	}
-	close() {
+	addGroup(groupId: string) {
+		if (this.groupActive) {
+			throw `err321: group must be closed before opening a new one`;
+		}
+		this.payloadStr += `<g id=${groupId}>`;
+	}
+	closeGroup() {
+		if (!this.groupActive) {
+			throw `err331: group is not active so can not be closed`;
+		}
+		this.payloadStr += `</g>`;
+	}
+	closeSvg() {
+		if (this.svgStr === '') {
+			throw `err301: no header set for the svg`;
+		}
+		if (this.groupActive) {
+			throw `err311: group is not closed`;
+		}
+		this.svgStr += this.payloadStr;
 		this.svgStr += '</svg>';
 	}
 	stringify(): string {
-		this.close();
+		this.closeSvg();
 		return this.svgStr;
 	}
 }
-function svgWriter(xMin: number, xWidth: number, yMin: number, yHeight: number): SvgWrite {
-	const rSvgWrite = new SvgWrite(xMin, xWidth, yMin, yHeight);
+function svgWriter(): SvgWriter {
+	const rSvgWrite = new SvgWriter();
 	return rSvgWrite;
 }
 
+export type { SvgWriter };
 export { svgWriter, svgPath, svgCircleString };
