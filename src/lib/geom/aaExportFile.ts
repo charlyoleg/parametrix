@@ -11,7 +11,12 @@ enum EFormat {
 	eZIP
 }
 
-function fileTextContent(geom: tGeomFunc, paramVal: tParamVal, exportFormat: EFormat): string {
+function fileTextContent(
+	geom: tGeomFunc,
+	paramVal: tParamVal,
+	designName: string,
+	exportFormat: EFormat
+): string {
 	const geome0 = geom(0, paramVal);
 	let rFileContent = '';
 	if (!geome0.calcErr) {
@@ -20,7 +25,7 @@ function fileTextContent(geom: tGeomFunc, paramVal: tParamVal, exportFormat: EFo
 		} else if (exportFormat === EFormat.eDXF) {
 			rFileContent = figureToDxf(geome0.fig.mainList);
 		} else if (exportFormat === EFormat.ePAX) {
-			rFileContent = makePax(paramVal, geome0);
+			rFileContent = makePax(paramVal, geome0, designName);
 		} else {
 			console.log(`err912: unknown exportFormat ${exportFormat}`);
 		}
@@ -34,6 +39,7 @@ async function fileBinContent(
 	geom: tGeomFunc,
 	tSim: number,
 	paramVal: tParamVal,
+	designName: string,
 	exportFormat: EFormat
 ): Promise<Blob> {
 	const geome0 = geom(0, paramVal);
@@ -41,7 +47,7 @@ async function fileBinContent(
 	let rFileContent = new Blob();
 	if (!geome0.calcErr && !geome1.calcErr) {
 		if (exportFormat === EFormat.eZIP) {
-			rFileContent = await makeZip(geome0);
+			rFileContent = await makeZip(paramVal, geome0, tSim, geome1, designName);
 		} else {
 			console.log(`err913: unknown exportFormat ${exportFormat}`);
 		}

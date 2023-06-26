@@ -84,10 +84,16 @@
 		const fBin = fileBin(exportFormat);
 		const fName = pDef.page + '_' + dateString() + '.' + fSuffix;
 		if (fBin) {
-			const fContent = await fileBinContent(geom, simTime, $storePV[pDef.page], exportFormat);
+			const fContent = await fileBinContent(
+				geom,
+				simTime,
+				$storePV[pDef.page],
+				pDef.page,
+				exportFormat
+			);
 			download_binFile(fName, fContent);
 		} else {
-			const fContent = fileTextContent(geom, $storePV[pDef.page], exportFormat);
+			const fContent = fileTextContent(geom, $storePV[pDef.page], pDef.page, exportFormat);
 			download_textFile(fName, fContent, fMime);
 		}
 	}
