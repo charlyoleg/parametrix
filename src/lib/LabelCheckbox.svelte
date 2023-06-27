@@ -8,6 +8,7 @@
 	<label><input type="checkbox" bind:checked={$dLayers.second} />second parts</label>
 	<label><input type="checkbox" bind:checked={$dLayers.secondB} />second skeletons</label>
 	<label><input type="checkbox" bind:checked={$dLayers.dynamics} />dynamics</label>
+	<label><input type="checkbox" bind:checked={$dLayers.ruler} />ruler</label>
 	<label><input type="checkbox" bind:checked={$dLayers.refframe} />frame of reference</label>
 	<label><input type="checkbox" bind:checked={$dLayers.points} />points</label>
 	<label><input type="checkbox" bind:checked={$dLayers.lines} />lines</label>

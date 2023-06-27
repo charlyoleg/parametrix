@@ -14,6 +14,7 @@ const colors = {
 	second: 'Violet',
 	secondB: 'SlateGrey',
 	dynamics: 'Tomato',
+	ruler: 'blue',
 	origin: 'red',
 	reference: 'blue',
 	mouse: 'yellow'
