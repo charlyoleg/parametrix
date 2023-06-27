@@ -276,6 +276,9 @@
 	section > h2 {
 		@include styling.mix-h2;
 	}
+	section > h2 > select {
+		@include styling.mix-button;
+	}
 	section > div.rack {
 		display: inline-block;
 		margin: 0 1rem 0;
