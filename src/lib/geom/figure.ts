@@ -177,7 +177,7 @@ class Figure {
 			}
 		}
 		if (layers.secondB) {
-			for (const li of this.secondList) {
+			for (const li of this.secondBList) {
 				li.draw(ctx, adjust, colors.secondB);
 			}
 		}
