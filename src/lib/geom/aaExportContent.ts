@@ -1,8 +1,10 @@
 // aaExportContent.ts
 
 import type { tGeom, tParamVal } from './aaParamGeom';
+import { colors } from './canvas_utils';
 import { Point, point, pointMinMax } from './point';
 import type { tContour } from './contour';
+import type { Figure } from './figure';
 import type { SvgWriter } from './svg';
 import { svgWriter } from './svg';
 import { dxfWriter } from './dxf';
@@ -55,13 +57,17 @@ class SvgWriter2 {
 		this.minMax = new MinMaxPoint();
 		this.svg = svgWriter();
 	}
-	addAContour(aCtr: Array<tContour>, groupId = '') {
+	addAContour(aCtr: Array<tContour>, groupId = '', color = colors.contour) {
 		this.minMax.addAContour(aCtr);
 		if (groupId !== '') {
 			this.svg.addGroup(groupId);
 		}
 		for (const ctr of aCtr) {
-			this.svg.addSvgString(ctr.toSvg());
+			let ctrColor = ctr.imposedColor;
+			if (ctrColor === '') {
+				ctrColor = color;
+			}
+			this.svg.addSvgString(ctr.toSvg(ctrColor));
 		}
 		if (groupId !== '') {
 			this.svg.closeGroup();
@@ -81,6 +87,16 @@ function figureToSvg(aCtr: Array<tContour>): string {
 	const sw2 = svgWriter2();
 	sw2.addAContour(aCtr);
 	return sw2.stringify();
+}
+function figureToSvgDeco(fig: Figure) {
+	const sw2 = svgWriter2();
+	sw2.addAContour(fig.mainList, 'main', colors.main);
+	sw2.addAContour(fig.mainBList, 'mainB', colors.mainB);
+	sw2.addAContour(fig.secondList, 'second', colors.second);
+	sw2.addAContour(fig.secondBList, 'secondB', colors.secondB);
+	sw2.addAContour(fig.dynamicsList, 'dynamics', colors.dynamics);
+	const rSvgDeco = sw2.stringify();
+	return rSvgDeco;
 }
 
 // DXF
@@ -150,21 +166,9 @@ async function makeZip(
 	await zipWriter.add(`face_${designName}_one.svg`, svgOne);
 	const dxfOne = new zip.TextReader(figureToDxf(geome0.fig.mainList));
 	await zipWriter.add(`face_${designName}_one.dxf`, dxfOne);
-	const sw2One = svgWriter2();
-	sw2One.addAContour(geome0.fig.mainList, 'main');
-	sw2One.addAContour(geome0.fig.mainBList, 'mainB');
-	sw2One.addAContour(geome0.fig.secondList, 'second');
-	sw2One.addAContour(geome0.fig.secondBList, 'secondB');
-	sw2One.addAContour(geome0.fig.dynamicsList, 'dynamics');
-	const svgOneDeco = new zip.TextReader(sw2One.stringify());
+	const svgOneDeco = new zip.TextReader(figureToSvgDeco(geome0.fig));
 	await zipWriter.add(`deco_${designName}_one.svg`, svgOneDeco);
-	const sw2OneT = svgWriter2();
-	sw2OneT.addAContour(geome0.fig.mainList, 'main');
-	sw2OneT.addAContour(geome0.fig.mainBList, 'mainB');
-	sw2OneT.addAContour(geome0.fig.secondList, 'second');
-	sw2OneT.addAContour(geome0.fig.secondBList, 'secondB');
-	sw2OneT.addAContour(geome0.fig.dynamicsList, 'dynamics');
-	const svgOneDecoT = new zip.TextReader(sw2OneT.stringify());
+	const svgOneDecoT = new zip.TextReader(figureToSvgDeco(geome1.fig));
 	await zipWriter.add(`deco_${designName}_one_t${tSim}.svg`, svgOneDecoT);
 	// zip writer finalization
 	await zipWriter.close();

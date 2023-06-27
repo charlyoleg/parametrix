@@ -5,10 +5,14 @@ function ff(ifloat: number): string {
 	return ifloat.toFixed(4);
 }
 
-function svgCircleString(cx: number, cy: number, radius: number) {
+function svgCircleString(cx: number, cy: number, radius: number, color = '') {
+	let sColor = color;
+	if (sColor === '') {
+		sColor = 'black';
+	}
 	const rSvg = `<circle cx="${ff(cx)}" cy="${ff(cy)}" r="${ff(
 		radius
-	)}" stroke="black" stroke-width="1" fill="none" />`;
+	)}" stroke="${sColor}" stroke-width="1" fill="none" />`;
 	return rSvg;
 }
 
@@ -29,8 +33,12 @@ class SvgPath {
 		const aCcw = ccw ? 1 : 0;
 		this.pathD += ` A ${aRadius} ${aRadius} 0 ${aLarge} ${aCcw} ${ff(px)} ${ff(py)}`;
 	}
-	stringify(): string {
-		const rSvg = `<path d="${this.pathD} Z" stroke="black" stroke-width="1" fill="none" />`;
+	stringify(color = ''): string {
+		let sColor = color;
+		if (sColor === '') {
+			sColor = 'black';
+		}
+		const rSvg = `<path d="${this.pathD} Z" stroke="${sColor}" stroke-width="1" fill="none" />`;
 		return rSvg;
 	}
 }

@@ -40,13 +40,14 @@ import { paxPath, paxCircle } from './pax';
 
 abstract class AContour {
 	abstract circle: boolean;
+	abstract imposedColor: string;
 	abstract draw(ctx: CanvasRenderingContext2D, cAdjust: tCanvasAdjust, color: string): void;
 	abstract extractSkeleton(): AContour;
 	abstract generateContour(): AContour;
 	abstract generatePoints(): Array<Point>;
 	abstract generateLines(): Array<Line>;
 	abstract check(): string;
-	abstract toSvg(): string;
+	abstract toSvg(color?: string): string;
 	abstract toDxfSeg(): Array<DxfSeg>;
 	abstract toPax(): tPaxContour;
 }
@@ -651,7 +652,7 @@ class Contour extends AContour {
 		this.checkContour(ctrG);
 		return segLib.gSegDbg.getMsg();
 	}
-	toSvg(): string {
+	toSvg(color = ''): string {
 		const sPath = svgPath();
 		for (const seg of this.segments) {
 			if (seg.sType === segLib.SegEnum.eStart) {
@@ -664,7 +665,7 @@ class Contour extends AContour {
 				console.log(`err631: contour.toSvg has unknown segment type ${seg.sType}`);
 			}
 		}
-		const rSvg = sPath.stringify();
+		const rSvg = sPath.stringify(color);
 		return rSvg;
 	}
 	toDxfSeg(): Array<DxfSeg> {
@@ -758,8 +759,8 @@ class ContourCircle extends AContour {
 	check(): string {
 		return '';
 	}
-	toSvg(): string {
-		const rSvg = svgCircleString(this.px, this.py, this.radius);
+	toSvg(color = ''): string {
+		const rSvg = svgCircleString(this.px, this.py, this.radius, color);
 		return rSvg;
 	}
 	toDxfSeg(): Array<DxfSeg> {
