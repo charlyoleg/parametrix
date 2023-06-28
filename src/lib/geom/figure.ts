@@ -145,6 +145,35 @@ class Figure {
 		//console.log(`dbg150: ${rCanvasAdjust.shiftX}, ${rCanvasAdjust.scaleX}`);
 		return rCanvasAdjust;
 	}
+	quantifyRuler(canvasWidth: number, adjust: tCanvasAdjust) {
+		const minWidth = canvasWidth / 10;
+		const lsizep = minWidth / adjust.scaleX;
+		let lref = 0.0001;
+		while (lref < lsizep) {
+			lref *= 10;
+		}
+		if (lref / 5 > lsizep) {
+			lref /= 5;
+		} else if (lref / 2 > lsizep) {
+			lref /= 2;
+		}
+		const lsize = lref * adjust.scaleX; // radius2canvas
+		return [lref, lsize];
+	}
+	drawRuler(ctx: CanvasRenderingContext2D, adjust: tCanvasAdjust, color: string) {
+		const [lref, lsize] = this.quantifyRuler(ctx.canvas.width, adjust);
+		const xpos = ctx.canvas.width - 10 - lsize;
+		//ctx.clearRect(xpos, 5, 100, 25);
+		ctx.font = '15px Arial';
+		ctx.fillStyle = color;
+		ctx.fillText(`${lref.toFixed(4)}`, xpos, 20);
+		ctx.beginPath();
+		ctx.moveTo(xpos, 25);
+		ctx.lineTo(xpos + lsize, 25);
+		ctx.lineTo(xpos + lsize, 25 + lsize);
+		ctx.strokeStyle = color;
+		ctx.stroke();
+	}
 	draw(ctx: CanvasRenderingContext2D, adjust: tCanvasAdjust, layers: tLayers) {
 		if (layers.points) {
 			for (const p of this.pointList) {
@@ -187,7 +216,7 @@ class Figure {
 			}
 		}
 		if (layers.ruler) {
-			//TODO
+			this.drawRuler(ctx, adjust, colors.ruler);
 		}
 		if (layers.refframe) {
 			for (const i of [10, 100, 200]) {
@@ -220,6 +249,21 @@ function initLayers(): tLayers {
 	};
 	return layers;
 }
+function copyLayers(iLayers: tLayers): tLayers {
+	const layers: tLayers = {
+		points: iLayers.points,
+		lines: iLayers.lines,
+		vectors: iLayers.vectors,
+		main: iLayers.main,
+		mainB: iLayers.mainB,
+		second: iLayers.second,
+		secondB: iLayers.secondB,
+		dynamics: iLayers.dynamics,
+		ruler: iLayers.ruler,
+		refframe: iLayers.refframe
+	};
+	return layers;
+}
 
 /* export */
 
@@ -245,5 +289,6 @@ export {
 	contour,
 	contourCircle,
 	figure,
-	initLayers
+	initLayers,
+	copyLayers
 };

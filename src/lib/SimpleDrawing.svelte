@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { tCanvasAdjust } from '$lib/geom/canvas_utils';
 	//import { colors } from '$lib/geom/canvas_utils';
-	//import { initLayers } from '$lib/geom/geom';
 	import type { tLayers, Figure, tParamVal, tGeomFunc } from '$lib/geom/geom';
+	import { copyLayers } from '$lib/geom/geom';
 	import { storePV } from '$lib/storePVal';
 	import { dLayers } from '$lib/drawingLayers';
 	import { onMount } from 'svelte';
@@ -18,11 +18,13 @@
 	let aFigure: Figure;
 	let mAdjust: tCanvasAdjust;
 	function canvasRedrawMini(iLayers: tLayers) {
+		const sLayers = copyLayers(iLayers);
+		sLayers.ruler = false;
 		const ctx1 = canvasMini.getContext('2d') as CanvasRenderingContext2D;
 		ctx1.clearRect(0, 0, ctx1.canvas.width, ctx1.canvas.height);
 		try {
 			mAdjust = aFigure.getAdjustFull(ctx1.canvas.width, ctx1.canvas.height);
-			aFigure.draw(ctx1, mAdjust, iLayers);
+			aFigure.draw(ctx1, mAdjust, sLayers);
 		} catch (emsg) {
 			//rGeome.logstr += emsg;
 			console.log(emsg);
