@@ -179,16 +179,25 @@
 	// just drawing a rectangle to help zooming
 	function cFullMouseMove(eve: MouseEvent) {
 		//console.log(`dbg179: cFullMouseMove ${eve.offsetX} ${eve.offsetY} ${eve.buttons}`);
+		const ctx1 = canvasFull.getContext('2d') as CanvasRenderingContext2D;
 		// left click
 		if (eve.buttons === 1) {
 			const diffX = eve.offsetX - mouseF.offsetX;
 			const diffY = eve.offsetY - mouseF.offsetY;
 			canvasRedrawFull($dLayers);
-			const ctx1 = canvasFull.getContext('2d') as CanvasRenderingContext2D;
+			//const ctx1 = canvasFull.getContext('2d') as CanvasRenderingContext2D;
 			ctx1.beginPath();
 			ctx1.rect(mouseF.offsetX, mouseF.offsetY, diffX, diffY);
 			ctx1.strokeStyle = colors.mouse;
 			ctx1.stroke();
+		}
+		// mouse position
+		if ($dLayers.ruler) {
+			const [p1x, p1y] = canvas2point(eve.offsetX, eve.offsetY, cAdjust);
+			ctx1.clearRect(5, 5, 200, 25);
+			ctx1.font = '15px Arial';
+			ctx1.fillStyle = colors.ruler;
+			ctx1.fillText(`x: ${p1x.toFixed(4)} y: ${p1y.toFixed(4)}`, 5, 20);
 		}
 	}
 	// translate Zoom drawing
@@ -215,6 +224,16 @@
 			const [p2x, p2y] = canvas2point(eve.offsetX, eve.offsetY, mouseZadjust);
 			zAdjust = adjustTranslate(mouseZx, mouseZy, p2x, p2y, mouseZadjust);
 			canvasRedrawZoom($dLayers);
+		} else {
+			// mouse position
+			if ($dLayers.ruler) {
+				const ctx2 = canvasZoom.getContext('2d') as CanvasRenderingContext2D;
+				const [p2x, p2y] = canvas2point(eve.offsetX, eve.offsetY, zAdjust);
+				ctx2.clearRect(5, 5, 200, 25);
+				ctx2.font = '15px Arial';
+				ctx2.fillStyle = colors.ruler;
+				ctx2.fillText(`x: ${p2x.toFixed(4)} y: ${p2y.toFixed(4)}`, 5, 20);
+			}
 		}
 	}
 	function cZoomWheel(eve: WheelEvent) {
