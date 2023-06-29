@@ -23,6 +23,7 @@
 		}
 		return rWarn;
 	}
+	let optFaces: Array<string> = [];
 	let face: string;
 	let simTime = 0;
 	// log and paramChange
@@ -36,6 +37,7 @@
 		logValue += geome.logstr;
 		calcErr = geome.calcErr;
 		calcWarn = checkWarn(geome.logstr);
+		optFaces = Object.keys(geome.fig);
 		//geomRedraw(simTime);
 	}
 	function paramChange() {
@@ -43,7 +45,7 @@
 	}
 	$: paramChange2(pDef.page); // for reactivity on page change
 	// export drawings
-	let exportFormat: EFormat;
+	let exportFace: string;
 	function download_binFile(fName: string, fContent: Blob) {
 		//create temporary an invisible element
 		const elem_a_download = document.createElement('a');
@@ -79,6 +81,8 @@
 		return rDateStr;
 	}
 	async function downloadExport() {
+		console.log(`dbg883: exportFace ${exportFace}`);
+		const exportFormat = EFormat.eSVG;
 		//console.log(`exportFormat ${exportFormat}`);
 		const fSuffix = fileSuffix(exportFormat);
 		const fMime = fileMime(exportFormat);
@@ -113,14 +117,20 @@
 		class:colorWarn={calcWarn}
 	/>
 </section>
-<Drawing {pDef} {geom} bind:face bind:simTime />
+<Drawing {pDef} {geom} {optFaces} bind:face bind:simTime />
 <section>
 	<h2>Export</h2>
-	<select bind:value={exportFormat}>
-		<option value={EFormat.eSVG}>face one as svg</option>
-		<option value={EFormat.eDXF}>face one as dxf</option>
-		<option value={EFormat.ePAX}>all faces as pax.json</option>
-		<option value={EFormat.eZIP}>all faces and more as zip</option>
+	<select bind:value={exportFace}>
+		{#each optFaces as optFace}
+			<option value="svg_{optFace}">face {optFace} as svg</option>
+		{/each}
+		<option value="allsvg">all faces merged as svg</option>
+		{#each optFaces as optFace}
+			<option value="dxf_{optFace}">face {optFace} as dxf</option>
+		{/each}
+		<option value="alldxf">all faces merged as dxf</option>
+		<option value="pax">all faces as pax.json</option>
+		<option value="zip">all faces and more as zip</option>
 	</select>
 	<button on:click={downloadExport}>Save to File</button>
 </section>

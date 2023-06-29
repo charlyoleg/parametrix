@@ -24,7 +24,8 @@
 
 	export let pDef: tParamDef;
 	export let geom: tGeomFunc;
-	export let face = 'one';
+	export let optFaces: Array<string>;
+	export let face: string;
 	export let simTime = 0;
 
 	let windowWidth: number;
@@ -78,10 +79,23 @@
 	}
 	let domInit = 0;
 	function geomRedrawSub(iSimTime: number, pVal: tParamVal, iFace: string, iLayers: tLayers) {
-		aFigure = geom(iSimTime, pVal).fig[iFace];
-		canvasRedrawFull(iLayers);
-		canvasRedrawZoom(iLayers);
-		domInit = 1;
+		const FigList = geom(iSimTime, pVal).fig;
+		const FigListKeys = Object.keys(FigList);
+		let sFace = iFace;
+		if (!FigListKeys.includes(sFace)) {
+			console.log(`warn403: Drawing has an invalid face ${sFace}`);
+			if (FigListKeys.length > 0) {
+				sFace = FigListKeys[0];
+				face = sFace; // update input select
+			} else {
+				console.log(`warn404: Drawing has an empty face list`);
+			}
+		}
+		if (FigListKeys.includes(sFace)) {
+			aFigure = FigList[sFace];
+			canvasRedrawFull(iLayers);
+			canvasRedrawZoom(iLayers);
+		}
 	}
 	function geomRedraw(iSimTime: number, iFace: string) {
 		geomRedrawSub(iSimTime, $storePV[pDef.page], iFace, $dLayers);
@@ -91,6 +105,7 @@
 		canvasSetSize();
 		geomRedraw(simTime, face);
 		//paramChange();
+		domInit = 1;
 	});
 	// reactivity on simTime, $storePV and layers
 	$: {
@@ -250,7 +265,6 @@
 		}
 		canvasRedrawZoom($dLayers);
 	}
-	const optFaces = ['one', 'two'];
 </script>
 
 <svelte:window bind:innerWidth={windowWidth} on:resize={canvasResize} />
