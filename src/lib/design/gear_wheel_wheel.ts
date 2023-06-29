@@ -2,7 +2,15 @@
 
 //import { contour, contourCircle, figure, degToRad } from '$lib/geom/geom';
 import type { tParamDef, tParamVal, tGeom, tPageDef } from '$lib/geom/geom';
-import { figure, degToRad, ffix, pNumber, pCheckbox, pDropdown } from '$lib/geom/geom';
+import {
+	contourCircle,
+	figure,
+	degToRad,
+	ffix,
+	pNumber,
+	pCheckbox,
+	pDropdown
+} from '$lib/geom/geom';
 import * as gwHelper from './gearWheelProfile';
 import * as welem from './wheelElements';
 
@@ -107,9 +115,12 @@ const pDef: tParamDef = {
 };
 
 function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome: tGeom = { fig: figure(), logstr: '', calcErr: true };
+	const rGeome: tGeom = { fig: {}, logstr: '', calcErr: true };
+	const figOne = figure();
+	const figTwo = figure();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
+		// Figure One
 		// re-arrange parameters
 		const gp1 = gwHelper.gwProfile();
 		const gp2 = gwHelper.gwProfile();
@@ -142,27 +153,27 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const gearAL = gwHelper.actionLine(gp1, gp2, initAngle1, acc, d12, param['gw2Position']);
 		gearAL.prepare();
 		for (const laCtr of gearAL.getContours()) {
-			rGeome.fig.addDynamics(laCtr);
+			figOne.addDynamics(laCtr);
 		}
-		rGeome.fig.addPoints(gearAL.getContactPoint());
+		figOne.addPoints(gearAL.getContactPoint());
 		gp2.set6Angles(gearAL.getInitAngle2(), acc + Math.PI);
 		rGeome.logstr += gearAL.getMsg();
 		gp1.set7InvoluteDetails(param['involArcPairs1'], param['skinThickness1']);
 		gp2.set7InvoluteDetails(param['involArcPairs2'], param['skinThickness2']);
 		// construction lines and circles
 		for (const refCircle of gp1.getRefCircles()) {
-			rGeome.fig.addDynamics(refCircle);
+			figOne.addDynamics(refCircle);
 		}
 		for (const refCircle of gp2.getRefCircles()) {
-			rGeome.fig.addDynamics(refCircle);
+			figOne.addDynamics(refCircle);
 		}
-		rGeome.fig.addDynamics(gp1.getToothRef());
-		rGeome.fig.addDynamics(gp2.getToothRef());
+		figOne.addDynamics(gp1.getToothRef());
+		figOne.addDynamics(gp2.getToothRef());
 		// gearwheel-1
 		const gp1p = gp1.getProfile();
 		rGeome.logstr += gp1.getMsg();
 		rGeome.logstr += gp1p.check();
-		rGeome.fig.addMain(gp1p);
+		figOne.addMain(gp1p);
 		if (param['centralAxis'] === 1) {
 			const g1axis = welem.axisTorque(
 				gp1.cx,
@@ -176,7 +187,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 				initAngle1
 			);
 			rGeome.logstr += g1axis.check();
-			rGeome.fig.addMain(g1axis);
+			figOne.addMain(g1axis);
 		}
 		if (param['hollow'] === 1) {
 			const materialHeightExtMax = gp1.br;
@@ -200,12 +211,16 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			);
 			for (const g1hollowE of g1hollow) {
 				rGeome.logstr += g1hollowE.check();
-				rGeome.fig.addMain(g1hollowE);
+				figOne.addMain(g1hollowE);
 			}
 		}
 		const gp2p = gp2.getProfile();
 		rGeome.logstr += gp2p.check();
-		rGeome.fig.addSecond(gp2p);
+		figOne.addSecond(gp2p);
+		// Figure Two
+		figTwo.addMain(contourCircle(0, 0, 50, 'black'));
+		figTwo.addMain(contourCircle(0, 0, 60, 'yellow'));
+		rGeome.fig = { one: figOne, two: figTwo };
 		rGeome.logstr += 'gear_wheel_wheel draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {

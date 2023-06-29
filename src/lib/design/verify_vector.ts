@@ -34,21 +34,21 @@ const pDef: tParamDef = {
 };
 
 function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome: tGeom = { fig: figure(), logstr: '', calcErr: true };
+	const rGeome: tGeom = { fig: { one: figure() }, logstr: '', calcErr: true };
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const p1 = point(param['p1x'], param['p1y'] + t);
 		const p2 = point(param['p2x'], param['p2y']);
 		const v1 = vector(degToRad(param['v1a']), param['v1l'], p1);
 		const v2 = vector(degToRad(param['v2a']), param['v2l'], p1);
-		rGeome.fig.addPoint(p1);
-		rGeome.fig.addPoint(p2);
-		rGeome.fig.addVector(v1);
-		rGeome.fig.addVector(v2);
+		rGeome.fig.one.addPoint(p1);
+		rGeome.fig.one.addPoint(p2);
+		rGeome.fig.one.addVector(v1);
+		rGeome.fig.one.addVector(v2);
 		const v3 = v1.add(v2);
 		const p3 = v3.translatePoint(p2);
-		rGeome.fig.addVector(v3);
-		rGeome.fig.addPoint(p3);
+		rGeome.fig.one.addVector(v3);
+		rGeome.fig.one.addPoint(p3);
 		rGeome.logstr += 'verify_vector draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {

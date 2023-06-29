@@ -33,7 +33,7 @@ type tParamDef = {
 type tParamVal = { [index: string]: number };
 type tAllVal = { lastModif: string; pVal: tParamVal; comment: string };
 type tGeom = {
-	fig: Figure;
+	fig: { [index: string]: Figure };
 	logstr: string;
 	calcErr: boolean;
 };

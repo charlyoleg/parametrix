@@ -30,7 +30,7 @@ const pDef: tParamDef = {
 };
 
 function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome: tGeom = { fig: figure(), logstr: '', calcErr: true };
+	const rGeome: tGeom = { fig: { one: figure() }, logstr: '', calcErr: true };
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const r1 = param['r1'] + t;
@@ -57,7 +57,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.closeSegStroke()
 			.addCornerRounded(r1);
 		rGeome.logstr += ctr1.check();
-		rGeome.fig.addMain(ctr1);
+		rGeome.fig.one.addMain(ctr1);
 		const l2 = 100;
 		const ctr2 = contour(300, 0);
 		for (let i = 0; i < 4; i++) {
@@ -72,7 +72,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 				.addCornerRounded(r2);
 		}
 		rGeome.logstr += ctr2.check();
-		rGeome.fig.addMain(ctr2);
+		rGeome.fig.one.addMain(ctr2);
 		const l3 = 100;
 		const ra3 = 70;
 		const ctr3 = contour(0, 600).addSegStrokeR(l3, l3);
@@ -108,7 +108,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		}
 		ctr3.addSegStrokeR(l3, 0).addSegStrokeR(l3, -l3).closeSegStroke();
 		rGeome.logstr += ctr3.check();
-		rGeome.fig.addMain(ctr3);
+		rGeome.fig.one.addMain(ctr3);
 		const ctr3b = contour(0, 900)
 			.addCornerRounded(r3)
 			.addPointR(l3, l3)
@@ -143,7 +143,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addSegStrokeR(-l3, 0)
 			.closeSegStroke();
 		rGeome.logstr += ctr3b.check();
-		rGeome.fig.addMain(ctr3b);
+		rGeome.fig.one.addMain(ctr3b);
 		const l4 = 200;
 		const ra4 = 180;
 		const ctr4 = contour(0, 2000)
@@ -157,7 +157,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addSegArc(1.4 * ra4, false, true)
 			.addCornerRounded(r4);
 		rGeome.logstr += ctr4.check();
-		rGeome.fig.addMain(ctr4);
+		rGeome.fig.one.addMain(ctr4);
 		const ctr4b = contour(400, 2000)
 			.addPointR(0, 1.7 * l4)
 			.addSegArc(2.3 * ra4, false, false)
@@ -169,7 +169,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addSegArc(1.4 * ra4, false, false)
 			.addCornerRounded(r4);
 		rGeome.logstr += ctr4b.check();
-		rGeome.fig.addMain(ctr4b);
+		rGeome.fig.one.addMain(ctr4b);
 		const ctr4c = contour(1000, 2000)
 			.addPointR(l4, 0)
 			.addSegArc(0.6 * ra4, true, true)
@@ -181,7 +181,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addSegArc(1.4 * ra4, true, true)
 			.addCornerRounded(r4);
 		rGeome.logstr += ctr4c.check();
-		rGeome.fig.addMain(ctr4c);
+		rGeome.fig.one.addMain(ctr4c);
 		const ctr4d = contour(3000, 2000)
 			.addPointR(0, 1.7 * l4)
 			.addSegArc(2.3 * ra4, true, false)
@@ -193,7 +193,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addSegArc(1.1 * ra4, true, false)
 			.addCornerRounded(r4);
 		rGeome.logstr += ctr4d.check();
-		rGeome.fig.addMain(ctr4d);
+		rGeome.fig.one.addMain(ctr4d);
 		const l4b = 3 * l4;
 		const ra4b = 3 * ra4;
 		const ctr4e = contour(3800, 2000)
@@ -210,7 +210,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addSegArc(ra4b, false, false)
 			.addCornerRounded(r4);
 		rGeome.logstr += ctr4e.check();
-		rGeome.fig.addMain(ctr4e);
+		rGeome.fig.one.addMain(ctr4e);
 		const ctr4f = contour(4500, 2000)
 			.addPointR(l4, l4)
 			.addSegArc(l4, false, false)
@@ -224,7 +224,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addSegArc(1.2 * ra4, false, true)
 			.addCornerRounded(r4);
 		rGeome.logstr += ctr4f.check();
-		rGeome.fig.addMain(ctr4f);
+		rGeome.fig.one.addMain(ctr4f);
 		const ctr4g = contour(5200, 2000)
 			.addPointR(l4, 0)
 			.addSegArc(0.9 * l4, false, false)
@@ -236,7 +236,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addSegArc(1.3 * l4, true, true)
 			.addCornerRounded(r4);
 		rGeome.logstr += ctr4g.check();
-		rGeome.fig.addMain(ctr4g);
+		rGeome.fig.one.addMain(ctr4g);
 		const c099 = 0.999;
 		const ctr4h = contour(6000, 2000)
 			.addPointR(2 * l4, 2 * l4)
@@ -256,7 +256,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addSegArc(l4, false, true)
 			.addCornerRounded(r4);
 		rGeome.logstr += ctr4h.check();
-		rGeome.fig.addMain(ctr4h);
+		rGeome.fig.one.addMain(ctr4h);
 		const l5 = 200;
 		const ra5 = 180;
 		const ctr5 = contour(0, 3000)
@@ -267,7 +267,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.closeSegStroke()
 			.addCornerWidened(r5);
 		rGeome.logstr += ctr5.check();
-		rGeome.fig.addMain(ctr5);
+		rGeome.fig.one.addMain(ctr5);
 		const ctr5b = contour(400, 3000)
 			.addSegStrokeR(l5, 0)
 			.addCornerWidened(r5)
@@ -280,7 +280,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.closeSegStroke()
 			.addCornerWidened(r5);
 		rGeome.logstr += ctr5b.check();
-		rGeome.fig.addMain(ctr5b);
+		rGeome.fig.one.addMain(ctr5b);
 		const ctr5d = contour(3000, 3000)
 			.addPointR(0, 1.7 * l5)
 			.addSegArc(2.3 * ra5, true, false)
@@ -292,7 +292,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addSegArc(1.1 * ra5, true, false)
 			.addCornerWidened(r5);
 		rGeome.logstr += ctr5d.check();
-		rGeome.fig.addMain(ctr5d);
+		rGeome.fig.one.addMain(ctr5d);
 		const ctr5e = contour(3800, 3000)
 			.addPointR(l5, 0)
 			.addSegArc(ra5, false, false)
@@ -307,7 +307,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addSegArc(ra5, false, false)
 			.addCornerWidened(r5);
 		rGeome.logstr += ctr5e.check();
-		rGeome.fig.addMain(ctr5e);
+		rGeome.fig.one.addMain(ctr5e);
 		const ctr5f = contour(4500, 3000)
 			.addPointR(l5, l5)
 			.addSegArc(l5, false, false)
@@ -321,7 +321,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addSegArc(1.2 * ra5, false, true)
 			.addCornerWidened(r5);
 		rGeome.logstr += ctr5f.check();
-		rGeome.fig.addMain(ctr5f);
+		rGeome.fig.one.addMain(ctr5f);
 		const l6 = 200;
 		const ra6 = 180;
 		const ctr6 = contour(0, 4000)
@@ -332,7 +332,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.closeSegStroke()
 			.addCornerWideAcc(r6);
 		rGeome.logstr += ctr6.check();
-		rGeome.fig.addMain(ctr6);
+		rGeome.fig.one.addMain(ctr6);
 		const ctr6b = contour(400, 4000)
 			.addSegStrokeR(l6, 0)
 			.addCornerWideAcc(r6)
@@ -345,7 +345,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.closeSegStroke()
 			.addCornerWideAcc(r6);
 		rGeome.logstr += ctr6b.check();
-		rGeome.fig.addMain(ctr6b);
+		rGeome.fig.one.addMain(ctr6b);
 		const ctr6d = contour(3000, 4000)
 			.addPointR(0, 1.7 * l6)
 			.addSegArc(2.3 * ra6, true, false)
@@ -357,7 +357,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addSegArc(1.1 * ra6, true, false)
 			.addCornerWideAcc(r6);
 		rGeome.logstr += ctr6d.check();
-		rGeome.fig.addMain(ctr6d);
+		rGeome.fig.one.addMain(ctr6d);
+
 		const ctr6e = contour(3800, 4000)
 			.addPointR(l6, 0)
 			.addSegArc(ra6, false, false)
@@ -372,7 +373,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addSegArc(ra6, false, false)
 			.addCornerWideAcc(r6);
 		rGeome.logstr += ctr6e.check();
-		rGeome.fig.addMain(ctr6e);
+		rGeome.fig.one.addMain(ctr6e);
 		const ctr6f = contour(4500, 4000)
 			.addPointR(l6, l6)
 			.addSegArc(l6, false, false)
@@ -386,7 +387,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addSegArc(1.2 * ra6, false, true)
 			.addCornerWideAcc(r6);
 		rGeome.logstr += ctr6f.check();
-		rGeome.fig.addMain(ctr6f);
+		rGeome.fig.one.addMain(ctr6f);
 		rGeome.logstr += 'verify_contour_3 draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {

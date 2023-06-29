@@ -34,27 +34,27 @@ const pDef: tParamDef = {
 };
 
 function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome: tGeom = { fig: figure(), logstr: '', calcErr: true };
+	const rGeome: tGeom = { fig: { one: figure() }, logstr: '', calcErr: true };
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const p1 = point(param['l1cx'], param['l1cy']);
 		const p2 = point(param['l2cx'], param['l2cy']);
 		const p3 = point(param['p3x'], param['p3y']);
-		rGeome.fig.addPoint(p1);
-		rGeome.fig.addPoint(p2);
-		rGeome.fig.addPoint(p3);
+		rGeome.fig.one.addPoint(p1);
+		rGeome.fig.one.addPoint(p2);
+		rGeome.fig.one.addPoint(p3);
 		const l1 = line(param['l1cx'], param['l1cy'], degToRad(param['l1ca'] + t));
 		const l2 = line(param['l2cx'], param['l2cy'], degToRad(param['l2ca']));
-		rGeome.fig.addLine(l1);
-		rGeome.fig.addLine(l2);
-		rGeome.fig.addPoint(l1.intersection(l2));
-		rGeome.fig.addPoint(l1.projectPoint(p3));
+		rGeome.fig.one.addLine(l1);
+		rGeome.fig.one.addLine(l2);
+		rGeome.fig.one.addPoint(l1.intersection(l2));
+		rGeome.fig.one.addPoint(l1.projectPoint(p3));
 		rGeome.logstr += `dist(l1, p3) = ${l1.distanceToPoint(p3)}\n`;
-		rGeome.fig.addPoint(l2.projectPoint(p3));
+		rGeome.fig.one.addPoint(l2.projectPoint(p3));
 		rGeome.logstr += `dist(l2, p3) = ${l2.distanceToPoint(p3)}\n`;
 		const bisector = l1.bisector(l2, p3);
 		const pBisec = point(bisector.cx, bisector.cy).translatePolar(bisector.ca, 30);
-		rGeome.fig.addPoint(pBisec);
+		rGeome.fig.one.addPoint(pBisec);
 		rGeome.logstr += 'verify_line_2 draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {

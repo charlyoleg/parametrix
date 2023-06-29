@@ -16,6 +16,7 @@
 
 	export let pDef: tParamDef;
 	export let geom: tGeomFunc;
+	export let face: string;
 	export let simTime = 0;
 
 	//const lastModifKey = 'lastModif';
@@ -340,7 +341,7 @@
 	</main>
 	<img src={paramSvg} alt={paramSvg} />
 	<div class="mini-canvas">
-		<SimpleDrawing pageName={pDef.page} {geom} {simTime} />
+		<SimpleDrawing pageName={pDef.page} {geom} {face} {simTime} />
 	</div>
 </section>
 

@@ -135,7 +135,7 @@ function makePax(paramVal: tParamVal, geome0: tGeom, designName: string): string
 	const paxJson = {
 		design: designName,
 		params: paramVal,
-		figure: figureToPaxF(geome0.fig.mainList),
+		figure: figureToPaxF(geome0.fig.one.mainList),
 		log: geome0.logstr
 	};
 	const rStr = JSON.stringify(paxJson, null, 2);
@@ -162,13 +162,13 @@ async function makeZip(
 	await zipWriter.add(`geom_${designName}_t${tSim}_log.txt`, zLog1);
 	const zPax = new zip.TextReader(makePax(paramVal, geome0, designName));
 	await zipWriter.add(`${designName}.pax.json`, zPax);
-	const svgOne = new zip.TextReader(figureToSvg(geome0.fig.mainList));
+	const svgOne = new zip.TextReader(figureToSvg(geome0.fig.one.mainList));
 	await zipWriter.add(`face_${designName}_one.svg`, svgOne);
-	const dxfOne = new zip.TextReader(figureToDxf(geome0.fig.mainList));
+	const dxfOne = new zip.TextReader(figureToDxf(geome0.fig.one.mainList));
 	await zipWriter.add(`face_${designName}_one.dxf`, dxfOne);
-	const svgOneDeco = new zip.TextReader(figureToSvgDeco(geome0.fig));
+	const svgOneDeco = new zip.TextReader(figureToSvgDeco(geome0.fig.one));
 	await zipWriter.add(`deco_${designName}_one.svg`, svgOneDeco);
-	const svgOneDecoT = new zip.TextReader(figureToSvgDeco(geome1.fig));
+	const svgOneDecoT = new zip.TextReader(figureToSvgDeco(geome1.fig.one));
 	await zipWriter.add(`deco_${designName}_one_t${tSim}.svg`, svgOneDecoT);
 	// zip writer finalization
 	await zipWriter.close();

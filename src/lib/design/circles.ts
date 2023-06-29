@@ -29,16 +29,16 @@ const pDef: tParamDef = {
 };
 
 function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome: tGeom = { fig: figure(), logstr: '', calcErr: true };
+	const rGeome: tGeom = { fig: { one: figure() }, logstr: '', calcErr: true };
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
-		//rGeome.fig.addPoint(point(0, 0));
+		//rGeome.fig.one.addPoint(point(0, 0));
 		const p1 = point(10, 10);
 		const p2 = point(10, 30);
-		//rGeome.fig.addPoint(p1);
-		rGeome.fig.addPoint(p2);
+		//rGeome.fig.one.addPoint(p1);
+		rGeome.fig.one.addPoint(p2);
 		for (let i = 0; i < 20; i++) {
-			rGeome.fig.addPoint(
+			rGeome.fig.one.addPoint(
 				p1
 					.scale(p2, param['amplitude-offset'] + param['amplitude-scale'] * i)
 					.rotate(p2, i * degToRad(param['angle']) + (t * Math.PI) / 2 / pDef.sim.tMax)

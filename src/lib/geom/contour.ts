@@ -563,7 +563,7 @@ class Contour extends AContour {
 			}
 		}
 		const seg0 = segStack[0];
-		const rContour = new Contour(seg0.p1.cx, seg0.p1.cy);
+		const rContour = new Contour(seg0.p1.cx, seg0.p1.cy, this.imposedColor);
 		rContour.debugPoints.push(...segLib.gSegDbg.getPoints());
 		rContour.debugLines.push(...segLib.gSegDbg.getLines());
 		//console.log(`dbg290: ${segLib.gSegDbg.debugPoints.length}`);
@@ -740,7 +740,7 @@ class ContourCircle extends AContour {
 		return rContour;
 	}
 	generateContour(): ContourCircle {
-		const rContour = new ContourCircle(this.px, this.py, this.radius);
+		const rContour = new ContourCircle(this.px, this.py, this.radius, this.imposedColor);
 		return rContour;
 	}
 	generatePoints(): Array<Point> {

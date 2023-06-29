@@ -23,6 +23,7 @@
 		}
 		return rWarn;
 	}
+	let face: string;
 	let simTime = 0;
 	// log and paramChange
 	let logValue = 'Dummy initial\nWill be replaced during onMount\n';
@@ -99,7 +100,7 @@
 	}
 </script>
 
-<InputParams {pDef} on:paramChg={paramChange} {geom} {simTime} />
+<InputParams {pDef} on:paramChg={paramChange} {geom} {face} {simTime} />
 <section>
 	<h2>Log</h2>
 	<textarea
@@ -112,7 +113,7 @@
 		class:colorWarn={calcWarn}
 	/>
 </section>
-<Drawing {pDef} {geom} bind:simTime />
+<Drawing {pDef} {geom} bind:face bind:simTime />
 <section>
 	<h2>Export</h2>
 	<select bind:value={exportFormat}>

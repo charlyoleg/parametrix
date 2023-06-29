@@ -20,9 +20,9 @@ function fileTextContent(
 	let rFileContent = '';
 	if (!geome0.calcErr) {
 		if (exportFormat === EFormat.eSVG) {
-			rFileContent = figureToSvg(geome0.fig.mainList);
+			rFileContent = figureToSvg(geome0.fig.one.mainList);
 		} else if (exportFormat === EFormat.eDXF) {
-			rFileContent = figureToDxf(geome0.fig.mainList);
+			rFileContent = figureToDxf(geome0.fig.one.mainList);
 		} else if (exportFormat === EFormat.ePAX) {
 			rFileContent = makePax(paramVal, geome0, designName);
 		} else {

@@ -26,7 +26,7 @@ const pDef: tParamDef = {
 };
 
 function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome: tGeom = { fig: figure(), logstr: '', calcErr: true };
+	const rGeome: tGeom = { fig: { one: figure() }, logstr: '', calcErr: true };
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const r1 = param['r1'] + t;
@@ -59,7 +59,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		ctr1.addPointA(20, 40).addSegArc(r1, false, false);
 		ctr1.closeSegStroke();
 		ctr1.check(); // throw an exception if any error
-		rGeome.fig.addMain(ctr1);
+		rGeome.fig.one.addMain(ctr1);
 		const ctr2 = contour(20, -20);
 		ctr2.addSegStrokeA(40, -40);
 		ctr2.addPointA(60, -60).addSegArc(r1, true, true);
@@ -169,7 +169,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addSegStrokeR(-20, 0)
 			.closeSegStroke();
 		ctr2.check(); // throw an exception if any error
-		rGeome.fig.addMain(ctr2);
+		rGeome.fig.one.addMain(ctr2);
 		const ctr3 = contour(200, 200)
 			.addSegStrokeR(20, 0)
 			.addPointR(20, 0)
@@ -200,7 +200,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addSegArc3(degToRad(ata), false)
 			.addSegStrokeR(0, -20);
 		ctr3.check(); // throw an exception if any error
-		rGeome.fig.addMain(ctr3);
+		rGeome.fig.one.addMain(ctr3);
 		const ctr4 = contour(600, 200)
 			.addSegStrokeR(20, 20)
 			.addPointR(20, 20)
@@ -231,7 +231,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addSegArc3(degToRad(ata), false)
 			.addSegStrokeR(20, -20);
 		ctr4.check(); // throw an exception if any error
-		rGeome.fig.addMain(ctr4);
+		rGeome.fig.one.addMain(ctr4);
 		const ctr5 = contour(100, 500);
 		for (let i = 0; i < 8; i++) {
 			const adir = i * 45;
@@ -245,7 +245,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 				.addSegStrokeRP(adirRad, 20);
 		}
 		ctr5.check(); // throw an exception if any error
-		rGeome.fig.addMain(ctr5);
+		rGeome.fig.one.addMain(ctr5);
 		rGeome.logstr += 'verify_contour_2 draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {

@@ -32,7 +32,7 @@ const pDef: tParamDef = {
 };
 
 function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome: tGeom = { fig: figure(), logstr: '', calcErr: true };
+	const rGeome: tGeom = { fig: { one: figure() }, logstr: '', calcErr: true };
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const p1 = point(param['p1x'], param['p1y'] + t);
@@ -40,11 +40,11 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const p3 = point(param['p3x'], param['p3y']);
 		const mp1p2 = p1.middlePoint(p2);
 		const ep1p2 = p1.equidistantPoint(p2, param['dist'], p3);
-		rGeome.fig.addPoint(p1);
-		rGeome.fig.addPoint(p2);
-		rGeome.fig.addPoint(p3);
-		rGeome.fig.addPoint(mp1p2);
-		rGeome.fig.addPoint(ep1p2);
+		rGeome.fig.one.addPoint(p1);
+		rGeome.fig.one.addPoint(p2);
+		rGeome.fig.one.addPoint(p3);
+		rGeome.fig.one.addPoint(mp1p2);
+		rGeome.fig.one.addPoint(ep1p2);
 		rGeome.logstr += 'verify_point_2 draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {

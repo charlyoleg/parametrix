@@ -9,15 +9,15 @@
 
 	export let pageName: string;
 	export let geom: tGeomFunc;
+	export let face: string;
 	export let simTime = 0;
 
 	let canvasMini: HTMLCanvasElement;
 	const canvas_size_mini = 200;
 
 	// Canavas Figures
-	let aFigure: Figure;
 	let mAdjust: tCanvasAdjust;
-	function canvasRedrawMini(iLayers: tLayers) {
+	function canvasRedrawMini(aFigure: Figure, iLayers: tLayers) {
 		const sLayers = copyLayers(iLayers);
 		sLayers.ruler = false;
 		const ctx1 = canvasMini.getContext('2d') as CanvasRenderingContext2D;
@@ -34,20 +34,25 @@
 		//point(5, 15).draw(ctx1, mAdjust, 'blue', 'rectangle');
 	}
 	let domInit = 0;
-	function geomRedraw(iSimTime: number, ipVal: tParamVal, iLayers: tLayers) {
-		aFigure = geom(iSimTime, ipVal).fig;
-		canvasRedrawMini(iLayers);
-		domInit = 1;
+	function geomRedraw(iSimTime: number, ipVal: tParamVal, iFace: string, iLayers: tLayers) {
+		const FigList = geom(iSimTime, ipVal).fig;
+		if (Object.keys(FigList).includes(iFace)) {
+			const aFigure = FigList[iFace];
+			canvasRedrawMini(aFigure, iLayers);
+			//} else {
+			//	console.log(`warn309: SimpleDrawing iFace ${iFace} not valid`);
+		}
 	}
 	onMount(() => {
 		// initial drawing
-		geomRedraw(simTime, $storePV[pageName], $dLayers);
+		geomRedraw(simTime, $storePV[pageName], face, $dLayers);
+		domInit = 1;
 		//paramChange();
 	});
 	// reactivity on simTime and $storePV
 	$: {
 		if (domInit === 1) {
-			geomRedraw(simTime, $storePV[pageName], $dLayers);
+			geomRedraw(simTime, $storePV[pageName], face, $dLayers);
 		}
 	}
 </script>

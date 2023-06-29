@@ -19,6 +19,7 @@
 
 	export let pDef: tParamDef;
 	export let geom: tGeomFunc;
+	export let face = 'one';
 	export let simTime = 0;
 
 	let windowWidth: number;
@@ -71,25 +72,25 @@
 		canvasRedrawZoom($dLayers);
 	}
 	let domInit = 0;
-	function geomRedrawSub(iSimTime: number, pVal: tParamVal, iLayers: tLayers) {
-		aFigure = geom(iSimTime, pVal).fig;
+	function geomRedrawSub(iSimTime: number, pVal: tParamVal, iFace: string, iLayers: tLayers) {
+		aFigure = geom(iSimTime, pVal).fig[iFace];
 		canvasRedrawFull(iLayers);
 		canvasRedrawZoom(iLayers);
 		domInit = 1;
 	}
-	function geomRedraw(iSimTime: number) {
-		geomRedrawSub(iSimTime, $storePV[pDef.page], $dLayers);
+	function geomRedraw(iSimTime: number, iFace: string) {
+		geomRedrawSub(iSimTime, $storePV[pDef.page], iFace, $dLayers);
 	}
 	onMount(() => {
 		// initial drawing
 		canvasSetSize();
-		geomRedraw(simTime);
+		geomRedraw(simTime, face);
 		//paramChange();
 	});
 	// reactivity on simTime, $storePV and layers
 	$: {
 		if (domInit === 1) {
-			geomRedrawSub(simTime, $storePV[pDef.page], $dLayers);
+			geomRedrawSub(simTime, $storePV[pDef.page], face, $dLayers);
 		}
 	}
 	// Zoom stories
@@ -158,7 +159,7 @@
 					//console.log(`dbg160: a click at ${eve.offsetX} ${eve.offsetY}`);
 					const [px, py] = canvas2point(eve.offsetX, eve.offsetY, cAdjust);
 					zAdjust = adjustCenter(px, py, zAdjust);
-					geomRedraw(simTime);
+					geomRedraw(simTime, face);
 				}
 				if (diffX > mouseDiffClick && diffY > mouseDiffClick) {
 					const diffRatio1 = diffX / diffY;
@@ -168,7 +169,7 @@
 						const [p1x, p1y] = canvas2point(eve.offsetX, eve.offsetY, cAdjust);
 						const [p2x, p2y] = canvas2point(mouseF.offsetX, mouseF.offsetY, cAdjust);
 						zAdjust = adjustRect(p1x, p1y, p2x, p2y, canvas_size_min, canvas_size_min);
-						geomRedraw(simTime);
+						geomRedraw(simTime, face);
 					}
 				}
 			} else {
@@ -244,7 +245,6 @@
 		}
 		canvasRedrawZoom($dLayers);
 	}
-	let face = 'one';
 </script>
 
 <svelte:window bind:innerWidth={windowWidth} on:resize={canvasResize} />
@@ -253,6 +253,7 @@
 		Drawing
 		<select bind:value={face}>
 			<option value="one">One</option>
+			<option value="two">Two</option>
 			<option value="ParametrixAll">All faces merged</option>
 		</select>
 	</h2>
