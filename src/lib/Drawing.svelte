@@ -16,7 +16,8 @@
 		adjustCenter,
 		adjustRect,
 		adjustScale,
-		adjustTranslate
+		adjustTranslate,
+		mergeFaces
 	} from '$lib/geom/geom';
 	import { storePV } from '$lib/storePVal';
 	import { dLayers } from '$lib/drawingLayers';
@@ -78,24 +79,32 @@
 		canvasRedrawZoom($dLayers);
 	}
 	let domInit = 0;
+	function checkFace(iFaces: Array<string>, iFace: string): string {
+		let rFace = iFace;
+		if (iFaces.length === 0) {
+			console.log(`warn404: Drawing has an empty face list`);
+		} else {
+			const FaceList2 = iFaces.slice();
+			FaceList2.push('ParametrixAll');
+			if (!FaceList2.includes(rFace)) {
+				console.log(`warn403: Drawing has an invalid face ${rFace}`);
+				rFace = iFaces[0];
+				face = rFace; // update input select
+			}
+		}
+		return rFace;
+	}
 	function geomRedrawSub(iSimTime: number, pVal: tParamVal, iFace: string, iLayers: tLayers) {
 		const FigList = geom(iSimTime, pVal).fig;
 		const FigListKeys = Object.keys(FigList);
-		let sFace = iFace;
-		if (!FigListKeys.includes(sFace)) {
-			console.log(`warn403: Drawing has an invalid face ${sFace}`);
-			if (FigListKeys.length > 0) {
-				sFace = FigListKeys[0];
-				face = sFace; // update input select
-			} else {
-				console.log(`warn404: Drawing has an empty face list`);
-			}
-		}
+		const sFace = checkFace(FigListKeys, iFace);
 		if (FigListKeys.includes(sFace)) {
 			aFigure = FigList[sFace];
-			canvasRedrawFull(iLayers);
-			canvasRedrawZoom(iLayers);
+		} else {
+			aFigure = mergeFaces(FigList);
 		}
+		canvasRedrawFull(iLayers);
+		canvasRedrawZoom(iLayers);
 	}
 	function geomRedraw(iSimTime: number, iFace: string) {
 		geomRedrawSub(iSimTime, $storePV[pDef.page], iFace, $dLayers);

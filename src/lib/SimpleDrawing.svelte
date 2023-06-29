@@ -1,7 +1,7 @@
 <script lang="ts">
 	//import { colors } from '$lib/geom/geom';
 	import type { tCanvasAdjust, tLayers, Figure, tParamVal, tGeomFunc } from '$lib/geom/geom';
-	import { copyLayers } from '$lib/geom/geom';
+	import { copyLayers, mergeFaces } from '$lib/geom/geom';
 	import { storePV } from '$lib/storePVal';
 	import { dLayers } from '$lib/drawingLayers';
 	import { onMount } from 'svelte';
@@ -38,8 +38,9 @@
 		if (Object.keys(FigList).includes(iFace)) {
 			const aFigure = FigList[iFace];
 			canvasRedrawMini(aFigure, iLayers);
-			//} else {
-			//	console.log(`warn309: SimpleDrawing iFace ${iFace} not valid`);
+		} else {
+			const aFigure = mergeFaces(FigList);
+			canvasRedrawMini(aFigure, iLayers);
 		}
 	}
 	onMount(() => {
