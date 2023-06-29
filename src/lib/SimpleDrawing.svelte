@@ -1,7 +1,6 @@
 <script lang="ts">
-	import type { tCanvasAdjust } from '$lib/geom/canvas_utils';
-	//import { colors } from '$lib/geom/canvas_utils';
-	import type { tLayers, Figure, tParamVal, tGeomFunc } from '$lib/geom/geom';
+	//import { colors } from '$lib/geom/geom';
+	import type { tCanvasAdjust, tLayers, Figure, tParamVal, tGeomFunc } from '$lib/geom/geom';
 	import { copyLayers } from '$lib/geom/geom';
 	import { storePV } from '$lib/storePVal';
 	import { dLayers } from '$lib/drawingLayers';

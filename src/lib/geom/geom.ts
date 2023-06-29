@@ -1,5 +1,7 @@
 // geom.ts
 
+export * from './canvas_utils';
+
 //import type { Point, tContour, tLayers, Figure } from './figure';
 //export type { Point, tContour, tLayers, Figure };
 //export type * from './figure';

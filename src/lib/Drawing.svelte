@@ -1,5 +1,15 @@
 <script lang="ts">
-	import type { tCanvasAdjust } from '$lib/geom/canvas_utils';
+	import TimeControl from '$lib/TimeControl.svelte';
+	import ZoomControl from '$lib/ZoomControl.svelte';
+	import LabelCheckbox from '$lib/LabelCheckbox.svelte';
+	import type {
+		tCanvasAdjust,
+		tLayers,
+		Figure,
+		tParamDef,
+		tParamVal,
+		tGeomFunc
+	} from '$lib/geom/geom';
 	import {
 		colors,
 		canvas2point,
@@ -7,12 +17,7 @@
 		adjustRect,
 		adjustScale,
 		adjustTranslate
-	} from '$lib/geom/canvas_utils';
-	import TimeControl from '$lib/TimeControl.svelte';
-	import ZoomControl from '$lib/ZoomControl.svelte';
-	import LabelCheckbox from '$lib/LabelCheckbox.svelte';
-	//import { initLayers } from '$lib/geom/geom';
-	import type { tLayers, Figure, tParamDef, tParamVal, tGeomFunc } from '$lib/geom/geom';
+	} from '$lib/geom/geom';
 	import { storePV } from '$lib/storePVal';
 	import { dLayers } from '$lib/drawingLayers';
 	import { onMount } from 'svelte';
@@ -245,6 +250,7 @@
 		}
 		canvasRedrawZoom($dLayers);
 	}
+	const optFaces = ['one', 'two'];
 </script>
 
 <svelte:window bind:innerWidth={windowWidth} on:resize={canvasResize} />
@@ -252,8 +258,9 @@
 	<h2>
 		Drawing
 		<select bind:value={face}>
-			<option value="one">One</option>
-			<option value="two">Two</option>
+			{#each optFaces as optFace}
+				<option value={optFace}>{optFace}</option>
+			{/each}
 			<option value="ParametrixAll">All faces merged</option>
 		</select>
 	</h2>
