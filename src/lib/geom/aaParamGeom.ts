@@ -1,7 +1,6 @@
 // aaParamGeom.ts
 
-import type { Figure } from './figure';
-import { figure } from './figure';
+import type { tFaces } from './figure';
 
 enum PType {
 	eNumber,
@@ -33,7 +32,6 @@ type tParamDef = {
 
 type tParamVal = { [index: string]: number };
 type tAllVal = { lastModif: string; pVal: tParamVal; comment: string };
-type tFaces = { [index: string]: Figure };
 type tGeom = {
 	fig: tFaces;
 	logstr: string;
@@ -47,38 +45,6 @@ type tPageDef = {
 	pDef: tParamDef;
 	pGeom: tGeomFunc;
 };
-
-function mergeFaces(iFaces: tFaces): Figure {
-	const rfig = figure();
-	for (const face in iFaces) {
-		const fig = iFaces[face];
-		for (const ipoint of fig.pointList) {
-			rfig.pointList.push(ipoint);
-		}
-		for (const iline of fig.lineList) {
-			rfig.lineList.push(iline);
-		}
-		for (const ivector of fig.vectorList) {
-			rfig.vectorList.push(ivector);
-		}
-		for (const ctr of fig.mainList) {
-			rfig.mainList.push(ctr);
-		}
-		for (const ctr of fig.mainBList) {
-			rfig.mainBList.push(ctr);
-		}
-		for (const ctr of fig.secondList) {
-			rfig.secondList.push(ctr);
-		}
-		for (const ctr of fig.secondBList) {
-			rfig.secondBList.push(ctr);
-		}
-		for (const ctr of fig.dynamicsList) {
-			rfig.dynamicsList.push(ctr);
-		}
-	}
-	return rfig;
-}
 
 function pNumber(name: string, unit: string, init: number, min = 0, max = 100, step = 1): tParam {
 	const rParam: tParam = {
@@ -125,4 +91,4 @@ function fround(ireal: number, iprecision = 1000.0): number {
 }
 
 export type { tParamDef, tParamVal, tAllVal, tGeom, tGeomFunc, tPageDef };
-export { mergeFaces, PType, pNumber, pCheckbox, pDropdown, fround };
+export { PType, pNumber, pCheckbox, pDropdown, fround };

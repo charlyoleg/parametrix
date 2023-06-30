@@ -234,6 +234,39 @@ function figure() {
 	return new Figure();
 }
 
+type tFaces = { [index: string]: Figure };
+function mergeFaces(iFaces: tFaces): Figure {
+	const rfig = figure();
+	for (const face in iFaces) {
+		const fig = iFaces[face];
+		for (const ipoint of fig.pointList) {
+			rfig.pointList.push(ipoint);
+		}
+		for (const iline of fig.lineList) {
+			rfig.lineList.push(iline);
+		}
+		for (const ivector of fig.vectorList) {
+			rfig.vectorList.push(ivector);
+		}
+		for (const ctr of fig.mainList) {
+			rfig.mainList.push(ctr);
+		}
+		for (const ctr of fig.mainBList) {
+			rfig.mainBList.push(ctr);
+		}
+		for (const ctr of fig.secondList) {
+			rfig.secondList.push(ctr);
+		}
+		for (const ctr of fig.secondBList) {
+			rfig.secondBList.push(ctr);
+		}
+		for (const ctr of fig.dynamicsList) {
+			rfig.dynamicsList.push(ctr);
+		}
+	}
+	return rfig;
+}
+
 function initLayers(): tLayers {
 	const layers: tLayers = {
 		points: false,
@@ -267,7 +300,7 @@ function copyLayers(iLayers: tLayers): tLayers {
 
 /* export */
 
-export type { Point, tContour, tLayers, Figure };
+export type { Point, tContour, tLayers, Figure, tFaces };
 export {
 	ShapePoint,
 	withinZero2Pi,
@@ -289,6 +322,7 @@ export {
 	contour,
 	contourCircle,
 	figure,
+	mergeFaces,
 	initLayers,
 	copyLayers
 };
