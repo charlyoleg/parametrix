@@ -28,19 +28,21 @@ class MinMaxPoint {
 		this.yMax = 0;
 	}
 	addAContour(aCtr: Array<tContour>) {
-		const pts: Array<Point> = [];
-		if (this.firstDone) {
-			pts.push(point(this.xMin, this.yMin));
-			pts.push(point(this.xMax, this.yMax));
+		if (aCtr.length > 0) {
+			const pts: Array<Point> = [];
+			if (this.firstDone) {
+				pts.push(point(this.xMin, this.yMin));
+				pts.push(point(this.xMax, this.yMax));
+			}
+			for (const ctr of aCtr) {
+				pts.push(...ctr.generatePoints());
+			}
+			const [Xmin, Xmax, Ymin, Ymax] = pointMinMax(pts);
+			this.xMin = Xmin;
+			this.xMax = Xmax;
+			this.yMin = Ymin;
+			this.yMax = Ymax;
 		}
-		for (const ctr of aCtr) {
-			pts.push(...ctr.generatePoints());
-		}
-		const [Xmin, Xmax, Ymin, Ymax] = pointMinMax(pts);
-		this.xMin = Xmin;
-		this.xMax = Xmax;
-		this.yMin = Ymin;
-		this.yMax = Ymax;
 	}
 	getViewBox() {
 		const Xdelta = Math.round((this.xMax - this.xMin) * 1.1) + 10;
