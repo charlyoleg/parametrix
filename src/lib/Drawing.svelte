@@ -17,6 +17,7 @@
 		adjustRect,
 		adjustScale,
 		adjustTranslate,
+		c_ParametrixAll,
 		mergeFaces
 	} from '$lib/geom/geom';
 	import { storePV } from '$lib/storePVal';
@@ -85,7 +86,7 @@
 			console.log(`warn404: Drawing has an empty face list`);
 		} else {
 			const FaceList2 = iFaces.slice();
-			FaceList2.push('ParametrixAll');
+			FaceList2.push(c_ParametrixAll);
 			if (!FaceList2.includes(rFace)) {
 				console.log(`warn403: Drawing has an invalid face ${rFace}`);
 				rFace = iFaces[0];
@@ -284,7 +285,7 @@
 			{#each optFaces as optFace}
 				<option value={optFace}>{optFace}</option>
 			{/each}
-			<option value="ParametrixAll">All faces merged</option>
+			<option value={c_ParametrixAll}>All faces merged</option>
 		</select>
 	</h2>
 	<LabelCheckbox />

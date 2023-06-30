@@ -5,6 +5,7 @@ import { colors } from './canvas_utils';
 import { Point, point, pointMinMax } from './point';
 import type { tContour } from './contour';
 import type { Figure } from './figure';
+import { mergeFaces } from './figure';
 import type { SvgWriter } from './svg';
 import { svgWriter } from './svg';
 import { dxfWriter } from './dxf';
@@ -131,11 +132,17 @@ function figureToPaxF(aCtr: Array<tContour>): Array<tPaxContour> {
 	return rPaxF;
 }
 
+type tFaceJson = { [index: string]: Array<tPaxContour> };
 function makePax(paramVal: tParamVal, geome0: tGeom, designName: string): string {
+	const figFaces: tFaceJson = {};
+	for (const face in geome0.fig) {
+		const figu = figureToPaxF(geome0.fig[face].mainList);
+		figFaces[face] = figu;
+	}
 	const paxJson = {
 		design: designName,
 		params: paramVal,
-		figure: figureToPaxF(geome0.fig.one.mainList),
+		figure: figFaces,
 		log: geome0.logstr
 	};
 	const rStr = JSON.stringify(paxJson, null, 2);
@@ -162,14 +169,25 @@ async function makeZip(
 	await zipWriter.add(`geom_${designName}_t${tSim}_log.txt`, zLog1);
 	const zPax = new zip.TextReader(makePax(paramVal, geome0, designName));
 	await zipWriter.add(`${designName}.pax.json`, zPax);
-	const svgOne = new zip.TextReader(figureToSvg(geome0.fig.one.mainList));
-	await zipWriter.add(`face_${designName}_one.svg`, svgOne);
-	const dxfOne = new zip.TextReader(figureToDxf(geome0.fig.one.mainList));
-	await zipWriter.add(`face_${designName}_one.dxf`, dxfOne);
-	const svgOneDeco = new zip.TextReader(figureToSvgDeco(geome0.fig.one));
-	await zipWriter.add(`deco_${designName}_one.svg`, svgOneDeco);
-	const svgOneDecoT = new zip.TextReader(figureToSvgDeco(geome1.fig.one));
-	await zipWriter.add(`deco_${designName}_one_t${tSim}.svg`, svgOneDecoT);
+	for (const face in geome0.fig) {
+		const svgOne = new zip.TextReader(figureToSvg(geome0.fig[face].mainList));
+		await zipWriter.add(`face_${designName}_${face}.svg`, svgOne);
+		const dxfOne = new zip.TextReader(figureToDxf(geome0.fig[face].mainList));
+		await zipWriter.add(`face_${designName}_${face}.dxf`, dxfOne);
+		const svgOneDeco = new zip.TextReader(figureToSvgDeco(geome0.fig[face]));
+		await zipWriter.add(`deco_${designName}_${face}.svg`, svgOneDeco);
+		const svgOneDecoT = new zip.TextReader(figureToSvgDeco(geome1.fig[face]));
+		await zipWriter.add(`deco_${designName}_${face}_t${tSim}.svg`, svgOneDecoT);
+	}
+	const mergedFace = mergeFaces(geome0.fig);
+	const svgMerged = new zip.TextReader(figureToSvg(mergedFace.mainList));
+	await zipWriter.add(`face_${designName}_all_merged.svg`, svgMerged);
+	const dxfMerged = new zip.TextReader(figureToDxf(mergedFace.mainList));
+	await zipWriter.add(`face_${designName}_all_merged.dxf`, dxfMerged);
+	const svgMergedDeco = new zip.TextReader(figureToSvgDeco(mergedFace));
+	await zipWriter.add(`deco_${designName}_all_merged.svg`, svgMergedDeco);
+	const svgMergedDecoT = new zip.TextReader(figureToSvgDeco(mergedFace));
+	await zipWriter.add(`deco_${designName}_all_merged_t${tSim}.svg`, svgMergedDecoT);
 	// zip writer finalization
 	await zipWriter.close();
 	const rFileContent = await zipFileWriter.getData();

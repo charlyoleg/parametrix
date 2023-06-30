@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { tParamDef, tGeomFunc } from '$lib/geom/geom';
 	import {
+		c_ParametrixAll,
 		EFormat,
 		fileBinContent,
 		fileTextContent,
@@ -81,13 +82,40 @@
 		return rDateStr;
 	}
 	async function downloadExport() {
-		console.log(`dbg883: exportFace ${exportFace}`);
-		const exportFormat = EFormat.eSVG;
+		//console.log(`dbg883: exportFace ${exportFace}`);
+		const reSvg = /^svg_/;
+		const reDxf = /^dxf_/;
+		let exportFormat = EFormat.eSVG;
+		let eFace = '';
+		let nFace = 'all';
+		if (exportFace.match(reSvg)) {
+			exportFormat = EFormat.eSVG;
+			eFace = exportFace.replace(reSvg, '');
+			nFace = eFace;
+		} else if (exportFace.match(reDxf)) {
+			exportFormat = EFormat.eDXF;
+			eFace = exportFace.replace(reDxf, '');
+			nFace = eFace;
+		} else if (exportFace === 'allsvg') {
+			exportFormat = EFormat.eSVG;
+			eFace = c_ParametrixAll;
+		} else if (exportFace === 'alldxf') {
+			exportFormat = EFormat.eDXF;
+			eFace = c_ParametrixAll;
+		} else if (exportFace === 'pax') {
+			exportFormat = EFormat.ePAX;
+			eFace = c_ParametrixAll;
+		} else if (exportFace === 'zip') {
+			exportFormat = EFormat.eZIP;
+			eFace = c_ParametrixAll;
+		} else {
+			console.log(`err883: downloadExport exportFace ${exportFace} invalid`);
+		}
 		//console.log(`exportFormat ${exportFormat}`);
 		const fSuffix = fileSuffix(exportFormat);
 		const fMime = fileMime(exportFormat);
 		const fBin = fileBin(exportFormat);
-		const fName = pDef.page + '_' + dateString() + '.' + fSuffix;
+		const fName = pDef.page + '_' + nFace + '_' + dateString() + '.' + fSuffix;
 		if (fBin) {
 			const fContent = await fileBinContent(
 				geom,
@@ -98,7 +126,13 @@
 			);
 			download_binFile(fName, fContent);
 		} else {
-			const fContent = fileTextContent(geom, $storePV[pDef.page], pDef.page, exportFormat);
+			const fContent = fileTextContent(
+				geom,
+				$storePV[pDef.page],
+				pDef.page,
+				eFace,
+				exportFormat
+			);
 			download_textFile(fName, fContent, fMime);
 		}
 	}

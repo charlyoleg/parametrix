@@ -2,6 +2,7 @@
 
 import type { tGeomFunc, tParamVal } from './aaParamGeom';
 import { figureToSvg, figureToDxf, makePax, makeZip } from './aaExportContent';
+import { c_ParametrixAll, mergeFaces } from './figure';
 
 enum EFormat {
 	eSVG,
@@ -14,15 +15,33 @@ function fileTextContent(
 	geom: tGeomFunc,
 	paramVal: tParamVal,
 	designName: string,
+	eFace: string,
 	exportFormat: EFormat
 ): string {
 	const geome0 = geom(0, paramVal);
 	let rFileContent = '';
 	if (!geome0.calcErr) {
+		const figList = Object.keys(geome0.fig);
 		if (exportFormat === EFormat.eSVG) {
-			rFileContent = figureToSvg(geome0.fig.one.mainList);
+			if (figList.includes(eFace)) {
+				const figu = geome0.fig[eFace];
+				rFileContent = figureToSvg(figu.mainList);
+			} else if (eFace === c_ParametrixAll) {
+				const figu = mergeFaces(geome0.fig);
+				rFileContent = figureToSvg(figu.mainList);
+			} else {
+				console.log(`err749: fileTextContent eFace ${eFace} invalid`);
+			}
 		} else if (exportFormat === EFormat.eDXF) {
-			rFileContent = figureToDxf(geome0.fig.one.mainList);
+			if (figList.includes(eFace)) {
+				const figu = geome0.fig[eFace];
+				rFileContent = figureToDxf(figu.mainList);
+			} else if (eFace === c_ParametrixAll) {
+				const figu = mergeFaces(geome0.fig);
+				rFileContent = figureToDxf(figu.mainList);
+			} else {
+				console.log(`err759: fileTextContent eFace ${eFace} invalid`);
+			}
 		} else if (exportFormat === EFormat.ePAX) {
 			rFileContent = makePax(paramVal, geome0, designName);
 		} else {

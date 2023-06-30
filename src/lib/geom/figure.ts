@@ -234,6 +234,7 @@ function figure() {
 	return new Figure();
 }
 
+const c_ParametrixAll = 'ParametrixAll';
 type tFaces = { [index: string]: Figure };
 function mergeFaces(iFaces: tFaces): Figure {
 	const rfig = figure();
@@ -322,6 +323,7 @@ export {
 	contour,
 	contourCircle,
 	figure,
+	c_ParametrixAll,
 	mergeFaces,
 	initLayers,
 	copyLayers
