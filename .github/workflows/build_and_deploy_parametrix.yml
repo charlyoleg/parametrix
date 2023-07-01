@@ -16,10 +16,6 @@ jobs:
               with:
                   node-version: '18'
 
-            - run: npm -w geometrix run ci
-            - run: npm -w designix run ci
-            - run: npm -w parametrix run ci
-
             - name: Build and check Parametrix
               run: |
                   npm -w geometrix run build
