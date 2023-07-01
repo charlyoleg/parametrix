@@ -16,15 +16,19 @@ jobs:
               with:
                   node-version: '18'
 
-            - run: npm ci
+            - run: npm -w geometrix run ci
+            - run: npm -w designix run ci
+            - run: npm -w parametrix run ci
 
             - name: Build and check Parametrix
               run: |
-                  npm run build
-                  npm run github-pages-fix
-                  npm run check
-                  npm run test:unit
-                  npm run lint
+                  npm -w geometrix run ci
+                  npm -w designix run ci
+                  npm -w parametrix run build
+                  npm -w parametrix run github-pages-fix
+                  npm -w parametrix run check
+                  npm -w parametrix run test:unit
+                  npm -w parametrix run lint
 
             - name: Deploy Parametrix to GitHub pages
               uses: crazy-max/ghaction-github-pages@v3
