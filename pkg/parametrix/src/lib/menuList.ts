@@ -14,7 +14,7 @@ import {
 	verifyContour3Def,
 	verifyContour4Def,
 	gearWheelWheelDef
-	} from 'designix';
+} from 'designix';
 import type { tParamVal, tPageDef } from 'geometrix';
 import type { tStorePVal } from '$lib/storePVal';
 import { storePV } from '$lib/storePVal';
@@ -26,12 +26,12 @@ const designDefs: tAllPageDef = {
 	gear_wheel_wheel: gearWheelWheelDef,
 	circles: circlesDef,
 	rectangle: rectangleDef,
-	verify_point: verifyPointDef,
+	verify_point: verifyPoint1Def,
 	verify_point_2: verifyPoint2Def,
-	verify_line: verifyLineDef,
+	verify_line: verifyLine1Def,
 	verify_line_2: verifyLine2Def,
 	verify_line_3: verifyLine3Def,
-	verify_vector: verifyVectorDef,
+	verify_vector: verifyVector1Def,
 	verify_contour_1: verifyContour1Def,
 	verify_contour_2: verifyContour2Def,
 	verify_contour_3: verifyContour3Def,
