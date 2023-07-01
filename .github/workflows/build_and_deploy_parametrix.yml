@@ -22,8 +22,8 @@ jobs:
 
             - name: Build and check Parametrix
               run: |
-                  npm -w geometrix run ci
-                  npm -w designix run ci
+                  npm -w geometrix run build
+                  npm -w designix run build
                   npm -w parametrix run build
                   npm -w parametrix run github-pages-fix
                   npm -w parametrix run check
