@@ -21,9 +21,9 @@
 		"build": "tsc",
 		"test:unit": "vitest",
 		"test:unit:once": "vitest --run",
-		"ci": "run-s build lint check test:unit:once",
+		"ci": "run-s build test:unit:once",
 		"svgo": "svgo -f svg -o ../parametrix/static",
-		"clean": "shx rm -fr .svelte-kit build"
+		"clean": "shx rm -fr dist node_modules"
 	},
 	"dependencies": {
 		"@zip.js/zip.js": "^2.7.17"
