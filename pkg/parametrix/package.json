@@ -1,6 +1,7 @@
 {
 	"name": "parametrix",
 	"version": "0.1.0",
+	"description": "The webapp-UI of Parametrix",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",

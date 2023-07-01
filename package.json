@@ -1,0 +1,24 @@
+{
+	"name": "parametrix_root",
+	"version": "1.0.0",
+	"description": "The root directory of the parametrix packages",
+	"private": true,
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/charlyoleg/parametrix.git"
+	},
+	"keywords": [
+		"cad",
+		"programmatic",
+		"2D",
+		"circle",
+		"stroke",
+		"arc",
+		"gear"
+	],
+	"author": "charlyoleg",
+	"workspaces": [
+		"pkg/*"
+	],
+	"type": "module"
+}
