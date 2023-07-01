@@ -1,0 +1,4 @@
+# .gitignore of designix
+dist/
+# vitest creates node_modules for the results.json
+node_modules/
