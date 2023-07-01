@@ -17,6 +17,11 @@
 		"gear"
 	],
 	"author": "charlyoleg",
+	"scripts": {
+		"ls-geometrix": "ls -ltra pkg/geometrix",
+		"ls-designix": "ls -ltra pkg/designix",
+		"ls-parametrix": "ls -ltra pkg/parametrix"
+	},
 	"workspaces": [
 		"pkg/*"
 	],

@@ -1,4 +1,4 @@
-// geom.ts
+// index.ts (previously geom.ts)
 
 export * from './canvas_utils';
 
