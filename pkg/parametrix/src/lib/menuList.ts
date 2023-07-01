@@ -1,19 +1,21 @@
 // menuList.ts
 
-import { pageDef as circlesDef } from '$lib/design/circles';
-import { pageDef as rectangleDef } from '$lib/design/rectangle';
-import { pageDef as verifyPointDef } from '$lib/design/verify_point';
-import { pageDef as verifyPoint2Def } from '$lib/design/verify_point_2';
-import { pageDef as verifyLineDef } from '$lib/design/verify_line';
-import { pageDef as verifyLine2Def } from '$lib/design/verify_line_2';
-import { pageDef as verifyLine3Def } from '$lib/design/verify_line_3';
-import { pageDef as verifyVectorDef } from '$lib/design/verify_vector';
-import { pageDef as verifyContour1Def } from '$lib/design/verify_contour_1';
-import { pageDef as verifyContour2Def } from '$lib/design/verify_contour_2';
-import { pageDef as verifyContour3Def } from '$lib/design/verify_contour_3';
-import { pageDef as verifyContour4Def } from '$lib/design/verify_contour_4';
-import { pageDef as gearWheelWheel } from '$lib/design/gear_wheel_wheel';
-import type { tParamVal, tPageDef } from '$lib/geom/geom';
+import {
+	circlesDef,
+	rectangleDef,
+	verifyPoint1Def,
+	verifyPoint2Def,
+	verifyLine1Def,
+	verifyLine2Def,
+	verifyLine3Def,
+	verifyVector1Def,
+	verifyContour1Def,
+	verifyContour2Def,
+	verifyContour3Def,
+	verifyContour4Def,
+	gearWheelWheelDef
+	} from 'designix';
+import type { tParamVal, tPageDef } from 'geometrix';
 import type { tStorePVal } from '$lib/storePVal';
 import { storePV } from '$lib/storePVal';
 import { get, writable } from 'svelte/store';
@@ -21,7 +23,7 @@ import { get, writable } from 'svelte/store';
 type tAllPageDef = { [index: string]: tPageDef };
 type tIcon = { [inedx: string]: string };
 const designDefs: tAllPageDef = {
-	gear_wheel_wheel: gearWheelWheel,
+	gear_wheel_wheel: gearWheelWheelDef,
 	circles: circlesDef,
 	rectangle: rectangleDef,
 	verify_point: verifyPointDef,

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { tParamDef, tGeomFunc } from '$lib/geom/geom';
+	import type { tParamDef, tGeomFunc } from 'geometrix';
 	import {
 		c_ParametrixAll,
 		EFormat,
@@ -8,7 +8,7 @@
 		fileSuffix,
 		fileMime,
 		fileBin
-	} from '$lib/geom/geom';
+	} from 'geometrix';
 	import InputParams from '$lib/InputParams.svelte';
 	import Drawing from '$lib/Drawing.svelte';
 	import { storePV } from '$lib/storePVal';

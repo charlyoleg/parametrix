@@ -1,7 +1,7 @@
 <script lang="ts">
-	//import { colors } from '$lib/geom/geom';
-	import type { tCanvasAdjust, tLayers, Figure, tParamVal, tGeomFunc } from '$lib/geom/geom';
-	import { copyLayers, mergeFaces } from '$lib/geom/geom';
+	//import { colors } from 'geometrix';
+	import type { tCanvasAdjust, tLayers, Figure, tParamVal, tGeomFunc } from 'geometrix';
+	import { copyLayers, mergeFaces } from 'geometrix';
 	import { storePV } from '$lib/storePVal';
 	import { dLayers } from '$lib/drawingLayers';
 	import { onMount } from 'svelte';

@@ -9,7 +9,7 @@
 		tParamDef,
 		tParamVal,
 		tGeomFunc
-	} from '$lib/geom/geom';
+	} from 'geometrix';
 	import {
 		colors,
 		canvas2point,
@@ -19,7 +19,7 @@
 		adjustTranslate,
 		c_ParametrixAll,
 		mergeFaces
-	} from '$lib/geom/geom';
+	} from 'geometrix';
 	import { storePV } from '$lib/storePVal';
 	import { dLayers } from '$lib/drawingLayers';
 	import { onMount } from 'svelte';
