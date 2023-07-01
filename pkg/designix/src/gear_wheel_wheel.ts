@@ -230,11 +230,11 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	return rGeome;
 }
 
-const pageDef: tPageDef = {
+const gearWheelWheelDef: tPageDef = {
 	pTitle: 'Gearwheel-gearwheel',
 	pDescription: 'Gear-system with two wheels',
 	pDef: pDef,
 	pGeom: pGeom
 };
 
-export { pageDef };
+export { gearWheelWheelDef };

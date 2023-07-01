@@ -53,11 +53,11 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	return rGeome;
 }
 
-const pageDef: tPageDef = {
+const circlesDef: tPageDef = {
 	pTitle: 'Circles',
 	pDescription: 'A spiral made by points.',
 	pDef: pDef,
 	pGeom: pGeom
 };
 
-export { pageDef };
+export { circlesDef };

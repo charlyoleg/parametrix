@@ -397,11 +397,11 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	return rGeome;
 }
 
-const pageDef: tPageDef = {
+const verifyContour3Def: tPageDef = {
 	pTitle: 'Verify contour 3',
 	pDescription: 'Debugging contour.ts for rounded corners and widened corners',
 	pDef: pDef,
 	pGeom: pGeom
 };
 
-export { pageDef };
+export { verifyContour3Def };

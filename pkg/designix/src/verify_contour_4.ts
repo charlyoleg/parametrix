@@ -80,11 +80,11 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	return rGeome;
 }
 
-const pageDef: tPageDef = {
+const verifyContour4Def: tPageDef = {
 	pTitle: 'Verify contour 4',
 	pDescription: 'Debugging contour.ts for addPartial',
 	pDef: pDef,
 	pGeom: pGeom
 };
 
-export { pageDef };
+export { verifyContour4Def };

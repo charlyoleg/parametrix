@@ -43,11 +43,11 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	return rGeome;
 }
 
-const pageDef: tPageDef = {
+const rectangleDef: tPageDef = {
 	pTitle: 'Rectangle',
 	pDescription: 'Just a rectangle.',
 	pDef: pDef,
 	pGeom: pGeom
 };
 
-export { pageDef };
+export { rectangleDef };

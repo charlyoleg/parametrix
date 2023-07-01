@@ -58,11 +58,11 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	return rGeome;
 }
 
-const pageDef: tPageDef = {
+const verifyVector1Def: tPageDef = {
 	pTitle: 'Verify vector',
 	pDescription: 'Debugging vector.ts',
 	pDef: pDef,
 	pGeom: pGeom
 };
 
-export { pageDef };
+export { verifyVector1Def };

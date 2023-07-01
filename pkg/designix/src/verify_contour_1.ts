@@ -82,11 +82,11 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	return rGeome;
 }
 
-const pageDef: tPageDef = {
+const verifyContour1Def: tPageDef = {
 	pTitle: 'Verify contour 1',
 	pDescription: 'Debugging contour.ts',
 	pDef: pDef,
 	pGeom: pGeom
 };
 
-export { pageDef };
+export { verifyContour1Def };
