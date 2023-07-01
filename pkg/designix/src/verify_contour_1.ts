@@ -1,7 +1,7 @@
 // verify_contour_1.ts
 
-import type { tParamDef, tParamVal, tGeom, tPageDef } from '$lib/geom/geom';
-import { contour, contourCircle, figure, pNumber } from '$lib/geom/geom';
+import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
+import { contour, contourCircle, figure, pNumber } from 'geometrix';
 
 const pDef: tParamDef = {
 	page: 'verify_contour_1',

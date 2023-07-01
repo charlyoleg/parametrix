@@ -1,7 +1,7 @@
 // circles.ts
 
-import type { tParamDef, tParamVal, tGeom, tPageDef } from '$lib/geom/geom';
-import { degToRad, point, figure, pNumber } from '$lib/geom/geom';
+import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
+import { degToRad, point, figure, pNumber } from 'geometrix';
 
 //const pi12 = fround(Math.PI / 12);
 //const pi24 = fround(Math.PI / 24); // input-number min and step must be rounded to avoid UI issue

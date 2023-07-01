@@ -1,7 +1,7 @@
 // gear_wheel_wheel.ts
 
-//import { contour, contourCircle, figure, degToRad } from '$lib/geom/geom';
-import type { tParamDef, tParamVal, tGeom, tPageDef } from '$lib/geom/geom';
+import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
+//import { contour, contourCircle, figure, degToRad } from 'geometrix';
 import {
 	contourCircle,
 	figure,
@@ -10,7 +10,7 @@ import {
 	pNumber,
 	pCheckbox,
 	pDropdown
-} from '$lib/geom/geom';
+} from 'geometrix';
 import * as gwHelper from './gearWheelProfile';
 import * as welem from './wheelElements';
 

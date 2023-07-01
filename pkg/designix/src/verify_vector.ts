@@ -1,7 +1,7 @@
 // verify_vector.ts
 
-import type { tParamDef, tParamVal, tGeom, tPageDef } from '$lib/geom/geom';
-import { degToRad, point, vector, figure, pNumber } from '$lib/geom/geom';
+import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
+import { degToRad, point, vector, figure, pNumber } from 'geometrix';
 
 const pDef: tParamDef = {
 	page: 'verify_vector',

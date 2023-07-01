@@ -1,7 +1,7 @@
 // verify_point_2.ts
 
-import type { tParamDef, tParamVal, tGeom, tPageDef } from '$lib/geom/geom';
-import { point, figure, pNumber } from '$lib/geom/geom';
+import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
+import { point, figure, pNumber } from 'geometrix';
 
 const pDef: tParamDef = {
 	page: 'verify_point_2',

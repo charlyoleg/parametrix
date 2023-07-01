@@ -1,7 +1,7 @@
 // wheelElements.ts
 
-import type { tContour } from '$lib/geom/geom';
-import { contour, contourCircle, point, ffix } from '$lib/geom/geom';
+import type { tContour } from 'geometrix';
+import { contour, contourCircle, point, ffix } from 'geometrix';
 
 function axisTorque(
 	cx: number,

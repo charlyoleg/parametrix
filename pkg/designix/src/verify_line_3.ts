@@ -1,7 +1,7 @@
 // verify_line_3.ts
 
-import type { tParamDef, tParamVal, tGeom, tPageDef } from '$lib/geom/geom';
-import { point, bisector, circleCenter, figure, pNumber } from '$lib/geom/geom';
+import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
+import { point, bisector, circleCenter, figure, pNumber } from 'geometrix';
 
 const pDef: tParamDef = {
 	page: 'verify_line_3',
