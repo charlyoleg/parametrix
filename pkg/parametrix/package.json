@@ -22,6 +22,10 @@
 		"github-pages-fix": "touch build/.nojekyll",
 		"clean": "shx rm -fr .svelte-kit build"
 	},
+	"dependencies": {
+		"designix": "^0.1.1",
+		"geometrix": "^1.0.1"
+	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.1.0",
 		"@sveltejs/adapter-static": "^2.0.2",
