@@ -146,25 +146,27 @@ function axisProfile(
 	wheelRadius: number,
 	wheelAxisExtRound: number,
 	wheelAxisIntRound: number,
-	wheelExtraRound: number
+	wheelExtraRound: number,
+	rightNLeft: boolean
 ): tContour {
+	const rln = rightNLeft ? 1 : -1;
 	const wheelHeightHalf = wheelHeight / 2;
 	const wheelHalfLength = wheelHeightHalf + wheelMidExtra;
 	const axisHalfLength = wheelHalfLength + wheelAxisLength;
 	const rCtr = contour(0, -axisHalfLength);
-	rCtr.addSegStrokeA(wheelAxisRadius, -axisHalfLength)
+	rCtr.addSegStrokeA(rln * wheelAxisRadius, -axisHalfLength)
 		.addCornerRounded(wheelAxisExtRound)
-		.addSegStrokeA(wheelAxisRadius, -wheelHalfLength)
+		.addSegStrokeA(rln * wheelAxisRadius, -wheelHalfLength)
 		.addCornerRounded(wheelAxisIntRound)
-		.addSegStrokeA(wheelMidRadius, -wheelHalfLength)
-		.addSegStrokeA(wheelRadius, -wheelHeightHalf)
+		.addSegStrokeA(rln * wheelMidRadius, -wheelHalfLength)
+		.addSegStrokeA(rln * wheelRadius, -wheelHeightHalf)
 		.addCornerRounded(wheelExtraRound)
-		.addSegStrokeA(wheelRadius, wheelHeightHalf)
+		.addSegStrokeA(rln * wheelRadius, wheelHeightHalf)
 		.addCornerRounded(wheelExtraRound)
-		.addSegStrokeA(wheelMidRadius, wheelHalfLength)
-		.addSegStrokeA(wheelAxisRadius, wheelHalfLength)
+		.addSegStrokeA(rln * wheelMidRadius, wheelHalfLength)
+		.addSegStrokeA(rln * wheelAxisRadius, wheelHalfLength)
 		.addCornerRounded(wheelAxisIntRound)
-		.addSegStrokeA(wheelAxisRadius, axisHalfLength)
+		.addSegStrokeA(rln * wheelAxisRadius, axisHalfLength)
 		.addCornerRounded(wheelAxisExtRound)
 		.addSegStrokeA(0, axisHalfLength)
 		.closeSegStroke();

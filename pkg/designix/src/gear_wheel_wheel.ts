@@ -223,7 +223,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			(param['N1'] * param['module']) / 2 +
 			param['ah1'] * param['module'] +
 			param['wheelRadiusExtra'];
-		const ctrAxisProfile = welem.axisProfile(
+		const ctrAxisProfile_right = welem.axisProfile(
 			param['wheelHeight'],
 			param['wheelMidExtra'],
 			param['wheelAxisLength'],
@@ -232,9 +232,23 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			wheelRadius,
 			param['wheelAxisExtRound'],
 			param['wheelAxisIntRound'],
-			param['wheelExtraRound']
+			param['wheelExtraRound'],
+			true
 		);
-		figTwo.addMain(ctrAxisProfile);
+		const ctrAxisProfile_left = welem.axisProfile(
+			param['wheelHeight'],
+			param['wheelMidExtra'],
+			param['wheelAxisLength'],
+			param['wheelAxisRadius'],
+			param['wheelMidRadius'],
+			wheelRadius,
+			param['wheelAxisExtRound'],
+			param['wheelAxisIntRound'],
+			param['wheelExtraRound'],
+			false
+		);
+		figTwo.addMain(ctrAxisProfile_right);
+		figTwo.addSecond(ctrAxisProfile_left);
 		rGeome.fig = { teethProfile: figOne, axisProfile: figTwo };
 		rGeome.logstr += 'gear_wheel_wheel draw successfully!\n';
 		rGeome.calcErr = false;
