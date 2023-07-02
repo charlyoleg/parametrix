@@ -137,4 +137,17 @@ function hollowStraightArea(
 	return rArea;
 }
 
-export { axisTorque, hollowStraight, hollowStraightArea };
+function axisProfile(): tContour {
+	const rCtr = contour(0, 0);
+	rCtr.addSegStrokeR(100, 0)
+		.addCornerRounded(10)
+		.addSegStrokeR(0, 100)
+		.addCornerRounded(10)
+		.addSegStrokeR(-10, 0)
+		.addCornerRounded(10)
+		.closeSegStroke()
+		.addCornerRounded(10);
+	return rCtr;
+}
+
+export { axisTorque, hollowStraight, hollowStraightArea, axisProfile };

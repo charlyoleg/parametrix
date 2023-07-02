@@ -2,7 +2,7 @@
 
 import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
 //import { contour, contourCircle, figure, degToRad } from 'geometrix';
-import { contourCircle, figure, degToRad, ffix, pNumber, pCheckbox, pDropdown } from 'geometrix';
+import { figure, degToRad, ffix, pNumber, pCheckbox, pDropdown } from 'geometrix';
 import * as gwHelper from './gearWheelProfile';
 import * as welem from './wheelElements';
 
@@ -210,9 +210,9 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rGeome.logstr += gp2p.check();
 		figOne.addSecond(gp2p);
 		// Figure Two
-		figTwo.addMain(contourCircle(0, 0, 50, 'black'));
-		figTwo.addMain(contourCircle(0, 0, 60, 'yellow'));
-		rGeome.fig = { one: figOne, two: figTwo };
+		const ctrAxisProfile = welem.axisProfile();
+		figTwo.addMain(ctrAxisProfile);
+		rGeome.fig = { teeth: figOne, revolu: figTwo };
 		rGeome.logstr += 'gear_wheel_wheel draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {

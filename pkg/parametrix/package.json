@@ -18,7 +18,7 @@
 		"svgo4": "svgo -f src/routes/docs/svg -o static",
 		"svgo": "run-s svgo1 svgo4",
 		"github-pages-fix": "touch build/.nojekyll",
-		"clean": "shx rm -fr .svelte-kit build"
+		"clean": "shx rm -fr .svelte-kit build node_modules"
 	},
 	"dependencies": {
 		"designix": "^0.1.1",
