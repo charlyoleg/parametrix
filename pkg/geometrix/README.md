@@ -6,6 +6,7 @@ Presentation
 ------------
 
 *Geometrix* is a *javascript* package for programmatic CAD. It helps to create figures composed of circles, strokes and arcs. Those figures can then be exported as [dxf](https://en.wikipedia.org/wiki/AutoCAD_DXF), [svg](https://www.w3.org/Graphics/SVG/) and a couple of other formats. Using *Parametrix*, those figures can also be displayed in an HTML canvas and simulated in 2D.
+
 *Geometrix* has also features to round or widen corners of your figures.
 
 
