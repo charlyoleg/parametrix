@@ -18,7 +18,9 @@
 	],
 	"author": "charlyoleg",
 	"tsup": {
-		"entry": ["src/index.ts"],
+		"entry": [
+			"src/index.ts"
+		],
 		"format": "esm",
 		"splitting": false,
 		"dts": true,
