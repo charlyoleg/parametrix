@@ -18,9 +18,25 @@
 	],
 	"author": "charlyoleg",
 	"scripts": {
-		"ls-geometrix": "ls -ltra pkg/geometrix",
-		"ls-designix": "ls -ltra pkg/designix",
-		"ls-parametrix": "ls -ltra pkg/parametrix"
+		"geometrix:dev": "npm -w geometrix run dev",
+		"geometrix:ci": "npm -w geometrix run ci",
+		"geometrix:svgo": "npm -w geometrix run svgo",
+		"geometrix:clean": "npm -w geometrix run clean",
+		"designix:dev": "npm -w designix run dev",
+		"designix:ci": "npm -w designix run ci",
+		"designix:svgo": "npm -w designix run svgo",
+		"designix:clean": "npm -w designix run clean",
+		"parametrix:dev": "npm -w parametrix run dev",
+		"parametrix:ci": "npm -w parametrix run ci",
+		"parametrix:svgo": "npm -w parametrix run svgo",
+		"parametrix:clean": "npm -w parametrix run clean",
+		"parametrix:preview": "npm -w parametrix run preview",
+		"dev": "run-p geometrix:dev",
+		"ci": "run-s geometrix:ci designix:ci parametrix:ci",
+		"svgo": "run-s geometrix:svgo designix:svgo parametrix:svgo",
+		"clean": "run-s geometrix:clean designix:clean parametrix:clean",
+		"preview": "run-s parametrix:preview",
+		"ls-pkg": "ls -ltra pkg/geometrix pkg/designix pkg/parametrix"
 	},
 	"workspaces": [
 		"pkg/*"
