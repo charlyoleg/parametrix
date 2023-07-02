@@ -16,7 +16,8 @@ jobs:
               with:
                   node-version: '18'
 
-            - run: npm install
+			- name: clean and install
+              run: npm ci
 
             - run: npm -w geometrix run ci
             - run: npm -w designix run ci
@@ -36,6 +37,6 @@ jobs:
               uses: crazy-max/ghaction-github-pages@v3
               with:
                   target_branch: gh-pages
-                  build_dir: build
+                  build_dir: pkg/parametrix/build
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
