@@ -212,7 +212,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		// Figure Two
 		const ctrAxisProfile = welem.axisProfile();
 		figTwo.addMain(ctrAxisProfile);
-		rGeome.fig = { teeth: figOne, revolu: figTwo };
+		rGeome.fig = { teethProfile: figOne, axisProfile: figTwo };
 		rGeome.logstr += 'gear_wheel_wheel draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {

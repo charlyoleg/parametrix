@@ -143,7 +143,7 @@ function axisProfile(): tContour {
 		.addCornerRounded(10)
 		.addSegStrokeR(0, 100)
 		.addCornerRounded(10)
-		.addSegStrokeR(-10, 0)
+		.addSegStrokeR(-100, 0)
 		.addCornerRounded(10)
 		.closeSegStroke()
 		.addCornerRounded(10);
