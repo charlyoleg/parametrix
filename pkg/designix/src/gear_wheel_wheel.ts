@@ -52,7 +52,16 @@ const pDef: tParamDef = {
 		pNumber('materialHeightInt', 'mm', 15, 1, 200, 0.5),
 		pNumber('spokeNb', 'scalar', 5, 1, 18, 1),
 		pNumber('spokeWidth', 'mm', 15, 1, 200, 0.1),
-		pNumber('spokeRound', 'mm', 10, 0, 20, 0.1)
+		pNumber('spokeRound', 'mm', 10, 0, 20, 0.1),
+		pNumber('wheelHeight', 'mm', 40, 0.1, 400, 0.1),
+		pNumber('wheelMidExtra', 'mm', 6, 0, 10, 0.1),
+		pNumber('wheelAxisLength', 'mm', 40, 0, 400, 0.1),
+		pNumber('wheelAxisRadius', 'mm', 20, 0, 200, 0.1),
+		pNumber('wheelMidRadius', 'mm', 60, 0, 200, 0.1),
+		pNumber('wheelRadiusExtra', 'mm', 1, 0, 20, 0.1),
+		pNumber('wheelAxisExtRound', 'mm', 4, 0, 20, 0.1),
+		pNumber('wheelAxisIntRound', 'mm', 0, 0, 20, 0.1),
+		pNumber('wheelExtraRound', 'mm', 4, 0, 20, 0.1)
 	],
 	paramSvg: {
 		module: 'default_param_blank.svg',
@@ -210,7 +219,21 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rGeome.logstr += gp2p.check();
 		figOne.addSecond(gp2p);
 		// Figure Two
-		const ctrAxisProfile = welem.axisProfile();
+		const wheelRadius =
+			(param['N1'] * param['module']) / 2 +
+			param['ah1'] * param['module'] +
+			param['wheelRadiusExtra'];
+		const ctrAxisProfile = welem.axisProfile(
+			param['wheelHeight'],
+			param['wheelMidExtra'],
+			param['wheelAxisLength'],
+			param['wheelAxisRadius'],
+			param['wheelMidRadius'],
+			wheelRadius,
+			param['wheelAxisExtRound'],
+			param['wheelAxisIntRound'],
+			param['wheelExtraRound']
+		);
 		figTwo.addMain(ctrAxisProfile);
 		rGeome.fig = { teethProfile: figOne, axisProfile: figTwo };
 		rGeome.logstr += 'gear_wheel_wheel draw successfully!\n';

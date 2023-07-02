@@ -137,16 +137,37 @@ function hollowStraightArea(
 	return rArea;
 }
 
-function axisProfile(): tContour {
-	const rCtr = contour(0, 0);
-	rCtr.addSegStrokeR(100, 0)
-		.addCornerRounded(10)
-		.addSegStrokeR(0, 100)
-		.addCornerRounded(10)
-		.addSegStrokeR(-100, 0)
-		.addCornerRounded(10)
-		.closeSegStroke()
-		.addCornerRounded(10);
+function axisProfile(
+	wheelHeight: number,
+	wheelMidExtra: number,
+	wheelAxisLength: number,
+	wheelAxisRadius: number,
+	wheelMidRadius: number,
+	wheelRadius: number,
+	wheelAxisExtRound: number,
+	wheelAxisIntRound: number,
+	wheelExtraRound: number
+): tContour {
+	const wheelHeightHalf = wheelHeight / 2;
+	const wheelHalfLength = wheelHeightHalf + wheelMidExtra;
+	const axisHalfLength = wheelHalfLength + wheelAxisLength;
+	const rCtr = contour(0, -axisHalfLength);
+	rCtr.addSegStrokeA(wheelAxisRadius, -axisHalfLength)
+		.addCornerRounded(wheelAxisExtRound)
+		.addSegStrokeA(wheelAxisRadius, -wheelHalfLength)
+		.addCornerRounded(wheelAxisIntRound)
+		.addSegStrokeA(wheelMidRadius, -wheelHalfLength)
+		.addSegStrokeA(wheelRadius, -wheelHeightHalf)
+		.addCornerRounded(wheelExtraRound)
+		.addSegStrokeA(wheelRadius, wheelHeightHalf)
+		.addCornerRounded(wheelExtraRound)
+		.addSegStrokeA(wheelMidRadius, wheelHalfLength)
+		.addSegStrokeA(wheelAxisRadius, wheelHalfLength)
+		.addCornerRounded(wheelAxisIntRound)
+		.addSegStrokeA(wheelAxisRadius, axisHalfLength)
+		.addCornerRounded(wheelAxisExtRound)
+		.addSegStrokeA(0, axisHalfLength)
+		.closeSegStroke();
 	return rCtr;
 }
 
