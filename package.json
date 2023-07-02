@@ -31,7 +31,7 @@
 		"parametrix:svgo": "npm -w parametrix run svgo",
 		"parametrix:clean": "npm -w parametrix run clean",
 		"parametrix:preview": "npm -w parametrix run preview",
-		"dev": "run-p geometrix:dev",
+		"dev": "run-p geometrix:dev designix:dev parametrix:dev",
 		"ci": "run-s geometrix:ci designix:ci parametrix:ci",
 		"svgo": "run-s geometrix:svgo designix:svgo parametrix:svgo",
 		"clean": "run-s geometrix:clean designix:clean parametrix:clean",
