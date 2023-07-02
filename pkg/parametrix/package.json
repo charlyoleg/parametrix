@@ -15,10 +15,8 @@
 		"ci": "run-s build lint check test:unit:once",
 		"format": "prettier --plugin-search-dir . --write .",
 		"svgo1": "svgo -f src/lib/svg -o static",
-		"svgo2": "svgo -f src/lib/design/svg -o static",
-		"svgo3": "svgo -f src/lib/geom/svg -o static",
 		"svgo4": "svgo -f src/routes/docs/svg -o static",
-		"svgo": "run-s svgo1 svgo2 svgo3 svgo4",
+		"svgo": "run-s svgo1 svgo4",
 		"github-pages-fix": "touch build/.nojekyll",
 		"clean": "shx rm -fr .svelte-kit build"
 	},
