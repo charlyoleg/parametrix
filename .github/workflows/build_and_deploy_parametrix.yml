@@ -16,7 +16,7 @@ jobs:
               with:
                   node-version: '18'
 
-			- name: clean and install
+            - name: clean and install
               run: npm ci
 
             - run: npm -w geometrix run ci

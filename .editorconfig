@@ -17,3 +17,7 @@ insert_final_newline = true
 # Tab indentation (no size specified)
 [Makefile]
 indent_style = tab
+
+# yaml indentation with spaces
+[*.{yml,yaml}]
+indent_style = space
