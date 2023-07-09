@@ -12,7 +12,7 @@ const pDef: tParamDef = {
 		pNumber('r3', 'mm', 10, 0, 200, 1),
 		pNumber('r4', 'mm', 10, 0, 200, 1),
 		pNumber('r5', 'mm', 10, 0, 200, 1),
-		pNumber('r6', 'mm', 10, 0, 200, 1)
+		pNumber('r6', 'mm', 5, 0, 200, 1)
 	],
 	paramSvg: {
 		r1: 'verify_contour_1_r1.svg',
