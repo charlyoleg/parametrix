@@ -11,3 +11,7 @@ node_modules
 pnpm-lock.yaml
 package-lock.json
 yarn.lock
+
+# avoid weird error
+.eslintrc.cjs
+svelte.config.js

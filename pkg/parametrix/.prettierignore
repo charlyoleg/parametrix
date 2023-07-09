@@ -12,3 +12,6 @@ README.md
 pnpm-lock.yaml
 package-lock.json
 yarn.lock
+
+# avoid changing doctype
+src/app.html
