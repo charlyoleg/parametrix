@@ -13,5 +13,6 @@ package-lock.json
 yarn.lock
 
 # avoid weird error
+# TODO: remove workaround
 .eslintrc.cjs
 svelte.config.js
