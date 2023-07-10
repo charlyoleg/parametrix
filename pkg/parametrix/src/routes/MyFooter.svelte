@@ -11,16 +11,37 @@
 	</ul>
 	<Garland />
 	<ul>
-		<li class="footer-title">Friends</li>
+		<li class="footer-title">Js Partners</li>
 		<li><a href="https://ocjs.org/">OpenCascade.js</a></li>
+		<li><a href="https://github.com/ArchiyouApp/archiyou-core">Archiyou-core</a></li>
+		<li><a href="https://github.com/sgenoud/replicad">Replicad</a></li>
+		<li><a href="https://github.com/zalo/CascadeStudio">CascadeStudio</a></li>
 		<li><a href="https://github.com/jscad/OpenJSCAD.org">OpenJsCAD</a></li>
+	</ul>
+	<Garland />
+	<ul>
+		<li class="footer-title">Py Partners</li>
+		<li><a href="https://cadquery.readthedocs.io">CadQuery</a></li>
+		<li><a href="https://github.com/tpaviot/pythonocc-core">PythonOCC</a></li>
+		<li><a href="https://mirmik.github.io/zencad/en/index.html">ZenCAD</a></li>
+	</ul>
+	<Garland />
+	<ul>
+		<li class="footer-title">Other Partners</li>
+		<li><a href="https://openscad.org/">OpenSCAD</a></li>
+	</ul>
+	<Garland />
+	<ul>
+		<li class="footer-title">Friends</li>
 		<li><a href="https://www.freecad.org/">FreeCAD</a></li>
 		<li><a href="https://solvespace.com/">SolveSpace</a></li>
 		<li><a href="https://librecad.org/">LibreCAD</a></li>
 		<li><a href="https://inkscape.org/">Inkscape</a></li>
-		<li><a href="https://cadquery.readthedocs.io">CadQuery</a></li>
-		<li><a href="https://github.com/tpaviot/pythonocc-core">PythonOCC</a></li>
-		<li><a href="https://openscad.org/">OpenSCAD</a></li>
+	</ul>
+	<Garland />
+	<ul>
+		<li class="footer-title">Competitors</li>
+		<li><a href="https://maker.js.org/docs/">Maker.js</a></li>
 	</ul>
 	<Garland />
 	<ul>
@@ -31,7 +52,6 @@
 		<li>
 			<a href="https://github.com/janssen86/OpenSCAD-Getriebebibliothek">OpenSCAD Gear</a>
 		</li>
-		<li><a href="https://maker.js.org/docs/">Maker.js</a></li>
 	</ul>
 	<Garland />
 	<ul>
@@ -44,10 +64,6 @@
 		<li><a href="https://github.com/michaelgale/cq-kit">CadQuery Kit</a></li>
 		<li><a href="https://github.com/CadQuery/awesome-cadquery">CadQuery Awesome</a></li>
 		<li><a href="https://github.com/occi-cad">Open CAD Component Interface</a></li>
-		<li><a href="https://github.com/ArchiyouApp/archiyou-core">Archiyou-core</a></li>
-		<li><a href="https://github.com/sgenoud/replicad">Replicad</a></li>
-		<li><a href="https://github.com/zalo/CascadeStudio">CascadeStudio</a></li>
-		<li><a href="https://mirmik.github.io/zencad/en/index.html">ZenCAD</a></li>
 	</ul>
 	<Garland />
 	<ul>
