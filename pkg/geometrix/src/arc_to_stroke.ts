@@ -12,7 +12,8 @@ function calcAngleStep(
 ): [number, number] {
 	const max_angle2 = 2 * Math.asin(max_length / (2 * radius));
 	const angleStepMax = Math.min(max_angle, max_angle2);
-	const angleNb = Math.floor(arc_angle / angleStepMax) + 1;
+	//const angleNb = Math.floor(arc_angle / angleStepMax) + 1;
+	const angleNb = Math.ceil(arc_angle / angleStepMax);
 	const angleStep = arc_angle / angleNb;
 	return [angleNb, angleStep];
 }
