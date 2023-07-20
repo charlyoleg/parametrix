@@ -5,7 +5,7 @@ function ff(ifloat: number): string {
 	return ifloat.toFixed(4);
 }
 
-function svgCircleString(cx: number, cy: number, radius: number, color = '') {
+function svgCircleString(cx: number, cy: number, radius: number, color = ''): string {
 	let sColor = color;
 	if (sColor === '') {
 		sColor = 'black';

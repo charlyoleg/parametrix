@@ -36,7 +36,7 @@ class DxfSeg {
 		this.p2y = p2y;
 	}
 }
-function dxfSegLine(p1x: number, p1y: number, p2x: number, p2y: number) {
+function dxfSegLine(p1x: number, p1y: number, p2x: number, p2y: number): DxfSeg {
 	const rDxfSeg = new DxfSeg(false, p1x, p1y, 0, 0, 0, p2x, p2y);
 	return rDxfSeg;
 }
@@ -47,7 +47,7 @@ function dxfSegArc(
 	aa1: number,
 	aa2: number,
 	arcCcw: boolean
-) {
+): DxfSeg {
 	//const a1 = aa1;
 	//const a2 = aa2;
 	const a1 = arcCcw ? aa1 : aa2;
@@ -58,7 +58,7 @@ function dxfSegArc(
 	const rDxfSeg = new DxfSeg(true, p1x, p1y, radius, b1, b2, 0, 0);
 	return rDxfSeg;
 }
-function dxfSegCircle(p1x: number, p1y: number, radius: number) {
+function dxfSegCircle(p1x: number, p1y: number, radius: number): DxfSeg {
 	const rDxfSeg = new DxfSeg(false, p1x, p1y, radius, 0, 0, 0, 0);
 	return rDxfSeg;
 }
