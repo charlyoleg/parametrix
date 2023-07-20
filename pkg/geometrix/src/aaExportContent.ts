@@ -11,6 +11,8 @@ import { svgWriter } from './write_svg';
 import { dxfWriter } from './write_dxf';
 import type { tPaxContour } from './write_pax';
 import { paxWriter } from './write_pax';
+//import type { tOpenscadSeg } from './write_openscad';
+import { oscadWriter } from './write_openscad';
 import * as zip from '@zip.js/zip.js';
 
 // SVG
@@ -151,6 +153,29 @@ function makePax(paramVal: tParamVal, geome0: tGeom, designName: string): string
 	return rStr;
 }
 
+// OpenSCad
+function figureToOscadF(aCtr: Array<tContour>): [Array<string>, Array<string>] {
+	const oscadW = oscadWriter();
+	for (const ctr of aCtr) {
+		oscadW.addContour(ctr.toOpenscadSeg());
+	}
+	const rOscadF = oscadW.getFigure();
+	return rOscadF;
+}
+
+type tFaceOscad = { [index: string]: [Array<string>, Array<string>] };
+function makeOpenscad(geome0: tGeom): string {
+	const figFaces: tFaceOscad = {};
+	for (const face in geome0.fig) {
+		const figu = figureToOscadF(geome0.fig[face].mainList);
+		figFaces[face] = figu;
+	}
+	// TODO
+	const rStr = 'hello\n';
+
+	return rStr;
+}
+
 // ZIP
 async function makeZip(
 	paramVal: tParamVal,
@@ -196,4 +221,4 @@ async function makeZip(
 	return rFileContent;
 }
 
-export { figureToSvg, figureToDxf, makePax, makeZip };
+export { figureToSvg, figureToDxf, makePax, makeOpenscad, makeZip };

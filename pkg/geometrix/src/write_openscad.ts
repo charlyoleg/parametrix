@@ -32,31 +32,39 @@ function oscadSegCircle(cx: number, cy: number, radius: number): tOpenscadSeg {
 }
 
 class OpenscadWrite {
-	oStr: string;
+	pts: Array<string>;
+	ptIdx: Array<string>;
+	idx: number;
 	constructor() {
-		this.oStr = '0\nSECTION\n2\nENTITIES\n';
+		this.pts = [];
+		this.ptIdx = [];
+		this.idx = 0;
 	}
-	addCircle(cx: number, cy: number, radius: number) {
-		this.oStr += '0\nCIRCLE\n8\nPARAMETRIX\n';
-		this.oStr += `10\n${ff(cx)}\n20\n${ff(cy)}\n40\n${ff(radius)}\n`;
+	addContour(ictr: tOpenscadSeg) {
+		let ptStr = '[';
+		let ptIdxStr = '[';
+		let sFlag = false;
+		for (const pt of ictr) {
+			if (!sFlag) {
+				sFlag = true;
+			} else {
+				ptStr += ',';
+				ptIdxStr += ',';
+			}
+			const [px, py] = pt;
+			ptStr += ` [ ${ff(px)}, ${ff(py)} ]`;
+			ptIdxStr += ` ${this.idx}`;
+			this.idx += 1;
+		}
+		ptStr += ' ]';
+		ptIdxStr += ' ]';
+		this.pts.push(ptStr);
+		this.ptIdx.push(ptIdxStr);
 	}
-	addLine(p1x: number, p1y: number, p2x: number, p2y: number) {
-		this.oStr += '0\nLINE\n8\nPARAMETRIX\n';
-		this.oStr += `10\n${ff(p1x)}\n20\n${ff(p1y)}\n11\n${ff(p2x)}\n21\n${ff(p2y)}\n`;
-	}
-	addArc(cx: number, cy: number, ra: number, a1: number, a2: number) {
-		this.oStr += '0\nARC\n8\nPARAMETRIX\n';
-		this.oStr += `10\n${ff(cx)}\n20\n${ff(cy)}\n40\n${ff(ra)}\n50\n${ff(a1)}\n51\n${ff(a2)}\n`;
-	}
-	close() {
-		this.oStr += '0\nENDSEC\n0\nEOF\n';
-	}
-	stringify(): string {
-		this.close();
-		return this.oStr;
+	getFigure(): [Array<string>, Array<string>] {
+		return [this.pts, this.ptIdx];
 	}
 }
-
 function oscadWriter() {
 	const rOscadWrite = new OpenscadWrite();
 	return rOscadWrite;
