@@ -59,17 +59,17 @@ class OpenscadWrite {
 		const aList: Array<string> = [];
 		const bList: Array<string> = [];
 		for (const idx of this.pts.keys()) {
-			const aId = `ca${faceId}${idx}`;
-			const bId = `cb${faceId}${idx}`;
-			rStr += `${aId} = this.pts[idx]\n`;
-			rStr += `${bId} = this.ptIdx[idx]\n`;
+			const aId = `ca_${faceId}_${idx}`;
+			const bId = `cb_${faceId}_${idx}`;
+			rStr += `${aId} = ${this.pts[idx]};\n`;
+			rStr += `${bId} = ${this.ptIdx[idx]};\n`;
 			aList.push(aId);
-			aList.push(bId);
+			bList.push(bId);
 		}
 		const aListStr = aList.join(', ');
 		const bListStr = bList.join(', ');
-		rStr += `a${faceId} = concat(${aListStr})\n`;
-		rStr += `b${faceId} = [${bListStr}]\n`;
+		rStr += `a_${faceId} = concat(${aListStr});\n`;
+		rStr += `b_${faceId} = [${bListStr}];\n`;
 		return rStr;
 	}
 }
