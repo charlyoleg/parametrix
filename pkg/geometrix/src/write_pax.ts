@@ -1,4 +1,4 @@
-// pax.ts
+// write_pax.ts
 
 // floating precision for pax export
 function ff(ifloat: number): number {

@@ -1,4 +1,4 @@
-// dxf.ts
+// write_dxf.ts
 
 import { radToDeg, withinZero2Pi } from './angle_utils';
 

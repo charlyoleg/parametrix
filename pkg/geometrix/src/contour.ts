@@ -30,11 +30,11 @@ import { point, Point } from './point';
 import { line, Line, bisector, circleCenter } from './line';
 //import { vector, Vector } from './vector';
 import * as segLib from './segment';
-import { svgPath, svgCircleString } from './svg';
-import type { DxfSeg } from './dxf';
-import { dxfSegLine, dxfSegArc, dxfSegCircle } from './dxf';
-import type { tPaxContourPath, tPaxContourCircle, tPaxContour } from './pax';
-import { paxPath, paxCircle } from './pax';
+import { svgPath, svgCircleString } from './write_svg';
+import type { DxfSeg } from './write_dxf';
+import { dxfSegLine, dxfSegArc, dxfSegCircle } from './write_dxf';
+import type { tPaxContourPath, tPaxContourCircle, tPaxContour } from './write_pax';
+import { paxPath, paxCircle } from './write_pax';
 
 /* AContour abstract class */
 

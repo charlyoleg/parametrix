@@ -6,11 +6,11 @@ import { Point, point, pointMinMax } from './point';
 import type { tContour } from './contour';
 import type { Figure } from './figure';
 import { mergeFaces } from './figure';
-import type { SvgWriter } from './svg';
-import { svgWriter } from './svg';
-import { dxfWriter } from './dxf';
-import type { tPaxContour } from './pax';
-import { paxWriter } from './pax';
+import type { SvgWriter } from './write_svg';
+import { svgWriter } from './write_svg';
+import { dxfWriter } from './write_dxf';
+import type { tPaxContour } from './write_pax';
+import { paxWriter } from './write_pax';
 import * as zip from '@zip.js/zip.js';
 
 // SVG

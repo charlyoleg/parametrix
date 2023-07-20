@@ -1,4 +1,4 @@
-// svg.ts
+// write_svg.ts
 
 // floating precision for svg export
 function ff(ifloat: number): string {
