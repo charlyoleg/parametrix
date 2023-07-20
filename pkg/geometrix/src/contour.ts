@@ -35,6 +35,8 @@ import type { DxfSeg } from './write_dxf';
 import { dxfSegLine, dxfSegArc, dxfSegCircle } from './write_dxf';
 import type { tPaxContourPath, tPaxContourCircle, tPaxContour } from './write_pax';
 import { paxPath, paxCircle } from './write_pax';
+import type { tOpenscadSeg } from './write_openscad';
+import { oscadSegLine, oscadSegArc, oscadSegCircle } from './write_openscad';
 
 /* AContour abstract class */
 
@@ -50,6 +52,7 @@ abstract class AContour {
 	abstract toSvg(color?: string): string;
 	abstract toDxfSeg(): Array<DxfSeg>;
 	abstract toPax(): tPaxContour;
+	abstract toOpenscadSeg(): tOpenscadSeg;
 }
 
 /* Contour class */
@@ -675,8 +678,7 @@ class Contour extends AContour {
 		for (const seg of this.segments) {
 			if (seg.sType === segLib.SegEnum.eStroke) {
 				rDxfSeg.push(dxfSegLine(px1, py1, seg.px, seg.py));
-			}
-			if (seg.sType === segLib.SegEnum.eArc) {
+			} else if (seg.sType === segLib.SegEnum.eArc) {
 				try {
 					const seg2 = segLib.arcSeg1To2(px1, py1, seg);
 					rDxfSeg.push(
@@ -703,11 +705,46 @@ class Contour extends AContour {
 			} else if (seg.sType === segLib.SegEnum.eArc) {
 				pPath.addArc(seg.px, seg.py, seg.radius, seg.arcLarge, seg.arcCcw);
 			} else {
-				console.log(`err631: contour.toSvg has unknown segment type ${seg.sType}`);
+				console.log(`err709: contour.toPax has unknown segment type ${seg.sType}`);
 			}
 		}
 		const rPaxC = pPath.toJson();
 		return rPaxC;
+	}
+	toOpenscadSeg(): tOpenscadSeg {
+		const rOscadSeg: tOpenscadSeg = [];
+		let px1 = 0;
+		let py1 = 0;
+		for (const seg of this.segments) {
+			if (seg.sType === segLib.SegEnum.eStart) {
+				rOscadSeg.push(...oscadSegLine(seg.px, seg.py));
+			} else if (seg.sType === segLib.SegEnum.eStroke) {
+				rOscadSeg.push(...oscadSegLine(seg.px, seg.py));
+			} else if (seg.sType === segLib.SegEnum.eArc) {
+				try {
+					const seg2 = segLib.arcSeg1To2(px1, py1, seg);
+					rOscadSeg.push(
+						...oscadSegArc(
+							seg2.pc.cx,
+							seg2.pc.cy,
+							seg.radius,
+							seg2.a1,
+							seg2.a2,
+							seg2.arcCcw
+						)
+					);
+				} catch (emsg) {
+					console.log('err730: ' + emsg);
+				}
+			} else {
+				console.log(`err725: contour.toOpenscadSeg has unknown segment type ${seg.sType}`);
+			}
+			if (segLib.isAddPoint(seg.sType)) {
+				px1 = seg.px;
+				py1 = seg.py;
+			}
+		}
+		return rOscadSeg;
 	}
 }
 
@@ -771,6 +808,10 @@ class ContourCircle extends AContour {
 	toPax(): tPaxContourCircle {
 		const rPaxC = paxCircle(this.px, this.py, this.radius);
 		return rPaxC;
+	}
+	toOpenscadSeg(): tOpenscadSeg {
+		const rOscadSeg = oscadSegCircle(this.px, this.py, this.radius);
+		return rOscadSeg;
 	}
 }
 
