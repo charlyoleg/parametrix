@@ -1,13 +1,14 @@
 // aaExportFile.ts
 
 import type { tGeomFunc, tParamVal } from './aaParamGeom';
-import { figureToSvg, figureToDxf, makePax, makeZip } from './aaExportContent';
+import { figureToSvg, figureToDxf, makePax, makeOpenscad, makeZip } from './aaExportContent';
 import { c_ParametrixAll, mergeFaces } from './figure';
 
 enum EFormat {
 	eSVG,
 	eDXF,
 	ePAX,
+	eOPENSCAD,
 	eZIP
 }
 
@@ -44,6 +45,8 @@ function fileTextContent(
 			}
 		} else if (exportFormat === EFormat.ePAX) {
 			rFileContent = makePax(paramVal, geome0, designName);
+		} else if (exportFormat === EFormat.eOPENSCAD) {
+			rFileContent = makeOpenscad(geome0);
 		} else {
 			console.log(`err912: unknown exportFormat ${exportFormat}`);
 		}
@@ -84,6 +87,8 @@ function fileMime(exportFormat: EFormat): string {
 	} else if (exportFormat === EFormat.ePAX) {
 		rMime = 'application/json';
 		//rMime = 'text/plain';
+	} else if (exportFormat === EFormat.eOPENSCAD) {
+		rMime = 'text/plain';
 	} else if (exportFormat === EFormat.eZIP) {
 		rMime = 'application/zip';
 	} else {
@@ -95,13 +100,15 @@ function fileMime(exportFormat: EFormat): string {
 function fileSuffix(exportFormat: EFormat): string {
 	let rSuffix = '';
 	if (exportFormat === EFormat.eSVG) {
-		rSuffix = 'svg';
+		rSuffix = '.svg';
 	} else if (exportFormat === EFormat.eDXF) {
-		rSuffix = 'dxf';
+		rSuffix = '.dxf';
 	} else if (exportFormat === EFormat.ePAX) {
-		rSuffix = 'pax.json';
+		rSuffix = '.pax.json';
+	} else if (exportFormat === EFormat.eOPENSCAD) {
+		rSuffix = '_noarc_openscad.scad';
 	} else if (exportFormat === EFormat.eZIP) {
-		rSuffix = 'zip';
+		rSuffix = '.zip';
 	} else {
 		console.log(`err904: unknown exportFormat ${exportFormat}`);
 	}

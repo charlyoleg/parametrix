@@ -105,6 +105,9 @@
 		} else if (exportFace === 'pax') {
 			exportFormat = EFormat.ePAX;
 			eFace = c_ParametrixAll;
+		} else if (exportFace === 'oscad') {
+			exportFormat = EFormat.eOPENSCAD;
+			eFace = c_ParametrixAll;
 		} else if (exportFace === 'zip') {
 			exportFormat = EFormat.eZIP;
 			eFace = c_ParametrixAll;
@@ -115,7 +118,7 @@
 		const fSuffix = fileSuffix(exportFormat);
 		const fMime = fileMime(exportFormat);
 		const fBin = fileBin(exportFormat);
-		const fName = pDef.page + '_' + nFace + '_' + dateString() + '.' + fSuffix;
+		const fName = pDef.page + '_' + nFace + '_' + dateString() + fSuffix;
 		if (fBin) {
 			const fContent = await fileBinContent(
 				geom,
@@ -164,6 +167,7 @@
 		{/each}
 		<option value="alldxf">all faces merged as dxf</option>
 		<option value="pax">all faces as pax.json</option>
+		<option value="oscad">all faces as openscad.scad</option>
 		<option value="zip">all faces and more as zip</option>
 	</select>
 	<button on:click={downloadExport}>Save to File</button>
