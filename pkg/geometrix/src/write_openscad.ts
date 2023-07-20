@@ -61,8 +61,23 @@ class OpenscadWrite {
 		this.pts.push(ptStr);
 		this.ptIdx.push(ptIdxStr);
 	}
-	getFigure(): [Array<string>, Array<string>] {
-		return [this.pts, this.ptIdx];
+	getFigure(faceId: string): string {
+		let rStr = '';
+		const aList: Array<string> = [];
+		const bList: Array<string> = [];
+		for (const idx of this.pts.keys()) {
+			const aId = `ca${faceId}${idx}`;
+			const bId = `cb${faceId}${idx}`;
+			rStr += `${aId} = this.pts[idx]\n`;
+			rStr += `${bId} = this.ptIdx[idx]\n`;
+			aList.push(aId);
+			aList.push(bId);
+		}
+		const aListStr = aList.join(', ');
+		const bListStr = bList.join(', ');
+		rStr += `a${faceId} = concat(${aListStr})\n`;
+		rStr += `b${faceId} = [${bListStr}]\n`;
+		return rStr;
 	}
 }
 function oscadWriter() {
