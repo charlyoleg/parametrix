@@ -6,6 +6,9 @@ import { circle_to_stroke, arc_to_stroke } from './arc_to_stroke';
 
 type tOpenscadSeg = tAtsPoints;
 
+const approxMaxAngle = Math.PI / 8;
+const approxMaxLength = 20.0;
+
 // floating precision for OpenScad export
 function ff(ifloat: number): string {
 	return ifloat.toFixed(4);
@@ -23,11 +26,11 @@ function oscadSegArc(
 	aa2: number,
 	arcCcw: boolean
 ): tOpenscadSeg {
-	const rSeg = arc_to_stroke(cx, cy, radius, aa1, aa2, arcCcw, Math.PI / 6, 2.0);
+	const rSeg = arc_to_stroke(cx, cy, radius, aa1, aa2, arcCcw, approxMaxAngle, approxMaxLength);
 	return rSeg;
 }
 function oscadSegCircle(cx: number, cy: number, radius: number): tOpenscadSeg {
-	const rSeg = circle_to_stroke(cx, cy, radius, Math.PI / 6, 2.0);
+	const rSeg = circle_to_stroke(cx, cy, radius, approxMaxAngle, approxMaxLength);
 	return rSeg;
 }
 

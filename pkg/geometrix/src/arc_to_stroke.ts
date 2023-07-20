@@ -1,6 +1,6 @@
 // arc_to_stroke.ts
 
-import { withinZero2Pi } from './angle_utils';
+import { orientedArc } from './angle_utils';
 
 type tAtsPoints = Array<[number, number]>;
 
@@ -12,8 +12,7 @@ function calcAngleStep(
 ): [number, number] {
 	const max_angle2 = 2 * Math.asin(max_length / (2 * radius));
 	const angleStepMax = Math.min(max_angle, max_angle2);
-	const angleNbMin = arc_angle / angleStepMax;
-	const angleNb = angleNbMin + 1;
+	const angleNb = Math.floor(arc_angle / angleStepMax) + 1;
 	const angleStep = arc_angle / angleNb;
 	return [angleNb, angleStep];
 }
@@ -49,14 +48,13 @@ function arc_to_stroke(
 	max_angle = Math.PI / 6,
 	max_length = 2.0
 ): tAtsPoints {
-	let arc_angle = a2 - a1;
-	arc_angle = ccw ? arc_angle : -arc_angle;
-	arc_angle = withinZero2Pi(arc_angle);
-	const [angleNb, angleStep] = calcAngleStep(max_angle, max_length, radius, arc_angle);
+	const arc_angle = orientedArc(a1, a2, ccw);
+	const [angleNb, angleStep] = calcAngleStep(max_angle, max_length, radius, Math.abs(arc_angle));
 	const angleStepSigned = ccw ? angleStep : -angleStep;
 	const angleNb2 = angleNb + 1; // pole and fence
 	const rPoints: tAtsPoints = [];
-	for (let i = 0; i < angleNb2; i++) {
+	// skip first point
+	for (let i = 1; i < angleNb2; i++) {
 		const angle = a1 + i * angleStepSigned;
 		const px = cx + radius * Math.cos(angle);
 		const py = cy + radius * Math.sin(angle);
