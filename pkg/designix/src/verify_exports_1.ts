@@ -42,7 +42,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			const ctr1 = contour(0, 0)
 				.addSegStrokeA(csize, 0)
 				.addPointA(csize, csize)
-				.addSegArc(csize * 0.7, carcl, true)
+				.addSegArc(csize * 0.8, carcl, true)
 				.closeSegStroke();
 			figOne.addMain(ctr1);
 		}

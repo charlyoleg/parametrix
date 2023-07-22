@@ -10,11 +10,15 @@ function calcAngleStep(
 	radius: number,
 	arc_angle: number
 ): [number, number] {
-	const max_angle2 = 2 * Math.asin(max_length / (2 * radius));
+	let max_angle2 = Math.PI / 2;
+	if (max_length < 2 * radius) {
+		max_angle2 = 2 * Math.asin(max_length / (2 * radius));
+	}
 	const angleStepMax = Math.min(max_angle, max_angle2);
 	//const angleNb = Math.floor(arc_angle / angleStepMax) + 1;
 	const angleNb = Math.ceil(arc_angle / angleStepMax);
 	const angleStep = arc_angle / angleNb;
+	//console.log(`dbg783: ${arc_angle} ${angleStepMax} ${angleNb}`);
 	return [angleNb, angleStep];
 }
 
@@ -51,6 +55,7 @@ function arc_to_stroke(
 ): tAtsPoints {
 	const arc_angle = orientedArc(a1, a2, ccw);
 	const [angleNb, angleStep] = calcAngleStep(max_angle, max_length, radius, Math.abs(arc_angle));
+	//console.log(`dbg054: ${angleNb} ${angleStep}`);
 	const angleStepSigned = ccw ? angleStep : -angleStep;
 	const angleNb2 = angleNb + 1; // pole and fence
 	const rPoints: tAtsPoints = [];
