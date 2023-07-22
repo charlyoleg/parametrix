@@ -15,3 +15,4 @@ export * from './verify_contour_1';
 export * from './verify_contour_2';
 export * from './verify_contour_3';
 export * from './verify_contour_4';
+export * from './verify_exports_1';

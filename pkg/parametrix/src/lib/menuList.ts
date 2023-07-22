@@ -1,6 +1,7 @@
 // menuList.ts
 
 import {
+	gearWheelWheelDef,
 	circlesDef,
 	rectangleDef,
 	verifyPoint1Def,
@@ -13,7 +14,7 @@ import {
 	verifyContour2Def,
 	verifyContour3Def,
 	verifyContour4Def,
-	gearWheelWheelDef
+	verifyExports1Def
 } from 'designix';
 import type { tParamVal, tPageDef } from 'geometrix';
 import type { tStorePVal } from '$lib/storePVal';
@@ -35,7 +36,8 @@ const designDefs: tAllPageDef = {
 	verify_contour_1: verifyContour1Def,
 	verify_contour_2: verifyContour2Def,
 	verify_contour_3: verifyContour3Def,
-	verify_contour_4: verifyContour4Def
+	verify_contour_4: verifyContour4Def,
+	verify_exports_1: verifyExports1Def
 };
 
 /* Create the Header Menu and Index Menu */
@@ -57,7 +59,8 @@ const mLabel = [
 			'dev/verify_contour_1',
 			'dev/verify_contour_2',
 			'dev/verify_contour_3',
-			'dev/verify_contour_4'
+			'dev/verify_contour_4',
+			'dev/verify_exports_1'
 		]
 	},
 	{
@@ -89,6 +92,7 @@ const mIcon: tIcon = {
 	verify_contour_2: 'page_verify_line.svg',
 	verify_contour_3: 'page_verify_line.svg',
 	verify_contour_4: 'page_verify_line.svg',
+	verify_exports_1: 'page_verify_line.svg',
 	concept: 'page_concept.svg',
 	ui: 'page_ui.svg',
 	geom_dev: 'page_geom.svg',
