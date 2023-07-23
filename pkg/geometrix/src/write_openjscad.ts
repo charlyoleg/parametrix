@@ -56,7 +56,7 @@ class OpenjscadWrite {
 			rStr += `const ${aId} = polygon({ points: ${this.pts[idx]} });\n`;
 			aList.push(aId);
 		}
-		if (aList.length > 1) {
+		if (aList.length === 1) {
 			rStr += `const face_${faceId} = ctr_${faceId}_0;\n`;
 		} else {
 			const ctrList = aList.join(', ');
