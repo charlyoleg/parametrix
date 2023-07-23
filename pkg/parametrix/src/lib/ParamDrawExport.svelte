@@ -108,6 +108,9 @@
 		} else if (exportFace === 'oscad') {
 			exportFormat = EFormat.eOPENSCAD;
 			eFace = c_ParametrixAll;
+		} else if (exportFace === 'ojscad') {
+			exportFormat = EFormat.eJSCAD;
+			eFace = c_ParametrixAll;
 		} else if (exportFace === 'zip') {
 			exportFormat = EFormat.eZIP;
 			eFace = c_ParametrixAll;
@@ -168,6 +171,7 @@
 		<option value="alldxf">all faces merged as dxf</option>
 		<option value="pax">all faces as pax.json</option>
 		<option value="oscad">all faces as openscad.scad</option>
+		<option value="ojscad">all faces as OpenJScad.js</option>
 		<option value="zip">all faces and more as zip</option>
 	</select>
 	<button on:click={downloadExport}>Save to File</button>

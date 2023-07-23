@@ -44,16 +44,16 @@ class OpenscadWrite {
 		this.idx = 0;
 	}
 	addContour(ictr: tOpenscadSeg) {
-		const pts: Array<string> = [];
-		const ptIdx: Array<string> = [];
+		const pts2: Array<string> = [];
+		const ptIdx2: Array<string> = [];
 		for (const pt of ictr) {
 			const [px, py] = pt;
-			pts.push(`[ ${ff(px)}, ${ff(py)} ]`);
-			ptIdx.push(` ${this.idx}`);
+			pts2.push(`[ ${ff(px)}, ${ff(py)} ]`);
+			ptIdx2.push(` ${this.idx}`);
 			this.idx += 1;
 		}
-		const ptStr = `[ ${pts.join(',')} ]`;
-		const ptIdxStr = `[ ${ptIdx.join(',')} ]`;
+		const ptStr = `[ ${pts2.join(',')} ]`;
+		const ptIdxStr = `[ ${ptIdx2.join(',')} ]`;
 		this.pts.push(ptStr);
 		this.ptIdx.push(ptIdxStr);
 	}

@@ -1,7 +1,14 @@
 // aaExportFile.ts
 
 import type { tGeomFunc, tParamVal } from './aaParamGeom';
-import { figureToSvg, figureToDxf, makePax, makeOpenscad, makeZip } from './aaExportContent';
+import {
+	figureToSvg,
+	figureToDxf,
+	makePax,
+	makeOpenscad,
+	makeOpenjscad,
+	makeZip
+} from './aaExportContent';
 import { c_ParametrixAll, mergeFaces } from './figure';
 
 enum EFormat {
@@ -9,6 +16,7 @@ enum EFormat {
 	eDXF,
 	ePAX,
 	eOPENSCAD,
+	eJSCAD,
 	eZIP
 }
 
@@ -47,6 +55,8 @@ function fileTextContent(
 			rFileContent = makePax(paramVal, geome0, designName);
 		} else if (exportFormat === EFormat.eOPENSCAD) {
 			rFileContent = makeOpenscad(geome0, designName);
+		} else if (exportFormat === EFormat.eJSCAD) {
+			rFileContent = makeOpenjscad(geome0, designName);
 		} else {
 			console.log(`err912: unknown exportFormat ${exportFormat}`);
 		}
@@ -89,6 +99,8 @@ function fileMime(exportFormat: EFormat): string {
 		//rMime = 'text/plain';
 	} else if (exportFormat === EFormat.eOPENSCAD) {
 		rMime = 'text/plain';
+	} else if (exportFormat === EFormat.eJSCAD) {
+		rMime = 'text/plain';
 	} else if (exportFormat === EFormat.eZIP) {
 		rMime = 'application/zip';
 	} else {
@@ -107,6 +119,8 @@ function fileSuffix(exportFormat: EFormat): string {
 		rSuffix = '.pax.json';
 	} else if (exportFormat === EFormat.eOPENSCAD) {
 		rSuffix = '_noarc_openscad.scad';
+	} else if (exportFormat === EFormat.eJSCAD) {
+		rSuffix = '_noarc_jscad.js';
 	} else if (exportFormat === EFormat.eZIP) {
 		rSuffix = '.zip';
 	} else {

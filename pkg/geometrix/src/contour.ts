@@ -37,6 +37,8 @@ import type { tPaxContourPath, tPaxContourCircle, tPaxContour } from './write_pa
 import { paxPath, paxCircle } from './write_pax';
 import type { tOpenscadSeg } from './write_openscad';
 import { oscadSegLine, oscadSegArc, oscadSegCircle } from './write_openscad';
+import type { tOpenjscadSeg } from './write_openjscad';
+import { ojscadSegLine, ojscadSegArc, ojscadSegCircle } from './write_openjscad';
 
 /* AContour abstract class */
 
@@ -53,6 +55,7 @@ abstract class AContour {
 	abstract toDxfSeg(): Array<DxfSeg>;
 	abstract toPax(): tPaxContour;
 	abstract toOpenscadSeg(): tOpenscadSeg;
+	abstract toOpenjscadSeg(): tOpenjscadSeg;
 }
 
 /* Contour class */
@@ -746,6 +749,41 @@ class Contour extends AContour {
 		}
 		return rOscadSeg;
 	}
+	toOpenjscadSeg(): tOpenjscadSeg {
+		const rOjscadSeg: tOpenjscadSeg = [];
+		let px1 = 0;
+		let py1 = 0;
+		for (const seg of this.segments) {
+			if (seg.sType === segLib.SegEnum.eStart) {
+				rOjscadSeg.push(...ojscadSegLine(seg.px, seg.py));
+			} else if (seg.sType === segLib.SegEnum.eStroke) {
+				rOjscadSeg.push(...ojscadSegLine(seg.px, seg.py));
+			} else if (seg.sType === segLib.SegEnum.eArc) {
+				try {
+					const seg2 = segLib.arcSeg1To2(px1, py1, seg);
+					rOjscadSeg.push(
+						...ojscadSegArc(
+							seg2.pc.cx,
+							seg2.pc.cy,
+							seg.radius,
+							seg2.a1,
+							seg2.a2,
+							seg2.arcCcw
+						)
+					);
+				} catch (emsg) {
+					console.log('err730: ' + emsg);
+				}
+			} else {
+				console.log(`err778: contour.toOpenjscadSeg has unknown segment type ${seg.sType}`);
+			}
+			if (segLib.isAddPoint(seg.sType)) {
+				px1 = seg.px;
+				py1 = seg.py;
+			}
+		}
+		return rOjscadSeg;
+	}
 }
 
 /* ContourCircle class */
@@ -812,6 +850,10 @@ class ContourCircle extends AContour {
 	toOpenscadSeg(): tOpenscadSeg {
 		const rOscadSeg = oscadSegCircle(this.px, this.py, this.radius);
 		return rOscadSeg;
+	}
+	toOpenjscadSeg(): tOpenjscadSeg {
+		const rOjscadSeg = ojscadSegCircle(this.px, this.py, this.radius);
+		return rOjscadSeg;
 	}
 }
 
