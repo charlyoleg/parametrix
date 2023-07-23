@@ -46,7 +46,7 @@ function fileTextContent(
 		} else if (exportFormat === EFormat.ePAX) {
 			rFileContent = makePax(paramVal, geome0, designName);
 		} else if (exportFormat === EFormat.eOPENSCAD) {
-			rFileContent = makeOpenscad(geome0);
+			rFileContent = makeOpenscad(geome0, designName);
 		} else {
 			console.log(`err912: unknown exportFormat ${exportFormat}`);
 		}
