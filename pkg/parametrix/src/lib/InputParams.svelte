@@ -35,10 +35,10 @@
 		for (const p of pDef.params) {
 			if (Object.hasOwn(ipVal, p.name)) {
 				cover += 1;
-				if ($storePV[pDef.page][p.name] === ipVal[p.name]) {
+				if ($storePV[pDef.partName][p.name] === ipVal[p.name]) {
 					equal += 1;
 				} else {
-					$storePV[pDef.page][p.name] = ipVal[p.name];
+					$storePV[pDef.partName][p.name] = ipVal[p.name];
 				}
 			} else {
 				uncover += 1;
@@ -53,7 +53,7 @@
 	}
 	//function initParams1() {
 	//	for (const p of pDef.params) {
-	//		$storePV[pDef.page][p.name] = p.init;
+	//		$storePV[pDef.partName][p.name] = p.init;
 	//	}
 	//}
 	function initParams2() {
@@ -132,8 +132,8 @@
 			.replace(re1, '')
 			.replace(re2, '')
 			.replace('T', '_');
-		const file_name = `px_${pDef.page}_${datestr}.json`;
-		const allVal = { lastModif: datestr, pVal: $storePV[pDef.page], comment: inputComment };
+		const file_name = `px_${pDef.partName}_${datestr}.json`;
+		const allVal = { lastModif: datestr, pVal: $storePV[pDef.partName], comment: inputComment };
 		const file_content = JSON.stringify(allVal, null, '  ');
 		download_file(file_name, file_content);
 		//console.log(`dbg343: ${file_name}`);
@@ -154,7 +154,7 @@
 	let locStorRname: string;
 	function loadLocStor() {
 		if (locStorRname !== undefined && locStorRname !== '') {
-			const storeKey = `${pDef.page}_${locStorRname}`;
+			const storeKey = `${pDef.partName}_${locStorRname}`;
 			//console.log(`load from localStorage ${storeKey}`);
 			if (browser) {
 				const storeStr = window.localStorage.getItem(storeKey);
@@ -174,12 +174,12 @@
 	//$: console.log(`dbg888: ${locStorWname}`);
 	function saveInLocStor() {
 		if (locStorWname !== undefined && locStorWname !== '') {
-			const storeKey = `${pDef.page}_${locStorWname}`;
+			const storeKey = `${pDef.partName}_${locStorWname}`;
 			const re2 = /\..*$/;
 			const lastModif = new Date().toISOString().replace(re2, '');
 			const storeAll = JSON.stringify({
 				lastModif: lastModif,
-				pVal: $storePV[pDef.page],
+				pVal: $storePV[pDef.partName],
 				comment: inputComment
 			});
 			//console.log(`save in localStorage ${storeKey}`);
@@ -194,10 +194,10 @@
 	let pUrl = '';
 	function generateUrl(): string {
 		const url1 = new URL($page.url.href);
-		for (const ky of Object.keys($storePV[pDef.page])) {
+		for (const ky of Object.keys($storePV[pDef.partName])) {
 			url1.searchParams.append(
 				encodeURIComponent(ky),
-				encodeURIComponent($storePV[pDef.page][ky])
+				encodeURIComponent($storePV[pDef.partName][ky])
 			);
 		}
 		return url1.toString();
@@ -214,7 +214,7 @@
 	function paramPict(keyName: string) {
 		//console.log(`dbg783: ${keyName}`);
 		// convention for the file-names of the parameter description
-		//paramSvg = `${base}/${pDef.page}_${keyName}.svg`;
+		//paramSvg = `${base}/${pDef.partName}_${keyName}.svg`;
 		paramSvg = `${base}/default_param_blank.svg`;
 		if (Object.keys(pDef.paramSvg).includes(keyName)) {
 			paramSvg = `${base}/${pDef.paramSvg[keyName]}`;
@@ -226,7 +226,7 @@
 			paramPict(Object.keys($storePV[pDef_page])[idx]);
 		}
 	}
-	$: paramPict2(0, pDef.page);
+	$: paramPict2(0, pDef.partName);
 </script>
 
 <section>
@@ -255,7 +255,7 @@
 			okFunc={loadDefaults}>Load the default parameters ?</ModalDiag
 		>
 		<ModalDiag bind:modalOpen={modalLoadLocal} okName="Load Parameters" okFunc={loadLocStor}
-			><LocStorRead pageName={pDef.page} bind:storeName={locStorRname} /></ModalDiag
+			><LocStorRead pageName={pDef.partName} bind:storeName={locStorRname} /></ModalDiag
 		>
 		<p class="load-msg">{loadMsg}</p>
 		<table>
@@ -279,7 +279,7 @@
 							{#if param.pType === PType.eNumber}
 								<input
 									type="number"
-									bind:value={$storePV[pDef.page][param.name]}
+									bind:value={$storePV[pDef.partName][param.name]}
 									min={param.min}
 									max={param.max}
 									step={param.step}
@@ -288,20 +288,20 @@
 								/>
 								<input
 									type="range"
-									bind:value={$storePV[pDef.page][param.name]}
+									bind:value={$storePV[pDef.partName][param.name]}
 									min={param.min}
 									max={param.max}
 									step={param.step}
 									on:change={paramChange}
 								/>
 							{:else if param.pType === PType.eCheckbox}
-								<select bind:value={$storePV[pDef.page][param.name]}>
+								<select bind:value={$storePV[pDef.partName][param.name]}>
 									{#each ['Off', 'On'] as one, idx}
 										<option value={idx}>{one}</option>
 									{/each}
 								</select>
 							{:else}
-								<select bind:value={$storePV[pDef.page][param.name]}>
+								<select bind:value={$storePV[pDef.partName][param.name]}>
 									{#each param.dropdown as one, idx}
 										<option value={idx}>{one}</option>
 									{/each}
@@ -336,12 +336,12 @@
 			bind:modalOpen={modalSaveLocal}
 			okName="Save into localStorage"
 			okFunc={saveInLocStor}
-			><LocStorWrite pageName={pDef.page} bind:storeName={locStorWname} /></ModalDiag
+			><LocStorWrite pageName={pDef.partName} bind:storeName={locStorWname} /></ModalDiag
 		>
 	</main>
 	<img src={paramSvg} alt={paramSvg} />
 	<div class="mini-canvas">
-		<SimpleDrawing pageName={pDef.page} {geom} {face} {simTime} />
+		<SimpleDrawing pageName={pDef.partName} {geom} {face} {simTime} />
 	</div>
 </section>
 

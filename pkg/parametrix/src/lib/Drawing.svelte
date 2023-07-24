@@ -108,7 +108,7 @@
 		canvasRedrawZoom(iLayers);
 	}
 	function geomRedraw(iSimTime: number, iFace: string) {
-		geomRedrawSub(iSimTime, $storePV[pDef.page], iFace, $dLayers);
+		geomRedrawSub(iSimTime, $storePV[pDef.partName], iFace, $dLayers);
 	}
 	onMount(() => {
 		// initial drawing
@@ -120,7 +120,7 @@
 	// reactivity on simTime, $storePV and layers
 	$: {
 		if (domInit === 1) {
-			geomRedrawSub(simTime, $storePV[pDef.page], face, $dLayers);
+			geomRedrawSub(simTime, $storePV[pDef.partName], face, $dLayers);
 		}
 	}
 	// Zoom stories

@@ -7,7 +7,7 @@ import * as gwHelper from './gearWheelProfile';
 import * as welem from './wheelElements';
 
 const pDef: tParamDef = {
-	page: 'gear_wheel_wheel',
+	partName: 'gear_wheel_wheel',
 	params: [
 		//pNumber(name, unit, init, min, max, step)
 		pNumber('module', 'mm', 10, 0.1, 100, 0.1),

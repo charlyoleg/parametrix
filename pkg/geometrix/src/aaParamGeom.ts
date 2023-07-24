@@ -26,7 +26,7 @@ type tSimTime = {
 	tUpdate: number; // in ms
 };
 type tParamDef = {
-	page: string;
+	partName: string;
 	params: Array<tParam>;
 	paramSvg: { [index: string]: string };
 	sim: tSimTime;

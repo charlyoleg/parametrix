@@ -4,7 +4,7 @@ import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
 import { point, figure, pNumber, initGeom } from 'geometrix';
 
 const pDef: tParamDef = {
-	page: 'verify_point_2',
+	partName: 'verify_point_2',
 	params: [
 		//pNumber(name, unit, init, min, max, step)
 		pNumber('p1x', 'mm', 30, -200, 200, 1),

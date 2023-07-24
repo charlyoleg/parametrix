@@ -34,7 +34,7 @@
 	function paramChange2(iPageName: string) {
 		const mydate = new Date().toLocaleTimeString();
 		logValue = `Geometry ${iPageName} computed at ${mydate}\n`;
-		const geome = geom(simTime, $storePV[pDef.page]);
+		const geome = geom(simTime, $storePV[pDef.partName]);
 		logValue += geome.logstr;
 		calcErr = geome.calcErr;
 		calcWarn = checkWarn(geome.logstr);
@@ -42,9 +42,9 @@
 		//geomRedraw(simTime);
 	}
 	function paramChange() {
-		paramChange2(pDef.page);
+		paramChange2(pDef.partName);
 	}
-	$: paramChange2(pDef.page); // for reactivity on page change
+	$: paramChange2(pDef.partName); // for reactivity on page change
 	// export drawings
 	let exportFace: string;
 	function download_binFile(fName: string, fContent: Blob) {
@@ -121,21 +121,21 @@
 		const fSuffix = fileSuffix(exportFormat);
 		const fMime = fileMime(exportFormat);
 		const fBin = fileBin(exportFormat);
-		const fName = pDef.page + '_' + nFace + '_' + dateString() + fSuffix;
+		const fName = pDef.partName + '_' + nFace + '_' + dateString() + fSuffix;
 		if (fBin) {
 			const fContent = await fileBinContent(
 				geom,
 				simTime,
-				$storePV[pDef.page],
-				pDef.page,
+				$storePV[pDef.partName],
+				pDef.partName,
 				exportFormat
 			);
 			download_binFile(fName, fContent);
 		} else {
 			const fContent = fileTextContent(
 				geom,
-				$storePV[pDef.page],
-				pDef.page,
+				$storePV[pDef.partName],
+				pDef.partName,
 				eFace,
 				exportFormat
 			);

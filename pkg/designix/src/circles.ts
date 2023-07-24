@@ -9,7 +9,7 @@ import { degToRad, point, figure, pNumber, initGeom } from 'geometrix';
 //const pi120 = fround(Math.PI / 120); // rounded to avoid UI issue
 
 const pDef: tParamDef = {
-	page: 'circles',
+	partName: 'circles',
 	params: [
 		//pNumber(name, unit, init, min, max, step)
 		pNumber('angle', 'degree', 15, 5, 45, 1),

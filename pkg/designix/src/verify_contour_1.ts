@@ -4,7 +4,7 @@ import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
 import { contour, contourCircle, figure, pNumber, initGeom } from 'geometrix';
 
 const pDef: tParamDef = {
-	page: 'verify_contour_1',
+	partName: 'verify_contour_1',
 	params: [
 		//pNumber(name, unit, init, min, max, step)
 		pNumber('r1', 'mm', 30, 10, 200, 1),

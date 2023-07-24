@@ -4,7 +4,7 @@ import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
 import { point, figure, pNumber, initGeom } from 'geometrix';
 
 const pDef: tParamDef = {
-	page: 'rectangle',
+	partName: 'rectangle',
 	params: [
 		//pNumber(name, unit, init, min, max, step)
 		pNumber('width', 'mm', 15, 3, 40, 0.5),
