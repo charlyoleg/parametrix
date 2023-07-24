@@ -2,7 +2,7 @@
 
 import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
 //import { contour, contourCircle, figure, degToRad } from 'geometrix';
-import { figure, degToRad, ffix, pNumber, pCheckbox, pDropdown } from 'geometrix';
+import { figure, degToRad, ffix, pNumber, pCheckbox, pDropdown, initGeom } from 'geometrix';
 import * as gwHelper from './gearWheelProfile';
 import * as welem from './wheelElements';
 
@@ -116,7 +116,7 @@ const pDef: tParamDef = {
 };
 
 function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome: tGeom = { fig: {}, logstr: '', calcErr: true };
+	const rGeome = initGeom();
 	const figOne = figure();
 	const figTwo = figure();
 	rGeome.logstr += `simTime: ${t}\n`;

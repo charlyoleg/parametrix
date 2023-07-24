@@ -1,7 +1,7 @@
 // verify_point_2.ts
 
 import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
-import { point, figure, pNumber } from 'geometrix';
+import { point, figure, pNumber, initGeom } from 'geometrix';
 
 const pDef: tParamDef = {
 	page: 'verify_point_2',
@@ -32,19 +32,21 @@ const pDef: tParamDef = {
 };
 
 function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome: tGeom = { fig: { one: figure() }, logstr: '', calcErr: true };
+	const rGeome = initGeom();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
+		const figOne = figure();
 		const p1 = point(param['p1x'], param['p1y'] + t);
 		const p2 = point(param['p2x'], param['p2y']);
 		const p3 = point(param['p3x'], param['p3y']);
 		const mp1p2 = p1.middlePoint(p2);
 		const ep1p2 = p1.equidistantPoint(p2, param['dist'], p3);
-		rGeome.fig.one.addPoint(p1);
-		rGeome.fig.one.addPoint(p2);
-		rGeome.fig.one.addPoint(p3);
-		rGeome.fig.one.addPoint(mp1p2);
-		rGeome.fig.one.addPoint(ep1p2);
+		figOne.addPoint(p1);
+		figOne.addPoint(p2);
+		figOne.addPoint(p3);
+		figOne.addPoint(mp1p2);
+		figOne.addPoint(ep1p2);
+		rGeome.fig = { one: figOne };
 		rGeome.logstr += 'verify_point_2 draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {

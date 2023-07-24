@@ -1,7 +1,7 @@
 // verify_line.ts
 
 import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
-import { point, line, linePP, figure, pNumber } from 'geometrix';
+import { point, line, linePP, figure, pNumber, initGeom } from 'geometrix';
 
 const pDef: tParamDef = {
 	page: 'verify_line',
@@ -30,30 +30,32 @@ const pDef: tParamDef = {
 };
 
 function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome: tGeom = { fig: { one: figure() }, logstr: '', calcErr: true };
+	const rGeome = initGeom();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
+		const figOne = figure();
 		const p1 = point(param['p1x'], param['p1y'] + t);
 		const p2 = point(param['p2x'], param['p2y']);
 		const p3 = point(param['p3x'], param['p3y']);
-		rGeome.fig.one.addPoint(p1);
-		rGeome.fig.one.addPoint(p2);
-		rGeome.fig.one.addPoint(p3);
+		figOne.addPoint(p1);
+		figOne.addPoint(p2);
+		figOne.addPoint(p3);
 		const l1 = line(0, 0, 0).setFromPoints(p1, p2);
-		rGeome.fig.one.addLine(l1);
-		//rGeome.fig.one.addLine(l2);
-		rGeome.fig.one.addPoint(point(l1.getAxisXIntersection(), 0));
-		rGeome.fig.one.addPoint(point(0, l1.getAxisYIntersection()));
+		figOne.addLine(l1);
+		//figOne.addLine(l2);
+		figOne.addPoint(point(l1.getAxisXIntersection(), 0));
+		figOne.addPoint(point(0, l1.getAxisYIntersection()));
 		const p4 = l1.projectOrig();
-		rGeome.fig.one.addPoint(p4);
+		figOne.addPoint(p4);
 		const p0 = point(0, 0);
 		if (!p0.isEqual(p4)) {
 			const l2 = linePP(p0, p4);
-			rGeome.fig.one.addLine(l2);
+			figOne.addLine(l2);
 		}
-		rGeome.fig.one.addLine(l1.lineOrthogonal(p3));
-		rGeome.fig.one.addLine(l1.lineParallel(p3));
-		rGeome.fig.one.addPoint(l1.projectPoint(p3));
+		figOne.addLine(l1.lineOrthogonal(p3));
+		figOne.addLine(l1.lineParallel(p3));
+		figOne.addPoint(l1.projectPoint(p3));
+		rGeome.fig = { one: figOne };
 		rGeome.logstr += `dist(l1, p3) = ${l1.distanceToPoint(p3)}\n`;
 		rGeome.logstr += 'verify_line draw successfully!\n';
 		rGeome.calcErr = false;

@@ -1,7 +1,7 @@
 // verify_contour_1.ts
 
 import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
-import { contour, contourCircle, figure, pNumber } from 'geometrix';
+import { contour, contourCircle, figure, pNumber, initGeom } from 'geometrix';
 
 const pDef: tParamDef = {
 	page: 'verify_contour_1',
@@ -30,9 +30,10 @@ const pDef: tParamDef = {
 };
 
 function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome: tGeom = { fig: { one: figure() }, logstr: '', calcErr: true };
+	const rGeome = initGeom();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
+		const figOne = figure();
 		const r1 = param['r1'];
 		const d1 = param['d1'];
 		const w1 = param['w1'];
@@ -51,13 +52,13 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		ctr1.addSegStrokeA(0, h1);
 		ctr1.closeSegStroke();
 		ctr1.check();
-		rGeome.fig.one.addMain(ctr1);
-		rGeome.fig.one.addMain(contourCircle(w12, c1, r1));
-		rGeome.fig.one.addMain(contourCircle(w12, c2, r1 + t));
-		rGeome.fig.one.addMain(contourCircle(w12, c3, r1));
+		figOne.addMain(ctr1);
+		figOne.addMain(contourCircle(w12, c1, r1));
+		figOne.addMain(contourCircle(w12, c2, r1 + t));
+		figOne.addMain(contourCircle(w12, c3, r1));
 		const ctr2 = contourCircle(w1 + r2, 3 * c1, r2);
 		ctr2.check();
-		rGeome.fig.one.addSecond(ctr2);
+		figOne.addSecond(ctr2);
 		const ctr3 = contour(200 + l1, 200)
 			.addSegStrokeA(200 + l1 + l2, 200)
 			.addSegStrokeR(0, l1)
@@ -72,7 +73,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addSegStrokeR(l1, 0)
 			.closeSegStroke();
 		ctr3.check();
-		rGeome.fig.one.addSecond(ctr3);
+		figOne.addSecond(ctr3);
+		rGeome.fig = { one: figOne };
 		rGeome.logstr += 'verify_contour_1 draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {

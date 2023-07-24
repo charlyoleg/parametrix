@@ -1,7 +1,7 @@
 // verify_line_3.ts
 
 import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
-import { point, bisector, circleCenter, figure, pNumber } from 'geometrix';
+import { point, bisector, circleCenter, figure, pNumber, initGeom } from 'geometrix';
 
 const pDef: tParamDef = {
 	page: 'verify_line_3',
@@ -30,19 +30,21 @@ const pDef: tParamDef = {
 };
 
 function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome: tGeom = { fig: { one: figure() }, logstr: '', calcErr: true };
+	const rGeome = initGeom();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
+		const figOne = figure();
 		const p1 = point(param['p1x'], param['p1y'] + t);
 		const p2 = point(param['p2x'], param['p2y']);
 		const p3 = point(param['p3x'], param['p3y']);
-		rGeome.fig.one.addPoint(p1);
-		rGeome.fig.one.addPoint(p2);
-		rGeome.fig.one.addPoint(p3);
+		figOne.addPoint(p1);
+		figOne.addPoint(p2);
+		figOne.addPoint(p3);
 		const l1 = bisector(p1, p2);
-		rGeome.fig.one.addLine(l1);
+		figOne.addLine(l1);
 		const pCenter = circleCenter(p1, p2, p3);
-		rGeome.fig.one.addPoint(pCenter);
+		figOne.addPoint(pCenter);
+		rGeome.fig = { one: figOne };
 		rGeome.logstr += 'verify_line_3 draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {

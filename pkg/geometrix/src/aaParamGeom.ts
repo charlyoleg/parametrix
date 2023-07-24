@@ -1,6 +1,8 @@
 // aaParamGeom.ts
 
 import type { tFaces } from './figure';
+import type { tVolume } from './volume';
+import type { tSubDesign } from './sub_design';
 
 enum PType {
 	eNumber,
@@ -33,9 +35,11 @@ type tParamDef = {
 type tParamVal = { [index: string]: number };
 type tAllVal = { lastModif: string; pVal: tParamVal; comment: string };
 type tGeom = {
-	fig: tFaces;
-	logstr: string;
 	calcErr: boolean;
+	logstr: string;
+	fig: tFaces;
+	vol: tVolume;
+	sub: tSubDesign;
 };
 type tGeomFunc = (t: number, ipVal: tParamVal) => tGeom;
 
@@ -90,5 +94,16 @@ function fround(ireal: number, iprecision = 1000.0): number {
 	return Math.floor(ireal * iprecision) / iprecision;
 }
 
+function initGeom(): tGeom {
+	const rGeom: tGeom = {
+		calcErr: true,
+		logstr: 'dbg096: just initialized',
+		fig: {},
+		vol: { extrud: [], bvol: [] },
+		sub: []
+	};
+	return rGeom;
+}
+
 export type { tParamDef, tParamVal, tAllVal, tGeom, tGeomFunc, tPageDef };
-export { PType, pNumber, pCheckbox, pDropdown, fround };
+export { PType, pNumber, pCheckbox, pDropdown, fround, initGeom };

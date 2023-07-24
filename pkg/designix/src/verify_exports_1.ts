@@ -1,7 +1,7 @@
 // verify_exports_1.ts
 
 import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
-import { contour, contourCircle, figure, pNumber, pCheckbox } from 'geometrix';
+import { contour, contourCircle, figure, pNumber, pCheckbox, initGeom } from 'geometrix';
 
 const pDef: tParamDef = {
 	page: 'verify_exports_1',
@@ -28,10 +28,10 @@ const pDef: tParamDef = {
 };
 
 function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome: tGeom = { fig: {}, logstr: '', calcErr: true };
-	const figOne = figure();
+	const rGeome = initGeom();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
+		const figOne = figure();
 		if (param['circle'] === 1) {
 			const theCircle = contourCircle(0, 0, param['circle-size']);
 			figOne.addMain(theCircle);
@@ -46,7 +46,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 				.closeSegStroke();
 			figOne.addMain(ctr1);
 		}
-		rGeome.fig = { teethProfile: figOne };
+		rGeome.fig = { one: figOne };
 		rGeome.logstr += 'verify_exports_1 draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {

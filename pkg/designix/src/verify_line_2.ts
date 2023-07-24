@@ -1,7 +1,7 @@
 // verify_line_2.ts
 
 import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
-import { degToRad, point, line, figure, pNumber } from 'geometrix';
+import { degToRad, point, line, figure, pNumber, initGeom } from 'geometrix';
 
 const pDef: tParamDef = {
 	page: 'verify_line_2',
@@ -34,27 +34,29 @@ const pDef: tParamDef = {
 };
 
 function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome: tGeom = { fig: { one: figure() }, logstr: '', calcErr: true };
+	const rGeome = initGeom();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
+		const figOne = figure();
 		const p1 = point(param['l1cx'], param['l1cy']);
 		const p2 = point(param['l2cx'], param['l2cy']);
 		const p3 = point(param['p3x'], param['p3y']);
-		rGeome.fig.one.addPoint(p1);
-		rGeome.fig.one.addPoint(p2);
-		rGeome.fig.one.addPoint(p3);
+		figOne.addPoint(p1);
+		figOne.addPoint(p2);
+		figOne.addPoint(p3);
 		const l1 = line(param['l1cx'], param['l1cy'], degToRad(param['l1ca'] + t));
 		const l2 = line(param['l2cx'], param['l2cy'], degToRad(param['l2ca']));
-		rGeome.fig.one.addLine(l1);
-		rGeome.fig.one.addLine(l2);
-		rGeome.fig.one.addPoint(l1.intersection(l2));
-		rGeome.fig.one.addPoint(l1.projectPoint(p3));
+		figOne.addLine(l1);
+		figOne.addLine(l2);
+		figOne.addPoint(l1.intersection(l2));
+		figOne.addPoint(l1.projectPoint(p3));
 		rGeome.logstr += `dist(l1, p3) = ${l1.distanceToPoint(p3)}\n`;
-		rGeome.fig.one.addPoint(l2.projectPoint(p3));
+		figOne.addPoint(l2.projectPoint(p3));
 		rGeome.logstr += `dist(l2, p3) = ${l2.distanceToPoint(p3)}\n`;
 		const bisector = l1.bisector(l2, p3);
 		const pBisec = point(bisector.cx, bisector.cy).translatePolar(bisector.ca, 30);
-		rGeome.fig.one.addPoint(pBisec);
+		figOne.addPoint(pBisec);
+		rGeome.fig = { one: figOne };
 		rGeome.logstr += 'verify_line_2 draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {

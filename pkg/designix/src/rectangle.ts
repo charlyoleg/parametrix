@@ -1,7 +1,7 @@
 // rectangle.ts
 
 import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
-import { point, figure, pNumber } from 'geometrix';
+import { point, figure, pNumber, initGeom } from 'geometrix';
 
 const pDef: tParamDef = {
 	page: 'rectangle',
@@ -22,18 +22,20 @@ const pDef: tParamDef = {
 };
 
 function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome: tGeom = { fig: { one: figure() }, logstr: '', calcErr: true };
+	const rGeome = initGeom();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
+		const figOne = figure();
 		const p1 = point(10, 10);
 		const p2 = point(10 + param['width'], 10);
 		const p3 = point(10 + param['width'], 10 + param['height']);
 		const p4 = point(10, 10 + param['height']);
 		const angle = (t * Math.PI) / 180;
-		rGeome.fig.one.addPoint(p1);
-		rGeome.fig.one.addPoint(p2.rotate(p1, angle));
-		rGeome.fig.one.addPoint(p3.rotate(p1, angle));
-		rGeome.fig.one.addPoint(p4.rotate(p1, angle));
+		figOne.addPoint(p1);
+		figOne.addPoint(p2.rotate(p1, angle));
+		figOne.addPoint(p3.rotate(p1, angle));
+		figOne.addPoint(p4.rotate(p1, angle));
+		rGeome.fig = { one: figOne };
 		rGeome.logstr += 'Rectangle draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {

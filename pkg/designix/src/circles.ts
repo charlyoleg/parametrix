@@ -1,7 +1,7 @@
 // circles.ts
 
 import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
-import { degToRad, point, figure, pNumber } from 'geometrix';
+import { degToRad, point, figure, pNumber, initGeom } from 'geometrix';
 
 //const pi12 = fround(Math.PI / 12);
 //const pi24 = fround(Math.PI / 24); // input-number min and step must be rounded to avoid UI issue
@@ -29,21 +29,23 @@ const pDef: tParamDef = {
 };
 
 function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome: tGeom = { fig: { one: figure() }, logstr: '', calcErr: true };
+	const rGeome = initGeom();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
-		//rGeome.fig.one.addPoint(point(0, 0));
+		const figOne = figure();
+		//figOne.addPoint(point(0, 0));
 		const p1 = point(10, 10);
 		const p2 = point(10, 30);
-		//rGeome.fig.one.addPoint(p1);
-		rGeome.fig.one.addPoint(p2);
+		//figOne.addPoint(p1);
+		figOne.addPoint(p2);
 		for (let i = 0; i < 20; i++) {
-			rGeome.fig.one.addPoint(
+			figOne.addPoint(
 				p1
 					.scale(p2, param['amplitude-offset'] + param['amplitude-scale'] * i)
 					.rotate(p2, i * degToRad(param['angle']) + (t * Math.PI) / 2 / pDef.sim.tMax)
 			);
 		}
+		rGeome.fig = { one: figOne };
 		rGeome.logstr += 'Circles draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {

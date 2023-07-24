@@ -1,7 +1,7 @@
 // verify_point.ts
 
 import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
-import { degToRad, point, figure, pNumber } from 'geometrix';
+import { degToRad, point, figure, pNumber, initGeom } from 'geometrix';
 
 const pDef: tParamDef = {
 	page: 'verify_point',
@@ -30,17 +30,19 @@ const pDef: tParamDef = {
 };
 
 function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome: tGeom = { fig: { one: figure() }, logstr: '', calcErr: true };
+	const rGeome = initGeom();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
+		const figOne = figure();
 		const p1 = point(param['p1x'], param['p1y'] + t);
 		const p2 = point(0, 0).setPolar(degToRad(param['p2a']), param['p2l']);
 		const p3 = p1.rotateOrig(degToRad(param['rotateOrig']));
 		const p4 = p1.scaleOrig(param['scaleOrig']);
-		rGeome.fig.one.addPoint(p1);
-		rGeome.fig.one.addPoint(p2);
-		rGeome.fig.one.addPoint(p3);
-		rGeome.fig.one.addPoint(p4);
+		figOne.addPoint(p1);
+		figOne.addPoint(p2);
+		figOne.addPoint(p3);
+		figOne.addPoint(p4);
+		rGeome.fig = { one: figOne };
 		rGeome.logstr += 'verify_point draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {

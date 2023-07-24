@@ -1,7 +1,7 @@
 // verify_vector.ts
 
 import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
-import { degToRad, point, vector, figure, pNumber } from 'geometrix';
+import { degToRad, point, vector, figure, pNumber, initGeom } from 'geometrix';
 
 const pDef: tParamDef = {
 	page: 'verify_vector',
@@ -34,21 +34,23 @@ const pDef: tParamDef = {
 };
 
 function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome: tGeom = { fig: { one: figure() }, logstr: '', calcErr: true };
+	const rGeome = initGeom();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
+		const figOne = figure();
 		const p1 = point(param['p1x'], param['p1y'] + t);
 		const p2 = point(param['p2x'], param['p2y']);
 		const v1 = vector(degToRad(param['v1a']), param['v1l'], p1);
 		const v2 = vector(degToRad(param['v2a']), param['v2l'], p1);
-		rGeome.fig.one.addPoint(p1);
-		rGeome.fig.one.addPoint(p2);
-		rGeome.fig.one.addVector(v1);
-		rGeome.fig.one.addVector(v2);
+		figOne.addPoint(p1);
+		figOne.addPoint(p2);
+		figOne.addVector(v1);
+		figOne.addVector(v2);
 		const v3 = v1.add(v2);
 		const p3 = v3.translatePoint(p2);
-		rGeome.fig.one.addVector(v3);
-		rGeome.fig.one.addPoint(p3);
+		figOne.addVector(v3);
+		figOne.addPoint(p3);
+		rGeome.fig = { one: figOne };
 		rGeome.logstr += 'verify_vector draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
