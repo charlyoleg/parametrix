@@ -35,8 +35,8 @@ import type { DxfSeg } from './write_dxf';
 import { dxfSegLine, dxfSegArc, dxfSegCircle } from './write_dxf';
 import type { tPaxContourPath, tPaxContourCircle, tPaxContour } from './write_pax';
 import { paxPath, paxCircle } from './write_pax';
-import type { tOpenscadSeg } from './write_openscad';
-import { oscadSegLine, oscadSegArc, oscadSegCircle } from './write_openscad';
+import type { tOpenscadSeg } from './prepare_openscad';
+import { oscadSegLine, oscadSegArc, oscadSegCircle } from './prepare_openscad';
 import type { tOpenjscadSeg } from './prepare_openjscad';
 import { ojscadSegLine, ojscadSegArc, ojscadSegCircle } from './prepare_openjscad';
 
