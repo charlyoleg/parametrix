@@ -1,6 +1,5 @@
 // write_openjscad.ts
 
-//import { withinZero2Pi } from './angle_utils';
 import type { tContour } from './contour';
 import type { tFaces } from './figure';
 import type { tOpenjscadSeg } from './prepare_openjscad';
