@@ -37,8 +37,8 @@ import type { tPaxContourPath, tPaxContourCircle, tPaxContour } from './write_pa
 import { paxPath, paxCircle } from './write_pax';
 import type { tOpenscadSeg } from './write_openscad';
 import { oscadSegLine, oscadSegArc, oscadSegCircle } from './write_openscad';
-import type { tOpenjscadSeg } from './write_openjscad';
-import { ojscadSegLine, ojscadSegArc, ojscadSegCircle } from './write_openjscad';
+import type { tOpenjscadSeg } from './prepare_openjscad';
+import { ojscadSegLine, ojscadSegArc, ojscadSegCircle } from './prepare_openjscad';
 
 /* AContour abstract class */
 
