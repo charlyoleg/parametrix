@@ -11,7 +11,6 @@ import { svgWriter } from './write_svg';
 import { dxfWriter } from './write_dxf';
 import type { tPaxContour } from './write_pax';
 import { paxWriter } from './write_pax';
-//import type { tOpenscadSeg } from './write_openscad';
 import { oscadWrite } from './write_openscad';
 import { ojscadWrite } from './write_openjscad';
 import * as zip from '@zip.js/zip.js';
