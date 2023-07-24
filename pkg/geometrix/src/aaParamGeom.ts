@@ -99,7 +99,7 @@ function initGeom(): tGeom {
 		calcErr: true,
 		logstr: 'dbg096: just initialized',
 		fig: {},
-		vol: { extrud: [], bvol: [] },
+		vol: { extrudes: [], volumes: [] },
 		sub: []
 	};
 	return rGeom;
