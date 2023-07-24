@@ -206,6 +206,10 @@ async function makeZip(
 	await zipWriter.add(`deco_${designName}_all_merged_t${tSim}.svg`, svgMergedDecoT);
 	const zPax = new zip.TextReader(makePax(paramVal, geome0, designName));
 	await zipWriter.add(`${designName}.pax.json`, zPax);
+	const zSCad = new zip.TextReader(makeOpenscad(geome0, designName));
+	await zipWriter.add(`${designName}_noarc_openscad.scad`, zSCad);
+	const zJScad = new zip.TextReader(makeOpenjscad(geome0, designName));
+	await zipWriter.add(`${designName}_noarc_jscad.js`, zJScad);
 	// zip writer finalization
 	await zipWriter.close();
 	const rFileContent = await zipFileWriter.getData();
