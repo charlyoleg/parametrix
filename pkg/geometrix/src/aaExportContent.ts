@@ -220,8 +220,6 @@ async function makeZip(
 	await zipWriter.add(`geom_${designName}_log.txt`, zLog0);
 	const zLog1 = new zip.TextReader(geome1.logstr);
 	await zipWriter.add(`geom_${designName}_t${tSim}_log.txt`, zLog1);
-	const zPax = new zip.TextReader(makePax(paramVal, geome0, designName));
-	await zipWriter.add(`${designName}.pax.json`, zPax);
 	for (const face in geome0.fig) {
 		const svgOne = new zip.TextReader(figureToSvg(geome0.fig[face].mainList));
 		await zipWriter.add(`face_${designName}_${face}.svg`, svgOne);
@@ -241,6 +239,8 @@ async function makeZip(
 	await zipWriter.add(`deco_${designName}_all_merged.svg`, svgMergedDeco);
 	const svgMergedDecoT = new zip.TextReader(figureToSvgDeco(mergedFace));
 	await zipWriter.add(`deco_${designName}_all_merged_t${tSim}.svg`, svgMergedDecoT);
+	const zPax = new zip.TextReader(makePax(paramVal, geome0, designName));
+	await zipWriter.add(`${designName}.pax.json`, zPax);
 	// zip writer finalization
 	await zipWriter.close();
 	const rFileContent = await zipFileWriter.getData();
