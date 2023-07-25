@@ -86,7 +86,7 @@ const main = () => {
 const ${extrud.outName} =
 	translate( [ ${extrud.translate[0]}, ${extrud.translate[1]}, ${extrud.translate[2]}, ],
 		rotate( [ ${extrud.rotate[0]}, ${extrud.rotate[1]}, ${extrud.rotate[2]}, ],
-			   ${extrudMethod}( ${extrudOption}, ${extrud.face} )
+			   ${extrudMethod}( ${extrudOption}, face_${extrud.face} )
 		)
 	);
 `;

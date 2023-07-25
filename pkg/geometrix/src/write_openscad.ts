@@ -110,7 +110,7 @@ module pax_${designName} () {
 module ${extrud.outName} () {
 	translate( [ ${extrud.translate[0]}, ${extrud.translate[1]}, ${extrud.translate[2]} ])
 		rotate( [ ${extrud.rotate[0]}, ${extrud.rotate[1]}, ${extrud.rotate[2]} ])
-			   ${extrudMethod}(${extrudOption}) polygon(${extrud.face});
+			   ${extrudMethod}(${extrudOption}) polygon(a_${extrud.face}, b_${extrud.face});
 }
 `;
 		return rStr;

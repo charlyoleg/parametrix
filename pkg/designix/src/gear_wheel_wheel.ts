@@ -267,7 +267,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			extrudes: [
 				{
 					outName: `subpax_${designName}_teethProfile`,
-					face: `face_${designName}_teethProfile`,
+					face: `${designName}_teethProfile`,
 					extrudeMethod: EExtrude.eLinearOrtho,
 					length: 2 * axisHLength,
 					rotate: [0, 0, 0],
@@ -275,7 +275,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 				},
 				{
 					outName: `subpax_${designName}_axisProfile`,
-					face: `face_${designName}_axisProfile`,
+					face: `${designName}_axisProfile`,
 					extrudeMethod: EExtrude.eRotate,
 					rotate: [0, 0, 0],
 					translate: [0, 0, 0]
