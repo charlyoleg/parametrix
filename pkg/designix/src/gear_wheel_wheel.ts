@@ -2,7 +2,17 @@
 
 import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
 //import { contour, contourCircle, figure, degToRad } from 'geometrix';
-import { figure, degToRad, ffix, pNumber, pCheckbox, pDropdown, initGeom } from 'geometrix';
+import {
+	figure,
+	degToRad,
+	ffix,
+	pNumber,
+	pCheckbox,
+	pDropdown,
+	initGeom,
+	EExtrude,
+	EBVolume
+} from 'geometrix';
 import * as gwHelper from './gearWheelProfile';
 import * as welem from './wheelElements';
 
@@ -250,6 +260,38 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		figTwo.addMain(ctrAxisProfile_right);
 		figTwo.addSecond(ctrAxisProfile_left);
 		rGeome.fig = { teethProfile: figOne, axisProfile: figTwo };
+		const designName = pDef.partName;
+		const axisHLength =
+			param['wheelHeight'] / 2 + param['wheelMidExtra'] + param['wheelAxisLength'] + 10;
+		rGeome.vol = {
+			extrudes: [
+				{
+					outName: `subpax_${designName}_teethProfile`,
+					face: `face_${designName}_teethProfile`,
+					extrudeMethod: EExtrude.eLinearOrtho,
+					length: 2 * axisHLength,
+					rotate: [0, 0, 0],
+					translate: [0, 0, -axisHLength]
+				},
+				{
+					outName: `subpax_${designName}_axisProfile`,
+					face: `face_${designName}_axisProfile`,
+					extrudeMethod: EExtrude.eRotate,
+					rotate: [0, 0, 0],
+					translate: [0, 0, 0]
+				}
+			],
+			volumes: [
+				{
+					outName: `pax_${designName}`,
+					boolMethod: EBVolume.eIntersection,
+					inList: [
+						`subpax_${designName}_teethProfile`,
+						`subpax_${designName}_axisProfile`
+					]
+				}
+			]
+		};
 		rGeome.logstr += 'gear_wheel_wheel draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {

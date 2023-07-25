@@ -12,7 +12,9 @@ type tExtrude = {
 	outName: string;
 	face: string;
 	extrudeMethod: EExtrude;
-	length: number;
+	length?: number;
+	rotate: [number, number, number];
+	translate: [number, number, number];
 };
 
 enum EBVolume {
@@ -34,3 +36,4 @@ type tVolume = {
 };
 
 export type { tVolume };
+export { EExtrude, EBVolume };

@@ -11,5 +11,7 @@ export * from './figure';
 //export type { tParamDef, tParamVal, tAllVal, tGeom, tGeomFunc, tPageDef };
 //export type * from './aaParamGeom';
 export * from './aaParamGeom';
+export * from './volume';
+export * from './sub_design';
 
 export * from './aaExportFile';
