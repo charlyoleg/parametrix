@@ -3,6 +3,8 @@
 import type { tContour } from './contour';
 import type { tFaces } from './figure';
 import type { tOpenscadSeg } from './prepare_openscad';
+import type { tVolume, tExtrude, tBVolume } from './volume';
+import { EExtrude, EBVolume } from './volume';
 
 // floating precision for OpenScad export
 function ff(ifloat: number): string {
@@ -74,7 +76,7 @@ class OpenscadWrite {
 		}
 		return rStr;
 	}
-	getVolume(designName: string): string {
+	getVolume2(designName: string): string {
 		const faceId1 = 'teethProfile';
 		const faceId2 = 'axisProfile';
 		const rStr = `
@@ -94,16 +96,91 @@ module pax_${designName} () {
 `;
 		return rStr;
 	}
+	getOneExtrude(extrud: tExtrude): string {
+		let extrudMethod = 'rotate_extrude';
+		let extrudOption = '';
+		if (extrud.extrudeMethod === EExtrude.eLinearOrtho) {
+			if (extrud.length === undefined) {
+				console.log('err103: design error: scad-linear_extrude length undefined!');
+			}
+			extrudMethod = 'linear_extrude';
+			extrudOption = `height = ${extrud.length}`;
+		}
+		const rStr = `
+module ${extrud.outName} () {
+	translate( [ ${extrud.translate[0]}, ${extrud.translate[1]}, ${extrud.translate[2]} ])
+		rotate( [ ${extrud.rotate[0]}, ${extrud.rotate[1]}, ${extrud.rotate[2]} ])
+			   ${extrudMethod}(${extrudOption}) polygon(${extrud.face});
+}
+`;
+		return rStr;
+	}
+	getAllExtrudes(extrudes: Array<tExtrude>): string {
+		let rStr = '';
+		for (const extrud of extrudes) {
+			const subp = this.getOneExtrude(extrud);
+			rStr += subp;
+		}
+		return rStr;
+	}
+	getOneVolume(volum: tBVolume): string {
+		let vMethod = 'identity';
+		switch (volum.boolMethod) {
+			case EBVolume.eIntersection:
+				vMethod = 'intersection';
+				break;
+			case EBVolume.eUnion:
+				vMethod = 'union';
+				break;
+			case EBVolume.eSubstraction:
+				vMethod = 'difference';
+				break;
+		}
+		const inList2 = [];
+		for (const elem of volum.inList) {
+			inList2.push(`${elem}();`);
+		}
+		const inList3 = inList2.join('\n');
+		let rStr = `
+module ${volum.outName} () {
+	${vMethod} () {
+		${inList3}
+	}
+}
+`;
+		if (volum.boolMethod === EBVolume.eIdentity) {
+			rStr = `
+module ${volum.outName} () {
+	${inList3}
+}
+`;
+		}
+		return rStr;
+	}
+	getAllVolumes(volumes: Array<tBVolume>): string {
+		let rStr = '';
+		for (const volum of volumes) {
+			const subp = this.getOneVolume(volum);
+			rStr += subp;
+		}
+		return rStr;
+	}
+	getVolume(vol: tVolume): string {
+		let rStr = '';
+		rStr += this.getAllExtrudes(vol.extrudes);
+		rStr += this.getAllVolumes(vol.volumes);
+		return rStr;
+	}
 	getFooter(designName: string): string {
 		const rStr = `
 pax_${designName}();
 `;
 		return rStr;
 	}
-	getExportFile(figs: tFaces, designName: string) {
+	getExportFile(figs: tFaces, volum: tVolume, designName: string) {
 		let rStr = this.getHeader();
 		rStr += this.getAllFigures(figs, designName);
-		rStr += this.getVolume(designName);
+		rStr += this.getVolume(volum);
 		rStr += this.getFooter(designName);
 		return rStr;
 	}

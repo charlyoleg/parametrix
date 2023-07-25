@@ -156,7 +156,7 @@ function makePax(paramVal: tParamVal, geome0: tGeom, designName: string): string
 // OpenSCad
 function makeOpenscad(geome0: tGeom, designName: string): string {
 	const oscadW = oscadWrite();
-	const rStr = oscadW.getExportFile(geome0.fig, designName);
+	const rStr = oscadW.getExportFile(geome0.fig, geome0.vol, designName);
 	return rStr;
 }
 
