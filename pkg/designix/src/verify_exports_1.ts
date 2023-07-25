@@ -1,7 +1,16 @@
 // verify_exports_1.ts
 
 import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
-import { contour, contourCircle, figure, pNumber, pCheckbox, initGeom } from 'geometrix';
+import {
+	contour,
+	contourCircle,
+	figure,
+	pNumber,
+	pCheckbox,
+	initGeom,
+	EExtrude,
+	EBVolume
+} from 'geometrix';
 
 const pDef: tParamDef = {
 	partName: 'verify_exports_1',
@@ -47,6 +56,26 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			figOne.addMain(ctr1);
 		}
 		rGeome.fig = { one: figOne };
+		const designName = pDef.partName;
+		rGeome.vol = {
+			extrudes: [
+				{
+					outName: `subpax_${designName}_one`,
+					face: `face_${designName}_one`,
+					extrudeMethod: EExtrude.eLinearOrtho,
+					length: 10,
+					rotate: [0, 0, 0],
+					translate: [0, 0, 0]
+				}
+			],
+			volumes: [
+				{
+					outName: `pax_${designName}`,
+					boolMethod: EBVolume.eIdentity,
+					inList: [`subpax_${designName}_one`]
+				}
+			]
+		};
 		rGeome.logstr += 'verify_exports_1 draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
