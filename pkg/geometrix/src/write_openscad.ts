@@ -76,26 +76,6 @@ class OpenscadWrite {
 		}
 		return rStr;
 	}
-	getVolume2(designName: string): string {
-		const faceId1 = 'teethProfile';
-		const faceId2 = 'axisProfile';
-		const rStr = `
-module subpax_${designName}_${faceId1} () {
-	translate([0, 0, -300])
-	linear_extrude(height = 600) polygon(a_${designName}_${faceId1}, b_${designName}_${faceId1});
-}
-module subpax_${designName}_${faceId2} () {
-	rotate_extrude() polygon(a_${designName}_${faceId2}, b_${designName}_${faceId2});
-}
-module pax_${designName} () {
-	intersection () {
-		subpax_${designName}_${faceId1}();
-		subpax_${designName}_${faceId2}();
-	}
-}
-`;
-		return rStr;
-	}
 	getOneExtrude(extrud: tExtrude): string {
 		let extrudMethod = 'rotate_extrude';
 		let extrudOption = '';
