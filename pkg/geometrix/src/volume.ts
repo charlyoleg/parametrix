@@ -35,5 +35,5 @@ type tVolume = {
 	volumes: Array<tBVolume>;
 };
 
-export type { tVolume };
+export type { tVolume, tExtrude, tBVolume };
 export { EExtrude, EBVolume };

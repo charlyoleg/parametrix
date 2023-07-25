@@ -163,7 +163,7 @@ function makeOpenscad(geome0: tGeom, designName: string): string {
 // OpenJSCAD
 function makeOpenjscad(geome0: tGeom, designName: string): string {
 	const ojscadW = ojscadWrite();
-	const rStr = ojscadW.getExportFile(geome0.fig, designName);
+	const rStr = ojscadW.getExportFile(geome0.fig, geome0.vol, designName);
 	return rStr;
 }
 
