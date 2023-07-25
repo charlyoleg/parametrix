@@ -134,16 +134,6 @@ const ${extrud.outName} =
 		rStr += this.getAllVolumes(vol.volumes);
 		return rStr;
 	}
-	getVolume2(designName: string): string {
-		const faceId1 = 'teethProfile';
-		const faceId2 = 'axisProfile';
-		const rStr = `
-  const subpax_${designName}_${faceId1} = translate( [0, 0, -300], extrudeLinear({height: 600 }, face_${designName}_${faceId1} ));
-  const subpax_${designName}_${faceId2} = extrudeRotate({segments: 32}, face_${designName}_${faceId2} );
-  const pax_${designName} = intersect( subpax_${designName}_${faceId1}, subpax_${designName}_${faceId2} );
-`;
-		return rStr;
-	}
 	getFooter(designName: string): string {
 		const rStr = `
   return pax_${designName};
