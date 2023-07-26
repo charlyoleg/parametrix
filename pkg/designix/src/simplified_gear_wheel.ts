@@ -302,7 +302,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 }
 
 const simplifiedGearWheelDef: tPageDef = {
-	pTitle: 'simplified-gearwheel',
+	pTitle: 'Simplified gearwheel',
 	pDescription: 'One simplified gearwheel without details on teeth-profile',
 	pDef: pDef,
 	pGeom: pGeom
