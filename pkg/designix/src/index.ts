@@ -1,6 +1,7 @@
 // index.ts : entry point
 
 export * from './gear_wheel_wheel';
+export * from './simplified_gear_wheel';
 
 export * from './circles';
 export * from './rectangle';
