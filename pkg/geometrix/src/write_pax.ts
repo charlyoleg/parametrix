@@ -1,119 +1,45 @@
 // write_pax.ts
 
-// floating precision for pax export
-function ff(ifloat: number): number {
-	//const rFloat =  ifloat.toFixed(4);
-	//const c10 = 10000;
-	//const rFloat = Math.round(ifloat * c10) / c10;
-	const rFloat = ifloat; // no rounding
-	return rFloat;
-}
+import type { tFaces } from './figure';
+//import type { tVolume } from './volume';
+//import type { tSubDesign } from './sub_design';
+import type { tGeom, tParamVal } from './aaParamGeom';
+import type { tPaxContour } from './prepare_pax';
+import type { tContour } from './contour';
 
-type tPaxContourCircle = {
-	circle: boolean;
-	cx: number;
-	cy: number;
-	radius: number;
-};
+type tFaceJson = { [index: string]: Array<tPaxContour> };
 
-enum PSeg {
-	eStart,
-	eStroke,
-	eArc
-}
-// for start and stroke
-type tPaxSegSt = {
-	typ: PSeg;
-	px: number;
-	py: number;
-};
-type tPaxSegArc = {
-	typ: PSeg;
-	px: number;
-	py: number;
-	radius: number;
-	large: boolean;
-	ccw: boolean;
-};
-type tPaxSeg = tPaxSegSt | tPaxSegArc;
-type tPaxContourPath = {
-	circle: boolean;
-	seg: Array<tPaxSeg>;
-};
-type tPaxContour = tPaxContourPath | tPaxContourCircle;
-
-function paxCircle(cx: number, cy: number, radius: number): tPaxContourCircle {
-	const rPax: tPaxContourCircle = {
-		circle: true,
-		cx: ff(cx),
-		cy: ff(cy),
-		radius: ff(radius)
-	};
-	return rPax;
-}
-
-class PaxPath {
-	seg: Array<tPaxSeg>;
-	constructor() {
-		this.seg = [];
+class PaxWrite {
+	//constructor() {}
+	figureToPaxF(aCtr: Array<tContour>): Array<tPaxContour> {
+		const rPaxF: Array<tPaxContour> = [];
+		for (const ctr of aCtr) {
+			rPaxF.push(ctr.toPax());
+		}
+		return rPaxF;
 	}
-	addStart(px: number, py: number) {
-		this.seg = [];
-		const one: tPaxSegSt = {
-			typ: PSeg.eStart,
-			px: px,
-			py: py
+	getFigures(figs: tFaces): tFaceJson {
+		const figFaces: tFaceJson = {};
+		for (const face in figs) {
+			const figu = this.figureToPaxF(figs[face].mainList);
+			figFaces[face] = figu;
+		}
+		return figFaces;
+	}
+	getAllPax(paramVal: tParamVal, geome0: tGeom, designName: string): string {
+		const paxJson = {
+			design: designName,
+			params: paramVal,
+			figure: this.getFigures(geome0.fig),
+			log: geome0.logstr
 		};
-		this.seg.push(one);
-	}
-	addStroke(px: number, py: number) {
-		const one: tPaxSegSt = {
-			typ: PSeg.eStroke,
-			px: px,
-			py: py
-		};
-		this.seg.push(one);
-	}
-	addArc(cx: number, cy: number, radius: number, large: boolean, ccw: boolean) {
-		const one: tPaxSegArc = {
-			typ: PSeg.eArc,
-			px: cx,
-			py: cy,
-			radius: radius,
-			large: large,
-			ccw: ccw
-		};
-		this.seg.push(one);
-	}
-	toJson(): tPaxContourPath {
-		const rPaxC: tPaxContourPath = {
-			circle: false,
-			seg: this.seg
-		};
-		return rPaxC;
+		const rStr = JSON.stringify(paxJson, null, 2);
+		return rStr;
 	}
 }
-function paxPath(): PaxPath {
-	const rPaxPath = new PaxPath();
-	return rPaxPath;
+function paxWrite(): PaxWrite {
+	const rPaxWrite = new PaxWrite();
+	return rPaxWrite;
 }
 
-class PaxWriter {
-	ctrs: Array<tPaxContour>;
-	constructor() {
-		this.ctrs = [];
-	}
-	addContour(ictr: tPaxContour) {
-		this.ctrs.push(ictr);
-	}
-	getFigure(): Array<tPaxContour> {
-		return this.ctrs;
-	}
-}
-function paxWriter(): PaxWriter {
-	const rPaxWriter = new PaxWriter();
-	return rPaxWriter;
-}
-
-export type { tPaxContourPath, tPaxContourCircle, tPaxContour };
-export { paxPath, paxCircle, paxWriter };
+export { paxWrite };

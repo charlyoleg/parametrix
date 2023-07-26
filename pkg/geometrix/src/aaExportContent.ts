@@ -9,8 +9,7 @@ import { mergeFaces } from './figure';
 import type { SvgWriter } from './write_svg';
 import { svgWriter } from './write_svg';
 import { dxfWriter } from './write_dxf';
-import type { tPaxContour } from './write_pax';
-import { paxWriter } from './write_pax';
+import { paxWrite } from './write_pax';
 import { oscadWrite } from './write_openscad';
 import { ojscadWrite } from './write_openjscad';
 import * as zip from '@zip.js/zip.js';
@@ -127,29 +126,9 @@ function figureToDxf(aCtr: Array<tContour>): string {
 }
 
 // PAX
-function figureToPaxF(aCtr: Array<tContour>): Array<tPaxContour> {
-	const pax = paxWriter();
-	for (const ctr of aCtr) {
-		pax.addContour(ctr.toPax());
-	}
-	const rPaxF = pax.getFigure();
-	return rPaxF;
-}
-
-type tFaceJson = { [index: string]: Array<tPaxContour> };
 function makePax(paramVal: tParamVal, geome0: tGeom, designName: string): string {
-	const figFaces: tFaceJson = {};
-	for (const face in geome0.fig) {
-		const figu = figureToPaxF(geome0.fig[face].mainList);
-		figFaces[face] = figu;
-	}
-	const paxJson = {
-		design: designName,
-		params: paramVal,
-		figure: figFaces,
-		log: geome0.logstr
-	};
-	const rStr = JSON.stringify(paxJson, null, 2);
+	const paxW = paxWrite();
+	const rStr = paxW.getAllPax(paramVal, geome0, designName);
 	return rStr;
 }
 
