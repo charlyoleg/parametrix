@@ -97,7 +97,7 @@ function fround(ireal: number, iprecision = 1000.0): number {
 function initGeom(): tGeom {
 	const rGeom: tGeom = {
 		calcErr: true,
-		logstr: 'dbg096: just initialized',
+		logstr: '',
 		fig: {},
 		vol: { extrudes: [], volumes: [] },
 		sub: []
