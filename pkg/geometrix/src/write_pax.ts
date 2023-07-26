@@ -30,7 +30,9 @@ class PaxWrite {
 		const paxJson = {
 			design: designName,
 			params: paramVal,
-			figure: this.getFigures(geome0.fig),
+			faces: this.getFigures(geome0.fig),
+			volume: geome0.vol,
+			subs: geome0.sub,
 			log: geome0.logstr
 		};
 		const rStr = JSON.stringify(paxJson, null, 2);
