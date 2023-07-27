@@ -63,6 +63,7 @@ const pDef: tParamDef = {
 		pNumber('spokeNb', 'scalar', 5, 1, 18, 1),
 		pNumber('spokeWidth', 'mm', 15, 1, 200, 0.1),
 		pNumber('spokeRound', 'mm', 10, 0, 20, 0.1),
+		pCheckbox('wheelAxis', true),
 		pNumber('wheelHeight', 'mm', 40, 0.1, 400, 0.1),
 		pNumber('wheelMidExtra', 'mm', 6, 0, 10, 0.1),
 		pNumber('wheelAxisLength', 'mm', 40, 0, 400, 0.1),
@@ -116,7 +117,17 @@ const pDef: tParamDef = {
 		materialHeightInt: 'default_param_blank.svg',
 		spokeNb: 'default_param_blank.svg',
 		spokeWidth: 'default_param_blank.svg',
-		spokeRound: 'default_param_blank.svg'
+		spokeRound: 'default_param_blank.svg',
+		wheelAxis: 'default_param_blank.svg',
+		wheelHeight: 'default_param_blank.svg',
+		wheelMidExtra: 'default_param_blank.svg',
+		wheelAxisLength: 'default_param_blank.svg',
+		wheelAxisRadius: 'default_param_blank.svg',
+		wheelMidRadius: 'default_param_blank.svg',
+		wheelRadiusExtra: 'default_param_blank.svg',
+		wheelAxisExtRound: 'default_param_blank.svg',
+		wheelAxisIntRound: 'default_param_blank.svg',
+		wheelExtraRound: 'default_param_blank.svg'
 	},
 	sim: {
 		tMax: 100,
@@ -229,10 +240,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rGeome.logstr += gp2p.check();
 		figOne.addSecond(gp2p);
 		// Figure Two
-		const wheelRadius =
-			(param['N1'] * param['module']) / 2 +
-			param['ah1'] * param['module'] +
-			param['wheelRadiusExtra'];
+		const wheelRadius = gp1.ar + param['wheelRadiusExtra'];
 		const ctrAxisProfile_right = welem.axisProfile(
 			param['wheelHeight'],
 			param['wheelMidExtra'],
