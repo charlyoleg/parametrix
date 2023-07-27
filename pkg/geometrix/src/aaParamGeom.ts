@@ -100,7 +100,7 @@ function initGeom(): tGeom {
 		logstr: '',
 		fig: {},
 		vol: { extrudes: [], volumes: [] },
-		sub: []
+		sub: {}
 	};
 	return rGeom;
 }

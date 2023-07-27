@@ -1,25 +1,21 @@
 // sub_design.ts
 
-type tMParam = {
-	name: string;
-	value: number;
-};
+type tMParams = { [index: string]: number };
 
 type tRParam = {
-	name: string;
 	min: number;
 	max: number;
 	step: number;
 };
+type tRParams = { [index: string]: tRParam };
 
-type tSubD = {
-	partName: string;
+type tSubPart = {
 	package: string;
-	mandatories: Array<tMParam>;
-	recommended: Array<tMParam>;
-	restricted: Array<tRParam>;
+	mandatories: tMParams;
+	recommended: tMParams;
+	restricted: tRParams;
 };
 
-type tSubDesign = Array<tSubD>;
+type tSubDesign = { [index: string]: tSubPart };
 
-export type { tSubDesign };
+export type { tMParams, tRParams, tSubPart, tSubDesign };
