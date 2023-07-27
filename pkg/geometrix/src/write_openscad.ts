@@ -15,7 +15,8 @@ import type { tPaxFaces, tPaxJson } from './write_pax';
 import { convTypePaxToSeg1 } from './write_pax';
 import type { tVolume, tExtrude, tBVolume } from './volume';
 import { EExtrude, EBVolume } from './volume';
-//import { withinZero2Pi } from './angle_utils';
+//import { withinZero2Pi, radToDeg } from './angle_utils';
+import { radToDeg } from './angle_utils';
 import type { tAtsPoints } from './arc_to_stroke';
 import { circle_to_stroke, arc_to_stroke } from './arc_to_stroke';
 
@@ -179,7 +180,9 @@ class OpenscadWrite {
 		const rStr = `
 module ${extrud.outName} () {
 	translate( [ ${extrud.translate[0]}, ${extrud.translate[1]}, ${extrud.translate[2]} ])
-		rotate( [ ${extrud.rotate[0]}, ${extrud.rotate[1]}, ${extrud.rotate[2]} ])
+		rotate( [ ${radToDeg(extrud.rotate[0])}, ${radToDeg(extrud.rotate[1])}, ${radToDeg(
+			extrud.rotate[2]
+		)} ])
 			   ${extrudMethod}(${extrudOption}) polygon(a_${extrud.face}, b_${extrud.face});
 }
 `;
