@@ -3,6 +3,7 @@
 import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
 //import { contour, contourCircle, figure, degToRad } from 'geometrix';
 import {
+	contour,
 	figure,
 	degToRad,
 	ffix,
@@ -271,32 +272,47 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		//figOne.addSecond(gp2p);
 		// Figure Two
 		const wheelRadius = gp1.ar + param['wheelRadiusExtra'];
-		const ctrAxisProfile_right = welem.axisProfile(
-			param['wheelHeight'],
-			param['wheelMidExtra'],
-			param['wheelAxisLength'],
-			param['wheelAxisRadius'],
-			param['wheelMidRadius'],
-			wheelRadius,
-			param['wheelAxisExtRound'],
-			param['wheelAxisIntRound'],
-			param['wheelExtraRound'],
-			true
-		);
-		const ctrAxisProfile_left = welem.axisProfile(
-			param['wheelHeight'],
-			param['wheelMidExtra'],
-			param['wheelAxisLength'],
-			param['wheelAxisRadius'],
-			param['wheelMidRadius'],
-			wheelRadius,
-			param['wheelAxisExtRound'],
-			param['wheelAxisIntRound'],
-			param['wheelExtraRound'],
-			false
-		);
-		figTwo.addMain(ctrAxisProfile_right);
-		figTwo.addSecond(ctrAxisProfile_left);
+		if (param['wheelAxis'] === 1) {
+			const ctrAxisProfile_right = welem.axisProfile(
+				param['wheelHeight'],
+				param['wheelMidExtra'],
+				param['wheelAxisLength'],
+				param['wheelAxisRadius'],
+				param['wheelMidRadius'],
+				wheelRadius,
+				param['wheelAxisExtRound'],
+				param['wheelAxisIntRound'],
+				param['wheelExtraRound'],
+				true
+			);
+			const ctrAxisProfile_left = welem.axisProfile(
+				param['wheelHeight'],
+				param['wheelMidExtra'],
+				param['wheelAxisLength'],
+				param['wheelAxisRadius'],
+				param['wheelMidRadius'],
+				wheelRadius,
+				param['wheelAxisExtRound'],
+				param['wheelAxisIntRound'],
+				param['wheelExtraRound'],
+				false
+			);
+			figTwo.addMain(ctrAxisProfile_right);
+			figTwo.addSecond(ctrAxisProfile_left);
+		} else {
+			const ctrAxisProfile_right = contour(0, -param['wheelHeight'] / 2)
+				.addSegStrokeR(0, param['wheelHeight'])
+				.addSegStrokeR(wheelRadius, 0)
+				.addSegStrokeR(0, -param['wheelHeight'])
+				.closeSegStroke();
+			const ctrAxisProfile_left = contour(0, -param['wheelHeight'] / 2)
+				.addSegStrokeR(0, param['wheelHeight'])
+				.addSegStrokeR(-wheelRadius, 0)
+				.addSegStrokeR(0, -param['wheelHeight'])
+				.closeSegStroke();
+			figTwo.addMain(ctrAxisProfile_right);
+			figTwo.addSecond(ctrAxisProfile_left);
+		}
 		rGeome.fig = { teethProfile: figOne, axisProfile: figTwo };
 		const designName = pDef.partName;
 		const axisHLength =
