@@ -364,6 +364,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			restricted: {}
 		};
 		rGeome.sub = { gear_wheel_wheel: subGearWW };
+		// finalize
 		rGeome.logstr += 'simplified_gear_wheel draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
