@@ -35,8 +35,6 @@ import type { DxfSeg } from './write_dxf';
 import { dxfSegLine, dxfSegArc, dxfSegCircle } from './write_dxf';
 import type { tPaxContourPath, tPaxContourCircle, tPaxContour } from './prepare_pax';
 import { paxPath, paxCircle } from './prepare_pax';
-import type { tOpenscadSeg } from './prepare_openscad';
-import { oscadSegLine, oscadSegArc, oscadSegCircle } from './prepare_openscad';
 
 /* AContour abstract class */
 
@@ -52,7 +50,6 @@ abstract class AContour {
 	abstract toSvg(color?: string): string;
 	abstract toDxfSeg(): Array<DxfSeg>;
 	abstract toPax(): tPaxContour;
-	abstract toOpenscadSeg(): tOpenscadSeg;
 }
 
 /* Contour class */
@@ -711,41 +708,6 @@ class Contour extends AContour {
 		const rPaxC = pPath.toJson();
 		return rPaxC;
 	}
-	toOpenscadSeg(): tOpenscadSeg {
-		const rOscadSeg: tOpenscadSeg = [];
-		let px1 = 0;
-		let py1 = 0;
-		for (const seg of this.segments) {
-			if (seg.sType === segLib.SegEnum.eStart) {
-				rOscadSeg.push(...oscadSegLine(seg.px, seg.py));
-			} else if (seg.sType === segLib.SegEnum.eStroke) {
-				rOscadSeg.push(...oscadSegLine(seg.px, seg.py));
-			} else if (seg.sType === segLib.SegEnum.eArc) {
-				try {
-					const seg2 = segLib.arcSeg1To2(px1, py1, seg);
-					rOscadSeg.push(
-						...oscadSegArc(
-							seg2.pc.cx,
-							seg2.pc.cy,
-							seg.radius,
-							seg2.a1,
-							seg2.a2,
-							seg2.arcCcw
-						)
-					);
-				} catch (emsg) {
-					console.log('err730: ' + emsg);
-				}
-			} else {
-				console.log(`err725: contour.toOpenscadSeg has unknown segment type ${seg.sType}`);
-			}
-			if (segLib.isAddPoint(seg.sType)) {
-				px1 = seg.px;
-				py1 = seg.py;
-			}
-		}
-		return rOscadSeg;
-	}
 }
 
 /* ContourCircle class */
@@ -808,10 +770,6 @@ class ContourCircle extends AContour {
 	toPax(): tPaxContourCircle {
 		const rPaxC = paxCircle(this.px, this.py, this.radius);
 		return rPaxC;
-	}
-	toOpenscadSeg(): tOpenscadSeg {
-		const rOscadSeg = oscadSegCircle(this.px, this.py, this.radius);
-		return rOscadSeg;
 	}
 }
 
