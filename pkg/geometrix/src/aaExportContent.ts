@@ -128,7 +128,7 @@ function figureToDxf(aCtr: Array<tContour>): string {
 // PAX
 function makePax(paramVal: tParamVal, geome0: tGeom, designName: string): string {
 	const paxW = paxWrite();
-	const rStr = paxW.getAllPax(paramVal, geome0, designName);
+	const rStr = paxW.getPaxStr(paramVal, geome0, designName);
 	return rStr;
 }
 
@@ -141,8 +141,10 @@ function makeOpenscad(geome0: tGeom, designName: string): string {
 
 // OpenJSCAD
 function makeOpenjscad(geome0: tGeom, designName: string): string {
+	const paxW = paxWrite();
+	const paxJson = paxW.getPaxJson({}, geome0, designName);
 	const ojscadW = ojscadWrite();
-	const rStr = ojscadW.getExportFile(geome0.fig, geome0.vol, designName);
+	const rStr = ojscadW.getExportFile(paxJson);
 	return rStr;
 }
 

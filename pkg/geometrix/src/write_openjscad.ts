@@ -1,16 +1,104 @@
 // write_openjscad.ts
 
-import type { tContour } from './contour';
-import type { tFaces } from './figure';
-import type { tOpenjscadSeg } from './prepare_openjscad';
+import * as segLib from './segment';
+import type {
+	tPaxContour,
+	tPaxContourCircle,
+	tPaxContourPath,
+	tPaxSeg,
+	tPaxSegArc
+} from './prepare_pax';
+import { PSeg } from './prepare_pax';
+import type { tPaxFaces, tPaxJson } from './write_pax';
 import type { tVolume, tExtrude, tBVolume } from './volume';
 import { EExtrude, EBVolume } from './volume';
+//import { withinZero2Pi } from './angle_utils';
+import type { tAtsPoints } from './arc_to_stroke';
+import { circle_to_stroke, arc_to_stroke } from './arc_to_stroke';
+
+type tOpenjscadSeg = tAtsPoints;
+
+const approxMaxAngle = Math.PI / 8;
+const approxMaxLength = 20.0;
+
+function convType(paxType: PSeg): segLib.SegEnum {
+	let rType: segLib.SegEnum = segLib.SegEnum.eStart;
+	if (paxType === PSeg.eStroke) {
+		rType = segLib.SegEnum.eStroke;
+	} else if (paxType === PSeg.eArc) {
+		rType = segLib.SegEnum.eArc;
+	}
+	return rType;
+}
+function ojscadSegLine(p2x: number, p2y: number): tOpenjscadSeg {
+	const rSeg: tOpenjscadSeg = [[p2x, p2y]];
+	return rSeg;
+}
+function ojscadSegArc(
+	cx: number,
+	cy: number,
+	radius: number,
+	aa1: number,
+	aa2: number,
+	arcCcw: boolean
+): tOpenjscadSeg {
+	const rSeg = arc_to_stroke(cx, cy, radius, aa1, aa2, arcCcw, approxMaxAngle, approxMaxLength);
+	return rSeg;
+}
+function toOpenjscadSeg(paxCtr: Array<tPaxSeg>): tOpenjscadSeg {
+	const rOjscadSeg: tOpenjscadSeg = [];
+	let px1 = 0;
+	let py1 = 0;
+	for (const seg of paxCtr) {
+		if (seg.typ === PSeg.eStart) {
+			rOjscadSeg.push(...ojscadSegLine(seg.px, seg.py));
+		} else if (seg.typ === PSeg.eStroke) {
+			rOjscadSeg.push(...ojscadSegLine(seg.px, seg.py));
+		} else if (seg.typ === PSeg.eArc) {
+			const sega = seg as tPaxSegArc;
+			try {
+				const seg1 = new segLib.Segment1(
+					convType(sega.typ),
+					sega.px,
+					sega.py,
+					sega.radius,
+					sega.large,
+					sega.ccw
+				);
+				const seg2 = segLib.arcSeg1To2(px1, py1, seg1);
+				rOjscadSeg.push(
+					...ojscadSegArc(
+						seg2.pc.cx,
+						seg2.pc.cy,
+						seg1.radius,
+						seg2.a1,
+						seg2.a2,
+						seg2.arcCcw
+					)
+				);
+			} catch (emsg) {
+				console.log('err730: ' + emsg);
+			}
+		} else {
+			console.log(
+				`err778: write_openjscad toOpenjscadSeg has unknown segment type ${seg.typ}`
+			);
+		}
+		// all segements of Pax must update the last point
+		px1 = seg.px;
+		py1 = seg.py;
+	}
+	return rOjscadSeg;
+}
+function ojscadSegCircle(cx: number, cy: number, radius: number): tOpenjscadSeg {
+	const rSeg = circle_to_stroke(cx, cy, radius, approxMaxAngle, approxMaxLength);
+	return rSeg;
+}
 
 // floating precision for OpenScad export
 function ff(ifloat: number): string {
 	return ifloat.toFixed(4);
 }
-
 class OjscadWriteFigure {
 	pts: Array<string>;
 	constructor() {
@@ -56,18 +144,26 @@ const main = () => {
 `;
 		return rStr;
 	}
-	getOneFigure(aCtr: Array<tContour>, faceId: string): string {
+	getOneFigure(aCtr: Array<tPaxContour>, faceId: string): string {
 		const ojscadWF = new OjscadWriteFigure();
-		for (const ctr of aCtr) {
-			ojscadWF.addContour(ctr.toOpenjscadSeg());
+		for (const paxCtr of aCtr) {
+			if (paxCtr.circle === true) {
+				const paxCircle = paxCtr as tPaxContourCircle;
+				const ojscadSeg = ojscadSegCircle(paxCircle.cx, paxCircle.cy, paxCircle.radius);
+				ojscadWF.addContour(ojscadSeg);
+			} else {
+				const paxPath = paxCtr as tPaxContourPath;
+				const ojscadSeg = toOpenjscadSeg(paxPath.seg);
+				ojscadWF.addContour(ojscadSeg);
+			}
 		}
 		const rOjscadF = ojscadWF.getFigure(faceId);
 		return rOjscadF;
 	}
-	getAllFigures(figs: tFaces, designName: string): string {
+	getAllFigures(faces: tPaxFaces, partName: string): string {
 		let rStr = '';
-		for (const face in figs) {
-			const figu = this.getOneFigure(figs[face].mainList, `${designName}_${face}`);
+		for (const face in faces) {
+			const figu = this.getOneFigure(faces[face], `${partName}_${face}`);
 			rStr += figu;
 		}
 		return rStr;
@@ -134,19 +230,19 @@ const ${extrud.outName} =
 		rStr += this.getAllVolumes(vol.volumes);
 		return rStr;
 	}
-	getFooter(designName: string): string {
+	getFooter(partName: string): string {
 		const rStr = `
-  return pax_${designName};
+  return pax_${partName};
 }
 module.exports = { main };
 `;
 		return rStr;
 	}
-	getExportFile(figs: tFaces, volum: tVolume, designName: string) {
+	getExportFile(pax: tPaxJson) {
 		let rStr = this.getHeader();
-		rStr += this.getAllFigures(figs, designName);
-		rStr += this.getVolume(volum);
-		rStr += this.getFooter(designName);
+		rStr += this.getAllFigures(pax.faces, pax.partName);
+		rStr += this.getVolume(pax.volume);
+		rStr += this.getFooter(pax.partName);
 		return rStr;
 	}
 }
