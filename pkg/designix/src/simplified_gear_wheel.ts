@@ -7,7 +7,7 @@ import type {
 	tPageDef,
 	tMParams,
 	//tRParams,
-	tSubPart
+	tSubInst
 	//tSubDesign
 } from 'geometrix';
 //import { contour, contourCircle, figure, degToRad } from 'geometrix';
@@ -357,13 +357,14 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		};
 		// sub-design
 		const paramGearWW = param as tMParams;
-		const subGearWW: tSubPart = {
+		const subGearWW: tSubInst = {
+			partName: 'gear_wheel_wheel',
 			package: 'designix',
 			mandatories: paramGearWW,
 			recommended: paramGearWW,
 			restricted: {}
 		};
-		rGeome.sub = { gear_wheel_wheel: subGearWW };
+		rGeome.sub = { gear_wheel_wheel_1: subGearWW };
 		// finalize
 		rGeome.logstr += 'simplified_gear_wheel draw successfully!\n';
 		rGeome.calcErr = false;
