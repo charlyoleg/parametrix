@@ -10,6 +10,7 @@ import type {
 } from './prepare_pax';
 import { PSeg } from './prepare_pax';
 import type { tPaxFaces, tPaxJson } from './write_pax';
+import { convTypePaxToSeg1 } from './write_pax';
 import type { tVolume, tExtrude, tBVolume } from './volume';
 import { EExtrude, EBVolume } from './volume';
 //import { withinZero2Pi } from './angle_utils';
@@ -21,15 +22,6 @@ type tOpenjscadSeg = tAtsPoints;
 const approxMaxAngle = Math.PI / 8;
 const approxMaxLength = 20.0;
 
-function convType(paxType: PSeg): segLib.SegEnum {
-	let rType: segLib.SegEnum = segLib.SegEnum.eStart;
-	if (paxType === PSeg.eStroke) {
-		rType = segLib.SegEnum.eStroke;
-	} else if (paxType === PSeg.eArc) {
-		rType = segLib.SegEnum.eArc;
-	}
-	return rType;
-}
 function ojscadSegLine(p2x: number, p2y: number): tOpenjscadSeg {
 	const rSeg: tOpenjscadSeg = [[p2x, p2y]];
 	return rSeg;
@@ -55,10 +47,10 @@ function toOpenjscadSeg(paxCtr: Array<tPaxSeg>): tOpenjscadSeg {
 		} else if (seg.typ === PSeg.eStroke) {
 			rOjscadSeg.push(...ojscadSegLine(seg.px, seg.py));
 		} else if (seg.typ === PSeg.eArc) {
-			const sega = seg as tPaxSegArc;
 			try {
+				const sega = seg as tPaxSegArc;
 				const seg1 = new segLib.Segment1(
-					convType(sega.typ),
+					convTypePaxToSeg1(sega.typ),
 					sega.px,
 					sega.py,
 					sega.radius,

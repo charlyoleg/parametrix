@@ -126,25 +126,22 @@ function figureToDxf(aCtr: Array<tContour>): string {
 }
 
 // PAX
-function makePax(paramVal: tParamVal, geome0: tGeom, designName: string): string {
-	const paxW = paxWrite();
-	const rStr = paxW.getPaxStr(paramVal, geome0, designName);
+function makePax(paramVal: tParamVal, geome0: tGeom, partName: string): string {
+	const rStr = paxWrite().getPaxStr(paramVal, geome0, partName);
 	return rStr;
 }
 
 // OpenSCad
-function makeOpenscad(geome0: tGeom, designName: string): string {
-	const oscadW = oscadWrite();
-	const rStr = oscadW.getExportFile(geome0.fig, geome0.vol, designName);
+function makeOpenscad(geome0: tGeom, partName: string): string {
+	const paxJson = paxWrite().getPaxJson({}, geome0, partName);
+	const rStr = oscadWrite().getExportFile(paxJson);
 	return rStr;
 }
 
 // OpenJSCAD
-function makeOpenjscad(geome0: tGeom, designName: string): string {
-	const paxW = paxWrite();
-	const paxJson = paxW.getPaxJson({}, geome0, designName);
-	const ojscadW = ojscadWrite();
-	const rStr = ojscadW.getExportFile(paxJson);
+function makeOpenjscad(geome0: tGeom, partName: string): string {
+	const paxJson = paxWrite().getPaxJson({}, geome0, partName);
+	const rStr = ojscadWrite().getExportFile(paxJson);
 	return rStr;
 }
 
@@ -154,43 +151,43 @@ async function makeZip(
 	geome0: tGeom,
 	tSim: number,
 	geome1: tGeom,
-	designName: string
+	partName: string
 ): Promise<Blob> {
 	// zip writer preparation
 	const zipFileWriter = new zip.BlobWriter('application/zip');
 	const zipWriter = new zip.ZipWriter(zipFileWriter);
 	// zip payload
 	const zParam = new zip.TextReader(JSON.stringify(paramVal, null, 2));
-	await zipWriter.add(`param_${designName}.json`, zParam);
+	await zipWriter.add(`param_${partName}.json`, zParam);
 	const zLog0 = new zip.TextReader(geome0.logstr);
-	await zipWriter.add(`geom_${designName}_log.txt`, zLog0);
+	await zipWriter.add(`geom_${partName}_log.txt`, zLog0);
 	const zLog1 = new zip.TextReader(geome1.logstr);
-	await zipWriter.add(`geom_${designName}_t${tSim}_log.txt`, zLog1);
+	await zipWriter.add(`geom_${partName}_t${tSim}_log.txt`, zLog1);
 	for (const face in geome0.fig) {
 		const svgOne = new zip.TextReader(figureToSvg(geome0.fig[face].mainList));
-		await zipWriter.add(`face_${designName}_${face}.svg`, svgOne);
+		await zipWriter.add(`face_${partName}_${face}.svg`, svgOne);
 		const dxfOne = new zip.TextReader(figureToDxf(geome0.fig[face].mainList));
-		await zipWriter.add(`face_${designName}_${face}.dxf`, dxfOne);
+		await zipWriter.add(`face_${partName}_${face}.dxf`, dxfOne);
 		const svgOneDeco = new zip.TextReader(figureToSvgDeco(geome0.fig[face]));
-		await zipWriter.add(`deco_${designName}_${face}.svg`, svgOneDeco);
+		await zipWriter.add(`deco_${partName}_${face}.svg`, svgOneDeco);
 		const svgOneDecoT = new zip.TextReader(figureToSvgDeco(geome1.fig[face]));
-		await zipWriter.add(`deco_${designName}_${face}_t${tSim}.svg`, svgOneDecoT);
+		await zipWriter.add(`deco_${partName}_${face}_t${tSim}.svg`, svgOneDecoT);
 	}
 	const mergedFace = mergeFaces(geome0.fig);
 	const svgMerged = new zip.TextReader(figureToSvg(mergedFace.mainList));
-	await zipWriter.add(`face_${designName}_all_merged.svg`, svgMerged);
+	await zipWriter.add(`face_${partName}_all_merged.svg`, svgMerged);
 	const dxfMerged = new zip.TextReader(figureToDxf(mergedFace.mainList));
-	await zipWriter.add(`face_${designName}_all_merged.dxf`, dxfMerged);
+	await zipWriter.add(`face_${partName}_all_merged.dxf`, dxfMerged);
 	const svgMergedDeco = new zip.TextReader(figureToSvgDeco(mergedFace));
-	await zipWriter.add(`deco_${designName}_all_merged.svg`, svgMergedDeco);
+	await zipWriter.add(`deco_${partName}_all_merged.svg`, svgMergedDeco);
 	const svgMergedDecoT = new zip.TextReader(figureToSvgDeco(mergedFace));
-	await zipWriter.add(`deco_${designName}_all_merged_t${tSim}.svg`, svgMergedDecoT);
-	const zPax = new zip.TextReader(makePax(paramVal, geome0, designName));
-	await zipWriter.add(`${designName}.pax.json`, zPax);
-	const zSCad = new zip.TextReader(makeOpenscad(geome0, designName));
-	await zipWriter.add(`${designName}_noarc_openscad.scad`, zSCad);
-	const zJScad = new zip.TextReader(makeOpenjscad(geome0, designName));
-	await zipWriter.add(`${designName}_noarc_jscad.js`, zJScad);
+	await zipWriter.add(`deco_${partName}_all_merged_t${tSim}.svg`, svgMergedDecoT);
+	const zPax = new zip.TextReader(makePax(paramVal, geome0, partName));
+	await zipWriter.add(`${partName}.pax.json`, zPax);
+	const zSCad = new zip.TextReader(makeOpenscad(geome0, partName));
+	await zipWriter.add(`${partName}_noarc_openscad.scad`, zSCad);
+	const zJScad = new zip.TextReader(makeOpenjscad(geome0, partName));
+	await zipWriter.add(`${partName}_noarc_jscad.js`, zJScad);
 	// zip writer finalization
 	await zipWriter.close();
 	const rFileContent = await zipFileWriter.getData();
