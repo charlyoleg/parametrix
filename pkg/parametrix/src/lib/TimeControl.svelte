@@ -99,7 +99,7 @@
 		background-color: colors.$timectrl-bg;
 	}
 	nav > input[type='range'] {
-		width: 5rem;
+		width: 8rem;
 	}
 	nav > input[type='number'] {
 		width: 3rem;
