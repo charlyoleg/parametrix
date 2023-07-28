@@ -178,7 +178,7 @@
 		<option value="zip">all faces and more as zip</option>
 	</select>
 	<button on:click={downloadExport}>Save to File</button>
-	<SubDesign bind:subD />
+	<SubDesign {subD} />
 </section>
 
 <style lang="scss">
