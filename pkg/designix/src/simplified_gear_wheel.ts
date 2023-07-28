@@ -362,7 +362,9 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			package: 'designix',
 			mandatories: paramGearWW,
 			recommended: paramGearWW,
-			restricted: {}
+			restricted: {},
+			orientation: [0, 0, 0],
+			position: [0, 0, 0]
 		};
 		rGeome.sub = { gear_wheel_wheel_1: subGearWW };
 		// finalize

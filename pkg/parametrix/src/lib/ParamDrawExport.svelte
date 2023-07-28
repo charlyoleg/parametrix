@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { tParamDef, tGeomFunc } from 'geometrix';
+	import type { tParamDef, tGeomFunc, tSubDesign } from 'geometrix';
 	import {
 		c_ParametrixAll,
 		EFormat,
@@ -11,6 +11,7 @@
 	} from 'geometrix';
 	import InputParams from '$lib/InputParams.svelte';
 	import Drawing from '$lib/Drawing.svelte';
+	import SubDesign from '$lib/SubDesign.svelte';
 	import { storePV } from '$lib/storePVal';
 
 	export let pDef: tParamDef;
@@ -31,6 +32,7 @@
 	let logValue = 'Dummy initial\nWill be replaced during onMount\n';
 	let calcErr = false;
 	let calcWarn = false;
+	let subD: tSubDesign = {};
 	function paramChange2(iPageName: string) {
 		const mydate = new Date().toLocaleTimeString();
 		logValue = `Geometry ${iPageName} computed at ${mydate}\n`;
@@ -40,6 +42,7 @@
 		calcWarn = checkWarn(geome.logstr);
 		optFaces = Object.keys(geome.fig);
 		//geomRedraw(simTime);
+		subD = geome.sub;
 	}
 	function paramChange() {
 		paramChange2(pDef.partName);
@@ -175,6 +178,7 @@
 		<option value="zip">all faces and more as zip</option>
 	</select>
 	<button on:click={downloadExport}>Save to File</button>
+	<SubDesign bind:subD />
 </section>
 
 <style lang="scss">

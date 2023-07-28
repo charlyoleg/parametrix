@@ -9,12 +9,16 @@ type tRParam = {
 };
 type tRParams = { [index: string]: tRParam };
 
+type tPosiOrien = [number, number, number];
+
 type tSubInst = {
 	partName: string;
 	package: string;
 	mandatories: tMParams;
 	recommended: tMParams;
 	restricted: tRParams;
+	orientation: tPosiOrien;
+	position: tPosiOrien;
 };
 
 type tSubDesign = { [index: string]: tSubInst };
