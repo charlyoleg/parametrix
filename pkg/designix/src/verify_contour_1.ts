@@ -34,12 +34,12 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const figOne = figure();
-		const r1 = param['r1'];
-		const d1 = param['d1'];
-		const w1 = param['w1'];
-		const r2 = param['r2'];
-		const l1 = param['l1'];
-		const l2 = param['l2'];
+		const r1 = param.r1;
+		const d1 = param.d1;
+		const w1 = param.w1;
+		const r2 = param.r2;
+		const l1 = param.l1;
+		const l2 = param.l2;
 		const h1 = 6 * r1 + 4 * d1;
 		const w12 = w1 / 2;
 		const c1 = d1 + r1;

@@ -3,7 +3,7 @@ module.exports = {
 		'eslint:recommended',
 		'plugin:@typescript-eslint/recommended-type-checked',
 		'plugin:@typescript-eslint/stylistic-type-checked',
-		'prettier',
+		'prettier'
 	],
 	plugins: ['@typescript-eslint'],
 	parser: '@typescript-eslint/parser',
@@ -11,9 +11,9 @@ module.exports = {
 		//sourceType: 'module',
 		//ecmaVersion: 2020,
 		project: true,
-		tsconfigRootDir: __dirname,
+		tsconfigRootDir: __dirname
 	},
-	root: true,
+	root: true
 	//env: {
 	//	browser: true,
 	//	es2021: true,

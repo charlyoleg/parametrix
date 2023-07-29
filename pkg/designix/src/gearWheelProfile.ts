@@ -105,7 +105,7 @@ class GearWheelProfile {
 		this.involArcPairs = iInvolArcPairs;
 		this.skinThickness = iSkinThickness;
 	}
-	getRefCircles(): Array<tContour> {
+	getRefCircles(): tContour[] {
 		this.checkInitStep(4, 'getRefCircles');
 		const rRefCircles = [
 			contourCircle(this.cx, this.cy, this.ar, 'Azure'),
@@ -288,7 +288,7 @@ function gw2center(
 	gw2: GearWheelProfile,
 	angleCenterCenter: number,
 	addInterAxis: number
-): Array<number> {
+): number[] {
 	gw1.checkInitStep(1, 'helper.gw2center-1');
 	gw2.checkInitStep(1, 'helper.gw2center-2');
 	const interAxis = gw1.pr + gw2.pr + addInterAxis;
@@ -306,7 +306,7 @@ function baseCircles(
 	involSym: number,
 	involROpt: number,
 	involLOpt: number
-): Array<number> {
+): number[] {
 	gw1.checkInitStep(3, 'helper.baseCircles-1');
 	gw2.checkInitStep(3, 'helper.baseCircles-2');
 	let brr1 = ibrr1;
@@ -594,7 +594,7 @@ class ActionLine {
 		rCtr.closeSegStroke();
 		return rCtr;
 	}
-	getContactSpeed(): Array<tContour> {
+	getContactSpeed(): tContour[] {
 		const ctrR1 = this.oneContactSpeed(
 			true,
 			this.lBDr,
@@ -619,13 +619,13 @@ class ActionLine {
 			'L1',
 			'Black'
 		);
-		const rACtr: Array<tContour> = [];
+		const rACtr: tContour[] = [];
 		rACtr.push(ctrR1);
 		rACtr.push(ctrL1);
 		return rACtr;
 	}
-	getContours(): Array<tContour> {
-		const rACtr: Array<tContour> = [];
+	getContours(): tContour[] {
+		const rACtr: tContour[] = [];
 		rACtr.push(contourCircle(this.gw1.cx, this.gw1.cy, this.laStartRr1, 'SkyBlue'));
 		rACtr.push(contourCircle(this.gw1.cx, this.gw1.cy, this.laStartRl1, 'SlateBlue'));
 		rACtr.push(contourCircle(this.gw2.cx, this.gw2.cy, this.laStartRr2, 'SkyBlue'));
@@ -659,8 +659,8 @@ class ActionLine {
 		rACtr.push(...this.getContactSpeed());
 		return rACtr;
 	}
-	getContactPoint(): Array<Point> {
-		const rApt: Array<Point> = [];
+	getContactPoint(): Point[] {
+		const rApt: Point[] = [];
 		const c1 = point(this.gw1.cx, this.gw1.cy);
 		const cop1r0 = c1.translatePolar(this.angleCenterCenter + this.apr, this.gw1.brr);
 		const cop1l0 = c1.translatePolar(this.angleCenterCenter - this.apl, this.gw1.blr);

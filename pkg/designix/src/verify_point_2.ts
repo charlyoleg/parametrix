@@ -36,11 +36,11 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const figOne = figure();
-		const p1 = point(param['p1x'], param['p1y'] + t);
-		const p2 = point(param['p2x'], param['p2y']);
-		const p3 = point(param['p3x'], param['p3y']);
+		const p1 = point(param.p1x, param.p1y + t);
+		const p2 = point(param.p2x, param.p2y);
+		const p3 = point(param.p3x, param.p3y);
 		const mp1p2 = p1.middlePoint(p2);
-		const ep1p2 = p1.equidistantPoint(p2, param['dist'], p3);
+		const ep1p2 = p1.equidistantPoint(p2, param.dist, p3);
 		figOne.addPoint(p1);
 		figOne.addPoint(p2);
 		figOne.addPoint(p3);

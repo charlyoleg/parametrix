@@ -41,11 +41,11 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const figOne = figure();
-		if (param['circle'] === 1) {
+		if (param.circle === 1) {
 			const theCircle = contourCircle(0, 0, param['circle-size']);
 			figOne.addMain(theCircle);
 		}
-		if (param['contour'] === 1) {
+		if (param.contour === 1) {
 			const csize = param['contour-size'];
 			const carcl = param['contour-arc-large'] === 1 ? true : false;
 			const ctr1 = contour(0, 0)

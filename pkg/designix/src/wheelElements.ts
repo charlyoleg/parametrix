@@ -71,7 +71,7 @@ function hollowStraight(
 	spokeWidth: number,
 	spokeRound: number,
 	initAngle: number
-): Array<tContour> {
+): tContour[] {
 	const aPeriod = (2 * Math.PI) / spokeNb;
 	const aW2Int = Math.asin(spokeWidth / (2 * hollowInt));
 	const aW2Ext = Math.asin(spokeWidth / (2 * hollowExt));
@@ -96,7 +96,7 @@ function hollowStraight(
 	const arcLarge = aPeriod - 2 * aW2Ext > Math.PI ? true : false;
 	//console.log(`dbg908: triangle ${triangle}`);
 	const pt0 = point(cx, cy);
-	const rACtr: Array<tContour> = [];
+	const rACtr: tContour[] = [];
 	for (let i = 0; i < spokeNb; i++) {
 		const aSpoke1 = initAngle + i * aPeriod;
 		const aSpoke2 = aSpoke1 + aPeriod;

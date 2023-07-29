@@ -34,10 +34,10 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const figOne = figure();
-		const p1 = point(param['p1x'], param['p1y'] + t);
-		const p2 = point(0, 0).setPolar(degToRad(param['p2a']), param['p2l']);
-		const p3 = p1.rotateOrig(degToRad(param['rotateOrig']));
-		const p4 = p1.scaleOrig(param['scaleOrig']);
+		const p1 = point(param.p1x, param.p1y + t);
+		const p2 = point(0, 0).setPolar(degToRad(param.p2a), param.p2l);
+		const p3 = p1.rotateOrig(degToRad(param.rotateOrig));
+		const p4 = p1.scaleOrig(param.scaleOrig);
 		figOne.addPoint(p1);
 		figOne.addPoint(p2);
 		figOne.addPoint(p3);

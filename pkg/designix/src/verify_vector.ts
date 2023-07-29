@@ -38,10 +38,10 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const figOne = figure();
-		const p1 = point(param['p1x'], param['p1y'] + t);
-		const p2 = point(param['p2x'], param['p2y']);
-		const v1 = vector(degToRad(param['v1a']), param['v1l'], p1);
-		const v2 = vector(degToRad(param['v2a']), param['v2l'], p1);
+		const p1 = point(param.p1x, param.p1y + t);
+		const p2 = point(param.p2x, param.p2y);
+		const v1 = vector(degToRad(param.v1a), param.v1l, p1);
+		const v2 = vector(degToRad(param.v2a), param.v2l, p1);
 		figOne.addPoint(p1);
 		figOne.addPoint(p2);
 		figOne.addVector(v1);

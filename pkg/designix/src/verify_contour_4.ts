@@ -28,9 +28,9 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const figOne = figure();
-		const n1 = param['n1'];
-		const n2 = param['n2'];
-		const r1 = param['r1'];
+		const n1 = param.n1;
+		const n2 = param.n2;
+		const r1 = param.r1;
 		const l1 = 50 + t;
 		const as = (2 * Math.PI) / (n2 * 3);
 		const p0 = point(0, 0);

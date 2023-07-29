@@ -34,9 +34,9 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const figOne = figure();
-		const p1 = point(param['p1x'], param['p1y'] + t);
-		const p2 = point(param['p2x'], param['p2y']);
-		const p3 = point(param['p3x'], param['p3y']);
+		const p1 = point(param.p1x, param.p1y + t);
+		const p2 = point(param.p2x, param.p2y);
+		const p3 = point(param.p3x, param.p3y);
 		figOne.addPoint(p1);
 		figOne.addPoint(p2);
 		figOne.addPoint(p3);

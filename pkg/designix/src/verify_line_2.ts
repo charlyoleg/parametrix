@@ -38,14 +38,14 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const figOne = figure();
-		const p1 = point(param['l1cx'], param['l1cy']);
-		const p2 = point(param['l2cx'], param['l2cy']);
-		const p3 = point(param['p3x'], param['p3y']);
+		const p1 = point(param.l1cx, param.l1cy);
+		const p2 = point(param.l2cx, param.l2cy);
+		const p3 = point(param.p3x, param.p3y);
 		figOne.addPoint(p1);
 		figOne.addPoint(p2);
 		figOne.addPoint(p3);
-		const l1 = line(param['l1cx'], param['l1cy'], degToRad(param['l1ca'] + t));
-		const l2 = line(param['l2cx'], param['l2cy'], degToRad(param['l2ca']));
+		const l1 = line(param.l1cx, param.l1cy, degToRad(param.l1ca + t));
+		const l2 = line(param.l2cx, param.l2cy, degToRad(param.l2ca));
 		figOne.addLine(l1);
 		figOne.addLine(l2);
 		figOne.addPoint(l1.intersection(l2));

@@ -42,7 +42,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			figOne.addPoint(
 				p1
 					.scale(p2, param['amplitude-offset'] + param['amplitude-scale'] * i)
-					.rotate(p2, i * degToRad(param['angle']) + (t * Math.PI) / 2 / pDef.sim.tMax)
+					.rotate(p2, i * degToRad(param.angle) + (t * Math.PI) / 2 / pDef.sim.tMax)
 			);
 		}
 		rGeome.fig = { one: figOne };

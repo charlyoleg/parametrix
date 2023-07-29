@@ -27,9 +27,9 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	try {
 		const figOne = figure();
 		const p1 = point(10, 10);
-		const p2 = point(10 + param['width'], 10);
-		const p3 = point(10 + param['width'], 10 + param['height']);
-		const p4 = point(10, 10 + param['height']);
+		const p2 = point(10 + param.width, 10);
+		const p3 = point(10 + param.width, 10 + param.height);
+		const p4 = point(10, 10 + param.height);
 		const angle = (t * Math.PI) / 180;
 		figOne.addPoint(p1);
 		figOne.addPoint(p2.rotate(p1, angle));

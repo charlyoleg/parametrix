@@ -30,10 +30,10 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const figOne = figure();
-		const r1 = param['r1'] + t;
-		const ata = param['a1'] + t;
-		const at1 = param['at1'] + t;
-		const at2 = param['at2'] + t;
+		const r1 = param.r1 + t;
+		const ata = param.a1 + t;
+		const at1 = param.at1 + t;
+		const at2 = param.at2 + t;
 		const ctr1 = contour(20, 20);
 		ctr1.addSegStrokeA(40, 20);
 		ctr1.addPointA(60, 20).addSegArc(r1, true, true);

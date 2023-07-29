@@ -34,12 +34,12 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const figOne = figure();
-		const r1 = param['r1'] + t;
-		const r2 = param['r2'] + t;
-		const r3 = param['r3'] + t;
-		const r4 = param['r4'] + t;
-		const r5 = param['r5'] + t;
-		const r6 = param['r6'] + t;
+		const r1 = param.r1 + t;
+		const r2 = param.r2 + t;
+		const r3 = param.r3 + t;
+		const r4 = param.r4 + t;
+		const r5 = param.r5 + t;
+		const r6 = param.r6 + t;
 		const ctr1 = contour(100, 0)
 			.addSegStrokeR(30, 200)
 			.addCornerRounded(r1)

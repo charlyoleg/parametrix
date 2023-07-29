@@ -39,7 +39,7 @@ class Involute {
 		return rw2;
 	}
 	// Point C of the involute in cartesian coordinates
-	ptc(au: number): Array<number> {
+	ptc(au: number): number[] {
 		const lcl = this.lFromU(au);
 		const lcw = this.w2FromU(au);
 		const ptcx = this.base_center_x + Math.cos(lcw) * lcl;
@@ -84,7 +84,7 @@ class Involute {
 	// return
 	// x,y of point C
 	// vpx, vpy of speed vector of point C in line of pressure reference
-	laptc(acc: number, ap: number, aj: number, sJ: number): Array<number> {
+	laptc(acc: number, ap: number, aj: number, sJ: number): number[] {
 		if (Math.sign(ap) * this.angleSign() < 0) {
 			throw `err904: Invole.laptc angle-of-pressure ${ap} not compatible with right_nleft ${this.right_nleft}`;
 		}
