@@ -26,13 +26,13 @@ import {
 } from './triangle_utils';
 import { point, Point } from './point';
 
-type tAffine = {
+interface tAffine {
 	quasiVertical: boolean;
 	ha: number;
 	hb: number;
 	va: number;
 	vb: number;
-};
+}
 
 /* Base classes */
 

@@ -9,12 +9,12 @@ function ff(ifloat: number): number {
 	return rFloat;
 }
 
-type tPaxContourCircle = {
+interface tPaxContourCircle {
 	circle: boolean;
 	cx: number;
 	cy: number;
 	radius: number;
-};
+}
 
 enum PSeg {
 	eStart,
@@ -22,24 +22,24 @@ enum PSeg {
 	eArc
 }
 // for start and stroke
-type tPaxSegSt = {
+interface tPaxSegSt {
 	typ: PSeg;
 	px: number;
 	py: number;
-};
-type tPaxSegArc = {
+}
+interface tPaxSegArc {
 	typ: PSeg;
 	px: number;
 	py: number;
 	radius: number;
 	large: boolean;
 	ccw: boolean;
-};
+}
 type tPaxSeg = tPaxSegSt | tPaxSegArc;
-type tPaxContourPath = {
+interface tPaxContourPath {
 	circle: boolean;
-	seg: Array<tPaxSeg>;
-};
+	seg: tPaxSeg[];
+}
 type tPaxContour = tPaxContourPath | tPaxContourCircle;
 
 function paxCircle(cx: number, cy: number, radius: number): tPaxContourCircle {
@@ -53,7 +53,7 @@ function paxCircle(cx: number, cy: number, radius: number): tPaxContourCircle {
 }
 
 class PaxPath {
-	seg: Array<tPaxSeg>;
+	seg: tPaxSeg[];
 	constructor() {
 		this.seg = [];
 	}

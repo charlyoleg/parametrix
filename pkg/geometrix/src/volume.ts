@@ -8,14 +8,14 @@ enum EExtrude {
 	eRotate
 }
 
-type tExtrude = {
+interface tExtrude {
 	outName: string;
 	face: string;
 	extrudeMethod: EExtrude;
 	length?: number;
 	rotate: [number, number, number];
 	translate: [number, number, number];
-};
+}
 
 enum EBVolume {
 	eIdentity,
@@ -24,16 +24,16 @@ enum EBVolume {
 	eSubstraction
 }
 
-type tBVolume = {
+interface tBVolume {
 	outName: string;
 	boolMethod: EBVolume;
-	inList: Array<string>;
-};
+	inList: string[];
+}
 
-type tVolume = {
-	extrudes: Array<tExtrude>;
-	volumes: Array<tBVolume>;
-};
+interface tVolume {
+	extrudes: tExtrude[];
+	volumes: tBVolume[];
+}
 
 export type { tVolume, tExtrude, tBVolume };
 export { EExtrude, EBVolume };

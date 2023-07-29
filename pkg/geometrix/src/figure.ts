@@ -14,7 +14,7 @@ import { Vector, vector } from './vector';
 import type { tContour } from './contour';
 import { contour, contourCircle } from './contour';
 
-type tLayers = {
+interface tLayers {
 	points: boolean;
 	lines: boolean;
 	vectors: boolean;
@@ -25,17 +25,17 @@ type tLayers = {
 	dynamics: boolean;
 	ruler: boolean;
 	refframe: boolean;
-};
+}
 
 class Figure {
-	pointList: Array<Point>;
-	lineList: Array<Line>;
-	vectorList: Array<Vector>;
-	mainList: Array<tContour>;
-	mainBList: Array<tContour>;
-	secondList: Array<tContour>;
-	secondBList: Array<tContour>;
-	dynamicsList: Array<tContour>;
+	pointList: Point[];
+	lineList: Line[];
+	vectorList: Vector[];
+	mainList: tContour[];
+	mainBList: tContour[];
+	secondList: tContour[];
+	secondBList: tContour[];
+	dynamicsList: tContour[];
 	xMin: number;
 	xMax: number;
 	yMin: number;
@@ -57,7 +57,7 @@ class Figure {
 	addPoint(ipoint: Point) {
 		this.pointList.push(ipoint);
 	}
-	addPoints(ipoints: Array<Point>) {
+	addPoints(ipoints: Point[]) {
 		//for (const ipt of ipoints) {
 		//	this.pointList.push(ipt);
 		//}
@@ -66,7 +66,7 @@ class Figure {
 	addLine(iline: Line) {
 		this.lineList.push(iline);
 	}
-	addLines(ilines: Array<Line>) {
+	addLines(ilines: Line[]) {
 		for (const iline of ilines) {
 			this.lineList.push(iline);
 		}
@@ -235,7 +235,7 @@ function figure() {
 }
 
 const c_ParametrixAll = 'ParametrixAll';
-type tFaces = { [index: string]: Figure };
+type tFaces = Record<string, Figure>;
 function mergeFaces(iFaces: tFaces): Figure {
 	const rfig = figure();
 	for (const face in iFaces) {

@@ -2,7 +2,7 @@
 
 import { orientedArc } from './angle_utils';
 
-type tAtsPoints = Array<[number, number]>;
+type tAtsPoints = [number, number][];
 
 function calcAngleStep(
 	max_angle: number,

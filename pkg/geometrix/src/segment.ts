@@ -143,8 +143,8 @@ class Segment2 {
 }
 
 class SegDbg {
-	debugPoints: Array<Point>;
-	debugLines: Array<Line>;
+	debugPoints: Point[];
+	debugLines: Line[];
 	logMessage: string;
 	constructor() {
 		this.debugPoints = [];
@@ -154,7 +154,7 @@ class SegDbg {
 	addPoint(ip: Point) {
 		this.debugPoints.push(ip);
 	}
-	getPoints(): Array<Point> {
+	getPoints(): Point[] {
 		return this.debugPoints;
 	}
 	clearPoints() {
@@ -163,7 +163,7 @@ class SegDbg {
 	addLine(il: Line) {
 		this.debugLines.push(il);
 	}
-	getLines(): Array<Line> {
+	getLines(): Line[] {
 		return this.debugLines;
 	}
 	clearLines() {
@@ -233,7 +233,7 @@ function arcSeg2To1(iSeg2: Segment2): Segment1 {
 	return rSeg1;
 }
 
-type tPrepare = {
+interface tPrepare {
 	s1: Segment2;
 	s2: Segment2;
 	s3: Segment2;
@@ -248,7 +248,7 @@ type tPrepare = {
 	at3: number;
 	abi: number;
 	aph: number;
-};
+}
 function prepare(s1: Segment2, s2: Segment2, s3: Segment2): tPrepare {
 	const p1 = s1.p1;
 	const p2 = s1.p2;
@@ -447,7 +447,7 @@ function newRounded(
 	const rNewSeg = new Segment2(SegEnum.eArc, p8, p9, p7, ra, a78, a79, ccw2);
 	return rNewSeg;
 }
-function roundStrokeStroke(ag: tPrepare): Array<Segment2> {
+function roundStrokeStroke(ag: tPrepare): Segment2[] {
 	const l7 = Math.abs(ag.ra / Math.sin(ag.aph));
 	const l7b = l7 * Math.cos(ag.aph);
 	const p7 = ag.p2.translatePolar(ag.abi, l7);
@@ -457,13 +457,13 @@ function roundStrokeStroke(ag: tPrepare): Array<Segment2> {
 	//const p9 = p7.translatePolar(a79, ag.ra);
 	const p8 = ag.p2.translatePolar(ag.at1, l7b);
 	const p9 = ag.p2.translatePolar(ag.at3, l7b);
-	const rsegs: Array<Segment2> = [];
+	const rsegs: Segment2[] = [];
 	rsegs.push(newStrokeFirst(ag.s1, p8));
 	rsegs.push(newRounded(p8, p9, p7, ag.ra, ag.aph, ag.abi));
 	rsegs.push(newStrokeSecond(ag.s3, p9));
 	return rsegs;
 }
-function roundStrokeArc(ag: tPrepare): Array<Segment2> {
+function roundStrokeArc(ag: tPrepare): Segment2[] {
 	const lStroke = linePP(ag.p1, ag.p2);
 	const lStrokep = lStroke.lineParallelDistance(ag.ra, ag.p6, ag.p5);
 	const pB = lStrokep.projectPoint(ag.p5);
@@ -485,7 +485,7 @@ function roundStrokeArc(ag: tPrepare): Array<Segment2> {
 	//gSegDbg.addPoint(p7.clone(ShapePoint.eTri3));
 	//gSegDbg.addPoint(p8.clone(ShapePoint.eTri4));
 	//gSegDbg.addPoint(p9.clone(ShapePoint.eCross));
-	const rsegs: Array<Segment2> = [];
+	const rsegs: Segment2[] = [];
 	rsegs.push(newStrokeFirst(ag.s1, p8));
 	rsegs.push(newRounded(p8, p9, p7, ag.ra, ag.aph, ag.abi));
 	rsegs.push(newArcSecond(ag.s3, p9));
@@ -493,7 +493,7 @@ function roundStrokeArc(ag: tPrepare): Array<Segment2> {
 	//rsegs.push(newArcSecond(ag.s3, ag.p2));
 	return rsegs;
 }
-function roundArcStroke(ag: tPrepare): Array<Segment2> {
+function roundArcStroke(ag: tPrepare): Segment2[] {
 	const lStroke = linePP(ag.p3, ag.p2);
 	const lStrokep = lStroke.lineParallelDistance(ag.ra, ag.p6, ag.p4);
 	const pB = lStrokep.projectPoint(ag.p4);
@@ -511,7 +511,7 @@ function roundArcStroke(ag: tPrepare): Array<Segment2> {
 	//gSegDbg.addPoint(p7.clone(ShapePoint.eTri3));
 	//gSegDbg.addPoint(p8.clone(ShapePoint.eTri4));
 	//gSegDbg.addPoint(p9.clone(ShapePoint.eCross));
-	const rsegs: Array<Segment2> = [];
+	const rsegs: Segment2[] = [];
 	rsegs.push(newArcFirst(ag.s1, p8));
 	rsegs.push(newRounded(p8, p9, p7, ag.ra, ag.aph, ag.abi));
 	rsegs.push(newStrokeSecond(ag.s3, p9));
@@ -519,7 +519,7 @@ function roundArcStroke(ag: tPrepare): Array<Segment2> {
 	//rsegs.push(newStrokeSecond(ag.s3, ag.p2));
 	return rsegs;
 }
-function roundArcArc(ag: tPrepare): Array<Segment2> {
+function roundArcArc(ag: tPrepare): Segment2[] {
 	const mr1 = modifRadius(ag.aph, ag.s1, ag.ra);
 	const mr3 = modifRadius(ag.aph, ag.s3, ag.ra);
 	const lp4p5 = ag.p4.distanceToPoint(ag.p5);
@@ -546,7 +546,7 @@ function roundArcArc(ag: tPrepare): Array<Segment2> {
 	//gSegDbg.addPoint(p7b.clone(ShapePoint.eSquare));
 	//gSegDbg.addPoint(p8.clone(ShapePoint.eTri3));
 	//gSegDbg.addPoint(p9.clone(ShapePoint.eTri4));
-	const rsegs: Array<Segment2> = [];
+	const rsegs: Segment2[] = [];
 	rsegs.push(newArcFirst(ag.s1, p8));
 	rsegs.push(newRounded(p8, p9, p7, ag.ra, ag.aph, ag.abi));
 	rsegs.push(newArcSecond(ag.s3, p9));
@@ -554,7 +554,7 @@ function roundArcArc(ag: tPrepare): Array<Segment2> {
 	//rsegs.push(newArcSecond(ag.s3, ag.p2));
 	return rsegs;
 }
-function widenCorner(ag: tPrepare): Array<Segment2> {
+function widenCorner(ag: tPrepare): Segment2[] {
 	const a68 = ag.abi - 2 * ag.aph;
 	const a69 = ag.abi + 2 * ag.aph;
 	let p8 = ag.p6.translatePolar(a68, ag.ra);
@@ -574,7 +574,7 @@ function widenCorner(ag: tPrepare): Array<Segment2> {
 	const ccw2 = ag.aph > 0 ? false : true;
 	const segCorner = new Segment2(SegEnum.eArc, p8, p9, ag.p6, ag.ra, a68, a69, ccw2);
 	//gSegDbg.addPoint(ag.p6.clone(ShapePoint.eTwoTri));
-	const rsegs: Array<Segment2> = [];
+	const rsegs: Segment2[] = [];
 	if (ag.s1.sType === SegEnum.eStroke) {
 		rsegs.push(newStrokeFirst(ag.s1, p8));
 	} else if (ag.s1.sType === SegEnum.eArc) {
@@ -588,7 +588,7 @@ function widenCorner(ag: tPrepare): Array<Segment2> {
 	}
 	return rsegs;
 }
-function wideAccessSide(sign: number, one: Segment2, p8one: Point, ag: tPrepare): Array<Point> {
+function wideAccessSide(sign: number, one: Segment2, p8one: Point, ag: tPrepare): Point[] {
 	let p8a = p8one;
 	let p8b = p8one;
 	const a268 = ag.p6.angleFromToPoints(ag.p2, p8one);
@@ -621,7 +621,7 @@ function wideAccessSide(sign: number, one: Segment2, p8one: Point, ag: tPrepare)
 	}
 	return [p8a, p8b];
 }
-function wideAccessCorner(ag: tPrepare): Array<Segment2> {
+function wideAccessCorner(ag: tPrepare): Segment2[] {
 	const ones = widenCorner(ag);
 	const sign1 = ones[1].arcCcw ? 1 : -1;
 	const [p8a, p8b] = wideAccessSide(sign1, ag.s1, ones[1].p1, ag);
@@ -630,7 +630,7 @@ function wideAccessCorner(ag: tPrepare): Array<Segment2> {
 	//gSegDbg.addPoint(p8b.clone(ShapePoint.eTri2));
 	//gSegDbg.addPoint(p9b.clone(ShapePoint.eTri3));
 	//gSegDbg.addPoint(p9a.clone(ShapePoint.eTri4));
-	const rsegs: Array<Segment2> = [];
+	const rsegs: Segment2[] = [];
 	if (p8a.isEqual(p8b)) {
 		rsegs.push(ones[0]);
 	} else {
@@ -661,9 +661,9 @@ function wideAccessCorner(ag: tPrepare): Array<Segment2> {
 	//rsegs.push(ones[2]);
 	return rsegs;
 }
-function makeCorner(s1: Segment2, s2: Segment2, s3: Segment2): Array<Segment2> {
+function makeCorner(s1: Segment2, s2: Segment2, s3: Segment2): Segment2[] {
 	const preArg = prepare(s1, s2, s3);
-	const rsegs: Array<Segment2> = [];
+	const rsegs: Segment2[] = [];
 	if (s2.sType === SegEnum.eRounded) {
 		if (s1.sType === SegEnum.eStroke && s3.sType === SegEnum.eStroke) {
 			rsegs.push(...roundStrokeStroke(preArg));

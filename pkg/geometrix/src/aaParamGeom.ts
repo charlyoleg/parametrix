@@ -10,45 +10,45 @@ enum PType {
 	eDropdown
 }
 
-type tParam = {
+interface tParam {
 	name: string;
 	unit: string;
 	init: number;
 	min: number;
 	max: number;
 	step: number;
-	dropdown: Array<string>;
+	dropdown: string[];
 	pType: PType;
-};
-type tSimTime = {
+}
+interface tSimTime {
 	tMax: number;
 	tStep: number;
 	tUpdate: number; // in ms
-};
-type tParamDef = {
+}
+interface tParamDef {
 	partName: string;
-	params: Array<tParam>;
-	paramSvg: { [index: string]: string };
+	params: tParam[];
+	paramSvg: Record<string, string>;
 	sim: tSimTime;
-};
+}
 
-type tParamVal = { [index: string]: number };
-type tAllVal = { lastModif: string; pVal: tParamVal; comment: string };
-type tGeom = {
+type tParamVal = Record<string, number>;
+interface tAllVal { lastModif: string; pVal: tParamVal; comment: string }
+interface tGeom {
 	calcErr: boolean;
 	logstr: string;
 	fig: tFaces;
 	vol: tVolume;
 	sub: tSubDesign;
-};
+}
 type tGeomFunc = (t: number, ipVal: tParamVal) => tGeom;
 
-type tPageDef = {
+interface tPageDef {
 	pTitle: string;
 	pDescription: string;
 	pDef: tParamDef;
 	pGeom: tGeomFunc;
-};
+}
 
 function pNumber(name: string, unit: string, init: number, min = 0, max = 100, step = 1): tParam {
 	const rParam: tParam = {
@@ -76,7 +76,7 @@ function pCheckbox(name: string, init: boolean): tParam {
 	};
 	return rParam;
 }
-function pDropdown(name: string, values: Array<string>): tParam {
+function pDropdown(name: string, values: string[]): tParam {
 	const rParam: tParam = {
 		name: name,
 		unit: 'dropdown',

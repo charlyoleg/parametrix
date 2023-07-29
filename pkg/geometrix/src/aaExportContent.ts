@@ -28,9 +28,9 @@ class MinMaxPoint {
 		this.yMin = 0;
 		this.yMax = 0;
 	}
-	addAContour(aCtr: Array<tContour>) {
+	addAContour(aCtr: tContour[]) {
 		if (aCtr.length > 0) {
-			const pts: Array<Point> = [];
+			const pts: Point[] = [];
 			if (this.firstDone) {
 				pts.push(point(this.xMin, this.yMin));
 				pts.push(point(this.xMax, this.yMax));
@@ -61,7 +61,7 @@ class SvgWriter2 {
 		this.minMax = new MinMaxPoint();
 		this.svg = svgWriter();
 	}
-	addAContour(aCtr: Array<tContour>, groupId = '', color = colors.contour) {
+	addAContour(aCtr: tContour[], groupId = '', color = colors.contour) {
 		this.minMax.addAContour(aCtr);
 		if (groupId !== '') {
 			this.svg.addGroup(groupId);
@@ -87,7 +87,7 @@ function svgWriter2(): SvgWriter2 {
 	const rSvgWriter2 = new SvgWriter2();
 	return rSvgWriter2;
 }
-function figureToSvg(aCtr: Array<tContour>): string {
+function figureToSvg(aCtr: tContour[]): string {
 	const sw2 = svgWriter2();
 	sw2.addAContour(aCtr);
 	return sw2.stringify();
@@ -104,7 +104,7 @@ function figureToSvgDeco(fig: Figure) {
 }
 
 // DXF
-function figureToDxf(aCtr: Array<tContour>): string {
+function figureToDxf(aCtr: tContour[]): string {
 	const dxf = dxfWriter();
 	//const firstDxfLayer = dxf.addLayer('first');
 	for (const ctr of aCtr) {

@@ -202,7 +202,7 @@ function point(ix: number, iy: number, ishape = ShapePoint.eDefault) {
 	return new Point(ix, iy, ishape);
 }
 
-function pointMinMax(aPoint: Array<Point>): [number, number, number, number] {
+function pointMinMax(aPoint: Point[]): [number, number, number, number] {
 	let xMin = 0;
 	let xMax = 0;
 	let yMin = 0;

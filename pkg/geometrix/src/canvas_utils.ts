@@ -20,7 +20,7 @@ const colors = {
 	mouse: 'yellow'
 };
 
-type tCanvasAdjust = {
+interface tCanvasAdjust {
 	init: number;
 	xMin: number;
 	yMin: number;
@@ -29,7 +29,7 @@ type tCanvasAdjust = {
 	shiftY: number;
 	scaleX: number;
 	scaleY: number;
-};
+}
 
 function point2canvas(px: number, py: number, iAdjust: tCanvasAdjust): [number, number] {
 	const cx2 = iAdjust.shiftX + (px - iAdjust.xMin) * iAdjust.scaleX;

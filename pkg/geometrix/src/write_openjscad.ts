@@ -37,7 +37,7 @@ function ojscadSegArc(
 	const rSeg = arc_to_stroke(cx, cy, radius, aa1, aa2, arcCcw, approxMaxAngle, approxMaxLength);
 	return rSeg;
 }
-function toOpenjscadSeg(paxCtr: Array<tPaxSeg>): tOpenjscadSeg {
+function toOpenjscadSeg(paxCtr: tPaxSeg[]): tOpenjscadSeg {
 	const rOjscadSeg: tOpenjscadSeg = [];
 	let px1 = 0;
 	let py1 = 0;
@@ -92,12 +92,12 @@ function ff(ifloat: number): string {
 	return ifloat.toFixed(4);
 }
 class OjscadWriteFigure {
-	pts: Array<string>;
+	pts: string[];
 	constructor() {
 		this.pts = [];
 	}
 	addContour(ictr: tOpenjscadSeg) {
-		const pts2: Array<string> = [];
+		const pts2: string[] = [];
 		for (const pt of ictr) {
 			const [px, py] = pt;
 			pts2.push(`[ ${ff(px)}, ${ff(py)} ]`);
@@ -107,7 +107,7 @@ class OjscadWriteFigure {
 	}
 	getFigure(faceId: string): string {
 		let rStr = '';
-		const aList: Array<string> = [];
+		const aList: string[] = [];
 		for (const idx of this.pts.keys()) {
 			const aId = `ctr_${faceId}_${idx}`;
 			rStr += `const ${aId} = polygon({ points: ${this.pts[idx]} });\n`;
@@ -136,7 +136,7 @@ const main = () => {
 `;
 		return rStr;
 	}
-	getOneFigure(aCtr: Array<tPaxContour>, faceId: string): string {
+	getOneFigure(aCtr: tPaxContour[], faceId: string): string {
 		const ojscadWF = new OjscadWriteFigure();
 		for (const paxCtr of aCtr) {
 			if (paxCtr.circle === true) {
@@ -180,7 +180,7 @@ const ${extrud.outName} =
 `;
 		return rStr;
 	}
-	getAllExtrudes(extrudes: Array<tExtrude>): string {
+	getAllExtrudes(extrudes: tExtrude[]): string {
 		let rStr = '';
 		for (const extrud of extrudes) {
 			const subp = this.getOneExtrude(extrud);
@@ -208,7 +208,7 @@ const ${extrud.outName} =
 		}
 		return rStr;
 	}
-	getAllVolumes(volumes: Array<tBVolume>): string {
+	getAllVolumes(volumes: tBVolume[]): string {
 		let rStr = '';
 		for (const volum of volumes) {
 			const subp = this.getOneVolume(volum);

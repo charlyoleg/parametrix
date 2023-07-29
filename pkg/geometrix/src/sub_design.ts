@@ -1,17 +1,17 @@
 // sub_design.ts
 
-type tMParams = { [index: string]: number };
+type tMParams = Record<string, number>;
 
-type tRParam = {
+interface tRParam {
 	min: number;
 	max: number;
 	step: number;
-};
-type tRParams = { [index: string]: tRParam };
+}
+type tRParams = Record<string, tRParam>;
 
 type tPosiOrien = [number, number, number];
 
-type tSubInst = {
+interface tSubInst {
 	partName: string;
 	package: string;
 	mandatories: tMParams;
@@ -19,8 +19,8 @@ type tSubInst = {
 	restricted: tRParams;
 	orientation: tPosiOrien;
 	position: tPosiOrien;
-};
+}
 
-type tSubDesign = { [index: string]: tSubInst };
+type tSubDesign = Record<string, tSubInst>;
 
 export type { tMParams, tRParams, tSubInst, tSubDesign };

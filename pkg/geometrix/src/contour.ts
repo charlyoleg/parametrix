@@ -44,11 +44,11 @@ abstract class AContour {
 	abstract draw(ctx: CanvasRenderingContext2D, cAdjust: tCanvasAdjust, color: string): void;
 	abstract extractSkeleton(): AContour;
 	abstract generateContour(): AContour;
-	abstract generatePoints(): Array<Point>;
-	abstract generateLines(): Array<Line>;
+	abstract generatePoints(): Point[];
+	abstract generateLines(): Line[];
 	abstract check(): string;
 	abstract toSvg(color?: string): string;
-	abstract toDxfSeg(): Array<DxfSeg>;
+	abstract toDxfSeg(): DxfSeg[];
 	abstract toPax(): tPaxContour;
 }
 
@@ -56,10 +56,10 @@ abstract class AContour {
 
 class Contour extends AContour {
 	circle = false;
-	segments: Array<segLib.Segment1>;
-	points: Array<Point>;
-	debugPoints: Array<Point>;
-	debugLines: Array<Line>;
+	segments: segLib.Segment1[];
+	points: Point[];
+	debugPoints: Point[];
+	debugLines: Line[];
 	lastPoint: Point;
 	imposedColor: string;
 	constructor(ix: number, iy: number, icolor = '') {
@@ -479,8 +479,8 @@ class Contour extends AContour {
 	generateContour(): Contour {
 		segLib.gSegDbg.clearPoints();
 		segLib.gSegDbg.clearLines();
-		const segStack: Array<segLib.Segment2> = [];
-		const segStackEnd: Array<segLib.Segment2> = [];
+		const segStack: segLib.Segment2[] = [];
+		const segStackEnd: segLib.Segment2[] = [];
 		let coType = 0;
 		let px1 = 0;
 		let py1 = 0;
@@ -581,7 +581,7 @@ class Contour extends AContour {
 		}
 		return rContour;
 	}
-	generatePoints(): Array<Point> {
+	generatePoints(): Point[] {
 		const rPoints = [];
 		rPoints.push(...this.debugPoints);
 		const seg0 = this.segments[0];
@@ -615,7 +615,7 @@ class Contour extends AContour {
 		}
 		return rPoints;
 	}
-	generateLines(): Array<Line> {
+	generateLines(): Line[] {
 		const rLines = [];
 		rLines.push(...this.debugLines);
 		return rLines;
@@ -668,8 +668,8 @@ class Contour extends AContour {
 		const rSvg = sPath.stringify(color);
 		return rSvg;
 	}
-	toDxfSeg(): Array<DxfSeg> {
-		const rDxfSeg: Array<DxfSeg> = [];
+	toDxfSeg(): DxfSeg[] {
+		const rDxfSeg: DxfSeg[] = [];
 		let px1 = 0;
 		let py1 = 0;
 		for (const seg of this.segments) {
@@ -742,7 +742,7 @@ class ContourCircle extends AContour {
 		const rContour = new ContourCircle(this.px, this.py, this.radius, this.imposedColor);
 		return rContour;
 	}
-	generatePoints(): Array<Point> {
+	generatePoints(): Point[] {
 		const rPoints = [];
 		const p1 = point(this.px, this.py);
 		rPoints.push(p1);
@@ -752,7 +752,7 @@ class ContourCircle extends AContour {
 		}
 		return rPoints;
 	}
-	generateLines(): Array<Line> {
+	generateLines(): Line[] {
 		return [];
 	}
 	check(): string {
@@ -762,8 +762,8 @@ class ContourCircle extends AContour {
 		const rSvg = svgCircleString(this.px, this.py, this.radius, color);
 		return rSvg;
 	}
-	toDxfSeg(): Array<DxfSeg> {
-		const rDxfSeg: Array<DxfSeg> = [];
+	toDxfSeg(): DxfSeg[] {
+		const rDxfSeg: DxfSeg[] = [];
 		rDxfSeg.push(dxfSegCircle(this.px, this.py, this.radius));
 		return rDxfSeg;
 	}

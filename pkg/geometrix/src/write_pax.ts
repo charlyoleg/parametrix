@@ -9,20 +9,20 @@ import type { tPaxContour } from './prepare_pax';
 import { PSeg } from './prepare_pax';
 import type { tContour } from './contour';
 
-type tPaxFaces = { [index: string]: Array<tPaxContour> };
-type tPaxJson = {
+type tPaxFaces = Record<string, tPaxContour[]>;
+interface tPaxJson {
 	partName: string;
 	params: tParamVal;
 	faces: tPaxFaces;
 	volume: tVolume;
 	subs: tSubDesign;
 	log: string;
-};
+}
 
 class PaxWrite {
 	//constructor() {}
-	figureToPaxF(aCtr: Array<tContour>): Array<tPaxContour> {
-		const rPaxF: Array<tPaxContour> = [];
+	figureToPaxF(aCtr: tContour[]): tPaxContour[] {
+		const rPaxF: tPaxContour[] = [];
 		for (const ctr of aCtr) {
 			rPaxF.push(ctr.toPax());
 		}
