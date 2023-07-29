@@ -68,13 +68,13 @@ function toOpenjscadSeg(paxCtr: tPaxSeg[]): tOpenjscadSeg {
 						seg2.arcCcw
 					)
 				);
-			} catch (emsg) {
+			} catch (emsg: string) {
 				console.log('err730: ' + emsg);
 			}
-		} else {
-			console.log(
-				`err778: write_openjscad toOpenjscadSeg has unknown segment type ${seg.typ}`
-			);
+		//} else {
+		//	console.log(
+		//		`err778: write_openjscad toOpenjscadSeg has unknown segment type ${seg.typ}`
+		//	);
 		}
 		// all segements of Pax must update the last point
 		px1 = seg.px;

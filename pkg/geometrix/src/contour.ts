@@ -456,7 +456,7 @@ class Contour extends AContour {
 					ctx.arc(cx3, cy3, cRadius, -seg2.a1, -seg2.a2, seg.arcCcw);
 					ctx.strokeStyle = theColor;
 					ctx.stroke();
-				} catch (emsg) {
+				} catch (emsg: string) {
 					console.log('err413: ' + emsg);
 				}
 			}
@@ -603,7 +603,7 @@ class Contour extends AContour {
 					}
 					const p4 = p3.translatePolar(a3, seg.radius);
 					rPoints.push(p4);
-				} catch (emsg) {
+				} catch (emsg: string) {
 					console.log('err453: ' + emsg);
 				}
 			}
@@ -630,7 +630,7 @@ class Contour extends AContour {
 			if (seg.sType === segLib.SegEnum.eArc) {
 				try {
 					segLib.arcSeg1To2(px1, py1, seg);
-				} catch (emsg) {
+				} catch (emsg: string) {
 					throw `err778: ${emsg}`;
 				}
 			}
@@ -681,7 +681,7 @@ class Contour extends AContour {
 					rDxfSeg.push(
 						dxfSegArc(seg2.pc.cx, seg2.pc.cy, seg.radius, seg2.a1, seg2.a2, seg2.arcCcw)
 					);
-				} catch (emsg) {
+				} catch (emsg: string) {
 					console.log('err413: ' + emsg);
 				}
 			}
