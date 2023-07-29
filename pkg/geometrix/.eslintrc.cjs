@@ -1,16 +1,23 @@
 module.exports = {
-	root: true,
+	extends: [
+		'eslint:recommended',
+		'plugin:@typescript-eslint/recommended-type-checked',
+		'plugin:@typescript-eslint/stylistic-type-checked',
+		'prettier',
+	],
+	plugins: ['@typescript-eslint'],
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
-		sourceType: 'module',
-		ecmaVersion: 2020
+		//sourceType: 'module',
+		//ecmaVersion: 2020,
+		project: true,
+		tsconfigRootDir: __dirname,
 	},
-	plugins: ['@typescript-eslint'],
-	extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'prettier'],
-	ignorePatterns: ['*.cjs'],
-	env: {
-		browser: true,
-		es2021: true,
-		node: true
-	}
+	root: true,
+	//env: {
+	//	browser: true,
+	//	es2021: true,
+	//	node: true
+	//},
+	//ignorePatterns: ['*.cjs'],
 };
