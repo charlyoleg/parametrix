@@ -12,7 +12,6 @@ pnpm-lock.yaml
 package-lock.json
 yarn.lock
 
-# avoid weird error
-# TODO: remove workaround
+# ignore recommended by eslint
 .eslintrc.cjs
 svelte.config.js
