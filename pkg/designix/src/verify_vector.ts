@@ -54,7 +54,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rGeome.logstr += 'verify_vector draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
-		rGeome.logstr += emsg;
+		rGeome.logstr += emsg as string;
 		console.log(emsg);
 	}
 	return rGeome;

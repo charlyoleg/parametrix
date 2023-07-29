@@ -60,8 +60,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rGeome.logstr += 'verify_line draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
-		rGeome.logstr += emsg;
-		console.log(emsg);
+		rGeome.logstr += emsg as string;
+		console.log(emsg as string);
 	}
 	return rGeome;
 }
