@@ -76,8 +76,8 @@ function toOpenscadSeg(paxCtr: tPaxSeg[]): tOpenscadSeg {
 						seg2.arcCcw
 					)
 				);
-			} catch (emsg: string) {
-				console.log('err730: ' + emsg);
+			} catch (emsg) {
+				console.log('err730: ' + emsg as string);
 			}
 		//} else {
 		//	console.log(`err725: write_openscad toOpenscadSeg has unknown segment type ${seg.typ}`);

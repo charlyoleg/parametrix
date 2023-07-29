@@ -68,8 +68,8 @@ function toOpenjscadSeg(paxCtr: tPaxSeg[]): tOpenjscadSeg {
 						seg2.arcCcw
 					)
 				);
-			} catch (emsg: string) {
-				console.log('err730: ' + emsg);
+			} catch (emsg) {
+				console.log('err730: ' + emsg as string);
 			}
 		//} else {
 		//	console.log(
