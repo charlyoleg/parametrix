@@ -40,8 +40,9 @@
 	</ul>
 	<Garland />
 	<ul>
-		<li class="footer-title">Competitors</li>
+		<li class="footer-title">2D CAD Libraries</li>
 		<li><a href="https://maker.js.org/docs/">Maker.js</a></li>
+		<li><a href="https://github.com/sgenoud/pantograph">Pantograph.js</a></li>
 	</ul>
 	<Garland />
 	<ul>
