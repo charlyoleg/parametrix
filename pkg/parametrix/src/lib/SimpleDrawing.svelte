@@ -19,7 +19,7 @@
 	function canvasRedrawMini(aFigure: Figure, iLayers: tLayers) {
 		const sLayers = copyLayers(iLayers);
 		sLayers.ruler = false;
-		const ctx1 = canvasMini.getContext('2d') as CanvasRenderingContext2D;
+		const ctx1 = canvasMini.getContext('2d')!;
 		ctx1.clearRect(0, 0, ctx1.canvas.width, ctx1.canvas.height);
 		try {
 			mAdjust = aFigure.getAdjustFull(ctx1.canvas.width, ctx1.canvas.height);

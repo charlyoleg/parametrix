@@ -9,7 +9,7 @@
 
 	export let subD: tSubDesign = {};
 
-	let subInsts: Array<string> = [];
+	let subInsts: string[] = [];
 	$: subInsts = Object.keys(subD);
 </script>
 

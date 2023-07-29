@@ -104,7 +104,7 @@
 	function loadParamFromFile(eve: Event) {
 		if (eve.target) {
 			type tEveFileList = FileList | null;
-			const paramFiles: tEveFileList = (<HTMLInputElement>eve.target).files;
+			const paramFiles: tEveFileList = (eve.target as HTMLInputElement).files;
 			if (paramFiles) {
 				loadFile(paramFiles[0]);
 			}

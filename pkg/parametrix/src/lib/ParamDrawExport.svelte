@@ -25,7 +25,7 @@
 		}
 		return rWarn;
 	}
-	let optFaces: Array<string> = [];
+	let optFaces: string[] = [];
 	let face: string;
 	let simTime = 0;
 	// log and paramChange

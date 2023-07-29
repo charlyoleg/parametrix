@@ -26,7 +26,7 @@
 
 	export let pDef: tParamDef;
 	export let geom: tGeomFunc;
-	export let optFaces: Array<string>;
+	export let optFaces: string[];
 	export let face: string;
 	export let simTime = 0;
 
@@ -40,7 +40,7 @@
 	let cAdjust: tCanvasAdjust;
 	let zAdjust: tCanvasAdjust;
 	function canvasRedrawFull(iLayers: tLayers) {
-		const ctx1 = canvasFull.getContext('2d') as CanvasRenderingContext2D;
+		const ctx1 = canvasFull.getContext('2d')!;
 		ctx1.clearRect(0, 0, ctx1.canvas.width, ctx1.canvas.height);
 		try {
 			cAdjust = aFigure.getAdjustFull(ctx1.canvas.width, ctx1.canvas.height);
@@ -54,7 +54,7 @@
 		//point(5, 15).draw(ctx1, cAdjust, 'blue', 'rectangle');
 	}
 	function canvasRedrawZoom(iLayers: tLayers) {
-		const ctx2 = canvasZoom.getContext('2d') as CanvasRenderingContext2D;
+		const ctx2 = canvasZoom.getContext('2d')!;
 		ctx2.clearRect(0, 0, ctx2.canvas.width, ctx2.canvas.height);
 		try {
 			if (zAdjust === undefined || zAdjust.init === 0) {
@@ -69,7 +69,7 @@
 	}
 	function canvasSetSize() {
 		//console.log(`windowWidth: ${windowWidth}`);
-		const ctx1 = canvasFull.getContext('2d') as CanvasRenderingContext2D;
+		const ctx1 = canvasFull.getContext('2d')!;
 		const canvas_size = Math.max(0.4 * windowWidth, canvas_size_min);
 		ctx1.canvas.width = canvas_size;
 		ctx1.canvas.height = canvas_size;
@@ -80,7 +80,7 @@
 		canvasRedrawZoom($dLayers);
 	}
 	let domInit = 0;
-	function checkFace(iFaces: Array<string>, iFace: string): string {
+	function checkFace(iFaces: string[], iFace: string): string {
 		let rFace = iFace;
 		if (iFaces.length === 0) {
 			console.log(`warn404: Drawing has an empty face list`);
@@ -154,11 +154,11 @@
 		canvasRedrawZoom($dLayers);
 	}
 	// zoom functions on the canvasFull
-	type tMouse = {
+	interface tMouse {
 		timestamp: number;
 		offsetX: number;
 		offsetY: number;
-	};
+	}
 	const mouseDelayMax = 3000; // only action if mouse-up occurs less than 3000 ms after mouse-down
 	const mouseDiffClick = 10; // if diffX and diffY are smaller than 10 pixel then it's a click
 	const mouseDiffRatioSelect = 3; // The selection must be more or less a square
@@ -210,7 +210,7 @@
 	// just drawing a rectangle to help zooming
 	function cFullMouseMove(eve: MouseEvent) {
 		//console.log(`dbg179: cFullMouseMove ${eve.offsetX} ${eve.offsetY} ${eve.buttons}`);
-		const ctx1 = canvasFull.getContext('2d') as CanvasRenderingContext2D;
+		const ctx1 = canvasFull.getContext('2d')!;
 		// left click
 		if (eve.buttons === 1) {
 			const diffX = eve.offsetX - mouseF.offsetX;
@@ -258,7 +258,7 @@
 		} else {
 			// mouse position
 			if ($dLayers.ruler) {
-				const ctx2 = canvasZoom.getContext('2d') as CanvasRenderingContext2D;
+				const ctx2 = canvasZoom.getContext('2d')!;
 				const [p2x, p2y] = canvas2point(eve.offsetX, eve.offsetY, zAdjust);
 				ctx2.clearRect(5, 5, 200, 25);
 				ctx2.font = '15px Arial';

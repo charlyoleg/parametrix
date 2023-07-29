@@ -5,7 +5,7 @@
 	export let pageName: string;
 	export let storeName: string;
 
-	let localKeys: Array<string> = [];
+	let localKeys: string[] = [];
 	// create a default key name
 	function defaultName(prefix: string) {
 		const re1 = /[-:]/g;

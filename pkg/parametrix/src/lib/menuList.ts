@@ -22,8 +22,8 @@ import type { tStorePVal } from '$lib/storePVal';
 import { storePV } from '$lib/storePVal';
 import { get, writable } from 'svelte/store';
 
-type tAllPageDef = { [index: string]: tPageDef };
-type tIcon = { [inedx: string]: string };
+type tAllPageDef = Record<string, tPageDef>;
+type tIcon = Record<string, string>;
 const designDefs: tAllPageDef = {
 	gear_wheel_wheel: gearWheelWheelDef,
 	simplified_gear_wheel: simplifiedGearWheelDef,
@@ -120,22 +120,22 @@ for (const design of Object.keys(designDefs)) {
 storePV.set(iniPV);
 /* end of initialization storePV */
 
-type tPageList = Array<string>;
-type tArrayLabel = {
+type tPageList = string[];
+interface tArrayLabel {
 	category: string;
 	pages: tPageList;
-};
-type tMenuElem = {
+}
+interface tMenuElem {
 	path: string;
 	label: string;
 	svg: string;
-};
-type tMenu = Array<tMenuElem>;
-type tMenuFull = {
+}
+type tMenu = tMenuElem[];
+interface tMenuFull {
 	menu: tMenu;
 	category: string;
-};
-type tMenuFullList = Array<tMenuFull>;
+}
+type tMenuFullList = tMenuFull[];
 
 function oneMenu(menuName: string): tMenuElem {
 	const re = /^.*\//g;
@@ -155,8 +155,8 @@ function oneMenu(menuName: string): tMenuElem {
 	return rMenu;
 }
 class genMenu {
-	memMenu: Array<tPageList>;
-	memCategory: Array<string>;
+	memMenu: tPageList[];
+	memCategory: string[];
 	constructor(firstMenu: tArrayLabel) {
 		this.memMenu = [];
 		this.memMenu.push(firstMenu.pages);
@@ -168,7 +168,7 @@ class genMenu {
 		this.memCategory.push(iMenu.category);
 	}
 	makeMenuMenu(): tMenuFullList {
-		const labelMenu: Array<tPageList> = [];
+		const labelMenu: tPageList[] = [];
 		for (const iMenu of this.memMenu) {
 			labelMenu.push(mIndex.concat(iMenu, mAbout));
 		}
@@ -182,7 +182,7 @@ class genMenu {
 		return rMenuMenu;
 	}
 	makeIndexMenu(): tMenuFullList {
-		const labelMenu: Array<tPageList> = [];
+		const labelMenu: tPageList[] = [];
 		labelMenu.push(mIndex);
 		for (const iMenu of this.memMenu) {
 			labelMenu.push(iMenu);
@@ -225,15 +225,15 @@ function getMenuMenu(): tMenuFull {
 	//}
 	return rMenuMenu;
 }
-function getLabelPath(iMenu: tPageList): Array<string> {
-	const rPath: Array<string> = [];
+function getLabelPath(iMenu: tPageList): string[] {
+	const rPath: string[] = [];
 	for (const lItem of iMenu) {
 		rPath.push(oneMenu(lItem).path);
 	}
 	return rPath;
 }
-function getMenuPath(iMenu: tMenu): Array<string> {
-	const rPath: Array<string> = [];
+function getMenuPath(iMenu: tMenu): string[] {
+	const rPath: string[] = [];
 	for (const lItem of iMenu) {
 		rPath.push(lItem.path);
 	}

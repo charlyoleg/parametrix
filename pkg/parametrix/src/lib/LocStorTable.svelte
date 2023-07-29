@@ -4,11 +4,11 @@
 
 	export let pageName: string;
 	export let storeName: string;
-	export let localKeys: Array<string>;
+	export let localKeys: string[];
 
 	// get the list of localStorage keys
 	function getLocalKey() {
-		let rKeyList: Array<string> = [];
+		let rKeyList: string[] = [];
 		const re = new RegExp(`^${pageName}_`);
 		if (browser) {
 			const keyList = Object.keys(window.localStorage).filter((k) => re.test(k));
@@ -23,9 +23,9 @@
 		storeName = iname;
 	}
 	// last modification date
-	type tLocalDate = { [index: string]: string };
+	type tLocalDate = Record<string, string>;
 	let localDate: tLocalDate = {};
-	function getLocalDate(iKeys: Array<string>): tLocalDate {
+	function getLocalDate(iKeys: string[]): tLocalDate {
 		let rLocalDate: tLocalDate = {};
 		if (browser) {
 			for (const k of iKeys) {
@@ -44,9 +44,9 @@
 	}
 	localDate = getLocalDate(localKeys);
 	// delete checkbox
-	type tLocalDel = { [index: string]: boolean };
+	type tLocalDel = Record<string, boolean>;
 	let localDel: tLocalDel = {};
-	function getInitDel(iKeys: Array<string>): tLocalDel {
+	function getInitDel(iKeys: string[]): tLocalDel {
 		let rLocalDel: tLocalDel = {};
 		for (const k of iKeys) {
 			rLocalDel[k] = false;
