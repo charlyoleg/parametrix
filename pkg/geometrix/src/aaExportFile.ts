@@ -103,8 +103,8 @@ function fileMime(exportFormat: EFormat): string {
 		rMime = 'text/plain';
 	} else if (exportFormat === EFormat.eZIP) {
 		rMime = 'application/zip';
-	//} else {
-	//	console.log(`err903: unknown exportFormat ${exportFormat}`);
+		//} else {
+		//	console.log(`err903: unknown exportFormat ${exportFormat}`);
 	}
 	return rMime;
 }
@@ -123,8 +123,8 @@ function fileSuffix(exportFormat: EFormat): string {
 		rSuffix = '_noarc_jscad.js';
 	} else if (exportFormat === EFormat.eZIP) {
 		rSuffix = '.zip';
-	//} else {
-	//	console.log(`err904: unknown exportFormat ${exportFormat}`);
+		//} else {
+		//	console.log(`err904: unknown exportFormat ${exportFormat}`);
 	}
 	return rSuffix;
 }

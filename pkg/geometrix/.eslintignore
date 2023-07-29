@@ -14,3 +14,4 @@ yarn.lock
 
 # ignore recommended by eslint
 vitest.config.ts
+dist/

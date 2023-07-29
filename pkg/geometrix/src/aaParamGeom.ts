@@ -33,7 +33,11 @@ interface tParamDef {
 }
 
 type tParamVal = Record<string, number>;
-interface tAllVal { lastModif: string; pVal: tParamVal; comment: string }
+interface tAllVal {
+	lastModif: string;
+	pVal: tParamVal;
+	comment: string;
+}
 interface tGeom {
 	calcErr: boolean;
 	logstr: string;
