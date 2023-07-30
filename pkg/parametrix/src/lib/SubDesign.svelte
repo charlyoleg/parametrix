@@ -41,19 +41,18 @@
 					</label>
 					<span>( {Object.keys(subD[subInst].mandatories).length} parameters)</span>
 					<div class="nested">
-						aaa
 						<table>
 							<thead>
 								<tr>
-									<td>i</td>
+									<td>Num</td>
 									<td>Name</td>
 									<td>Value</td>
 								</tr>
 							</thead>
 							<tbody>
-								{#each Object.keys(subD[subInst].mandatories) as param}
+								{#each Object.keys(subD[subInst].mandatories) as param, pIdx}
 									<tr>
-										<td>i</td>
+										<td>{pIdx + 1}</td>
 										<td>{param}</td>
 										<td>{subD[subInst].mandatories[param]}</td>
 									</tr>
@@ -70,7 +69,24 @@
 					</label>
 					<span>( {Object.keys(subD[subInst].recommended).length} parameters)</span>
 					<div class="nested">
-						aaa
+						<table>
+							<thead>
+								<tr>
+									<td>Num</td>
+									<td>Name</td>
+									<td>Value</td>
+								</tr>
+							</thead>
+							<tbody>
+								{#each Object.keys(subD[subInst].recommended) as param, pIdx}
+									<tr>
+										<td>{pIdx + 1}</td>
+										<td>{param}</td>
+										<td>{subD[subInst].recommended[param]}</td>
+									</tr>
+								{/each}
+							</tbody>
+						</table>
 					</div>
 				</article>
 				<article>
@@ -81,7 +97,28 @@
 					</label>
 					<span>( {Object.keys(subD[subInst].restricted).length} parameters)</span>
 					<div class="nested">
-						aaa
+						<table>
+							<thead>
+								<tr>
+									<td>Num</td>
+									<td>Name</td>
+									<td>Min</td>
+									<td>Max</td>
+									<td>Step</td>
+								</tr>
+							</thead>
+							<tbody>
+								{#each Object.keys(subD[subInst].restricted) as param, pIdx}
+									<tr>
+										<td>{pIdx + 1}</td>
+										<td>{param}</td>
+										<td>{subD[subInst].restricted[param].min}</td>
+										<td>{subD[subInst].restricted[param].max}</td>
+										<td>{subD[subInst].restricted[param].step}</td>
+									</tr>
+								{/each}
+							</tbody>
+						</table>
 					</div>
 				</article>
 				<article>
@@ -175,5 +212,16 @@
 		font-size: 1rem;
 		font-weight: 400;
 		margin-left: 0.5rem;
+	}
+	div > table {
+		font-size: 0.8rem;
+		font-weight: 400;
+		margin-left: 1rem;
+	}
+	div > table > thead {
+		background-color: colors.$table-head;
+	}
+	div > table > tbody {
+		background-color: colors.$table-body;
 	}
 </style>
