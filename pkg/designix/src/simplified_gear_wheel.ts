@@ -360,6 +360,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const subGearWW: tSubInst = {
 			partName: 'gear_wheel_wheel',
 			package: 'designix',
+			version: '1.2.3',
 			mandatories: paramGearWW,
 			recommended: paramGearWW,
 			restricted: {},

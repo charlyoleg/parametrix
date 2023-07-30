@@ -14,6 +14,7 @@ type tPosiOrien = [number, number, number];
 interface tSubInst {
 	partName: string;
 	package: string;
+	version: string;
 	mandatories: tMParams;
 	recommended: tMParams;
 	restricted: tRParams;
