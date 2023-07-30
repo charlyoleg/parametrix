@@ -25,7 +25,7 @@
 	<ol>
 	{#each subInsts as subInst}
 		<li>
-			<input type="checkbox" id=cb_{subInst} class="toggle" checked='' />
+			<input type="checkbox" id=cb_{subInst} class="toggle" checked={false} />
 			<label for=cb_{subInst} class="label">
 					<div class="arrow" />
 					{subInst}
@@ -34,7 +34,7 @@
 			<button on:click={downloadConstraints}>Export Constraints</button>
 			<div class="nested">
 				<article>
-					<input type="checkbox" id=cb1_{subInst} class="toggle" checked='' />
+					<input type="checkbox" id=cb1_{subInst} class="toggle" checked={false} />
 					<label for=cb1_{subInst} class="label">
 						<div class="arrow" />
 						Mandatory
@@ -62,7 +62,7 @@
 					</div>
 				</article>
 				<article>
-					<input type="checkbox" id=cb2_{subInst} class="toggle" checked='' />
+					<input type="checkbox" id=cb2_{subInst} class="toggle" checked={false} />
 					<label for=cb2_{subInst} class="label">
 						<div class="arrow" />
 						Recommended
@@ -90,7 +90,7 @@
 					</div>
 				</article>
 				<article>
-					<input type="checkbox" id=cb3_{subInst} class="toggle" checked='' />
+					<input type="checkbox" id=cb3_{subInst} class="toggle" checked={false} />
 					<label for=cb3_{subInst} class="label">
 						<div class="arrow" />
 						Restricted
@@ -122,7 +122,7 @@
 					</div>
 				</article>
 				<article>
-					<input type="checkbox" id=cb4_{subInst} class="toggle" checked='' />
+					<input type="checkbox" id=cb4_{subInst} class="toggle" checked={false} />
 					<label for=cb4_{subInst} class="label">
 						<div class="arrow" />
 						Summary
