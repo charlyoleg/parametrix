@@ -11,7 +11,7 @@
 		<img class="img4 img-suite" src="{base}/favicon.svg" alt="Parametrix's logo" />
 		<img class="img5 img-suite" src="{base}/favicon.svg" alt="Parametrix's logo" />
 	</section>
-	<article>2D parametric designs</article>
+	<article>Technical drawing --- Dessin technique --- Dessin industriel --- 2D parametric designs</article>
 </header>
 
 <style lang="scss">
@@ -77,6 +77,6 @@
 	header > article {
 		color: colors.$header-subtitle;
 		font-size: 1rem;
-		padding-left: 5rem;
+		padding-left: 1rem;
 	}
 </style>
