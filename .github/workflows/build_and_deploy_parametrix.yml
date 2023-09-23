@@ -24,6 +24,8 @@ jobs:
             - run: npm -w parametrix run ci
 
             - name: Build and check Parametrix
+              env:
+                  BASE_PATH: '/parametrix'
               run: |
                   npm -w geometrix run build
                   npm -w designix run build
