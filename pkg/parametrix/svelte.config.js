@@ -15,13 +15,13 @@ const config = {
 		adapter: adapter({
 			pages: 'build',
 			assets: 'build',
-			fallback: null,
+			fallback: undefined,
 			precompress: false,
 			strict: true
 		}),
 		//appDir: 'app_',
 		paths: {
-			base: dev ? '' : '/parametrix'
+			base: dev ? '' : process.env.BASE_PATH
 		}
 	}
 };
