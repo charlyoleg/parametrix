@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="65.334976"
+   height="76.296265"
+   viewBox="0 0 17.286546 20.186719"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.3 (1:1.3+202307231459+0e150ed6c4)"
+   sodipodi:docname="menu_icons.svg"
+   inkscape:export-filename="page_magnetic.svg"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:zoom="1.5729487"
+     inkscape:cx="288.94776"
+     inkscape:cy="658.63559"
+     inkscape:window-width="1370"
+     inkscape:window-height="836"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible"
+       id="ArrowWide"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Wide arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         sodipodi:nodetypes="ccc"
+         id="path2" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="ArrowWide-1"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Wide arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         sodipodi:nodetypes="ccc"
+         id="path2-2" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-24.709846,-190.54279)">
+    <rect
+       style="fill:none;stroke:#e6e6e6;stroke-width:0.264583"
+       id="rect111-3-3-3-36"
+       width="21.166666"
+       height="21.166666"
+       x="22.779978"
+       y="189.93141"
+       inkscape:export-filename="../24168d4b/page_index.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#6495ed;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#ArrowWide)"
+       d="m 29.075561,208.77958 c 0,0 1.850505,-0.35392 2.401333,-1.0283 0.714722,-0.87504 0.555089,-2.19719 0.685308,-3.31949 0.188335,-1.62319 0.144316,-3.26634 0.13447,-4.90039 -0.0076,-1.25595 0.07176,-2.52851 -0.148736,-3.76497 -0.180031,-1.00957 -0.17558,-2.25275 -0.948621,-2.92657 -0.598905,-0.52204 -2.346423,-0.41855 -2.346423,-0.41855"
+       id="path1"
+       sodipodi:nodetypes="caaaaac"
+       inkscape:export-filename="page_magnetic.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#6495ed;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#ArrowWide)"
+       d="m 29.08193,192.51777 c 0,0 -2.147464,0.30015 -2.845089,1.0283 -0.802275,0.83738 -0.842,2.17709 -1.041446,3.31949 -0.281175,1.61052 -0.219298,3.26557 -0.204351,4.90039 0.0115,1.2572 -0.09577,2.5496 0.226031,3.76497 0.278336,1.05123 0.564031,2.28436 1.441599,2.92657 0.751358,0.54985 2.761641,0.41855 2.761641,0.41855"
+       id="path1-9"
+       sodipodi:nodetypes="caaaaac" />
+    <path
+       style="fill:none;stroke:#6495ed;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#ArrowWide-1)"
+       d="m 37.630674,208.74751 c 0,0 -1.850505,-0.35392 -2.401333,-1.0283 -0.714722,-0.87504 -0.555089,-2.19719 -0.685308,-3.31949 -0.188335,-1.62319 -0.144316,-3.26634 -0.13447,-4.90039 0.0076,-1.25595 -0.07176,-2.52851 0.148736,-3.76497 0.180031,-1.00957 0.17558,-2.25275 0.948621,-2.92657 0.598905,-0.52204 2.346423,-0.41855 2.346423,-0.41855"
+       id="path3"
+       sodipodi:nodetypes="caaaaac" />
+    <path
+       style="fill:none;stroke:#6495ed;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#ArrowWide-1)"
+       d="m 37.624305,192.4857 c 0,0 2.147464,0.30015 2.845089,1.0283 0.802275,0.83738 0.842,2.17709 1.041446,3.31949 0.281175,1.61052 0.219298,3.26557 0.204351,4.90039 -0.0115,1.2572 0.09577,2.5496 -0.226031,3.76497 -0.278336,1.05123 -0.564031,2.28436 -1.441599,2.92657 -0.751358,0.54985 -2.761641,0.41855 -2.761641,0.41855"
+       id="path1-9-0"
+       sodipodi:nodetypes="caaaaac" />
+  </g>
+</svg>

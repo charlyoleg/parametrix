@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="241.27972"
+   height="154.39124"
+   viewBox="0 0 63.838594 40.849348"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <rect
+       x="109.16657"
+       y="1529.8588"
+       width="244.55733"
+       height="45.944542"
+       id="rect24" />
+    <rect
+       x="113.20668"
+       y="1351.5743"
+       width="28.682714"
+       height="26.10153"
+       id="rect22" />
+    <rect
+       x="82.391685"
+       y="1407.3739"
+       width="30.068567"
+       height="26.63134"
+       id="rect21" />
+    <marker
+       style="overflow:visible"
+       id="marker14"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path14" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker14-41"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path14-85" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker14-8"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path14-31" />
+    </marker>
+    <rect
+       x="283.29333"
+       y="906.08276"
+       width="19.630304"
+       height="17.137857"
+       id="rect18-5-3" />
+  </defs>
+  <g
+     id="layer1"
+     transform="translate(-26.469839,-359.10211)">
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect23"
+       width="63.574009"
+       height="40.584755"
+       x="26.602131"
+       y="359.23441" />
+    <rect
+       style="fill:#cccccc;stroke:#000000;stroke-width:0.264582;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect20-8"
+       width="35.177872"
+       height="22.681969"
+       x="47.319515"
+       y="365.03244" />
+    <rect
+       style="fill:#333333;fill-opacity:0.5;stroke:#000000;stroke-width:0.79375;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect20"
+       width="13.679477"
+       height="12.125085"
+       x="38.034607"
+       y="370.39139" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,11.176765,1.8204652)"
+       id="text20"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect21)"><tspan
+         x="82.392578"
+         y="1420.3496"
+         id="tspan1">B</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,13.903211,7.2195326)"
+       id="text21"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect22)"><tspan
+         x="113.20703"
+         y="1364.5508"
+         id="tspan2">A</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker14);marker-end:url(#marker14)"
+       d="M 38.941902,368.80388 H 50.784693"
+       id="path22" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker14-41);marker-end:url(#marker14-41)"
+       d="m 35.922901,381.42784 v -9.76623"
+       id="path22-5" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker14-8);marker-end:url(#marker14-8)"
+       d="m 39.206663,384.64746 h 6.645239"
+       id="path22-6" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-33.367008,144.52747)"
+       id="text17-8-8"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect18-5-3);display:inline"><tspan
+         x="283.29297"
+         y="919.05862"
+         id="tspan3">x</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-0.91612093,-10.092844)"
+       id="text24"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect24)"><tspan
+         x="109.16602"
+         y="1542.836"
+         id="tspan4">top view of air gap and shuttle</tspan></text>
+  </g>
+</svg>
