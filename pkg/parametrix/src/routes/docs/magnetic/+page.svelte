@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { base } from '$app/paths';
+	import { math } from 'mathlifier';
 </script>
 
 <h1>Magnetic circuit</h1>
@@ -25,7 +26,15 @@
 <h2>Magnetic circuits</h2>
 <h3>Physical laws</h3>
 <article>
-	F = Ni
+	<ul>
+		<li>{@html math('F')} : magnetomotive force</li>
+		<li>{@html math('\\varPhi')} : magnetic flux</li>
+		<li>{@html math('R')} : reluctance</li>
+		<li>{@html math('N')} : number of wire loops</li>
+		<li>{@html math('i')} : electric current in one wire loops</li>
+		<li>{@html math('F= Ni')}</li>
+		<li>{@html math('F = \\varPhi R')}</li>
+	</ul>
 </article>
 <h3>Regular torus</h3>
 <article>
