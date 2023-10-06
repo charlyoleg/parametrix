@@ -1,4 +1,5 @@
 <script lang="ts">
+	/* eslint-disable svelte/no-at-html-tags */
 	import { base } from '$app/paths';
 	import { math } from 'mathlifier';
 </script>
@@ -83,6 +84,7 @@
 			{@html math('= \\frac{\\mu S N^2 i^2}{2 L}')}
 			{@html math('= \\frac{\\mathcal{L} i^2}{2}')}
 		</li>
+		<li>{@html math('\\mathcal{L} = \\frac{\\mu S N^2}{L} = \\frac{\\mu_r \\mu_0 S N^2}{L}')}</li>
 	</ul>
 </article>
 <h3>Torus with swelling</h3>

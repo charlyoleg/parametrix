@@ -16,3 +16,5 @@ yarn.lock
 # ignore app.html because of flickering behavior
 # TODO: remove those lines when prettier is stabilized
 src/app.html
+
+static/katex.min.css
