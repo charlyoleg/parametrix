@@ -26,14 +26,44 @@
 <h2>Magnetic circuits</h2>
 <h3>Physical laws</h3>
 <article>
+	Definitions:
 	<ul>
-		<li>{@html math('F')} : magnetomotive force</li>
-		<li>{@html math('\\varPhi')} : magnetic flux</li>
-		<li>{@html math('R')} : reluctance</li>
+		<li>{@html math('\\mathcal{F}')} : magnetomotive force (unit: {@html math('A')})</li>
+		<li>{@html math('\\varPhi')} : magnetic flux (unit: {@html math('Wb')} or {@html math('H.A')} or {@html math('kg.m^2.s^{-2}.A^{-1}')})</li>
+		<li>{@html math('\\mathcal{R}')} : reluctance (unit: {@html math('H^{-1}')} or {@html math('kg^{-1}.m^{-2}.s^2.A^2')})</li>
 		<li>{@html math('N')} : number of wire loops</li>
-		<li>{@html math('i')} : electric current in one wire loops</li>
-		<li>{@html math('F= Ni')}</li>
-		<li>{@html math('F = \\varPhi R')}</li>
+		<li>{@html math('i')} : electric current in one wire loops (unit: {@html math('A')})</li>
+		<li>{@html math('L')} : length of the magnetic circuit (unit: {@html math('m')})</li>
+		<li>{@html math('S')} : area of a section of the magnetic circuit (unit: {@html math('m^2')})</li>
+	</ul>
+	Laws at macroscopic scale (from integral equations):
+	<ul>
+		<li>{@html math('\\mathcal{F} = Ni')}</li>
+		<li>{@html math('\\varPhi = \\frac{\\mathcal{F}}{\\mathcal{R}}')}</li>
+		<li>{@html math('\\mathcal{R} = \\frac{L}{\\mu S} = \\frac{L}{\\mu_r \\mu_0 S}')}</li>
+	</ul>
+	Laws at microscopic scale (from differential equations):
+	<ul>
+		<li>{@html math('H = \\frac{\\mathcal{F}}{L} = \\frac{\\varPhi}{\\mu S}')}</li>
+		<li>{@html math('B = \\frac{\\varPhi}{S} = \\mu H = \\mu_r \\mu_0 H')}</li>
+		<li>{@html math('\\mu = \\mu_r \\mu_0 = \\frac{B}{H}')}</li>
+	</ul>
+	Electrical circuit:
+	<ul>
+		<li>{@html math('\\mathcal{L}')} : inductance with a toroidal core (unit: {@html math('H')} or {@html math('kg.m^2.s^{-2}.A^{-2}')}})</li>
+		<li>{@html math('\\mathcal{L} = \\frac{\\mu N^2 S}{L} = \\frac{N^2}{\\mathcal{R}}')}</li>
+		<li>{@html math('\\varPhi = \\mathcal{L} i')}</li>
+		<li>
+			{@html math('u = \\frac{d \\varPhi}{d t}')}
+			({@html math('= \\mathcal{L} \\frac{d i}{d t}')} if {@html math('\\mathcal{L}')} constant over time)
+		</li>
+	</ul>
+	Energy:
+	<ul>
+		<li>{@html math('u_m')} : energy density (unit: {@html math('J.m^{-3}')} or {@html math('kg.m^{-1}.s^{-2}')}})</li>
+		<li>{@html math('E_m')} : energy of a magnetic circuit (unit: {@html math('J')} or {@html math('kg.m^2.s^{-2}')}})</li>
+		<li>{@html math('u_m = \\frac{B H}{2} = \\frac{B^2}{2 \\mu} = \\frac{B^2}{2 \\mu_r \\mu_0}')}</li>
+		<li>{@html math('E_m = \\int_V u_m')}</li>
 	</ul>
 </article>
 <h3>Regular torus</h3>

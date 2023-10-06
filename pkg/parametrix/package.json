@@ -21,7 +21,9 @@
 		"download-katex-font1": "wget https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/fonts/KaTeX_Math-Italic.woff2 -O ./static/fonts/KaTeX_Math-Italic.woff2",
 		"download-katex-font2": "wget https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/fonts/KaTeX_Main-Regular.woff2 -O ./static/fonts/KaTeX_Main-Regular.woff2",
 		"download-katex-font3": "wget https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/fonts/KaTeX_Main-Italic.woff2 -O ./static/fonts/KaTeX_Main-Italic.woff2",
-		"download-katex": "run-s download-katex-css1 download-katex-font1 download-katex-font2 download-katex-font3",
+		"download-katex-font4": "wget https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/fonts/KaTeX_Caligraphic-Regular.woff2 -O ./static/fonts/KaTeX_Caligraphic-Regular.woff2",
+		"download-katex-font5": "wget https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/fonts/KaTeX_Size1-Regular.woff2 -O ./static/fonts/KaTeX_Size1-Regular.woff2",
+		"download-katex": "run-s download-katex-css1 download-katex-font1 download-katex-font2 download-katex-font3 download-katex-font4 download-katex-font5",
 		"github-pages-fix": "touch build/.nojekyll",
 		"clean": "shx rm -fr .svelte-kit build node_modules"
 	},
