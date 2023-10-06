@@ -61,14 +61,29 @@
 	Energy:
 	<ul>
 		<li>{@html math('u_m')} : energy density (unit: {@html math('J.m^{-3}')} or {@html math('kg.m^{-1}.s^{-2}')}})</li>
-		<li>{@html math('E_m')} : energy of a magnetic circuit (unit: {@html math('J')} or {@html math('kg.m^2.s^{-2}')}})</li>
 		<li>{@html math('u_m = \\frac{B H}{2} = \\frac{B^2}{2 \\mu} = \\frac{B^2}{2 \\mu_r \\mu_0}')}</li>
+		<li>{@html math('E_m')} : energy of a magnetic circuit (unit: {@html math('J')} or {@html math('kg.m^2.s^{-2}')}})</li>
 		<li>{@html math('E_m = \\int_V u_m')}</li>
 	</ul>
 </article>
 <h3>Regular torus</h3>
 <article>
 	<img src="{base}/regular_torus.svg" alt="regular torus" />
+	<ul>
+		<li>{@html math('L = 2 \\pi R')} (length of the torus)</li>
+		<li>{@html math('\\mathcal{F} = N i')}</li>
+		<li>{@html math('\\mathcal{R} = \\frac{L}{\\mu S}')}</li>
+		<li>{@html math('\\varPhi = \\frac{\\mathcal{F}}{\\mathcal{R}} = \\frac{\\mu S N i}{L}')}</li>
+		<li>{@html math('B = \\frac{\\varPhi}{S} = \\frac{\\mu N i}{L}')}</li>
+		<li>
+			{@html math('E_m')}
+			{@html math('= \\int_V u_m')}
+			{@html math('= \\int_V \\frac{B^2}{2 \\mu}')}
+			{@html math('= \\frac{B^2}{2 \\mu} L S')}
+			{@html math('= \\frac{\\mu S N^2 i^2}{2 L}')}
+			{@html math('= \\frac{\\mathcal{L} i^2}{2}')}
+		</li>
+	</ul>
 </article>
 <h3>Torus with swelling</h3>
 <article>
