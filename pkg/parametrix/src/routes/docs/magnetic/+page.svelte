@@ -51,13 +51,15 @@
 	</ul>
 	Electrical circuit:
 	<ul>
-		<li>{@html math('\\mathcal{L}')} : inductance with a toroidal core (unit: {@html math('H')} or {@html math('kg.m^2.s^{-2}.A^{-2}')}})</li>
-		<li>{@html math('\\mathcal{L} = \\frac{\\mu N^2 S}{L} = \\frac{N^2}{\\mathcal{R}}')}</li>
-		<li>{@html math('\\varPhi = \\mathcal{L} i')}</li>
-		<li>
-			{@html math('u = \\frac{d \\varPhi}{d t}')}
-			({@html math('= \\mathcal{L} \\frac{d i}{d t}')} if {@html math('\\mathcal{L}')} constant over time)
-		</li>
+		<li>{@html math('u')} : electromotive force (unit: {@html math('V')} or {@html math('kg.m^2.s^{-3}.A^{-1}')}})</li>
+		<li>{@html math('\\mathcal{L}')} : inductance of a solenoid (unit: {@html math('H')} or {@html math('kg.m^2.s^{-2}.A^{-2}')}})</li>
+		<li>{@html math('u = -N \\frac{d \\varPhi}{d t}')}</li>
+		<li>if {@html math('\\mathcal{L}')} constant over time
+			<ul>
+				<li>{@html math('u = -\\mathcal{L} \\frac{d i}{d t}')}</li>
+				<li>{@html math('N \\varPhi = \\mathcal{L} i')}</li>
+				<li>{@html math('\\mathcal{L} = \\frac{N \\varPhi}{i} = \\frac{N^2}{\\mathcal{R}} = \\frac{\\mu N^2 S}{L}')}</li>
+		</ul>
 	</ul>
 	Energy:
 	<ul>
